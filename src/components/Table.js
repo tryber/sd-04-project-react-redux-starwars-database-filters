@@ -20,10 +20,24 @@ class Table extends Component {
       <table>
         <thead>
           <tr>
-            {tableTitles.map((title) => <th key={title}>{title}</th>)}
+            {tableTitles
+              .filter((title) => title !== 'residents')
+              .map((title) => (
+                <th key={title}>{title}</th>
+              ))}
           </tr>
         </thead>
-        <tbody />
+        <tbody>
+          {data.map((planet) => (
+            <tr>
+              {Object.values(planet)
+                .filter((_, index) => index !== 9)
+                .map((item) => (
+                  <th>{item}</th>
+                ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     );
   }
