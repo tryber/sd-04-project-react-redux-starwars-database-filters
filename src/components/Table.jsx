@@ -1,21 +1,13 @@
 import React from 'react';
+import TableHeader from './TableHeader';
+import TableData from './TableData';
 
 function Table() {
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>dado 1</th>
-            <th>dado 2</th>
-          </tr>
-        </thead>
-        <tr>
-          <td>Referencia dado 1</td>
-          <td>Referencia dado 2</td>
-        </tr>
-      </table>
-    </div>
+    <table className="t01">
+      <TableHeader />
+      <TableData />
+    </table>
   );
 }
 
