@@ -1,52 +1,21 @@
-import { getCurrentISSLocation } from '../service/issAPI'
+import getPlanets from '../service/planetsAPI';
 
-export const REQUEST_ISS_LOCATION = 'REQUEST_ISS_LOCATION';
-export const REQUEST_ISS_LOCATION_SUCCESS = 'REQUEST_ISS_LOCATION_SUCCESS';
+export const REQUEST_PLANETS = 'REQUEST_PLANETS';
+export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
 
-
+const requestPlanets = () => ({ type: REQUEST_PLANETS });
 // Actions retornam objetos
-const requestISSLocation = () => ({
-  type: REQUEST_ISS_LOCATION
-})
-// Actions retornam objetos
-const receiveISSLocationSuccess = ({ iss_position: { latitude, longitude } }) => ({
-  type: REQUEST_ISS_LOCATION_SUCCESS,
-  latitude: parseFloat(latitude),
-  longitude: parseFloat(longitude)
-})
+
+const receivePlanetsSuccess = (data) => ({
+  type: REQUEST_PLANETS_SUCCESS,
+  data,
+});
 
 // Action Assincrono Creator Retorna uma Funcao Com o Thunk
-export function fetchISSLocation() {
+export function fetchPlanets() {
   return (dispatch) => {
-    dispatch(requestISSLocation())
+    dispatch(requestPlanets());
 
-    return getCurrentISSLocation()
-      .then(
-        (location) => dispatch(receiveISSLocationSuccess(location))
-      )
-  }
+    return getPlanets().then((planets) => dispatch(receivePlanetsSuccess(planets.results)));
+  };
 }
-
-
-
-// {"iss_position": {"longitude": "-139.2462", "latitude": "-21.2295"}, "message": "success", "timestamp": 1594151341}
-
-// Action Sincrono
-//   |
-//   |
-// Reducer
-//   |
-//   |
-// Store
-
-
-// Action Assincrono
-//   |
-//   |
-// Middleware Thunk
-//   |
-//   |
-// Reducer
-//   |
-//   |
-// Store

@@ -1,25 +1,9 @@
 import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import reducer from '../reducers';
+import rootReducer from '../reducers';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;
-
-// Codigo do Thunk
-
-// function createThunkMiddleware(extraArgument) {
-//   return ({ dispatch, getState }) => next => action => {
-//     if (typeof action === 'function') {
-//       return action(dispatch, getState, extraArgument);
-//     }
-
-//     return next(action);
-//   };
-// }
-
-// const thunk = createThunkMiddleware();
-// thunk.withExtraArgument = createThunkMiddleware;
-
-// export default thunk;
