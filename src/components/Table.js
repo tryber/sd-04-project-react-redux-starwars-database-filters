@@ -30,7 +30,7 @@ class Table extends Component {
               {Object.values(planet)
                 .filter((_, index) => index !== 9)
                 .map((value) => (
-                  <th key={value}>{value}</th>
+                  <td key={value}>{value}</td>
                 ))}
             </tr>
           ))}
