@@ -4,7 +4,6 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
 
 const requestPlanets = () => ({ type: REQUEST_PLANETS });
-// Actions retornam objetos
 
 const receivePlanetsSuccess = (data) => ({
   type: REQUEST_PLANETS_SUCCESS,
