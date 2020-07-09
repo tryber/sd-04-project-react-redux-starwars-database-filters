@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Table = ({ data }) => {
+const Table = ({ data, loading }) => {
+  if (loading) return <h3>Loading</h3>;
   return (
     <table>
       <thead>
@@ -24,26 +25,26 @@ const Table = ({ data }) => {
         {data.map(
           ({
             name,
-            rotation_period,
-            orbital_period,
+            rotation_period: rotationPeriod,
+            orbital_period: orbitalPeriod,
             diameter,
             climate,
             gravity,
             terrain,
-            surface_water,
+            surface_water: surfaceWater,
             population,
             residents,
             films,
           }) => (
             <tr key={name}>
               <td key={name + name}>{name}</td>
-              <td key={name + rotation_period}>{rotation_period}</td>
-              <td key={name + orbital_period}>{orbital_period}</td>
+              <td key={name + rotationPeriod}>{rotationPeriod}</td>
+              <td key={name + orbitalPeriod}>{orbitalPeriod}</td>
               <td key={name + diameter}>{diameter}</td>
               <td key={name + climate}>{climate}</td>
               <td key={name + gravity}>{gravity}</td>
               <td key={name + terrain}>{terrain}</td>
-              <td key={name + surface_water}>{surface_water}</td>
+              <td key={name + surfaceWater}>{surfaceWater}</td>
               <td key={name + population}>{population}</td>
               <td key={name + residents}>{residents}</td>
               <td key={name + films}>{films}</td>
@@ -57,6 +58,7 @@ const Table = ({ data }) => {
 
 const mapState = (state) => ({
   data: state.reducer.data,
+  loading: state.reducer.loading,
 });
 
 export default connect(mapState)(Table);
@@ -65,4 +67,5 @@ Table.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ).isRequired,
+  loading: PropTypes.bool.isRequired,
 };

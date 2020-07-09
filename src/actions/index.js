@@ -18,12 +18,10 @@ const requestAPIFailure = (error) => ({
   error,
 });
 
-export const getAPI = () => {
-  return (dispatch) => {
-    dispatch(requestAPI());
-    return fecthFunction().then(
-      (planets) => dispatch(requestAPISuccess(planets.results)),
-      (error) => dispatch(requestAPIFailure(error)),
-    );
-  };
+export const getAPI = () => (dispatch) => {
+  dispatch(requestAPI());
+  return fecthFunction().then(
+    (planets) => dispatch(requestAPISuccess(planets.results)),
+    (error) => dispatch(requestAPIFailure(error)),
+  );
 };
