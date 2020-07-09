@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { GlobalStyle } from './styles';
+import './styles/App.css';
 import Table from './components/Table';
 import Header from './components/Header';
 import { getAPI } from './actions';
@@ -15,7 +15,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <GlobalStyle />
         <Header />
         <Table />
       </div>
