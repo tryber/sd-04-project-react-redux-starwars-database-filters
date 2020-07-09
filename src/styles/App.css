@@ -8,6 +8,6 @@ body {
 header {
   align-items: center;
   display: flex;
-  heigth: 15vh;
+  height: 15vh;
   justify-content: space-around;
 }
