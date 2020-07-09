@@ -19,6 +19,8 @@ const Table = ({ data, loading }) => {
           <th>Population</th>
           <th>Residents</th>
           <th>Films</th>
+          <th>Created</th>
+          <th>Edited</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +37,8 @@ const Table = ({ data, loading }) => {
             population,
             residents,
             films,
+            created,
+            edited,
           }) => (
             <tr key={name}>
               <td key={name + name}>{name}</td>
@@ -48,6 +52,8 @@ const Table = ({ data, loading }) => {
               <td key={name + population}>{population}</td>
               <td key={name + residents}>{residents}</td>
               <td key={name + films}>{films}</td>
+              <td key={name + created}>{created}</td>
+              <td key={name + edited}>{edited}</td>
             </tr>
           ),
         )}
