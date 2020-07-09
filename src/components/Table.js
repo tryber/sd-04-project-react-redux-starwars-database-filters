@@ -29,11 +29,11 @@ class Table extends Component {
         </thead>
         <tbody>
           {data.map((planet) => (
-            <tr>
+            <tr key={planet.name}>
               {Object.values(planet)
                 .filter((_, index) => index !== 9)
                 .map((item) => (
-                  <th>{item}</th>
+                  <td key={item}>{item}</td>
                 ))}
             </tr>
           ))}
