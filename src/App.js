@@ -1,6 +1,6 @@
 import React from 'react';
-import Lista from './components/lista';
 import { Provider } from 'react-redux';
+import Lista from './components/lista';
 import store from './store';
 
 import './App.css';

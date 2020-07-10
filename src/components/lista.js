@@ -1,6 +1,6 @@
-// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchSTARSWARS } from '../action/index';
 
 export class Lista extends Component {
@@ -18,6 +18,6 @@ export class Lista extends Component {
 
 export default connect(null, { fetchSTARSWARS })(Lista);
 
-/*fetchSTARSWARS.propTypes = {
+fetchSTARSWARS.propTypes = {
   fetchSTARSWARS: PropTypes.func.isRequired,
-};*/
+};
