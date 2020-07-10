@@ -5,7 +5,6 @@ import { fetchSTARSWARS } from '../action/index';
 
 export class Lista extends Component {
   componentDidMount() {
-    const { fetchSTARSWARS } = this.props;
     fetchSTARSWARS();
   }
   render() {
@@ -15,9 +14,9 @@ export class Lista extends Component {
       </div>
     );
   };
-};
+}
 
-export default connect(null, { fetchSTARSWARS })(Lista)
+export default connect(null, { fetchSTARSWARS })(Lista);
 
 fetchSTARSWARS.propTypes = {
   fetchSTARSWARS: PropTypes.func.isRequired,

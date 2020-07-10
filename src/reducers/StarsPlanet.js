@@ -16,7 +16,7 @@ const StarsPlanetReduce = (state = INITIAL_STATE, action) => {
       return { ...state, carregando: false, payload: action.planets };
     default:
       return state;
-  };
-};
+  }
+}
 
 export default StarsPlanetReduce;

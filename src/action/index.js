@@ -18,6 +18,6 @@ export function fetchSTARSWARS() {
   return (dispatch) => {
     dispatch((requestIssPlanet));
     return getCurrentStarsPlanet()
-      .then((planets) => dispatch(receiveIssPlanetSuccess(planets)))
+      .then((planets) => dispatch(receiveIssPlanetSuccess(planets)));
   };
-};
+}
