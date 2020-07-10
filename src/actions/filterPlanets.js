@@ -6,7 +6,7 @@ const setDataFilter = (data) => ({ type: DATA_FILTER, data });
 
 export default function filterPlanets(data, string) {
   return (dispatch) => {
-    dispatch(setInputFilter());
+    dispatch(setInputFilter(string));
     const filteredData = data.filter(({ name }) => name
       .toLowerCase()
       .includes(string.toLowerCase()));
