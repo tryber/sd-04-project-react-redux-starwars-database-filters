@@ -1,19 +1,6 @@
-import { REQUEST_API, REQUEST_API_SUCCESS } from '../actions';
+import { combineReducers } from 'redux';
+import swapiReducer from './swapiReducer';
 
-const initialState = {
-  data: [],
-  loading: false,
-};
+const rootReducer = combineReducers({ swapiReducer });
 
-export const swapiReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case REQUEST_API:
-      return { ...state, loading: action.loading };
-    case REQUEST_API_SUCCESS:
-      return { ...state, loading: action.loading, data: action.data };
-    default:
-      return state;
-  }
-};
-
-export default swapiReducer;
+export default rootReducer;
