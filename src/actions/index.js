@@ -3,6 +3,12 @@ import getPlanets from '../services/api';
 export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCES';
 export const REQUEST_API_ERROR = 'REQUEST_API_ERROR';
+export const HANDLE_CHANGE = 'HANDLE_CHANGE';
+
+export const handleChange = (text) => ({
+  type: HANDLE_CHANGE,
+  text,
+});
 
 const requestApi = () => ({
   type: REQUEST_API,
