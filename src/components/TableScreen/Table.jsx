@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { requestFetch } from '../../actions';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
-import { connect } from 'react-redux';
-import { requestFetch } from '../actions'
+import Loading from './Loading';
 
 class Table extends Component {
   componentDidMount() {
@@ -10,6 +11,8 @@ class Table extends Component {
     callAPI();
   }
   render() {
+    const { loading } = this.props;
+    if (loading) return <Loading />;
     return (
       <table className="t01">
         <TableHeader />
@@ -19,8 +22,12 @@ class Table extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  loading: state.reducerAPI.isFetching,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   callAPI: () => dispatch(requestFetch()),
 });
 
-export default connect(null, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

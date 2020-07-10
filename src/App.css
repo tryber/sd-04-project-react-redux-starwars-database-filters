@@ -4,6 +4,7 @@
 
 table, th, td {
   border: 1px solid black;
+  font-size: 9pt;
 }
 
 thead {
@@ -19,7 +20,7 @@ thead {
 }
 
 th, td {
-  padding: 8px;
+  padding: 2px;
 }
 
 td {

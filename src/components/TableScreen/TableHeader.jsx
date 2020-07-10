@@ -1,5 +1,5 @@
 import React from 'react';
-import planetHeaders from '../services/data';
+import planetHeaders from '../../services/data';
 
 const TableHeader = () => (
   <thead>
