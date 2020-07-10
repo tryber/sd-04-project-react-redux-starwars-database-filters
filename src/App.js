@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchPlanet from './SearchPlanet';
+import SearchPlanet from './components/SearchPlanet';
 import './App.css';
 
 function App() {

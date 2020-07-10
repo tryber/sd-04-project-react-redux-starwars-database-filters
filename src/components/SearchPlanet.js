@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Table from './Table';
-import { fetchPlanet } from './actions/planetActions';
+import { fetchPlanet } from '../actions/planetActions';
 
 class SearchPlanet extends React.Component {
   componentDidMount() {
