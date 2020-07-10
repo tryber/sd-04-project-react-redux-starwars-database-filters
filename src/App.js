@@ -28,5 +28,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(App);
 
 Table.propTypes = {
-  api: PropTypes.func.isRequired,
+  api: PropTypes.function.isRequired,
 };

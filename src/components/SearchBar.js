@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { searchText } from '../actions';
 
 class SearchBar extends Component {
   render() {
@@ -15,9 +16,9 @@ class SearchBar extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  (event) => dispatch(searchText(event.target.value)),
-};
+const mapDispatchToProps = (dispatch) => ({
+  searchText: (event) => dispatch(searchText(event.target.value)),
+});
 
 export default connect(mapDispatchToProps)(SearchBar);
 

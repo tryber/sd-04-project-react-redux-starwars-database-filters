@@ -19,9 +19,9 @@ class Table extends Component {
           </thead>
           <tbody>
             {data.map((planet) => (
-              <tr key={`planet 1`}>
+              <tr key={`${planet} 1`}>
                 {chaves.map((chave) => (
-                  <td key={`chave 2`}>{planet[chave]}</td>
+                  <td key={`${chave} 2`}>{planet[chave]}</td>
                 ))}
               </tr>
             ))}
@@ -41,6 +41,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Table);
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
