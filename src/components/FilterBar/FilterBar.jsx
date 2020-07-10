@@ -3,11 +3,11 @@ import NameSearch from './NameSearch';
 import NumericSearch from './NumericSearch';
 
 const FilterBar = () => (
-  <div>
+  <header>
     <h3>Filter Planets</h3>
     <NameSearch />
     <NumericSearch />
-  </div>
+  </header>
 );
 
 export default FilterBar;
