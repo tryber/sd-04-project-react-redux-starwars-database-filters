@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 
 const TableContent = (props) => {
   const { data, searchText } = props;
-  const objKeys =
-    data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
+  const objKeys = data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
   let planets = data;
   if (searchText !== '') {
     planets = planets.filter(
