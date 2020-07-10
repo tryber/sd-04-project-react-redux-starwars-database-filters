@@ -4,7 +4,7 @@ import { filterByNumber } from '../actions';
 
 const Filters = (props) => {
   const { changeH } = props;
-  const dropdownKeys = ['population', 'orbital_period', 'diameter',
+  const dropdownKeys = ['Columns', 'population', 'orbital_period', 'diameter',
     'rotation_period',
     'surface_water',
   ];
@@ -19,6 +19,7 @@ const Filters = (props) => {
           ))}
         </select>
         <select data-testid="comparison-filter" name="comparison">
+          <option value="">Comparison</option>
           <option value="maior que">Maior que</option>
           <option value="menor que">Menor que</option>
           <option value="igual a">Igual a</option>
