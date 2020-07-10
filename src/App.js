@@ -1,6 +1,7 @@
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 import fetchRequestApi from './actions/getApi';
-import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/Table';
 
@@ -19,6 +20,10 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  getRequestFromApi: PropTypes.func,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   getRequestFromApi: () => dispatch(fetchRequestApi()),

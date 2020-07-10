@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -14,6 +15,11 @@ class Table extends Component {
     );
   }
 }
+
+Table.propTypes = {
+  data: PropTypes.array,
+  isLoading: PropTypes.bool,
+};
 
 const mapStateToProps = (state) => ({
   isLoading: state.isLoading,
