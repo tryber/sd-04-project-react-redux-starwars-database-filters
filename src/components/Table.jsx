@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import fetchRequestApi from '../actions';
 
 class Table extends Component {
+  componentDidMount() {
+    console.log('montou!');
+    const { getRequestFromApi } = this.props;
+    getRequestFromApi();
+  }
+
   render() {
     const { isLoading, data } = this.props;
     console.log(isLoading, data);
@@ -21,6 +28,7 @@ Table.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  getRequestFromApi: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -28,4 +36,8 @@ const mapStateToProps = (state) => ({
   data: state.data,
 });
 
-export default connect(mapStateToProps, null)(Table);
+const mapDispatchToProps = (dispatch) => ({
+  getRequestFromApi: () => dispatch(fetchRequestApi()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

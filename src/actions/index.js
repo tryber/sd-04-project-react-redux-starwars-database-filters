@@ -7,9 +7,9 @@ const requestApi = () => ({
   type: REQUEST_API,
 });
 
-const requestApiSucess = ({ results }) => ({
+const requestApiSucess = ({ data }) => ({
   type: REQUEST_API_SUCESS,
-  results,
+  data,
 });
 
 function fetchRequestApi() {
