@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setInputFilter } from '../actions/filterPlanets';
+import filterPlanets from '../actions/filterPlanets';
 
 class Header extends Component {
-  componentDidMount() {}
-
   render() {
-    const { setInput } = this.props;
+    const { setFilter, data } = this.props;
     return (
       <div>
-        <input type="text" onChange={setInput} />
+        <input
+          data-testid="name-filter"
+          type="text"
+          onChange={(e) => {
+            setFilter(e, data);
+          }}
+        />
       </div>
     );
   }
@@ -18,21 +22,15 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
-  isFetching: state.planetsReducer.isFetching,
-  filteredData: state.filterReducer.filteredData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setInput: (e) => dispatch(setInputFilter(e.target.value)),
-  // setDataFilter: () => dispatch(),
+  setFilter: (e, data) => dispatch(filterPlanets(data, e.target.value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.propTypes = {
-  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setInput: PropTypes.func.isRequired,
-  // setDataFilter: PropTypes.func.isRequired,
-  // isFetching: PropTypes.bool.isRequired,
-  // filteredData: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setFilter: PropTypes.func.isRequired,
 };

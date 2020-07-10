@@ -10,9 +10,15 @@ class Table extends Component {
   }
 
   render() {
-    const { data, isFetching } = this.props;
+    const {
+      filteredData,
+      data,
+      isFetching,
+      inputName,
+    } = this.props;
     console.log(this.props);
     if (isFetching) return <p>Loading...</p>;
+    const filteredPlanets = inputName === '' ? data : filteredData;
     const tableTitles = data[0] ? Object.keys(data[0]) : [];
     return (
       <table>
@@ -26,7 +32,7 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {data.map((planet) => (
+          {filteredPlanets.map((planet) => (
             <tr key={planet.name}>
               {Object.values(planet)
                 .filter((_, index) => index !== 9)
@@ -45,6 +51,7 @@ const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   isFetching: state.planetsReducer.isFetching,
   filteredData: state.filterReducer.filteredData,
+  inputName: state.filterReducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -57,4 +64,6 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  inputName: PropTypes.string.isRequired,
+  filteredData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

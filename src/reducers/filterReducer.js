@@ -22,6 +22,7 @@ export default function filterReducer(state = INITIAL_STATE, action) {
         },
       };
     case DATA_FILTER:
+      console.log(action.data);
       return {
         ...state,
         filteredData: action.data,
