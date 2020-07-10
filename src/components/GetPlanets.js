@@ -17,6 +17,6 @@ class GetPlanets extends React.Component {
 
 export default connect(null, { getData })(GetPlanets);
 
-GetPlanets.prototypes = {
+GetPlanets.propTypes = {
   getData: PropTypes.func.isRequired,
 };
