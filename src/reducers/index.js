@@ -1,5 +1,5 @@
-function emptyReducer() {
-  return {};
-}
+import React from 'react'
 
-export default emptyReducer;
+const Table = () => <div>Starwars Datable With Filters</div>
+
+export default Table;
