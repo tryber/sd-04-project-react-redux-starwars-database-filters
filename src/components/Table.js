@@ -15,7 +15,7 @@ class Table extends Component {
   render() {
     const { data, isFetching } = this.props;
     if (isFetching) return <p>Loading...</p>;
-    const tableTitles = Object.keys(data[0]);
+    const tableTitles = data[0] ? Object.keys(data[0]) : [];
     return (
       <table>
         <thead>
@@ -45,6 +45,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
+  filteredData: state.filterReducer.filteredData,
   isFetching: state.planetsReducer.isFetching,
 });
 

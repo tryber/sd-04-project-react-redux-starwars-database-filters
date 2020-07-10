@@ -14,7 +14,7 @@ const receivePlanetSuccess = ({ results }) => ({
 
 export default function fetchPlanets() {
   return (dispatch) => {
-    dispatch(requestPlanets);
+    dispatch(requestPlanets());
     return getPlanets().then((data) => dispatch(receivePlanetSuccess(data)));
   };
 }
