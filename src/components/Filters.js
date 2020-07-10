@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import { filterByNumber } from '../actions';
 
 const Filters = (props) => {
-  const { data, changeH } = props;
-  const dropdownKeys = [
-    'population',
-    'orbital_period',
-    'diameter',
+  const { changeH } = props;
+  const dropdownKeys = ['population', 'orbital_period', 'diameter',
     'rotation_period',
     'surface_water',
   ];
@@ -15,8 +12,8 @@ const Filters = (props) => {
     <div>
       <form onSubmit={(event) => changeH(event)}>
         <select data-testid="column-filter" name="column">
-          {dropdownKeys.map((key, index) => (
-            <option key={index} value={key}>
+          {dropdownKeys.map((key) => (
+            <option key={`${key} index`} value={key}>
               {key}
             </option>
           ))}

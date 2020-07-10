@@ -1,20 +1,25 @@
 import React from 'react';
-import './App.css';
 import { connect } from 'react-redux';
-import Table from './components/Table';
 import { fetchSWPlanets } from './actions';
+import './App.css';
+import Table from './components/Table';
 
-const App = (props) => {
-  const { getPlanets } = props;
-  getPlanets();
-  return (
-    <div>
-      <header>
-        <Table />
-      </header>
-    </div>
-  );
-};
+class App extends React.Component {
+  componentDidMount() {
+    const { getPlanets } = this.props;
+    getPlanets();
+  }
+
+  render() {
+    return (
+      <div>
+        <header>
+          <Table />
+        </header>
+      </div>
+    );
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(fetchSWPlanets()),

@@ -5,7 +5,7 @@ import { changeHandler } from '../actions';
 const SearchBar = (props) => {
   const { search, searchText } = props;
   return (
-    <input data-testid="name-filter" type="text" onChange={(event) => search(event.target.value)} />
+    <input data-testid="name-filter" value={searchText} type="text" onChange={(event) => search(event.target.value)} />
   );
 };
 
