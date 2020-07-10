@@ -5,7 +5,7 @@ const NumericSearch = () => {
     <div>
       <input type="number" data-testid="" />
       <select data-testid="column-filter" name="" id="">
-        <option value=""></option>
+        <option value="">{''}</option>
         <option value="population">population</option>
         <option value="orbital_period">orbital_period</option>
         <option value="diameter">diameter</option>
