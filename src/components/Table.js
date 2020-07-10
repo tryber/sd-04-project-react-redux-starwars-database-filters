@@ -3,20 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchBar from './SeachBar';
 import Filters from './Filters';
+import TableContent from './TableContent';
 
 const Table = (props) => {
-  const { data, isFetching, searchText } = props;
-  const objKeys =
-    data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
-  let planets = data;
-  if (searchText !== '') {
-    planets = planets.filter(
-      (planet) =>
-        planet.name.includes(searchText.toUpperCase()) ||
-        planet.name.includes(searchText.toLowerCase()),
-    );
-  }
-
+  const { isFetching } = props;
   return isFetching ? (
     <p>Loading...</p>
   ) : (
@@ -25,22 +15,7 @@ const Table = (props) => {
       <SearchBar />
       <Filters />
       <table>
-        <thead>
-          <tr>
-            {objKeys.map((objKey) => (
-              <th key={`${objKey} index`}>{objKey}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {planets.map((planet) => (
-            <tr key={`${planet.name} index`}>
-              {objKeys.map((objKey) => (
-                <td key={`${objKey} index 2`}>{planet[objKey]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+        <TableContent />
       </table>
     </div>
   );
@@ -48,15 +23,10 @@ const Table = (props) => {
 
 const mapStateToProps = (state) => ({
   isFetching: state.isFetching,
-  data: state.data,
-  searchText: state.filters.filterByName.name,
-  columnFilter: state.filters.filterByNumericValues,
 });
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  searchText: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, null)(Table);
