@@ -14,15 +14,14 @@ const Table = ({ data, error }) => {
         <tr>
           {tableHeader.map((column, index) => <th key={index}>{column}</th>)}
         </tr>
-        <tbody>
-          {planets.map((planet) => (
-            <tr key={planet}>
-              {tableHeader.map((column, index) => <td key={index}>{planet[column]}</td>)}
-            </tr>
-          ))}
-        </tbody>
       </thead>
-
+      <tbody>
+        {planets.map((planet) => (
+          <tr key={planet}>
+            {tableHeader.map((column, index) => <td key={index}>{planet[column]}</td>)}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
