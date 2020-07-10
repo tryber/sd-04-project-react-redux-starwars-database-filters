@@ -5,8 +5,7 @@ import { getData } from '../actions';
 
 class GetPlanets extends React.Component {
   componentDidMount() {
-    const { getData } = this.props;
-    getData('planets');
+    this.props.getData('planets');
   }
 
   render() {
