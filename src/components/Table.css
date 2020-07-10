@@ -1,20 +1,22 @@
 table, th, td {
+  border: 1px black;
   margin-top: 100px;
   width: 60%;
-  border: 1px black;
 }
 
 table {
+  overflow: auto;
   width: 60%;
-  overflow-x: auto;
 }
 
 td {
-  vertical-align: center;
   height: fit-content;
+  overflow: auto;
   position: relative;
+  vertical-align: middle;
 }
 
 th {
   height: fit-content;
+  overflow: auto;
 }

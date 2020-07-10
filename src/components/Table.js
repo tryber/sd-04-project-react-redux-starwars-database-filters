@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import fetchApiRequisition from '../actions';
 import './Table.css';
 
@@ -11,7 +11,7 @@ class Table extends Component {
 
   render() {
     const { isFetching, dados } = this.props;
-    const chaves = 
+    const chaves =
       (dados.length !== 0) ? Object.keys(dados[0]).filter((keys) => keys !== 'residents') : [];
     if (isFetching) return <h1>Loading...</h1>;
     return (
@@ -19,14 +19,14 @@ class Table extends Component {
         <table className="table">
           <thead>
             <tr>
-              {chaves.map((chave, index) => (<th key={index}>{chave}</th>))}
+              {chaves.map((chave) => (<th key={chave}>{chave}</th>))}
             </tr>
           </thead>
           <tbody>
-            {dados.map((planet, index) => (
-              <tr key={index}>
-                {chaves.map((chave, _index) => (
-                  <td key={`${chave} ${index}`}>{planet[chave]}</td>
+            {dados.map((planet) => (
+              <tr key={`planet 1`}>
+                {chaves.map((chave) => (
+                  <td key={`chave 2`}>{planet[chave]}</td>
                 ))}
               </tr>
             ))}
@@ -48,8 +48,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
-propTypes.Table = {
-  dados: propTypes.array.isRequired,
-  isFetching: propTypes.bool.isRequired,
-  api: propTypes.func.isRequired,
-}
+Table.propTypes = {
+  dados: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  api: PropTypes.func.isRequired,
+};
