@@ -1,5 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 
-const Table = () => <div>StarWars Datatable with Filters</div>;
+const Table = ({ planets }) => (
+  <div>
+    StarWars Datatable with Filters
+  </div>
+);
 
-export default Table;
+
+const mapStateToProps = (state) => ({
+  planets: state.reducer.data,
+});
+
+// Table.propTypes = {
+//   planets: PropTypes.array.isRequired,
+// };
+
+export default connect(mapStateToProps)(Table);
