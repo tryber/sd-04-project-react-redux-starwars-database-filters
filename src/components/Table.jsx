@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './Table.css';
 
 const Table = ({ data, loading }) => {
-  const keys = data.length !== 0 ? Object.keys(data[0]) : [];
+  const keys = data.length !== 0 ? Object.keys(data[0]).filter(key => key !== 'residents') : [];
   if (loading) return <h1>Loading...</h1>;
   return (
     <div>
@@ -18,7 +18,7 @@ const Table = ({ data, loading }) => {
         </thead>
         <tbody>
           {data.map((planet) => (
-            <tr key={planet.name}>
+            <tr key={planet.diameter}>
               {keys.map((key) => (
                 <td key={key}>{planet[key]}</td>
               ))}
