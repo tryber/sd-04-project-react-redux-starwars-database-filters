@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+
 const initialState = { data: {} };
 
 const starReducer = (state = initialState, action) => {

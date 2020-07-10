@@ -12,8 +12,7 @@ class Table extends React.Component {
   }
 
   componentDidMount() {
-    const { getData } = this.props;
-    getData('planets');
+    this.props.getData('planets');
   }
 
   getHeaders() {
