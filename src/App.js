@@ -28,5 +28,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(App);
 
 App.propTypes = {
-  api: PropTypes.function.isRequired,
+  api: PropTypes.func.isRequired,
 };
