@@ -2,6 +2,7 @@ import * as types from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   isLoading: true,
+  data: [],
 };
 
 function planetsReducer(state = INITIAL_STATE, action) {

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import fetchPlanetsAPI from './actions';
 import './App.css';
 
-import SearchPlanet from './components/SearchPlanet';
-import ComparisonFilter from './components/ComparisonFilter';
-import Filters from './components/Filters';
+// import SearchPlanet from './components/SearchPlanet';
+// import ComparisonFilter from './components/ComparisonFilter';
+// import Filters from './components/Filters';
 import Table from './components/Table';
 
 class App extends Component {
@@ -19,9 +19,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <SearchPlanet />
+        Planates
+          {/* <SearchPlanet />
           <ComparisonFilter />
-          <Filters />
+          <Filters /> */}
         </header>
         <Table />
       </div>

@@ -1,4 +1,4 @@
-import { getPlanets } from '../services/planetsAPI';
+import getPlanets from '../services/planetsAPI';
 import * as types from './actionTypes';
 
 const requestPlanets = () => ({
@@ -21,7 +21,7 @@ export default function fetchPlanetsAPI() {
 
     return getPlanets().then(
       (planets) => dispatch(requestPlanetsSuccess(planets.results)),
-      (error) => dispatch(requestPlanetsFailure(error.message))
+      (error) => dispatch(requestPlanetsFailure(error.message)),
     );
   };
 }
