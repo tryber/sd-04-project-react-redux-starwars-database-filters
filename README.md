@@ -12,6 +12,10 @@ Você criará um projeto em React utilizando Redux para controle de estado. A ap
 
 Este repositório já contém um _template_ de uma aplicação React criado e configurado. Após clonar o projeto e instalar as dependências (mais sobre isso abaixo), você não precisará realizar nenhuma configuração adicional. A documentação da API pode ser encontrada [aqui](https://swapi-trybe.herokuapp.com/documentation).
 
+### Data de Entrega
+
+O projeto tem até a seguinte data: `20/06/2020 - 14:00h`. Para ser entregue a avaliação final.
+
 ## Requisitos do projeto
 
 ### 1 - Fazer uma requisição para o endpoint `/planets` da API de Star Wars e preencher uma tabela com os dados retornados, com exceção dos da coluna `residents`
