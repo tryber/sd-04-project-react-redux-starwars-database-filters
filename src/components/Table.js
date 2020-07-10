@@ -52,9 +52,9 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
-  filteredData: state.filterReducer.filteredData,
-  inputName: state.filterReducer.filters.filterByName.name,
   isFetching: state.planetsReducer.isFetching,
+  filteredData: state.filters.filteredData,
+  inputName: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
