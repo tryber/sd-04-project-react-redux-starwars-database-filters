@@ -17,6 +17,7 @@ export default function filterReducer(state = INICIAL_STATE, action) {
         filters: {
           ...state.filters,
           filterByName: {
+            // ...state.filters.filterByName.name,
             name: action.name,
           },
         },
