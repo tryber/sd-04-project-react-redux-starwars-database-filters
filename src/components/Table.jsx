@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import './Table.css';
 
 const Table = ({ data, loading }) => {
-  const keys = data.length !== 0 ? Object.keys(data[0]).filter(key => key !== 'residents') : [];
+  const keys =
+    data.length !== 0
+      ? Object.keys(data[0]).filter((key) => key !== 'residents')
+      : [];
   if (loading) return <h1>Loading...</h1>;
   return (
     <div>
