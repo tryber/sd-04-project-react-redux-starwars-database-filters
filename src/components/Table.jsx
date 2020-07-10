@@ -17,7 +17,9 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  data: PropTypes.any.isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
