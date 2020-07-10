@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
-import Table from './Table'
+import Table from './Table';
 
 class Home extends Component {
 
