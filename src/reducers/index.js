@@ -3,13 +3,19 @@ import {
   REQUEST_API_SUCCESS,
   REQUEST_API_ERROR,
   HANDLE_CHANGE,
+  SAVE_FILTER_DATA,
 } from '../actions';
 
 const INICIAL_STATE = {
   isLoading: false,
   data: {},
   error: {},
-  filters: { filterByName: { name: '' } },
+  filters: {
+    filterByName: {
+      name: '',
+    },
+    filterByNumericValues: [],
+  },
 };
 
 const swPlanetsReducer = (state = INICIAL_STATE, action) => {
@@ -34,7 +40,17 @@ const swPlanetsReducer = (state = INICIAL_STATE, action) => {
     case HANDLE_CHANGE:
       return {
         ...state,
-        filters: { filterByName: { name: action.text } },
+        filters: { ...state.filters, filterByName: { name: action.text } },
+      };
+    case SAVE_FILTER_DATA:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: [
+            { column: action.column, comparison: action.comparison, value: action.number },
+          ],
+        },
       };
     default:
       return state;

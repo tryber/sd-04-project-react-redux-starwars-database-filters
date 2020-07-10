@@ -4,6 +4,14 @@ export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCES';
 export const REQUEST_API_ERROR = 'REQUEST_API_ERROR';
 export const HANDLE_CHANGE = 'HANDLE_CHANGE';
+export const SAVE_FILTER_DATA = 'SAVE_FILTER_DATA';
+
+export const saveFilterData = (column, comparison, number) => ({
+  type: SAVE_FILTER_DATA,
+  column,
+  comparison,
+  number,
+});
 
 export const handleChange = (text) => ({
   type: HANDLE_CHANGE,

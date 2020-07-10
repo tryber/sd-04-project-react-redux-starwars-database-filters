@@ -2,17 +2,41 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { handleChange } from '../actions';
+import FilterForms from './FilterForms';
 
-const Table = ({ data, handleInput, inputText }) => {
+const Table = ({ data, handleInput, inputText, filterByNumericValues }) => {
   // console.log(error);
-  const keys = (data.results) ? Object.keys(data.results[0]) : [];
+  const comparisson = (planet, { column, comparison, value }) => {
+    switch (comparison) {
+      case 'maior que':
+        return Number(planet[column]) > (value);
+      case 'menor que':
+        return Number(planet[column]) < (value);
+      case 'igual a':
+        console.log(typeof (planet[column]));
+        console.log(typeof ((value)));
+        return Number(planet[column]) === (value);
+      default:
+        return false;
+    }
+  };
+
+  const obj = filterByNumericValues[0];
   let planets = (data.results) ? data.results : [];
+  const keys = (data.results) ? Object.keys(data.results[0]) : [];
   const tableHeader = keys.filter((key) => key !== 'residents');
+  if (obj) {
+    console.log(obj);
+    planets = planets.filter((planet) => comparisson(planet, obj));
+    console.log(planets);
+  }
+
   if (inputText !== '') planets = planets.filter((planet) => planet.name.includes(inputText));
-  // console.log(tableHeader);
+
   return (
     <div>
       <input data-testid="name-filter" type="text" onChange={(e) => handleInput(e.target.value)} />
+      <FilterForms />
       <table>
         <thead>
           <tr>
@@ -34,6 +58,7 @@ const Table = ({ data, handleInput, inputText }) => {
 
 const mapStateToProps = (state) => ({
   inputText: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
   data: state.data,
   error: state.error,
 });

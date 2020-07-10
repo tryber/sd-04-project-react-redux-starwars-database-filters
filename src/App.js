@@ -6,14 +6,19 @@ import './App.css';
 
 import Table from './components/Table';
 
-function App({ fetchSwPlanets }) {
-  fetchSwPlanets();
-  // console.log('aaaaaaa');
-  return (
-    <div>
-      <Table />
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchSwPlanets } = this.props;
+    fetchSwPlanets();
+  }
+
+  render() {
+    return (
+      <div>
+        <Table />
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
