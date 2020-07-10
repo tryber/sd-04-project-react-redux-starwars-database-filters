@@ -1,38 +1,44 @@
-import { INPUT_FILTER, DATA_FILTER } from '../actions/filterPlanets';
-import { SELECT_FILTER } from '../actions/filterSelectOptions';
+import { NAME_TO_FILTER, SET_FILTERED_BY_NAME } from '../actions/filterByName';
+import { SET_FILTER_VARIABLES, SET_FILTERED_BY_NUMERIC } from '../actions/filterByNumeric';
 
 const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
-  filteredData: [],
+  filteredPlanets: [],
 };
 
 export default function filterReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case INPUT_FILTER:
+    case NAME_TO_FILTER:
       return {
         ...state,
         filterByName: {
           name: action.name,
         },
       };
-    case DATA_FILTER:
+    case SET_FILTERED_BY_NAME:
       return {
         ...state,
-        filteredData: action.data,
+        filteredPlanets: action.data,
       };
-    case SELECT_FILTER:
+    case SET_FILTER_VARIABLES:
       return {
         ...state,
         filterByNumericValues: [
+          ...state.filterByNumericValues,
           {
             column: action.column,
             comparison: action.comparison,
             value: Number(action.value),
           },
         ],
+      };
+    case SET_FILTERED_BY_NUMERIC:
+      return {
+        ...state,
+        filteredPlanets: action.data,
       };
     default:
       return state;

@@ -4,15 +4,16 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
 
 const requestPlanets = () => ({ type: REQUEST_PLANETS });
-const receivePlanetsSuccess = (data) => ({
+const requestPlanetsSuccess = (data) => ({
   type: REQUEST_PLANETS_SUCCESS,
   data,
 });
 
 export function fetchPlanets() {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(requestPlanets());
 
-    return getPlanets().then((planets) => dispatch(receivePlanetsSuccess(planets.results)));
+    const planets = await getPlanets();
+    return dispatch(requestPlanetsSuccess(planets.results));
   };
 }
