@@ -1,19 +1,27 @@
-import { API_REQUISITION } from "../actions";
+import { API_REQUISITION, API_REQUISITION_SUCCESS } from "../actions";
 
 const INITIAL_STATE = {
-  payload: '',
-}
+  isFetching: false,
+  dados: null,
+};
 
 const reducer = (state = INITIAL_STATE, action) => {
+  console.log('received action:', action);
   switch (action.type) {
     case API_REQUISITION:
-      return{
+      return {
         ...state,
-        action.payload,
+        isFetching: true,
       }
+    case API_REQUISITION_SUCCESS:
+      return {
+        ...state,
+        dados: action.dados,
+        isFetching: false,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default emptyReducer;
+export default reducer;
