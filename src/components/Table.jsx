@@ -17,8 +17,8 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  data: PropTypes.array,
-  isLoading: PropTypes.bool,
+  data: PropTypes.any.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
