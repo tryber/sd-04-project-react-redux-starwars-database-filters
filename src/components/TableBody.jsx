@@ -1,7 +1,6 @@
 import React from 'react';
-// import apiCall from '../services/apiCall';
 
-const TableData = () => (
+const TableBody = () => (
   <tbody>
     <tr>
       <td>data</td>
@@ -21,4 +20,4 @@ const TableData = () => (
   </tbody>
 );
 
-export default TableData;
+export default TableBody;

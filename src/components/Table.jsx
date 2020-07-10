@@ -1,12 +1,12 @@
 import React from 'react';
 import TableHeader from './TableHeader';
-import TableData from './TableData';
+import TableBody from './TableBody';
 
 function Table() {
   return (
     <table className="t01">
       <TableHeader />
-      <TableData />
+      <TableBody />
     </table>
   );
 }
