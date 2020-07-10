@@ -1,13 +1,15 @@
 import React from 'react';
 import NameSearch from './NameSearch';
+import NumericSearch from './NumericSearch';
 
-function FilterBar() {
+const FilterBar = () => {
   return (
     <div>
-      <p>filter</p>
+      <h3>Filter Planets</h3>
       <NameSearch />
+      <NumericSearch />
     </div>
   );
-}
+};
 
 export default FilterBar;

@@ -3,11 +3,6 @@ import { REQUEST_PLANETS, SUCCESS_PLANETS, FAILURE_PLANETS } from '../actions/ty
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
-  filters: {
-    filterByName: {
-      name: '',
-    },
-  },
 };
 
 const reducerAPI = (state = INITIAL_STATE, action) => {
