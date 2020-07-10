@@ -5,7 +5,6 @@ import { searchText } from '../actions';
 
 class SearchBar extends Component {
   render() {
-    const { searchText } = this.props;
     return (
       <div>
         <label htmlFor="search-text"> Name Search:
