@@ -14,7 +14,7 @@ Este repositório já contém um _template_ de uma aplicação React criado e co
 
 ### Data de Entrega
 
-O projeto tem até a seguinte data: `20/06/2020 - 14:00h`. Para ser entregue a avaliação final.
+O projeto tem até a seguinte data: `20/07/2020 - 14:00h`. Para ser entregue a avaliação final.
 
 ## Requisitos do projeto
 
