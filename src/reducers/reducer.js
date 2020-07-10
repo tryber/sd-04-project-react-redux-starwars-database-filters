@@ -7,12 +7,11 @@ import {
 
 const INICIAL_STATE = {
   isLoading: false,
-  data: [],
+  data: {},
   error: '',
 };
 
 const reducer = (state = INICIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case REQUEST_API:
       return {
@@ -23,11 +22,13 @@ const reducer = (state = INICIAL_STATE, action) => {
       return {
         ...state,
         data: action.data,
+        isLoading: false,
       };
     case REQUEST_API_ERROR:
       return {
         ...state,
         error: action.error,
+        isLoading: false,
       };
     default:
       return state;

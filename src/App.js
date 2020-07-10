@@ -6,13 +6,12 @@ import './App.css';
 
 import Table from './components/Table';
 
-function App({ fetchSwPlanets }) {
+function App({ fetchSwPlanets, isLoading }) {
   fetchSwPlanets();
+  // console.log('aaaaaaa');
   return (
-    <div className="App">
-      <header className="App-header">
-        <Table />
-      </header>
+    <div>
+      <Table />
     </div>
   );
 }
@@ -21,8 +20,13 @@ const mapDispatchToProps = (dispatch) => ({
   fetchSwPlanets: () => dispatch(getSwPlanets()),
 });
 
+// const mapStateToProps = (state) => ({
+//   isLoading: state.reducer.isLoading,
+// });
+
 App.propTypes = {
   fetchSwPlanets: PropTypes.func.isRequired,
+  // isLoading: PropTypes.bool.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(App);
