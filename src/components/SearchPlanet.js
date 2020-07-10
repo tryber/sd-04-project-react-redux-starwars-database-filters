@@ -1,11 +1,11 @@
 import React from 'react';
 
-function SearchPlanet(props) {
+function SearchPlanet() {
   return (
     <div>
-      <label>
+      <label htmlFor="search">
         Procurar
-        <input type="text"/>
+        <input type="text" name="search" />
       </label>
     </div>
   );

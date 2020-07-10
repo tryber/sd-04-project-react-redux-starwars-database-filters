@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CreateBody = ({ dados }) => (
   <tbody>
@@ -33,9 +34,13 @@ const CreateBody = ({ dados }) => (
           <td key={`${name} ${created}`}>{created}</td>
           <td key={`${name} ${edited}`}>{edited}</td>
         </tr>
-      )
+      ),
     )}
   </tbody>
 );
 
 export default CreateBody;
+
+CreateBody.propTypes = {
+  dados: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

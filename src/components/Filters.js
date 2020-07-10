@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Filters(props) {
+function Filters() {
   return (
     <div>
       <p>Filtros</p>

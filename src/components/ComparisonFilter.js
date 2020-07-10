@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ComparisonFilter(props) {
+function ComparisonFilter() {
   return (
     <div>
       <form>

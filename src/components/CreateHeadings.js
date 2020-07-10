@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CreateHeadings = ({ dados }) => (
   <thead>
@@ -7,3 +8,7 @@ const CreateHeadings = ({ dados }) => (
 );
 
 export default CreateHeadings;
+
+CreateHeadings.propTypes = {
+  dados: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

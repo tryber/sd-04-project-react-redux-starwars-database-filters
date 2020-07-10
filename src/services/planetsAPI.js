@@ -8,4 +8,4 @@ const getPlanets = () =>
     }),
   );
 
-  export default getPlanets;
+export default getPlanets;
