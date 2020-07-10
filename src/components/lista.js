@@ -5,7 +5,7 @@ import { fetchSTARSWARS } from '../action/index';
 
 export class Lista extends Component {
   componentDidMount() {
-    fetchSTARSWARS();
+    fetchSTARSWARS('planets');
   }
   render() {
     return (
