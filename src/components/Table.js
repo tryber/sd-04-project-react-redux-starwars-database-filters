@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Proptype from 'prop-types';
+import propTypes from 'prop-types';
 import fetchApiRequisition from '../actions';
 
 class Table extends Component {
@@ -9,9 +9,11 @@ class Table extends Component {
   }
 
   render() {
+    const { isFetching, dados } = this.props;
+    if (isFetching) return <h1>Loading...</h1>;
     return (
       <div>
-        <h1>ok</h1>
+        
       </div>
     );
   }
@@ -27,3 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  isFetching: propTypes.bool(),
+  dados: propTypes.array(),
+  api: propTypes.func(),
+};
