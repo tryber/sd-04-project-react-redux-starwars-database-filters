@@ -1,8 +1,20 @@
-import { API_REQUISITION, API_REQUISITION_SUCCESS } from '../actions';
+import { API_REQUISITION, API_REQUISITION_SUCCESS, SEARCH_TEXT } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: true,
-  dados: [],
+  data: [],
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
+  filterByNumericValues: [
+    {
+      column: '',
+      comparison: '',
+      value: '',
+    },
+  ],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -16,8 +28,15 @@ const reducer = (state = INITIAL_STATE, action) => {
     case API_REQUISITION_SUCCESS:
       return {
         ...state,
-        dados: action.dados,
+        data: action.dados,
         isFetching: false,
+      };
+    case SEARCH_TEXT:
+      return {
+        ...state,
+        filters: {
+          filtersByName: { name: action.name },
+        },
       };
     default:
       return state;
