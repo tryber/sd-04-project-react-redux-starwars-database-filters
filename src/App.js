@@ -6,7 +6,7 @@ import './App.css';
 
 import Table from './components/Table';
 
-function App({ fetchSwPlanets, isLoading }) {
+function App({ fetchSwPlanets }) {
   fetchSwPlanets();
   // console.log('aaaaaaa');
   return (
