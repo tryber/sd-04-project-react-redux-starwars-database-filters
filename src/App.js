@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import fetchRequestApi from './actions';
 import './App.css';
-import Table from './components/Table';
+import Table from './pages/Table';
 
 class App extends React.Component {
   componentDidMount() {

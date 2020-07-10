@@ -6,7 +6,6 @@ const INITIAL_STATE = {
 };
 
 const reducerRequestApi = (state = INITIAL_STATE, action) => {
-  console.log('action recebida:', action);
   switch (action.type) {
     case REQUEST_API:
       return {

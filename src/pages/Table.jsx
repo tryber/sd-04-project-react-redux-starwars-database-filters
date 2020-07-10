@@ -1,19 +1,22 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from '../components/Header';
+import { titles } from '../services/TitlesTable';
 
 class Table extends Component {
   render() {
     const { isLoading, data } = this.props;
-    console.log(isLoading, data);
+    if (isLoading) return <span>L O A D I N G . . .</span>;
     return (
       <div>
-        <table>
-          <td>Oi</td>
-          {data.map((e, index) => (
-            <tr key={index}>{e.name}</tr>
-          ))}
-        </table>
+        <Header />
+        <div>
+          <table>
+            <thead>oi</thead>
+            <tbody>Oi</tbody>
+          </table>
+        </div>
       </div>
     );
   }
