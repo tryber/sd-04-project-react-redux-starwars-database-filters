@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { requestFetch } from '../../actions';
+import requestFetch from '../../actions';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import Loading from './Loading';

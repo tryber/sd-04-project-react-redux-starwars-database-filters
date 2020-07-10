@@ -15,7 +15,7 @@ const failurePlanets = (error) => ({
   error,
 });
 
-export function requestFetch() {
+export default function requestFetch() {
   return (dispatch) => {
     dispatch(resquestPlanets());
     return apiCall().then(
