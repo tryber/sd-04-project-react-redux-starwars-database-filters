@@ -10,10 +10,11 @@ export const requestApi = () => ({
 
 export const requestApiSuccess = (data) => ({
   type: REQUEST_API_SUCCESS,
+  loading: false,
   data,
 });
 
-export const getPlanets = (endpoint) => (dispatch) => {
+export const getData = (endpoint) => (dispatch) => {
   dispatch(requestApi());
   return fetchSWAPI(endpoint).then((data) => dispatch(requestApiSuccess(data)));
 };
