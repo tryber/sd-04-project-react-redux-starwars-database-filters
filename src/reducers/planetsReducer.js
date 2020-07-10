@@ -1,4 +1,4 @@
-import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions';
+import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -6,7 +6,6 @@ const INITIAL_STATE = {
 };
 
 export default function planetsReducer(state = INITIAL_STATE, action) {
-  console.log(action);
   switch (action.type) {
     case REQUEST_PLANETS:
       return {

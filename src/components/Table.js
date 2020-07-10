@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchPlanets } from '../actions';
+import { fetchPlanets } from '../actions/fetchPlanets';
 
 class Table extends Component {
   componentDidMount() {
@@ -11,6 +11,7 @@ class Table extends Component {
 
   render() {
     const { data, isFetching } = this.props;
+    console.log(this.props);
     if (isFetching) return <p>Loading...</p>;
     const tableTitles = data[0] ? Object.keys(data[0]) : [];
     return (
@@ -43,6 +44,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   isFetching: state.planetsReducer.isFetching,
+  filteredData: state.filterReducer.filteredData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

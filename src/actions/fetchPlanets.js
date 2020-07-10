@@ -10,7 +10,6 @@ const receivePlanetsSuccess = (data) => ({
   data,
 });
 
-// Action Assincrono Creator Retorna uma Funcao Com o Thunk
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestPlanets());
