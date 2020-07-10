@@ -1,4 +1,4 @@
-const SW_BASE_API = 'http://swapi-trybe.herokuapp.com/api/planets/';
+const SW_BASE_API = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
 const getPLanets = () =>
   fetch(SW_BASE_API).then((data) =>
