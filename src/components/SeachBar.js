@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { changeHandler } from '../actions';
 
 const SearchBar = (props) => {
@@ -21,5 +22,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   search: (searchText) => dispatch(changeHandler(searchText)),
 });
+
+SearchBar.propTypes = {
+  search: PropTypes.func.isRequired,
+  searchText: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

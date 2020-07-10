@@ -26,6 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(fetchSWPlanets()),
 });
 
-// App.proptypes = { getPlanets: PropTypes.func.isRequired };
+App.proptypes = { getPlanets: PropTypes.func.isRequired };
 
 export default connect(null, mapDispatchToProps)(App);
