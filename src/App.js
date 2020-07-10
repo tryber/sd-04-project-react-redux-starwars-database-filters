@@ -1,5 +1,5 @@
 import React from 'react';
-import Lista from './components/lista'
+import Lista from './components/lista';
 import { Provider } from 'react-redux';
 import store from './store';
 

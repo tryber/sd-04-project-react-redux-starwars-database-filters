@@ -6,17 +6,17 @@ import {
 const INITIAL_STATE = {
   carregando: null,
   payload: '',
-}
+};
 
 const StarsPlanetReduce = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REQUEST_ISS_PLANET:
       return { ...state, carregando: true };
     case RESEVED_PLANETS:
       return { ...state, carregando: false, payload: action.planets };
     default:
       return state;
-  }
-}
+  };
+};
 
 export default StarsPlanetReduce;
