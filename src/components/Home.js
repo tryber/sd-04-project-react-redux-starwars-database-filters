@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPlanets } from '../actions';
 import PropTypes from 'prop-types';
+import { fetchPlanets } from '../actions';
 
 class Home extends Component {
 
@@ -11,6 +11,7 @@ class Home extends Component {
   }
 
   render() {
+    if (this.props.loading) return <h2>Loading...</h2>;
     return (
       <div>
         <h2>StarWars DataTable</h2>
