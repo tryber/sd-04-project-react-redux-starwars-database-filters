@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByNumber } from '../actions';
 
@@ -44,5 +45,9 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(filterByNumber(event.target));
   },
 });
+
+Filters.propTypes = {
+  changeH: PropType.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
