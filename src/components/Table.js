@@ -3,6 +3,33 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions/fetchPlanets';
 
+function renderTable(tableTitles, filteredPlanets) {
+  return (
+    <table>
+      <thead>
+        <tr>
+          {tableTitles
+            .filter((title) => title !== 'residents')
+            .map((title) => (
+              <th key={title}>{title}</th>
+            ))}
+        </tr>
+      </thead>
+      <tbody>
+        {filteredPlanets.map((planet) => (
+          <tr key={planet.name}>
+            {Object.values(planet)
+              .filter((_, index) => index !== 9)
+              .map((value) => (
+                <td key={value}>{value}</td>
+              ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
 class Table extends Component {
   componentDidMount() {
     const { getPlanets } = this.props;
@@ -16,34 +43,10 @@ class Table extends Component {
       isFetching,
       inputName,
     } = this.props;
-    console.log(this.props);
     if (isFetching) return <p>Loading...</p>;
     const filteredPlanets = inputName === '' ? data : filteredData;
     const tableTitles = data[0] ? Object.keys(data[0]) : [];
-    return (
-      <table>
-        <thead>
-          <tr>
-            {tableTitles
-              .filter((title) => title !== 'residents')
-              .map((title) => (
-                <th key={title}>{title}</th>
-              ))}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredPlanets.map((planet) => (
-            <tr key={planet.name}>
-              {Object.values(planet)
-                .filter((_, index) => index !== 9)
-                .map((value) => (
-                  <td key={value}>{value}</td>
-                ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
+    return renderTable(tableTitles, filteredPlanets);
   }
 }
 
