@@ -1,14 +1,27 @@
 import React from 'react';
+import fetchRequestApi from './actions/getApi';
+import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/Table';
-import { Provider } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <Table />
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    console.log('montou!');
+    const { getRequestFromApi } = this.props;
+    getRequestFromApi();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  getRequestFromApi: () => dispatch(fetchRequestApi()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
