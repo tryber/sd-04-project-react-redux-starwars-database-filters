@@ -12,7 +12,7 @@ function renderNumericFilter(filterSelect) {
   };
 
   return (
-    <>
+    <div>
       <select
         data-testid="column-filter"
         id="column"
@@ -55,7 +55,7 @@ function renderNumericFilter(filterSelect) {
       <button data-testid="button-filter" type="button" onClick={() => filterSelect(filters)}>
         Filtrar
       </button>
-    </>
+    </div>
   );
 }
 class Header extends Component {
