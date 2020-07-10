@@ -1,11 +1,10 @@
 import { INPUT_FILTER, DATA_FILTER } from '../actions/filterPlanets';
 
 const INITIAL_STATE = {
-  filters: {
-    filterByName: {
-      name: '',
-    },
+  filterByName: {
+    name: '',
   },
+
   filteredData: [],
 };
 
@@ -14,11 +13,8 @@ export default function filterReducer(state = INITIAL_STATE, action) {
     case INPUT_FILTER:
       return {
         ...state,
-        filters: {
-          ...state.filters,
-          filterByName: {
-            name: action.name,
-          },
+        filterByName: {
+          name: action.name,
         },
       };
     case DATA_FILTER:
