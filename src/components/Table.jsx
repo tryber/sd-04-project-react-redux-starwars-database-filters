@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import fetchRequestApi from '../actions';
 
 class Table extends Component {
-  componentDidMount() {
-    console.log('montou!');
-    const { getRequestFromApi } = this.props;
-    getRequestFromApi();
-  }
-
   render() {
     const { isLoading, data } = this.props;
     console.log(isLoading, data);
@@ -17,6 +10,9 @@ class Table extends Component {
       <div>
         <table>
           <td>Oi</td>
+          {data.map((e, index) => (
+            <tr key={index}>{e.name}</tr>
+          ))}
         </table>
       </div>
     );
@@ -28,16 +24,11 @@ Table.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
-  getRequestFromApi: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.isLoading,
-  data: state.data,
+  isLoading: state.reducerRequestApi.isLoading,
+  data: state.reducerRequestApi.data,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getRequestFromApi: () => dispatch(fetchRequestApi()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, null)(Table);

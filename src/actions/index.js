@@ -7,7 +7,7 @@ const requestApi = () => ({
   type: REQUEST_API,
 });
 
-const requestApiSucess = ({ data }) => ({
+const requestApiSucess = (data) => ({
   type: REQUEST_API_SUCESS,
   data,
 });
@@ -15,7 +15,7 @@ const requestApiSucess = ({ data }) => ({
 function fetchRequestApi() {
   return (dispatch) => {
     dispatch(requestApi());
-    return getPlanets().then((data) => dispatch(requestApiSucess(data)));
+    getPlanets().then((data) => dispatch(requestApiSucess(data)));
   };
 }
 

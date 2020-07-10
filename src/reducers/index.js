@@ -17,7 +17,7 @@ const reducerRequestApi = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false,
-        data: action.data,
+        data: action.data.results,
       };
     default:
       return state;
