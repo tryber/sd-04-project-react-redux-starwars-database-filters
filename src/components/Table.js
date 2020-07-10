@@ -64,7 +64,7 @@ const Table = ({ data, loading, filterValue }) => {
 };
 
 const mapState = (state) => {
-  const { data, loading, filters } = state.reducer;
+  const { data, loading, filters } = state;
   return {
     data,
     loading,
