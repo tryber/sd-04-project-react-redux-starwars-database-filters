@@ -12,10 +12,10 @@ class SearchPlanet extends React.Component {
   render() {
     const { data, isLoading } = this.props;
     return (
-      <>
+      <div>
         <h1>Here is ShearchPlanet</h1>
         {!isLoading && <Table planets={data} />}
-      </>
+      </div>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Table extends React.Component {
   render() {
@@ -30,4 +31,7 @@ class Table extends React.Component {
   }
 }
 
+Table.propTypes = {
+  planets: PropTypes.shape.isRequired,
+};
 export default Table;
