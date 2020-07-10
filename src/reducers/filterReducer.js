@@ -13,7 +13,7 @@ export default function filterReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         filterByName: {
-          nome: action.name,
+          name: action.name,
         },
       };
 
