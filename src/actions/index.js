@@ -3,6 +3,7 @@ import fecthFunction from '../services/fetchFunction';
 export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCESS';
 export const REQUEST_API_FAILURE = 'REQUEST_API_FAILURE';
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
 const requestAPI = () => ({
   type: REQUEST_API,
@@ -25,3 +26,8 @@ export const getAPI = () => (dispatch) => {
     (error) => dispatch(requestAPIFailure(error)),
   );
 };
+
+export const filterByName = (name) => ({
+  type: FILTER_BY_NAME,
+  name: name.toLowerCase(),
+});
