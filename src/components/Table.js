@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Proptype from 'prop-types';
 import fetchApiRequisition from '../actions';
 
 class Table extends Component {

@@ -19,7 +19,7 @@ export default function fetchApiRequisition(endPoint) {
 
     return api(endPoint)
       .then(
-        (dados) => dispatch(apiRequisitionSuccess(dados.results))
+        (dados) => dispatch(apiRequisitionSuccess(dados.results)),
       );
   };
 }

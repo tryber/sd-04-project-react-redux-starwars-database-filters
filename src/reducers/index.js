@@ -1,4 +1,4 @@
-import { API_REQUISITION, API_REQUISITION_SUCCESS } from "../actions";
+import { API_REQUISITION, API_REQUISITION_SUCCESS } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -12,7 +12,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: true,
-      }
+      };
     case API_REQUISITION_SUCCESS:
       return {
         ...state,
