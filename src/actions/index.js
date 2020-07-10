@@ -1,4 +1,5 @@
 import apiCall from '../services/apiCall';
+import { REQUEST_PLANETS, SUCCESS_PLANETS, FAILURE_PLANETS } from './types';
 
 const resquestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -14,13 +15,12 @@ const failurePlanets = (error) => ({
   error,
 });
 
-export function requestFetch() {
+export default function requestFetch() {
   return (dispatch) => {
     dispatch(resquestPlanets());
-
     return apiCall().then(
-      (json) => dispatch(successPlanets(json.results)),
-      (error) => dispatch(failurePlanets(error)),
+      (data) => dispatch(successPlanets(data.results)),
+      (error) => dispatch(failurePlanets(error.message)),
     );
   };
 }

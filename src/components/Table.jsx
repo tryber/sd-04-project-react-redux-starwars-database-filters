@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
+import { connect } from 'react-redux';
+import { requestFetch } from '../actions'
 
-function Table() {
-  return (
-    <table className="t01">
-      <TableHeader />
-      <TableBody />
-    </table>
-  );
+class Table extends Component {
+  componentDidMount() {
+    const { callAPI } = this.props;
+    callAPI();
+  }
+  render() {
+    return (
+      <table className="t01">
+        <TableHeader />
+        <TableBody />
+      </table>
+    );
+  }
 }
 
-export default Table;
+const mapDispatchToProps = (dispatch) => ({
+  callAPI: () => dispatch(requestFetch()),
+});
+
+export default connect(null, mapDispatchToProps)(Table);
