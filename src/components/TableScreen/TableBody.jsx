@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const TableBody = ({ planets }) => {
-  console.log(planets);
-
   return (
     <tbody>
       {planets.map((planet) => (
