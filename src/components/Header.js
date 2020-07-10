@@ -8,9 +8,9 @@ class Header extends Component {
   render() {
     const { setInput } = this.props;
     return (
-      <>
+      <div>
         <input type="text" onChange={setInput} />
-      </>
+      </div>
     );
   }
 }
