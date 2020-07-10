@@ -1,4 +1,4 @@
-const STARWARS_BASE_API = 'https://swapi-trybe.herokuapp.com/api';
+const STARWARS_BASE_API = 'https://cors-anywhere.herokuapp.com/https://swapi-trybe.herokuapp.com/api';
 
 const api = (endpoint) => (
   fetch(`${STARWARS_BASE_API}/${endpoint}`)

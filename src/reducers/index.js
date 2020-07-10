@@ -1,8 +1,8 @@
 import { API_REQUISITION, API_REQUISITION_SUCCESS } from '../actions';
 
 const INITIAL_STATE = {
-  isFetching: false,
-  dados: null,
+  isFetching: true,
+  dados: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

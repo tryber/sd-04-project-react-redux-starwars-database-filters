@@ -1,0 +1,20 @@
+table, th, td {
+  margin-top: 100px;
+  width: 60%;
+  border: 1px black;
+}
+
+table {
+  width: 60%;
+  overflow-x: auto;
+}
+
+td {
+  vertical-align: center;
+  height: fit-content;
+  position: relative;
+}
+
+th {
+  height: fit-content;
+}
