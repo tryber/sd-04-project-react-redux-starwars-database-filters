@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPlanets } from '../actions';
 
@@ -19,5 +20,9 @@ class Search extends Component {
 const mapDispatchToProps = (dispatch) => ({
   planets: (endpoint) => dispatch(getPlanets(endpoint)),
 });
+
+Search.propTypes = {
+  planets: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Search);
