@@ -6,17 +6,17 @@ import { filterByName } from '../actions';
 
 const SearchPlanet = ({ filteringByName }) => (
   <div>
-      <label htmlFor="search">
-        Procurar
-        <input
-          data-testid="name-filter"
-          type="text"
-          name="search"
-          onChange={(event) => {
-            filteringByName(event.target.value);
-          }}
-        />
-      </label>
+    <label htmlFor="search">
+      Procurar
+      <input
+        data-testid="name-filter"
+        type="text"
+        name="search"
+        onChange={(event) => {
+          filteringByName(event.target.value);
+        }}
+      />
+    </label>
   </div>
 );
 
