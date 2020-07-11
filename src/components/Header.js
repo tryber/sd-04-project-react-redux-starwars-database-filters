@@ -7,6 +7,7 @@ import { setNumericFilterVariables } from '../actions/filterByNumeric';
 function renderFilterDropdown(
   setVariables,
   { column = 'population', comparison = 'maior que', value = 0 },
+  planets,
 ) {
   const variables = {
     column,
@@ -55,7 +56,13 @@ function renderFilterDropdown(
           return null;
         }}
       />
-      <button data-testid="button-filter" type="button" onClick={() => setVariables(variables)}>
+      <button
+        data-testid="button-filter"
+        type="button"
+        onClick={() => {
+          setVariables(variables, planets);
+        }}
+      >
         Filtrar
       </button>
     </div>
@@ -64,10 +71,13 @@ function renderFilterDropdown(
 class Header extends Component {
   render() {
     const {
-      filterPlanetsByName,
+      // filterByName,
       planetsData,
-      setNumericFilterVariables,
+      setVariables,
       filterByNumericValues,
+      // setPlanets,
+      filteredPlanets,
+      // filteredByNumeric,
     } = this.props;
     return (
       <div>
@@ -78,7 +88,7 @@ class Header extends Component {
             filterPlanetsByName(e, planetsData);
           }}
         />
-        {renderFilterDropdown(setNumericFilterVariables, filterByNumericValues)}
+        {renderFilterDropdown(setVariables, filterByNumericValues, filteredPlanets)}
       </div>
     );
   }
@@ -86,19 +96,25 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   planetsData: state.planets.planetsData,
+  filteredPlanets: state.filters.filteredPlanets,
+  filteredByNumeric: state.filters.filteredByNumeric,
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filterPlanetsByName: (e, data) => dispatch(filterPlanetsByName(data, e.target.value)),
-  setNumericFilterVariables: ({ column, comparison, value }) =>
-    dispatch(setNumericFilterVariables(column, comparison, value)),
+  filterByName: (e, data) => dispatch(filterPlanetsByName(data, e.target.value)),
+  setVariables: (variables) => dispatch(setNumericFilterVariables(variables)),
+  // setPlanets: (planets) => dispatch(setPlanetsFilteredByNumeric(planets)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterPlanetsByName: PropTypes.func.isRequired,
-  setNumericFilterVariables: PropTypes.func.isRequired,
+  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // filteredByNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // filterByName: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setVariables: PropTypes.func.isRequired,
+  // setNumericFilterVariables: PropTypes.func.isRequired,
 };

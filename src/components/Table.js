@@ -37,8 +37,12 @@ class Table extends Component {
   }
 
   render() {
-    const { planetsData, filteredPlanets, isFetching, nameToFilter } = this.props;
-    console.log(isFetching);
+    const {
+      planetsData,
+      filteredPlanets,
+      isFetching,
+      nameToFilter,
+    } = this.props;
     if (isFetching) return <p>Loading...</p>;
     const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
     const planets = nameToFilter === '' ? planetsData : filteredPlanets;
@@ -64,6 +68,6 @@ Table.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  inputName: PropTypes.string.isRequired,
-  filteredData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  nameToFilter: PropTypes.string.isRequired,
+  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
