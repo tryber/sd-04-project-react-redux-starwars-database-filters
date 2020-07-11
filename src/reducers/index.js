@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import reducerAPI from './reducerAPI';
-import filters from './reducerFilterName';
+import filters from './reducerFilter';
 
 const rootReducer = combineReducers({
   reducerAPI,

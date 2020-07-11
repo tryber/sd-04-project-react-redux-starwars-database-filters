@@ -5,6 +5,9 @@ export const filterName = (name) => ({
   name,
 });
 
-export const filterNumeric = () => ({
+export const filterNumeric = (column, comparison, value) => ({
   type: FILTERED_NUMERIC,
+  column,
+  comparison,
+  value,
 });

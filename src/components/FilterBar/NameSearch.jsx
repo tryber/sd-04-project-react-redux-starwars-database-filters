@@ -1,14 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { filterName } from '../../actions/filter';
+import PropTypes from 'prop-types';
 
 const NameSearch = (props) => {
   const { filteredName } = props;
-
-  // const handleChange = (e) => {
-  //   filteredName(e.target.value);
-  // };
-
   return (
     <div>
       <input
@@ -26,5 +22,9 @@ const NameSearch = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   filteredName: (name) => dispatch(filterName(name)),
 });
+
+// NameSearch.PropTypes = {
+//   filterName: PropTypes.func.isRequired,
+// };
 
 export default connect(null, mapDispatchToProps)(NameSearch);
