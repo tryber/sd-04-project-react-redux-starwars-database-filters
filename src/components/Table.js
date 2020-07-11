@@ -4,31 +4,31 @@ import PropTypes from 'prop-types';
 import { handleChange } from '../actions';
 import FilterForms from './FilterForms';
 
-const Table = ({ data, handleInput, inputText, filterByNumericValues }) => {
-  // console.log(error);
-  const comparisson = (planet, { column, comparison, value }) => {
-    switch (comparison) {
-      case 'maior que':
-        return Number(planet[column]) > (value);
-      case 'menor que':
-        return Number(planet[column]) < (value);
-      case 'igual a':
-        console.log(typeof (planet[column]));
-        console.log(typeof ((value)));
-        return Number(planet[column]) === (value);
-      default:
-        return false;
-    }
-  };
+const comparisson = (planet, { column, comparison, value }) => {
+  switch (comparison) {
+    case 'maior que':
+      return Number(planet[column]) > Number(value);
+    case 'menor que':
+      return Number(planet[column]) < Number(value);
+    case 'igual a':
+      return Number(planet[column]) === Number(value);
+    default:
+      return false;
+  }
+};
 
-  const obj = filterByNumericValues[0];
+const Table = ({
+  data, handleInput, inputText, filterByNumericValues,
+}) => {
+  // console.log(error);
+
   let planets = (data.results) ? data.results : [];
   const keys = (data.results) ? Object.keys(data.results[0]) : [];
   const tableHeader = keys.filter((key) => key !== 'residents');
-  if (obj) {
-    console.log(obj);
-    planets = planets.filter((planet) => comparisson(planet, obj));
-    console.log(planets);
+  if (filterByNumericValues.length >= 1) {
+    filterByNumericValues.forEach((filter) => {
+      planets = planets.filter((planet) => comparisson(planet, filter));
+    });
   }
 
   if (inputText !== '') planets = planets.filter((planet) => planet.name.includes(inputText));

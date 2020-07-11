@@ -48,6 +48,7 @@ const swPlanetsReducer = (state = INICIAL_STATE, action) => {
         filters: {
           ...state.filters,
           filterByNumericValues: [
+            ...state.filters.filterByNumericValues,
             { column: action.column, comparison: action.comparison, value: action.number },
           ],
         },
