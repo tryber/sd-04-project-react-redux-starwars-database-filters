@@ -3,31 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { numericFilter } from '../../actions';
 
-const ColumSelect = () => {
-  return (
-    <div>
-      <select name="select" data-testid="column-filter" >
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
-      </select>
-    </div>
-  );
-};
-
-const ComparasionSelect = () => {
-  return (
-    <div>
-      <select name="select" data-testid="comparison-filter">
-        <option value="less">less than</option>
-        <option value="bigger">bigger than</option>
-        <option value="equal">equal to</option>
-      </select>
-    </div>
-  );
-};
-
 class NumericFilter extends Component {
   constructor(props) {
     super(props);

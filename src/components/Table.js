@@ -14,7 +14,7 @@ class Table extends Component {
         const { column, comparison, value } = filterByNumericValues;
         if (comparison === 'less') return planet[column] < value;
         if (comparison === 'equal') return planet[column] === value;
-        if (comparison === 'bigger') return planet[column] > value;
+        return planet[column] > value;
       });
     }
     return data;
@@ -22,7 +22,6 @@ class Table extends Component {
 
   render() {
     const { isFetching, data, filterByNumericValues } = this.props;
-    console.log(filterByNumericValues)
     const chaves =
       (data.length !== 0) ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
     const planets = this.filteredData();
