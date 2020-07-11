@@ -11,7 +11,7 @@ class PlanetsTable extends Component {
 
   render() {
     const { data } = this.props;
-    if (data) return <div>loading...</div>
+    if (data.length < 1) return <div>loading...</div>
     const keys = Object.keys(data[0]).filter((k) => k !== 'residents');
     return (
       <table>
