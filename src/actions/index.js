@@ -11,9 +11,9 @@ const requestPlanets = () => ({
 
 // fn action indicando a requisição finalizada com sucesso
 // fn recebe como param. a resposta da api
-const sucessPlanets = (data) => ({
+const sucessPlanets = (results) => ({
   type: REQUEST_PLANET_SUCCESS,
-  data,
+  data: results,
 });
 
 // fn action indicando a requisição finalizada sem sucesso
@@ -32,3 +32,4 @@ export function requestFetch() {
     );
   };
 }
+// depois de estruturar a requisição ---> reducer
