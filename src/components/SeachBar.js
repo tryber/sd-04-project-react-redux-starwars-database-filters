@@ -24,7 +24,8 @@ const mapStateToProps = (state) => ({
 // });
 
 SearchBar.propTypes = {
-  searchText: PropTypes.string,
+  searchText: PropTypes.string.isRequired,
+  changeHandler: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { changeHandler })(SearchBar);
