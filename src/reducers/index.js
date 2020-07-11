@@ -1,6 +1,8 @@
-import { REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS } from '../actions/fetchPlanets';
+import { combineReducers } from 'redux';
+
 import { NAME_TO_FILTER, SET_FILTERED_BY_NAME } from '../actions/filterByName';
 import { SET_FILTER_VARIABLES, SET_FILTERED_BY_NUMERIC } from '../actions/filterByNumeric';
+import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -28,7 +30,7 @@ const applyNumericFilters = (planets, filters) => {
   return filteredPlanets;
 };
 
-export default function reducer(state = INITIAL_STATE, action) {
+function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_PLANETS:
       return {
@@ -82,3 +84,10 @@ export default function reducer(state = INITIAL_STATE, action) {
       return state;
   }
 }
+
+
+const rootReducer = combineReducers({
+  filters: reducer,
+});
+
+export default rootReducer;

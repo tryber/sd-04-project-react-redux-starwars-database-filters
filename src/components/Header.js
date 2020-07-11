@@ -88,10 +88,10 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  planetsData: state.planetsData,
-  filteredPlanets: state.filteredPlanets,
-  filteredByNumeric: state.filteredByNumeric,
-  filtersList: state.filterByNumericValues,
+  planetsData: state.filters.planetsData,
+  filteredPlanets: state.filters.filteredPlanets,
+  filteredByNumeric: state.filters.filteredByNumeric,
+  filtersList: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
