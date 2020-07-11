@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions';
@@ -25,6 +26,15 @@ class PlanetsTable extends Component {
     );
   }
 }
+
+PlanetsTable.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  ).isRequired,
+  fetchData: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   data: state.data,
