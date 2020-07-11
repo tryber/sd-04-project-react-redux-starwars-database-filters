@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Table extends React.Component {
   render() {
-    const { planets, filteredPlanet } = this.props;
+    const { filteredPlanet } = this.props;
   
     return ( // refatorar with extern [] and map
       <div>
@@ -33,6 +33,7 @@ class Table extends React.Component {
 }
 
 Table.propTypes = {
-  planets: PropTypes.shape.isRequired,
+  // planets: PropTypes.shape.isRequired,
+  filteredPlanet: PropTypes.shape.isRequired,
 };
 export default Table;
