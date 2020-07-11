@@ -4,8 +4,6 @@ export const REQUEST_SW_PLANETS = 'REQUEST_SW_PLANETS';
 export const REQUEST_SW_PLANETS_SUCCESS = 'REQUEST_SW_PLANETS_SUCCESS';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const NUMERIC_FILTER = 'NUMERIC_FILTER';
-// export const NUMERIC_FILTER_VALUE = 'NUMERIC_FILTER_VALUE';
-// export const NUMERIC_FILTER_COMPARISON = 'NUMERIC_FILTER_COMPARISON';
 
 const requestSWPlanets = () => ({
   type: REQUEST_SW_PLANETS,
@@ -26,23 +24,12 @@ const filterByNumber = (data) => ({
   data,
 });
 
-// const filterColumn = (column) => ({
-//   type: NUMERIC_FILTER_COLUMN,
-//   column,
-// });
-// const filterComparison = (comparison) => ({
-//   type: NUMERIC_FILTER_COLUMN,
-//   comparison,
-// });
-// const filterValue = (value) => ({
-//   type: NUMERIC_FILTER_COLUMN,
-//   value,
-// });
-
 function fetchSWPlanets() {
   return (dispatch) => {
     dispatch(requestSWPlanets());
-    return getPLanets().then((data) => dispatch(receiveSWPlanets(data)));
+    return getPLanets()
+      .then((data) => dispatch(receiveSWPlanets(data)))
+      .catch((error) => error);
   };
 }
 
