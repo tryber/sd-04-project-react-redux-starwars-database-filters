@@ -65,24 +65,30 @@ const Table = ({ data, loading, filterValues, error, filterNumber }) => {
 };
 
 const mapState = (state) => {
-  const { data, loading, filters, error } = state;
+  const { filterByName, filterByNumericValues } = state.filters;
+  const { data, loading, error } = state.api;
   return {
     data,
     loading,
     error,
-    filterValues: filters.filterByName.name,
-    filterNumber: filters.filterByNumericValues,
+    filterValues: filterByName.name,
+    filterNumber: filterByNumericValues,
   };
 };
 
 export default connect(mapState)(Table);
 
+Table.defaultProps = {
+  error: false,
+};
+
 Table.propTypes = {
   data: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
   ).isRequired,
   loading: PropTypes.bool.isRequired,
-  filterValues: PropTypes.string,
-  error: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])),
-  filterNumber: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])),
+  error: PropTypes.bool,
+  filterValues: PropTypes.string.isRequired,
+  filterNumber: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
+    .isRequired,
 };

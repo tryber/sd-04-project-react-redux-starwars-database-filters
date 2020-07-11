@@ -6,6 +6,7 @@ export const REQUEST_API_FAILURE = 'REQUEST_API_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMBERS = 'FILTER_BY_NUMBERS';
 export const FILTER_BUTTON = 'FILTER_BUTTON';
+export const SAVE_FILTER = 'SAVE_FILTER';
 
 const requestAPI = () => ({
   type: REQUEST_API,
@@ -38,5 +39,11 @@ export const filterButton = (column, comparison, value) => ({
   type: FILTER_BUTTON,
   column,
   comparison,
+  value,
+});
+
+export const saveFilter = (name, value) => ({
+  type: SAVE_FILTER,
+  name,
   value,
 });
