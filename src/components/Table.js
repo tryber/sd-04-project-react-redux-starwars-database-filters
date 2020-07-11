@@ -7,7 +7,7 @@ import CreateBody from '../components/CreateBody';
 
 const filter = (data, name) => {
   const filteredData = data.filter((planet) =>
-    planet.name.toUpperCase().includes(name.toUpperCase())
+    planet.name.toUpperCase().includes(name.toUpperCase()),
   );
   return filteredData;
 };

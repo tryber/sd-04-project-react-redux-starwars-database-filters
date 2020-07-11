@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { filterByName } from '../actions';
 
-const SearchPlanet = ({ filterByName }) => {
-  return (
+const SearchPlanet = ({ filteringByName }) => (
     <div>
       <label htmlFor="search">
         Procurar
@@ -12,16 +13,19 @@ const SearchPlanet = ({ filterByName }) => {
           type="text"
           name="search"
           onChange={(event) => {
-            filterByName(event.target.value);
+            filteringByName(event.target.value);
           }}
         />
       </label>
     </div>
-  );
-};
+);
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (name) => dispatch(filterByName(name)),
+  filteringByName: (name) => dispatch(filterByName(name)),
 });
 
 export default connect(null, mapDispatchToProps)(SearchPlanet);
+
+SearchPlanet.propTypes = {
+  filteringByName: PropTypes.func.isRequired,
+};
