@@ -4,13 +4,23 @@ import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions/apiRequests';
 
 class Table extends Component {
+  constructor(props) {
+    super(props);
+    this.searchFilter = this.searchFilter.bind(this);
+  }
+
   componentDidMount() {
     const { requestPlanets } = this.props;
     requestPlanets();
   }
 
+  searchFilter(arr) {
+    const { filterName } = this.props;
+    return arr.filter((item) => item.name.includes(filterName));
+  }
+
   render() {
-    const { getPlanets, loading, filterName } = this.props;
+    const { getPlanets, loading } = this.props;
     if (loading) return <h1>Loading</h1>;
     const headers = Object.keys(getPlanets[0]).filter(
       (item) => item !== 'residents',
@@ -25,17 +35,15 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {getPlanets
-            .filter((item) => item.name.includes(filterName))
-            .map((planet) => (
-              <tr key={`${planet.name}${planet.rotation_period}`}>
-                {headers.map((planetKey) => (
-                  <td key={`${planet.name}${planet[planetKey]}`}>
-                    {planet[planetKey]}
-                  </td>
-                ))}
-              </tr>
-            ))}
+          {this.searchFilter(getPlanets).map((planet) => (
+            <tr key={`${planet.name}${planet.rotation_period}`}>
+              {headers.map((planetKey) => (
+                <td key={`${planet.name}${planet[planetKey]}`}>
+                  {planet[planetKey]}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     );
