@@ -21,7 +21,7 @@ class Table extends Component {
   }
 
   render() {
-    const { isFetching, data, filterByNumericValues } = this.props;
+    const { isFetching, data } = this.props;
     const chaves =
       (data.length !== 0) ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
     const planets = this.filteredData();
