@@ -3,12 +3,16 @@ import {
   REQUEST_API_SUCCESS,
   REQUEST_API_FAILURE,
   FILTER_BY_NAME,
+  FILTER_BUTTON,
 } from '../actions';
 
 const INITIAL_STATE = {
   data: [],
   loading: false,
-  filters: { filterByName: { name: '' } },
+  filters: {
+    filterByName: {},
+    filterByNumericValues: [],
+  },
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -25,6 +29,22 @@ const reducer = (state = INITIAL_STATE, action) => {
         filters: {
           ...state.filters,
           filterByName: { ...state.filters.filterByName, name: action.name },
+        },
+      };
+
+    case FILTER_BUTTON:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: [
+            ...state.filters.filterByNumericValues,
+            {
+              column: action.column,
+              comparison: action.comparison,
+              value: action.value,
+            },
+          ],
         },
       };
     default:

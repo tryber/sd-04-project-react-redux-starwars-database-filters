@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import filterFunction from '../services/filterFunction';
 
-const Table = ({ data, loading, filterValue }) => {
+const Table = ({ data, loading, filterValues, error, filterNumber }) => {
   if (loading) return <h3>Loading</h3>;
+  if (error) return <h3>{error.message}</h3>;
   return (
     <table>
       <thead>
@@ -25,7 +26,7 @@ const Table = ({ data, loading, filterValue }) => {
         </tr>
       </thead>
       <tbody>
-        {filterFunction(data, filterValue).map(
+        {filterFunction(data, filterValues, filterNumber).map(
           ({
             name,
             rotation_period: rotationPeriod,
@@ -64,11 +65,13 @@ const Table = ({ data, loading, filterValue }) => {
 };
 
 const mapState = (state) => {
-  const { data, loading, filters } = state;
+  const { data, loading, filters, error } = state;
   return {
     data,
     loading,
-    filterValue: filters.filterByName.name,
+    error,
+    filterValues: filters.filterByName.name,
+    filterNumber: filters.filterByNumericValues,
   };
 };
 
@@ -79,5 +82,7 @@ Table.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ).isRequired,
   loading: PropTypes.bool.isRequired,
-  filterValue: PropTypes.string.isRequired,
+  filterValues: PropTypes.string,
+  error: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])),
+  filterNumber: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])),
 };

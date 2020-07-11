@@ -7,9 +7,9 @@ body {
   padding: 0;
 }
 
-header {
+header, nav {
   align-items: center;
   display: flex;
-  height: 15vh;
+  height: 10vh;
   justify-content: space-around;
 }
