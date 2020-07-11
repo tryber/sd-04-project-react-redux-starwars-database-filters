@@ -1,16 +1,32 @@
 import React from 'react';
-import './App.css';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fetchPlanets } from './actions';
 import Table from './components/Table';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Table />
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { dispatchFetchPlanets } = this.props;
+    dispatchFetchPlanets();
+  }
+
+  render() {
+    return (
+      <div>
+        <header>
+          <Table />
+        </header>
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  dispatchFetchPlanets: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchFetchPlanets: () => dispatch(fetchPlanets()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
