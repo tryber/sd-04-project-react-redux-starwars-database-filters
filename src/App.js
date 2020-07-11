@@ -5,6 +5,7 @@ import './App.css';
 import fetchApiRequisition from './actions';
 import Header from './components/Header';
 import Table from './components/Table';
+import SearchBar from './components/SearchBar';
 
 class App extends React.Component {
   componentDidMount() {
@@ -14,7 +15,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <div className="header">
+          <Header />
+          <SearchBar />
+        </div>
         <Table />
       </div>
     );

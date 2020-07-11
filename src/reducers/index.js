@@ -35,7 +35,9 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filters: {
-          filtersByName: { name: action.name },
+          filterByName: {
+            name: action.name,
+          },
         },
       };
     default:

@@ -4,13 +4,22 @@ import PropTypes from 'prop-types';
 import './Table.css';
 
 class Table extends Component {
+  filteredData() {
+    const { data, filterByName } = this.props;
+    if(filterByName) {
+      return data.filter((planet) => planet.name.includes(filterByName));
+    }
+    return data;
+  }
+
   render() {
     const { isFetching, data } = this.props;
     const chaves =
       (data.length !== 0) ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
+    const planets = this.filteredData();
     if (isFetching) return <h1>Loading...</h1>;
     return (
-      <div>
+      <div className="table-container">
         <table className="table">
           <thead>
             <tr>
@@ -18,7 +27,7 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {data.map((planet) => (
+            {planets.map((planet) => (
               <tr key={`${planet} 1`}>
                 {chaves.map((chave) => (
                   <td key={`${chave} 2`}>{planet[chave]}</td>
@@ -35,7 +44,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   data: state.reducer.data,
-  searchName: state.reducer.filters.filterByName.name,
+  filterByName: state.reducer.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(Table);
