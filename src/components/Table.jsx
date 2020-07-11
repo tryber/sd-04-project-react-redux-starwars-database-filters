@@ -56,6 +56,7 @@ Table.propTypes = {
   requestPlanets: PropTypes.func.isRequired,
   getPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
