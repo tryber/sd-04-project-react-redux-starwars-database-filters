@@ -31,9 +31,9 @@ function renderFilterDropdown(setVariables, setFilteredPlanets) {
         // }}
       >
         <option defaultValue>Comparação</option>
-        <option value="maior que">Maior que</option>
-        <option value="menor que">Menor que</option>
-        <option value="igual a">Igual a</option>
+        <option value="maior que">maior que</option>
+        <option value="menor que">menor que</option>
+        <option value="igual a">igual a</option>
       </select>
       <input
         data-testid="value-filter"
