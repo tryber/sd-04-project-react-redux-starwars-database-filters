@@ -7,7 +7,6 @@ import Tabela from '../components/Tabela';
 class Table extends Component {
   render() {
     const { isLoading, data } = this.props;
-    const planets = data.results;
     if (isLoading) return <span>L O A D I N G . . .</span>;
     return (
       <div>
@@ -20,7 +19,7 @@ class Table extends Component {
               ))}
             </thead>
             <tbody>
-              {planets.map((planet, index) => (
+              {data.results.map((planet, index) => (
                 <Tabela planet={planet} />
               ))}
             </tbody>

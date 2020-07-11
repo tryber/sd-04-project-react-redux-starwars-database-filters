@@ -3,6 +3,11 @@ import { REQUEST_API, REQUEST_API_SUCESS } from '../actions';
 const INITIAL_STATE = {
   data: [],
   isLoading: true,
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
 };
 
 const reducerRequestApi = (state = INITIAL_STATE, action) => {

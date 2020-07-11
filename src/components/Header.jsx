@@ -1,13 +1,29 @@
+import { connect } from 'react-redux';
 import React from 'react';
+import onChange from '../actions/onChange';
 
-function Header() {
+function Header({ OnChangeHandler, inputText }) {
   return (
     <div>
       <label>
-        <input type="text" placeholder="Termo de pesquisa" />
+        <input
+          data-testid="name-filter"
+          onChange={(event) => OnChangeHandler(event.target.value)}
+          type="text"
+          value={inputText}
+          placeholder="Termo de pesquisa"
+        />
       </label>
     </div>
   );
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  OnChangeHandler: (e) => dispatch(onChange(e)),
+});
+
+const mapStateToProps = (state) => ({
+  inputText: state.reducerOnChange.filters.filterByName.name,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
