@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from './actions';
 import Table from './components/Table';
+import InputFilters from './components/inputFilters';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,9 +14,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <header>
-          <Table />
-        </header>
+        <InputFilters />
+        <Table />
       </div>
     );
   }

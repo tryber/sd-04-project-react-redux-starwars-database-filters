@@ -3,7 +3,6 @@ import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_ERROR } from 
 const initialState = {
   isLoading: false,
   data: [],
-  name: '',
 };
 
 export default function planetsReducer(state = initialState, action) {
