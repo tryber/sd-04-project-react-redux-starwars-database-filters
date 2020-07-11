@@ -1,0 +1,10 @@
+import React from 'react';
+
+export default function PlanetItem({ data }) {
+  const entries = Object.entries(data).filter((entry) => entry[0] !== 'residents');
+  return (
+    <tr>
+      {entries.map((info) => <td key={`${data.name} ${info[0]}`}>{info[1]}</td>)}
+    </tr>
+  );
+}

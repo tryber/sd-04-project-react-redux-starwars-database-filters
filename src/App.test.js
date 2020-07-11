@@ -235,9 +235,9 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
       {
         ...initialState.filters,
         filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-        ],
+          [
+            { column: 'surface_water', comparison: 'menor que', value: '40' },
+          ],
       },
     };
     const { findByTestId, findAllByRole, store } = renderApp(initial);
@@ -272,10 +272,10 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
       {
         ...initialState.filters,
         filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
-        ],
+          [
+            { column: 'surface_water', comparison: 'menor que', value: '40' },
+            { column: 'diameter', comparison: 'maior que', value: '8900' }
+          ],
       },
     };
 
@@ -320,11 +320,11 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
       {
         ...initialState.filters,
         filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' },
-          { column: 'population', comparison: 'igual a', value: '200000' },
-        ],
+          [
+            { column: 'surface_water', comparison: 'menor que', value: '40' },
+            { column: 'diameter', comparison: 'maior que', value: '8900' },
+            { column: 'population', comparison: 'igual a', value: '200000' },
+          ],
       },
     };
 
@@ -360,11 +360,11 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
       {
         ...initialState.filters,
         filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' },
-          { column: 'population', comparison: 'igual a', value: '200000' },
-        ],
+          [
+            { column: 'surface_water', comparison: 'menor que', value: '40' },
+            { column: 'diameter', comparison: 'maior que', value: '8900' },
+            { column: 'population', comparison: 'igual a', value: '200000' },
+          ],
       },
     };
 
@@ -382,11 +382,11 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
       {
         ...initialState.filters,
         filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' },
-          { column: 'population', comparison: 'igual a', value: '200000' },
-        ],
+          [
+            { column: 'surface_water', comparison: 'menor que', value: '40' },
+            { column: 'diameter', comparison: 'maior que', value: '8900' },
+            { column: 'population', comparison: 'igual a', value: '200000' },
+          ],
       },
     };
 

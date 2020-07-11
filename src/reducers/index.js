@@ -1,5 +1,4 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import data from './dataReducer';
 
-export default emptyReducer;
+export default combineReducers({ data });
