@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterPlanetsByName from '../actions/filterByName';
-import { setNumericFilterVariables, setPlanetsFilteredByNumeric } from '../actions/filterByNumeric';
+import {
+  setNumericFilterVariables,
+  setPlanetsFilteredByNumeric,
+  removeFilter,
+} from '../actions/filterByNumeric';
 
 function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
   const listOfColumns = [
@@ -61,14 +65,22 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
   );
 }
 
-function renderFiltersSetted(filtersList) {
+function renderFiltersSetted(filtersList, remove, setFilteredPlanets) {
   return (
     <div>
       <h4>Filtros:</h4>
-      {filtersList.map(({ column, comparison, value }) => (
-        <div key={column} data-testid="filter">
-          <p>{`${column} ${comparison} ${value}`}</p>
-          <button type="button">x</button>
+      {filtersList.map((filter) => (
+        <div key={filter.column} data-testid="filter">
+          <p>{`${filter.column} ${filter.comparison} ${filter.value}`}</p>
+          <button
+            type="button"
+            onClick={() => {
+              remove(filter);
+              setFilteredPlanets();
+            }}
+          >
+            x
+          </button>
         </div>
       ))}
     </div>
@@ -77,7 +89,14 @@ function renderFiltersSetted(filtersList) {
 
 class Header extends Component {
   render() {
-    const { filterByName, planetsData, setVariables, setFilteredPlanets, filtersList } = this.props;
+    const {
+      remove,
+      filterByName,
+      planetsData,
+      setVariables,
+      setFilteredPlanets,
+      filtersList,
+    } = this.props;
     return (
       <div>
         <h4>Procurar:</h4>
@@ -89,7 +108,7 @@ class Header extends Component {
           }}
         />
         {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
-        {renderFiltersSetted(filtersList)}
+        {renderFiltersSetted(filtersList, remove, setFilteredPlanets)}
       </div>
     );
   }
@@ -106,14 +125,14 @@ const mapDispatchToProps = (dispatch) => ({
   filterByName: (e, data) => dispatch(filterPlanetsByName(data, e.target.value)),
   setVariables: (filter) => dispatch(setNumericFilterVariables(filter)),
   setFilteredPlanets: () => dispatch(setPlanetsFilteredByNumeric()),
-  // setPlanets: (planets) => dispatch(setPlanetsFilteredByNumeric(planets)),
+  remove: (filterToRemove) => dispatch(removeFilter(filterToRemove)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // filteredByNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  remove: PropTypes.func.isRequired,
   filterByName: PropTypes.func.isRequired,
   filtersList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setVariables: PropTypes.func.isRequired,
