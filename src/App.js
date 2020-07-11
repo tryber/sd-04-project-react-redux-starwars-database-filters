@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import fetchPlanetsAPI from './actions';
+import { fetchPlanetsAPI } from './actions';
 import './App.css';
 
-// import SearchPlanet from './components/SearchPlanet';
+import SearchPlanet from './components/SearchPlanet';
 // import ComparisonFilter from './components/ComparisonFilter';
 // import Filters from './components/Filters';
 import Table from './components/Table';
@@ -19,9 +19,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        Planates
-          {/* <SearchPlanet />
-          <ComparisonFilter />
+          <SearchPlanet />
+          {/* <ComparisonFilter />
           <Filters /> */}
         </header>
         <Table />
@@ -29,6 +28,7 @@ class App extends Component {
     );
   }
 }
+
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(fetchPlanetsAPI()),
 });

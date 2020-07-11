@@ -15,13 +15,18 @@ const requestPlanetsFailure = (error) => ({
   error,
 });
 
-export default function fetchPlanetsAPI() {
+export const fetchPlanetsAPI = () => {
   return (dispatch) => {
     dispatch(requestPlanets());
 
     return getPlanets().then(
       (planets) => dispatch(requestPlanetsSuccess(planets.results)),
-      (error) => dispatch(requestPlanetsFailure(error.message)),
+      (error) => dispatch(requestPlanetsFailure(error.message))
     );
   };
-}
+};
+
+export const filterByName = (event) => ({
+  type: types.FILTER_BY_NAME,
+  event,
+});

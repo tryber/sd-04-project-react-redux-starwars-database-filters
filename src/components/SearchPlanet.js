@@ -1,14 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { filterByName } from '../actions';
 
-function SearchPlanet() {
+const SearchPlanet = ({ filterByName }) => {
   return (
     <div>
       <label htmlFor="search">
         Procurar
-        <input type="text" name="search" />
+        <input
+          data-testid="name-filter"
+          type="text"
+          name="search"
+          onChange={(event) => {
+            filterByName(event.target.value);
+          }}
+        />
       </label>
     </div>
   );
-}
+};
 
-export default SearchPlanet;
+const mapDispatchToProps = (dispatch) => ({
+  filterByName: (name) => dispatch(filterByName(name)),
+});
+
+export default connect(null, mapDispatchToProps)(SearchPlanet);
