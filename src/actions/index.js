@@ -1,4 +1,5 @@
 import getPlanets from '../services/Api';
+
 export const REQUEST_PLANET = 'REQUEST_PLANET';
 export const REQUEST_PLANET_SUCCESS = 'REQUEST_PLANET_SUCCESS';
 export const REQUEST_PLANET_FAILURE = 'REQUEST_PLANET_FAILURE';
@@ -12,10 +13,10 @@ const requestPlanets = () => ({
 // fn recebe como param. a resposta da api
 const sucessPlanets = (data) => ({
   type: REQUEST_PLANET_SUCCESS,
-  data: results,
+  data,
 });
 
-//fn action indicando a requisição finalizada sem sucesso
+// fn action indicando a requisição finalizada sem sucesso
 const failurePlanets = (error) => ({
   type: REQUEST_PLANET_FAILURE,
   error,
@@ -23,7 +24,7 @@ const failurePlanets = (error) => ({
 
 // fn actioncreation assí.
 export function requestFetch() {
-  return(dispatch) => { // fn retornada é a thunk, ela q é interceptada 
+  return(dispatch) => { // fn retornada é a thunk, ela q é interceptada
     dispatch(requestPlanets());
     return getPlanets().then( // então uma vez finalizado tenho: sucesso ou falha!
       (json) => dispatch(sucessPlanets(json.results)),
