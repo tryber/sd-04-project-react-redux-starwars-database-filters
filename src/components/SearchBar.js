@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
         data-testid="name-filter"
         className="form-control col-3"
         placeholder="Search a Planet"
-        onChange={(e) => searchBar(e.target.value)}
+        onChange={(e) => this.props.searchBar(e.target.value)}
         value={value}
       />
     );
