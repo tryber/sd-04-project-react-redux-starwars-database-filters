@@ -5,15 +5,24 @@ import './Table.css';
 
 class Table extends Component {
   filteredData() {
-    const { data, filterByName } = this.props;
+    const { data, filterByName, filterByNumericValues } = this.props;
     if (filterByName) {
       return data.filter((planet) => planet.name.includes(filterByName));
+    }
+    if (filterByNumericValues) {
+      return data.filter((planet) => {
+        const { column, comparison, value } = filterByNumericValues;
+        if (comparison === 'less') return planet[column] < value;
+        if (comparison === 'equal') return planet[column] === value;
+        if (comparison === 'bigger') return planet[column] > value;
+      });
     }
     return data;
   }
 
   render() {
-    const { isFetching, data } = this.props;
+    const { isFetching, data, filterByNumericValues } = this.props;
+    console.log(filterByNumericValues)
     const chaves =
       (data.length !== 0) ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
     const planets = this.filteredData();
@@ -45,12 +54,14 @@ const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   data: state.reducer.data,
   filterByName: state.reducer.filters.filterByName.name,
+  filterByNumericValues: state.reducer.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Table);
 
 Table.propTypes = {
-  data: PropTypes.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   filterByName: PropTypes.string.isRequired,
+  filterByNumericValues: PropTypes.objectOf(PropTypes.string).isRequired,
 };

@@ -4,6 +4,7 @@ import api from '../services/api';
 export const API_REQUISITION = 'API_REQUISITION';
 export const API_REQUISITION_SUCCESS = 'API_REQUISITION_SUCCESS';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
+export const NUMERIC_FILTER = 'NUMERIC_FILTER';
 
 const apiRequisition = () => ({
   type: API_REQUISITION,
@@ -30,4 +31,9 @@ export default function fetchApiRequisition() {
 export const searchText = (name) => ({
   type: SEARCH_TEXT,
   name,
+});
+
+export const numericFilter = (event) => ({
+  type: NUMERIC_FILTER,
+  event,
 });
