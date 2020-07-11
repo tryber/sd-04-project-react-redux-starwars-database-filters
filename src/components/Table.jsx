@@ -10,13 +10,11 @@ class Table extends Component {
   }
 
   render() {
-    const { getPlanets, loading } = this.props;
+    const { getPlanets, loading, filterName } = this.props;
     if (loading) return <h1>Loading</h1>;
     const headers = Object.keys(getPlanets[0]).filter(
       (item) => item !== 'residents',
     );
-    console.log(headers);
-    console.log(getPlanets);
     return (
       <table>
         <thead>
@@ -27,15 +25,17 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {getPlanets.map((planet) => (
-            <tr key={`${planet.name}${planet.rotation_period}`}>
-              {headers.map((planetKey) => (
-                <td key={`${planet.name}${planet[planetKey]}`}>
-                  {planet[planetKey]}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {getPlanets
+            .filter((item) => item.name.includes(filterName))
+            .map((planet) => (
+              <tr key={`${planet.name}${planet.rotation_period}`}>
+                {headers.map((planetKey) => (
+                  <td key={`${planet.name}${planet[planetKey]}`}>
+                    {planet[planetKey]}
+                  </td>
+                ))}
+              </tr>
+            ))}
         </tbody>
       </table>
     );
@@ -45,6 +45,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   getPlanets: state.apiRequest.data,
   loading: state.apiRequest.loading,
+  filterName: state.filters.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({

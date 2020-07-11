@@ -1,12 +1,14 @@
 import React from 'react';
-import Table from './components/Table';
 import Header from './components/Header';
+import FiltersPanel from './components/FiltersPanel';
+import Table from './components/Table';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Header />
+        <FiltersPanel />
         <Table />
       </header>
     </div>
