@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchApi } from '../actions/actionAPI';
 
@@ -31,7 +32,7 @@ class Table extends React.Component {
               {Object.values(planet)
                 .filter((_, index) => index !== 9)
                 .map((value) => (
-                  <td>{value}</td>
+                  <td key={value}>{value}</td>
                 ))}
             </tr>
           ))}
@@ -40,6 +41,16 @@ class Table extends React.Component {
     );
   }
 }
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  isFetching: PropTypes.bool.isRequired,
+  fetchingApi: PropTypes.func.isRequired,
+};
+
+Table.defaultProps = {
+  data: [],
+};
 
 const mapStateToProps = (state) => ({
   isFetching: state.planetReducer.isFetching,
