@@ -24,7 +24,7 @@ const failurePlanets = (error) => ({
 
 // fn actioncreation assí.
 export function requestFetch() {
-  return(dispatch) => { // fn retornada é a thunk, ela q é interceptada
+  return (dispatch) => { // fn retornada é a thunk, ela q é interceptada
     dispatch(requestPlanets());
     return getPlanets().then( // então uma vez finalizado tenho: sucesso ou falha!
       (json) => dispatch(sucessPlanets(json.results)),
