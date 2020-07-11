@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { oneOfType } from 'prop-types';
 import { connect } from 'react-redux';
 import '../styles/App.css';
 import { getAPI, filterByName, filterButton, saveFilter } from '../actions';
@@ -13,6 +13,7 @@ const FilterNav = ({
   column,
   comparison,
   value,
+  categories,
 }) => (
   <nav>
     <input
@@ -28,11 +29,7 @@ const FilterNav = ({
         data-testid="column-filter"
       >
         <option aria-label="empty" />
-        <option value="population">population</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="surface_water">surface_water</option>
+        {categories.map((category) => <option key={category} value={category}>{category}</option>)}
       </select>
 
       <select
@@ -76,6 +73,7 @@ const mapState = (state) => {
     comparison,
     value,
     name,
+    categories: state.filters.categories,
   };
 };
 
@@ -97,4 +95,5 @@ FilterNav.propTypes = {
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  categories: PropTypes.arrayOf(oneOfType(PropTypes.string)).isRequired,
 };

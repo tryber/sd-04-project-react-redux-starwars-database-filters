@@ -7,6 +7,7 @@ export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMBERS = 'FILTER_BY_NUMBERS';
 export const FILTER_BUTTON = 'FILTER_BUTTON';
 export const SAVE_FILTER = 'SAVE_FILTER';
+export const RECAP_CATEGORIES = 'RECAP_CATEGORIES';
 
 const requestAPI = () => ({
   type: REQUEST_API,
@@ -46,4 +47,8 @@ export const saveFilter = (name, value) => ({
   type: SAVE_FILTER,
   name,
   value,
+});
+
+export const recapCategories = () => ({
+  type: RECAP_CATEGORIES,
 });

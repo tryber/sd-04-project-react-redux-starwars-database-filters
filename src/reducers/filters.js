@@ -1,4 +1,5 @@
-import { FILTER_BY_NAME, FILTER_BUTTON, SAVE_FILTER } from '../actions';
+import { FILTER_BY_NAME, FILTER_BUTTON, SAVE_FILTER, RECAP_CATEGORIES } from '../actions';
+import reduceFilter from '../services/reduceFilter';
 
 const INITIAL_STATE = {
   actualFilter: {
@@ -8,6 +9,13 @@ const INITIAL_STATE = {
   },
   filterByName: { name: '' },
   filterByNumericValues: [],
+  categories: [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ],
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -26,6 +34,7 @@ const filters = (state = INITIAL_STATE, action) => {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
+        categories: reduceFilter(state.categories, state.filterByNumericValues),
       };
     case SAVE_FILTER:
       return {
@@ -33,6 +42,8 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: '' },
         actualFilter: { ...state.actualFilter, [action.name]: action.value },
       };
+    case RECAP_CATEGORIES:
+      return { ...state, categories: reduceFilter(state.categories, state.filterByNumericValues) };
     default:
       return state;
   }
