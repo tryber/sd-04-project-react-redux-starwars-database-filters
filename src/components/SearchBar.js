@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 SearchBar.propTypes = {
-  searchBar: PropTypes.func.isRequired,
+  // searchBar: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 

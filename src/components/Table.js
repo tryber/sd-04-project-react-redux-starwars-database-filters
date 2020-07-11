@@ -21,7 +21,7 @@ class Table extends React.Component {
           <tbody>
             {filteredPlanet.map((planet) => (
               <tr key={planet.name}>
-                <th scope="row">{planet.name}</th> <td>{planet.climate}</td> <td>{planet.created}</td>
+                <td>{planet.name}</td> <td>{planet.climate}</td> <td>{planet.created}</td>
                 <td>{planet.diameter}</td> <td>{planet.edited}</td> <td>{planet.gravity}</td>
                 <td>{planet.orbital_period}</td> <td>{planet.population}</td>
                 <td>{planet.rotation_period}</td> <td>{planet.surface_water}</td>
