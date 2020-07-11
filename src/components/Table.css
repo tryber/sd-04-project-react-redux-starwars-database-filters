@@ -4,15 +4,15 @@ table, th, td {
 }
 
 table {
+  border-collapse: collapse;
   margin-left: 15px;
   overflow: auto;
   width: 60%;
-  border-collapse: collapse;
 }
 
 th, td {
-  text-align: middle;
   padding: 5px;
+  text-align: center;
 }
 
 .table-container {

@@ -6,7 +6,7 @@ import './Table.css';
 class Table extends Component {
   filteredData() {
     const { data, filterByName } = this.props;
-    if(filterByName) {
+    if (filterByName) {
       return data.filter((planet) => planet.name.includes(filterByName));
     }
     return data;
@@ -52,4 +52,5 @@ export default connect(mapStateToProps)(Table);
 Table.propTypes = {
   data: PropTypes.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  filterByName: PropTypes.string.isRequired,
 };
