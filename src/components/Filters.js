@@ -20,7 +20,7 @@ const Filters = (props) => {
           ))}
         </select>
         <select data-testid="comparison-filter" name="comparison">
-          <option value="">Comparison</option>
+          <option defaultValue>Comparison</option>
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>
           <option value="igual a">igual a</option>

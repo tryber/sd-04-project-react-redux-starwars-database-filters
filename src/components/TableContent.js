@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compare from '../util';
+import TableBody from './TableBody';
+import TableHead from './TableHead';
 
-const TableContent = (props) => {
-  const { data, searchText, filterByNumericValues } = props;
+const TableContent = ({ data, searchText, filterByNumericValues }) => {
   const objKeys =
-  data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
+    data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
   let planets = data;
   if (typeof filterByNumericValues && filterByNumericValues.length > 0) {
     const { column, comparison, value } = filterByNumericValues[0];
@@ -21,22 +22,8 @@ const TableContent = (props) => {
   }
   return (
     <table className="table">
-      <thead className="thead-dark">
-        <tr>
-          {objKeys.map((objKey) => (
-            <th key={`${objKey} index`}>{objKey}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {planets.map((planet) => (
-          <tr key={`${planet.name} index`}>
-            {objKeys.map((objKey) => (
-              <td key={`${objKey} index 2`}>{planet[objKey]}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      <TableHead objKeys={objKeys} />
+      <TableBody planets={planets} objKeys={objKeys} />
     </table>
   );
 };
