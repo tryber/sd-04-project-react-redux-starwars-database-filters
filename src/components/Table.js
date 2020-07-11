@@ -59,7 +59,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPlanets: () => dispatch(fetchPlanets()),
-  // setPlanets: (planets) => dispatch(setDefaultPlanets(planets)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

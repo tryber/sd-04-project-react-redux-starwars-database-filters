@@ -16,10 +16,8 @@ const INITIAL_STATE = {
 
 const applyNumericFilters = (planets, filters) => {
   let filteredPlanets = planets;
-  console.log('entrou', planets, filters);
   filters.forEach((filter) => {
     const { column, comparison, value } = filter;
-    console.log(column, comparison, value);
     filteredPlanets = filteredPlanets.filter((planet) => {
       if (comparison === 'maior que') return Number(planet[column]) > Number(value);
       if (comparison === 'menor que') return Number(planet[column]) < Number(value);
@@ -44,7 +42,6 @@ function reducer(state = INITIAL_STATE, action) {
         isFetching: false,
       };
     case NAME_TO_FILTER:
-      console.log(NAME_TO_FILTER);
       return {
         ...state,
         filterByName: {

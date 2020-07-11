@@ -4,7 +4,20 @@ import PropTypes from 'prop-types';
 import filterPlanetsByName from '../actions/filterByName';
 import { setNumericFilterVariables, setPlanetsFilteredByNumeric } from '../actions/filterByNumeric';
 
-function renderFilterDropdown(setVariables, setFilteredPlanets) {
+function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
+  const listOfColumns = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
+
+  const listOfComparisons = ['maior que', 'menor que', 'igual a'];
+
+  const columns = filtersList.map((filter) => filter.column);
+  const comparisons = filtersList.map((filter) => filter.comparison);
+
   return (
     <div>
       <select
@@ -16,11 +29,13 @@ function renderFilterDropdown(setVariables, setFilteredPlanets) {
         // }}
       >
         <option defaultValue>Coluna</option>
-        <option value="population">population</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
+        {listOfColumns
+          .filter((col) => !columns.includes(col))
+          .map((column) => (
+            <option key={column} value={column}>
+              {column}
+            </option>
+          ))}
       </select>
       <select
         data-testid="comparison-filter"
@@ -31,9 +46,13 @@ function renderFilterDropdown(setVariables, setFilteredPlanets) {
         // }}
       >
         <option defaultValue>Comparação</option>
-        <option value="maior que">maior que</option>
-        <option value="menor que">menor que</option>
-        <option value="igual a">igual a</option>
+        {listOfComparisons
+          .filter((comp) => !comparisons.includes(comp))
+          .map((comparison) => (
+            <option key={comparison} value={comparison}>
+              {comparison}
+            </option>
+          ))}
       </select>
       <input
         data-testid="value-filter"
@@ -69,6 +88,7 @@ class Header extends Component {
       planetsData,
       setVariables,
       setFilteredPlanets,
+      filtersList,
     } = this.props;
     return (
       <div>
@@ -79,7 +99,7 @@ class Header extends Component {
             filterByName(e, planetsData);
           }}
         />
-        {renderFilterDropdown(setVariables, setFilteredPlanets)}
+        {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
       </div>
     );
   }
@@ -105,7 +125,7 @@ Header.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   // filteredByNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterByName: PropTypes.func.isRequired,
-  // filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filtersList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setVariables: PropTypes.func.isRequired,
   setFilteredPlanets: PropTypes.func.isRequired,
 };
