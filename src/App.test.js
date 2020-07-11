@@ -122,6 +122,7 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
   test('should change store filter values', async () => {
     const { findByTestId, store } = renderApp();
     const filterField = await findByTestId('name-filter');
+    console.log(store.getState());
     fireEvent.change(filterField, { target: { value: 'o' } });
     expect(store.getState().filters.filterByName.name).toEqual('o');
     fireEvent.change(filterField, { target: { value: 'oo' } });
@@ -131,227 +132,139 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
   });
 });
 
-describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
-  beforeAll(mockFetch);
-  beforeEach(cleanup);
+// describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
+//   beforeAll(mockFetch);
+//   beforeEach(cleanup);
 
-  test('should have the column selection filter', async () => {
-    const { findByTestId } = renderApp();
-
-    const columnFilter = await findByTestId('column-filter');
-
-    expect(columnFilter).toHaveProperty('nodeName', 'SELECT');
-
-    expect(columnFilter.children).toHaveLength(6);
-
-    const expectedColumnFilters = [
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-
-    const foundColumnFilterArray = [];
-
-    for (let index = 0; index < columnFilter.children.length; index += 1) {
-      const item = columnFilter.children[index];
-      expect(item).toHaveProperty('nodeName', 'OPTION');
-      foundColumnFilterArray.push(item.innerHTML);
-    }
-
-    expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
-  });
-
-  test('should have the comparison selection filter', async () => {
-    const { findByTestId } = renderApp();
-
-    const comparisonFilter = await findByTestId('comparison-filter');
-
-    expect(comparisonFilter).toHaveProperty('nodeName', 'SELECT');
-
-    expect(comparisonFilter.children).toHaveLength(4);
-
-    const expectedColumnComparisons = [
-      'maior que',
-      'igual a',
-      'menor que',
-    ];
-
-    const foundComparisonFilterArray = [];
-
-    for (let index = 0; index < comparisonFilter.children.length; index += 1) {
-      const item = comparisonFilter.children[index];
-      expect(item).toHaveProperty('nodeName', 'OPTION');
-      foundComparisonFilterArray.push(item.innerHTML);
-    }
-
-    expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
-  });
-
-  test('should have the value input filter', async () => {
-    const { findByTestId } = renderApp();
-
-    const valueFilter = await findByTestId('value-filter');
-
-    expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
-  });
-
-  test('should have the filter button', async () => {
-    const { findByTestId } = renderApp();
-
-    const buttonFilter = await findByTestId('button-filter');
-
-    expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
-  });
-
-  test('should filter with less than', async () => {
-    const { findByTestId, findAllByRole, store } = renderApp();
-
-    const columnFilter = await findByTestId('column-filter');
-    const comparisonFilter = await findByTestId('comparison-filter');
-    const valueFilter = await findByTestId('value-filter');
-    const buttonFilter = await findByTestId('button-filter');
-
-    fireEvent.change(columnFilter, { target: { value: 'surface_water' } });
-    fireEvent.change(comparisonFilter, { target: { value: 'menor que' } });
-    fireEvent.change(valueFilter, { target: { value: '40' } });
-    fireEvent.click(buttonFilter);
-
-    const tableRows = await findAllByRole('row');
-    expect(tableRows).toHaveLength(7);
-
-    const expectedFilters = [
-      { column: 'surface_water', comparison: 'menor que', value: '40' },
-    ];
-    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
-  });
-
-  test('should filter with greather than', async () => {
-    const initialState = getStore().getState();
-    const initial = {
-      ...initialState,
-      filters:
-      {
-        ...initialState.filters,
-        filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-        ],
-      },
-    };
-    const { findByTestId, findAllByRole, store } = renderApp(initial);
-
-    const columnFilter = await findByTestId('column-filter');
-    const comparisonFilter = await findByTestId('comparison-filter');
-    const valueFilter = await findByTestId('value-filter');
-    const buttonFilter = await findByTestId('button-filter');
-
-    fireEvent.change(columnFilter, { target: { value: 'diameter' } });
-    fireEvent.change(comparisonFilter, { target: { value: 'maior que' } });
-    fireEvent.change(valueFilter, { target: { value: '8900' } });
-    fireEvent.click(buttonFilter);
-
-    const tableRows = await findAllByRole('row');
-
-    expect(tableRows).toHaveLength(5);
-
-    const expectedFilters = [
-      { column: 'surface_water', comparison: 'menor que', value: '40' },
-      { column: 'diameter', comparison: 'maior que', value: '8900' },
-    ];
-    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
-  });
-
-  test('should filter with equal to', async () => {
-    const initialState = getStore().getState();
-
-    const initial = {
-      ...initialState,
-      filters:
-      {
-        ...initialState.filters,
-        filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
-        ],
-      },
-    };
-
-    const {
-      findByTestId,
-      findAllByRole,
-      findByText,
-      store,
-    } = renderApp(initial);
-
-    const columnFilter = await findByTestId('column-filter');
-    const comparisonFilter = await findByTestId('comparison-filter');
-    const valueFilter = await findByTestId('value-filter');
-    const buttonFilter = await findByTestId('button-filter');
-
-    fireEvent.change(columnFilter, { target: { value: 'population' } });
-    fireEvent.change(comparisonFilter, { target: { value: 'igual a' } });
-    fireEvent.change(valueFilter, { target: { value: '200000' } });
-    fireEvent.click(buttonFilter);
-
-    const tableRows = await findAllByRole('row');
-
-    expect(tableRows).toHaveLength(2);
-    expect(await findByText('Tatooine')).toBeInTheDocument();
-
-    const expectedFilters = [
-      { column: 'surface_water', comparison: 'menor que', value: '40' },
-      { column: 'diameter', comparison: 'maior que', value: '8900' },
-      { column: 'population', comparison: 'igual a', value: '200000' },
-    ];
-    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
-  });
-});
-
-// describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
-//   test('check avaiable filters', async () => {
-//     const initialState = getStore().getState();
-
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' },
-//           { column: 'population', comparison: 'igual a', value: '200000' },
-//         ],
-//       },
-//     };
-
-//     const { findByTestId } = renderApp(initial);
+//   test('should have the column selection filter', async () => {
+//     const { findByTestId } = renderApp();
 
 //     const columnFilter = await findByTestId('column-filter');
 
-//     expect(columnFilter.children).toHaveLength(3);
+//     expect(columnFilter).toHaveProperty('nodeName', 'SELECT');
+
+//     expect(columnFilter.children).toHaveLength(6);
 
 //     const expectedColumnFilters = [
+//       'population',
 //       'orbital_period',
+//       'diameter',
 //       'rotation_period',
+//       'surface_water',
 //     ];
 
 //     const foundColumnFilterArray = [];
 
 //     for (let index = 0; index < columnFilter.children.length; index += 1) {
-//       const filter = columnFilter.children[index];
-//       foundColumnFilterArray.push(filter.innerHTML);
+//       const item = columnFilter.children[index];
+//       expect(item).toHaveProperty('nodeName', 'OPTION');
+//       foundColumnFilterArray.push(item.innerHTML);
 //     }
 
 //     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
 //   });
-// });
 
-// describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
-//   test('should show the previously selected filters', async () => {
+//   test('should have the comparison selection filter', async () => {
+//     const { findByTestId } = renderApp();
+
+//     const comparisonFilter = await findByTestId('comparison-filter');
+
+//     expect(comparisonFilter).toHaveProperty('nodeName', 'SELECT');
+
+//     expect(comparisonFilter.children).toHaveLength(4);
+
+//     const expectedColumnComparisons = [
+//       'maior que',
+//       'igual a',
+//       'menor que',
+//     ];
+
+//     const foundComparisonFilterArray = [];
+
+//     for (let index = 0; index < comparisonFilter.children.length; index += 1) {
+//       const item = comparisonFilter.children[index];
+//       expect(item).toHaveProperty('nodeName', 'OPTION');
+//       foundComparisonFilterArray.push(item.innerHTML);
+//     }
+
+//     expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
+//   });
+
+//   test('should have the value input filter', async () => {
+//     const { findByTestId } = renderApp();
+
+//     const valueFilter = await findByTestId('value-filter');
+
+//     expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
+//   });
+
+//   test('should have the filter button', async () => {
+//     const { findByTestId } = renderApp();
+
+//     const buttonFilter = await findByTestId('button-filter');
+
+//     expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
+//   });
+
+//   test('should filter with less than', async () => {
+//     const { findByTestId, findAllByRole, store } = renderApp();
+
+//     const columnFilter = await findByTestId('column-filter');
+//     const comparisonFilter = await findByTestId('comparison-filter');
+//     const valueFilter = await findByTestId('value-filter');
+//     const buttonFilter = await findByTestId('button-filter');
+
+//     fireEvent.change(columnFilter, { target: { value: 'surface_water' } });
+//     fireEvent.change(comparisonFilter, { target: { value: 'menor que' } });
+//     fireEvent.change(valueFilter, { target: { value: '40' } });
+//     fireEvent.click(buttonFilter);
+
+//     const tableRows = await findAllByRole('row');
+//     expect(tableRows).toHaveLength(7);
+
+//     const expectedFilters = [
+//       { column: 'surface_water', comparison: 'menor que', value: '40' },
+//     ];
+//     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+//   });
+
+//   test('should filter with greather than', async () => {
+//     const initialState = getStore().getState();
+//     const initial = {
+//       ...initialState,
+//       filters:
+//       {
+//         ...initialState.filters,
+//         filterByNumericValues:
+//         [
+//           { column: 'surface_water', comparison: 'menor que', value: '40' },
+//         ],
+//       },
+//     };
+//     const { findByTestId, findAllByRole, store } = renderApp(initial);
+
+//     const columnFilter = await findByTestId('column-filter');
+//     const comparisonFilter = await findByTestId('comparison-filter');
+//     const valueFilter = await findByTestId('value-filter');
+//     const buttonFilter = await findByTestId('button-filter');
+
+//     fireEvent.change(columnFilter, { target: { value: 'diameter' } });
+//     fireEvent.change(comparisonFilter, { target: { value: 'maior que' } });
+//     fireEvent.change(valueFilter, { target: { value: '8900' } });
+//     fireEvent.click(buttonFilter);
+
+//     const tableRows = await findAllByRole('row');
+
+//     expect(tableRows).toHaveLength(5);
+
+//     const expectedFilters = [
+//       { column: 'surface_water', comparison: 'menor que', value: '40' },
+//       { column: 'diameter', comparison: 'maior que', value: '8900' },
+//     ];
+//     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+//   });
+
+//   test('should filter with equal to', async () => {
 //     const initialState = getStore().getState();
 
 //     const initial = {
@@ -362,115 +275,203 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 //         filterByNumericValues:
 //         [
 //           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' },
-//           { column: 'population', comparison: 'igual a', value: '200000' },
+//           { column: 'diameter', comparison: 'maior que', value: '8900' }
 //         ],
 //       },
 //     };
 
-//     const { findAllByTestId } = renderApp(initial);
-//     const selectedFilters = await findAllByTestId('filter');
-//     expect(selectedFilters).toHaveLength(3);
-//   });
+//     const {
+//       findByTestId,
+//       findAllByRole,
+//       findByText,
+//       store,
+//     } = renderApp(initial);
 
-//   test('each filter should have a X button that removes the filter', async () => {
-//     const initialState = getStore().getState();
+//     const columnFilter = await findByTestId('column-filter');
+//     const comparisonFilter = await findByTestId('comparison-filter');
+//     const valueFilter = await findByTestId('value-filter');
+//     const buttonFilter = await findByTestId('button-filter');
 
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' },
-//           { column: 'population', comparison: 'igual a', value: '200000' },
-//         ],
-//       },
-//     };
+//     fireEvent.change(columnFilter, { target: { value: 'population' } });
+//     fireEvent.change(comparisonFilter, { target: { value: 'igual a' } });
+//     fireEvent.change(valueFilter, { target: { value: '200000' } });
+//     fireEvent.click(buttonFilter);
 
-//     const { findAllByTestId, queryAllByTestId, store } = renderApp(initial);
-//     let selectedFilters = await findAllByTestId('filter');
-//     let removeButton = selectedFilters[0].querySelector('button');
+//     const tableRows = await findAllByRole('row');
 
-//     fireEvent.click(removeButton);
+//     expect(tableRows).toHaveLength(2);
+//     expect(await findByText('Tatooine')).toBeInTheDocument();
 
-//     selectedFilters = await findAllByTestId('filter');
-//     removeButton = selectedFilters[0].querySelector('button');
-//     fireEvent.click(removeButton);
-
-//     selectedFilters = await findAllByTestId('filter');
-//     removeButton = selectedFilters[0].querySelector('button');
-//     fireEvent.click(removeButton);
-
-//     selectedFilters = queryAllByTestId('filter');
-
-//     expect(selectedFilters).toHaveLength(0);
-//     expect(store.getState().filters.filterByNumericValues).toHaveLength(0);
+//     const expectedFilters = [
+//       { column: 'surface_water', comparison: 'menor que', value: '40' },
+//       { column: 'diameter', comparison: 'maior que', value: '8900' },
+//       { column: 'population', comparison: 'igual a', value: '200000' },
+//     ];
+//     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
 //   });
 // });
 
-// describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
-//   test('check planet table starting order', async () => {
-//     let sortedPlanets = [];
+// // describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
+// //   test('check avaiable filters', async () => {
+// //     const initialState = getStore().getState();
 
-//     for (let index = 0; index < testData.results.length; index += 1) {
-//       const planet = testData.results[index];
-//       sortedPlanets.push(planet.name);
-//     }
+// //     const initial = {
+// //       ...initialState,
+// //       filters:
+// //       {
+// //         ...initialState.filters,
+// //         filterByNumericValues:
+// //         [
+// //           { column: 'surface_water', comparison: 'menor que', value: '40' },
+// //           { column: 'diameter', comparison: 'maior que', value: '8900' },
+// //           { column: 'population', comparison: 'igual a', value: '200000' },
+// //         ],
+// //       },
+// //     };
 
-//     sortedPlanets = sortedPlanets.sort();
+// //     const { findByTestId } = renderApp(initial);
 
-//     const { findAllByRole, findByText, store } = renderApp();
-//     await findByText(testData.results[0].name);
-//     const rows = await findAllByRole('row');
-//     const appPlanetList = [];
+// //     const columnFilter = await findByTestId('column-filter');
 
-//     for (let index = 0; index < rows.length; index += 1) {
-//       const row = rows[index];
-//       appPlanetList.push(row.children[0].innerHTML);
-//     }
+// //     expect(columnFilter.children).toHaveLength(3);
 
-//     appPlanetList.shift();
-//     expect(sortedPlanets).toEqual(appPlanetList);
-//     expect(store.getState().filters.order.column).toEqual('Name');
-//     expect(store.getState().filters.order.sort).toEqual('ASC');
-//   });
+// //     const expectedColumnFilters = [
+// //       'orbital_period',
+// //       'rotation_period',
+// //     ];
 
-//   test('change table order', async () => {
-//     let sortedPlanets = [];
+// //     const foundColumnFilterArray = [];
 
-//     for (let index = 0; index < testData.results.length; index += 1) {
-//       const planet = testData.results[index];
-//       sortedPlanets.push(parseInt(planet.diameter, 10));
-//     }
+// //     for (let index = 0; index < columnFilter.children.length; index += 1) {
+// //       const filter = columnFilter.children[index];
+// //       foundColumnFilterArray.push(filter.innerHTML);
+// //     }
 
-//     sortedPlanets = sortedPlanets.sort((a, b) => a - b);
+// //     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
+// //   });
+// // });
 
-//     const { findByTestId, findAllByTestId, findAllByRole } = renderApp();
-//     const columnSort = await findByTestId('column-sort');
-//     const sortButton = await findByTestId('column-sort-button');
-//     const sortInput = await findAllByTestId('column-sort-input');
+// // describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
+// //   test('should show the previously selected filters', async () => {
+// //     const initialState = getStore().getState();
 
-//     fireEvent.change(columnSort, { target: { value: 'diameter' } });
+// //     const initial = {
+// //       ...initialState,
+// //       filters:
+// //       {
+// //         ...initialState.filters,
+// //         filterByNumericValues:
+// //         [
+// //           { column: 'surface_water', comparison: 'menor que', value: '40' },
+// //           { column: 'diameter', comparison: 'maior que', value: '8900' },
+// //           { column: 'population', comparison: 'igual a', value: '200000' },
+// //         ],
+// //       },
+// //     };
 
-//     const ascInput = sortInput.filter((input) => input.value === 'DESC')[0];
+// //     const { findAllByTestId } = renderApp(initial);
+// //     const selectedFilters = await findAllByTestId('filter');
+// //     expect(selectedFilters).toHaveLength(3);
+// //   });
 
-//     fireEvent.click(ascInput);
+// //   test('each filter should have a X button that removes the filter', async () => {
+// //     const initialState = getStore().getState();
 
-//     fireEvent.click(sortButton);
+// //     const initial = {
+// //       ...initialState,
+// //       filters:
+// //       {
+// //         ...initialState.filters,
+// //         filterByNumericValues:
+// //         [
+// //           { column: 'surface_water', comparison: 'menor que', value: '40' },
+// //           { column: 'diameter', comparison: 'maior que', value: '8900' },
+// //           { column: 'population', comparison: 'igual a', value: '200000' },
+// //         ],
+// //       },
+// //     };
 
-//     const rows = await findAllByRole('row');
-//     const appPlanetList = [];
+// //     const { findAllByTestId, queryAllByTestId, store } = renderApp(initial);
+// //     let selectedFilters = await findAllByTestId('filter');
+// //     let removeButton = selectedFilters[0].querySelector('button');
 
-//     for (let index = 0; index < rows.length; index += 1) {
-//       const row = rows[index];
-//       appPlanetList.push(parseInt(row.children[3].innerHTML, 10));
-//     }
+// //     fireEvent.click(removeButton);
 
-//     appPlanetList.shift();
+// //     selectedFilters = await findAllByTestId('filter');
+// //     removeButton = selectedFilters[0].querySelector('button');
+// //     fireEvent.click(removeButton);
 
-//     expect(appPlanetList).toEqual(sortedPlanets.reverse());
-//   });
-// });
+// //     selectedFilters = await findAllByTestId('filter');
+// //     removeButton = selectedFilters[0].querySelector('button');
+// //     fireEvent.click(removeButton);
+
+// //     selectedFilters = queryAllByTestId('filter');
+
+// //     expect(selectedFilters).toHaveLength(0);
+// //     expect(store.getState().filters.filterByNumericValues).toHaveLength(0);
+// //   });
+// // });
+
+// // describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
+// //   test('check planet table starting order', async () => {
+// //     let sortedPlanets = [];
+
+// //     for (let index = 0; index < testData.results.length; index += 1) {
+// //       const planet = testData.results[index];
+// //       sortedPlanets.push(planet.name);
+// //     }
+
+// //     sortedPlanets = sortedPlanets.sort();
+
+// //     const { findAllByRole, findByText, store } = renderApp();
+// //     await findByText(testData.results[0].name);
+// //     const rows = await findAllByRole('row');
+// //     const appPlanetList = [];
+
+// //     for (let index = 0; index < rows.length; index += 1) {
+// //       const row = rows[index];
+// //       appPlanetList.push(row.children[0].innerHTML);
+// //     }
+
+// //     appPlanetList.shift();
+// //     expect(sortedPlanets).toEqual(appPlanetList);
+// //     expect(store.getState().filters.order.column).toEqual('Name');
+// //     expect(store.getState().filters.order.sort).toEqual('ASC');
+// //   });
+
+// //   test('change table order', async () => {
+// //     let sortedPlanets = [];
+
+// //     for (let index = 0; index < testData.results.length; index += 1) {
+// //       const planet = testData.results[index];
+// //       sortedPlanets.push(parseInt(planet.diameter, 10));
+// //     }
+
+// //     sortedPlanets = sortedPlanets.sort((a, b) => a - b);
+
+// //     const { findByTestId, findAllByTestId, findAllByRole } = renderApp();
+// //     const columnSort = await findByTestId('column-sort');
+// //     const sortButton = await findByTestId('column-sort-button');
+// //     const sortInput = await findAllByTestId('column-sort-input');
+
+// //     fireEvent.change(columnSort, { target: { value: 'diameter' } });
+
+// //     const ascInput = sortInput.filter((input) => input.value === 'DESC')[0];
+
+// //     fireEvent.click(ascInput);
+
+// //     fireEvent.click(sortButton);
+
+// //     const rows = await findAllByRole('row');
+// //     const appPlanetList = [];
+
+// //     for (let index = 0; index < rows.length; index += 1) {
+// //       const row = rows[index];
+// //       appPlanetList.push(parseInt(row.children[3].innerHTML, 10));
+// //     }
+
+// //     appPlanetList.shift();
+
+// //     expect(appPlanetList).toEqual(sortedPlanets.reverse());
+// //   });
+// // });

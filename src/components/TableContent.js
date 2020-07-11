@@ -14,7 +14,7 @@ const TableContent = (props) => {
     );
   }
   return (
-    <>
+    <table>
       <thead>
         <tr>
           {objKeys.map((objKey) => (
@@ -31,17 +31,17 @@ const TableContent = (props) => {
           </tr>
         ))}
       </tbody>
-    </>
+    </table>
   );
 };
 
 const mapStateToProps = (state) => ({
-  data: state.data,
+  data: state.swAPI.data,
   searchText: state.filters.filterByName.name,
 });
 
 TableContent.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   searchText: PropTypes.string.isRequired,
 };
 

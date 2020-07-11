@@ -1,33 +1,32 @@
-// import { REQUEST_SW_PLANETS, REQUEST_SW_PLANETS_SUCCESS, SEARCH_TEXT } from '../actions';
+import { SEARCH_TEXT, NUMERIC_FILTER } from '../actions';
 
-// const INITIAL_SW_PLANETS = {
-//   isFetching: false,
-//   data: [],
-//   filters: {
-//     filterByName: {
-//       name: '',
-//     },
-//   },
-// };
+const INITIAL_FILTERS = {
+  filterByName: {
+    name: '',
+  },
+  filterByNumericValues: [],
+};
+const filters = (state = INITIAL_FILTERS, action) => {
+  switch (action.type) {
+    case SEARCH_TEXT:
+      return {
+        ...state,
+        filterByName: { name: action.searchText },
+      };
+    case NUMERIC_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [
+          {
+            column: action.data.column.value,
+            comparison: action.data.comparison.value,
+            value: action.data.inputNumber.value,
+          },
+        ],
+      };
+    default:
+      return state;
+  }
+};
 
-// const swPlanets = (state = INITIAL_SW_PLANETS, action) => {
-//   switch (action.type) {
-//     case REQUEST_SW_PLANETS:
-//       return {
-//         ...state,
-//         isFetching: true,
-//       };
-//     case REQUEST_SW_PLANETS_SUCCESS:
-//       return {
-//         ...state,
-//         isFetching: false,
-//         data: action.results,
-//       };
-//     case SEARCH_TEXT:
-//       return { ...state, filters: { filterByName: { name: action.searchText } } };
-//     default:
-//       return state;
-//   }
-// };
-
-// export default swPlanets;
+export default filters;

@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { changeHandler } from '../actions';
 
 const SearchBar = (props) => {
-  const { search, searchText } = props;
+  const { searchText = '' } = props;
   return (
     <input
       data-testid="name-filter"
       value={searchText}
       type="text"
-      onChange={(event) => search(event.target.value)}
+      onChange={(event) => props.changeHandler(event.target.value)}
     />
   );
 };
@@ -19,13 +19,12 @@ const mapStateToProps = (state) => ({
   searchText: state.filters.filterByName.name,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  search: (searchText) => dispatch(changeHandler(searchText)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   search: (searchText) => dispatch(changeHandler(searchText)),
+// });
 
 SearchBar.propTypes = {
-  search: PropTypes.func.isRequired,
-  searchText: PropTypes.string.isRequired,
+  searchText: PropTypes.string,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, { changeHandler })(SearchBar);

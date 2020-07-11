@@ -14,15 +14,13 @@ const Table = (props) => {
       <div>StarWars Datatable with Filters</div>
       <SearchBar />
       <Filters />
-      <table>
-        <TableContent />
-      </table>
+      <TableContent />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  isFetching: state.isFetching,
+  isFetching: state.swAPI.isFetching,
 });
 
 Table.propTypes = {
