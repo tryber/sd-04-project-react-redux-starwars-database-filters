@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 function TableBody({ planets, name }) {
-  const data = name ? planets.filter(planet => planet.name.includes(name)) : planets;
+  const data = name ? planets.filter((planet) => planet.name.includes(name)) : planets;
   return (
     <tbody>
       {data.map((planet) => (
@@ -61,4 +61,5 @@ TableBody.propTypes = {
       url: PropTypes.string,
     }),
   ).isRequired,
+  name: PropTypes.string.isRequired,
 };
