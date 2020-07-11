@@ -20,14 +20,8 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
 
   return (
     <div>
-      <select
-        data-testid="column-filter"
-        id="column"
-        // onChange={(e) => {
-        //   newFilter.column = e.target.value;
-        //   return null;
-        // }}
-      >
+      <h4>Definir filtro:</h4>
+      <select data-testid="column-filter" id="column">
         <option defaultValue>Coluna</option>
         {listOfColumns
           .filter((col) => !columns.includes(col))
@@ -37,14 +31,7 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
             </option>
           ))}
       </select>
-      <select
-        data-testid="comparison-filter"
-        id="comparison"
-        // onChange={(e) => {
-        //   newFilter.comparison = e.target.value;
-        //   return null;
-        // }}
-      >
+      <select data-testid="comparison-filter" id="comparison">
         <option defaultValue>Comparação</option>
         {listOfComparisons
           .filter((comp) => !comparisons.includes(comp))
@@ -54,15 +41,7 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
             </option>
           ))}
       </select>
-      <input
-        data-testid="value-filter"
-        type="number"
-        id="value"
-        // onChange={(e) => {
-        //   newFilter.value = e.target.value;
-        //   return null;
-        // }}
-      />
+      <input data-testid="value-filter" type="number" id="value" />
       <button
         data-testid="button-filter"
         type="button"
@@ -81,17 +60,27 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
     </div>
   );
 }
+
+function renderFiltersSetted(filtersList) {
+  return (
+    <div>
+      <h4>Filtros:</h4>
+      {filtersList.map(({ column, comparison, value }) => (
+        <div key={column} data-testid="filter">
+          <p>{`${column} ${comparison} ${value}`}</p>
+          <button type="button">x</button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 class Header extends Component {
   render() {
-    const {
-      filterByName,
-      planetsData,
-      setVariables,
-      setFilteredPlanets,
-      filtersList,
-    } = this.props;
+    const { filterByName, planetsData, setVariables, setFilteredPlanets, filtersList } = this.props;
     return (
       <div>
+        <h4>Procurar:</h4>
         <input
           data-testid="name-filter"
           type="text"
@@ -100,6 +89,7 @@ class Header extends Component {
           }}
         />
         {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
+        {renderFiltersSetted(filtersList)}
       </div>
     );
   }
