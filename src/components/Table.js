@@ -52,8 +52,8 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   data: state.reducer.data,
-  filterByName: state.reducer.filters.filterByName.name,
-  filterByNumericValues: state.reducer.filters.filterByNumericValues,
+  filterByName: state.reducerFilter.filters.filterByName.name,
+  filterByNumericValues: state.reducerFilter.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Table);
