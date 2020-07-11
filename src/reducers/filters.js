@@ -24,21 +24,14 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: '' },
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
+          { column: action.column, comparison: action.comparison, value: action.value },
         ],
       };
     case SAVE_FILTER:
       return {
         ...state,
         filterByName: { name: '' },
-        actualFilter: {
-          ...state.actualFilter,
-          [action.name]: action.value,
-        },
+        actualFilter: { ...state.actualFilter, [action.name]: action.value },
       };
     default:
       return state;
