@@ -8,54 +8,61 @@ import {
   removeFilter,
 } from '../actions/filterByNumeric';
 
+function geratedlistOfColumns() {
+  return ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+}
+
+function generateFilteredColumns(listOfColumns, columns) {
+  return listOfColumns
+    .filter((col) => !columns.includes(col))
+    .map((column) => (
+      <option key={column} value={column}>
+        {column}
+      </option>
+    ));
+}
+
+function generateFilteredValues(listOfComparisons, comparisons) {
+  return listOfComparisons
+    .filter((comp) => !comparisons.includes(comp))
+    .map((comparison) => (
+      <option key={comparison} value={comparison}>
+        {comparison}
+      </option>
+    ));
+}
+
+function generateNewFilter() {
+  const newFilter = {
+    column: document.querySelector('#column').value,
+    comparison: document.querySelector('#comparison').value,
+    value: document.querySelector('#value').value,
+  };
+  return newFilter;
+}
+
 function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
-  const listOfColumns = [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
-
+  const listOfColumns = geratedlistOfColumns();
   const listOfComparisons = ['maior que', 'menor que', 'igual a'];
-
   const columns = filtersList.map((filter) => filter.column);
   const comparisons = filtersList.map((filter) => filter.comparison);
-
   return (
     <div>
       <h4>Definir filtro:</h4>
       <select data-testid="column-filter" id="column">
         <option defaultValue>Coluna</option>
-        {listOfColumns
-          .filter((col) => !columns.includes(col))
-          .map((column) => (
-            <option key={column} value={column}>
-              {column}
-            </option>
-          ))}
+        {generateFilteredColumns(listOfColumns, columns)}
       </select>
       <select data-testid="comparison-filter" id="comparison">
         <option defaultValue>Comparação</option>
-        {listOfComparisons
-          .filter((comp) => !comparisons.includes(comp))
-          .map((comparison) => (
-            <option key={comparison} value={comparison}>
-              {comparison}
-            </option>
-          ))}
+        {generateFilteredValues(listOfComparisons, comparisons)}
       </select>
       <input data-testid="value-filter" type="number" id="value" />
       <button
         data-testid="button-filter"
         type="button"
         onClick={() => {
-          const newFilter = {
-            column: document.querySelector('#column').value,
-            comparison: document.querySelector('#comparison').value,
-            value: document.querySelector('#value').value,
-          };
-          setVariables(newFilter);
+          setVariables(generateNewFilter());
           setFilteredPlanets();
         }}
       >
