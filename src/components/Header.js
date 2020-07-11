@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterPlanetsByName from '../actions/filterByName';
+import './header.css';
 import {
   setNumericFilterVariables,
   setPlanetsFilteredByNumeric,
@@ -47,7 +48,7 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
   const columns = filtersList.map((filter) => filter.column);
   const comparisons = filtersList.map((filter) => filter.comparison);
   return (
-    <div>
+    <div className="filtersContainer">
       <h4>Definir filtro:</h4>
       <select data-testid="column-filter" id="column">
         <option defaultValue>Coluna</option>
@@ -74,10 +75,10 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
 
 function renderFiltersSetted(filtersList, remove, setFilteredPlanets) {
   return (
-    <div>
+    <div className="filtersContainer">
       <h4>Filtros:</h4>
       {filtersList.map((filter) => (
-        <div key={filter.column} data-testid="filter">
+        <div className="cardFilters" key={filter.column} data-testid="filter">
           <p>{`${filter.column} ${filter.comparison} ${filter.value}`}</p>
           <button
             type="button"
@@ -106,15 +107,17 @@ class Header extends Component {
     } = this.props;
     return (
       <div>
-        <h4>Procurar:</h4>
-        <input
-          data-testid="name-filter"
-          type="text"
-          onChange={(e) => {
-            filterByName(e, planetsData);
-          }}
-        />
-        {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
+        <div className="container">
+          <h4>Procurar:</h4>
+          <input
+            data-testid="name-filter"
+            type="text"
+            onChange={(e) => {
+              filterByName(e, planetsData);
+            }}
+          />
+          {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
+        </div>
         {renderFiltersSetted(filtersList, remove, setFilteredPlanets)}
       </div>
     );

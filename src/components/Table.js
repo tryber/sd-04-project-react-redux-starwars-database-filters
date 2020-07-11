@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets from '../actions/fetchPlanets';
+import './table.css';
 
 function renderTable(tableHeaderTitles, planets) {
   return (
