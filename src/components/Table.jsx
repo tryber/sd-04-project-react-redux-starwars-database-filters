@@ -45,7 +45,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   getPlanets: state.apiRequest.data,
   loading: state.apiRequest.loading,
-  filterName: state.filters.filters.filterByName.name,
+  filterName: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
