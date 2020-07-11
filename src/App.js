@@ -1,12 +1,11 @@
 import React from 'react';
-import SearchPlanet from './components/SearchPlanet';
+import MainContainer from './components/MainContainer';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Here is App</h1>
-      <SearchPlanet />
+      <MainContainer />
     </div>
   );
 }
