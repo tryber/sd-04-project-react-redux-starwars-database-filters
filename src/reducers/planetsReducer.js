@@ -1,8 +1,8 @@
 import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
 
 const INITIAL_STATE = {
-  isFetching: false,
-  data: [],
+  isFetching: true,
+  planetsData: [],
 };
 
 export default function planetsReducer(state = INITIAL_STATE, action) {
@@ -10,12 +10,11 @@ export default function planetsReducer(state = INITIAL_STATE, action) {
     case REQUEST_PLANETS:
       return {
         ...state,
-        isFetching: true,
       };
     case REQUEST_PLANETS_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        planetsData: action.planetsData,
         isFetching: false,
       };
     default:

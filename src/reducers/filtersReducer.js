@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   filteredPlanets: [],
 };
 
-export default function filterReducer(state = INITIAL_STATE, action) {
+export default function filtersReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case NAME_TO_FILTER:
       return {
@@ -21,7 +21,7 @@ export default function filterReducer(state = INITIAL_STATE, action) {
     case SET_FILTERED_BY_NAME:
       return {
         ...state,
-        filteredPlanets: action.data,
+        filteredPlanets: action.planets,
       };
     case SET_FILTER_VARIABLES:
       return {
@@ -38,7 +38,7 @@ export default function filterReducer(state = INITIAL_STATE, action) {
     case SET_FILTERED_BY_NUMERIC:
       return {
         ...state,
-        filteredPlanets: action.data,
+        filteredPlanets: action.planets,
       };
     default:
       return state;

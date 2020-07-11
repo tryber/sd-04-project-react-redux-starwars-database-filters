@@ -11,7 +11,7 @@ export function setNumericFilterVariables(column, comparison, value) {
   };
 }
 
-export default function setPlanetsFilteredByNumeric(data) {
+export function setPlanetsFilteredByNumeric(data) {
   return {
     type: SET_FILTERED_BY_NUMERIC,
     data,

@@ -1,7 +1,7 @@
 export const NAME_TO_FILTER = 'NAME_TO_FILTER';
 export const SET_FILTERED_BY_NAME = 'SET_FILTERED_BY_NAME';
 
-const setNameToFilter = (string) => ({ type: NAME_TO_FILTER, string });
+const setNameToFilter = (name) => ({ type: NAME_TO_FILTER, name });
 const setPlanetsFilteredByName = (planets) => ({ type: SET_FILTERED_BY_NAME, planets });
 
 export default function filterPlanetsByName(planets, string) {

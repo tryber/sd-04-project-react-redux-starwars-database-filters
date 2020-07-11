@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchPlanets } from '../actions/fetchPlanets';
+import fetchPlanets from '../actions/fetchPlanets';
 
-function renderTable(tableTitles, filteredPlanets) {
+function renderTable(tableHeaderTitles, planets) {
   return (
     <table>
       <thead>
         <tr>
-          {tableTitles
+          {tableHeaderTitles
             .filter((title) => title !== 'residents')
             .map((title) => (
               <th key={title}>{title}</th>
@@ -16,7 +16,7 @@ function renderTable(tableTitles, filteredPlanets) {
         </tr>
       </thead>
       <tbody>
-        {filteredPlanets.map((planet) => (
+        {planets.map((planet) => (
           <tr key={planet.name}>
             {Object.values(planet)
               .filter((_, index) => index !== 9)
@@ -32,40 +32,37 @@ function renderTable(tableTitles, filteredPlanets) {
 
 class Table extends Component {
   componentDidMount() {
-    const { getPlanets } = this.props;
-    getPlanets();
+    const { fetchPlanets: fetch } = this.props;
+    fetch();
   }
 
   render() {
-    const {
-      filteredData,
-      data,
-      isFetching,
-      inputName,
-    } = this.props;
+    const { planetsData, filteredPlanets, isFetching, nameToFilter } = this.props;
+    console.log(isFetching);
     if (isFetching) return <p>Loading...</p>;
-    const filteredPlanets = inputName === '' ? data : filteredData;
-    const tableTitles = data[0] ? Object.keys(data[0]) : [];
-    return renderTable(tableTitles, filteredPlanets);
+    const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
+    const planets = nameToFilter === '' ? planetsData : filteredPlanets;
+    return renderTable(headerTitles, planets);
   }
 }
 
 const mapStateToProps = (state) => ({
-  data: state.planetsReducer.data,
-  isFetching: state.planetsReducer.isFetching,
-  filteredData: state.filters.filteredData,
-  inputName: state.filters.filterByName.name,
+  planetsData: state.planets.planetsData,
+  isFetching: state.planets.isFetching,
+  filteredPlanets: state.filters.filteredPlanets,
+  nameToFilter: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getPlanets: () => dispatch(fetchPlanets()),
+  fetchPlanets: () => dispatch(fetchPlanets()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getPlanets: PropTypes.func.isRequired,
+  planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   inputName: PropTypes.string.isRequired,
   filteredData: PropTypes.arrayOf(PropTypes.object).isRequired,

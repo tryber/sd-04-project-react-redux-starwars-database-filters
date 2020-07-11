@@ -4,12 +4,12 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
 
 const requestPlanets = () => ({ type: REQUEST_PLANETS });
-const requestPlanetsSuccess = (data) => ({
+const requestPlanetsSuccess = (planets) => ({
   type: REQUEST_PLANETS_SUCCESS,
-  data,
+  planetsData: planets,
 });
 
-export function fetchPlanets() {
+export default function fetchPlanets() {
   return async (dispatch) => {
     dispatch(requestPlanets());
 
