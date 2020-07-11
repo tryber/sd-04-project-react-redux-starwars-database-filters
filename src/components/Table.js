@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 class Table extends React.Component {
   render() {
     const { filteredPlanet } = this.props;
-  
+
     return ( // refatorar with extern [] and map
       <div>
         <table className="table table-striped ">
           <thead className="thead-dark">
             <tr>
-              <th scope="col">name</th> <th scope="col">climate</th> <th scope="col">created</th> <th scope="col">diameter</th> <th scope="col">edited</th>
-              <th scope="col">gravity</th> <th scope="col">orbital_period</th> <th scope="col">population</th> <th scope="col">rotation_period</th>
-              <th scope="col">surface_water</th> <th scope="col">terrain</th> <th scope="col">url</th> <th scope="col">films</th>
+              <th scope="col">name</th> <th scope="col">climate</th> <th scope="col">created</th>
+              <th scope="col">diameter</th> <th scope="col">edited</th>
+              <th scope="col">gravity</th> <th scope="col">orbital_period</th>
+              <th scope="col">population</th> <th scope="col">rotation_period</th>
+              <th scope="col">surface_water</th> <th scope="col">terrain</th>
+              <th scope="col">url</th> <th scope="col">films</th>
             </tr>
           </thead>
           <tbody>

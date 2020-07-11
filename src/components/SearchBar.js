@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { searchBar } from '../actions/searchBarActions';
 
 class SearchBar extends React.Component {
   render() {
-    const { value, searchBar } = this.props;
+    const { value } = this.props;
     return (
       <input
         data-testid="name-filter"
@@ -22,5 +23,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   searchBar: (e) => dispatch(searchBar(e)),
 });
+
+SearchBar.propTypes = {
+  searchBar: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
