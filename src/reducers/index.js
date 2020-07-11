@@ -2,7 +2,7 @@ import { REQUEST_API, REQUEST_API_SUCESS } from '../actions';
 
 const INITIAL_STATE = {
   data: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 const reducerRequestApi = (state = INITIAL_STATE, action) => {
@@ -16,7 +16,7 @@ const reducerRequestApi = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false,
-        data: action.data.results,
+        data: action.data,
       };
     default:
       return state;

@@ -2,19 +2,28 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import { titles } from '../services/TitlesTable';
+import Tabela from '../components/Tabela';
 
 class Table extends Component {
   render() {
     const { isLoading, data } = this.props;
+    const planets = data.results;
     if (isLoading) return <span>L O A D I N G . . .</span>;
     return (
       <div>
         <Header />
         <div>
           <table>
-            <thead>oi</thead>
-            <tbody>Oi</tbody>
+            <thead>
+              {Object.keys(data.results[0]).map((e, index) => (
+                <th key={index}> {e} </th>
+              ))}
+            </thead>
+            <tbody>
+              {planets.map((planet, index) => (
+                <Tabela planet={planet} />
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
