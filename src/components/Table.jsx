@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   requestPlanets: PropTypes.func.isRequired,
-  getPlanets: PropTypes.array.isRequired,
+  getPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
