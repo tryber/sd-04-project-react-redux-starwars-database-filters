@@ -15,7 +15,7 @@ const requestPlanetsFailure = (error) => ({
   error,
 });
 
-export const fetchPlanetsAPI = () => 
+export const fetchPlanetsAPI = () =>
   (dispatch) => {
     dispatch(requestPlanets());
 
@@ -23,7 +23,7 @@ export const fetchPlanetsAPI = () =>
       (planets) => dispatch(requestPlanetsSuccess(planets.results)),
       (error) => dispatch(requestPlanetsFailure(error.message)),
     );
-};
+  };
 
 
 export const filterByName = (event) => ({

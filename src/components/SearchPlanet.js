@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
 
 const SearchPlanet = ({ filteringByName }) => (
-    <div>
+  <div>
       <label htmlFor="search">
         Procurar
         <input
@@ -17,7 +17,7 @@ const SearchPlanet = ({ filteringByName }) => (
           }}
         />
       </label>
-    </div>
+  </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({
