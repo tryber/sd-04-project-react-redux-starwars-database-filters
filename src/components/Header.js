@@ -15,9 +15,8 @@ function renderFilterDropdown(setVariables, setFilteredPlanets) {
         //   return null;
         // }}
       >
-        <option value="population" defaultValue>
-          population
-        </option>
+        <option defaultValue>Coluna</option>
+        <option value="population">population</option>
         <option value="orbital_period">orbital_period</option>
         <option value="diameter">diameter</option>
         <option value="rotation_period">rotation_period</option>
@@ -31,9 +30,8 @@ function renderFilterDropdown(setVariables, setFilteredPlanets) {
         //   return null;
         // }}
       >
-        <option value="maior que" defaultValue>
-          Maior que
-        </option>
+        <option defaultValue>Comparação</option>
+        <option value="maior que">Maior que</option>
         <option value="menor que">Menor que</option>
         <option value="igual a">Igual a</option>
       </select>
