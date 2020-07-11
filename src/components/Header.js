@@ -2,48 +2,50 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterPlanetsByName from '../actions/filterByName';
-import { setNumericFilterVariables, setPlanetsFilteredByNumeric } from '../actions/filterByNumeric';
+import {
+  setNumericFilterVariables,
+  setPlanetsFilteredByNumeric,
+  removeFilter,
+} from '../actions/filterByNumeric';
 
-function renderFilterDropdown(setVariables, setFilteredPlanets) {
+function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
+  const listOfColumns = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
+
+  const listOfComparisons = ['maior que', 'menor que', 'igual a'];
+
+  const columns = filtersList.map((filter) => filter.column);
+  const comparisons = filtersList.map((filter) => filter.comparison);
+
   return (
     <div>
-      <select
-        data-testid="column-filter"
-        id="column"
-        // onChange={(e) => {
-        //   newFilter.column = e.target.value;
-        //   return null;
-        // }}
-      >
+      <h4>Definir filtro:</h4>
+      <select data-testid="column-filter" id="column">
         <option defaultValue>Coluna</option>
-        <option value="population">population</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
+        {listOfColumns
+          .filter((col) => !columns.includes(col))
+          .map((column) => (
+            <option key={column} value={column}>
+              {column}
+            </option>
+          ))}
       </select>
-      <select
-        data-testid="comparison-filter"
-        id="comparison"
-        // onChange={(e) => {
-        //   newFilter.comparison = e.target.value;
-        //   return null;
-        // }}
-      >
+      <select data-testid="comparison-filter" id="comparison">
         <option defaultValue>Comparação</option>
-        <option value="maior que">maior que</option>
-        <option value="menor que">menor que</option>
-        <option value="igual a">igual a</option>
+        {listOfComparisons
+          .filter((comp) => !comparisons.includes(comp))
+          .map((comparison) => (
+            <option key={comparison} value={comparison}>
+              {comparison}
+            </option>
+          ))}
       </select>
-      <input
-        data-testid="value-filter"
-        type="number"
-        id="value"
-        // onChange={(e) => {
-        //   newFilter.value = e.target.value;
-        //   return null;
-        // }}
-      />
+      <input data-testid="value-filter" type="number" id="value" />
       <button
         data-testid="button-filter"
         type="button"
@@ -62,16 +64,42 @@ function renderFilterDropdown(setVariables, setFilteredPlanets) {
     </div>
   );
 }
+
+function renderFiltersSetted(filtersList, remove, setFilteredPlanets) {
+  return (
+    <div>
+      <h4>Filtros:</h4>
+      {filtersList.map((filter) => (
+        <div key={filter.column} data-testid="filter">
+          <p>{`${filter.column} ${filter.comparison} ${filter.value}`}</p>
+          <button
+            type="button"
+            onClick={() => {
+              remove(filter);
+              setFilteredPlanets();
+            }}
+          >
+            x
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 class Header extends Component {
   render() {
     const {
+      remove,
       filterByName,
       planetsData,
       setVariables,
       setFilteredPlanets,
+      filtersList,
     } = this.props;
     return (
       <div>
+        <h4>Procurar:</h4>
         <input
           data-testid="name-filter"
           type="text"
@@ -79,7 +107,8 @@ class Header extends Component {
             filterByName(e, planetsData);
           }}
         />
-        {renderFilterDropdown(setVariables, setFilteredPlanets)}
+        {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
+        {renderFiltersSetted(filtersList, remove, setFilteredPlanets)}
       </div>
     );
   }
@@ -96,16 +125,16 @@ const mapDispatchToProps = (dispatch) => ({
   filterByName: (e, data) => dispatch(filterPlanetsByName(data, e.target.value)),
   setVariables: (filter) => dispatch(setNumericFilterVariables(filter)),
   setFilteredPlanets: () => dispatch(setPlanetsFilteredByNumeric()),
-  // setPlanets: (planets) => dispatch(setPlanetsFilteredByNumeric(planets)),
+  remove: (filterToRemove) => dispatch(removeFilter(filterToRemove)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // filteredByNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  remove: PropTypes.func.isRequired,
   filterByName: PropTypes.func.isRequired,
-  // filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filtersList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setVariables: PropTypes.func.isRequired,
   setFilteredPlanets: PropTypes.func.isRequired,
 };

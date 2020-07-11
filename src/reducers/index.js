@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { NAME_TO_FILTER, SET_FILTERED_BY_NAME } from '../actions/filterByName';
-import { SET_FILTER_VARIABLES, SET_FILTERED_BY_NUMERIC } from '../actions/filterByNumeric';
+import {
+  SET_FILTER_VARIABLES,
+  SET_FILTERED_BY_NUMERIC,
+  REMOVE_FILTER,
+} from '../actions/filterByNumeric';
 import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
 
 const INITIAL_STATE = {
@@ -16,10 +20,8 @@ const INITIAL_STATE = {
 
 const applyNumericFilters = (planets, filters) => {
   let filteredPlanets = planets;
-  console.log('entrou', planets, filters);
   filters.forEach((filter) => {
     const { column, comparison, value } = filter;
-    console.log(column, comparison, value);
     filteredPlanets = filteredPlanets.filter((planet) => {
       if (comparison === 'maior que') return Number(planet[column]) > Number(value);
       if (comparison === 'menor que') return Number(planet[column]) < Number(value);
@@ -44,7 +46,6 @@ function reducer(state = INITIAL_STATE, action) {
         isFetching: false,
       };
     case NAME_TO_FILTER:
-      console.log(NAME_TO_FILTER);
       return {
         ...state,
         filterByName: {
@@ -67,24 +68,31 @@ function reducer(state = INITIAL_STATE, action) {
             value: action.value,
           },
         ],
-        // filteredByNumeric: newFilteredPlanets,
       };
     }
     case SET_FILTERED_BY_NUMERIC: {
-      const filteredPlanets = applyNumericFilters(
-        state.filteredPlanets,
-        state.filterByNumericValues,
-      );
+      const planets = state.filterByNumericValues.length === 0
+        ? state.planetsData : state.filteredPlanets;
+      const filteredPlanets = applyNumericFilters(planets, state.filterByNumericValues);
       return {
         ...state,
         filteredPlanets,
+      };
+    }
+    case REMOVE_FILTER: {
+      const newFilteredByNumericValues = state.filterByNumericValues.filter(
+        ({ column }) => column !== action.filterToRemove.column,
+      );
+
+      return {
+        ...state,
+        filterByNumericValues: newFilteredByNumericValues,
       };
     }
     default:
       return state;
   }
 }
-
 
 const rootReducer = combineReducers({
   filters: reducer,
