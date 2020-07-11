@@ -41,25 +41,25 @@ class Table extends Component {
       planetsData,
       filteredPlanets,
       isFetching,
-      nameToFilter,
     } = this.props;
     if (isFetching) return <p>Loading...</p>;
     const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
-    const planets = nameToFilter === '' ? planetsData : filteredPlanets;
+    const planets = filteredPlanets;
     return renderTable(headerTitles, planets);
   }
 }
 
 const mapStateToProps = (state) => ({
-  planetsData: state.planets.planetsData,
-  isFetching: state.planets.isFetching,
-  filteredPlanets: state.filters.filteredPlanets,
-  nameToFilter: state.filters.filterByName.name,
-  filterByNumericValues: state.filters.filterByNumericValues,
+  planetsData: state.planetsData,
+  isFetching: state.isFetching,
+  filteredPlanets: state.filteredPlanets,
+  nameToFilter: state.filterByName.name,
+  filterByNumericValues: state.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPlanets: () => dispatch(fetchPlanets()),
+  // setPlanets: (planets) => dispatch(setDefaultPlanets(planets)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
@@ -68,6 +68,5 @@ Table.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  nameToFilter: PropTypes.string.isRequired,
   filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

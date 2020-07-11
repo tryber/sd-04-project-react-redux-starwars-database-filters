@@ -1,4 +1,8 @@
-import getPlanets from '../service/planetsAPI';
+const PLANETS_API_URL = 'https://swapi-trybe.herokuapp.com/api/planets/?format=json';
+
+export function getPlanets() {
+  return fetch(PLANETS_API_URL).then((response) => response.json());
+}
 
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';

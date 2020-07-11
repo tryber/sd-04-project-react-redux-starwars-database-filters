@@ -2,28 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterPlanetsByName from '../actions/filterByName';
-import { setNumericFilterVariables } from '../actions/filterByNumeric';
+import { setNumericFilterVariables, setPlanetsFilteredByNumeric } from '../actions/filterByNumeric';
 
-function renderFilterDropdown(
-  setVariables,
-  { column = 'population', comparison = 'maior que', value = 0 },
-  planets,
-) {
-  const variables = {
-    column,
-    comparison,
-    value,
-  };
-
+function renderFilterDropdown(setVariables, setFilteredPlanets) {
   return (
     <div>
       <select
         data-testid="column-filter"
         id="column"
-        onChange={(e) => {
-          variables.column = e.target.value;
-          return null;
-        }}
+        // onChange={(e) => {
+        //   newFilter.column = e.target.value;
+        //   return null;
+        // }}
       >
         <option value="population" defaultValue>
           population
@@ -36,10 +26,10 @@ function renderFilterDropdown(
       <select
         data-testid="comparison-filter"
         id="comparison"
-        onChange={(e) => {
-          variables.comparison = e.target.value;
-          return null;
-        }}
+        // onChange={(e) => {
+        //   newFilter.comparison = e.target.value;
+        //   return null;
+        // }}
       >
         <option value="maior que" defaultValue>
           Maior que
@@ -51,16 +41,22 @@ function renderFilterDropdown(
         data-testid="value-filter"
         type="number"
         id="value"
-        onChange={(e) => {
-          variables.value = e.target.value;
-          return null;
-        }}
+        // onChange={(e) => {
+        //   newFilter.value = e.target.value;
+        //   return null;
+        // }}
       />
       <button
         data-testid="button-filter"
         type="button"
         onClick={() => {
-          setVariables(variables, planets);
+          const newFilter = {
+            column: document.querySelector('#column').value,
+            comparison: document.querySelector('#comparison').value,
+            value: document.querySelector('#value').value,
+          };
+          setVariables(newFilter);
+          setFilteredPlanets();
         }}
       >
         Filtrar
@@ -71,13 +67,10 @@ function renderFilterDropdown(
 class Header extends Component {
   render() {
     const {
-      // filterByName,
+      filterByName,
       planetsData,
       setVariables,
-      filterByNumericValues,
-      // setPlanets,
-      filteredPlanets,
-      // filteredByNumeric,
+      setFilteredPlanets,
     } = this.props;
     return (
       <div>
@@ -85,25 +78,26 @@ class Header extends Component {
           data-testid="name-filter"
           type="text"
           onChange={(e) => {
-            filterPlanetsByName(e, planetsData);
+            filterByName(e, planetsData);
           }}
         />
-        {renderFilterDropdown(setVariables, filterByNumericValues, filteredPlanets)}
+        {renderFilterDropdown(setVariables, setFilteredPlanets)}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  planetsData: state.planets.planetsData,
-  filteredPlanets: state.filters.filteredPlanets,
-  filteredByNumeric: state.filters.filteredByNumeric,
-  filterByNumericValues: state.filters.filterByNumericValues,
+  planetsData: state.planetsData,
+  filteredPlanets: state.filteredPlanets,
+  filteredByNumeric: state.filteredByNumeric,
+  filtersList: state.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   filterByName: (e, data) => dispatch(filterPlanetsByName(data, e.target.value)),
-  setVariables: (variables) => dispatch(setNumericFilterVariables(variables)),
+  setVariables: (filter) => dispatch(setNumericFilterVariables(filter)),
+  setFilteredPlanets: () => dispatch(setPlanetsFilteredByNumeric()),
   // setPlanets: (planets) => dispatch(setPlanetsFilteredByNumeric(planets)),
 });
 
@@ -111,10 +105,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   // filteredByNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // filterByName: PropTypes.func.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByName: PropTypes.func.isRequired,
+  // filters: PropTypes.arrayOf(PropTypes.object).isRequired,
   setVariables: PropTypes.func.isRequired,
-  // setNumericFilterVariables: PropTypes.func.isRequired,
+  setFilteredPlanets: PropTypes.func.isRequired,
 };
