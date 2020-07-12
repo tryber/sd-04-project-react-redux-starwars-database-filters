@@ -10,15 +10,18 @@ class Filters extends Component {
     };
   }
 
+  // Setando o número digitado como valor do state
   selectNum(e) {
     this.setState({ num: e.target.value });
   }
 
+  // Setando a chave selecionada como valor do state
   selectChange(e, key) {
     const { value } = e.target;
     this.setState({ [key]: value });
   }
 
+  // setando função para criar colunas a serem filtradas
   setColumns() {
     const columns = [
       "select",
@@ -43,6 +46,7 @@ class Filters extends Component {
     );
   }
 
+  // setando função para criar segunda coluna de filtro
   setComp() {
     const comparation = ["Select", "maior que", "menor que", "igual a"];
     return (
