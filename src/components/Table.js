@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { requestFetch } from '../actions';
 import HeadTable from './HeadTable';
 import BodyTable from './BodyTable';
-import { connect } from 'react-redux';
+
 
 class Table extends React.Component {
 
@@ -15,7 +16,7 @@ class Table extends React.Component {
   render() {
     const { isFetching, data } = this.props;
 
-    if (isFetching) return <h1>loading...</h1>
+    if (isFetching) return <h1>loading...</h1>;
 
     if (data) {
       return (
@@ -24,7 +25,7 @@ class Table extends React.Component {
             <HeadTable />
           </thead>
           <tbody>
-            { data.map((planet) => <BodyTable planet={planet} key={planet.name}/>) }
+            {data.map((planet) => <BodyTable planet={planet} key={planet.name}/>)}
           </tbody>
         </table>
       );
@@ -49,6 +50,6 @@ Table.propTypes = {
 
 Table.defaultProps = {
   data: null,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
