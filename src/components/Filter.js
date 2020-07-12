@@ -42,36 +42,23 @@ class Filter extends React.Component {
     return (
       <form>
         <select
-          name="column"
-          data-testid="column-filter"
-          value={this.state.value}
+          name="column" data-testid="column-filter" value={this.state.value} 
           onChange={this.handleChange}
         >
-          {this.state.colonumItems.map((item) => (
-            <option value={item}>{item}</option>
-          ))}
+          {this.state.colonumItems.map((item) => (<option value={item}>{item}</option>))}
         </select>
         <select
-          name="comparison"
-          data-testid="comparison-filter"
-          value={this.state.comparison}
+          name="comparison" data-testid="comparison-filter" value={this.state.comparison}
           onChange={this.handleChange}
         >
-          {this.state.comparisonItems.map((item) => (
-            <option value={item}>{item}</option>
-          ))}
+          {this.state.comparisonItems.map((item) => (<option value={item}>{item}</option>))}
         </select>
         <input
-          name="value"
-          type="number"
-          data-testid="value-filter"
-          value={this.state.value}
+          name="value" type="number" data-testid="value-filter" value={this.state.value}
           onChange={this.handleChange}
         />
         <button
-          type="button"
-          data-testid="button-filter"
-          onClick={(e) =>
+          type="button" data-testid="button-filter" onClick={() =>
             this.props.numericalFilter(this.state.filterByNumericValues)
           }
         >

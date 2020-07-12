@@ -24,31 +24,23 @@ class MainContainer extends React.Component {
     const filterArray = filters.filterByNumericValues;
     const compare = (a, b, op) => {
       let result = false;
-      console.log('a,b,op', a, b, op);
       if (op === 'maior que') result = a > b;
       if (op === 'menor que') result = a < b;
-      if (op === 'igual a') {
-        console.log('test igual', a === b);
-        result = a === b;
-      }
+      if (op === 'igual a') result = a === b;
       return result;
     };
     let filteredPlanet = data.filter((planet) =>
-      planet.name.includes(searchedPlanet),
-    );
-    console.log('filterArray', filterArray.length);
-    filterArray.map((filter) => {
-      if (filterArray.length > 0 && filter.column !== 'Coluna') {
+      planet.name.includes(searchedPlanet));
+    if (filterArray.length > 0 && filter.column !== 'Coluna') {
+      filterArray.map((filter) => {
         filteredPlanet = filteredPlanet.filter((planet) =>
           compare(
             Number(planet[filter.column]),
             Number(filter.value),
             filter.comparison,
-          ),
-        );
-      }
-      return filteredPlanet;
-    });
+          ));
+      });
+    }
 
     return filteredPlanet;
   }
