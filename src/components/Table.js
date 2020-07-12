@@ -18,7 +18,7 @@ class Table extends React.Component {
 
     if (isFetching) { return <h1>loading...</h1>; }
 
-    if (data) {
+    else {
       return (
         <table>
           <thead>
