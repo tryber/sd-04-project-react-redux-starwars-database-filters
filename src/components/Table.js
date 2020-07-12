@@ -18,16 +18,16 @@ class Table extends React.Component {
 
     if (isFetching) return <h1>loading...</h1>;
 
-      return (
-        <table>
-          <thead>
-            <HeadTable />
-          </thead>
-          <tbody>
-            {data.map((planet) => <BodyTable planet={planet} key={planet.name} />)}
-          </tbody>
-        </table>
-      );
+    return (
+      <table>
+        <thead>
+          <HeadTable />
+        </thead>
+        <tbody>
+          {data.map((planet) => <BodyTable planet={planet} key={planet.name} />)}
+        </tbody>
+      </table>
+    );
   }
 }
 
