@@ -6,8 +6,8 @@ const initialState = {
   error: {},
 };
 
-export function reducer(state = initialState, action) {
-  switch(action.type) {
+const dataReducer = (state = initialState, action) => {
+  switch (action.type) {
     case DATA_REQUEST:
       return { ...state, loading: true };
     case DATA_RECEIVED:
@@ -18,3 +18,5 @@ export function reducer(state = initialState, action) {
       return state;
   }
 };
+
+export default dataReducer;

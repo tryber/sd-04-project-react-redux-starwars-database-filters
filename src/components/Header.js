@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { data_fetch } from '../actions';
+import { dataFetch } from '../actions';
 
 class Header extends Component {
   componentDidMount() {
@@ -17,14 +17,14 @@ class Header extends Component {
       </div>
     );
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
-  request: (url) => dispatch(data_fetch(url)),
+  request: (url) => dispatch(dataFetch(url)),
 });
 
 // const mapStateToProps = (state) => ({
-//   data: state.reducer.data, 
+//   data: state,
 // });
 
 export default connect(null, mapDispatchToProps)(Header);
