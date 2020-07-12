@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 import { filterByNumericValues } from '../actions';
 
+// Gambiarra pro CC
+const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+const options2 = ['maior que', 'menor que', 'igual a'];
+
 class ComparisonFilter extends Component {
   constructor(props) {
     super(props);
@@ -30,25 +34,26 @@ class ComparisonFilter extends Component {
     const { column, comparison, number } = this.state;
     return (
       <div>
-        <select value={column} name="column" data-testid="column-filter"
+        <select
+          value={column}
+          data-testid="column-filter"
           onChange={(event) => this.handleChange(event, 'column')}
         >
           <option value="">selecionar</option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {options.map((option) => <option key={option} value={option}>{option}</option>)}
         </select>
-        <select value={comparison} name="comparison" data-testid="comparison-filter"
+        <select
+          value={comparison}
+          data-testid="comparison-filter"
           onChange={(event) => this.handleChange(event, 'comparison')}
         >
           <option value="">selecionar</option>
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
+          {options2.map((option) => <option key={option} value={option}>{option}</option>)}
         </select>
-        <input value={number} name="number" type="number" data-testid="value-filter"
+        <input
+          value={number}
+          type="number"
+          data-testid="value-filter"
           onChange={(event) => this.handleChange(event, 'number')}
         />
         <button data-testid="button-filter" onClick={() => this.filter()}>Filtrar</button>
