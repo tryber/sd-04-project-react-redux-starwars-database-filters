@@ -1,5 +1,5 @@
-// 3) Criar as actions. Inicialmente 3:
-// - Para a requisição. Caso a requisição retorne ou caso ela falhe.
+//  Criar as actions. Inicialmente 3:
+//  Para a requisição. Caso a requisição retorne ou caso ela falhe.
 
 import swApi from '../services/api';
 
@@ -7,7 +7,6 @@ export const SW_REQUEST = 'SW_REQUEST';
 export const SW_SUCCESS = 'SW_SUCCESS';
 export const SW_FAILURE = 'SW_FAILURE';
 
-//requisito 2.
 export const SW_FILTER = 'SW_FILTER';
 
 const swRequest = () => ({
@@ -36,7 +35,7 @@ export function swFetch() {
 
     return swApi().then(
       (json) => dispatch(swSuccess(json.results)),
-      (error) => dispatch(swFailure(error))
+      (error) => dispatch(swFailure(error)),
     );
   };
 }

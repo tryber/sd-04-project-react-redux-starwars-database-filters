@@ -23,7 +23,7 @@ class Filters extends Component {
     return (
       <select
         onChange={(e) => this.selectChange(e, 'column')}
-        data-testid='column-filter'
+        data-testid="column-filter"
         value={this.state.column}
       >
         {columns.map((option) => (
@@ -70,13 +70,12 @@ class Filters extends Component {
           {this.setColumns()}
           {this.setComp()}
           <input
-            type='number'
-            data-testid='value-filter'
+            type="number"
+            data-testid="value-filter"
             value={this.state.num}
             onChange={(e) => this.selectNum(e)}
-            placeholder='set a number'
           />
-          <button type='submit' data-testid='button-filter'>
+          <button type="submit" data-testid="button-filter">
             Compare
           </button>
         </form>

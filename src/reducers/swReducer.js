@@ -24,17 +24,11 @@ const swReducer = (state = INITIAL_STATE, action) => {
         data: [...action.data],
         dataFiltered: [...action.data],
       };
-    case SW_FAILURE: // caso falhe, lança um novo erro.
-      return {
-        ...state,
-        fetching: false,
-        error: action.error,
-      };
     case SW_FILTER:
       return {
         ...state,
         dataFiltered: state.data.filter(({ name }) =>
-          name.includes(action.name),
+          name.includes(action.name)
         ),
         filters: {
           ...state.filters,

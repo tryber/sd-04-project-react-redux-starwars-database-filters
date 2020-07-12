@@ -21,10 +21,10 @@ class SearchInput extends Component {
     return (
       <div>
         <input
-          type='text'
+          type="text"
           value={this.state.value}
           onChange={(e) => this.getValue(e)}
-          data-testid='name-filter'
+          data-testid="name-filter"
         />
       </div>
     );

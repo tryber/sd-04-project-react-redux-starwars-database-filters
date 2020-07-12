@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { swFetch } from '../action'; // importando a função do fetch;
+import TableHead from './TableHead';
 
 class Table extends React.Component {
   // ao carregar o componente, realizar a chamada do dispatch,
@@ -16,23 +17,7 @@ class Table extends React.Component {
     return (
       <div>
         <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Rotation Period</th>
-              <th>Orbital Period</th>
-              <th>Diameter</th>
-              <th>Climate</th>
-              <th>Gravity</th>
-              <th>Terrain</th>
-              <th>Surface Water</th>
-              <th>Population</th>
-              <th>Film</th>
-              <th>Created</th>
-              <th>Edited</th>
-              <th>Url</th>
-            </tr>
-          </thead>
+          <TableHead />
           <tbody>
             {planets.map((planet) => (
               <tr key={planet.name}>
