@@ -40,7 +40,11 @@ class Filters extends React.Component {
             <option value="menor que">menor que</option>
             <option value="igual a">igual a</option>
           </select>
-          <input type="number" data-testid="value-filter" onChange={(event) => this.handleChange(event)} />
+          <input
+            type="number"
+            data-testid="value-filter"
+            onChange={(event) => this.handleChange(event)}
+          />
           <button type="submit" data-testid="button-filter">Filtrar</button>
         </form>
         <FiltersInUse />
