@@ -53,7 +53,7 @@ RenderTable.propTypes = {
       url: PropTypes.string,
       created: PropTypes.string,
       edited: PropTypes.string,
-    }).isRequired
+    }).isRequired,
   ).isRequired,
 };
 

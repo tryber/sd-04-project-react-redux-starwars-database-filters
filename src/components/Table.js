@@ -37,23 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   getPlanetsData: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      diameter: PropTypes.string,
-      rotation_period: PropTypes.string,
-      orbital_period: PropTypes.string,
-      gravity: PropTypes.string,
-      population: PropTypes.string,
-      climate: PropTypes.string,
-      terrain: PropTypes.string,
-      surface_water: PropTypes.string,
-      films: PropTypes.array,
-      url: PropTypes.string,
-      created: PropTypes.string,
-      edited: PropTypes.string,
-    }).isRequired
-  ).isRequired,
+  data: RenderTable.propTypes.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
