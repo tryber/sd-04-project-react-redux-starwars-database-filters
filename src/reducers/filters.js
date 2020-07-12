@@ -27,10 +27,7 @@ const INITIAL_STATE = {
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
-      return {
-        ...state,
-        filterByName: { name: action.name },
-      };
+      return { ...state, filterByName: { name: action.name } };
     case FILTER_BUTTON:
       return {
         ...state,
@@ -38,11 +35,7 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: '' },
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
+          { column: action.column, comparison: action.comparison, value: action.value },
         ],
         categories: reduceFilter(state.categories, state.filterByNumericValues),
       };
@@ -53,10 +46,7 @@ const filters = (state = INITIAL_STATE, action) => {
         actualFilter: { ...state.actualFilter, [action.name]: action.value },
       };
     case RECAP_CATEGORIES:
-      return {
-        ...state,
-        categories: reduceFilter(state.categories, state.filterByNumericValues),
-      };
+      return { ...state, categories: reduceFilter(state.categories, state.filterByNumericValues) };
     default:
       return state;
   }

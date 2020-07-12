@@ -19,7 +19,7 @@ const FilterNav = ({
   comparisons,
 }) => (
   <nav>
-    <label>
+    <label htmlFor="nameLabel">
       Name filter:
       <Input
         onChange={(e) => filterValues(e.target.value)}
@@ -29,7 +29,7 @@ const FilterNav = ({
       />
     </label>
     <div>
-      <label>
+      <label htmlFor="categoryLabel">
         Pick a Category:
         <Select
           name="column"
@@ -39,7 +39,7 @@ const FilterNav = ({
           test="column-filter"
         />
       </label>
-      <label>
+      <label htmlFor="comparisonLabel">
         Pick a comparison:
         <Select
           name="comparison"
@@ -49,7 +49,7 @@ const FilterNav = ({
           test="comparison-filter"
         />
       </label>
-      <label>
+      <label htmlFor="valueLabel">
         Value:
         <Input
           onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
