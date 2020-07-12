@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateNumericFilter } from '../../actions';
@@ -55,6 +56,10 @@ class NumericFilter extends Component {
       </form>
     );
   }
+}
+
+NumericFilter.propTypes = {
+  onUpdateNumericFilter: PropTypes.func.isRequired,
 }
 
 

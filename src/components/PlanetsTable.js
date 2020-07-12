@@ -54,6 +54,9 @@ PlanetsTable.propTypes = {
   filterByName: PropTypes.shape({
     name: PropTypes.string,
   }).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({
