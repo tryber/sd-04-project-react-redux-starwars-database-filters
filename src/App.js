@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import SearchInput from "./components/SearchInput";
-import Table from "./components/Table";
-import Filters from './components/Filters'
+import SearchInput from './components/SearchInput';
+import Table from './components/Table';
+import Filters from './components/Filters';
 
 function App() {
   return (

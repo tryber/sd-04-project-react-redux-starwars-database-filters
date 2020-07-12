@@ -1,6 +1,6 @@
-// 1) realizar uma requisição para o endpoint disponibilizado. 
+// 1) realizar uma requisição para o endpoint disponibilizado.
 
-const URL_BASE = "https://swapi-trybe.herokuapp.com/api";
+const URL_BASE = 'https://swapi-trybe.herokuapp.com/api';
 
 const swApi = () =>
   fetch(`${URL_BASE}/planets/`).then((response) =>

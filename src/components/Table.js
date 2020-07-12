@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import { swFetch } from "../action"; // importando a função do fetch.
+import React from 'react';
+import { connect } from 'react-redux';
+import { swFetch } from '../action'; // importando a função do fetch;
 
 class Table extends React.Component {
   // ao carregar o componente, realizar a chamada do dispatch,

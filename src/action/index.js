@@ -1,14 +1,14 @@
 // 3) Criar as actions. Inicialmente 3:
 // - Para a requisição. Caso a requisição retorne ou caso ela falhe.
 
-import swApi from "../services/api";
+import swApi from '../services/api';
 
-export const SW_REQUEST = "SW_REQUEST";
-export const SW_SUCCESS = "SW_SUCCESS";
-export const SW_FAILURE = "SW_FAILURE";
+export const SW_REQUEST = 'SW_REQUEST';
+export const SW_SUCCESS = 'SW_SUCCESS';
+export const SW_FAILURE = 'SW_FAILURE';
 
 //requisito 2.
-export const SW_FILTER = "SW_FILTER";
+export const SW_FILTER = 'SW_FILTER';
 
 const swRequest = () => ({
   type: SW_REQUEST,

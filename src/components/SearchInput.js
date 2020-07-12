@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { swFilter } from "../action";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { swFilter } from '../action';
 
 class SearchInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      value: '',
     };
   }
 
@@ -21,10 +21,10 @@ class SearchInput extends Component {
     return (
       <div>
         <input
-          type="text"
+          type='text'
           value={this.state.value}
           onChange={(e) => this.getValue(e)}
-          data-testid="name-filter"
+          data-testid='name-filter'
         />
       </div>
     );

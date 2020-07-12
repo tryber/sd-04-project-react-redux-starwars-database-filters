@@ -1,13 +1,13 @@
 // 4) Criaçao dos reducers com as actions criadas posteriormente.
 
-import { SW_REQUEST, SW_SUCCESS, SW_FAILURE, SW_FILTER } from "../action";
+import { SW_REQUEST, SW_SUCCESS, SW_FAILURE, SW_FILTER } from '../action';
 
 const INITIAL_STATE = {
   fetching: false,
   data: [],
-  error: "",
+  error: '',
   dataFiltered: [],
-  filters: { filterByName: { name: "" }, filterByNumericValues: [] },
+  filters: { filterByName: { name: '' }, filterByNumericValues: [] },
 };
 
 const swReducer = (state = INITIAL_STATE, action) => {
