@@ -2,41 +2,42 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchPlanets } from '../actions';
-
-import RenderTable from './RenderTable';
-
-class Table extends Component {
-  componentDidMount() {
-    const { getPlanetsData } = this.props;
-    getPlanetsData();
-  }
-
+class RenderTable extends Component {
   render() {
-    const { isFetching, data } = this.props;
+    const { data } = this.props;
 
     return (
-      <div>
-        <div>StarWars Datatable with Filters</div>
-        {isFetching && 'Loading...'}
-        {data.length > 0 && <RenderTable data={data} />}
-      </div>
+      <table>
+        <thead>
+          <tr>
+            {Object.keys(data[0])
+              .filter((element) => element !== 'residents')
+              .map((key) => (
+                <th key={key}>{key}</th>
+              ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(({ residents, ...planet }) => (
+            <tr key={planet.name}>
+              {Object.values(planet).map((value) => (
+                <td key={value}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  isFetching: state.starWarsReducer.isFetching,
   data: state.starWarsReducer.data,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getPlanetsData: () => dispatch(fetchPlanets()),
-});
+connect(mapStateToProps, null)(RenderTable);
 
-Table.propTypes = {
-  getPlanetsData: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired,
+RenderTable.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -56,4 +57,4 @@ Table.propTypes = {
   ).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default RenderTable;
