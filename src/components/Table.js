@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchApi } from '../actions/actionAPI';
 
-
 class Table extends React.Component {
   componentDidMount() {
     const { fetchingApi } = this.props;
@@ -12,9 +11,12 @@ class Table extends React.Component {
   }
 
   render() {
-    const { isFetching, data } = this.props;
+    const {
+      isFetching, data, filteredData, term,
+    } = this.props;
     if (isFetching) return <div>Loading</div>;
-    const titles = data[0] ? Object.keys(data[0]) : [];
+    const planets = term !== '' ? filteredData : data;
+    const titles = planets[0] ? Object.keys(planets[0]) : [];
     return (
       <table>
         <thead>
@@ -27,7 +29,7 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {data.map((planet) => (
+          {planets.map((planet) => (
             <tr key={planet.name}>
               {Object.values(planet)
                 .filter((_, index) => index !== 9)
@@ -44,17 +46,23 @@ class Table extends React.Component {
 
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  filteredData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   isFetching: PropTypes.bool.isRequired,
   fetchingApi: PropTypes.func.isRequired,
+  term: PropTypes.string,
 };
 
 Table.defaultProps = {
   data: [],
+  filteredData: [],
+  term: '',
 };
 
 const mapStateToProps = (state) => ({
   isFetching: state.planetReducer.isFetching,
   data: state.planetReducer.data,
+  term: state.filters.filterByName.name,
+  filteredData: state.filters.filteredData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
