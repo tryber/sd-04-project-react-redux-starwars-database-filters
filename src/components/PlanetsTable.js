@@ -11,18 +11,21 @@ class PlanetsTable extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, filterByName: { name } } = this.props;
     if (data.length < 1) return <div>loading...</div>;
     const keys = Object.keys(data[0]).filter((k) => k !== 'residents');
+    const filteredData = name
+      ? data.filter(({ name: p }) => p.toLowerCase().includes(name.toLowerCase()))
+      : data;
     return (
-      <table className="PlanetsT">
+      <table className="planets-table">
         <thead>
           <tr>
-            {keys.map((k) => <th key={k}>{k}</th>)}
+            {keys.map((k) => <th key={k}>{k.replace('_', ' ')}</th>)}
           </tr>
         </thead>
         <tbody>
-          {data.map((planet) => <PlanetItem data={planet} key={planet.name} />)}
+          {filteredData.map((planet) => <PlanetItem data={planet} key={planet.name} />)}
         </tbody>
       </table>
     );

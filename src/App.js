@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
-import { PlanetsTable } from './components';
+import { PlanetsTable, Header } from './components';
 
 function App() {
   return (
-    <PlanetsTable />
+    <div className="app">
+      <Header />
+      <PlanetsTable />
+    </div>
   );
 }
 
