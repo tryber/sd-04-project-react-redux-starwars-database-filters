@@ -11,7 +11,7 @@ const requestPlanets = () => ({
 
 // fn action indicando a requisição finalizada com sucesso
 // fn recebe como param. a resposta da api
-const sucessPlanets = (results) => ({
+const sucessPlanets = ({results}) => ({
   type: REQUEST_PLANET_SUCCESS,
   data: results,
 });
@@ -26,6 +26,7 @@ const failurePlanets = (error) => ({
 export function requestFetch() {
   return (dispatch) => { // fn retornada é a thunk, ela q é interceptada
     dispatch(requestPlanets());
+    
     return getPlanets().then( // então uma vez finalizado tenho: sucesso ou falha!
       (json) => dispatch(sucessPlanets(json)),
       (error) => dispatch(failurePlanets(error)),

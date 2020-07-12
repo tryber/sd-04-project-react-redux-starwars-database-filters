@@ -1,6 +1,5 @@
 import { REQUEST_PLANET, REQUEST_PLANET_SUCCESS, REQUEST_PLANET_FAILURE } from '../actions/index';
 
-
 const inicialState = {
   isFetching: false,
   data: [],
@@ -13,7 +12,7 @@ const planetsReducer = (state = inicialState, action) => {
     case REQUEST_PLANET_SUCCESS:
       return {
         ...state,
-        data: [action.data],
+        data: action.data,
         isFetching: false,
       };
     case REQUEST_PLANET_FAILURE:

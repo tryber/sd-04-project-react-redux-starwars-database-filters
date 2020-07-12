@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { requestFetch } from '../actions';
+import { requestFetch } from '../actions/index';
 import HeadTable from './HeadTable';
 import BodyTable from './BodyTable';
 
@@ -25,7 +25,7 @@ class Table extends React.Component {
             <HeadTable />
           </thead>
           <tbody>
-            {data.map((planet) => <BodyTable planet={planet} key={planet.name}/>)}
+            {data.map((planet) => <BodyTable planet={planet} key={planet.name} />)}
           </tbody>
         </table>
       );
