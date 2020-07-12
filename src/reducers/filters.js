@@ -1,6 +1,6 @@
 import { FILTER_BY_NAME } from '../actions';
 
-const INITIAL_STATE = { filterByName: { name: '' } };
+const INITIAL_STATE = { filterByName: { name: '' }, filterByNumericValues: [] };
 
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
