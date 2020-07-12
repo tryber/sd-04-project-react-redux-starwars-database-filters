@@ -12,24 +12,19 @@ const INITIAL_STATE = {
 
 const swReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // durante o request, altere o estado de fetching para true
-    case SW_REQUEST:
+    case SW_REQUEST: // durante o request, altere o estado de fetching
       return {
         ...state,
         fetching: true,
       };
-    // caso o request tenha sucesso, fetching se torna falso
-    // e o data é o valor recebido na action
-    case SW_SUCCESS:
+    case SW_SUCCESS: // caso tenha sucesso, data é o valor recebido pela action
       return {
         ...state,
         fetching: false,
         data: [...action.data],
         dataFiltered: [...action.data],
       };
-    // caso o request falhe, fetching se torna falso
-    // e lança um novo erro.
-    case SW_FAILURE:
+    case SW_FAILURE: // caso falhe, lança um novo erro.
       return {
         ...state,
         fetching: false,
@@ -39,7 +34,7 @@ const swReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dataFiltered: state.data.filter(({ name }) =>
-          name.includes(action.name)
+          name.includes(action.name),
         ),
         filters: {
           ...state.filters,

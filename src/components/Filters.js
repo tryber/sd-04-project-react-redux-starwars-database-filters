@@ -10,12 +10,6 @@ class Filters extends Component {
     };
   }
 
-  // Setando a chave selecionada como valor do state
-  selectChange(e, key) {
-    const { value } = e.target;
-    this.setState({ [key]: value });
-  }
-
   // setando função para criar colunas a serem filtradas
   setColumns() {
     const columns = [
@@ -47,7 +41,7 @@ class Filters extends Component {
     return (
       <select
         onChange={(e) => this.selectChange(e, 'comparation')}
-        data-testid='comparison-filter'
+        data-testid="comparison-filter"
         value={this.state.comp}
       >
         {comparation.map((option) => (
@@ -57,6 +51,12 @@ class Filters extends Component {
         ))}
       </select>
     );
+  }
+
+  // Setando a chave selecionada como valor do state
+  selectChange(e, key) {
+    const { value } = e.target;
+    this.setState({ [key]: value });
   }
 
   // Setando o número digitado como valor do state
