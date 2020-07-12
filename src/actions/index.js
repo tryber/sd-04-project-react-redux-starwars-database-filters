@@ -8,6 +8,7 @@ export const FILTER_BY_NUMBERS = 'FILTER_BY_NUMBERS';
 export const FILTER_BUTTON = 'FILTER_BUTTON';
 export const SAVE_FILTER = 'SAVE_FILTER';
 export const RECAP_CATEGORIES = 'RECAP_CATEGORIES';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 const requestAPI = () => ({
   type: REQUEST_API,
@@ -27,7 +28,7 @@ export const getAPI = () => (dispatch) => {
   dispatch(requestAPI());
   return fecthFunction().then(
     (planets) => dispatch(requestAPISuccess(planets.results)),
-    (error) => dispatch(requestAPIFailure(error)),
+    (error) => dispatch(requestAPIFailure(error))
   );
 };
 
@@ -51,4 +52,9 @@ export const saveFilter = (name, value) => ({
 
 export const recapCategories = () => ({
   type: RECAP_CATEGORIES,
+});
+
+export const removeFilter = (col) => ({
+  type: REMOVE_FILTER,
+  col,
 });

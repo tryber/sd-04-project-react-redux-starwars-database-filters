@@ -1,8 +1,14 @@
-const reduceFilter = (categories, currentComparisons) => {
-  const currentColunms = [];
-  currentComparisons.forEach((obj) => currentColunms.push(obj.column));
+const reduceFilter = (categories, currentComparisons, actualFilter) => {
+  const currentColumns = [];
+  if (actualFilter) {
+    currentColumns.push(actualFilter);
+    console.log('cai no if', currentColumns);
+  } else {
+    currentComparisons.forEach((obj) => currentColumns.push(obj.column));
+    console.log('cai no else', currentColumns);
+  }
   return categories.reduce((unique, item) => {
-    if (currentColunms.includes(item)) return unique;
+    if (currentColumns.includes(item)) return unique;
     return [...unique, item];
   }, []);
 };

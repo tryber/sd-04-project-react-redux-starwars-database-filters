@@ -3,6 +3,7 @@ import {
   FILTER_BUTTON,
   SAVE_FILTER,
   RECAP_CATEGORIES,
+  REMOVE_FILTER,
 } from '../actions';
 import reduceFilter from '../services/reduceFilter';
 
@@ -37,13 +38,19 @@ const filters = (state = INITIAL_STATE, action) => {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
-        categories: reduceFilter(state.categories, state.filterByNumericValues),
+        categories: reduceFilter(state.categories, state.filterByNumericValues, action.column),
       };
     case SAVE_FILTER:
       return {
         ...state,
         filterByName: { name: '' },
         actualFilter: { ...state.actualFilter, [action.name]: action.value },
+      };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter((o) => o.column !== action.col),
+        categories: state.categories.concat(action.col),
       };
     case RECAP_CATEGORIES:
       return { ...state, categories: reduceFilter(state.categories, state.filterByNumericValues) };

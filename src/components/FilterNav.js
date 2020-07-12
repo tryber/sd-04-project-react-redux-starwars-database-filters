@@ -6,6 +6,7 @@ import { getAPI, filterByName, filterButton, saveFilter } from '../actions';
 import Input from './utilityComponents/Input';
 import Button from './utilityComponents/Button';
 import Select from './utilityComponents/Select';
+import ActiveFilters from './ActiveFilters';
 
 const FilterNav = ({
   filterValues,
@@ -66,6 +67,7 @@ const FilterNav = ({
         />
       </label>
     </div>
+    <ActiveFilters />
     {/* <Button onClick={() => getAPIProps()} desc="FIND PLANETS!" /> */}
   </nav>
 );
