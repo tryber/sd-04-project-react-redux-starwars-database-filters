@@ -48,7 +48,10 @@ describe('1 - Fazer uma requisição para o endpoint /planets da API de Star War
   test('it uses SWAPI data', async () => {
     const { findByText, findAllByText } = renderApp();
     const planets = testData.results;
+    console.log("planets", planets)
+
     for (let planetIndex = 0; planetIndex < planets.length; planetIndex += 1) {
+ 
       const name = await findByText(planets[planetIndex].name);
       const rotationPeriod = await findAllByText(planets[planetIndex].rotation_period);
       const orbitalPeriod = await findAllByText(planets[planetIndex].orbital_period);
@@ -135,7 +138,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
-  test.skip('should have the column selection filter', async () => {
+  test('should have the column selection filter', async () => {
     const { findByTestId } = renderApp();
 
     const columnFilter = await findByTestId('column-filter');
@@ -163,7 +166,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
   });
 
-  test.skip('should have the comparison selection filter', async () => {
+  test('should have the comparison selection filter', async () => {
     const { findByTestId } = renderApp();
 
     const comparisonFilter = await findByTestId('comparison-filter');
@@ -189,7 +192,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
   });
 
-  test.skip('should have the value input filter', async () => {
+  test('should have the value input filter', async () => {
     const { findByTestId } = renderApp();
 
     const valueFilter = await findByTestId('value-filter');
@@ -197,7 +200,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
   });
 
-  test.skip('should have the filter button', async () => {
+  test('should have the filter button', async () => {
     const { findByTestId } = renderApp();
 
     const buttonFilter = await findByTestId('button-filter');
@@ -205,7 +208,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
   });
 
-  test.skip('should filter with less than', async () => {
+  test('should filter with less than', async () => {
     const { findByTestId, findAllByRole, store } = renderApp();
 
     const columnFilter = await findByTestId('column-filter');
@@ -227,7 +230,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
-  test.skip('should filter with greather than', async () => {
+  test('should filter with greather than', async () => {
     const initialState = getStore().getState();
     const initial = {
       ...initialState,
@@ -263,7 +266,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
-  test.skip('should filter with equal to', async () => {
+  test('should filter with equal to', async () => {
     const initialState = getStore().getState();
 
     const initial = {

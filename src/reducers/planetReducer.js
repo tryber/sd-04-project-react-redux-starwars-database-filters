@@ -1,4 +1,8 @@
-import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_ERROR } from '../actions/planetActions';
+import {
+  SEARCH_BEGIN,
+  SEARCH_SUCCESS,
+  SEARCH_ERROR,
+} from '../actions/planetActions';
 
 const initialState = {
   isLoading: true,
