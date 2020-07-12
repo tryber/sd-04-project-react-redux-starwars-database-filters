@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 FiltersInUse.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltersInUse);

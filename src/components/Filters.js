@@ -24,24 +24,15 @@ class Filters extends React.Component {
     }
     return (
       <div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            changeH(this.state);
-          }}
-        >
-          <select
-            data-testid="column-filter"
-            name="column"
+        <form onSubmit={(e) => { e.preventDefault(); changeH(this.state); }}>
+          <select data-testid="column-filter"
             onChange={(event) => this.setState({ column: event.target.value })}
           >
             {optionsN.map((option) => (
               <option value={option}>{option}</option>
             ))}
           </select>
-          <select
-            data-testid="comparison-filter"
-            name="comparison"
+          <select data-testid="comparison-filter"
             onChange={(event) => this.setState({ comparison: event.target.value })}
           >
             <option defaultValue>Comparison</option>
@@ -49,10 +40,7 @@ class Filters extends React.Component {
             <option value="menor que">menor que</option>
             <option value="igual a">igual a</option>
           </select>
-          <input
-            type="number"
-            name="inputNumber"
-            data-testid="value-filter"
+          <input type="number" data-testid="value-filter"
             onChange={(event) => this.setState({ value: event.target.value })}
           />
           <button type="submit" data-testid="button-filter">
@@ -77,6 +65,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Filters.propTypes = {
   changeH: PropType.func.isRequired,
+  filterByNumericValues: PropType.arrayOf(PropType.object).isRequired,
+  options: PropType.arrayOf(PropType.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
