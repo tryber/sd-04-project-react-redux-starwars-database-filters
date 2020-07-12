@@ -7,10 +7,21 @@ import BodyTable from './BodyTable';
 
 
 class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toFilterPlanets = this.toFilterPlanets.bind(this);
+  }
 
   componentDidMount() {
     const { getPlanets } = this.props;
     getPlanets();
+  }
+
+  toFilterPlanets() {
+    const { name, data } = this.props;
+
+    const filterName = data.filter((planet) => (planet.name.toLowerCase(). includes(name)))
+    return filterName;
   }
 
   render() {
@@ -24,7 +35,7 @@ class Table extends React.Component {
           <HeadTable />
         </thead>
         <tbody>
-          {data.map((planet) => <BodyTable planet={planet} key={planet.name} />)}
+          {this.toFilterPlanets().map((planet) => <BodyTable planet={planet} key={planet.name} />)}
         </tbody>
       </table>
     );
@@ -34,6 +45,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   isFetching: state.planetsReducer.isFetching,
   data: state.planetsReducer.data,
+  name: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -44,6 +56,7 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.object),
   getPlanets: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 Table.defaultProps = {

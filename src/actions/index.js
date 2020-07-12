@@ -3,6 +3,7 @@ import getPlanets from '../services/Api';
 export const REQUEST_PLANET = 'REQUEST_PLANET';
 export const REQUEST_PLANET_SUCCESS = 'REQUEST_PLANET_SUCCESS';
 export const REQUEST_PLANET_FAILURE = 'REQUEST_PLANET_FAILURE';
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
 // fn action para indicar o envio da requisição p/ buscar os planets
 const requestPlanets = () => ({
@@ -33,3 +34,8 @@ export function requestFetch() {
   };
 }
 // depois de estruturar a requisição ---> reducer
+
+export const filterByName = (value) => ({
+  type: FILTER_BY_NAME,
+  value,
+});
