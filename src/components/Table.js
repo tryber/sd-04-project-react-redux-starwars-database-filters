@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './Table.css';
 import HeaderTable from './HeaderTable';
 
@@ -36,3 +37,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, null)(Table);
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

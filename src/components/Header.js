@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { dataFetch } from '../actions';
 
 class Header extends Component {
@@ -28,3 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 // });
 
 export default connect(null, mapDispatchToProps)(Header);
+
+Header.propTypes = {
+  request: PropTypes.func.isRequired,
+};
