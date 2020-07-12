@@ -9,7 +9,7 @@
 }
 
 .planets-table td {
-  text-align: center;
-  overflow: auto;
   font-size: 0.8em;
+  overflow: auto;
+  text-align: center;
 }
