@@ -6,9 +6,9 @@ import PlanetItem from './PlanetItem';
 import '../styles/PlanetsTable.css';
 
 const operatorHelper = {
-  lesser: (v, c) => v < c,
-  greater: (v, c) => v > c,
-  equal: (v, c) => v === c,
+  'menor que': (v, c) => parseFloat(v) < parseFloat(c),
+  'maior que': (v, c) => parseFloat(v) > parseFloat(c),
+  'igual a': (v, c) => parseFloat(v) === parseFloat(c),
 };
 
 const filterInfo = (info, nameFilter, numericFilter) => {

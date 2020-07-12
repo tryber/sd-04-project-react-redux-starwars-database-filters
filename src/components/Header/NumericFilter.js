@@ -35,14 +35,14 @@ class NumericFilter extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <select name="column" data-testid="column-filter" onChange={this.onChange} required>
-          <option value="" defaultValue hidden>Coluna</option>
+          <option value="" defaultValue>Coluna</option>
           {columns.map((e) => <option key={e} value={e}>{e}</option>)}
         </select>
         <select name="comparison" data-testid="comparison-filter" onChange={this.onChange} required>
-          <option value="" defaultValue hidden>Comparação</option>
-          <option value="greater">Maior que</option>
-          <option value="lesser">Menor que</option>
-          <option value="equal">Igual a</option>
+          <option value="" defaultValue>Comparação</option>
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
+          <option value="menor que">menor que</option>
         </select>
         <input
           type="number"
