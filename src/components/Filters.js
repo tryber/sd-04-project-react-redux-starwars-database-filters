@@ -12,16 +12,17 @@ class Filters extends React.Component {
       comparison: '',
       value: '',
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.hand = this.hand.bind(this);
   }
 
-  handleChange(event) {
-    const { name, value } = event;
+  hand(event) {
+    const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
   render() {
     const { changeH, filterByNumericValues, options } = this.props;
+    const { hand } = this;
     let optionsN = options;
     if (typeof filterByNumericValues && filterByNumericValues.length > 0) {
       filterByNumericValues.forEach(({ column }) => {
@@ -31,20 +32,16 @@ class Filters extends React.Component {
     return (
       <div>
         <form onSubmit={(e) => { e.preventDefault(); changeH(this.state); }}>
-          <select data-testid="column-filter" onChange={(event) => this.handleChange(event)}>
-            {optionsN.map((option) => (<option value={option}>{option}</option>))}
+          <select data-testid="column-filter" name="column" onChange={(e) => hand(e)}>
+            {optionsN.map((option) => (<option key={option} value={option}>{option}</option>))}
           </select>
-          <select data-testid="comparison-filter" onChange={(event) => this.handleChange(event)}>
+          <select data-testid="comparison-filter" name="comparison" onChange={(e) => hand(e)}>
             <option defaultValue>Comparison</option>
             <option value="maior que">maior que</option>
             <option value="menor que">menor que</option>
             <option value="igual a">igual a</option>
           </select>
-          <input
-            type="number"
-            data-testid="value-filter"
-            onChange={(event) => this.handleChange(event)}
-          />
+          <input type="number" name="value" data-testid="value-filter" onChange={(e) => hand(e)} />
           <button type="submit" data-testid="button-filter">Filtrar</button>
         </form>
         <FiltersInUse />
