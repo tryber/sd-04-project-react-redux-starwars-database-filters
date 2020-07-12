@@ -10,8 +10,8 @@ import './MainContainer.css';
 class MainContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.planetFilter = this.planetFilter.bind(this);
     this.compare = this.compare.bind(this);
+    this.planetFilter = this.planetFilter.bind(this);
   }
 
   componentDidMount() {
@@ -19,11 +19,12 @@ class MainContainer extends React.Component {
     getPlanet();
   }
 
-  compare(a, b, op) {
+  compare(planetValue, filterValue, operator) {
     let result = false;
-    if (op === 'maior que') result = a > b;
-    if (op === 'menor que') result = a < b;
-    if (op === 'igual a') result = a === b;
+    if (operator === 'maior que') result = planetValue > filterValue;
+    if (operator === 'menor que') result = planetValue < filterValue;
+    if (operator === 'igual a') result = planetValue === filterValue;
+    this.bar = result;
     return result;
   }
 
@@ -42,6 +43,7 @@ class MainContainer extends React.Component {
           filter.comparison,
         ),
       );
+      return filteredPlanet;
     });
     return filteredPlanet;
   }

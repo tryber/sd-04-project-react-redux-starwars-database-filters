@@ -42,7 +42,7 @@ class Filter extends React.Component {
     return (
       <form>
         <select
-          name="column" data-testid="column-filter" value={this.state.value} 
+          name="column" data-testid="column-filter" value={this.state.value}
           onChange={this.handleChange}
         >
           {this.state.colonumItems.map((item) => (<option value={item}>{item}</option>))}
