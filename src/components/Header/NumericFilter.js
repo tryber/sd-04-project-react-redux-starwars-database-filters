@@ -32,11 +32,13 @@ class NumericFilter extends Component {
   }
 
   render() {
+    const activeFilters = this.props.filterByNumericValues.map((filter) => filter.column);
+    const filteredColumns = columns.filter((c) => !activeFilters.includes(c));
     return (
       <form onSubmit={this.onSubmit}>
         <select name="column" data-testid="column-filter" onChange={this.onChange} required>
           <option value="" defaultValue>Coluna</option>
-          {columns.map((e) => <option key={e} value={e}>{e}</option>)}
+          {filteredColumns.map((e) => <option key={e} value={e}>{e}</option>)}
         </select>
         <select name="comparison" data-testid="comparison-filter" onChange={this.onChange} required>
           <option value="" defaultValue>Comparação</option>
@@ -60,11 +62,15 @@ class NumericFilter extends Component {
 
 NumericFilter.propTypes = {
   onUpdateNumericFilter: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
 };
 
+const mapStateToProps = ({ filters: { filterByNumericValues } }) => ({
+  filterByNumericValues,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateNumericFilter: (filter) => dispatch(updateNumericFilter(filter)),
 });
 
-export default connect(null, mapDispatchToProps)(NumericFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
