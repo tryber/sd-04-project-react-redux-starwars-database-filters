@@ -8,9 +8,9 @@ import FilterByName from './components/FilterByName/FilterByName';
 function App() {
   return (
     <div className="App">
-        <FilterByName />
-        <Table />
-        <GetSWAPI />
+      <FilterByName />
+      <Table />
+      <GetSWAPI />
     </div>
   );
 }
