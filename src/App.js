@@ -7,8 +7,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Table />
+        <h1>StarWars Datatable with Filters</h1>
       </header>
+      <Table />
     </div>
   );
 }
