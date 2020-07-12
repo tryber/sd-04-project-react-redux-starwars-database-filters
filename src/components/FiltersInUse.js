@@ -9,7 +9,7 @@ const FiltersInUse = ({ filterByNumericValues, remove }) => {
       <div>
         <ul>
           {filterByNumericValues.map((filter) => (
-            <li key={`${filter.column}`}>
+            <li data-testid="filter" key={`${filter.column}`}>
               {`${filter.column} ${filter.comparison} ${filter.value}`}
               <button type="button" onClick={() => remove(filter.column)}>
                 x
