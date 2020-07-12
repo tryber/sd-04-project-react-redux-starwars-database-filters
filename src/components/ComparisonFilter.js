@@ -30,11 +30,8 @@ class ComparisonFilter extends Component {
     const { column, comparison, number } = this.state;
     return (
       <div>
-        <select
-          value={column}
-          name="column"
+        <select value={column} name="column" data-testid="column-filter"
           onChange={(event) => this.handleChange(event, 'column')}
-          data-testid="column-filter"
         >
           <option value="">selecionar</option>
           <option value="population">population</option>
@@ -43,27 +40,18 @@ class ComparisonFilter extends Component {
           <option value="rotation_period">rotation_period</option>
           <option value="surface_water">surface_water</option>
         </select>
-        <select
-          value={comparison}
-          name="comparison"
+        <select value={comparison} name="comparison" data-testid="comparison-filter"
           onChange={(event) => this.handleChange(event, 'comparison')}
-          data-testid="comparison-filter"
         >
           <option value="">selecionar</option>
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>
           <option value="igual a">igual a</option>
         </select>
-        <input
-          value={number}
-          name="number"
+        <input value={number} name="number" type="number" data-testid="value-filter"
           onChange={(event) => this.handleChange(event, 'number')}
-          type="number"
-          data-testid="value-filter"
         />
-        <button data-testid="button-filter" onClick={() => this.filter()}>
-          Filtrar
-        </button>
+        <button data-testid="button-filter" onClick={() => this.filter()}>Filtrar</button>
       </div>
     );
   }
