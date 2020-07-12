@@ -1,4 +1,9 @@
-import { FILTER_BY_NAME, FILTER_BUTTON, SAVE_FILTER, RECAP_CATEGORIES } from '../actions';
+import {
+  FILTER_BY_NAME,
+  FILTER_BUTTON,
+  SAVE_FILTER,
+  RECAP_CATEGORIES,
+} from '../actions';
 import reduceFilter from '../services/reduceFilter';
 
 const INITIAL_STATE = {
@@ -16,6 +21,7 @@ const INITIAL_STATE = {
     'rotation_period',
     'surface_water',
   ],
+  comparisons: ['maior que', 'igual a', 'menor que'],
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -32,7 +38,11 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: '' },
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.value },
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
         ],
         categories: reduceFilter(state.categories, state.filterByNumericValues),
       };
@@ -43,7 +53,10 @@ const filters = (state = INITIAL_STATE, action) => {
         actualFilter: { ...state.actualFilter, [action.name]: action.value },
       };
     case RECAP_CATEGORIES:
-      return { ...state, categories: reduceFilter(state.categories, state.filterByNumericValues) };
+      return {
+        ...state,
+        categories: reduceFilter(state.categories, state.filterByNumericValues),
+      };
     default:
       return state;
   }

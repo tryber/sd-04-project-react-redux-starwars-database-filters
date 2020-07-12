@@ -1,11 +1,13 @@
 import React from 'react';
-import PropTypes, { oneOfType } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import '../styles/App.css';
 import { getAPI, filterByName, filterButton, saveFilter } from '../actions';
+import Input from './utilityComponents/Input';
+import Button from './utilityComponents/Button';
+import Select from './utilityComponents/Select';
 
 const FilterNav = ({
-  getAPIProps,
   filterValues,
   filterBtn,
   saveFilterProps,
@@ -14,66 +16,71 @@ const FilterNav = ({
   comparison,
   value,
   categories,
+  comparisons,
 }) => (
   <nav>
-    <input
-      value={name}
-      data-testid="name-filter"
-      onChange={(e) => filterValues(e.target.value)}
-    />
-    <div>
-      <select
-        name="column"
-        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        value={column}
-        data-testid="column-filter"
-      >
-        <option aria-label="empty" />
-        {categories.map((category) => <option key={category} value={category}>{category}</option>)}
-      </select>
-
-      <select
-        name="comparison"
-        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        value={comparison}
-        data-testid="comparison-filter"
-      >
-        <option aria-label="empty" />
-        <option value="maior que">maior que</option>
-        <option value="igual a">igual a</option>
-        <option value="menor que">menor que</option>
-      </select>
-      <input
-        name="value"
-        value={value}
-        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        type="number"
-        data-testid="value-filter"
+    <label>
+      Name filter:
+      <Input
+        onChange={(e) => filterValues(e.target.value)}
+        name="name"
+        value={name}
+        test="name-filter"
       />
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={() => filterBtn(column, comparison, value)}
-        disabled={!(column && comparison && value)}
-      >
-        FILTER!
-      </button>
+    </label>
+    <div>
+      <label>
+        Pick a Category:
+        <Select
+          name="column"
+          onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+          options={categories}
+          value={column}
+          test="column-filter"
+        />
+      </label>
+      <label>
+        Pick a comparison:
+        <Select
+          name="comparison"
+          onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+          value={comparison}
+          options={comparisons}
+          test="comparison-filter"
+        />
+      </label>
+      <label>
+        Value:
+        <Input
+          onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+          value={value}
+          name="value"
+          type="number"
+          test="value-filter"
+        />
+        <Button
+          onClick={() => filterBtn(column, comparison, value)}
+          desc="FILTER!"
+          disabled={!(column && comparison && value)}
+          test="button-filter"
+        />
+      </label>
     </div>
-    <button type="button" onClick={() => getAPIProps()}>
-      FIND PLANETS!
-    </button>
+    {/* <Button onClick={() => getAPIProps()} desc="FIND PLANETS!" /> */}
   </nav>
 );
 
 const mapState = (state) => {
   const { column, comparison, value } = state.filters.actualFilter;
   const { name } = state.filters.filterByName;
+  const { categories, comparisons } = state.filters;
   return {
     column,
     comparison,
     value,
     name,
-    categories: state.filters.categories,
+    categories,
+    comparisons,
   };
 };
 
@@ -87,7 +94,6 @@ const mapDispatch = {
 export default connect(mapState, mapDispatch)(FilterNav);
 
 FilterNav.propTypes = {
-  getAPIProps: PropTypes.func.isRequired,
   filterValues: PropTypes.func.isRequired,
   filterBtn: PropTypes.func.isRequired,
   saveFilterProps: PropTypes.func.isRequired,
@@ -95,5 +101,8 @@ FilterNav.propTypes = {
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(oneOfType(PropTypes.string)).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
+    .isRequired,
+  comparisons: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
+    .isRequired,
 };

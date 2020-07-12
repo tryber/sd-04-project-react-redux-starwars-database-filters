@@ -7,9 +7,22 @@ body {
   padding: 0;
 }
 
-header, nav {
+header {
   align-items: center;
   display: flex;
   height: 10vh;
   justify-content: space-around;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  height: 20vh;
+  justify-content: space-around;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  
 }
