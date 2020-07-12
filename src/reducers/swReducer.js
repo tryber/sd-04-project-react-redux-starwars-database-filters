@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   data: [],
   error: "",
   dataFiltered: [],
-  filters: { filterByName: "" },
+  filters: { filterByName: { name: "" }, filterByNumericValues: [] },
 };
 
 const swReducer = (state = INITIAL_STATE, action) => {
@@ -41,7 +41,12 @@ const swReducer = (state = INITIAL_STATE, action) => {
         dataFiltered: state.data.filter(({ name }) =>
           name.includes(action.name)
         ),
-        filters: { ...state.filters, filterByName: action.name },
+        filters: {
+          ...state.filters,
+          filterByName: {
+            name: action.name,
+          },
+        },
       };
     default:
       return state;
