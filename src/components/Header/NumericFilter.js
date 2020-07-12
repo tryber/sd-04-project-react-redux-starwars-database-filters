@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateNumericFilter } from '../../actions';
@@ -60,7 +60,7 @@ class NumericFilter extends Component {
 
 NumericFilter.propTypes = {
   onUpdateNumericFilter: PropTypes.func.isRequired,
-}
+};
 
 
 const mapDispatchToProps = (dispatch) => ({
