@@ -62,7 +62,7 @@ class NumericFilter extends Component {
 
 NumericFilter.propTypes = {
   onUpdateNumericFilter: PropTypes.func.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = ({ filters: { filterByNumericValues } }) => ({
