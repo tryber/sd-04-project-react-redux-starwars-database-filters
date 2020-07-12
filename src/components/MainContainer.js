@@ -30,18 +30,17 @@ class MainContainer extends React.Component {
       return result;
     };
     let filteredPlanet = data.filter((planet) =>
-      planet.name.includes(searchedPlanet));
-    if (filterArray.length > 0 && filter.column !== 'Coluna') {
-      filterArray.map((filter) => {
-        filteredPlanet = filteredPlanet.filter((planet) =>
-          compare(
-            Number(planet[filter.column]),
-            Number(filter.value),
-            filter.comparison,
-          ));
-      });
-    }
-
+      planet.name.includes(searchedPlanet),
+    );
+    filterArray.map((filter) => {
+      filteredPlanet = filteredPlanet.filter((planet) =>
+        compare(
+          Number(planet[filter.column]),
+          Number(filter.value),
+          filter.comparison,
+        ),
+      );
+    });
     return filteredPlanet;
   }
 
