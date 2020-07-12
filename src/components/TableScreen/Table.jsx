@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import Loading from './Loading';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 class Table extends Component {
   render() {
