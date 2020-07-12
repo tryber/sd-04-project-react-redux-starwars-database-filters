@@ -11,6 +11,7 @@ class MainContainer extends React.Component {
   constructor(props) {
     super(props);
     this.planetFilter = this.planetFilter.bind(this);
+    this.compare = this.compare.bind(this);
   }
 
   componentDidMount() {
@@ -18,23 +19,24 @@ class MainContainer extends React.Component {
     getPlanet();
   }
 
+  compare(a, b, op) {
+    let result = false;
+    if (op === 'maior que') result = a > b;
+    if (op === 'menor que') result = a < b;
+    if (op === 'igual a') result = a === b;
+    return result;
+  }
+
   planetFilter() {
     const { data, filters } = this.props;
     const searchedPlanet = filters.filterByName.name;
     const filterArray = filters.filterByNumericValues;
-    const compare = (a, b, op) => {
-      let result = false;
-      if (op === 'maior que') result = a > b;
-      if (op === 'menor que') result = a < b;
-      if (op === 'igual a') result = a === b;
-      return result;
-    };
     let filteredPlanet = data.filter((planet) =>
       planet.name.includes(searchedPlanet),
     );
     filterArray.map((filter) => {
       filteredPlanet = filteredPlanet.filter((planet) =>
-        compare(
+        this.compare(
           Number(planet[filter.column]),
           Number(filter.value),
           filter.comparison,
