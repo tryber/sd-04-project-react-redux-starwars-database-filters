@@ -33,7 +33,6 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         actualFilter: INITIAL_STATE.actualFilter,
-        filterByName: { name: '' },
         filterByNumericValues: [
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },

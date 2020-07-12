@@ -28,7 +28,7 @@ export const getAPI = () => (dispatch) => {
   dispatch(requestAPI());
   return fecthFunction().then(
     (planets) => dispatch(requestAPISuccess(planets.results)),
-    (error) => dispatch(requestAPIFailure(error))
+    (error) => dispatch(requestAPIFailure(error)),
   );
 };
 
