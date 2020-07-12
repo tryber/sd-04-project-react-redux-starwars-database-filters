@@ -6,7 +6,7 @@ import { fetchPlanetsAPI } from './actions';
 import './App.css';
 
 import SearchPlanet from './components/SearchPlanet';
-// import ComparisonFilter from './components/ComparisonFilter';
+import ComparisonFilter from './components/ComparisonFilter';
 // import Filters from './components/Filters';
 import Table from './components/Table';
 
@@ -20,8 +20,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <SearchPlanet />
-          {/* <ComparisonFilter />
-          <Filters /> */}
+          <ComparisonFilter />
+          {/* <Filters /> */}
         </header>
         <Table />
       </div>
