@@ -10,5 +10,5 @@ const getPlanets = () =>
   );
 
 export default getPlanets;
-// próx passo configurar a store para fazer uso do thunk
+// próx passo prover store configurar-la para fazer uso do thunk
 // DEPOIS em action a fn actioncreator assíncrona

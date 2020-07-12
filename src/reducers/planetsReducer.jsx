@@ -26,5 +26,5 @@ const planetsReducer = (state = inicialState, action) => {
       return state;
   }
 };
-
+// agora faça a conexão react-redux do componente que usará os dados
 export default planetsReducer;

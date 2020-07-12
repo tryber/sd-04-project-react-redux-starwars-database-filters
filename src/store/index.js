@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 // a ação passa 1º pelo middleware e depois para o store
 import thunk from 'redux-thunk';
-import rootReducer from '..reducers';
+import rootReducer from '../reducers';
 
 const store = createStore(
   rootReducer,
