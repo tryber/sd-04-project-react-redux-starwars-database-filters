@@ -1,12 +1,17 @@
-import { FILTERED_NAME, FILTERED_NUMERIC } from '../actions/types';
+import {
+  FILTERED_NAME,
+  FILTERED_NUMERIC_COLUMN,
+  FILTERED_NUMERIC_COMPARISON,
+  FILTERED_NUMERIC_VALUE,
+} from '../actions/types';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterNumericValues: [
     {
-      column: 'population',
-      comparison: 'Maior que',
-      value: '5',
+      column: 'teste',
+      comparison: 'teste2',
+      value: '55',
     },
   ],
   filterOrder: {},
@@ -19,13 +24,20 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByName: { name: action.name },
       };
-    case FILTERED_NUMERIC:
+    case FILTERED_NUMERIC_COLUMN:
       return {
         ...state,
-        filterNumericValues: [
-          ...state.filterNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.value },
-        ],
+        filterNumericValues: [{ column: action.column }],
+      };
+    case FILTERED_NUMERIC_COMPARISON:
+      return {
+        ...state,
+        filterNumericValues: [{ comparison: action.comparison }],
+      };
+    case FILTERED_NUMERIC_VALUE:
+      return {
+        ...state,
+        filterNumericValues: [...state.filterNumericValues, { value: action.value }],
       };
     default:
       return state;

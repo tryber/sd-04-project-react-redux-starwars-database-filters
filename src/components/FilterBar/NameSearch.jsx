@@ -1,20 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterName } from '../../actions/filter';
-import PropTypes from 'prop-types';
 
 const NameSearch = (props) => {
   const { filteredName } = props;
   return (
     <div>
+      <label htmlFor="name-filter">Find for planet name</label>
       <input
         data-testid="name-filter"
         name="name-filter"
         id="name-filter"
         type="text"
-        onChange={(e) => filteredName(e.target.value)}
+        placeholder="type here..."
+        onChange={(e) => filteredName(e.target.value.toLowerCase())}
       />
-      <label htmlFor="name-filter">Find for planet name</label>
     </div>
   );
 };
