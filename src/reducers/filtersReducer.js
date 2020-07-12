@@ -1,4 +1,4 @@
-import { UPDATE_FILTER, UPDATE_NUMERIC_FILTER } from '../actions';
+import { UPDATE_FILTER, UPDATE_NUMERIC_FILTER, REMOVE_NUMERIC_FILTER } from '../actions';
 
 const initialState = {
   filterByName: {
@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         filterByNumericValues: [...state.filterByNumericValues, action.numericFilter],
+      };
+    case REMOVE_NUMERIC_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (f) => f.column !== action.filterColumn,
+        ),
       };
     default:
       return state;

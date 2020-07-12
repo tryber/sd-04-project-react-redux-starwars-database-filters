@@ -5,6 +5,8 @@ export const REQUEST_DATA_SUCESS = 'REQUEST_DATA_SUCESS';
 
 export const UPDATE_FILTER = 'UPDATE_FILTER';
 export const UPDATE_NUMERIC_FILTER = 'UPDATE_NUMERIC_FILTER';
+export const REMOVE_NUMERIC_FILTER = 'REMOVE_NUMERIC_FILTER';
+export const UPDATE_ORDER = 'UPDATE_ORDER';
 
 const requestData = () => ({
   type: REQUEST_DATA,
@@ -38,4 +40,13 @@ export const updateFilterByName = (name) => ({
 export const updateNumericFilter = (filter) => ({
   type: UPDATE_NUMERIC_FILTER,
   numericFilter: filter,
+});
+
+export const removeNumericFilter = (filterColumn) => ({
+  type: REMOVE_NUMERIC_FILTER,
+  filterColumn,
+});
+
+export const updateOrder = () => ({
+  type: UPDATE_ORDER,
 });
