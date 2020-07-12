@@ -2,18 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filterColumn, filterComparison, filterValue } from '../../actions/filter';
 
-const createSelectColumn = (on) => {
-  return (
-    <select onChange={on} data-testid="column-filter">
-      <option defaultValue>Column</option>
-      <option value="population">population</option>
-      <option value="orbital_period">orbital_period</option>
-      <option value="diameter">diameter</option>
-      <option value="rotation_period">rotation_period</option>
-      <option value="surface_water">surface_water</option>
-    </select>
-  );
-};
+const createSelectColumn = (on) => (
+  <select onChange={on} data-testid="column-filter">
+    <option defaultValue>Column</option>
+    <option value="population">population</option>
+    <option value="orbital_period">orbital_period</option>
+    <option value="diameter">diameter</option>
+    <option value="rotation_period">rotation_period</option>
+    <option value="surface_water">surface_water</option>
+  </select>
+);
 
 const createSelectComparison = (on) => (
   <select
