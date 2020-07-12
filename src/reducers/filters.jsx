@@ -2,12 +2,12 @@ import { FILTER_BY_NAME } from '../actions/index';
 
 const inicialState = {
   filterByName: {
-    name: ''
-  }
-}
+    name: '',
+  },
+};
 
 const filters = (state = inicialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case FILTER_BY_NAME:
       return {
         ...state,
@@ -15,9 +15,8 @@ const filters = (state = inicialState, action) => {
           name: action.value,
         },
       };
-
-      default:
-        return state;
+    default:
+      return state;
   }
 };
 

@@ -8,13 +8,13 @@ class FilterName extends React.Component {
     return (
       <div>
         <input
-        type="text"
-        data-testid="name-filter"
-        placeholder="Pesquise o Planeta"
-        onChange={(e) => this.props.filterPlanetsByName(e.target.value.toLowerCase())}
+          type="text"
+          data-testid="name-filter"
+          placeholder="Pesquise o Planeta"
+          onChange={(e) => this.props.filterPlanetsByName(e.target.value.toLowerCase())}
         />
       </div>
-    )
+    );
   }
 }
 const mapDispatchToProps = (dispatch) => ({

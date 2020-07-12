@@ -20,12 +20,13 @@ class Table extends React.Component {
   toFilterPlanets() {
     const { name, data } = this.props;
 
-    const filterName = data.filter((planet) => (planet.name.toLowerCase(). includes(name)))
+    const filterName = data.filter((planet) => (planet.name.toLowerCase().includes(name)));
     return filterName;
   }
 
   render() {
-    const { isFetching, data } = this.props;
+
+    const { isFetching } = this.props;
 
     if (isFetching) return <h1>loading...</h1>;
 
