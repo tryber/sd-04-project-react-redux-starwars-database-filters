@@ -17,9 +17,10 @@ const Search = ({
 
   return (
     <div>
-      <label>
+      <label htmlFor="search">
           Search:
         <input
+          id="search"
           data-testid="name-filter"
           onChange={(e) => handleSearchTerm(e)}
           type="text"
