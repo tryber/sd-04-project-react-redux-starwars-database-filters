@@ -1,4 +1,4 @@
-import { swApi } from "../services/api";
+import swApi from "../services/api";
 
 export const SW_REQUEST = "SW_REQUEST";
 export const SW_SUCCESS = "SW_SUCCESS";
