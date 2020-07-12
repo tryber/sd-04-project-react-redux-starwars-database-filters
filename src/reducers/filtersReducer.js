@@ -1,12 +1,12 @@
 
-import { SEARCH_PLANET_NAME } from '../actions/actionFilter';
+import { SEARCH_PLANET_NAME, FILTER_BY } from '../actions/actionFilter';
 
 const INITIAL_STATE = {
-  // searching: false,
   filterByName: {
     name: '',
   },
   filteredData: [],
+  filterByNumericValues: [],
 };
 
 export default function filters(state = INITIAL_STATE, action) {
@@ -19,6 +19,23 @@ export default function filters(state = INITIAL_STATE, action) {
           name: action.name,
         },
       };
+    case FILTERS_BY:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
+      };
+    case CHANGE_DATA_FILTERED:
+      retun {
+        ...state,
+        filteredData: action.data,
+      }
     default:
       return state;
   }
