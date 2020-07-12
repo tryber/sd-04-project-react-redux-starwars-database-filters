@@ -3,6 +3,8 @@ import requestFromApi from '../service/starWarsApi';
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const REQUEST_DATA_SUCESS = 'REQUEST_DATA_SUCESS';
 
+export const UPDATE_FILTER = 'UPDATE_FILTER';
+
 const requestData = () => ({
   type: REQUEST_DATA,
 });
@@ -22,3 +24,12 @@ export function fetchData(request) {
       );
   };
 }
+
+export const updateFilter = (name) => ({
+  type: UPDATE_FILTER,
+  filters: {
+    filterByName: {
+      name,
+    },
+  },
+});

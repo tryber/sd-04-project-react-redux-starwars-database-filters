@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function PlanetItem({ data }) {
@@ -12,6 +12,6 @@ export default function PlanetItem({ data }) {
 
 PlanetItem.propTypes = {
   data: PropTypes.shape({
-    name: PropTypes.string
-  }).isRequired
-}
+    name: PropTypes.string,
+  }).isRequired,
+};

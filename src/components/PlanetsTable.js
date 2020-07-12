@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions';
 import PlanetItem from './PlanetItem';
+import '../styles/PlanetsTable.css';
 
 class PlanetsTable extends Component {
   componentDidMount() {
@@ -11,10 +12,10 @@ class PlanetsTable extends Component {
 
   render() {
     const { data } = this.props;
-    if (data.length < 1) return <div>loading...</div>
+    if (data.length < 1) return <div>loading...</div>;
     const keys = Object.keys(data[0]).filter((k) => k !== 'residents');
     return (
-      <table>
+      <table className="PlanetsT">
         <thead>
           <tr>
             {keys.map((k) => <th key={k}>{k}</th>)}
@@ -39,6 +40,7 @@ PlanetsTable.propTypes = {
 
 const mapStateToProps = (state) => ({
   data: state.data,
+  ...state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({
