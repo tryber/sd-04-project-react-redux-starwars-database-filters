@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { saveFilterData } from '../actions';
 
+let options = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 class FilterForms extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +33,7 @@ class FilterForms extends React.Component {
     const { submitFilterData } = this.props;
     const { column, comparison, number } = this.state;
     // console.log(event.target.column.value);
-
+    options = options.filter((option) => option !== column);
     submitFilterData(column, comparison, number);
   }
 
@@ -35,11 +43,9 @@ class FilterForms extends React.Component {
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <select onChange={(e) => this.handleChange(e)} data-testid="column-filter" name="column">
             <option defaultValue="" selected disabled hidden>Choose here</option>
-            <option value="population">population</option>
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
+            {options.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
           </select>
           <select onChange={(e) => this.handleChange(e)} data-testid="comparison-filter" name="comparison">
             <option defaultValue="" selected disabled hidden>Choose here</option>
