@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import Table from './components/Table';
+import Table from "./components/Table";
 
 function App() {
   return (
-    <div className='App'>
+    <div>
       <Table />
     </div>
   );
