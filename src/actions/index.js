@@ -5,6 +5,12 @@ export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCES';
 export const REQUEST_API_ERROR = 'REQUEST_API_ERROR';
 export const HANDLE_CHANGE = 'HANDLE_CHANGE';
 export const SAVE_FILTER_DATA = 'SAVE_FILTER_DATA';
+export const REMOVE_FILTERS = 'REMOVE_FILTERS';
+
+export const remove = (column) => ({
+  type: REMOVE_FILTERS,
+  column,
+});
 
 export const saveFilterData = (column, comparison, number) => ({
   type: SAVE_FILTER_DATA,
@@ -38,7 +44,7 @@ export function getSwPlanets() {
 
     return getPlanets()
       .then(
-        (data) => dispatch(requestApiSuccess(data)),
+        (data) => dispatch(requestApiSuccess(data.results)),
         (error) => dispatch(requestApiError(error)),
       );
   };

@@ -22,8 +22,8 @@ const Table = ({
 }) => {
   // console.log(error);
 
-  let planets = (data.results) ? data.results : [];
-  const keys = (data.results) ? Object.keys(data.results[0]) : [];
+  let planets = [...data];
+  const keys = (data.length >= 1) ? Object.keys(data[0]) : [];
   const tableHeader = keys.filter((key) => key !== 'residents');
   if (filterByNumericValues.length >= 1) {
     filterByNumericValues.forEach((filter) => {
@@ -68,10 +68,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Table.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleInput: PropTypes.func.isRequired,
   inputText: PropTypes.string.isRequired,
-  // error: PropTypes.object.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
