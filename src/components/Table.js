@@ -25,7 +25,6 @@ class Table extends React.Component {
   }
 
   render() {
-
     const { isFetching } = this.props;
 
     if (isFetching) return <h1>loading...</h1>;
