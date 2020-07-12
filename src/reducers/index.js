@@ -1,8 +1,31 @@
-import { combineReducers } from 'redux';
-import planetTableReducer from './planetTableReducer';
+import { SUCCESS_RESPONSE, FAILED_RESPONSE, CHANGE_SEARCH } from '../actions';
 
-const rootReducers = combineReducers({
-  planetTableReducer,
-});
+const INITIAL_STATE = {
+  data: [],
+  isFetching: true,
+  error: '',
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
+};
 
-export default rootReducers;
+const planetTableReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case SUCCESS_RESPONSE:
+      return { ...state, isFetching: false, data: action.results };
+    case FAILED_RESPONSE:
+      return { ...state, isFetching: false, error: action.message };
+    case CHANGE_SEARCH:
+      return {
+        ...state,
+        filters: { filterByName: { name: action.seacrhTerm } },
+        data: state.data.filter((planet) => planet.name.includes(action.seacrhTerm)),
+      };
+    default:
+      return state;
+  }
+};
+
+export default planetTableReducer;

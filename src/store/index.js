@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducers from '../reducers';
+import planetTableReducer from '../reducers';
 
-const store = createStore(rootReducers, applyMiddleware(thunk));
+const store = createStore(planetTableReducer, applyMiddleware(thunk));
 
 export default store;

@@ -42,8 +42,8 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.planetTableReducer.data,
-  isFetching: state.planetTableReducer.isFetching,
+  data: state.data,
+  isFetching: state.isFetching,
 });
 
 const mapDispatchToProps = (dispatch) => ({

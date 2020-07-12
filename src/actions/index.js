@@ -1,7 +1,10 @@
 import starWarsAPI from '../services/starWarsAPI';
 
+// Variáveis type para identificação do tipo de ação.
 export const SUCCESS_RESPONSE = 'SUCCESS_RESPONSE';
 export const FAILED_RESPONSE = 'FAILED_RESPONSE';
+
+export const CHANGE_SEARCH = 'CHANGE_SEARCH';
 
 // action para caso de sucesso na resposta da API.
 export const successAPIRequest = (results) => ({ type: SUCCESS_RESPONSE, results });
@@ -14,3 +17,6 @@ export const planetsInfoRequest = () => (dispatch) =>
   starWarsAPI()
     .then((response) => dispatch(successAPIRequest(response.results)))
     .catch((error) => dispatch(failedAPIRequest(error.message)));
+
+// Função para a onChange da barra de busca.
+export const changeSearchTerm = (seacrhTerm) => ({ type: CHANGE_SEARCH, seacrhTerm });

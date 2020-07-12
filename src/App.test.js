@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-// import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
@@ -96,7 +95,7 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
     expect(filterField).toBeInTheDocument();
   });
 
-  test.skip('input filter should change results', async () => {
+  test('input filter should change results', async () => {
     const { findAllByRole, findByTestId, findByText } = renderApp();
     const filterField = await findByTestId('name-filter');
 
@@ -120,7 +119,7 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
     fireEvent.change(filterField, { target: { value: '' } });
   });
 
-  test.skip('should change store filter values', async () => {
+  test('should change store filter values', async () => {
     const { findByTestId, store } = renderApp();
     const filterField = await findByTestId('name-filter');
     fireEvent.change(filterField, { target: { value: 'o' } });
