@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const TableBody = ({ planets, filter }) => {
+const TableBody = ({ planets, filter, filterNumeric }) => {
   const filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
+  console.log(filterNumeric);
 
   return (
     <tbody>
@@ -35,6 +36,7 @@ const TableBody = ({ planets, filter }) => {
 const mapStateToProps = (state) => ({
   planets: state.reducerAPI.data,
   filter: state.filters.filterByName.name,
+  filterNumeric: state.filters.filterByNumericValues,
 });
 
 // TableBody.PropTypes = {

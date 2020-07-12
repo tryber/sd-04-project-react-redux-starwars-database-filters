@@ -6,7 +6,7 @@ import { filterName } from '../../actions/filter';
 const NameSearch = (props) => {
   const { filteredName } = props;
   return (
-    <div>
+    <form>
       <label htmlFor="name-filter">Find for planet name</label>
       <input
         data-testid="name-filter"
@@ -16,7 +16,7 @@ const NameSearch = (props) => {
         placeholder="type here..."
         onChange={(e) => filteredName(e.target.value.toLowerCase())}
       />
-    </div>
+    </form>
   );
 };
 

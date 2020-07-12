@@ -1,56 +1,93 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterColumn, filterComparison, filterValue } from '../../actions/filter';
+import { filterColumn, filterComparison, filterValue, filterValues } from '../../actions/filter';
 
-const createSelectColumn = (on) => (
-  <select onChange={on} data-testid="column-filter">
-    <option defaultValue>Column</option>
-    <option value="population">population</option>
-    <option value="orbital_period">orbital_period</option>
-    <option value="diameter">diameter</option>
-    <option value="rotation_period">rotation_period</option>
-    <option value="surface_water">surface_water</option>
-  </select>
-);
+class NumericSearch extends Component {
+  constructor(props) {
+    super(props);
 
-const createSelectComparison = (on) => (
-  <select
-    onChange={on}
-    data-testid="comparison-filter"
-    name="comparison-filter"
-    id="comparison-filter"
-  >
-    <option defaultValue>Comparison</option>
-    <option value="maior que">maior que</option>
-    <option value="igual a">igual a</option>
-    <option value="menor que">menor que</option>
-  </select>
-);
+    this.state = {
+      column: '',
+      comparison: '',
+      value: '',
+    };
 
-const NumericSearch = (props) => {
-  const { changeColumn, changeComparison, changeValue } = props;
-  return (
-    <form>
-      {createSelectColumn((e) => changeColumn(e.target.value))}
-      {createSelectComparison((e) => changeComparison(e.target.value))}
+    this.createSelectColumn = this.createSelectColumn.bind(this);
+    this.createSelectComparison = this.createSelectComparison.bind(this);
+    this.createInputValue = this.createInputValue.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
+  createSelectColumn(onChange, value) {
+    return (
+      <select value={value} onChange={onChange} data-testid="column-filter" id="column">
+        <option value="">Column</option>
+        <option value="population">population</option>
+        <option value="orbital_period">orbital_period</option>
+        <option value="diameter">diameter</option>
+        <option value="rotation_period">rotation_period</option>
+        <option value="surface_water">surface_water</option>
+      </select>
+    );
+  }
+
+  createSelectComparison(onChange, value) {
+    return (
+      <select value={value} onChange={onChange} data-testid="comparison-filter" id="comparison">
+        <option defaultValue>Comparison</option>
+        <option value="maior que">maior que</option>
+        <option value="igual a">igual a</option>
+        <option value="menor que">menor que</option>
+      </select>
+    );
+  }
+
+  createInputValue(onChange, value) {
+    return (
       <input
-        onChange={(e) => changeValue(e.target.value)}
+        value={value}
+        onChange={onChange}
         data-testid="value-filter"
         type="number"
+        id="value"
       />
+    );
+  }
 
-      <button data-testid="button-filter" type="button">
-        search
-      </button>
-    </form>
-  );
-};
+  handleChange(e) {
+    this.setState({ [e.target.id]: e.target.value });
+  }
+
+  handleSubmit() {
+    const { column, comparison, value } = this.state;
+    const { changeValues } = this.props;
+    changeValues(column, comparison, value);
+    this.setState({ column: '', comparison: '', value: '' });
+  }
+
+  render() {
+    const { column, comparison, value } = this.state;
+    const { changeColumn, changeComparison, changeValue, changeValues } = this.props;
+    return (
+      <form>
+        {this.createSelectColumn((e) => this.handleChange(e), column)}
+        {this.createSelectComparison((e) => this.handleChange(e), comparison)}
+        {this.createInputValue((e) => this.handleChange(e), value)}
+
+        <button onClick={() => this.handleSubmit()} data-testid="button-filter" type="button">
+          Aply filter
+        </button>
+      </form>
+    );
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   changeColumn: (column) => dispatch(filterColumn(column)),
   changeComparison: (comparison) => dispatch(filterComparison(comparison)),
   changeValue: (value) => dispatch(filterValue(value)),
+  changeValues: (column, comparison, value) => dispatch(filterValues(column, comparison, value)),
 });
 
 export default connect(null, mapDispatchToProps)(NumericSearch);
