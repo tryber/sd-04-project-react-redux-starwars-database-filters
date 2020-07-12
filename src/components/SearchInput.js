@@ -35,4 +35,8 @@ const mapDispatchToProps = (dispatch) => ({
   swFilter: (name) => dispatch(swFilter(name)),
 });
 
-export default connect(null, mapDispatchToProps)(SearchInput);
+const mapStateToProps = (state) => ({
+  swFilter: state.swReducer.dataFiltered,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
