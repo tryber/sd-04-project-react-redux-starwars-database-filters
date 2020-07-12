@@ -1,7 +1,7 @@
 import {
   REQUEST_SW_PLANETS,
   REQUEST_SW_PLANETS_SUCCESS,
-} from '../actions';
+} from '../actions/apiActions';
 
 const INITIAL_SW_PLANETS = {
   isFetching: false,

@@ -10,8 +10,10 @@ const TableContent = ({ data, searchText, filterByNumericValues }) => {
     data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
   let planets = data;
   if (typeof filterByNumericValues && filterByNumericValues.length > 0) {
-    const { column, comparison, value } = filterByNumericValues[0];
-    planets = planets.filter((planeta) => compare(planeta, column, comparison, value));
+    filterByNumericValues.forEach((filter) => {
+      const { column, comparison, value } = filter;
+      planets = planets.filter((planeta) => compare(planeta, column, comparison, value));
+    });
   }
   if (searchText !== '') {
     planets = planets.filter(

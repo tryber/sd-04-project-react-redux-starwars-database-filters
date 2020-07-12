@@ -1,18 +1,6 @@
-import getPLanets from '../service/swApi';
-
-export const REQUEST_SW_PLANETS = 'REQUEST_SW_PLANETS';
-export const REQUEST_SW_PLANETS_SUCCESS = 'REQUEST_SW_PLANETS_SUCCESS';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const NUMERIC_FILTER = 'NUMERIC_FILTER';
-
-const requestSWPlanets = () => ({
-  type: REQUEST_SW_PLANETS,
-});
-
-const receiveSWPlanets = ({ results }) => ({
-  type: REQUEST_SW_PLANETS_SUCCESS,
-  results,
-});
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 const changeHandler = (searchText) => ({
   type: SEARCH_TEXT,
@@ -24,13 +12,9 @@ const filterByNumber = (data) => ({
   data,
 });
 
-function fetchSWPlanets() {
-  return (dispatch) => {
-    dispatch(requestSWPlanets());
-    return getPLanets()
-      .then((data) => dispatch(receiveSWPlanets(data)))
-      .catch((error) => error);
-  };
-}
+const removeFilter = (filterToRemove) => ({
+  type: REMOVE_FILTER,
+  filterToRemove,
+});
 
-export { fetchSWPlanets, changeHandler, filterByNumber };
+export { filterByNumber, changeHandler, removeFilter };

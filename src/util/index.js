@@ -4,8 +4,10 @@ const compare = (planeta, column, comparison, value) => {
       return planeta[column] < Number(value);
     case 'maior que':
       return planeta[column] > Number(value);
+    case 'igual a':
+      return Number(planeta[column]) === Number(value);
     default:
-      return true;
+      return false;
   }
 };
 
