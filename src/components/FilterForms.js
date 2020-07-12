@@ -12,7 +12,7 @@ class FilterForms extends React.Component {
       comparison: '',
       number: '',
     };
-    // this.filterOptions = this.filterOptions.bind(this);
+    this.filterOptions = this.filterOptions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,33 +30,35 @@ class FilterForms extends React.Component {
     submitFilterData(column, comparison, number);
   }
 
-  // filterOptions() {
-  //   const { filterByNumericValues, options } = this.props;
-  //   let newOptions = [...options];
-  //   if (filterByNumericValues.length >= 1) {
-  //     filterByNumericValues.forEach(({ column }) => {
-  //       newOptions = newOptions.filter((option) => option !== column);
-  //     });
-  //   }
-  //   return newOptions;
-  // }
-
-  render() {
-    const { options, filterByNumericValues } = this.props;
+  filterOptions() {
+    const { filterByNumericValues, options } = this.props;
     let newOptions = [...options];
     if (filterByNumericValues.length >= 1) {
       filterByNumericValues.forEach(({ column }) => {
         newOptions = newOptions.filter((option) => option !== column);
       });
     }
+    return newOptions;
+  }
+
+  render() {
+    const newOptions = this.filterOptions();
     return (
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>
-          <select onChange={(e) => this.handleChange(e)} data-testid="column-filter" name="column">
+          <select
+            onChange={(e) => this.handleChange(e)}
+            data-testid="column-filter"
+            name="column"
+          >
             <option defaultValue="" selected disabled hidden>Choose here</option>
             {newOptions.map((option) => <option key={option} value={option}>{option}</option>)}
           </select>
-          <select onChange={(e) => this.handleChange(e)} data-testid="comparison-filter" name="comparison">
+          <select
+            onChange={(e) => this.handleChange(e)}
+            data-testid="comparison-filter"
+            name="comparison"
+          >
             <option defaultValue selected disabled hidden>Choose here</option>
             <option value="maior que">maior que</option>
             <option value="menor que">menor que</option>
