@@ -70,7 +70,6 @@ class Table extends React.Component {
     const { inputName } = this.props;
 
     const filteredByNamePlanets = this.filterPlanetsByName(inputName);
-
     const filteredPlanets = this.filterPlanetsByNumericValues(filteredByNamePlanets);
 
     return (
