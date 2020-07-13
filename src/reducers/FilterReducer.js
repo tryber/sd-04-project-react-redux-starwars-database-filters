@@ -23,7 +23,6 @@ function filters(state = initialState, action) {
           (filter, index) => index !== action.index,
         ),
       };
-
     case NUMERICAL_FILTER: {
       const filter = action.value;
       return {

@@ -40,7 +40,7 @@ class Filter extends React.Component {
       'rotation_period',
       'surface_water',
     ]; // Must refactor this part and subtract object directly
-     const activFilterColum = [];
+    const activFilterColum = [];
     this.props.filterByNumericValues.forEach((item) => {
       activFilterColum.push(item.column);
     });
