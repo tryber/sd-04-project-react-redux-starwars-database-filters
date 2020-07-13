@@ -12,8 +12,7 @@ function filters(state = initialState, action) {
   switch (action.type) {
     case SEARCH_BAR:
       return {
-        ...state,
-        filterByName: { name: action.value },
+        ...state, filterByName: { name: action.value },
       };
     case DELETE_FILTER:
       console.log('Delete Reducer_value', action.index);
@@ -26,8 +25,7 @@ function filters(state = initialState, action) {
     case NUMERICAL_FILTER: {
       const filter = action.value;
       return {
-        ...state,
-        filterByNumericValues: [
+        ...state, filterByNumericValues: [
           ...state.filterByNumericValues,
           {
             column: filter.column,
