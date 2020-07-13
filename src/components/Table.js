@@ -6,7 +6,6 @@ import './Table.css';
 class Table extends Component {
   filteredData() {
     const { data, filterByName, filterByNumericValues } = this.props;
-    console.log(data)
     if (filterByName.length > 0) {
       return data.filter((planet) => planet.name.includes(filterByName));
     }
