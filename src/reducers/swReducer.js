@@ -34,7 +34,7 @@ const swReducer = (state = INITIAL_STATE, action) => {
           filterByName: { name: action.name },
         },
         filteredData: state.data.filter(({ name }) =>
-          name.includes(action.name)
+          name.includes(action.name),
         ),
       };
     default:
