@@ -73,6 +73,6 @@ const mapDispatchToProps = (dispatch) => ({
 Sort.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   sortFilterFunc: PropTypes.func.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sort);
