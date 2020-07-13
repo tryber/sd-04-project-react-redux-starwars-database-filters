@@ -26,20 +26,19 @@ class ComparisonFilter extends Component {
     this.filter = this.filter.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      nextProps.filtersInfo.map((filter) => {
-        if (columnOptions.includes(filter.column)) {
-          const index = columnOptions.indexOf(filter.column);
-          columnOptions.splice(index, 1);
-        }
-        return columnOptions;
-      });
-    }
-  }
-
   handleChange(event, name) {
     this.setState({ [name]: event.target.value });
+  }
+
+  availableFilters() {
+    const { filtersInfo } = this.props;
+    filtersInfo.map((filter) => {
+      if (columnOptions.includes(filter.column)) {
+        const index = columnOptions.indexOf(filter.column);
+        columnOptions.splice(index, 1);
+      }
+      return columnOptions;
+    });
   }
 
   filter() {
@@ -49,6 +48,7 @@ class ComparisonFilter extends Component {
   }
 
   render() {
+    this.availableFilters();
     const { column, comparison, number } = this.state;
     return (
       <div>
@@ -93,5 +93,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(ComparisonFilter);
 
 ComparisonFilter.propTypes = {
   filteringByNumericValues: PropTypes.func.isRequired,
-  // filtersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filtersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
