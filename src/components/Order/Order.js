@@ -19,42 +19,62 @@ const columns = [
   'url',
 ];
 
-const Order = (props) => {
-  const [column, setColumn] = React.useState('name');
-  const [sort, setSort] = React.useState('ASC');
-  return (
-    <div className="order">
-      <select data-testid="column-sort" onChange={(e) => setColumn(e.target.value)}>
-        {columns.map((col) => <option key={col}>{col}</option>)}
-      </select>
-      <input
-        data-testid="column-sort-input"
-        type="radio"
-        name="order"
-        value="ASC"
-        id="ASC"
-        onClick={(e) => setSort(e.target.value)}
-      />
-      <label htmlFor="ASC">ASC</label>
-      <input
-        data-testid="column-sort-input"
-        type="radio"
-        name="order"
-        value="DESC"
-        id="DESC"
-        onClick={(e) => setSort(e.target.value)}
-      />
-      <label htmlFor="DESC">DESC</label>
-      <button
-        data-testid="column-sort-button"
-        type="button"
-        onClick={() => props.orderColumn(column, sort)}
-      >
-        order
-      </button>
-    </div>
-  );
-};
+class Order extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { column: 'name', sort: 'ASC' };
+  }
+
+  renderSortInputs() {
+    return (
+      <div>
+        <input
+          data-testid="column-sort-input"
+          type="radio"
+          name="order"
+          value="ASC"
+          id="ASC"
+          onClick={(e) => this.setState({ sort: e.target.value })}
+        />
+        <label htmlFor="ASC">ASC</label>
+        <input
+          data-testid="column-sort-input"
+          type="radio"
+          name="order"
+          value="DESC"
+          id="DESC"
+          onClick={(e) => this.setState({ sort: e.target.value })}
+        />
+        <label htmlFor="DESC">DESC</label>
+      </div>
+    );
+  }
+
+  render() {
+    const { column, sort } = this.state;
+    return (
+      <div className="order">
+        <select
+          data-testid="column-sort"
+          onChange={(e) => this.setState({ column: e.target.value })}
+        >
+          {columns.map((col) => (
+            <option key={col}>{col}</option>
+          ))}
+        </select>
+        {this.renderSortInputs()}
+        <button
+          data-testid="column-sort-button"
+          type="button"
+          onClick={() => this.props.orderColumn(column, sort)}
+        >
+          order
+        </button>
+      </div>
+    );
+  }
+}
 
 export default connect(null, { orderColumn })(Order);
 
