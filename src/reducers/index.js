@@ -1,4 +1,9 @@
-import { SUCCESS_RESPONSE, FAILED_RESPONSE, CHANGE_SEARCH } from '../actions';
+import {
+  SUCCESS_RESPONSE,
+  FAILED_RESPONSE,
+  CHANGE_SEARCH,
+  SEARCH_FILTER,
+} from '../actions';
 
 const INITIAL_STATE = {
   data: [],
@@ -8,6 +13,7 @@ const INITIAL_STATE = {
     filterByName: {
       name: '',
     },
+    filterByNumericValues: [],
   },
 };
 
@@ -21,6 +27,14 @@ const planetTableReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filters: { filterByName: { name: action.seacrhTerm } },
+      };
+    case SEARCH_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: [...state.filters.filterByNumericValues, action.numericFilters],
+        },
       };
     default:
       return state;

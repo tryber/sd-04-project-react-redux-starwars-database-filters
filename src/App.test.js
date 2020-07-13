@@ -205,7 +205,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
   });
 
-  test.skip('should filter with less than', async () => {
+  test('should filter with less than', async () => {
     const { findByTestId, findAllByRole, store } = renderApp();
 
     const columnFilter = await findByTestId('column-filter');
@@ -227,7 +227,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
-  test.skip('should filter with greather than', async () => {
+  test('should filter with greather than', async () => {
     const initialState = getStore().getState();
     const initial = {
       ...initialState,
@@ -263,7 +263,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
-  test.skip('should filter with equal to', async () => {
+  test('should filter with equal to', async () => {
     const initialState = getStore().getState();
 
     const initial = {

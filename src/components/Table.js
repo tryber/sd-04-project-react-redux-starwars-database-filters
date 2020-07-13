@@ -32,6 +32,26 @@ const renderTable = (headers, data) => (
   </table>
 );
 
+const comparacao = (planets, { column, comparison, value }) => {
+  return planets.filter((planet) => {
+  //   if (comparison === 'maior que') return Number(planet[column]) > Number(value);
+  //   if (comparison === 'igual a') return Number(planet[column]) === Number(value);
+  //   if (comparison === 'menor que') return Number(planet[column]) < Number(value);
+  //   return false;
+  // });
+    switch (comparison) {
+      case 'maior que':
+        return Number(planet[column]) > Number(value);
+      case 'igual a':
+        return Number(planet[column]) === Number(value);
+      case 'menor que':
+        return Number(planet[column]) < Number(value);
+      default:
+        return false;
+    }
+  });
+};
+
 class Table extends Component {
   componentDidMount() {
     const { starWarsAPI } = this.props;
@@ -39,7 +59,7 @@ class Table extends Component {
   }
 
   render() {
-    const { data, isFetching, searchTerm } = this.props;
+    const { data, isFetching, searchTerm, columnFilter } = this.props;
     let headers = '';
     let filtereds = '';
     if (isFetching) {
@@ -50,6 +70,10 @@ class Table extends Component {
       filtereds = data.filter((planet) => planet.name.includes(searchTerm));
       return <div>{renderTable(headers, filtereds)}</div>;
     }
+    if (columnFilter.length !== 0) {
+      filtereds = comparacao(data, columnFilter[columnFilter.length - 1]);
+      return <div>{renderTable(headers, filtereds)}</div>;
+    }
     return <div>{renderTable(headers, data)}</div>;
   }
 }
@@ -58,6 +82,7 @@ const mapStateToProps = (state) => ({
   data: state.data,
   isFetching: state.isFetching,
   searchTerm: state.filters.filterByName.name,
+  columnFilter: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -83,6 +108,17 @@ Table.propTypes = {
   starWarsAPI: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   searchTerm: PropTypes.string.isRequired,
+  columnFilter: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ),
+};
+
+Table.defaultProps = {
+  columnFilter: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
