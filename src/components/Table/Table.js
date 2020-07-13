@@ -33,7 +33,7 @@ class Table extends React.Component {
 
   filterPlanetsByNumericValues(planets) {
     const { data, filterNumericValues } = this.props;
-    if (filterNumericValues.length === 0) return planets;
+    if (filterNumericValues === []) return planets;
     return filterNumericValues.reduce((filteredPlanetsArray, filterNumericValue) => {
       const { column, comparison, value } = filterNumericValue;
       return filteredPlanetsArray.filter((planet) => {
@@ -71,11 +71,11 @@ class Table extends React.Component {
     const filteredByNamePlanets = this.filterPlanetsByName(inputName);
     const planetsArray = inputName ? filteredByNamePlanets : data;
 
-    const filteredByNumericValues = this.filterPlanetsByNumericValues(planetsArray);
+    const filteredPlanets = this.filterPlanetsByNumericValues(planetsArray);
 
     return (
       <tbody>
-        {filteredByNumericValues.map((planet) => (
+        {filteredPlanets.map((planet) => (
           <tr key={planet.name}>
             {thead.map((th) => (
               <td key={`${planet.name} ${th}`}>{planet[th]}</td>
