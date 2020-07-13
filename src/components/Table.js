@@ -6,16 +6,15 @@ import './Table.css';
 class Table extends Component {
   filteredData() {
     const { data, filterByName, filterByNumericValues } = this.props;
+    console.log(data)
     if (filterByName.length > 0) {
       return data.filter((planet) => planet.name.includes(filterByName));
     }
     if (filterByNumericValues.length > 0) {
-      return data.filter((planet) => {
-        const { column, comparison, value } = filterByNumericValues;
-        if (comparison === 'less') return planet[column] < value;
-        if (comparison === 'equal') return planet[column] === value;
-        return planet[column] > value;
-      });
+      const { column, comparison, value } = filterByNumericValues;
+      if (comparison === 'less') return data.filter((planet) => parseFloat(planet[column]) < parseFloat(value));
+      if (comparison === 'equal') return data.filter((planet) => Number(planet[column]) === Number(value));
+      if (comparison === 'bigger') return data.filter((planet) => Number(planet[column]) > Number(value));
     }
     return data;
   }
@@ -53,7 +52,7 @@ const mapStateToProps = (state) => ({
   isFetching: state.reducer.isFetching,
   data: state.reducer.data,
   filterByNumericValues: state.filters.filterByNumericValues,
-  filterByName: state.filters.filterByName,
+  filterByName: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(Table);
