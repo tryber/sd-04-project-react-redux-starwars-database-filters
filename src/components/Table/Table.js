@@ -28,12 +28,13 @@ class Table extends React.Component {
 
   filterPlanetsByName(input) {
     const { data } = this.props;
+    if (input === '') return data;
     return data.filter(({ name }) => name.toLowerCase().includes(input.toLowerCase()));
   }
 
   filterPlanetsByNumericValues(planets) {
     const { data, filterNumericValues } = this.props;
-    if (filterNumericValues === []) return planets;
+    if (filterNumericValues.length === 0) return planets;
     return filterNumericValues.reduce((filteredPlanetsArray, filterNumericValue) => {
       const { column, comparison, value } = filterNumericValue;
       return filteredPlanetsArray.filter((planet) => {
@@ -66,12 +67,11 @@ class Table extends React.Component {
 
   renderTableBody() {
     const { thead } = this.state;
-    const { data, inputName } = this.props;
+    const { inputName } = this.props;
 
     const filteredByNamePlanets = this.filterPlanetsByName(inputName);
-    const planetsArray = inputName ? filteredByNamePlanets : data;
 
-    const filteredPlanets = this.filterPlanetsByNumericValues(planetsArray);
+    const filteredPlanets = this.filterPlanetsByNumericValues(filteredByNamePlanets);
 
     return (
       <tbody>
