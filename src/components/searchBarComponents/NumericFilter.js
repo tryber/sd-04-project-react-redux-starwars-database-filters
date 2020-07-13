@@ -24,7 +24,8 @@ class NumericFilter extends Component {
     return (
       <form onSubmit={(e) => this.handleClick(e)}>
         <select
-          data-testid="column-filter" name="select" onChange={(e) => this.setState({ column: e.target.value })}
+          data-testid="column-filter" name="select"
+          onChange={(e) => this.setState({ column: e.target.value })}
         >
           <option value="">Column</option>
           <option value="population">population</option>
