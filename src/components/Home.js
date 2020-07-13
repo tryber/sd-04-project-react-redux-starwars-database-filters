@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { swFetch } from '../actions';
 import Table from './Table';
+import SearchInput from './SearchInput';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class Home extends React.Component {
     if (this.props.loading) return <p>Loading...</p>;
     return (
       <div>
+        <SearchInput />
         <Table />
       </div>
     );

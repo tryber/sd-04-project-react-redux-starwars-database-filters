@@ -31,7 +31,7 @@ function TableContent({ planets }) {
 }
 
 const mapStateToProps = (state) => ({
-  planets: state.swReducer.data,
+  planets: state.swReducer.filteredData,
 });
 
 export default connect(mapStateToProps)(TableContent);
@@ -52,6 +52,6 @@ TableContent.propTypes = {
       created: PropTypes.string,
       edited: PropTypes.string,
       url: PropTypes.string,
-    }),
+    })
   ).isRequired,
 };

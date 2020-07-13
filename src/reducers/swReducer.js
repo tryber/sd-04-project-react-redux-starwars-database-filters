@@ -1,4 +1,4 @@
-import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions';
+import { SW_REQUEST, SW_SUCCESS, SW_FAILURE, SW_FILTER } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -6,17 +6,13 @@ const INITIAL_STATE = {
   filteredData: [],
   filters: {
     filterByName: { name: '' },
-    filterByNumericValues: [],
   },
 };
 
 const swReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SW_REQUEST:
-      return {
-        ...state,
-        isFetching: true,
-      };
+      return { ...state, isFetching: true };
     case SW_SUCCESS:
       return {
         ...state,
@@ -29,6 +25,17 @@ const swReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         error: action.error,
+      };
+    case SW_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByName: { name: action.name },
+        },
+        filteredData: state.data.filter(({ name }) =>
+          name.includes(action.name)
+        ),
       };
     default:
       return state;
