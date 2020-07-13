@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { deleteFilter } from '../../actions/filter';
 
 const FiltersApplied = ({ filters, deleteFilter }) => {
-  console.log(deleteFilter);
   return (
     <div className="filters-applied">
       {filters.length > 0 ? <h4>Filters applied</h4> : null}
