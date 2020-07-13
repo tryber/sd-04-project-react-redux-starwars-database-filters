@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Table from './Table';
 
 function TableContent({ planets }) {
   return (
@@ -53,6 +52,6 @@ TableContent.propTypes = {
       created: PropTypes.string,
       edited: PropTypes.string,
       url: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };

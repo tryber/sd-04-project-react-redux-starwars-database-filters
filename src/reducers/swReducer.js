@@ -1,5 +1,5 @@
 import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions';
-//SW_FILTER_NAME
+
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
