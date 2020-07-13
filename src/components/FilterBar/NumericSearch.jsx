@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterColumn, filterComparison, filterValue, filterValues } from '../../actions/filter';
+import { filterValues } from '../../actions/filter';
 
 class NumericSearch extends Component {
   constructor(props) {
@@ -68,7 +68,6 @@ class NumericSearch extends Component {
 
   render() {
     const { column, comparison, value } = this.state;
-    const { changeColumn, changeComparison, changeValue, changeValues } = this.props;
     return (
       <form>
         {this.createSelectColumn((e) => this.handleChange(e), column)}
@@ -84,9 +83,6 @@ class NumericSearch extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeColumn: (column) => dispatch(filterColumn(column)),
-  changeComparison: (comparison) => dispatch(filterComparison(comparison)),
-  changeValue: (value) => dispatch(filterValue(value)),
   changeValues: (column, comparison, value) => dispatch(filterValues(column, comparison, value)),
 });
 

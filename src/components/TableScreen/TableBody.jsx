@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 const TableBody = ({ planets, filter, filterNumeric }) => {
   const filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
-  console.log(filterNumeric);
 
   return (
     <tbody>
@@ -39,9 +38,10 @@ const mapStateToProps = (state) => ({
   filterNumeric: state.filters.filterByNumericValues,
 });
 
-// TableBody.PropTypes = {
-//   filter: PropTypes.string.isRequired,
-//   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
+TableBody.propTypes = {
+  filter: PropTypes.string.isRequired,
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterNumeric: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default connect(mapStateToProps, null)(TableBody);

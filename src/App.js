@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/TableScreen/Table';
 import FilterBar from './components/FilterBar/FilterBar';
+import MyFooter from './components/MyFooter';
 import requestFetch from './actions';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
       <div className="App">
         <FilterBar />
         <Table />
+        <MyFooter />
       </div>
     );
   }

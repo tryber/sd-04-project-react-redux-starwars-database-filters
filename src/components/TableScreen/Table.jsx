@@ -22,8 +22,8 @@ const mapStateToProps = (state) => ({
   loading: state.reducerAPI.isFetching,
 });
 
-// Table.PropTypes = {
-//   loading: PropTypes.bool.isRequired,
-// };
+Table.propTypes = {
+  loading: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps)(Table);
