@@ -2,15 +2,19 @@ import { connect } from 'react-redux';
 import React from 'react';
 import onChange from '../actions/onChange';
 
-function Header({ OnChangeHandler, inputText }) {
+function Header({ OnChangeDispatch, searchBar }) {
+  const OnChangeHandler = (e) => {
+    OnChangeDispatch(e.target.value);
+  };
+
   return (
     <div>
       <label>
         <input
           data-testid="name-filter"
-          onChange={(event) => OnChangeHandler(event.target.value)}
+          onChange={(event) => OnChangeHandler(event)}
           type="text"
-          value={inputText}
+          value={searchBar}
           placeholder="Termo de pesquisa"
         />
       </label>
@@ -19,11 +23,11 @@ function Header({ OnChangeHandler, inputText }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  OnChangeHandler: (e) => dispatch(onChange(e)),
+  OnChangeDispatch: (e) => dispatch(onChange(e)),
 });
 
-const mapStateToProps = (state) => ({
-  inputText: state.reducerOnChange.filters.filterByName.name,
+const mapStateToProps = (state, ownProps) => ({
+  searchBar: state.reducerRequestApi.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

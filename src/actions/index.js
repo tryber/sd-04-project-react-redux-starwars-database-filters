@@ -2,6 +2,7 @@ import getPlanets from '../services/API';
 
 export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_API_SUCESS = 'REQUEST_API_SUCESS';
+export const SEARCH_BAR_CHANGE = 'SEARCH_BAR_CHANGE';
 
 const requestApi = () => ({
   type: REQUEST_API,

@@ -1,4 +1,4 @@
-import { REQUEST_API, REQUEST_API_SUCESS } from '../actions';
+import { REQUEST_API, REQUEST_API_SUCESS, SEARCH_BAR_CHANGE } from '../actions';
 
 const INITIAL_STATE = {
   data: [],
@@ -22,6 +22,11 @@ const reducerRequestApi = (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         data: action.data,
+      };
+    case SEARCH_BAR_CHANGE:
+      return {
+        ...state,
+        filters: { ...state.filters, filterByName: { name: action.inputText.value } },
       };
     default:
       return state;

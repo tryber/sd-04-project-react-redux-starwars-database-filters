@@ -7,7 +7,7 @@ const reducerOnChange = (state = INITIAL_STATE, action) => {
     case SEARCH_BAR_CHANGE:
       return {
         ...state,
-        filters: { ...state.filters, filterByName: { name: action.inputText } },
+        filters: { ...state.filters, filterByName: { name: action.inputText.value } },
       };
     default:
       return state;
