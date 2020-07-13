@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import { searchTextAction } from '../actions/index';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { searchTextAction } from '../actions/index';
 
 export class SearchText extends Component {
   render() {
     const { text } = this.props;
     return (
       <div>
-        <label>Procurar</label>
-        <input 
-          type='text'
-          data-testid='name-filter'
+        <label htmlFor="searchText">Procurar</label>
+        <input
+          type="text"
+          data-testid="name-filter"
           onChange={(event) => text(event.target.value)}
         />
       </div>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = {
   text: searchTextAction,
-}
+};
+
+SearchText.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
 
 export default connect(null, mapDispatchToProps)(SearchText);
