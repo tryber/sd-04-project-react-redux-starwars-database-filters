@@ -26,9 +26,27 @@ class Table extends React.Component {
     };
   }
 
-  filterPlanets(input) {
+  filterPlanetsByName(input) {
     const { data } = this.props;
     return data.filter(({ name }) => name.toLowerCase().includes(input.toLowerCase()));
+  }
+
+  filterPlanetsByNumericValues(planets) {
+    const { filterNumericValues } = this.props;
+    if (filterNumericValues.length === 0) return planets;
+    const { column, comparison, value } = filterNumericValues[0];
+    return planets.filter((planet) => {
+      switch (comparison) {
+        case 'maior que':
+          return Number(planet[column]) > Number(value);
+        case 'menor que':
+          return Number(planet[column]) < Number(value);
+        case 'igual a':
+          return Number(planet[column]) === Number(value);
+        default:
+          return false;
+      }
+    });
   }
 
   renderTableHead() {
@@ -48,12 +66,14 @@ class Table extends React.Component {
     const { thead } = this.state;
     const { data, inputName } = this.props;
 
-    const filteredPlanets = this.filterPlanets(inputName);
-    const arrayToMap = inputName ? filteredPlanets : data;
+    const filteredByNamePlanets = this.filterPlanetsByName(inputName);
+    const planetsArray = inputName ? filteredByNamePlanets : data;
+
+    const filteredByNumericValues = this.filterPlanetsByNumericValues(planetsArray);
 
     return (
       <tbody>
-        {arrayToMap.map((planet) => (
+        {filteredByNumericValues.map((planet) => (
           <tr key={planet.name}>
             {thead.map((th) => (
               <td key={`${planet.name} ${th}`}>{planet[th]}</td>
@@ -82,6 +102,7 @@ const mapStateToProps = (state) => ({
   data: state.SWAPI.data,
   loading: state.SWAPI.loading,
   inputName: state.filters.filterByName.name,
+  filterNumericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Table);
@@ -102,6 +123,13 @@ Table.propTypes = {
       population: PropTypes.string,
       films: PropTypes.arrayOf(PropTypes.string),
       created: PropTypes.string,
+    }),
+  ).isRequired,
+  filterNumericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
     }),
   ).isRequired,
 };
