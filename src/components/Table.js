@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import linha from './TableBody';
@@ -26,6 +27,13 @@ class Table extends React.Component {
     );
   }
 }
+
+Table.propTypes = {
+  data: PropTypes.shape({
+    map: PropTypes.func,
+  }),
+  isLoading: PropTypes.any,
+};
 
 const mapStateToProps = (state) => ({
   data: state.reducer.data,
