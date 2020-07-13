@@ -49,10 +49,10 @@ const TBody = ({ data }) =>
 
 const Table = ({ data, loading }) =>
   (loading ? <p>Loading...</p> :
-    <div>
-      <p>StarWars Datatable with Filters</p>
-      <THeadBody data={data} />
-    </div>
+  <div>
+    <p>StarWars Datatable with Filters</p>
+    <THeadBody data={data} />
+  </div>
   );
 
 const mapStateToProps = (state) => ({
