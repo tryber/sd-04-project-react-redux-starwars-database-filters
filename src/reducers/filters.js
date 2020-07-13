@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, RESET_FILTER } from '../actions';
 
 const INITIAL_STATE = { filterByName: { name: '' }, filterByNumericValues: [] };
 
@@ -22,6 +22,12 @@ const filters = (state = INITIAL_STATE, action) => {
             value: action.value,
           },
         ],
+      };
+    case RESET_FILTER:
+      return {
+        ...state,
+        filterByName: { ...state.filterByName },
+        filterByNumericValues: action.filters,
       };
     default:
       return state;

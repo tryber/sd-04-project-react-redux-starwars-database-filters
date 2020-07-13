@@ -350,66 +350,66 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
   });
 });
 
-// describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
-//   test('should show the previously selected filters', async () => {
-//     const initialState = getStore().getState();
+describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
+  test('should show the previously selected filters', async () => {
+    const initialState = getStore().getState();
 
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' },
-//           { column: 'population', comparison: 'igual a', value: '200000' },
-//         ],
-//       },
-//     };
+    const initial = {
+      ...initialState,
+      filters:
+      {
+        ...initialState.filters,
+        filterByNumericValues:
+        [
+          { column: 'surface_water', comparison: 'menor que', value: '40' },
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
+          { column: 'population', comparison: 'igual a', value: '200000' },
+        ],
+      },
+    };
 
-//     const { findAllByTestId } = renderApp(initial);
-//     const selectedFilters = await findAllByTestId('filter');
-//     expect(selectedFilters).toHaveLength(3);
-//   });
+    const { findAllByTestId } = renderApp(initial);
+    const selectedFilters = await findAllByTestId('filter');
+    expect(selectedFilters).toHaveLength(3);
+  });
 
-//   test('each filter should have a X button that removes the filter', async () => {
-//     const initialState = getStore().getState();
+  test('each filter should have a X button that removes the filter', async () => {
+    const initialState = getStore().getState();
 
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' },
-//           { column: 'population', comparison: 'igual a', value: '200000' },
-//         ],
-//       },
-//     };
+    const initial = {
+      ...initialState,
+      filters:
+      {
+        ...initialState.filters,
+        filterByNumericValues:
+        [
+          { column: 'surface_water', comparison: 'menor que', value: '40' },
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
+          { column: 'population', comparison: 'igual a', value: '200000' },
+        ],
+      },
+    };
 
-//     const { findAllByTestId, queryAllByTestId, store } = renderApp(initial);
-//     let selectedFilters = await findAllByTestId('filter');
-//     let removeButton = selectedFilters[0].querySelector('button');
+    const { findAllByTestId, queryAllByTestId, store } = renderApp(initial);
+    let selectedFilters = await findAllByTestId('filter');
+    let removeButton = selectedFilters[0].querySelector('button');
 
-//     fireEvent.click(removeButton);
+    fireEvent.click(removeButton);
 
-//     selectedFilters = await findAllByTestId('filter');
-//     removeButton = selectedFilters[0].querySelector('button');
-//     fireEvent.click(removeButton);
+    selectedFilters = await findAllByTestId('filter');
+    removeButton = selectedFilters[0].querySelector('button');
+    fireEvent.click(removeButton);
 
-//     selectedFilters = await findAllByTestId('filter');
-//     removeButton = selectedFilters[0].querySelector('button');
-//     fireEvent.click(removeButton);
+    selectedFilters = await findAllByTestId('filter');
+    removeButton = selectedFilters[0].querySelector('button');
+    fireEvent.click(removeButton);
 
-//     selectedFilters = queryAllByTestId('filter');
+    selectedFilters = queryAllByTestId('filter');
 
-//     expect(selectedFilters).toHaveLength(0);
-//     expect(store.getState().filters.filterByNumericValues).toHaveLength(0);
-//   });
-// });
+    expect(selectedFilters).toHaveLength(0);
+    expect(store.getState().filters.filterByNumericValues).toHaveLength(0);
+  });
+});
 
 // describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
 //   test('check planet table starting order', async () => {

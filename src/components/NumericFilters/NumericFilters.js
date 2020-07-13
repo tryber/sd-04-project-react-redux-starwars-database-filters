@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { resetFilter } from '../../actions';
 
 const NumericFilters = (props) => {
   const { numericFilters } = props;
@@ -8,10 +9,23 @@ const NumericFilters = (props) => {
   return (
     <div className="numeric-filters">
       {numericFilters.map(({ column, comparison, value }) => (
-        <div key={column}>
+        <div data-testid="filter" key={column}>
           <span>{column}</span>
           <span>{comparison}</span>
           <span>{value}</span>
+          <button
+            name={column}
+            type="button"
+            onClick={(e) => {
+              console.log(e.target.name);
+              console.log(numericFilters);
+              const newFilters = numericFilters.filter(({ column }) => column !== e.target.name);
+              console.log(newFilters);
+              return props.resetFilter(newFilters);
+            }}
+          >
+            X
+          </button>
         </div>
       ))}
     </div>
@@ -20,7 +34,7 @@ const NumericFilters = (props) => {
 
 const mapStateToProps = (state) => ({ numericFilters: state.filters.filterByNumericValues });
 
-export default connect(mapStateToProps)(NumericFilters);
+export default connect(mapStateToProps, { resetFilter })(NumericFilters);
 
 NumericFilters.propTypes = {
   numericFilters: PropTypes.arrayOf(
@@ -30,4 +44,5 @@ NumericFilters.propTypes = {
       value: PropTypes.any,
     }),
   ).isRequired,
+  resetFilter: PropTypes.func.isRequired,
 };
