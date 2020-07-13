@@ -1,5 +1,5 @@
 
-import { SEARCH_PLANET_NAME, FILTER_BY } from '../actions/actionFilter';
+import { SEARCH_PLANET_NAME, FILTERS_BY, CHANGE_DATA_FILTERED } from '../actions/actionFilter';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -25,17 +25,17 @@ export default function filters(state = INITIAL_STATE, action) {
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
+            column: action.values.column,
+            comparison: action.values.comparison,
+            value: action.values.value,
           },
         ],
       };
     case CHANGE_DATA_FILTERED:
-      retun {
+      return {
         ...state,
         filteredData: action.data,
-      }
+      };
     default:
       return state;
   }

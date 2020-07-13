@@ -1,5 +1,5 @@
 export const SEARCH_PLANET_NAME = 'SEARCH_PLANET_NAME';
-export const FILTER_BY = 'FILTER_BY';
+export const FILTERS_BY = 'FILTERS_BY';
 
 export const CHANGE_DATA_FILTERED = 'CHANGE_DATA_FILTERED';
 
@@ -9,11 +9,9 @@ export const searchName = (data, name) => ({
   name,
 });
 
-export const filterBy = (column, comparison, value) => ({
-  type: FILTER_BY,
-  column,
-  comparison,
-  value,
+export const filterBy = (values) => ({
+  type: FILTERS_BY,
+  values,
 });
 
 export const changeDataButton = (data) => ({

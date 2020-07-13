@@ -2,11 +2,15 @@ import React from 'react';
 
 import Table from './components/Table';
 import Search from './components/Search';
+import Filters from './components/Filters';
 
 function App() {
   return (
     <div>
-      <Search />
+      <header>
+        <Search />
+        <Filters />
+      </header>
       <Table />
     </div>
   );
