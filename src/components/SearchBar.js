@@ -21,8 +21,11 @@ class SearchBar extends Component {
                 <p key={filter.value}>
                   {filter.column} {filter.comparison} {filter.value}
                 </p>
-                <button type="button" onClick={() => this.props.deleteFilter(filter.column)}
-                  data-testid='filter'>
+                <button
+                  type="button"
+                  onClick={() => this.props.deleteFilter(filter.column)}
+                  data-testid="filter"
+                >
                   X
                 </button>
               </div>
@@ -45,5 +48,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
 
 SearchBar.propTypes = {
-  deleteFilter: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  deleteFilter: PropTypes.func.isRequired,
 };
