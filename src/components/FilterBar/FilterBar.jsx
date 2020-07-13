@@ -4,7 +4,7 @@ import NumericSearch from './NumericSearch';
 import FiltersApplied from './FiltersApplied';
 
 const FilterBar = () => (
-  <header>
+  <header className="header-content">
     <h3>Filter Planets</h3>
     <NameSearch />
     <NumericSearch />

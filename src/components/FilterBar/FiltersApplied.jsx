@@ -6,8 +6,8 @@ function FiltersApplied({ filters }) {
   console.log('estou no filtersApplied...', filters, filters.length);
 
   return (
-    <div>
-      {filters.length > 0 ? <h3>Filters applied</h3> : null}
+    <div className="filters-applied">
+      {filters.length > 0 ? <h4>Filters applied</h4> : null}
       {filters.map((filter) => (
         <div key={filter.column}>
           <p>Column: {filter.column}</p>

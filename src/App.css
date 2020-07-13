@@ -23,3 +23,15 @@ th, td {
   padding: 2px;
   text-align: le;
 }
+
+.header-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.filters-applied {  
+  display: flex;
+  justify-content: space-evenly;
+  font-size: small;
+}
