@@ -23,6 +23,11 @@ nav {
 
 label {
   display: flex;
-  flex-direction: column;
-  
+  flex-direction: column; 
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }

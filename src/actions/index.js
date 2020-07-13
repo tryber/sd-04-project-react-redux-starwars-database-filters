@@ -9,6 +9,8 @@ export const FILTER_BUTTON = 'FILTER_BUTTON';
 export const SAVE_FILTER = 'SAVE_FILTER';
 export const RECAP_CATEGORIES = 'RECAP_CATEGORIES';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const SAVE_ORDER = 'SAVE_ORDER';
+export const ORDER_BUTTON = 'ORDER_BUTTON';
 
 const requestAPI = () => ({
   type: REQUEST_API,
@@ -57,4 +59,16 @@ export const recapCategories = () => ({
 export const removeFilter = (col) => ({
   type: REMOVE_FILTER,
   col,
+});
+
+export const saveOrder = (column, sort) => ({
+  type: SAVE_ORDER,
+  column,
+  sort,
+});
+
+export const orderButton = (column, sort) => ({
+  type: ORDER_BUTTON,
+  column,
+  sort,
 });
