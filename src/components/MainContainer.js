@@ -29,8 +29,8 @@ class MainContainer extends React.Component {
   }
 
   planetFilter() {
-    const { data, filters } = this.props;
-    const searchedPlanet = filters.filterByName.name;
+    const { data, filters, searchedPlanet } = this.props;
+    // const searchedPlanet = filters.filterByName.name;
     const filterArray = filters.filterByNumericValues;
     let filteredPlanet = data.filter((planet) =>
       planet.name.includes(searchedPlanet),

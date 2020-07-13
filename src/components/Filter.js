@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { numericalFilter } from '../actions/filterActions';
+import { numericalFilter, deleteFilter } from '../actions/filterActions';
 
 class Filter extends React.Component {
   constructor(props) {
@@ -32,10 +32,17 @@ class Filter extends React.Component {
 
   columnRender() {
     this.bar = 12; // Without CC asked for using this
-    const colonumItemsArray = []; // Must refactor this part and substract object dierctly
-    this.props.colonumItems.forEach((item) => {
-      colonumItemsArray.push(item.name);
-    });
+    const colonumItemsArray = [
+      'Coluna',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ]; // Must refactor this part and subtract object directly
+    // this.props.colonumItems.forEach((item) => {
+    //   colonumItemsArray.push(item.name);
+    // });
     const activFilterColum = [];
     this.props.filterByNumericValues.forEach((item) => {
       activFilterColum.push(item.column);
@@ -63,11 +70,20 @@ class Filter extends React.Component {
     this.bar = 12; // Without CC asked for using this
     return (
       <div>
-        {this.props.filterByNumericValues.map((filter) => (
-          <div>
+        {this.props.filterByNumericValues.map((filter, index) => (
+          <div data-testid="filter">
             <p>
-              {filter.column}, {filter.comparison}, {filter.value}
+              {filter.column} {filter.comparison} {filter.value}
             </p>
+            <button
+              type="button"
+              className="btn btn-danger btn-sm"
+              onClick={(e) =>
+                this.props.deleteFilter(index)
+              }
+            >
+              X
+            </button>
           </div>
         ))}
       </div>
@@ -80,19 +96,31 @@ class Filter extends React.Component {
         <form className="form-inline">
           <this.columnRender />
           <select
-            name="comparison" className="form-control col-2" data-testid="comparison-filter"
-            value={this.state.comparison} onChange={this.handleChange}
+            name="comparison"
+            className="form-control col-2"
+            data-testid="comparison-filter"
+            value={this.state.comparison}
+            onChange={this.handleChange}
           >
-            {this.state.comparisonItems.map((item) => (<option value={item}>{item}</option>
+            {this.state.comparisonItems.map((item) => (
+              <option value={item}>{item}</option>
             ))}
           </select>
           <input
-            name="value" type="number" className="form-control col-1" data-testid="value-filter"
-            value={this.state.value} onChange={this.handleChange}
+            name="value"
+            type="number"
+            className="form-control col-1"
+            data-testid="value-filter"
+            value={this.state.value}
+            onChange={this.handleChange}
           />
           <button
-            type="button" className="btn btn-primary" data-testid="button-filter"
-            onClick={() => this.props.numericalFilter(this.state.filterByNumericValues)}
+            type="button"
+            className="btn btn-primary"
+            data-testid="button-filter"
+            onClick={() =>
+              this.props.numericalFilter(this.state.filterByNumericValues)
+            }
           >
             Filter
           </button>
@@ -110,6 +138,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   numericalFilter: (e) => dispatch(numericalFilter(e)),
+  deleteFilter: (e) => dispatch(deleteFilter(e)),
+
 });
 
 Filter.propTypes = {
