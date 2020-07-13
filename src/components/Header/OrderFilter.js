@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateOrder } from '../../actions';
@@ -58,6 +59,10 @@ class OrderFilter extends Component {
     );
   }
 }
+
+OrderFilter.propTypes = {
+  onUpdateOrder: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateOrder: (order) => dispatch(updateOrder(order)),

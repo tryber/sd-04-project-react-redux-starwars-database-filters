@@ -1,8 +1,12 @@
-import { UPDATE_FILTER, UPDATE_NUMERIC_FILTER, REMOVE_NUMERIC_FILTER } from '../actions';
+import { UPDATE_FILTER, UPDATE_NUMERIC_FILTER, REMOVE_NUMERIC_FILTER, UPDATE_ORDER } from '../actions';
 
 const initialState = {
   filterByName: {
     name: null,
+  },
+  order: {
+    column: 'Name',
+    sort: 'ASC',
   },
   filterByNumericValues: [],
 };
@@ -23,6 +27,8 @@ export default (state = initialState, action) => {
           (f) => f.column !== action.filterColumn,
         ),
       };
+    case UPDATE_ORDER:
+      return { ...state, order: action.order };
     default:
       return state;
   }

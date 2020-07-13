@@ -20,8 +20,8 @@ const filterInfo = (info, nameFilter, numericFilter) => {
   return true;
 };
 
-const orderInfo = (column, { [column]: a }, { [column]: b }) => {
-  if (isNaN(a) || isNaN(b)) return parseFloat(a) - parseFloat(b);
+const orderInfo = (column, { [column.toLowerCase()]: a }, { [column.toLowerCase()]: b }) => {
+  if (!isNaN(a) || !isNaN(b)) return parseFloat(a) - parseFloat(b);
   return a.localeCompare(b);
 };
 
@@ -81,7 +81,6 @@ PlanetsTable.propTypes = {
 const mapStateToProps = (state) => ({
   data: state.data,
   ...state.filters,
-  order: state.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
