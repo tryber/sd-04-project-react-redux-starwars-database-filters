@@ -5,6 +5,7 @@ export const API_REQUISITION = 'API_REQUISITION';
 export const API_REQUISITION_SUCCESS = 'API_REQUISITION_SUCCESS';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const NUMERIC_FILTER = 'NUMERIC_FILTER';
+export const DELETE_FILTER = 'DELETE_FILTER';
 
 const apiRequisition = () => ({
   type: API_REQUISITION,
@@ -36,4 +37,9 @@ export const searchText = (name) => ({
 export const numericFilter = (state) => ({
   type: NUMERIC_FILTER,
   state,
+});
+
+export const deleteFilter = (column) => ({
+  type: DELETE_FILTER,
+  column,
 });

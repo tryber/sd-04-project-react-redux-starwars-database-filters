@@ -1,4 +1,4 @@
-import { SEARCH_TEXT, NUMERIC_FILTER } from '../actions';
+import { SEARCH_TEXT, NUMERIC_FILTER, DELETE_FILTER } from '../actions';
 
 const INITIAL_FILTER_STATE = {
   filterByName: {
@@ -27,6 +27,12 @@ const filters = (state = INITIAL_FILTER_STATE, action) => {
             value: action.state.value,
           },
         ],
+      };
+    case DELETE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues
+          .filter(({ column }) => column !== action.column),
       };
     default:
       return state;
