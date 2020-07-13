@@ -34,7 +34,8 @@ class NumericFilter extends Component {
           <option value="surface_water">surface_water</option>
         </select>
         <select
-          data-testid="comparison-filter" name="select" onChange={(e) => this.setState({ comparison: e.target.value })}
+          data-testid="comparison-filter" name="select"
+          onChange={(e) => this.setState({ comparison: e.target.value })}
         >
           <option value="">Comparison</option>
           <option value="less than">menor que</option>
@@ -42,7 +43,8 @@ class NumericFilter extends Component {
           <option value="equal to">igual a</option>
         </select>
         <input
-          data-testid="value-filter" type="number" onChange={(e) => this.setState({ value: e.target.value })}
+          data-testid="value-filter" type="number"
+          onChange={(e) => this.setState({ value: e.target.value })}
         />
         <button type="submit" data-testid="button-filter">Filter</button>
       </form>
