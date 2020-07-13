@@ -38,7 +38,7 @@ Tabela.propTypes = {
     surface_water: PropTypes.string,
     terrain: PropTypes.string,
     url: PropTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default Tabela;
