@@ -32,7 +32,7 @@ class Filter extends React.Component {
 
   columnRender() {
     this.bar = 12; // Without CC asked for using this
-    let colonumItemsArray = []; // Must refactor this part and substract object dierctly
+    const colonumItemsArray = []; // Must refactor this part and substract object dierctly
     this.props.colonumItems.forEach((item) => {
       colonumItemsArray.push(item.name);
     });
@@ -115,7 +115,7 @@ const mapDispatchToProps = (dispatch) => ({
 Filter.propTypes = {
   numericalFilter: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.shape.isRequired,
-  colonumItems: PropTypes.array.isRequired,
- };
+  colonumItems: PropTypes.shape.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
