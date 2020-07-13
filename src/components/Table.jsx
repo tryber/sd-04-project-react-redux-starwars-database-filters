@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Table.css';
 
-const Table = ({ data, loading }) => {
+const Table = ({ data, loading, filterName }) => {
   const keys =
     data.length !== 0
       ? Object.keys(data[0]).filter((key) => key !== 'residents')
       : [];
+  let dataFiltered = data;
+  if (filterName !== '') {
+    dataFiltered = data.filter((planet) => planet.name.includes(filterName.toLowerCase()));
+  }
   if (loading) return <h1>Loading...</h1>;
   return (
     <div>
@@ -20,7 +24,7 @@ const Table = ({ data, loading }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((planet) => (
+          {dataFiltered.map((planet) => (
             <tr key={planet.diameter}>
               {keys.map((key) => (
                 <td key={key}>{planet[key]}</td>
@@ -36,11 +40,13 @@ const Table = ({ data, loading }) => {
 const mapStateToProps = (state) => ({
   loading: state.loading,
   data: state.data,
+  filterName: state.filters.filterByName.name,
 });
 
 Table.propTypes = {
-  data: PropTypes.arrayOf.isRequired,
+  data: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(Table);

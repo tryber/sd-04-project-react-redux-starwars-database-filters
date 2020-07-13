@@ -1,9 +1,19 @@
-import { REQUEST_API, REQUEST_SUCCESS, REQUEST_ERROR } from '../actions/index';
+import {
+  REQUEST_API,
+  REQUEST_SUCCESS,
+  REQUEST_ERROR,
+  SEARCH_PLANET,
+} from '../actions/index';
 
 const INITIAL_STATE = {
   loading: false,
   data: [],
   error: '',
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
 };
 
 function reducer(state = INITIAL_STATE, action) {
@@ -24,6 +34,15 @@ function reducer(state = INITIAL_STATE, action) {
         ...state,
         error: action.error,
         loading: false,
+      };
+    case SEARCH_PLANET:
+      console.log('Search_planet: ', action.planetName);
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByName: { name: action.planetName },
+        },
       };
     default:
       return state;

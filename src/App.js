@@ -8,6 +8,7 @@ function App() {
   return (
     <div>
       <Search />
+      <hr />
       <Table />
     </div>
   );
