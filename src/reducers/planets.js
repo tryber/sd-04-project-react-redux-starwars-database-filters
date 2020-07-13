@@ -1,6 +1,6 @@
 import {
   REQUEST_PLANETS,
-  REQUEST_PLANETS_SUCCESS
+  REQUEST_PLANETS_SUCCESS,
 } from '../actions';
 
 const INITIAL_PLANETS = {

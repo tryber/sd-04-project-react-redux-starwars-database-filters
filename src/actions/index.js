@@ -14,11 +14,11 @@ const requestPlanetsSuccess = (data) => ({
 
 export function fetchPlanets() {
   return (dispatch) => {
-    dispatch(requestPlanets())
+    dispatch(requestPlanets());
 
     return getPlanetsData()
       .then(
         (planets) => dispatch(requestPlanetsSuccess(planets))
-      )
-  }
+      );
+  };
 }
