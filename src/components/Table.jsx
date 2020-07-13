@@ -6,7 +6,7 @@ import { fetchPlanets } from '../actions/apiRequests';
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.searchFilter = this.searchFilter.bind(this);
+    this.filter = this.filter.bind(this);
   }
 
   componentDidMount() {
@@ -14,9 +14,35 @@ class Table extends Component {
     requestPlanets();
   }
 
-  searchFilter(arr) {
-    const { filterName } = this.props;
-    return arr.filter((item) => item.name.includes(filterName));
+  filter(arr) {
+    const { filterName, filterNumber } = this.props;
+    let filtered = [];
+    filtered =
+      filterName === ''
+        ? arr
+        : arr.filter((item) => item.name.includes(filterName));
+
+    if (filterNumber.length > 0) {
+      filterNumber.forEach((filter) => {
+        if (filter.comparison === 'maior que') {
+          filtered = filtered.filter(
+            (planet) => +planet[filter.column] > +filter.value,
+          );
+        }
+        if (filter.comparison === 'menor que') {
+          filtered = filtered.filter(
+            (planet) => +planet[filter.column] < +filter.value,
+          );
+        }
+        if (filter.comparison === 'igual a') {
+          filtered = filtered.filter(
+            (planet) => +planet[filter.column] === +filter.value,
+          );
+        }
+      });
+    }
+
+    return filtered;
   }
 
   render() {
@@ -35,7 +61,7 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.searchFilter(getPlanets).map((planet) => (
+          {this.filter(getPlanets).map((planet) => (
             <tr key={`${planet.name}${planet.rotation_period}`}>
               {headers.map((planetKey) => (
                 <td key={`${planet.name}${planet[planetKey]}`}>
@@ -54,6 +80,7 @@ const mapStateToProps = (state) => ({
   getPlanets: state.apiRequest.data,
   loading: state.apiRequest.loading,
   filterName: state.filters.filterByName.name,
+  filterNumber: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -65,6 +92,7 @@ Table.propTypes = {
   getPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   filterName: PropTypes.string.isRequired,
+  filterNumber: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
