@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterBy } from '../actions/actionFilter';
 
+const valueOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+
+const selectedColumns = (dataFilter) => {
+  if (dataFilter.length === 0) return valueOptions;
+  const usedValues = dataFilter.map((value) => value.column);
+  return valueOptions.filter((value) => !usedValues.includes(value));
+};
+
 class Filters extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +28,7 @@ class Filters extends React.Component {
   }
 
   filterColumn() {
-    const value = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const { filterByNumericValues } = this.props;
     return (
       <div>
         <select
@@ -30,7 +38,7 @@ class Filters extends React.Component {
           defaultValue="DEFAULT"
         >
           <option value="DEFAULT" disabled>Column</option>
-          {value.map((arg) => <option value={arg} name={arg} id={arg}>{arg}</option>)}
+          {selectedColumns(filterByNumericValues).map((arg) => <option value={arg} name={arg} id={arg}>{arg}</option>)}
         </select>
       </div>
     );
@@ -98,10 +106,20 @@ class Filters extends React.Component {
 
 Filters.propTypes = {
   submitValues: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.shape({
+    column: PropTypes.string,
+    comparison: PropTypes.string,
+    value: PropTypes.number,
+  })),
+};
+
+Filters.defaultProps = {
+  filterByNumericValues: [],
 };
 
 const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
