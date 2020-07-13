@@ -8,9 +8,9 @@ const initialState = {
 export const swapiReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_API:
-      return { ...state, loading: action.loading };
+      return { ...state, loading: true };
     case REQUEST_API_SUCCESS:
-      return { ...state, loading: action.loading, data: action.data };
+      return { ...state, loading: false, data: action.data };
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getData } from '../actions';
 
 class Table extends Component {
   constructor(props) {
@@ -59,20 +60,19 @@ class Table extends Component {
     return (
       <div className="table-container">
         <table>
-          {this.renderTableHead()}
-          {this.renderTableBody()}
+          {this.tableHeadRender()}
+          {this.tableBodyRender()}
         </table>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ loading, data }) => ({
-  loading,
-  data,
+const mapStateToProps = (state) => ({
+  data: state.swapiReducer.data,
 });
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, { getData })(Table);
 
 Table.propTypes = {
   loading: PropTypes.bool.isRequired,

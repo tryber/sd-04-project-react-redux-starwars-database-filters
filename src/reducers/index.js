@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import swapiReducer from './swapiReducer';
+import { swapiReducer } from './swapiReducer';
 
 const rootReducer = combineReducers({ swapiReducer });
 

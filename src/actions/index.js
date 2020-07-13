@@ -5,12 +5,10 @@ export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCESS';
 
 export const requestApi = () => ({
   type: REQUEST_API,
-  loading: true,
 });
 
 export const requestApiSuccess = (data) => ({
   type: REQUEST_API_SUCCESS,
-  loading: false,
   data,
 });
 
