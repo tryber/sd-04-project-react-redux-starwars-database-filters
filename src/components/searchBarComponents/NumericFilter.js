@@ -34,9 +34,11 @@ class NumericFilter extends Component {
   render() {
     const optionFilter = this.availableFilters();
     return (
-      <form onSubmit={(e) => this.handleClick(e)}>
+      <form className="numberInput" onSubmit={(e) => this.handleClick(e)}>
+        <label>Numeric Filter:</label>
+        <br />
         <select
-          data-testid="column-filter" name="select"
+          data-testid="column-filter" name="select" c
           onChange={(e) => this.setState({ column: e.target.value })}
         >
           <option defaultValue>Column</option>
@@ -45,7 +47,7 @@ class NumericFilter extends Component {
           ))}
         </select>
         <select
-          data-testid="comparison-filter" name="select"
+          data-testid="comparison-filter" name="select" className="input"
           onChange={(e) => this.setState({ comparison: e.target.value })}
         >
           <option defaultValue>Comparison</option>
@@ -53,8 +55,9 @@ class NumericFilter extends Component {
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
         </select>
+        <br />
         <input
-          data-testid="value-filter" type="number"
+          data-testid="value-filter" type="number" className="input"
           onChange={(e) => this.setState({ value: e.target.value })}
         />
         <button type="submit" data-testid="button-filter">Filter</button>

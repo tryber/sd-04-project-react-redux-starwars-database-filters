@@ -1,6 +1,6 @@
 body {
   background-image: url('https://images5.alphacoders.com/667/thumb-1920-667417.jpg');
-  background-size: cover;
+  background-size: contain;
 }
 
 .logo {
@@ -9,7 +9,22 @@ body {
   width: 30%;
 }
 
-.header {
+.searchBar {
   display: flex;
-  align-items: center;
+  justify-content: space-around;
+  margin-right: 10px;
+  top: 20px;
+  width: 60%;
+}
+
+.textInput {
+  padding: 30px;
+}
+
+.numberInput {
+  padding: 15px;
+}
+
+.input {
+  margin: 5px;
 }

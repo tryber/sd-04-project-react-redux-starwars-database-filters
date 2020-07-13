@@ -6,10 +6,11 @@ import { searchText } from '../../actions';
 class TextFilter extends Component {
   render() {
     return (
-      <div>
+      <div className="textInput">
         <label htmlFor="search-text">
           Name Search:
-          <input type="text" data-testid="name-filter" onChange={(e) => this.props.searchText(e)} />
+          <br />
+          <input className="input" type="text" data-testid="name-filter" onChange={(e) => this.props.searchText(e)} />
         </label>
       </div>
     );

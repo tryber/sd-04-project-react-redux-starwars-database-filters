@@ -10,11 +10,11 @@ class SearchBar extends Component {
     const filters = this.props.filterByNumericValues;
 
     return (
-      <div>
+      <div className="searchBar">
         <TextFilter />
         <NumericFilter />
         <div>
-          <h1>Filtros:</h1>
+          <div><h1>Filtros:</h1></div>
           <div>
             {filters.map((filter) => (
               <div data-testid="filter">
