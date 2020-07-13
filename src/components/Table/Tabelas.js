@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 function Tabela(props) {
@@ -28,5 +29,20 @@ function Tabela(props) {
     </tr>
   );
 }
+
+Tabela.propTypes = {
+  planet: PropTypes.shape({
+    name: PropTypes.string,
+    rotation_period: PropTypes.string,
+    orbital_period: PropTypes.string,
+    diameter: PropTypes.string,
+    climate: PropTypes.string,
+    gravity: PropTypes.string,
+    terrain: PropTypes.string,
+    surface_water: PropTypes.string,
+    population: PropTypes.string,
+    films: PropTypes.string,
+  }).isRequired,
+};
 
 export default Tabela;

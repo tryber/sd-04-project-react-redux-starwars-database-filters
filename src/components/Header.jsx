@@ -20,8 +20,8 @@ function Header({ inputText, inputValue }) {
 }
 
 Header.propTypes = {
-  inputText: PropTypes.func,
-  inputValue: PropTypes.string,
+  inputText: PropTypes.func.isRequired,
+  inputValue: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

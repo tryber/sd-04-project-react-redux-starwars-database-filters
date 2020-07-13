@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Tabelas from './Tabelas';
@@ -23,6 +24,15 @@ function Table({ isLoading, data }) {
     </div>
   );
 }
+
+Table.propTypes = {
+  data: PropTypes.shape({
+    results: PropTypes.shape({
+      map: PropTypes.func,
+    }).isRequired,
+  }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   isLoading: state.reducerFetch.isLoading,
