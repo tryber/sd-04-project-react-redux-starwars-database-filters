@@ -39,7 +39,7 @@ class Table extends Component {
           </thead>
           <tbody>
             {planets.map((planet) => (
-              <tr type="row" key={`${planet.name} 1`}>
+              <tr key={`${planet.name} 1`}>
                 {chaves.map((chave) => (
                   <td key={`${planet.name} ${chave}`}>{planet[chave]}</td>
                 ))}
