@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 });
 
 FiltersApplied.propTypes = {
-  filters: PropTypes.arrayOf(PropTypes.object),
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps)(FiltersApplied);
