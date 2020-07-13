@@ -5,12 +5,11 @@ const INITIAL_FILTER_STATE = {
     filterByName: {
       name: '',
     },
+    filterByNumericValues: [],
   },
-  filterByNumericValues: [],
 };
 
 const reducerFilter = (state = INITIAL_FILTER_STATE, action) => {
-  console.log('received action:', action);
   switch (action.type) {
     case SEARCH_TEXT:
       return {

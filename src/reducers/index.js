@@ -1,27 +1,7 @@
-import { API_REQUISITION, API_REQUISITION_SUCCESS } from '../actions';
+import { combineReducers } from 'redux';
+import reducer from './reducer';
+import reducerFilter from './reducerFilter';
 
-const INITIAL_STATE = {
-  isFetching: true,
-  data: [],
-};
+const rootReducer = combineReducers({ reducer, reducerFilter });
 
-const reducer = (state = INITIAL_STATE, action) => {
-  console.log('received action:', action);
-  switch (action.type) {
-    case API_REQUISITION:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case API_REQUISITION_SUCCESS:
-      return {
-        ...state,
-        data: action.dados,
-        isFetching: false,
-      };
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+export default rootReducer;

@@ -6,10 +6,10 @@ import './Table.css';
 class Table extends Component {
   filteredData() {
     const { data, filterByName, filterByNumericValues } = this.props;
-    if (filterByName) {
+    if (filterByName.length > 0) {
       return data.filter((planet) => planet.name.includes(filterByName));
     }
-    if (filterByNumericValues) {
+    if (filterByNumericValues.length > 0) {
       return data.filter((planet) => {
         const { column, comparison, value } = filterByNumericValues;
         if (comparison === 'less') return planet[column] < value;
@@ -62,5 +62,5 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   filterByName: PropTypes.string.isRequired,
-  filterByNumericValues: PropTypes.objectOf(PropTypes.string).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
 };
