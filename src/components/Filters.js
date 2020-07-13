@@ -38,7 +38,11 @@ class Filters extends React.Component {
           defaultValue="DEFAULT"
         >
           <option value="DEFAULT" disabled>Column</option>
-          {selectedColumns(filterByNumericValues).map((arg) => <option value={arg} name={arg} id={arg}>{arg}</option>)}
+          {selectedColumns(filterByNumericValues).map((arg) => (
+            <option value={arg} name={arg} id={arg}>
+              {arg}
+            </option>
+          ))}
         </select>
       </div>
     );
@@ -108,8 +112,6 @@ Filters.propTypes = {
   submitValues: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.shape({
     column: PropTypes.string,
-    comparison: PropTypes.string,
-    value: PropTypes.number,
   })),
 };
 
