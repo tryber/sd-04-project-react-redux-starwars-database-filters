@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
+import SearchText from './SearchText';
+import Filter from './Filter';
 
-export class Table extends Component {
+class Table extends Component {
   componentDidMount() {
     const { getStarsWarsPlanets } = this.props;
     getStarsWarsPlanets();
   }
 
   render() {
-    const { data, isFetching } = this.props;
+    const { data, isFetching, searchText } = this.props;
     if (isFetching) return <div>Loading...</div>;
     const title = Object.keys(data[0]).filter((key) => key !== 'residents');
     return (
       <div>
+        <SearchText />
         <table>
           <thead>
             <tr>
@@ -22,11 +25,7 @@ export class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {data.map((planet) => (
-              <tr key={planet.name}>
-                {title.map((element) => <td key={element}>{planet[element]}</td>)}
-              </tr>
-            ))}
+            {Filter(data, searchText, title)}
           </tbody>
         </table>
       </div>
@@ -38,6 +37,7 @@ const mapStateToProps = (state) => (
   {
     isFetching: state.reducerPlanets.isFetching,
     data: state.reducerPlanets.data,
+    searchText: state.filters.filterByName.name,
   }
 );
 
@@ -49,6 +49,7 @@ Table.propTypes = {
   getStarsWarsPlanets: PropTypes.func.isRequired,
   data: PropTypes.shape.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  searchText: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
