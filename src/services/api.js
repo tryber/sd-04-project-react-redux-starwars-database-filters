@@ -1,5 +1,3 @@
-// 1) realizar uma requisição para o endpoint disponibilizado.
-
 const URL_BASE = 'https://swapi-trybe.herokuapp.com/api';
 
 const swApi = () =>

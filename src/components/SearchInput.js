@@ -1,42 +1,108 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { swFilter } from '../action';
+import { swFilterName } from '../actions';
 
-class SearchInput extends Component {
+class SearchInput extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       value: '',
+      number: 0,
+      column: '',
+      comparation: '',
     };
+    this.getValue = this.getValue.bind(this);
+    this.onNumberChange = this.onNumberChange.bind(this);
+    this.onSelectChange = this.onSelectChange.bind(this);
+    this.getColumns = this.getColumns.bind(this);
+    this.getComparation = this.getComparation.bind(this);
   }
 
   getValue(e) {
     this.setState({ value: e.target.value });
-    // capturando o que é digitado no input para
-    // realizar a busca dos planetas no onChange
-    this.props.swFilter(e.target.value);
+    this.props.swFilterName(e.target.value);
+  }
+
+  onNumberChange(event) {
+    this.setState({ number: event.target.value });
+  }
+
+  onSelectChange(event, chave) {
+    const { value } = event.target;
+    this.setState({ [chave]: value });
+  }
+
+  getColumns() {
+    const columns = [
+      'Selecione',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    return (
+      <select
+        onChange={(event) => this.onSelectChange(event, 'column')}
+        data-testid='column-filter'
+        value={this.state.column}
+      >
+        {columns.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
+  getComparation() {
+    const comparation = ['Selecione', 'Maior que', 'Menor que', 'Igual a'];
+    return (
+      <select
+        onChange={(event) => this.onSelectChange(event, 'comparation')}
+        data-testid='column-filter'
+        value={this.state.comparation}
+      >
+        {comparation.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
   }
 
   render() {
     return (
       <div>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={(e) => this.getValue(e)}
-          data-testid="name-filter"
-        />
+        <form>
+          <input
+            data-testid='name-filter'
+            type='text'
+            value={this.state.value}
+            onChange={(event) => this.getValue(event)}
+          />
+          {this.getColumns()}
+          {this.getComparation()}
+          <input
+            type='number'
+            data-testid='value-filter'
+            value={this.state.number}
+            onChange={(event) => this.onNumberChange(event)}
+          ></input>
+          <button type='submit' data-testid='button-filter'>
+            Search
+          </button>
+        </form>
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  swFilter: (name) => dispatch(swFilter(name)),
+  swFilterName: (name) => dispatch(swFilterName(name)),
 });
 
-const mapStateToProps = (state) => ({
-  swFilter: state.swReducer.dataFiltered,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export default connect(null, mapDispatchToProps)(SearchInput);

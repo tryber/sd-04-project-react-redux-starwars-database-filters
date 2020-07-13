@@ -1,16 +1,13 @@
 import React from 'react';
 
-import SearchInput from './components/SearchInput';
-import Table from './components/Table';
-import Filters from './components/Filters';
+import Home from './components/Home';
+
 
 function App() {
   return (
     <div>
       <h1>StarWars Datatable with Filters</h1>
-      <SearchInput />
-      <Filters />
-      <Table />
+      <Home />
     </div>
   );
 }

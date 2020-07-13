@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TableHead = () => (
+const TableTop = () => (
   <thead>
     <tr>
       <th>Name</th>
@@ -20,4 +20,4 @@ const TableHead = () => (
   </thead>
 );
 
-export default TableHead;
+export default TableTop;

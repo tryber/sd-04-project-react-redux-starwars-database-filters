@@ -1,41 +1,45 @@
-// 4) Criaçao dos reducers com as actions criadas posteriormente.
-
-import { SW_REQUEST, SW_SUCCESS, SW_FILTER } from '../action';
+import { SW_REQUEST, SW_SUCCESS, SW_FAILURE, SW_FILTER_NAME } from '../actions';
 
 const INITIAL_STATE = {
-  fetching: false,
+  isFetching: false,
   data: [],
-  error: '',
-  dataFiltered: [],
-  filters: { filterByName: { name: '' }, filterByNumericValues: [] },
+  filteredData: [],
+  filters: {
+    filterByName: { name: '' },
+    filterByNumericValues: [],
+  },
 };
 
 const swReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SW_REQUEST: // durante o request, altere o estado de fetching
+    case SW_REQUEST:
       return {
         ...state,
-        fetching: true,
+        isFetching: true,
       };
-    case SW_SUCCESS: // caso tenha sucesso, data é o valor recebido pela action
+    case SW_SUCCESS:
       return {
         ...state,
-        fetching: false,
+        isFetching: false,
         data: [...action.data],
-        dataFiltered: [...action.data],
+        filteredData: [...action.data],
       };
-    case SW_FILTER:
+    case SW_FAILURE:
       return {
         ...state,
-        dataFiltered: state.data.filter(({ name }) =>
-          name.includes(action.name),
-        ),
+        isFetching: false,
+        error: action.error,
+      };
+    case SW_FILTER_NAME:
+      return {
+        ...state,
         filters: {
           ...state.filters,
-          filterByName: {
-            name: action.name,
-          },
+          filterByName: { name: action.name },
         },
+        filteredData: state.data.filter(({ name }) =>
+          name.includes(action.name)
+        ),
       };
     default:
       return state;
