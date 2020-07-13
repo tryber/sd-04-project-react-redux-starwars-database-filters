@@ -93,5 +93,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(ComparisonFilter);
 
 ComparisonFilter.propTypes = {
   filteringByNumericValues: PropTypes.func.isRequired,
-  filtersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // filtersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
