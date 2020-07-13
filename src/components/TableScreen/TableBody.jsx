@@ -41,7 +41,7 @@ const mapStateToProps = (state) => ({
 TableBody.propTypes = {
   filter: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // filterNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TableBody);

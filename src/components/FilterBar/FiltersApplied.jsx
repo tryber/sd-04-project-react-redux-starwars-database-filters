@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTyopes, { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 function FiltersApplied({ filters }) {
