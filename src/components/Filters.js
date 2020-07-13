@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterBy } from '../actions/actionFilter';
 
@@ -23,7 +23,12 @@ class Filters extends React.Component {
     const value = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     return (
       <div>
-        <select onChange={(e) => this.set(e)} name="column" data-testid="column-filter" defaultValue="DEFAULT">
+        <select
+          onChange={(e) => this.set(e)}
+          name="column"
+          data-testid="column-filter"
+          defaultValue="DEFAULT"
+        >
           <option value="DEFAULT" disabled>Column</option>
           {value.map((arg) => <option value={arg} name={arg} id={arg}>{arg}</option>)}
         </select>
@@ -34,7 +39,12 @@ class Filters extends React.Component {
   filterComparison() {
     return (
       <div>
-        <select onChange={(e) => this.set(e)} name="comparison" data-testid="comparison-filter" defaultValue="DEFAULT">
+        <select
+          onChange={(e) => this.set(e)}
+          name="comparison"
+          data-testid="comparison-filter"
+          defaultValue="DEFAULT"
+        >
           <option value="DEFAULT" disabled>Comparison</option>
           <option value="maior que" name="maior_que">maior que</option>
           <option value="menor que" name="menor_que">menor que</option>
@@ -87,12 +97,7 @@ class Filters extends React.Component {
 }
 
 Filters.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   submitValues: PropTypes.func.isRequired,
-};
-
-Filters.defaultProps = {
-  data: [],
 };
 
 const mapStateToProps = (state) => ({
