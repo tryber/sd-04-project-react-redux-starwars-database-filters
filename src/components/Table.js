@@ -31,8 +31,8 @@ class Table extends React.Component {
 Table.propTypes = {
   data: PropTypes.shape({
     map: PropTypes.func,
-  }),
-  isLoading: PropTypes.any,
+  }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

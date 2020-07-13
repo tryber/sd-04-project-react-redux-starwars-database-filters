@@ -23,7 +23,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  fetchApi1: PropTypes.func,
+  fetchApi1: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
