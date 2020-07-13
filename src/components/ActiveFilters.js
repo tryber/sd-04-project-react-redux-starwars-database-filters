@@ -7,7 +7,7 @@ import { removeFilter } from '../actions';
 const ActiveFilters = ({ filterByNumericValues, removeFilterProp }) => (
   <div>
     {filterByNumericValues.map((filter) => (
-      <div data-testid="filter">
+      <div data-testid="filter" key={filter.column}>
         <p>{`${filter.column} ${filter.comparison} ${filter.value}`}</p>
         <Button onClick={() => removeFilterProp(filter.column)} desc="X" />
       </div>

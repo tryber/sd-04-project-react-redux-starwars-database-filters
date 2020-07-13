@@ -23,7 +23,6 @@ const FilterNav = ({
   data,
   filterValues,
   filterBtn,
-  name,
   value,
   actualColumn,
   actualSort,
@@ -37,7 +36,6 @@ const FilterNav = ({
       <Input
         onChange={(e) => filterValues(e.target.value)}
         name="name"
-        value={name}
         test="name-filter"
       />
     </label>
@@ -47,19 +45,15 @@ const FilterNav = ({
         <label htmlFor="categoryLabel">
           Pick a Category:
           <Select
-            name="column"
-            onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+            onChange={(e) => saveFilterProps('column', e.target.value)}
             options={categories}
-            value={column}
             test="column-filter"
           />
         </label>
         <label htmlFor="comparisonLabel">
           Pick a comparison:
           <Select
-            name="comparison"
-            onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-            value={comparison}
+            onChange={(e) => saveFilterProps('comparison', e.target.value)}
             options={comparisons}
             test="comparison-filter"
           />
@@ -67,9 +61,7 @@ const FilterNav = ({
         <label htmlFor="valueLabel">
           Value:
           <Input
-            onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-            value={value}
-            name="value"
+            onChange={(e) => saveFilterProps('value', e.target.value)}
             type="number"
             test="value-filter"
           />
@@ -88,7 +80,6 @@ const FilterNav = ({
             <Select
               onChange={(e) => saveOrderProps('column', e.target.value)}
               options={Object.keys(data[0])}
-              value={actualColumn}
               test="column-sort"
             />
             <label htmlFor="orderASC"> ASC:</label>
@@ -162,7 +153,6 @@ FilterNav.propTypes = {
   saveFilterProps: PropTypes.func.isRequired,
   saveOrderProps: PropTypes.func.isRequired,
   orderBtn: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

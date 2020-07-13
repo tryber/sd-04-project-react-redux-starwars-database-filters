@@ -92,6 +92,15 @@ Table.propTypes = {
   filterValues: PropTypes.string.isRequired,
   filterNumber: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
     .isRequired,
-  order: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
-    .isRequired,
+  order: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
 };
+// jeito de fazer a tabela automática:
+// {data.length !== 0 && filterFunction(data, filterValues, filterNumber, order).map(
+//   (title) => (
+//     <tr key={title.name}>
+//       {Object.keys(title).map((category) => (
+//         <td key={title[category] + title[category]}>{title[category]}</td>
+//       ))}
+//     </tr>
+//   )
+// )}
