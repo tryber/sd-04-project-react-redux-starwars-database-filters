@@ -6,7 +6,7 @@ import { actionInput } from '../actions/actionInput';
 function Header({ inputText, inputValue }) {
   return (
     <div>
-      <label>
+      <label htmlFor="seachBar">
         <input
           data-testid="name-filter"
           onChange={(event) => inputText(event)}
