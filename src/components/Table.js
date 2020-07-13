@@ -32,24 +32,17 @@ const renderTable = (headers, data) => (
   </table>
 );
 
-const comparacao = (planets, { column, comparison, value }) => {
-  return planets.filter((planet) => {
-  //   if (comparison === 'maior que') return Number(planet[column]) > Number(value);
-  //   if (comparison === 'igual a') return Number(planet[column]) === Number(value);
-  //   if (comparison === 'menor que') return Number(planet[column]) < Number(value);
-  //   return false;
-  // });
-    switch (comparison) {
-      case 'maior que':
-        return Number(planet[column]) > Number(value);
-      case 'igual a':
-        return Number(planet[column]) === Number(value);
-      case 'menor que':
-        return Number(planet[column]) < Number(value);
-      default:
-        return false;
-    }
+const comparacao = (planets, columnFilter) => {
+  let aux = [...planets];
+  columnFilter.forEach(({ column, comparison, value }) => {
+    aux = aux.filter((planet) => {
+      if (comparison === 'maior que') return Number(planet[column]) > Number(value);
+      if (comparison === 'igual a') return Number(planet[column]) === Number(value);
+      if (comparison === 'menor que') return Number(planet[column]) < Number(value);
+      return false;
+    });
   });
+  return aux;
 };
 
 class Table extends Component {
@@ -61,7 +54,7 @@ class Table extends Component {
   render() {
     const { data, isFetching, searchTerm, columnFilter } = this.props;
     let headers = '';
-    let filtereds = '';
+    let filtereds = [...data];
     if (isFetching) {
       return <div>Loading...</div>;
     }
@@ -71,7 +64,7 @@ class Table extends Component {
       return <div>{renderTable(headers, filtereds)}</div>;
     }
     if (columnFilter.length !== 0) {
-      filtereds = comparacao(data, columnFilter[columnFilter.length - 1]);
+      filtereds = comparacao(data, columnFilter);
       return <div>{renderTable(headers, filtereds)}</div>;
     }
     return <div>{renderTable(headers, data)}</div>;
