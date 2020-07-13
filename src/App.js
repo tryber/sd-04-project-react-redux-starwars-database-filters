@@ -1,16 +1,29 @@
 import React from 'react';
-import './App.css';
+import { connect } from 'react-redux';
+// import './App.css';
 
 import Table from './components/Table';
+import { fetchApi } from './actions/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Table />
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchApi } = this.props;
+    fetchApi();
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <header className='App-header'>
+          <Table />
+        </header>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  fetchApi: () => dispatch(fetchApi()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
