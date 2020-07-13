@@ -6,3 +6,4 @@ export {
   filterByNumericValues,
   resetFilter,
 } from './filterByNumericValues';
+export { ORDER, orderColumn } from './order';

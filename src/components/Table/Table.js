@@ -52,6 +52,18 @@ class Table extends React.Component {
     }, data);
   }
 
+  sortPlanets(arr = this.props.data) {
+    const { orderColumn, orderSort } = this.props;
+    const columnArray = arr.map((planet) => planet[orderColumn.toLowerCase()]);
+    if (isNaN(Number(columnArray[0]))) columnArray.sort();
+    else columnArray.sort((a, b) => a - b);
+    if (orderSort === 'DESC') columnArray.reverse();
+    const orderedPlanets = columnArray.map((columnValue) =>
+      arr.find((planet) => planet[orderColumn.toLowerCase()] === columnValue),
+    );
+    return orderedPlanets;
+  }
+
   renderTableHead() {
     const { thead } = this.state;
     return (
@@ -72,9 +84,12 @@ class Table extends React.Component {
     const filteredByNamePlanets = this.filterPlanetsByName(inputName);
     const filteredPlanets = this.filterPlanetsByNumericValues(filteredByNamePlanets);
 
+    const filteredSortedPlanets = this.sortPlanets(filteredPlanets);
+
+
     return (
       <tbody>
-        {filteredPlanets.map((planet) => (
+        {filteredSortedPlanets.map((planet) => (
           <tr key={planet.name}>
             {thead.map((th) => (
               <td key={`${planet.name} ${th}`}>{planet[th]}</td>
@@ -104,6 +119,8 @@ const mapStateToProps = (state) => ({
   loading: state.SWAPI.loading,
   inputName: state.filters.filterByName.name,
   filterNumericValues: state.filters.filterByNumericValues,
+  orderColumn: state.filters.order.column,
+  orderSort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps)(Table);
@@ -133,4 +150,6 @@ Table.propTypes = {
       value: PropTypes.any,
     }),
   ).isRequired,
+  orderColumn: PropTypes.string.isRequired,
+  orderSort: PropTypes.string.isRequired,
 };

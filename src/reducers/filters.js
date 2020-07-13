@@ -1,6 +1,10 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, RESET_FILTER } from '../actions';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, RESET_FILTER, ORDER } from '../actions';
 
-const INITIAL_STATE = { filterByName: { name: '' }, filterByNumericValues: [] };
+const INITIAL_STATE = {
+  filterByName: { name: '' },
+  filterByNumericValues: [],
+  order: { column: 'Name', sort: 'ASC' },
+};
 
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -13,7 +17,7 @@ const filters = (state = INITIAL_STATE, action) => {
     case FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
-        filterByName: { ...state.filterByName },
+        // filterByName: { ...state.filterByName },
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -26,8 +30,13 @@ const filters = (state = INITIAL_STATE, action) => {
     case RESET_FILTER:
       return {
         ...state,
-        filterByName: { ...state.filterByName },
+        // filterByName: { ...state.filterByName },
         filterByNumericValues: action.filters,
+      };
+    case ORDER:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
