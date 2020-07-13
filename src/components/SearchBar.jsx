@@ -48,12 +48,8 @@ class SearchBar extends React.Component {
   }
 
   onClick() {
-    const searchFilters = { 
-      value: this.state.value,
-      column: this.state.column,
-      comparison: this.state.comparison,
-    }
-    this.props.filterByNumbers(searchFilters);
+    const { value, column, comparison } = this.state;
+    this.props.filterByNumbers({ value, column, comparison });
     this.setState({ value: '', column: '', comparison: '' });
   }
 
@@ -70,7 +66,7 @@ class SearchBar extends React.Component {
         onChange={(event) => this.handleChange(event, 'comparison')}
         >
           {comparison.map((option) => (
-            <option key= {option} value={option}>{option}</option>
+            <option key={option} value={option}>{option}</option>
           ))}
         </select>
         <input

@@ -18,9 +18,18 @@ class Table extends React.Component {
   }
 
   toFilterPlanets() {
-    const { name, data } = this.props;
+    const { name, data, valueFilters } = this.props;
 
     const filterName = data.filter((planet) => (planet.name.toLowerCase().includes(name)));
+    if(valueFilters.length !== 0) {
+      return valueFilters.reduce((newList, { column, comparison, value }) => 
+      newList.filter((planet) => {
+        if(comparison === 'maior que') return Number(planet[column]) > Number(value);
+        if(comparison === 'igual a') return Number(planet[column] === Number(value));
+        if(comparison === 'menor que') return Number(planet[column] < Number(value));
+        return planet;
+      }), filterName);
+    }
     return filterName;
   }
 
@@ -46,6 +55,7 @@ const mapStateToProps = (state) => ({
   isFetching: state.planetsReducer.isFetching,
   data: state.planetsReducer.data,
   name: state.filters.filterByName.name,
+  valueFilters: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -57,10 +67,12 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   getPlanets: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  valueFilters: PropTypes.arrayOf(PropTypes.object),
 };
 
 Table.defaultProps = {
   data: null,
+  valueFilters: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
