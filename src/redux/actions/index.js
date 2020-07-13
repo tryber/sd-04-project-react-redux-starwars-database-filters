@@ -10,6 +10,30 @@ export const receivedData = (data) => ({
   data,
 });
 
+export const handleNameFilter = (input) => ({
+  type: actionTypes.HANDLE_NAME_FILTER,
+  input,
+});
+
+export const handleNumericFilter = (event, field) => ({
+  type: actionTypes.HANDLE_CHANGE_NUMERIC,
+  value: event.target.value,
+  field,
+});
+
+export const submitFilter = (event, filters) => ({
+  type: actionTypes.SUBMIT_FILTER,
+  event,
+  column: filters.column,
+  comparison: filters.comparison,
+  value: filters.value,
+});
+
+export const removeFilter = (column) => ({
+  type: actionTypes.REMOVE_FILTER,
+  column,
+});
+
 const filterData = (data) => ({
   ...data,
   results: data.results.map((element) => {

@@ -1,7 +1,34 @@
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions';
+
+const filterDataByName = (teste, filter) => {
+  const pattern = new RegExp(`.*${filter}.*`, 'gim');
+  console.log('data', teste);
+  return teste.filter((result) => result.name.match(pattern));
+};
+
+const filterByNumber = (numbersFilter, data) => {
+  let newData = [...data];
+  const operations = {
+    'maior que': (a, b) => Number(a) > Number(b),
+    'menor que': (a, b) => Number(a) < Number(b),
+    'igual a': (a, b) => a === b,
+  };
+  if (numbersFilter.length > 0) {
+    for (let i = 0; i < numbersFilter.length; i += 1) {
+      const columnFilter = numbersFilter[i].column;
+      const comparisonFilter = numbersFilter[i].comparison;
+      const valueFilter = numbersFilter[i].value;
+      newData = newData.filter((element) =>
+        operations[comparisonFilter](element[columnFilter], valueFilter),
+      );
+    }
+    return newData;
+  }
+  return data;
+};
 
 class Table extends React.Component {
   constructor(props) {
@@ -28,13 +55,17 @@ class Table extends React.Component {
   }
 
   getBody() {
-    const { results } = this.props;
+    const { results, nameFilter, numberFilter } = this.props;
+    console.log('props', numberFilter);
     return (
       <tbody>
-        {results.map((element) => (
-          <tr>
+        {filterDataByName(
+          filterByNumber(numberFilter, results),
+          nameFilter,
+        ).map((element) => (
+          <tr key={element.name}>
             {Object.values(element).map((d) => (
-              <td>{d}</td>
+              <td key={`${element.name}-${d}`}>{d}</td>
             ))}
           </tr>
         ))}
@@ -58,6 +89,7 @@ class Table extends React.Component {
 
 Table.propTypes = {
   getData: PropTypes.func,
+  nameFilter: PropTypes.string,
   results: PropTypes.shape({
     map: PropTypes.func,
   }),
@@ -70,6 +102,9 @@ Table.defaultProps = {
 
 const mapStateToProps = (state) => ({
   results: state.data.results,
+  nameFilter: state.filters.filterByName.name,
+  numberFilter: state.filters.filterByNumericValues,
+  numericFilterInput: state.numericFilterInput,
 });
 
 export default connect(mapStateToProps, { getData })(Table);

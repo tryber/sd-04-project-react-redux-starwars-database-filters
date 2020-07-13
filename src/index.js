@@ -7,14 +7,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import starReducer from './redux/reducers';
+import reducer from './reducers';
 
 const middlewares = [thunk];
 
 ReactDOM.render(
   <Provider
     store={createStore(
-      starReducer,
+      reducer,
       composeWithDevTools(applyMiddleware(...middlewares)),
     )}
   >
