@@ -29,7 +29,7 @@ const comparePartTwo = (varA, varB, order) => {
     comparison = -1;
   }
   return order === 'DESC' ? comparison * -1 : comparison;
-}
+};
 
 // função pra ordernar números ou strings em ordem ASC ou DESC:
 const compare = (type, order = 'ASC') => (a, b) => {
