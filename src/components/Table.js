@@ -47,15 +47,13 @@ const TBody = ({ data }) =>
     </tr>
   ));
 
-const Table = ({ data, loading }) => {
-  console.log(data, loading)
-  return (loading ? <p>Loading...</p> :
+const Table = ({ data, loading }) =>
+  (loading ? <p>Loading...</p> :
     <div>
       <p>StarWars Datatable with Filters</p>
       <THeadBody data={data} />
     </div>
   );
-}
 
 const mapStateToProps = (state) => ({
   data: state.reducerData.data,

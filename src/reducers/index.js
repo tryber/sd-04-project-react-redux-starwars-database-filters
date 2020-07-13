@@ -1,5 +1,5 @@
-import { DATA_REQUEST, DATA_RECEIVED, DATA_RECEIVED_ERROR } from '../actions';
 import { combineReducers } from 'redux';
+import { DATA_REQUEST, DATA_RECEIVED, DATA_RECEIVED_ERROR } from '../actions';
 
 const initialState = {
   loading: true,
