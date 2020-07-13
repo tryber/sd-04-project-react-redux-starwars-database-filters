@@ -88,4 +88,19 @@ NumericSearch.propTypes = {
   changeValues: PropTypes.func.isRequired,
 };
 
+CreateSelectColumn.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
+CreateSelectComparison.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
+CreateInputValue.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
 export default connect(null, mapDispatchToProps)(NumericSearch);
