@@ -3,18 +3,41 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterValues } from '../../actions/filter';
 
-const CreateSelectColumn = (onChange, value) => {
-  return (
-    <select value={value} onChange={onChange} data-testid="column-filter" id="column">
-      <option value="">Column</option>
-      <option value="population">population</option>
-      <option value="orbital_period">orbital_period</option>
-      <option value="diameter">diameter</option>
-      <option value="rotation_period">rotation_period</option>
-      <option value="surface_water">surface_water</option>
-    </select>
-  );
-};
+const CreateSelectColumn = ({ onChange, value }) => (
+  <select value={value} onChange={(e) => onChange(e)} data-testid="column-filter" id="column">
+    <option value="">Column</option>
+    <option value="population">population</option>
+    <option value="orbital_period">orbital_period</option>
+    <option value="diameter">diameter</option>
+    <option value="rotation_period">rotation_period</option>
+    <option value="surface_water">surface_water</option>
+  </select>
+);
+
+const CreateSelectComparison = ({ onChange, value }) => (
+  <select
+    value={value}
+    onChange={(e) => onChange(e)}
+    data-testid="comparison-filter"
+    id="comparison"
+  >
+    <option defaultValue>Comparison</option>
+    <option value="maior que">maior que</option>
+    <option value="igual a">igual a</option>
+    <option value="menor que">menor que</option>
+  </select>
+);
+
+const CreateInputValue = ({ onChange, value }) => (
+  <input
+    style={{ width: '90px' }}
+    value={value}
+    onChange={(e) => onChange(e)}
+    data-testid="value-filter"
+    type="number"
+    id="value"
+  />
+);
 
 class NumericSearch extends Component {
   constructor(props) {
@@ -26,34 +49,8 @@ class NumericSearch extends Component {
       value: '',
     };
 
-    this.createSelectComparison = this.createSelectComparison.bind(this);
-    this.createInputValue = this.createInputValue.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  createSelectComparison(onChange, value) {
-    return (
-      <select value={value} onChange={onChange} data-testid="comparison-filter" id="comparison">
-        <option defaultValue>Comparison</option>
-        <option value="maior que">maior que</option>
-        <option value="igual a">igual a</option>
-        <option value="menor que">menor que</option>
-      </select>
-    );
-  }
-
-  createInputValue(onChange, value) {
-    return (
-      <input
-        style={{ width: '90px' }}
-        value={value}
-        onChange={onChange}
-        data-testid="value-filter"
-        type="number"
-        id="value"
-      />
-    );
   }
 
   handleChange(e) {
@@ -69,12 +66,11 @@ class NumericSearch extends Component {
 
   render() {
     const { column, comparison, value } = this.state;
-    const { changeValues } = this.props;
     return (
       <form>
-        <CreateSelectColumn onChange={(e) => this.handleChange(e)} value={column} />
-        {this.createSelectComparison((e) => this.handleChange(e), comparison)}
-        {this.createInputValue((e) => this.handleChange(e), value)}
+        <CreateSelectColumn onChange={this.handleChange} value={column} />
+        <CreateSelectComparison onChange={this.handleChange} value={comparison} />
+        <CreateInputValue onChange={this.handleChange} value={value} />
 
         <button onClick={() => this.handleSubmit()} data-testid="button-filter" type="button">
           Apply filter

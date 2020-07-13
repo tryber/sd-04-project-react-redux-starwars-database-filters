@@ -27,6 +27,7 @@ th, td {
 .header-content {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
@@ -34,4 +35,9 @@ th, td {
   display: flex;
   justify-content: space-evenly;
   font-size: small;
+}
+
+.filters-card {
+  border: black 1px solid;  
+  border-radius: 5px;
 }

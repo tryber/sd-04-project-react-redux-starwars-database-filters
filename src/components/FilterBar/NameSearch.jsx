@@ -7,7 +7,7 @@ const NameSearch = (props) => {
   const { filteredName } = props;
   return (
     <form>
-      <label htmlFor="name-filter">Find for planet name</label>
+      <label htmlFor="name-filter">Find for planet name: </label>
       <input
         data-testid="name-filter"
         name="name-filter"
