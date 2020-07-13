@@ -32,11 +32,11 @@ class Filter extends React.Component {
 
   columnRender() {
     this.bar = 12; // Without CC asked for using this
-    let colonumItemsArray = [];
+    let colonumItemsArray = []; // Must refactor this part and substract object dierctly
     this.props.colonumItems.forEach((item) => {
       colonumItemsArray.push(item.name);
     });
-    let activFilterColum = [];
+    const activFilterColum = [];
     this.props.filterByNumericValues.forEach((item) => {
       activFilterColum.push(item.column);
     });
@@ -77,34 +77,22 @@ class Filter extends React.Component {
   render() {
     return (
       <div>
-        <form class="form-inline">
+        <form className="form-inline">
           <this.columnRender />
           <select
-            name="comparison"
-            className="form-control col-2"
-            data-testid="comparison-filter"
-            value={this.state.comparison}
-            onChange={this.handleChange}
+            name="comparison" className="form-control col-2" data-testid="comparison-filter"
+            value={this.state.comparison} onChange={this.handleChange}
           >
-            {this.state.comparisonItems.map((item) => (
-              <option value={item}>{item}</option>
+            {this.state.comparisonItems.map((item) => (<option value={item}>{item}</option>
             ))}
           </select>
           <input
-            name="value"
-            type="number"
-            className="form-control col-1"
-            data-testid="value-filter"
-            value={this.state.value}
-            onChange={this.handleChange}
+            name="value" type="number" className="form-control col-1" data-testid="value-filter"
+            value={this.state.value} onChange={this.handleChange}
           />
           <button
-            type="button"
-            class="btn btn-primary"
-            data-testid="button-filter"
-            onClick={() =>
-              this.props.numericalFilter(this.state.filterByNumericValues)
-            }
+            type="button" className="btn btn-primary" data-testid="button-filter"
+            onClick={() => this.props.numericalFilter(this.state.filterByNumericValues)}
           >
             Filter
           </button>
@@ -126,6 +114,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Filter.propTypes = {
   numericalFilter: PropTypes.func.isRequired,
-};
+  filterByNumericValues: PropTypes.shape.isRequired,
+  colonumItems: PropTypes.array.isRequired,
+ };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

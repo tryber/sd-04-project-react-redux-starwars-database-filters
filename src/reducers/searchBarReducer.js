@@ -21,10 +21,7 @@ function filters(state = initialState, action) {
     case SEARCH_BAR:
       console.log('test searchbarReducer', action);
       return {
-        ...state,
-        filterByName: {
-          name: action.value,
-        },
+        ...state, filterByName: { name: action.value },
       };
     case NUMERICAL_FILTER: {
       const filter = action.value;
@@ -34,19 +31,12 @@ function filters(state = initialState, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: filter.column,
-            comparison: filter.comparison,
-            value: filter.value,
-          },
+          { column: filter.column, comparison: filter.comparison, value: filter.value },
         ],
-
         colonumItems: state.colonumItems.map((item) => {
           if (item.name === filter.column) {
             return {
-              name: item.name,
-              available: false,
-            };
+              name: item.name, available: false };
           }
           return item;
         }),
