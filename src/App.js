@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Table from './components/Table';
+import SearchBar from './components/searchBar';
 import { fetchApi } from './actions/index';
 
 class App extends React.Component {
@@ -15,8 +16,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Table />
+          <SearchBar />
         </header>
+          <Table />
       </div>
     );
   }

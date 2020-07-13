@@ -1,11 +1,12 @@
-import { REQUEST_API, GET_API } from '../actions';
+import { REQUEST_API, GET_API, INPUT_NAME } from '../actions';
 
 const INITIAL_STATE = {
   data: {},
   isLoading: true,
+  filterByName: { name: '' },
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+export const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REQUEST_API:
       return {
@@ -23,4 +24,14 @@ const reducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default reducer;
+export const filters = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case INPUT_NAME:
+      return {
+        ...state,
+        filterByName: { name: action.event.target.value },
+      };
+    default:
+      return state;
+  }
+};

@@ -5,14 +5,11 @@ import linha from './TableBody';
 
 class Table extends React.Component {
   render() {
-    const { data, isLoading } = this.props;
+    const { data, isLoading, filterByName } = this.props;
     if (isLoading) return <span>Loading...</span>;
-    // console.log(data);
     const planetas = data[0];
-    // console.log(planetas);
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
-    console.log(objPlanetas);
-
+    const filtrado = data.filter(elem => elem.name.includes(filterByName))
     return (
       <table>
         <thead>
@@ -22,7 +19,7 @@ class Table extends React.Component {
             ))}
           </tr>
         </thead>
-        <tbody>{data.map((item) => linha(item))}</tbody>
+        <tbody>{filtrado.map((item) => linha(item))}</tbody>
       </table>
     );
   }
@@ -38,6 +35,7 @@ Table.propTypes = {
 const mapStateToProps = (state) => ({
   data: state.reducer.data,
   isLoading: state.reducer.isLoading,
+  filterByName: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(Table);
