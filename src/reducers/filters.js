@@ -9,10 +9,7 @@ const INITIAL_STATE = {
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
-      return {
-        ...state,
-        filterByName: { name: action.name },
-      };
+      return { ...state, filterByName: { name: action.name } };
     case FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
@@ -26,10 +23,7 @@ const filters = (state = INITIAL_STATE, action) => {
         ],
       };
     case RESET_FILTER:
-      return {
-        ...state,
-        filterByNumericValues: action.filters,
-      };
+      return { ...state, filterByNumericValues: action.filters };
     case ORDER:
       return {
         ...state,
