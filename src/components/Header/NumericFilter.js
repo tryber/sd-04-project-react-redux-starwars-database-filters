@@ -120,6 +120,11 @@ NumericFilter.propTypes = {
   submitFilter: PropTypes.func,
 };
 
+NumericFilter.defaultProps = {
+  filters: {},
+  submitFilter: () => console.log('Não foi passado função'),
+};
+
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
 });

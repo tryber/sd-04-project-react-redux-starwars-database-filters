@@ -17,6 +17,11 @@ NameFilter.propTypes = {
   input: PropTypes.string,
 };
 
+NameFilter.defaultProps = {
+  handleNameFilter: () => console.log('faltando função aqui, manda uma'),
+  input: '',
+};
+
 const mapStateToProps = (state) => ({
   input: state.filters.filterByName.name,
 });

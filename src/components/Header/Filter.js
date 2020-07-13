@@ -21,4 +21,10 @@ Filter.propTypes = {
   removeFilter: PropTypes.func,
 };
 
+Filter.defaultProps = {
+  column: '',
+  filterString: '',
+  removeFilter: () => console.log('Não foi passado função'),
+};
+
 export default connect(null, { removeFilter })(Filter);

@@ -90,6 +90,7 @@ class Table extends React.Component {
 Table.propTypes = {
   getData: PropTypes.func,
   nameFilter: PropTypes.string,
+  numberFilter: PropTypes.arrayOf(PropTypes.object),
   results: PropTypes.shape({
     map: PropTypes.func,
   }),
@@ -98,6 +99,8 @@ Table.propTypes = {
 Table.defaultProps = {
   getData: () => console.log('Should be a function'),
   results: null,
+  nameFilter: '',
+  numberFilter: [],
 };
 
 const mapStateToProps = (state) => ({
