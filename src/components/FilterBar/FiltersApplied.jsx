@@ -7,16 +7,11 @@ const FiltersApplied = ({ filters, removeFilter }) => (
   <div className="filters-applied">
     {filters.length > 0 ? <h4>Filters applied</h4> : null}
     {filters.map((filter) => (
-      <div className="filters-card" key={filter.column}>
+      <div data-testid="filter" className="filters-card" key={filter.column}>
         <p>{filter.column}</p>
         <p>{filter.comparison}</p>
         <p>{filter.value}</p>
-        <button
-          onClick={() => removeFilter(filter.column)}
-          className="remove-button"
-          type="button"
-          data-testid="filter"
-        >
+        <button onClick={() => removeFilter(filter.column)} className="remove-button" type="button">
           X
         </button>
       </div>
