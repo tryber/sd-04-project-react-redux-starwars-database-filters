@@ -26,13 +26,6 @@ class Filters extends React.Component {
     this.uptCol();
   }
 
-  selectChange(e, key) {
-    const { value } = e.target;
-    this.setState({
-      [key]: value,
-    });
-  }
-
   onClick() {
     const { number, column, comparation } = this.state;
     this.props.swFilterNum(column, comparation, number);
@@ -60,6 +53,13 @@ class Filters extends React.Component {
         ))}
       </select>
     );
+  }
+
+  selectChange(e, key) {
+    const { value } = e.target;
+    this.setState({
+      [key]: value,
+    });
   }
 
   numChange(e) {
