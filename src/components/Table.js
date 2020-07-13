@@ -29,8 +29,8 @@ Table.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.planetsReducer.data,
-  isFetching: state.planetsReducer.isFetching,
+  data: state.data,
+  isFetching: state.isFetching,
 });
 
 export default connect(mapStateToProps, null)(Table);

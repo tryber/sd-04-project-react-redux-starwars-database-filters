@@ -13,7 +13,6 @@ const planetsReducer = (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case RECEIVE_PLANETS:
-      console.log(action);
       return {
         ...state,
         isFetching: false,
