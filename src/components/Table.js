@@ -38,11 +38,22 @@ const filterByNumber = (numbersFilter, data) => {
   return data;
 };
 
+const sortAcending = (A, B) => {
+  if (A < B) {
+    return -1;
+  }
+  return 1;
+};
+
+const sortDecending = (A, B) => {
+  if (A < B) {
+    return 1;
+  }
+  return -1;
+};
+
 const sortData = (data, column, sortWay) => {
   const sortedData = data.sort((a, b) => {
-    console.log('a', a);
-    console.log(column);
-    console.log(sortWay);
     const A = numberColumns.some((elem) => elem === column)
       ? Number(a[column])
       : a[column.toLowerCase()].toUpperCase();
@@ -50,25 +61,13 @@ const sortData = (data, column, sortWay) => {
       ? Number(b[column])
       : b[column.toLowerCase()].toUpperCase();
     if (sortWay === 'ASC') {
-      console.log(A < B);
-      if (A < B) {
-        return -1;
-      }
-      if (A > B) {
-        return 1;
-      }
+      return sortAcending(A, B);
     }
     if (sortWay === 'DESC') {
-      if (A < B) {
-        return 1;
-      }
-      if (A > B) {
-        return -1;
-      }
+      return sortDecending(A, B);
     }
     return 0;
   });
-  console.log('sorted', sortedData);
   return sortedData;
 };
 

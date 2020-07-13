@@ -34,6 +34,33 @@ class OrderFilter extends React.Component {
     });
   }
 
+  renderRadio() {
+    return (
+      <div>
+        <label>
+          <input
+            data-testid="column-sort-input"
+            type="radio"
+            value="ASC"
+            checked={this.state.sort === 'ASC'}
+            onChange={(e) => this.handleOrderChange(e, 'sort')}
+          />
+          ASC
+        </label>
+        <label>
+          <input
+            data-testid="column-sort-input"
+            type="radio"
+            value="DESC"
+            checked={this.state.sort === 'DESC'}
+            onChange={(e) => this.handleOrderChange(e, 'sort')}
+          />
+          DESC
+        </label>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -52,26 +79,7 @@ class OrderFilter extends React.Component {
               </option>
             ))}
           </select>
-          <label>
-            <input
-              data-testid="column-sort-input"
-              type="radio"
-              value="ASC"
-              checked={this.state.sort === 'ASC'}
-              onChange={(e) => this.handleOrderChange(e, 'sort')}
-            />
-            ASC
-          </label>
-          <label>
-            <input
-              data-testid="column-sort-input"
-              type="radio"
-              value="DESC"
-              checked={this.state.sort === 'DESC'}
-              onChange={(e) => this.handleOrderChange(e, 'sort')}
-            />
-            DESC
-          </label>
+          {this.renderRadio()}
           <button
             type="submit"
             form="orderFilter"
