@@ -3,20 +3,33 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByNumericValues } from '../../actions/index';
 
+const initialColumnOptions = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 const FilterByNumericValues = (props) => {
+  const { filteredColumns } = props;
   const [column, setColumn] = React.useState('');
   const [comparison, setComparison] = React.useState('');
   const [value, setValue] = React.useState(0);
+
+  const columnsToRender = (columnsNotRender) => {
+    if (columnsNotRender.length === 0) return initialColumnOptions;
+    const usedColumns = columnsNotRender.map((numericFilter) => numericFilter.column);
+    return initialColumnOptions.filter((columnOption) => !usedColumns.includes(columnOption));
+  };
 
   return (
     <div className="filter-by-numbers">
       <select data-testid="column-filter" onChange={(e) => setColumn(e.target.value)}>
         <option>SELECT</option>
-        <option>population</option>
-        <option>orbital_period</option>
-        <option>diameter</option>
-        <option>rotation_period</option>
-        <option>surface_water</option>
+        {columnsToRender(filteredColumns).map((columnOption) => (
+          <option key={columnOption}>{columnOption}</option>
+        ))}
       </select>
       <select data-testid="comparison-filter" onChange={(e) => setComparison(e.target.value)}>
         <option>SELECT</option>
@@ -36,8 +49,13 @@ const FilterByNumericValues = (props) => {
   );
 };
 
-export default connect(null, { filterByNumericValues })(FilterByNumericValues);
+const mapStateToProps = (state) => ({
+  filteredColumns: state.filters.filterByNumericValues,
+});
+
+export default connect(mapStateToProps, { filterByNumericValues })(FilterByNumericValues);
 
 FilterByNumericValues.propTypes = {
   filterByNumericValues: PropTypes.func.isRequired,
+  filteredColumns: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
