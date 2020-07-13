@@ -11,13 +11,11 @@ const filters = (state = INITIAL_STATE, action) => {
     case FILTER_BY_NAME:
       return {
         ...state,
-        filterByNumericValues: [...state.filterByNumericValues],
         filterByName: { name: action.name },
       };
     case FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
-        // filterByName: { ...state.filterByName },
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -30,7 +28,6 @@ const filters = (state = INITIAL_STATE, action) => {
     case RESET_FILTER:
       return {
         ...state,
-        // filterByName: { ...state.filterByName },
         filterByNumericValues: action.filters,
       };
     case ORDER:

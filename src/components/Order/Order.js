@@ -23,13 +23,16 @@ const Order = (props) => {
   const [column, setColumn] = React.useState('name');
   const [sort, setSort] = React.useState('ASC');
 
-  return (
-    <div className="order">
-      <select data-testid="column-sort" onChange={(e) => setColumn(e.target.value)}>
-        {columns.map((col) => (
-          <option key={col}>{col}</option>
-        ))}
-      </select>
+  const renderColumnOptions = () => (
+    <select data-testid="column-sort" onChange={(e) => setColumn(e.target.value)}>
+      {columns.map((col) => (
+        <option key={col}>{col}</option>
+      ))}
+    </select>
+  );
+
+  const renderSortInputs = () => (
+    <div>
       <input
         data-testid="column-sort-input"
         type="radio"
@@ -48,6 +51,13 @@ const Order = (props) => {
         onClick={(e) => setSort(e.target.value)}
       />
       <label htmlFor="DESC">DESC</label>
+    </div>
+  );
+
+  return (
+    <div className="order">
+      {renderColumnOptions()}
+      {renderSortInputs()}
       <button
         data-testid="column-sort-button"
         type="button"
