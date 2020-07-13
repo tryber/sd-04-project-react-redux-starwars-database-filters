@@ -10,7 +10,8 @@ class TextFilter extends Component {
         <label htmlFor="search-text">
           Name Search:
           <br />
-          <input className="input" type="text" data-testid="name-filter"
+          <input
+            className="input" type="text" data-testid="name-filter"
             onChange={(e) => this.props.searchText(e)}
           />
         </label>
