@@ -16,7 +16,6 @@ const actionDataReceivedError = (error) => ({
   error,
 });
 
-
 export const asyncActionDataFetch = (url) =>
   (dispatch) => {
     dispatch(actionDataRequest());

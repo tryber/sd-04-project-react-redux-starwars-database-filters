@@ -1,7 +1,8 @@
 import { DATA_REQUEST, DATA_RECEIVED, DATA_RECEIVED_ERROR } from '../actions';
+import { combineReducers } from 'redux';
 
 const initialState = {
-  loading: false,
+  loading: true,
   data: [],
   error: {},
 };
@@ -19,4 +20,6 @@ const reducerData = (state = initialState, action) => {
   }
 };
 
-export default reducerData;
+const rootReducer = combineReducers({ reducerData });
+
+export default rootReducer;
