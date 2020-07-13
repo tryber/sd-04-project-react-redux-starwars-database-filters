@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTyopes, { object } from 'prop-types';
 import { connect } from 'react-redux';
 
 function FiltersApplied({ filters }) {
@@ -22,5 +23,9 @@ function FiltersApplied({ filters }) {
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
 });
+
+FiltersApplied.propTypes = {
+  filters: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default connect(mapStateToProps)(FiltersApplied);

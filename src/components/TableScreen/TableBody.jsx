@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const TableBody = ({ planets, filter, filterNumeric }) => {
+const TableBody = ({ planets, filter }) => {
   const filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
 
   return (
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => ({
 TableBody.propTypes = {
   filter: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterNumeric: PropTypes.arrayOf(PropTypes.object),
+  filterNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TableBody);

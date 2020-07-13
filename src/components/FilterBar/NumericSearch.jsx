@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterValues } from '../../actions/filter';
 
@@ -85,5 +86,9 @@ class NumericSearch extends Component {
 const mapDispatchToProps = (dispatch) => ({
   changeValues: (column, comparison, value) => dispatch(filterValues(column, comparison, value)),
 });
+
+NumericSearch.propTypes = {
+  changeValues: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(NumericSearch);

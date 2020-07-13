@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 NameSearch.propTypes = {
-  filterName: PropTypes.func.isRequired,
+  filteredName: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(NameSearch);

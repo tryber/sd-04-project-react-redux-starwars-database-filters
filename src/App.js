@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/TableScreen/Table';
@@ -24,5 +25,9 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => ({
   callAPI: () => dispatch(requestFetch()),
 });
+
+App.propTypes = {
+  callAPI: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(App);
