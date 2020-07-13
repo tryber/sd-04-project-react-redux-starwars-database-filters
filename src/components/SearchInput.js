@@ -25,7 +25,7 @@ class SearchInput extends React.Component {
           type="text"
           value={this.state.value}
           onChange={(e) => this.getValue(e)}
-          data-testid="name-filter"
+          data-testid='name-filter'
         />
       </div>
     );
