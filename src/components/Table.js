@@ -28,7 +28,6 @@ class Table extends Component {
     const chaves =
       (data.length !== 0) ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
     const planets = this.filteredData();
-    console.log(planets);
     if (isFetching) return <h1>Loading...</h1>;
     return (
       <div className="table-container">
@@ -40,7 +39,7 @@ class Table extends Component {
           </thead>
           <tbody>
             {planets.map((planet) => (
-              <tr key={`${planet.name} 1`}>
+              <tr type="row" key={`${planet.name} 1`}>
                 {chaves.map((chave) => (
                   <td key={`${planet.name} ${chave}`}>{planet[chave]}</td>
                 ))}
