@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { sortData } from '../util';
 import { sortFilter } from '../actions/index';
 
 class Sort extends React.Component {
@@ -12,14 +11,30 @@ class Sort extends React.Component {
       sort: '',
     };
     this.handler = this.handler.bind(this);
+    this.generateInputAndLabel = this.generateInputAndLabel.bind(this);
   }
 
   handler({ name, value }) {
     this.setState({ [name]: value });
   }
 
+  generateInputAndLabel(value) {
+    return (
+      <div>
+        <input
+          type="radio"
+          data-testid="column-sort-input"
+          name="sort"
+          value={value}
+          onClick={(event) => this.handler(event.target)}
+        />
+        <label htmlFor="sort">{value}</label>
+      </div>
+    );
+  }
+
   render() {
-    const { options, data, sortFilter } = this.props;
+    const { options, sortFilterFunc } = this.props;
     const { column, sort } = this.state;
     return (
       <div>
@@ -32,26 +47,12 @@ class Sort extends React.Component {
             <option key={option}>{option}</option>
           ))}
         </select>
-        <input
-          type="radio"
-          data-testid="column-sort-input"
-          name="sort"
-          value="ASC"
-          onClick={(event) => this.handler(event.target)}
-        />
-        <label htmlFor="sort">ASC</label>
-        <input
-          type="radio"
-          data-testid="column-sort-input"
-          name="sort"
-          value="DESC"
-          onClick={(event) => this.handler(event.target)}
-        />
-        <label htmlFor="sort">DESC</label>
+        {this.generateInputAndLabel('ASC')}
+        {this.generateInputAndLabel('DESC')}
         <button
           data-testid="column-sort-button"
           type="button"
-          onClick={() => sortFilter(sort, column)}
+          onClick={() => sortFilterFunc(sort, column)}
         >
           Sort
         </button>
@@ -66,7 +67,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sortFilter: (data, column) => dispatch(sortFilter(data, column)),
+  sortFilterFunc: (data, column) => dispatch(sortFilter(data, column)),
 });
+
+Sort.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sortFilterFunc: PropTypes.func.isRequired,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sort);

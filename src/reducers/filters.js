@@ -21,10 +21,7 @@ const INITIAL_FILTERS = {
 const filters = (state = INITIAL_FILTERS, action) => {
   switch (action.type) {
     case SEARCH_TEXT:
-      return {
-        ...state,
-        filterByName: { name: action.searchText },
-      };
+      return { ...state, filterByName: { name: action.searchText } };
     case NUMERIC_FILTER:
       return {
         ...state,
@@ -47,10 +44,7 @@ const filters = (state = INITIAL_FILTERS, action) => {
         options: [...state.options, action.filterToRemove],
       };
     case SORT_FILTER:
-      return {
-        ...state,
-        order: { column: action.column, sort: action.sort },
-      };
+      return { ...state, order: { column: action.column, sort: action.sort } };
     default:
       return state;
   }

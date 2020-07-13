@@ -44,6 +44,7 @@ TableContent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   searchText: PropTypes.string.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
 };
 
 export default connect(mapStateToProps)(TableContent);
