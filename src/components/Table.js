@@ -8,14 +8,14 @@ class Table extends Component {
     const { data, filterByName, filterByNumericValues } = this.props;
     let planets = [...data];
     if (filterByName.length > 0) {
-      return planets.filter((planet) => planet.name.includes(filterByName));
+      planets = planets.filter((planet) => planet.name.includes(filterByName));
     }
     if (filterByNumericValues.length > 0) {
       filterByNumericValues.forEach(({ column, comparison, value }) => {
         planets = planets.filter((planet) => {
-          if (comparison === 'less') return Number(planet[column]) < Number(value);
-          if (comparison === 'equal') return Number(planet[column]) === Number(value);
-          if (comparison === 'bigger') return Number(planet[column]) > Number(value);
+          if (comparison === 'less than') return Number(planet[column]) < Number(value);
+          if (comparison === 'equal to') return Number(planet[column]) === Number(value);
+          if (comparison === 'grather than') return Number(planet[column]) > Number(value);
           return console.log('deu ruim');
         });
       });

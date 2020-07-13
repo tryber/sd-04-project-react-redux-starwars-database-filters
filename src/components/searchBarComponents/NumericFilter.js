@@ -32,9 +32,9 @@ class NumericFilter extends Component {
         </select>
         <select name="select" data-testid="comparison-filter">
           <option value="">Comparison</option>
-          <option value="less">menor que</option>
-          <option value="bigger">maior que</option>
-          <option value="equal">igual a</option>
+          <option value="less than">menor que</option>
+          <option value="grather than">maior que</option>
+          <option value="equal to">igual a</option>
         </select>
         <input type="number" data-testid="value-filter" />
         <button type="submit" data-testid="button-filter">Filter</button>
