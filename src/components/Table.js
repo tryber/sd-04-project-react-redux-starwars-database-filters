@@ -11,10 +11,13 @@ class Table extends Component {
       return data.filter((planet) => planet.name.includes(filterByName));
     }
     if (filterByNumericValues.length > 0) {
-      const { column, comparison, value } = filterByNumericValues;
-      if (comparison === 'less') return data.filter((planet) => parseFloat(planet[column]) < parseFloat(value));
-      if (comparison === 'equal') return data.filter((planet) => Number(planet[column]) === Number(value));
-      if (comparison === 'bigger') return data.filter((planet) => Number(planet[column]) > Number(value));
+      return data.filter((planet) => {
+        const { column, comparison, value } = filterByNumericValues;
+        if (comparison === 'less') return Number(planet[column]) < Number(value);
+        if (comparison === 'equal') return Number(planet[column]) === Number(value);
+        if (comparison === 'bigger') return Number(planet[column]) > Number(value);
+        return console.log(filterByNumericValues);
+      });
     }
     return data;
   }
