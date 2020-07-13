@@ -1,7 +1,6 @@
 import React from 'react';
 
-const linha = (item) => {
-  return (
+const linha = (item) =>
     <tr>
       <td>{item.name}</td>
       <td>{item.rotation_period}</td>
@@ -17,6 +16,6 @@ const linha = (item) => {
       <td>{item.edited}</td>
       <td>{item.url}</td>
     </tr>
-  );
-};
+  ;
+
 export default linha;
