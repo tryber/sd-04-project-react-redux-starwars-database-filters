@@ -20,6 +20,7 @@ class Table extends Component {
         'rotation_period',
         'surface_water',
         'terrain',
+        'created',
         'url',
       ],
     };
@@ -58,18 +59,17 @@ class Table extends Component {
     const { loading, data } = this.props;
     if (loading || !data) return <div>loading...</div>;
     return (
-      <div className="table-container">
-        <table>
-          {this.tableHeadRender()}
-          {this.tableBodyRender()}
-        </table>
-      </div>
+      <table className="table">
+        {this.tableHeadRender()}
+        {this.tableBodyRender()}
+      </table>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   data: state.swapiReducer.data,
+  loading: state.swapiReducer.loading,
 });
 
 export default connect(mapStateToProps, { getData })(Table);
