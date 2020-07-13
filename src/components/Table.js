@@ -10,12 +10,34 @@ class Table extends React.Component {
     fetchingApi();
   }
 
+  filterPlanets() {
+    const {
+      data, filterByNumericValues,
+    } = this.props;
+    if (filterByNumericValues.length === 0) return data;
+    return filterByNumericValues.reduce((array, number) => {
+      const { column, comparison, value } = number;
+      return array.filter((planet) => {
+        switch (comparison) {
+          case 'maior que':
+            return Number(planet[column]) > Number(value);
+          case 'menor que':
+            return Number(planet[column]) < Number(value);
+          case 'igual a':
+            return Number(planet[column]) === Number(value);
+          default:
+            return false;
+        }
+      });
+    }, data);
+  }
+
   render() {
     const {
-      isFetching, data, filteredData, term,
+      isFetching, filteredData, term,
     } = this.props;
     if (isFetching) return <div>Loading</div>;
-    const planets = term !== '' ? filteredData : data;
+    const planets = term !== '' ? filteredData : this.filterPlanets();
     const titles = planets[0] ? Object.keys(planets[0]) : [];
     return (
       <table>
@@ -50,12 +72,18 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchingApi: PropTypes.func.isRequired,
   term: PropTypes.string,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.shape({
+    column: PropTypes.string,
+    comparison: PropTypes.string,
+    value: PropTypes.number,
+  })),
 };
 
 Table.defaultProps = {
   data: [],
   filteredData: [],
   term: '',
+  filterByNumericValues: [],
 };
 
 const mapStateToProps = (state) => ({
@@ -63,6 +91,7 @@ const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
   term: state.filters.filterByName.name,
   filteredData: state.filters.filteredData,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

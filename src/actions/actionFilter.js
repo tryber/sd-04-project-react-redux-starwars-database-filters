@@ -13,8 +13,3 @@ export const filterBy = (values) => ({
   type: FILTERS_BY,
   values,
 });
-
-export const changeDataButton = (data) => ({
-  type: CHANGE_DATA_FILTERED,
-  data,
-});
