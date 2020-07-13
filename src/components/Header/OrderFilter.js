@@ -37,7 +37,7 @@ class OrderFilter extends React.Component {
   renderRadio() {
     return (
       <div>
-        <label>
+        <label htmlFor="ASC">
           <input
             data-testid="column-sort-input"
             type="radio"
@@ -47,7 +47,7 @@ class OrderFilter extends React.Component {
           />
           ASC
         </label>
-        <label>
+        <label htmlFor="DESC">
           <input
             data-testid="column-sort-input"
             type="radio"

@@ -52,14 +52,17 @@ const sortDecending = (A, B) => {
   return -1;
 };
 
+const checkData = (a, column) => {
+  const data = numberColumns.some((elem) => elem === column)
+    ? Number(a[column])
+    : a[column.toLowerCase()].toUpperCase();
+  return data;
+};
+
 const sortData = (data, column, sortWay) => {
   const sortedData = data.sort((a, b) => {
-    const A = numberColumns.some((elem) => elem === column)
-      ? Number(a[column])
-      : a[column.toLowerCase()].toUpperCase();
-    const B = numberColumns.some((elem) => elem === column)
-      ? Number(b[column])
-      : b[column.toLowerCase()].toUpperCase();
+    const A = checkData(a, column);
+    const B = checkData(b, column);
     if (sortWay === 'ASC') {
       return sortAcending(A, B);
     }
@@ -133,6 +136,8 @@ Table.propTypes = {
   getData: PropTypes.func,
   nameFilter: PropTypes.string,
   numberFilter: PropTypes.arrayOf(PropTypes.object),
+  orderColumn: PropTypes.string,
+  orderSort: PropTypes.string,
   results: PropTypes.shape({
     map: PropTypes.func,
   }),
@@ -143,6 +148,8 @@ Table.defaultProps = {
   results: null,
   nameFilter: '',
   numberFilter: [],
+  orderColumn: '',
+  orderSort: '',
 };
 
 const mapStateToProps = (state) => ({

@@ -46,6 +46,17 @@ const stateToHandleChange = (state, action) => ({
   },
 });
 
+const stateToSubmitOrder = (state, action) => ({
+  ...state,
+  filters: {
+    ...state.filters,
+    order: {
+      column: action.column,
+      sort: action.sort,
+    },
+  },
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.REQUEST_DATA:
@@ -71,14 +82,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SUBMIT_ORDER:
       action.event.preventDefault();
       return {
-        ...state,
-        filters: {
-          ...state.filters,
-          order: {
-            column: action.column,
-            sort: action.sort,
-          },
-        },
+        ...stateToSubmitOrder(state, action),
       };
     default:
       return state;
