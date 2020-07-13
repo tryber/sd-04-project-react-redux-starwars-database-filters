@@ -5,6 +5,7 @@ import { fetchPlanets } from '../actions';
 import Table from './Table';
 import FilterPlanet from './FilterPlanet';
 import FilterValues from './FilterValues';
+import RemoveFilter from './RemoveFilter';
 
 class Home extends Component {
 
@@ -20,6 +21,7 @@ class Home extends Component {
         <h2>StarWars DataTable</h2>
         <FilterPlanet />
         <FilterValues />
+        <RemoveFilter />
         <Table />
       </div>
     );
