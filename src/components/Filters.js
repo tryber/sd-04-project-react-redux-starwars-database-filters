@@ -22,22 +22,6 @@ class Filters extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  uptCol() {
-    const { nums } = this.props;
-    const columns = [
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-
-    const stateColumns = nums.map(({ column }) => column);
-    this.setState({
-      select: ['', ...columns.filter((column) => !stateColumns.includes(column))],
-    });
-  }
-
   componentDidMount() {
     this.uptCol();
   }
@@ -84,6 +68,25 @@ class Filters extends React.Component {
     );
   }
 
+  uptCol() {
+    const { nums } = this.props;
+    const columns = [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+
+    const stateColumns = nums.map(({ column }) => column);
+    this.setState({
+      select: [
+        '',
+        ...columns.filter((column) => !stateColumns.includes(column)),
+      ],
+    });
+  }
+
   compareAll() {
     const comparation = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -112,10 +115,7 @@ class Filters extends React.Component {
           value={this.state.number}
           onChange={(event) => this.numChange(event)}
         />
-        <button
-        data-testid="button-filter"
-        onClick={this.onClick}
-        type="text">
+        <button data-testid="button-filter" onClick={this.onClick} type="text">
           Search
         </button>
       </div>
@@ -136,4 +136,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Filters);
 
 Filters.propTypes = {
   swFilterNum: PropTypes.func.isRequired,
+  nums: PropTypes.string.isRequired,
 };

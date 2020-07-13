@@ -1,4 +1,4 @@
-import { SW_REQUEST, SW_SUCCESS, SW_FAILURE, SW_FILTER } from '../actions';
+import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 const swReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SW_REQUEST:
-      return { ...state, isFetching: true};
+      return { ...state, isFetching: true };
     case SW_SUCCESS:
       return {
         ...state,
