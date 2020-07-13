@@ -1,20 +1,12 @@
 .App {
+  background: linear-gradient(to right, rgb(204, 217, 224), rgb(182, 187, 211));
+  color: black;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  width: fit-content;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #122755;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -24,17 +16,13 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.filter_container {
+  align-items: center;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 20px;
 }
 
 table, th, td {

@@ -4,6 +4,7 @@ export const REQUEST_PLANET = 'REQUEST_PLANET';
 export const REQUEST_PLANET_SUCCESS = 'REQUEST_PLANET_SUCCESS';
 export const REQUEST_PLANET_FAILURE = 'REQUEST_PLANET_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 
 // fn action para indicar o envio da requisição p/ buscar os planets
 const requestPlanets = () => ({
@@ -37,5 +38,12 @@ export function requestFetch() {
 
 export const filterByName = (value) => ({
   type: FILTER_BY_NAME,
+  value,
+});
+
+export const filterByNumbers = (column, comparison, value) => ({
+  type: FILTER_BY_NUMERIC_VALUES,
+  column,
+  comparison,
   value,
 });
