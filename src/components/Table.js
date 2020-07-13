@@ -6,19 +6,21 @@ import './Table.css';
 class Table extends Component {
   filteredData() {
     const { data, filterByName, filterByNumericValues } = this.props;
+    let planets = [...data];
     if (filterByName.length > 0) {
-      return data.filter((planet) => planet.name.includes(filterByName));
+      return planets.filter((planet) => planet.name.includes(filterByName));
     }
     if (filterByNumericValues.length > 0) {
-      return data.filter((planet) => {
-        const { column, comparison, value } = filterByNumericValues;
-        if (comparison === 'less') return Number(planet[column]) < Number(value);
-        if (comparison === 'equal') return Number(planet[column]) === Number(value);
-        if (comparison === 'bigger') return Number(planet[column]) > Number(value);
-        return console.log(filterByNumericValues);
+      filterByNumericValues.forEach(({ column, comparison, value }) => {
+        planets = planets.filter((planet) => {
+          if (comparison === 'less') return Number(planet[column]) < Number(value);
+          if (comparison === 'equal') return Number(planet[column]) === Number(value);
+          if (comparison === 'bigger') return Number(planet[column]) > Number(value);
+          return console.log('deu ruim');
+        });
       });
     }
-    return data;
+    return planets;
   }
 
   render() {
@@ -26,6 +28,7 @@ class Table extends Component {
     const chaves =
       (data.length !== 0) ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
     const planets = this.filteredData();
+    console.log(planets);
     if (isFetching) return <h1>Loading...</h1>;
     return (
       <div className="table-container">
@@ -37,9 +40,9 @@ class Table extends Component {
           </thead>
           <tbody>
             {planets.map((planet) => (
-              <tr key={`${planet} 1`}>
+              <tr key={`${planet.name} 1`}>
                 {chaves.map((chave) => (
-                  <td key={`${chave} 2`}>{planet[chave]}</td>
+                  <td key={`${planet.name} ${chave}`}>{planet[chave]}</td>
                 ))}
               </tr>
             ))}

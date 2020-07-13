@@ -20,6 +20,7 @@ const reducerFilter = (state = INITIAL_FILTER_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: [
+          ...state.filterByNumericValues,
           {
             column: action.event[0].value,
             comparison: action.event[1].value,
