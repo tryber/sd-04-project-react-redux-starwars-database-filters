@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compare, sortData } from '../util';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
-
+// To commit
 const TableContent = ({ data, searchText, filterByNumericValues, order }) => {
   const objKeys =
     data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
