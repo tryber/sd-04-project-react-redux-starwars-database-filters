@@ -18,7 +18,7 @@ class App extends React.Component {
         <header className="App-header">
           <SearchBar />
         </header>
-          <Table />
+        <Table />
       </div>
     );
   }
