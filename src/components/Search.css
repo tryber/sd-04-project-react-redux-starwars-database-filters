@@ -1,0 +1,10 @@
+label {
+  margin-right: 10px;
+}
+
+input {
+  border: 2px solid navy;
+  border-radius: 5px;
+  height: 25px;
+  width: 200px;
+}
