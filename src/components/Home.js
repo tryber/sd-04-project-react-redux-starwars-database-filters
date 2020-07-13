@@ -1,12 +1,13 @@
 import React from 'react';
-import Table from './Table';
 import { connect } from 'react-redux';
 import { swFetch } from '../actions';
+import PropTypes from 'prop-types';
+import Table from './Table';
 
 class Home extends React.Component {
   componentDidMount() {
-    const { swFetch } = this.props;
-    swFetch();
+    const { getSwFetch } = this.props;
+    getSwFetch();
   }
 
   render() {
@@ -24,7 +25,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  swFetch: () => dispatch(swFetch()),
+  getSwFetch: () => dispatch(swFetch()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+Home.propTypes = {
+  getSwFetch: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};

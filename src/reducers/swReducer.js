@@ -36,14 +36,3 @@ const swReducer = (state = INITIAL_STATE, action) => {
 };
 
 export default swReducer;
-
-// case SW_FILTER_NAME:
-//   return {
-//     ...state,
-//     filters: {
-//       ...state.filters,
-//       filterByName: { name: action.name },
-//     },
-//     filteredData: state.data.filter(({ name }) =>
-//       name.includes(action.name)
-//     ),
