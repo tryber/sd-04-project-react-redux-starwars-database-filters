@@ -6,14 +6,14 @@ const actionDataRequest = () => ({
   type: DATA_REQUEST,
 });
 
-const actionDataReceived = (value) => ({
+const actionDataReceived = (data) => ({
   type: DATA_RECEIVED,
-  value,
+  data,
 });
 
-const actionDataReceivedError = (value) => ({
+const actionDataReceivedError = (error) => ({
   type: DATA_RECEIVED_ERROR,
-  value,
+  error,
 });
 
 
