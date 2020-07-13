@@ -6,6 +6,6 @@ const Table = () => {
       StarWars Datatable with Filters
     </div>
   );
-}
+};
 
 export default Table;
