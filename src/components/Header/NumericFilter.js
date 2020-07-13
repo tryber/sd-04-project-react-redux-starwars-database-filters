@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { handleNumericFilter, submitFilter } from '../../redux/actions';
+import { submitFilter } from '../../redux/actions';
 import Filter from './Filter';
 
 const options = {
@@ -111,6 +112,13 @@ class NumericFilter extends React.Component {
     );
   }
 }
+
+NumericFilter.propTypes = {
+  filters: PropTypes.shape({
+    map: PropTypes.func,
+  }),
+  submitFilter: PropTypes.func,
+};
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,

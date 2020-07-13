@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleNameFilter } from '../../redux/actions/index';
@@ -10,6 +11,11 @@ const NameFilter = (props) => (
     onChange={(e) => props.handleNameFilter(e.target.value)}
   />
 );
+
+NameFilter.propTypes = {
+  handleNameFilter: PropTypes.func,
+  input: PropTypes.string,
+};
 
 const mapStateToProps = (state) => ({
   input: state.filters.filterByName.name,

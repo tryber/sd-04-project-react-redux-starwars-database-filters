@@ -8,6 +8,48 @@ const initialState = {
   },
 };
 
+const stateToFilterByNumericValues = (state, action, content) => ({
+  ...state,
+  filters: {
+    ...state.filters,
+    filterByNumericValues: [
+      ...content(state.filters.filterByNumericValues, action),
+    ],
+  },
+});
+
+const submitFilterContent = (filterState, action) => [
+  ...filterState,
+  {
+    column: action.column,
+    comparison: action.comparison,
+    value: action.value,
+  },
+];
+
+const removeFilterContent = (filterState, action) => [
+  ...filterState.filter((elem) => elem.column !== action.column),
+];
+
+const stateToHandleChange = (state, action) => ({
+  ...state,
+  filters: {
+    ...state.filters,
+    filterByName: {
+      ...state.filters.filterByName,
+      name: action.input,
+    },
+  },
+});
+
+const stateToHandleNumericChange = (state, action) => ({
+  ...state,
+  numericFilterInput: {
+    ...state.numericFilterInput,
+    [action.field]: action.value,
+  },
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.REQUEST_DATA:
@@ -19,51 +61,20 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.HANDLE_NAME_FILTER:
       return {
-        ...state,
-        filters: {
-          ...state.filters,
-          filterByName: {
-            ...state.filters.filterByName,
-            name: action.input,
-          },
-        },
+        ...stateToHandleChange(state, action),
       };
     case actionTypes.HANDLE_CHANGE_NUMERIC:
       return {
-        ...state,
-        numericFilterInput: {
-          ...state.numericFilterInput,
-          [action.field]: action.value,
-        },
+        ...stateToHandleNumericChange(state, action),
       };
     case actionTypes.SUBMIT_FILTER:
       action.event.preventDefault();
       return {
-        ...state,
-        filters: {
-          ...state.filters,
-          filterByNumericValues: [
-            ...state.filters.filterByNumericValues,
-            {
-              column: action.column,
-              comparison: action.comparison,
-              value: action.value,
-            },
-          ],
-        },
+        ...stateToFilterByNumericValues(state, action, submitFilterContent),
       };
     case actionTypes.REMOVE_FILTER:
-      console.log(action.column);
       return {
-        ...state,
-        filters: {
-          ...state.filters,
-          filterByNumericValues: [
-            ...state.filters.filterByNumericValues.filter(
-              (elem) => elem.column !== action.column,
-            ),
-          ],
-        },
+        ...stateToFilterByNumericValues(state, action, removeFilterContent),
       };
     default:
       return state;

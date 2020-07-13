@@ -1,4 +1,4 @@
-import PropTypes, { element } from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions';
