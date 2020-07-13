@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import rootCombiner from '../reducers';
 import thunk from 'redux-thunk';
+import rootCombiner from '../reducers';
 
 const store = createStore(rootCombiner, applyMiddleware(thunk));
 
