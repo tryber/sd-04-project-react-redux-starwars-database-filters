@@ -11,17 +11,17 @@ const initialColumnOptions = [
   'surface_water',
 ];
 
+const columnsToRender = (columnsNotRender) => {
+  if (columnsNotRender.length === 0) return initialColumnOptions;
+  const usedColumns = columnsNotRender.map((numericFilter) => numericFilter.column);
+  return initialColumnOptions.filter((columnOption) => !usedColumns.includes(columnOption));
+};
+
 const FilterByNumericValues = (props) => {
   const { filteredColumns } = props;
   const [column, setColumn] = React.useState('');
   const [comparison, setComparison] = React.useState('');
   const [value, setValue] = React.useState(0);
-
-  const columnsToRender = (columnsNotRender) => {
-    if (columnsNotRender.length === 0) return initialColumnOptions;
-    const usedColumns = columnsNotRender.map((numericFilter) => numericFilter.column);
-    return initialColumnOptions.filter((columnOption) => !usedColumns.includes(columnOption));
-  };
 
   return (
     <div className="filter-by-numbers">
