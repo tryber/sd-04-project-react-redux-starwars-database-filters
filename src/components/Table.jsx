@@ -44,7 +44,7 @@ const mapStateToProps = (state) => ({
 });
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.shape([]).isRequired,
   loading: PropTypes.bool.isRequired,
   filterName: PropTypes.string.isRequired,
 };
