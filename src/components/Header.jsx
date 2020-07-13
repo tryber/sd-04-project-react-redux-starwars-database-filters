@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
 import { actionInput } from '../actions/actionInput';
@@ -17,6 +18,11 @@ function Header({ inputText, inputValue }) {
     </div>
   );
 }
+
+Header.propTypes = {
+  inputText: PropTypes.func,
+  inputValue: PropTypes.string,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   inputText: (event) => dispatch(actionInput(event.target.value)),

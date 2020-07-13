@@ -10,8 +10,8 @@ export const requestPlanets = () => ({
 
 export const requestPlanetsSucess = (data) => ({
   type: REQUEST_API_SUCESS,
-  data,
   isLoading: false,
+  data,
 });
 
 export function requestFetchApi() {

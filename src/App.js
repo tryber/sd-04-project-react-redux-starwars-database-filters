@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
 import './App.css';
@@ -8,7 +9,6 @@ class App extends React.Component {
   componentDidMount() {
     const { getPlanets } = this.props;
     getPlanets();
-    console.log('montou');
   }
   render() {
     return (
@@ -18,6 +18,10 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  getPlanets: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(requestFetchApi()),
