@@ -5,6 +5,10 @@ const initialState = {
   filters: {
     filterByName: { name: '' },
     filterByNumericValues: [],
+    order: {
+      column: 'Name',
+      sort: 'ASC',
+    },
   },
 };
 
@@ -42,14 +46,6 @@ const stateToHandleChange = (state, action) => ({
   },
 });
 
-const stateToHandleNumericChange = (state, action) => ({
-  ...state,
-  numericFilterInput: {
-    ...state.numericFilterInput,
-    [action.field]: action.value,
-  },
-});
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.REQUEST_DATA:
@@ -63,10 +59,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...stateToHandleChange(state, action),
       };
-    case actionTypes.HANDLE_CHANGE_NUMERIC:
-      return {
-        ...stateToHandleNumericChange(state, action),
-      };
     case actionTypes.SUBMIT_FILTER:
       action.event.preventDefault();
       return {
@@ -75,6 +67,18 @@ const reducer = (state = initialState, action) => {
     case actionTypes.REMOVE_FILTER:
       return {
         ...stateToFilterByNumericValues(state, action, removeFilterContent),
+      };
+    case actionTypes.SUBMIT_ORDER:
+      action.event.preventDefault();
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          order: {
+            column: action.column,
+            sort: action.sort,
+          },
+        },
       };
     default:
       return state;

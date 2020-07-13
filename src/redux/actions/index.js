@@ -34,6 +34,13 @@ export const removeFilter = (column) => ({
   column,
 });
 
+export const submitOrder = (event, localState) => ({
+  type: actionTypes.SUBMIT_ORDER,
+  event,
+  sort: localState.sort,
+  column: localState.column,
+});
+
 const filterData = (data) => ({
   ...data,
   results: data.results.map((element) => {

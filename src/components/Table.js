@@ -3,10 +3,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions';
 
-const filterDataByName = (teste, filter) => {
+const numberColumns = [
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'surface_water',
+  'population',
+];
+
+const filterDataByName = (data, filter) => {
   const pattern = new RegExp(`.*${filter}.*`, 'gim');
-  console.log('data', teste);
-  return teste.filter((result) => result.name.match(pattern));
+  console.log('data', data);
+  return data.filter((result) => result.name.match(pattern));
 };
 
 const filterByNumber = (numbersFilter, data) => {
@@ -28,6 +36,40 @@ const filterByNumber = (numbersFilter, data) => {
     return newData;
   }
   return data;
+};
+
+const sortData = (data, column, sortWay) => {
+  const sortedData = data.sort((a, b) => {
+    console.log('a', a);
+    console.log(column);
+    console.log(sortWay);
+    const A = numberColumns.some((elem) => elem === column)
+      ? Number(a[column])
+      : a[column.toLowerCase()].toUpperCase();
+    const B = numberColumns.some((elem) => elem === column)
+      ? Number(b[column])
+      : b[column.toLowerCase()].toUpperCase();
+    if (sortWay === 'ASC') {
+      console.log(A < B);
+      if (A < B) {
+        return -1;
+      }
+      if (A > B) {
+        return 1;
+      }
+    }
+    if (sortWay === 'DESC') {
+      if (A < B) {
+        return 1;
+      }
+      if (A > B) {
+        return -1;
+      }
+    }
+    return 0;
+  });
+  console.log('sorted', sortedData);
+  return sortedData;
 };
 
 class Table extends React.Component {
@@ -59,9 +101,10 @@ class Table extends React.Component {
     console.log('props', numberFilter);
     return (
       <tbody>
-        {filterDataByName(
-          filterByNumber(numberFilter, results),
-          nameFilter,
+        {sortData(
+          filterDataByName(filterByNumber(numberFilter, results), nameFilter),
+          this.props.orderColumn,
+          this.props.orderSort,
         ).map((element) => (
           <tr key={element.name}>
             {Object.values(element).map((d) => (
@@ -108,6 +151,8 @@ const mapStateToProps = (state) => ({
   nameFilter: state.filters.filterByName.name,
   numberFilter: state.filters.filterByNumericValues,
   numericFilterInput: state.numericFilterInput,
+  orderColumn: state.filters.order.column,
+  orderSort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps, { getData })(Table);
