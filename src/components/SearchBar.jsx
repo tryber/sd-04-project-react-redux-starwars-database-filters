@@ -11,8 +11,8 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       column: '',
-      comparison:'',
-      value:'',
+      comparison: '',
+      value: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateColumn = this.updateColumn.bind(this);
@@ -20,9 +20,6 @@ class SearchBar extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  handleChange(event, key) {
-    this.setState({[key]: event.target.value});
-  }
 
   getColumns() {
     const select = this.updateColumn();
@@ -30,52 +27,57 @@ class SearchBar extends React.Component {
       <select
         value={this.state.column}
         data-testid="column-filter"
-        onChange={(event) => this.handleChange(event, 'column')}>
-          {select.map((option) => (
-            <option value={option} key={option}>{option}</option>)
-          )} 
-        </select>
+        onChange={(event) => this.handleChange(event, 'column')}
+      >
+        {select.map((option) => (
+          <option value={option} key={option}>{option}</option>),
+        )}
+      </select>
     );
+  }
+
+  handleChange(event, key) {
+    this.setState({ [key]: event.target.value });
+  }
+
+  onClick() {
+    const { value, column, comparison } = this.state;
+    this.props.filterByNumbers( column, comparison, value );
+    this.setState({ value: '', column: '', comparison: '' });
   }
 
   updateColumn() {
     const { valueFilters } = this.props;
     const columns = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    const stateColumns = valueFilters.map(({column}) => column);
+    const stateColumns = valueFilters.map(({ column }) => column);
     return [
       '',
       ...columns.filter((option) => !stateColumns.includes(option))];
   }
 
-  onClick() {
-    const { value, column, comparison } = this.state;
-    this.props.filterByNumbers({ value, column, comparison });
-    this.setState({ value: '', column: '', comparison: '' });
-  }
-
 
   render() {
-    const comparison = ['', 'maior que', 'igual a', 'menor que']
+    const comparison = ['', 'maior que', 'igual a', 'menor que'];
     return (
       <div className="filter_container">
         <FilterName />
         {this.getColumns()}
         <select
-        value={this.state.comparison}
-        data-testid="comparison-filter"
-        onChange={(event) => this.handleChange(event, 'comparison')}
+          value={this.state.comparison}
+          data-testid="comparison-filter"
+          onChange={(event) => this.handleChange(event, 'comparison')}
         >
           {comparison.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
         </select>
         <input
-        type="number"
-        value={this.state.value}
-        data-testid="value-filter"
-        onChange={e => this.setState({value: e.target.value})}
+          type="number"
+          value={this.state.value}
+          data-testid="value-filter"
+          onChange={ (e) => this.setState({value: e.target.value}) }
         />
-        <button data-testid="button-filter" onClick={this.onClick}>Filter</button>
+        <button data-testid="button-filter" onClick={() => this.onClick()}>Filter</button>
       </div>
     );
   }

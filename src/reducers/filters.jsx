@@ -17,13 +17,14 @@ const filters = (state = inicialState, action) => {
         },
       };
     case FILTER_BY_NUMERIC_VALUES:
+      console.log(action.column)
       return {
         ...state,
         filterByNumericValues: [
-          ...state.filterByNumericValues,{
+          ...state.filterByNumericValues, {
             column: action.column,
             comparison: action.comparison,
-            value: action.value
+            value: action.value,
           }],
       };
     default:

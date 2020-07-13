@@ -25,10 +25,9 @@ class Table extends React.Component {
       return valueFilters.reduce((newList, { column, comparison, value }) => 
       newList.filter((planet) => {
         if(comparison === 'maior que') return Number(planet[column]) > Number(value);
-        if(comparison === 'igual a') return Number(planet[column] === Number(value));
-        if(comparison === 'menor que') return Number(planet[column] < Number(value));
-        return planet;
-      }), filterName);
+        if(comparison === 'igual a') return Number(planet[column]) === Number(value);
+        if(comparison === 'menor que') return Number(planet[column]) < Number(value);
+      }), filterName)
     }
     return filterName;
   }
