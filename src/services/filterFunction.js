@@ -20,19 +20,24 @@ const notNumbers = [
   'edited',
 ];
 
-// função pra ordernar números ou strings em ordem ASC ou DESC:
-const compare = (type, order = 'ASC') => (a, b) => {
+// quebrando a função COMPARE em partes
+const comparePartTwo = (varA, varB, order) => {
   let comparison = 0;
-
-  const varA = !notNumbers.includes(type) ? Number(a[type]) : a[type];
-  const varB = !notNumbers.includes(type) ? Number(b[type]) : b[type];
-
   if (varA > varB) {
     comparison = 1;
   } else if (varA < varB) {
     comparison = -1;
   }
   return order === 'DESC' ? comparison * -1 : comparison;
+}
+
+// função pra ordernar números ou strings em ordem ASC ou DESC:
+const compare = (type, order = 'ASC') => (a, b) => {
+  // convertendos as vaáveis que deviam ser number mas são strings:
+  const varA = !notNumbers.includes(type) ? Number(a[type]) : a[type];
+  const varB = !notNumbers.includes(type) ? Number(b[type]) : b[type];
+  // chamando a parte dois:
+  return comparePartTwo(varA, varB, order);
 };
 
 // função principal do filter, que recebe todos os possíveis parametros de filtragem da app:
