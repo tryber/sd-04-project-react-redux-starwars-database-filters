@@ -48,12 +48,12 @@ const TBody = ({ data }) =>
   ));
 
 const Table = ({ data, loading }) => {
-  console.log(data, loading)
+  // console.log(data, loading)
   return (loading ? <p>Loading...</p> :
-    <div>
-      <p>StarWars Datatable with Filters</p>
-      <THeadBody data={data} />
-    </div>
+  <div>
+    <p>StarWars Datatable with Filters</p>
+    <THeadBody data={data} />
+  </div>
   );
 };
 
@@ -65,5 +65,10 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Table);
 
 Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.boolean.isRequired,
+};
+
+THeadBody.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

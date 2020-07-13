@@ -17,12 +17,11 @@ const actionDataReceivedError = (error) => ({
 });
 
 
-export const asyncActionDataFetch = (url) => {
-  return (dispatch) => {
+export const asyncActionDataFetch = (url) =>
+  (dispatch) => {
     dispatch(actionDataRequest());
     return fetch(url)
       .then((response) => response.json())
       .then((data) => dispatch(actionDataReceived(data.results)))
       .catch((error) => dispatch(actionDataReceivedError(error)));
   };
-}
