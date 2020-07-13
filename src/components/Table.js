@@ -3,6 +3,35 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { planetsInfoRequest } from '../actions';
 
+const renderTHead = (headers) => (
+  <thead>
+    <tr>
+      {headers.map((header) => (
+        <th key={header}>{header}</th>
+      ))}
+    </tr>
+  </thead>
+);
+
+const renderTBody = (headers, data) => (
+  <tbody>
+    {data.map((planet) => (
+      <tr key={planet.name}>
+        {headers.map((desc) => (
+          <td key={desc}>{planet[desc]}</td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+);
+
+const renderTable = (headers, data) => (
+  <table>
+    {renderTHead(headers)}
+    {renderTBody(headers, data)}
+  </table>
+);
+
 class Table extends Component {
   componentDidMount() {
     const { starWarsAPI } = this.props;
@@ -10,46 +39,30 @@ class Table extends Component {
   }
 
   render() {
-    const { data, isFetching } = this.props;
+    const { data, isFetching, searchTerm } = this.props;
     let headers = '';
+    let filtereds = '';
     if (isFetching) {
       return <div>Loading...</div>;
     }
     headers = Object.keys(data[0]).filter((key) => key !== 'residents');
-    return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              {headers.map((header) => (
-                <th key={header}>{header}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((planet) => (
-              <tr key={planet.name}>
-                {headers.map((desc) => (
-                  <td key={desc}>{planet[desc]}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (searchTerm) {
+      filtereds = data.filter((planet) => planet.name.includes(searchTerm));
+      return <div>{renderTable(headers, filtereds)}</div>;
+    }
+    return <div>{renderTable(headers, data)}</div>;
   }
 }
 
 const mapStateToProps = (state) => ({
   data: state.data,
   isFetching: state.isFetching,
+  searchTerm: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   starWarsAPI: () => dispatch(planetsInfoRequest()),
 });
-
 
 Table.propTypes = {
   data: PropTypes.arrayOf(
@@ -69,6 +82,7 @@ Table.propTypes = {
   ).isRequired,
   starWarsAPI: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

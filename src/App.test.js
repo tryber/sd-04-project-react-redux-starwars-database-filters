@@ -135,7 +135,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
-  test.skip('should have the column selection filter', async () => {
+  test('should have the column selection filter', async () => {
     const { findByTestId } = renderApp();
 
     const columnFilter = await findByTestId('column-filter');
@@ -163,7 +163,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
   });
 
-  test.skip('should have the comparison selection filter', async () => {
+  test('should have the comparison selection filter', async () => {
     const { findByTestId } = renderApp();
 
     const comparisonFilter = await findByTestId('comparison-filter');
@@ -189,7 +189,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
   });
 
-  test.skip('should have the value input filter', async () => {
+  test('should have the value input filter', async () => {
     const { findByTestId } = renderApp();
 
     const valueFilter = await findByTestId('value-filter');
@@ -197,7 +197,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
   });
 
-  test.skip('should have the filter button', async () => {
+  test('should have the filter button', async () => {
     const { findByTestId } = renderApp();
 
     const buttonFilter = await findByTestId('button-filter');

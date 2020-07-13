@@ -21,7 +21,6 @@ const planetTableReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filters: { filterByName: { name: action.seacrhTerm } },
-        data: state.data.filter((planet) => planet.name.includes(action.seacrhTerm)),
       };
     default:
       return state;
