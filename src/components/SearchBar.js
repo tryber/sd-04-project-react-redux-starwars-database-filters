@@ -17,14 +17,13 @@ class SearchBar extends Component {
           <h1>Filtros:</h1>
           <div>
             {filters.map((filter) => (
-              <div>
+              <div data-testid="filter">
                 <p key={filter.value}>
                   {filter.column} {filter.comparison} {filter.value}
                 </p>
                 <button
                   type="button"
                   onClick={() => this.props.deleteFilter(filter.column)}
-                  data-testid="filter"
                 >
                   X
                 </button>
