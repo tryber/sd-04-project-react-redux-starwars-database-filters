@@ -36,3 +36,8 @@ export const filterByNumericValues = (column, comparison, value) => ({
   comparison,
   value,
 });
+
+export const deleteFilterByNumericValues = (column) => ({
+  type: types.DELETE_FILTER_BY_NUMERIC_VALUES,
+  column,
+});

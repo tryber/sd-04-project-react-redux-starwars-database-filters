@@ -7,7 +7,7 @@ import './App.css';
 
 import SearchPlanet from './components/SearchPlanet';
 import ComparisonFilter from './components/ComparisonFilter';
-// import Filters from './components/Filters';
+import Filters from './components/Filters';
 import Table from './components/Table';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
         <header className="App-header">
           <SearchPlanet />
           <ComparisonFilter />
-          {/* <Filters /> */}
+          <Filters />
         </header>
         <Table />
       </div>

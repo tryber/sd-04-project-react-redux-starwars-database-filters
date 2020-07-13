@@ -5,14 +5,7 @@ import PropTypes from 'prop-types';
 import { filterByNumericValues } from '../actions';
 
 // Gambiarra pro CC
-const columnOptions = [
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water',
-];
-const options2 = ['maior que', 'menor que', 'igual a'];
+const options = ['maior que', 'menor que', 'igual a'];
 
 class ComparisonFilter extends Component {
   constructor(props) {
@@ -32,13 +25,18 @@ class ComparisonFilter extends Component {
 
   availableFilters() {
     const { filtersInfo } = this.props;
-    filtersInfo.map((filter) => {
-      if (columnOptions.includes(filter.column)) {
-        const index = columnOptions.indexOf(filter.column);
-        columnOptions.splice(index, 1);
-      }
-      return columnOptions;
+    const columnOptions = [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    let availableFilters = columnOptions;
+    filtersInfo.forEach(({ column }) => {
+      availableFilters = availableFilters.filter((element) => element !== column);
     });
+    return availableFilters;
   }
 
   filter() {
@@ -48,7 +46,7 @@ class ComparisonFilter extends Component {
   }
 
   render() {
-    this.availableFilters();
+    const columnOptions = this.availableFilters();
     const { column, comparison, number } = this.state;
     return (
       <div>
@@ -66,7 +64,7 @@ class ComparisonFilter extends Component {
           onChange={(event) => this.handleChange(event, 'comparison')}
         >
           <option value="">selecionar</option>
-          {options2.map((option) => (<option key={option} value={option}>{option}</option>))}
+          {options.map((option) => (<option key={option} value={option}>{option}</option>))}
         </select>
         <input
           value={number}

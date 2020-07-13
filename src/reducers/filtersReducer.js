@@ -28,6 +28,13 @@ function filtersReducer(state = INITIAL_STATE, action) {
           },
         ],
       };
+    case types.DELETE_FILTER_BY_NUMERIC_VALUES:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          ({ column }) => column !== action.column,
+        ),
+      };
     default:
       return state;
   }
