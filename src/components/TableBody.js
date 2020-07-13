@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const linha = (item) => {
+const linha = (item) => {
   return (
     <tr>
       <td>{item.name}</td>
@@ -19,3 +19,4 @@ export const linha = (item) => {
     </tr>
   );
 };
+export default linha;

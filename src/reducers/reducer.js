@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   isLoading: true,
 };
 
-export const reducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REQUEST_API:
       return {
@@ -22,3 +22,5 @@ export const reducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+export default reducer;

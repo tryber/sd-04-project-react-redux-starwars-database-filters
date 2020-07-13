@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { linha } from './TableBody';
+import linha from './TableBody';
 
 class Table extends React.Component {
   render() {

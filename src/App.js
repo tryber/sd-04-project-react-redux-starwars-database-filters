@@ -6,8 +6,8 @@ import { fetchApi } from './actions/index';
 
 class App extends React.Component {
   componentDidMount() {
-    const { fetchApi } = this.props;
-    fetchApi();
+    const { fetchApi1 } = this.props;
+    fetchApi1();
   }
 
   render() {
@@ -22,7 +22,7 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchApi: () => dispatch(fetchApi()),
+  fetchApi1: () => dispatch(fetchApi()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
