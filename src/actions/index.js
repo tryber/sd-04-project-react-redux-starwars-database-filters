@@ -3,7 +3,7 @@ import swApi from '../services/api';
 export const SW_REQUEST = 'SW_REQUEST';
 export const SW_SUCCESS = 'SW_SUCCESS';
 export const SW_FAILURE = 'SW_FAILURE';
-export const SW_FILTER_NAME = 'SW_FILTER_NAME';
+// export const SW_FILTER_NAME = 'SW_FILTER_NAME';
 
 const swRequest = () => ({
   type: SW_REQUEST,
@@ -30,7 +30,7 @@ export function swFetch() {
   };
 }
 
-export const swFilterName = (name) => ({
-  type: SW_FILTER_NAME,
-  name,
-});
+// export const swFilterName = (name) => ({
+//   type: SW_FILTER_NAME,
+//   name,
+// });

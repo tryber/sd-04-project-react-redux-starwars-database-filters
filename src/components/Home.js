@@ -1,20 +1,18 @@
 import React from 'react';
 import Table from './Table';
-import SearchInput from './SearchInput';
 import { connect } from 'react-redux';
 import { swFetch } from '../actions';
 
 class Home extends React.Component {
   componentDidMount() {
-    const { getSwFetch } = this.props;
-    getSwFetch();
+    const { swFetch } = this.props;
+    swFetch();
   }
 
   render() {
     if (this.props.loading) return <p>Loading...</p>;
     return (
       <div>
-        <SearchInput />
         <Table />
       </div>
     );
@@ -26,7 +24,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getSwFetch: () => dispatch(swFetch()),
+  swFetch: () => dispatch(swFetch()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

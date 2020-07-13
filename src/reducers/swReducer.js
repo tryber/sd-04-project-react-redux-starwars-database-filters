@@ -1,5 +1,5 @@
-import { SW_REQUEST, SW_SUCCESS, SW_FAILURE, SW_FILTER_NAME } from '../actions';
-
+import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions';
+//SW_FILTER_NAME
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
@@ -30,20 +30,20 @@ const swReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         error: action.error,
       };
-    case SW_FILTER_NAME:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          filterByName: { name: action.name },
-        },
-        filteredData: state.data.filter(({ name }) =>
-          name.includes(action.name)
-        ),
-      };
     default:
       return state;
   }
 };
 
 export default swReducer;
+
+// case SW_FILTER_NAME:
+//   return {
+//     ...state,
+//     filters: {
+//       ...state.filters,
+//       filterByName: { name: action.name },
+//     },
+//     filteredData: state.data.filter(({ name }) =>
+//       name.includes(action.name)
+//     ),
