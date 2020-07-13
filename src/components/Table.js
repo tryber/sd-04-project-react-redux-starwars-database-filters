@@ -9,7 +9,7 @@ class Table extends React.Component {
     if (isLoading) return <span>Loading...</span>;
     const planetas = data[0];
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
-    const filtrado = data.filter(elem => elem.name.includes(filterByName))
+    const filtrado = data.filter(elem => elem.name.includes(filterByName));
     return (
       <table>
         <thead>
@@ -27,9 +27,11 @@ class Table extends React.Component {
 
 Table.propTypes = {
   data: PropTypes.shape({
-    map: PropTypes.func,
+    filter: PropTypes.func,
+    map: PropTypes.func
   }).isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  filterByName: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
