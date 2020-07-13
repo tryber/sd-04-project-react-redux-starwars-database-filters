@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import compare from '../util';
+import { compare, sortData } from '../util';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 
-const TableContent = ({ data, searchText, filterByNumericValues }) => {
+const TableContent = ({ data, searchText, filterByNumericValues, order }) => {
   const objKeys =
     data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
-  let planets = data;
+  let planets = data.sort((a, b) => a.name.localeCompare(b.name));
+  if (order.column !== 'Name') {
+    planets = sortData(planets, order);
+  }
   if (typeof filterByNumericValues && filterByNumericValues.length > 0) {
     filterByNumericValues.forEach((filter) => {
       const { column, comparison, value } = filter;
@@ -34,6 +37,7 @@ const mapStateToProps = (state) => ({
   data: state.swAPI.data,
   searchText: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 TableContent.propTypes = {

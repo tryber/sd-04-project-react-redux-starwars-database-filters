@@ -1,4 +1,4 @@
-import { SEARCH_TEXT, NUMERIC_FILTER, REMOVE_FILTER } from '../actions';
+import { SEARCH_TEXT, NUMERIC_FILTER, REMOVE_FILTER, SORT_FILTER } from '../actions';
 
 const INITIAL_FILTERS = {
   filterByName: {
@@ -13,6 +13,10 @@ const INITIAL_FILTERS = {
     'rotation_period',
     'surface_water',
   ],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 const filters = (state = INITIAL_FILTERS, action) => {
   switch (action.type) {
@@ -41,6 +45,11 @@ const filters = (state = INITIAL_FILTERS, action) => {
           ({ column }) => column !== action.filterToRemove,
         ),
         options: [...state.options, action.filterToRemove],
+      };
+    case SORT_FILTER:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;

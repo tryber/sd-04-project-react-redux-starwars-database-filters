@@ -3,6 +3,7 @@ import PropType from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByNumber } from '../actions';
 import FiltersInUse from './FiltersInUse';
+import Sort from './Sort';
 
 class Filters extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Filters extends React.Component {
           <button type="submit" data-testid="button-filter">Filtrar</button>
         </form>
         <FiltersInUse />
+        <Sort />
       </div>
     );
   }
