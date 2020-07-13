@@ -26,12 +26,6 @@ class Filters extends React.Component {
     this.uptCol();
   }
 
-  numChange(e) {
-    this.setState({
-      number: e.target.value,
-    });
-  }
-
   selectChange(e, key) {
     const { value } = e.target;
     this.setState({
@@ -66,6 +60,12 @@ class Filters extends React.Component {
         ))}
       </select>
     );
+  }
+
+  numChange(e) {
+    this.setState({
+      number: e.target.value,
+    });
   }
 
   uptCol() {
