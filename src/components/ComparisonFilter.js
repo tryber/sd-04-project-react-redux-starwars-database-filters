@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 import { filterByNumericValues } from '../actions';
 
 // Gambiarra pro CC
-const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+const columnOptions = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
 const options2 = ['maior que', 'menor que', 'igual a'];
 
 class ComparisonFilter extends Component {
@@ -18,6 +24,18 @@ class ComparisonFilter extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.filter = this.filter.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      nextProps.filtersInfo.map((filter) => {
+        if (columnOptions.includes(filter.column)) {
+          const index = columnOptions.indexOf(filter.column);
+          columnOptions.splice(index, 1);
+        }
+        return columnOptions;
+      });
+    }
   }
 
   handleChange(event, name) {
@@ -40,7 +58,7 @@ class ComparisonFilter extends Component {
           onChange={(event) => this.handleChange(event, 'column')}
         >
           <option value="">selecionar</option>
-          {options.map((option) => <option key={option} value={option}>{option}</option>)}
+          {columnOptions.map((option) => (<option key={option} value={option}>{option}</option>))}
         </select>
         <select
           value={comparison}
@@ -48,7 +66,7 @@ class ComparisonFilter extends Component {
           onChange={(event) => this.handleChange(event, 'comparison')}
         >
           <option value="">selecionar</option>
-          {options2.map((option) => <option key={option} value={option}>{option}</option>)}
+          {options2.map((option) => (<option key={option} value={option}>{option}</option>))}
         </select>
         <input
           value={number}
@@ -62,13 +80,18 @@ class ComparisonFilter extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filtersInfo: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   filteringByNumericValues: (column, comparison, number) =>
     dispatch(filterByNumericValues(column, comparison, number)),
 });
 
-export default connect(null, mapDispatchToProps)(ComparisonFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(ComparisonFilter);
 
 ComparisonFilter.propTypes = {
   filteringByNumericValues: PropTypes.func.isRequired,
+  filtersInfo: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

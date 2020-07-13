@@ -23,7 +23,6 @@ const filter = (data, name, filterByNumericValues) => {
   }
 
   if (name) return data.filter((planet) => planet.name.toUpperCase().includes(name.toUpperCase()));
-
   return filteredData;
 };
 
