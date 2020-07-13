@@ -1,7 +1,6 @@
 import fetchSWAPI from '../service/apiSWAPI';
+import { REQUEST_API, REQUEST_API_SUCCESS } from './actionTypes';
 
-export const REQUEST_API = 'REQUEST_API';
-export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCESS';
 
 export const requestApi = () => ({
   type: REQUEST_API,
