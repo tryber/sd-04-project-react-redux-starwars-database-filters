@@ -1,4 +1,4 @@
-import { FILTERED_NAME, FILTERED_VALUES } from './types';
+import { FILTERED_NAME, FILTERED_VALUES, DELETE_FILTER } from './types';
 
 export const filterName = (name) => ({
   type: FILTERED_NAME,
@@ -10,4 +10,9 @@ export const filterValues = (column, comparison, value) => ({
   column,
   comparison,
   value,
+});
+
+export const deleteFilter = (column) => ({
+  type: DELETE_FILTER,
+  column,
 });

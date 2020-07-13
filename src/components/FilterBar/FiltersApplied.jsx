@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteFilter } from '../../actions/filter';
 
-function FiltersApplied({ filters }) {
+const FiltersApplied = ({ filters, deleteFilter }) => {
+  console.log(deleteFilter);
   return (
     <div className="filters-applied">
       {filters.length > 0 ? <h4>Filters applied</h4> : null}
@@ -11,19 +13,26 @@ function FiltersApplied({ filters }) {
           <p>{filter.column}</p>
           <p>{filter.comparison}</p>
           <p>{filter.value}</p>
-          <button className="remove-button">remove filter</button>
+          <button onClick={() => deleteFilter(filter.column)} className="remove-button">
+            remove filter
+          </button>
         </div>
       ))}
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  deleteFilter: (column) => dispatch(deleteFilter(column)),
+});
+
 FiltersApplied.propTypes = {
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteFilter: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(FiltersApplied);
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersApplied);
