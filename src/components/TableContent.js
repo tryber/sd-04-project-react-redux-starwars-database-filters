@@ -2,36 +2,52 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-function TableContent({ planets }) {
+function TableContent({ planets, name, column, comparison, value }) {
+  const filters = () => (
+    planets.filter((planet) => {
+      switch (comparison) {
+        case 'maior que':
+          return planet.name.includes(name) && parseFloat(planet[column]) > parseFloat(value);
+        case 'menor que':
+          return planet.name.includes(name) && parseFloat(planet[column]) < parseFloat(value);
+        case 'igual a':
+          return planet.name.includes(name) && parseFloat(planet[column]) === parseFloat(value);
+        default:
+          return planet.name.includes(name);
+      };
+    })
+  );
+
   return (
     <tbody>
-      {planets.map((planet) => (
-        <tr key={planet.name}>
-          <td>{planet.name}</td>
-          <td>{planet.rotation_period}</td>
-          <td>{planet.orbital_period}</td>
-          <td>{planet.diameter}</td>
-          <td>{planet.climate}</td>
-          <td>{planet.gravity}</td>
-          <td>{planet.terrain}</td>
-          <td>{planet.surface_water}</td>
-          <td>{planet.population}</td>
-          <td>
-            {planet.films.map((film) => (
-              <span key={film}>{film}</span>
-            ))}
-          </td>
-          <td>{planet.created}</td>
-          <td>{planet.edited}</td>
-          <td>{planet.url}</td>
-        </tr>
-      ))}
+     {filters()
+        .map((planet) =>
+          <tr key={planet.name}>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbital_period}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td>{planet.surface_water}</td>
+            <td>{planet.population}</td>
+            <td>{planet.films.map((film) => <span key={film}>{film}</span>)}</td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
+            <td>{planet.url}</td>
+          </tr>,
+        )}
     </tbody>
   );
 }
 
 const mapStateToProps = (state) => ({
-  planets: state.swReducer.filteredData,
+  planets: state.swReducer.data,
+  name: state.filterReducer.filterByName.name,
+  column: state.filterReducer.filterByNumericValues[0].column,
+  comparison: state.filterReducer.filterByNumericValues[0].comparison,
+  value: state.filterReducer.filterByNumericValues[0].value,
 });
 
 export default connect(mapStateToProps)(TableContent);
@@ -54,4 +70,8 @@ TableContent.propTypes = {
       url: PropTypes.string,
     }),
   ).isRequired,
+  name: PropTypes.string.isRequired,
+  column: PropTypes.string.isRequired,
+  comparison: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };

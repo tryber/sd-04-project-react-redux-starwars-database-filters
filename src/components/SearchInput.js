@@ -6,6 +6,7 @@ import { swFilterName } from '../actions';
 class SearchInput extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       value: '',
     };
@@ -21,25 +22,25 @@ class SearchInput extends React.Component {
     return (
       <div>
         <input
-          data-testid="name-filter"
           type="text"
           value={this.state.value}
           onChange={(e) => this.getValue(e)}
+          data-testid="name-filter"
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  data: state.swReducer.data,
-});
+// const mapStateToProps = (state) => ({
+//   numericValues: state.filters.filterByNumericValues,
+// });
 
 const mapDispatchToProps = (dispatch) => ({
   swFilterName: (name) => dispatch(swFilterName(name)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export default connect(null, mapDispatchToProps)(SearchInput);
 
 SearchInput.propTypes = {
   swFilterName: PropTypes.func.isRequired,

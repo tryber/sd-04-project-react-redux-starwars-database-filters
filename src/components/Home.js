@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { swFetch } from '../actions';
 import Table from './Table';
 import SearchInput from './SearchInput';
+import Filters from './Filters';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class Home extends React.Component {
     return (
       <div>
         <SearchInput />
+        <Filters />
         <Table />
       </div>
     );
