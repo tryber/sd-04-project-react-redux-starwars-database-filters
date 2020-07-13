@@ -19,13 +19,10 @@ function filters(state = initialState, action) {
       console.log('Delete Reducer_value', action.index);
       return {
         ...state,
-        filterByNumericValues: state.filterByNumericValues.filter((filter, index) => index !== action.index),
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (filter, index) => index !== action.index,
+        ),
       };
-
-      // return {
-      //   ...state,
-      //   items: state.items.filter((item, index) => index !== action.payload)
-      // }
 
     case NUMERICAL_FILTER: {
       const filter = action.value;
@@ -47,21 +44,3 @@ function filters(state = initialState, action) {
 }
 
 export default filters;
-
-// colonumItems: state.colonumItems.map((item) => {
-//   if (item.name === filter.column) {
-//     return {
-//       name: item.name,
-//       available: false,
-//     };
-//   }
-//   return item;
-// }),
-// colonumItems: [
-//   { name: 'Coluna', available: true },
-//   { name: 'population', available: true },
-//   { name: 'orbital_period', available: true },
-//   { name: 'diameter', available: true },
-//   { name: 'rotation_period', available: true },
-//   { name: 'surface_water', available: true },
-// ],

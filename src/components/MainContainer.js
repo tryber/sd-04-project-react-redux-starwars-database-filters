@@ -30,7 +30,6 @@ class MainContainer extends React.Component {
 
   planetFilter() {
     const { data, filters, searchedPlanet } = this.props;
-    // const searchedPlanet = filters.filterByName.name;
     const filterArray = filters.filterByNumericValues;
     let filteredPlanet = data.filter((planet) =>
       planet.name.includes(searchedPlanet),
@@ -83,6 +82,7 @@ const mapDispatchToProps = (dispatch) => ({
 MainContainer.propTypes = {
   getPlanet: PropTypes.func.isRequired,
   data: PropTypes.string.isRequired,
+  searchedPlanet: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   filters: PropTypes.shape.isRequired,
 };
