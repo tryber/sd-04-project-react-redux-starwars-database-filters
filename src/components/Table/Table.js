@@ -131,7 +131,7 @@ Table.propTypes = {
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
-      value: PropTypes.string,
+      value: PropTypes.any,
     }),
   ).isRequired,
 };
