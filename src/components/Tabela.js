@@ -12,11 +12,7 @@ function Tabela(props) {
     surface_water,
     population,
     films,
-    created,
-    edited,
-    url,
   } = props.planet;
-
   return (
     <tr>
       <td key={`${name}1`}>{name}</td>
@@ -29,9 +25,6 @@ function Tabela(props) {
       <td key={`${name}8`}>{surface_water}</td>
       <td key={`${name}9`}>{population}</td>
       <td key={`${name}11`}>{films}</td>
-      <td key={`${name}12`}>{created}</td>
-      <td key={`${name}13`}>{edited}</td>
-      <td key={`${name}14`}>{url}</td>
     </tr>
   );
 }

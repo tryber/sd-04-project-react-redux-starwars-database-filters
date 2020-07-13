@@ -1,4 +1,4 @@
-import SEARCH_BAR_CHANGE from '../actions/onChange';
+import SEARCH_BAR_CHANGE from '../actions/index';
 import INITIAL_STATE from './index';
 
 const reducerOnChange = (state = INITIAL_STATE, action) => {
