@@ -17,10 +17,9 @@ const NumericFilters = (props) => {
             name={column}
             type="button"
             onClick={(e) => {
-              console.log(e.target.name);
-              console.log(numericFilters);
-              const newFilters = numericFilters.filter(({ column }) => column !== e.target.name);
-              console.log(newFilters);
+              const newFilters = numericFilters.filter(
+                (numericFilter) => numericFilter.column !== e.target.name,
+              );
               return props.resetFilter(newFilters);
             }}
           >
