@@ -49,9 +49,9 @@ class NumericFilter extends Component {
           onChange={(e) => this.setState({ comparison: e.target.value })}
         >
           <option defaultValue>Comparison</option>
-          <option value="less than">menor que</option>
-          <option value="grather than">maior que</option>
-          <option value="equal to">igual a</option>
+          <option value="menor que">menor que</option>
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
         </select>
         <input
           data-testid="value-filter" type="number"

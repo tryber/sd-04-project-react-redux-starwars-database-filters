@@ -13,9 +13,9 @@ class Table extends Component {
     if (filterByNumericValues.length > 0) {
       filterByNumericValues.forEach(({ column, comparison, value }) => {
         planets = planets.filter((planet) => {
-          if (comparison === 'less than') return Number(planet[column]) < Number(value);
-          if (comparison === 'equal to') return Number(planet[column]) === Number(value);
-          if (comparison === 'grather than') return Number(planet[column]) > Number(value);
+          if (comparison === 'menor que') return Number(planet[column]) < Number(value);
+          if (comparison === 'igual a') return Number(planet[column]) === Number(value);
+          if (comparison === 'maior que') return Number(planet[column]) > Number(value);
           return null;
         });
       });
