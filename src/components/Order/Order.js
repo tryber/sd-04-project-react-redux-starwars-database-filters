@@ -30,28 +30,15 @@ const Order = (props) => {
           <option key={col}>{col}</option>
         ))}
       </select>
-      <input
-        data-testid="column-sort-input"
-        type="radio"
-        name="order"
-        value="ASC"
-        id="ASC"
+      <input data-testid="column-sort-input" type="radio" name="order" value="ASC" id="ASC"
         onClick={(e) => setSort(e.target.value)}
       />
       <label htmlFor="ASC">ASC</label>
-      <input
-        data-testid="column-sort-input"
-        type="radio"
-        name="order"
-        value="DESC"
-        id="DESC"
+      <input data-testid="column-sort-input" type="radio" name="order" value="DESC" id="DESC"
         onClick={(e) => setSort(e.target.value)}
       />
       <label htmlFor="DESC">DESC</label>
-      <button
-        data-testid="column-sort-button"
-        type="button"
-        onClick={() => props.orderColumn(column, sort)}
+      <button data-testid="column-sort-button" type="button" onClick={() => props.orderColumn(column, sort)}
       >
         order
       </button>
