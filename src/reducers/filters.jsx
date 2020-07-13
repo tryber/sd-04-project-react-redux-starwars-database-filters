@@ -3,8 +3,8 @@ import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions/index';
 const inicialState = {
   filterByName: {
     name: '',
-    filterByNumericValues: [],
   },
+  filterByNumericValues: [],
 };
 
 const filters = (state = inicialState, action) => {

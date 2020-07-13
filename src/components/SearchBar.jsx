@@ -11,12 +11,13 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       column: '',
-      comparation:'',
+      comparison:'',
       value:'',
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateColumn = this.updateColumn.bind(this);
     this.getColumns = this.getColumns.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   handleChange(event, key) {
@@ -46,6 +47,15 @@ class SearchBar extends React.Component {
       ...columns.filter((option) => !stateColumns.includes(option))];
   }
 
+  onClick() {
+    const searchFilters = { 
+      value: this.state.value,
+      column: this.state.column,
+      comparison: this.state.comparison,
+    }
+    this.props.filterByNumbers(searchFilters);
+    this.setState({ value: '', column: '', comparison: '' });
+  }
 
 
   render() {
@@ -54,7 +64,8 @@ class SearchBar extends React.Component {
       <div className="filter_container">
         <FilterName />
         {this.getColumns()}
-        <select id="comparison-filter"
+        <select
+        value={this.state.comparison}
         data-testid="comparison-filter"
         onChange={(event) => this.handleChange(event, 'comparison')}
         >
@@ -62,11 +73,13 @@ class SearchBar extends React.Component {
             <option key= {option} value={option}>{option}</option>
           ))}
         </select>
-
-        <input type="number"
-        data-testid="value-filter"/>
-
-        <button data-testid="button-filter">Filter</button>
+        <input
+        type="number"
+        value={this.state.value}
+        data-testid="value-filter"
+        onChange={e => this.setState({value: e.target.value})}
+        />
+        <button data-testid="button-filter" onClick={this.onClick}>Filter</button>
       </div>
     );
   }
