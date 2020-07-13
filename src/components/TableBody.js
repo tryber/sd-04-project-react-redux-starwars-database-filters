@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import filterFunc from './functions/filterFunc';
 
-function TableBody({ planets, name }) {
-  const data = name ? planets.filter((planet) => planet.name.includes(name)) : planets;
+function TableBody({ planets, name, numericValues }) {
+  const data = filterFunc(planets, name, numericValues);
   return (
     <tbody>
       {data.map((planet) => (
@@ -34,6 +35,7 @@ function TableBody({ planets, name }) {
 const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
   name: state.filters.filterByName.name,
+  numericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(TableBody);
@@ -62,4 +64,13 @@ TableBody.propTypes = {
     }),
   ).isRequired,
   name: PropTypes.string.isRequired,
+  numericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+      columnSort: PropTypes.string,
+      sort: PropTypes.string,
+    }),
+  ).isRequired,
 };

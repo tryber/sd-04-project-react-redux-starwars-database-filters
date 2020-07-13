@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
 import Table from './Table';
 import FilterPlanet from './FilterPlanet';
+import FilterValues from './FilterValues';
 
 class Home extends Component {
 
@@ -18,6 +19,7 @@ class Home extends Component {
       <div>
         <h2>StarWars DataTable</h2>
         <FilterPlanet />
+        <FilterValues />
         <Table />
       </div>
     );
