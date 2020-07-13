@@ -7,7 +7,7 @@ const INITIAL_FILTER_STATE = {
   filterByNumericValues: [],
 };
 
-const reducerFilter = (state = INITIAL_FILTER_STATE, action) => {
+const filters = (state = INITIAL_FILTER_STATE, action) => {
   switch (action.type) {
     case SEARCH_TEXT:
       return {
@@ -22,9 +22,9 @@ const reducerFilter = (state = INITIAL_FILTER_STATE, action) => {
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
-            column: action.event[0].value,
-            comparison: action.event[1].value,
-            value: action.event[2].value,
+            column: action.state.column,
+            comparison: action.state.comparison,
+            value: action.state.value,
           },
         ],
       };
@@ -33,4 +33,4 @@ const reducerFilter = (state = INITIAL_FILTER_STATE, action) => {
   }
 };
 
-export default reducerFilter;
+export default filters;

@@ -16,7 +16,7 @@ class Table extends Component {
           if (comparison === 'less than') return Number(planet[column]) < Number(value);
           if (comparison === 'equal to') return Number(planet[column]) === Number(value);
           if (comparison === 'grather than') return Number(planet[column]) > Number(value);
-          return console.log('deu ruim');
+          return null;
         });
       });
     }

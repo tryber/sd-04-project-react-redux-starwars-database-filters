@@ -33,7 +33,7 @@ export const searchText = (name) => ({
   name,
 });
 
-export const numericFilter = (event) => ({
+export const numericFilter = (state) => ({
   type: NUMERIC_FILTER,
-  event,
+  state,
 });
