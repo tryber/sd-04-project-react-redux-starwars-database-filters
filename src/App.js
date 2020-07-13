@@ -4,6 +4,7 @@ import React from 'react';
 import './App.css';
 import Header from './components/Header';
 import { requestFetchApi } from './actions/actionFetch';
+import Table from './components/Table/Table';
 
 class App extends React.Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
+        <Table />
       </div>
     );
   }
