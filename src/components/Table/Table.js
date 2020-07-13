@@ -32,21 +32,23 @@ class Table extends React.Component {
   }
 
   filterPlanetsByNumericValues(planets) {
-    const { filterNumericValues } = this.props;
+    const { data, filterNumericValues } = this.props;
     if (filterNumericValues.length === 0) return planets;
-    const { column, comparison, value } = filterNumericValues[0];
-    return planets.filter((planet) => {
-      switch (comparison) {
-        case 'maior que':
-          return Number(planet[column]) > Number(value);
-        case 'menor que':
-          return Number(planet[column]) < Number(value);
-        case 'igual a':
-          return Number(planet[column]) === Number(value);
-        default:
-          return false;
-      }
-    });
+    return filterNumericValues.reduce((filteredPlanetsArray, filterNumericValue) => {
+      const { column, comparison, value } = filterNumericValue;
+      return filteredPlanetsArray.filter((planet) => {
+        switch (comparison) {
+          case 'maior que':
+            return Number(planet[column]) > Number(value);
+          case 'menor que':
+            return Number(planet[column]) < Number(value);
+          case 'igual a':
+            return Number(planet[column]) === Number(value);
+          default:
+            return false;
+        }
+      });
+    }, data);
   }
 
   renderTableHead() {
