@@ -11,6 +11,7 @@ const operatorHelper = {
   'igual a': (v, c) => parseFloat(v) === parseFloat(c),
 };
 
+
 const filterInfo = (info, nameFilter, numericFilter) => {
   if (nameFilter && !info.name.toLowerCase().includes(nameFilter.toLowerCase())) return false;
   if (numericFilter.length > 0 && !numericFilter.every(
@@ -19,16 +20,30 @@ const filterInfo = (info, nameFilter, numericFilter) => {
   return true;
 };
 
+const orderInfo = (column, { [column]: a }, { [column]: b }) => {
+  if (isNaN(a) || isNaN(b)) return parseFloat(a) - parseFloat(b);
+  return a.localeCompare(b);
+};
+
+const processData = (data, name, filterByNumericValues, order) => {
+  const filtered = data.filter((info) => filterInfo(info, name, filterByNumericValues));
+  const ordered = filtered.sort((a, b) => orderInfo(order.column, a, b));
+  return order.sort === 'ASC' ? ordered : ordered.reverse();
+};
+
 class PlanetsTable extends Component {
   componentDidMount() {
     this.props.fetchData('planets');
   }
 
   render() {
-    const { data, filterByName: { name }, filterByNumericValues } = this.props;
+    const {
+      data, filterByName: { name }, filterByNumericValues, order,
+    } = this.props;
     if (data.length < 1) return <div>loading...</div>;
     const keys = Object.keys(data[0]).filter((k) => k !== 'residents');
-    const filteredData = data.filter((info) => filterInfo(info, name, filterByNumericValues));
+    const resultingData = processData(data, name, filterByNumericValues, order);
+
     return (
       <table className="planets-table">
         <thead>
@@ -37,7 +52,7 @@ class PlanetsTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((planet) => <PlanetItem data={planet} key={planet.name} />)}
+          {resultingData.map((planet) => <PlanetItem data={planet} key={planet.name} />)}
         </tbody>
       </table>
     );
@@ -57,11 +72,16 @@ PlanetsTable.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(
     PropTypes.object,
   ).isRequired,
+  order: PropTypes.shape({
+    sort: PropTypes.string,
+    column: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   data: state.data,
   ...state.filters,
+  order: state.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({

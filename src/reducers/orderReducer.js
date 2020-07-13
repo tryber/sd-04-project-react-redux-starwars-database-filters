@@ -1,10 +1,8 @@
 import { UPDATE_ORDER } from '../actions';
 
 const initialState = {
-  order: {
-    column: 'Name',
-    sort: 'ASC',
-  },
+  column: 'name',
+  sort: 'ASC',
 };
 
 export default (state = initialState, { type, order }) => {

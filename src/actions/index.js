@@ -47,6 +47,7 @@ export const removeNumericFilter = (filterColumn) => ({
   filterColumn,
 });
 
-export const updateOrder = () => ({
+export const updateOrder = (order) => ({
   type: UPDATE_ORDER,
+  order,
 });

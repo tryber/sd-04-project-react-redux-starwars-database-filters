@@ -3,7 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateFilterByName } from '../../actions';
 import NumericFilter from './NumericFilter';
-import FiltersList from '../FiltersList';
+import FiltersList from './FiltersList';
+import OrderFilter from './OrderFilter';
 
 export const Header = ({ onFilterByName }) => (
   <div>
@@ -15,6 +16,7 @@ export const Header = ({ onFilterByName }) => (
       data-testid="name-filter"
     />
     <NumericFilter />
+    <OrderFilter />
     <FiltersList />
   </div>
 );

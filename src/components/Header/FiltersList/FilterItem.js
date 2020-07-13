@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeNumericFilter } from '../../actions';
+import { removeNumericFilter } from '../../../actions';
 
 function FilterItem({ filter: { column, comparison, value }, onRemoveNumericFilter }) {
   return (
