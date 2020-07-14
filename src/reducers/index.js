@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const reducers = (state = initialState, action) => {
-  console.log('received action: ', action);
   switch (action.type) {
     case REQUEST_API:
       return {
@@ -19,7 +18,6 @@ const reducers = (state = initialState, action) => {
         isFetching: true,
       };
     case REQUISITION_SUCCESS:
-      console.log('entrou no REQUISITION');
       return {
         ...state,
         data: action.data,
@@ -30,8 +28,4 @@ const reducers = (state = initialState, action) => {
   }
 };
 
-function storeConfig() {
-  return createStore(reducers, applyMiddleware(thunk));
-}
-
-export default storeConfig;
+export default reducers;

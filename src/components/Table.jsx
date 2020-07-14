@@ -5,16 +5,13 @@ import { connect } from 'react-redux';
 import linhas from './Linhas';
 
 class Table extends Component {
-  componentDidMount() {
-    const { getSwapi } = this.props;
-    getSwapi();
-  }
+
 
   render() {
     const { data, isFetching } = this.props;
-    console.log(data);
     if (isFetching) return <span>...Loading</span>;
-    const colunas = Object.keys(data[0]).filter((campo) => campo !== 'residents');
+    const planeta1 = data;
+    const colunas = Object.keys(planeta1[0]).filter((campo) => campo !== 'residents');
     return (
       <div>
         <table className="tabela">
@@ -37,8 +34,4 @@ const mapStateToProps = (state) => ({
   isFetching: state.isFetching,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getSwapi: () => dispatch(planetsResponseApi()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps)(Table);

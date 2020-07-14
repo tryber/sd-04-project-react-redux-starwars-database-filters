@@ -13,7 +13,6 @@ export const receiveData = (data) => ({
 });
 
 export function planetsResponseApi() {
-  console.log('funciona planetsResponse');
   return (dispatch) => {
     dispatch(requestApi());
     return getSwapi().then((planets) => dispatch(receiveData(planets.results)));
