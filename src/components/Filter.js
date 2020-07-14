@@ -19,6 +19,7 @@ class Filter extends React.Component {
     this.columnRender = this.columnRender.bind(this);
     this.filterRender = this.filterRender.bind(this);
     this.buttonRender = this.buttonRender.bind(this);
+    this.comparisonRender = this.comparisonRender.bind(this);
   }
 
   handleChange(event) {
@@ -105,30 +106,36 @@ class Filter extends React.Component {
     );
   }
 
+  comparisonRender() {
+    return (
+      <select
+        name="comparison"
+        className="form-control col-md-5 mb-2"
+        data-testid="comparison-filter"
+        value={this.state.comparison}
+        onChange={this.handleChange}
+      >
+        {this.state.comparisonItems.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
   render() {
     return (
       <div>
         <form>
-          <div class="form-group">
-            <div class="form-row">
+          <div className="form-group">
+            <div className="form-row">
               <this.columnRender />
-              <select
-                name="comparison"
-                className="form-control col-md-5 mb-2"
-                data-testid="comparison-filter"
-                value={this.state.comparison}
-                onChange={this.handleChange}
-              >
-                {this.state.comparisonItems.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+              <this.comparisonRender />
             </div>
           </div>
-          <div class="form-group">
-            <div class="form-row">
+          <div className="form-group">
+            <div className="form-row">
               <input
                 name="value"
                 type="number"

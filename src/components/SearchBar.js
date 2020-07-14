@@ -27,8 +27,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 SearchBar.propTypes = {
-  searchBar: PropTypes.func,
+  searchBar: PropTypes.func.isRequired,
   value: PropTypes.string,
 };
 
+SearchBar.defaultProps = {
+  value: null,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
