@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterValues } from '../../actions/filter';
 
+const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+
 const CreateSelectColumn = ({ onChange, value }) => (
   <select value={value} onChange={(e) => onChange(e)} data-testid="column-filter" id="column">
     <option value="">Column</option>
-    <option value="population">population</option>
-    <option value="orbital_period">orbital_period</option>
-    <option value="diameter">diameter</option>
-    <option value="rotation_period">rotation_period</option>
-    <option value="surface_water">surface_water</option>
+    {options.map((option) => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ))}
   </select>
 );
 
