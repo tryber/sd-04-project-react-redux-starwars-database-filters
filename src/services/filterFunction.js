@@ -10,15 +10,6 @@ const filterComparisons = (filteredData, column, comparison, value) => {
       return false;
   }
 };
-const notNumbers = [
-  'name',
-  'climate',
-  'terrain',
-  'residents',
-  'films',
-  'created',
-  'edited',
-];
 
 // quebrando a função COMPARE em partes
 const comparePartTwo = (varA, varB, order) => {
@@ -34,8 +25,8 @@ const comparePartTwo = (varA, varB, order) => {
 // função pra ordernar números ou strings em ordem ASC ou DESC:
 const compare = (type, order = 'ASC') => (a, b) => {
   // convertendos as vaáveis que deviam ser number mas são strings:
-  const varA = !notNumbers.includes(type) ? Number(a[type]) : a[type];
-  const varB = !notNumbers.includes(type) ? Number(b[type]) : b[type];
+  const varA = Number(a[type]) ? Number(a[type]) : a[type];
+  const varB = Number(b[type]) ? Number(b[type]) : b[type];
   // chamando a parte dois:
   return comparePartTwo(varA, varB, order);
 };
