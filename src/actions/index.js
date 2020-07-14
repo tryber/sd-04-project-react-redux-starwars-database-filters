@@ -4,6 +4,7 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
 export const RECEIVE_PLANETS_FAILURE = 'RECEIVE_PLANETS_FAILURE';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
+export const COMPARISON_FILTER = 'COMPARISON_FILTER';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -21,7 +22,12 @@ const receivePlanetsFailure = (error) => ({
 
 const searchTextAction = (searchText) => ({
   type: SEARCH_TEXT,
-  searchText,
+  searchText: searchText.toLowerCase(),
+});
+
+const comparisonFilterAction = (comparisonFilter) => ({
+  type: COMPARISON_FILTER,
+  comparisonFilter,
 });
 
 export function fetchPlanets() {
@@ -36,4 +42,4 @@ export function fetchPlanets() {
   };
 }
 
-export { searchTextAction };
+export { searchTextAction, comparisonFilterAction };
