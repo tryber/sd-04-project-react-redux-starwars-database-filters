@@ -419,22 +419,27 @@ describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou 
       const planet = testData.results[index];
       sortedPlanets.push(planet.name);
     }
-
+    console.log(sortedPlanets);
     sortedPlanets = sortedPlanets.sort();
+    console.log(sortedPlanets);
 
     const { findAllByRole, findByText, store } = renderApp();
     await findByText(testData.results[0].name);
     const rows = await findAllByRole('row');
     const appPlanetList = [];
+    console.log(appPlanetList);
 
     for (let index = 0; index < rows.length; index += 1) {
       const row = rows[index];
       appPlanetList.push(row.children[0].innerHTML);
     }
+    console.log(appPlanetList);
 
     appPlanetList.shift();
+    console.log(appPlanetList);
+
     expect(sortedPlanets).toEqual(appPlanetList);
-    expect(store.getState().filters.order.column).toEqual('Name');
+    expect(store.getState().filters.order.column).toEqual('name');
     expect(store.getState().filters.order.sort).toEqual('ASC');
   });
 

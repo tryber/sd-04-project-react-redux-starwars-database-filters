@@ -37,15 +37,10 @@ class Table extends Component {
   }
 
   render() {
-    const {
-      planetsData,
-      filteredPlanets,
-      isFetching,
-    } = this.props;
+    const { planetsData, filteredPlanets, isFetching } = this.props;
     if (isFetching) return <p>Loading...</p>;
     const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
-    const planets = filteredPlanets;
-    return renderTable(headerTitles, planets);
+    return renderTable(headerTitles, filteredPlanets);
   }
 }
 

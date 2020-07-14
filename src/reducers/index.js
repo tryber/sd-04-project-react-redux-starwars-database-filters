@@ -7,6 +7,7 @@ import {
   REMOVE_FILTER,
 } from '../actions/filterByNumeric';
 import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
+import { SET_ORDER_FILTER, SET_FILTERED_BY_ORDER } from '../actions/filterByOrder';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -16,6 +17,10 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'name',
+    sort: 'ASC',
+  },
 };
 
 const applyNumericFilters = (planets, filters) => {
@@ -32,6 +37,40 @@ const applyNumericFilters = (planets, filters) => {
   return filteredPlanets;
 };
 
+// const compare = (column, sort = 'ASC') => {
+//   return function inner(a, b) {
+//   let comparison = 0;
+//   if (a[column] > b[column]) {
+//   comparison = 1;
+//   } else if (a[column] < b[column]) {
+//   comparison = -1;
+//   }
+//   return order === 'DESC' ? comparison * -1 : comparison;
+//   };
+//   }
+
+const applyOrderFilter = (planets, { column, sort }) => {
+  const listOfColumns = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
+  const newOrderPlanets = planets
+    .map((planet) => {
+      if (listOfColumns.includes(column)) return { ...planet, [column]: Number(planet[column]) };
+      return { ...planet, [column]: planet[column] };
+    })
+    .sort((curr, next) => {
+      if (curr[column] < next[column]) return -1;
+      if (curr[column] > next[column]) return 1;
+      return 0;
+    });
+  if (sort === 'ASC') return newOrderPlanets;
+  return newOrderPlanets.reverse();
+};
+
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_PLANETS:
@@ -42,7 +81,7 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         planetsData: action.planetsData,
-        filteredPlanets: action.planetsData,
+        filteredPlanets: applyOrderFilter(action.planetsData, state.order),
         isFetching: false,
       };
     case NAME_TO_FILTER:
@@ -88,6 +127,22 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         filterByNumericValues: newFilteredByNumericValues,
+      };
+    }
+    case SET_ORDER_FILTER:
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sortKey,
+        },
+      };
+    case SET_FILTERED_BY_ORDER: {
+      const planets = state.filteredPlanets;
+      const filteredPlanets = applyOrderFilter(planets, state.order);
+      return {
+        ...state,
+        filteredPlanets,
       };
     }
     default:
