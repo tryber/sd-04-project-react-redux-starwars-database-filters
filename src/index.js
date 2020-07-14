@@ -8,9 +8,7 @@ import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App>
-      {console.log(store)}
-    </App>
+    <App />
   </Provider>, document.getElementById('root')
 );
 
