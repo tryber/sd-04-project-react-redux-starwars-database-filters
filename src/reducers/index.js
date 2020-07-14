@@ -106,10 +106,7 @@ function reducer(state = INITIAL_STATE, action) {
     case SET_FILTERED_BY_ORDER: {
       const planets = [...state.filteredPlanets];
       const filteredPlanets = applyOrderFilter(planets, state.order);
-      return {
-        ...state,
-        filteredPlanets,
-      };
+      return { ...state, filteredPlanets };
     }
     default:
       return state;
