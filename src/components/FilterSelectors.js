@@ -37,21 +37,14 @@ class FilterSelectors extends React.Component {
   }
 
   render() {
-    const columnFilter = this.columnFilterElement();
     const { state: { column, comparison, value }, props: { dispatchNumValues } } = this;
-
     return (
       <div>
-        <select
-          onChange={(event) => this.handleFilterChange(event, 'column')}
-          data-testid="column-filter"
-        >
+        <select onChange={(event) => this.handleFilterChange(event, 'column')} data-testid="column-filter">
           <option></option>
-          {columnFilter.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
+          {this.columnFilterElement().map(
+            (option) => (<option key={option} value={option}>{option}</option>),
+          )}
         </select>
         <select
           onChange={(event) => this.handleFilterChange(event, 'comparison')}
