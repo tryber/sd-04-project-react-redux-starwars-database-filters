@@ -77,7 +77,8 @@ class Filters extends React.Component {
       <div>
         <form>
           <this.getCol />
-          <select name="comparison"
+          <select
+            name="comparison"
             data-testid="comparison-filter"
             value={this.state.comparison} onChange={this.getValue}
           >
@@ -89,7 +90,8 @@ class Filters extends React.Component {
             name="value" type="number" data-testid="value-filter"
             value={this.state.value} onChange={this.getValue}
           />
-          <button type="button"
+          <button
+            type="button"
             data-testid="button-filter"
             onClick={() =>
               this.props.swSearchNum(this.state.filterByNumericValues)
