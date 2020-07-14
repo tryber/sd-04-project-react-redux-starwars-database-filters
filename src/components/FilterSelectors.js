@@ -37,7 +37,7 @@ class FilterSelectors extends React.Component {
   }
 
   render() {
-    const { state: { column, comparison, value }, props: { dispatchNumValues } } = this;
+    const { state: { column, comparison, value }, props: { disNumVal } } = this;
     return (
       <div>
         <select onChange={(event) => this.handleFilterChange(event, 'column')} data-testid="column-filter">
@@ -60,7 +60,7 @@ class FilterSelectors extends React.Component {
           data-testid="value-filter"
           type="number"
         />
-        <button onClick={() => dispatchNumValues(column, comparison, value)} type="button" data-testid="button-filter">
+        <button onClick={() => disNumVal(column, comparison, value)} type="button" data-testid="button-filter">
           Filters
         </button>
       </div>
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchNumValues: (column, comparison, value) => dispatch(
+  disNumVal: (column, comparison, value) => dispatch(
     filterByNumericValues(column, comparison, value),
   ),
 });
@@ -81,6 +81,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(FilterSelectors);
 
 FilterSelectors.propTypes = {
-  dispatchNumValues: propTypes.func.isRequired,
+  disNumVal: propTypes.func.isRequired,
   filters: propTypes.arrayOf(propTypes.object).isRequired,
 };

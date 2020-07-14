@@ -23,9 +23,11 @@ const numericFilter = (planet, column, comparison, value) => {
 class Table extends React.Component {
   filterNumeric(filteredData) {
     const { filterByNumericValues } = this.props;
-    return filterByNumericValues.reduce((acc, {
-      column, comparison, value,
-    }) => acc.filter((planet) => numericFilter(planet, column, comparison, value)), filteredData);
+    return filterByNumericValues.reduce(
+      (acc, { column, comparison, value }) => acc.filter((planet) => numericFilter(
+        planet, column, comparison, value,
+      )), filteredData,
+    );
   }
 
   render() {
@@ -34,7 +36,13 @@ class Table extends React.Component {
     dataPlanets = filterByText(data, name);
     dataPlanets = this.filterNumeric(dataPlanets);
 
-    if (isLoading) return <h5 className="progress-bar bg-danger progress-bar-striped progress-bar-animated">Loading...</h5>;
+    if (isLoading) {
+      return (
+        <h5 className="progress-bar bg-danger progress-bar-striped progress-bar-animated">
+          Loading...
+        </h5>
+      );
+    }
 
     return (
       <table className="table table-bordered table-dark">
