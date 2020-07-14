@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByNumbers } from '../actions/index';
 import FilterName from './FilterName';
+import RemoveFilter from './RemoveFilter';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class SearchBar extends React.Component {
           onChange={(e) => this.setState({ value: e.target.value })}
         />
         <button data-testid="button-filter" onClick={() => this.onClick()}>Filter</button>
+        <RemoveFilter />
       </div>
     );
   }

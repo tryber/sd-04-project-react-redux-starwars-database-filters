@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions/index';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTER } from '../actions/index';
 
 const inicialState = {
   filterByName: {
@@ -27,6 +27,14 @@ const filters = (state = inicialState, action) => {
             value: action.value,
           }],
       };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues.filter((filter) => filter !== action.objeto),
+        ],
+      };
+
     default:
       return state;
   }
