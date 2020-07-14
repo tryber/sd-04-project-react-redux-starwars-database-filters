@@ -60,8 +60,8 @@ class Home extends React.Component {
 const mapStateToProps = (state) => ({
   isLoading: state.swReducer.isLoading,
   data: state.swReducer.data,
-  swSearch: state.filterReducer.filterByName.name,
-  swReducer: state.filterReducer,
+  swSearch: state.filters.filterByName.name,
+  swReducer: state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({

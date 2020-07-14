@@ -18,7 +18,7 @@ class SearchInput extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  value: state.filterReducer.value,
+  value: state.filters.value,
 });
 
 const mapDispatchToProps = (dispatch) => ({

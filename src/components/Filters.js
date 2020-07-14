@@ -106,8 +106,8 @@ class Filters extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  colonumItems: state.filterReducer.colonumItems,
-  filterByNumericValues: state.filterReducer.filterByNumericValues,
+  colonumItems: state.filters.colonumItems,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 const mapDispatchToProps = (dispatch) => ({
   swSearchNum: (e) => dispatch(swSearchNum(e)),

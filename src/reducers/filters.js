@@ -15,7 +15,7 @@ const INITIAL_STATE = {
   ],
 };
 
-function filterReducer(state = INITIAL_STATE, action) {
+function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SW_SEARCH:
       return { ...state, filterByName: { name: action.value } };
@@ -40,4 +40,4 @@ function filterReducer(state = INITIAL_STATE, action) {
   }
 }
 
-export default filterReducer;
+export default filters;
