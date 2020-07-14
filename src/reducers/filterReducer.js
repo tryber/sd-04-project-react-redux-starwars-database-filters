@@ -35,12 +35,12 @@ const filterReducer = (state = INITIAL_STATE, action) => {
         filterByNumericValues: [
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value }],
-        categories: redFil(state.categories, state.filterByNumericValues)};
+        categories: redFil(state.categories, state.filterByNumericValues) };
     case SW_FILTER_SV:
       return {
         ...state,
         filterByName: { name: '' },
-        actualFilter: { ...state.actualFilter, [action.name]: action.value}};
+        actualFilter: { ...state.actualFilter, [action.name]: action.value } };
     case SW_CAT:
       return {
         ...state,
