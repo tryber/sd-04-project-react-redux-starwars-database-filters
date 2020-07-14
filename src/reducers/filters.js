@@ -6,13 +6,6 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
-  // categories: [
-  //   'population',
-  //   'orbital_period',
-  //   'diameter',
-  //   'rotation_period',
-  //   'surface_water',
-  // ]
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -24,7 +17,7 @@ const filters = (state = INITIAL_STATE, action) => {
           name: action.searchText,
         },
       };
-    case COMPARISON_FILTER: 
+    case COMPARISON_FILTER:
       return {
         ...state,
         filterByNumericValues: [
@@ -33,9 +26,9 @@ const filters = (state = INITIAL_STATE, action) => {
             column: action.comparisonFilter.column,
             comparison: action.comparisonFilter.comparison,
             value: action.comparisonFilter.value,
-          }
-        ]
-      }
+          },
+        ],
+      };
     default:
       return state;
   }
