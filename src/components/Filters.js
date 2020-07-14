@@ -32,4 +32,5 @@ export default connect(null, mapDispatchToProps)(Filters);
 
 Filters.propTypes = {
   dataFetch: PropTypes.func.isRequired,
+  nameChange: PropTypes.func.isRequired,
 };

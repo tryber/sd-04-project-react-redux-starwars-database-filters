@@ -1,2 +1,3 @@
-export const checkNamePlanet = (name, filter) =>
-  (name.includes(filter) ? true : false);
+const checkNamePlanet = (name, filter) => name.includes(filter);
+
+export default checkNamePlanet;

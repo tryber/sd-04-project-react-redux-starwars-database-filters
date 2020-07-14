@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Table.css';
-import { checkNamePlanet } from '../helpers';
+import checkNamePlanet from '../helpers';
 
 const THeadBody = ({ data, filterName }) => (
   <table>
@@ -50,10 +50,10 @@ const TBody = ({ data, filterName }) => data.filter((planet) =>
 
 const Table = ({ data, loading, filterName }) =>
   (loading ? <p>Loading...</p> :
-    <div>
-      <p>StarWars Datatable with Filters</p>
-      <THeadBody data={data} filterName={filterName} />
-    </div>
+  <div>
+    <p>StarWars Datatable with Filters</p>
+    <THeadBody data={data} filterName={filterName} />
+  </div>
   );
 
 const mapStateToProps = (state) => ({
@@ -67,6 +67,7 @@ export default connect(mapStateToProps)(Table);
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
 
 THeadBody.propTypes = {
