@@ -21,22 +21,11 @@ const INITIAL_STATE = {
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_API:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
     case REQUEST_SUCCESS:
-      return {
-        ...state,
-        data: action.data.results,
-        loading: false,
-      };
+      return { ...state, data: action.data.results, loading: false };
     case REQUEST_ERROR:
-      return {
-        ...state,
-        error: action.error,
-        loading: false,
-      };
+      return { ...state, error: action.error, loading: false };
     case SEARCH_PLANET:
       return {
         ...state,
@@ -46,7 +35,6 @@ function reducer(state = INITIAL_STATE, action) {
         },
       };
     case FILTER_NUMBERS:
-      console.log('Filter: ', action.value);
       return {
         ...state,
         filters: {
