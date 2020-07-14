@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   },
   filterByNumericValues: [],
   colonumItems: [
-    { name: '', available: true },
+    { name: 'Coluna', available: true },
     { name: 'population', available: true },
     { name: 'orbital_period', available: true },
     { name: 'diameter', available: true },
@@ -25,11 +25,7 @@ function filterReducer(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: filter.column,
-            comparison: filter.comparison,
-            value: filter.value,
-          },
+          { column: filter.column, comparison: filter.comparison, value: filter.value },
         ],
         colonumItems: state.colonumItems.map((item) => {
           if (item.name === filter.column) {

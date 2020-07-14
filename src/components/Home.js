@@ -9,7 +9,7 @@ import { swFetch } from '../actions';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.comp = this.comp.bind(this);
+    this.compare = this.compare.bind(this);
     this.swFilter = this.swFilter.bind(this);
   }
 
@@ -18,11 +18,12 @@ class Home extends React.Component {
     getSwFetch();
   }
 
-  comp(planetV, filterV, op) {
+  compare(pValue, fValue, op) {
     let result = false;
-    if (op === 'maior que') result = planetV > filterV;
-    if (op === 'menor que') result = planetV < filterV;
-    if (op === 'igual a') result = planetV === filterV;
+    if (op === 'maior que') result = pValue > fValue;
+    if (op === 'menor que') result = pValue < fValue;
+    if (op === 'igual a') result = pValue === fValue;
+    this.bar = result;
     return result;
   }
 
@@ -30,16 +31,16 @@ class Home extends React.Component {
     const { data, swReducer } = this.props;
     const swSearch = swReducer.filterByName.name;
     const filterArray = swReducer.filterByNumericValues;
-
     let swFiltered = data.filter((planet) => planet.name.includes(swSearch));
     filterArray.map((filter) => {
       swFiltered = swFiltered.filter((planet) =>
-        this.comp(
+        this.compare(
           Number(planet[filter.column]),
           Number(filter.value),
-          filter.comparison,
-        ),
+          filter.comparison
+        )
       );
+      return swFiltered;
     });
     return swFiltered;
   }

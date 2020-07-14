@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { swSearchNum } from '../actions';
+import { swSearchNum } from '../actions/';
 
 class Filters extends React.Component {
   constructor(props) {
@@ -12,15 +12,17 @@ class Filters extends React.Component {
         comparison: '',
         value: '',
       },
-      swComp: ['', 'maior que', 'igual a', 'menor que'],
+
+      comparisonItems: ['Comparação', 'maior que', 'igual a', 'menor que'],
     };
+
     this.getValue = this.getValue.bind(this);
     this.getCol = this.getCol.bind(this);
     this.getFil = this.getFil.bind(this);
   }
 
-  getValue(e) {
-    const { name, value } = e.target;
+  getValue(event) {
+    const { name, value } = event.target;
     this.setState({
       filterByNumericValues: {
         ...this.state.filterByNumericValues,
@@ -30,17 +32,19 @@ class Filters extends React.Component {
   }
 
   getCol() {
-    this.bar = 12; // ai ai cc
-    const colItems = [];
-    this.props.swCol.forEach((e) => {
-      colItems.push(e.name);
+    this.bar = 12;
+    const colAr = [];
+    this.props.colonumItems.forEach((item) => {
+      colAr.push(item.name);
     });
-    const colFil = [];
-    this.props.filterByNumericValues.forEach((e) => {
-      colFil.push(e.column);
+    const acCol = [];
+    this.props.filterByNumericValues.forEach((item) => {
+      acCol.push(item.column);
     });
-    let filteredCol = [];
-    filteredCol = colItems.filter((e) => !colFil.includes(e));
+    let colFil = [];
+    colFil = colAr.filter(
+      (n) => !acCol.includes(n)
+    );
     return (
       <select
         name="column"
@@ -48,51 +52,46 @@ class Filters extends React.Component {
         value={this.state.value}
         onChange={this.getValue}
       >
-        {filteredCol.map((e) => (
-          <option value={e}>{e}</option>
+        {colFil.map((item) => (
+          <option value={item}>{item}</option>
         ))}
       </select>
     );
   }
-
   getFil() {
-    this.bar = 12; // ai ai ccccccccc
+    this.bar = 12;
     return (
       <div>
-        {this.props.filterByNumericValues.map((fil) => (
+        {this.props.filterByNumericValues.map((filter) => (
           <div>
             <p>
-              {fil.column}, {fil.comparison}, {fil.value}
+              {filter.column}, {filter.comparison}, {filter.value}
             </p>
           </div>
         ))}
       </div>
     );
   }
-
   render() {
     return (
       <div>
         <form>
           <this.getCol />
-          <select
-            name="comparison"
-            data-testid="comparison-filter"
-            value={this.state.comparison}
-            onChange={this.getValue}
+          <select name="comparison" data-testid="comparison-filter"
+            value={this.state.comparison} onChange={this.getValue}
           >
-            {this.state.swComp.map((e) => (<option value={e}>{e}</option>))}
+            {this.state.comparisonItems.map((item) => (
+              <option value={item}>{item}</option>
+            ))}
           </select>
           <input
-            type="number"
-            data-testid="value-filter"
-            value={this.state.value}
-            onChange={this.getValue}
+            name="value" type="number" data-testid="value-filter"
+            value={this.state.value} onChange={this.getValue}
           />
-          <button
-            type="button"
-            data-testid="button-filter"
-            onClick={() => this.props.swSearchNum(this.state.filterByNumericValues)}
+          <button type="button" data-testid="button-filter"
+            onClick={() =>
+              this.props.swSearchNum(this.state.filterByNumericValues)
+            }
           >
             Filter
           </button>
@@ -102,20 +101,17 @@ class Filters extends React.Component {
     );
   }
 }
-
 const mapStateToProps = (state) => ({
-  swCol: state.filterReducer.colonumItems,
+  colonumItems: state.filterReducer.colonumItems,
   filterByNumericValues: state.filterReducer.filterByNumericValues,
 });
-
 const mapDispatchToProps = (dispatch) => ({
   swSearchNum: (e) => dispatch(swSearchNum(e)),
 });
-
 Filters.propTypes = {
   swSearchNum: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.shape.isRequired,
-  swCol: PropTypes.shape.isRequired,
+  colonumItems: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
