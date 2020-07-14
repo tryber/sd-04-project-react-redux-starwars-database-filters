@@ -52,6 +52,7 @@ class Filters extends Component {
     return (
       <div>
         <select
+          id="filtro-coluna"
           value={column}
           name="column"
           data-testid="column-filter"
