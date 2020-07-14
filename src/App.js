@@ -1,15 +1,32 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Table from './components/Table';
 import Home from './components/Home';
+import { swFetch } from './actions';
 
+class App extends React.Component {
+  componentDidMount() {
+    const { getSwFetch } = this.props;
+    getSwFetch();
+  }
 
-function App() {
-  return (
-    <div>
-      <h1>StarWars Datatable with Filters</h1>
-      <Home />
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <Home />
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = {
+  getSwFetch: swFetch,
+};
+
+export default connect(null, mapDispatchToProps)(App);
+
+App.propTypes = {
+  getSwFetch: PropTypes.func.isRequired,
+};

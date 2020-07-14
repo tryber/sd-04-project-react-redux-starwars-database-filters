@@ -1,140 +1,98 @@
 import React from 'react';
+import PropTypes, { oneOfType } from 'prop-types';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { swFilterNum } from '../actions';
+import { swFetch, swFilterName, swFilterBtn, swFilterSv } from '../actions';
 
-class Filters extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      select: [],
-      number: '',
-      column: '',
-      comparation: '',
-    };
-
-    this.uptCol = this.uptCol.bind(this);
-    this.numChange = this.numChange.bind(this);
-    this.selectChange = this.selectChange.bind(this);
-    this.getColumns = this.getColumns.bind(this);
-    this.compareAll = this.compareAll.bind(this);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.uptCol();
-  }
-
-  onClick() {
-    const { number, column, comparation } = this.state;
-    this.props.swFilterNum(column, comparation, number);
-    this.setState({
-      select: [],
-      number: '',
-      column: '',
-      comparation: '',
-    });
-    this.uptCol();
-  }
-
-  getColumns() {
-    const { select } = this.state;
-    return (
+const Filters = ({
+  swFetch,
+  filterValues,
+  filterBtn,
+  saveFilterProps,
+  name,
+  column,
+  comparison,
+  value,
+  categories,
+}) => (
+  <nav>
+    <input
+      value={name}
+      data-testid="name-filter"
+      onChange={(e) => filterValues(e.target.value)}
+    />
+    <div>
       <select
-        onChange={(e) => this.selectChange(e, 'column')}
+        name='column'
+        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+        value={column}
         data-testid="column-filter"
-        value={this.state.column}
       >
-        {select.map((option) => (
-          <option key={option} value={option}>
-            {option}
+        <option aria-label='empty' />
+        {categories.map((cat) => (
+          <option key={cat} value={cat}>
+            {cat}
           </option>
         ))}
       </select>
-    );
-  }
-
-  selectChange(e, key) {
-    const { value } = e.target;
-    this.setState({
-      [key]: value,
-    });
-  }
-
-  numChange(e) {
-    this.setState({
-      number: e.target.value,
-    });
-  }
-
-  uptCol() {
-    const { nums } = this.props;
-    const columns = [
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-
-    const stateColumns = nums.map(({ column }) => column);
-    this.setState({
-      select: [
-        '',
-        ...columns.filter((column) => !stateColumns.includes(column)),
-      ],
-    });
-  }
-
-  compareAll() {
-    const comparation = ['', 'maior que', 'menor que', 'igual a'];
-    return (
       <select
-        onChange={(event) => this.selectChange(event, 'comparation')}
+        name='comparison'
+        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+        value={comparison}
         data-testid="comparison-filter"
-        value={this.state.comparation}
       >
-        {comparation.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
+        <option aria-label='empty' />
+        <option value='maior que'>maior que</option>
+        <option value='igual a'>igual a</option>
+        <option value='menor que'>menor que</option>
       </select>
-    );
-  }
+      <input
+        name='value'
+        value={value}
+        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
+        type='number'
+        data-testid="value-filter"
+      />
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={() => filterBtn(column, comparison, value)}
+        disabled={!(column && comparison && value)}
+      >
+        FILTER!
+      </button>
+    </div>
+  </nav>
+);
 
-  render() {
-    return (
-      <div>
-        {this.getColumns()}
-        {this.compareAll()}
-        <input
-          type="number"
-          data-testid="value-filter"
-          value={this.state.number}
-          onChange={(event) => this.numChange(event)}
-        />
-        <button data-testid="button-filter" onClick={this.onClick} type="text">
-          Search
-        </button>
-      </div>
-    );
-  }
-}
+const mapStateToProps = (state) => {
+  const { column, comparison, value } = state.filterReducer.actualFilter;
+  const { name } = state.filterReducer.filterByName;
+  return {
+    column,
+    comparison,
+    value,
+    name,
+    categories: state.filterReducer.categories,
+  };
+};
 
-const mapStateToProps = (state) => ({
-  nums: state.filterReducer.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  swFilterNum: (column, comparison, value) =>
-    dispatch(swFilterNum(column, comparison, value)),
-});
+const mapDispatchToProps = {
+  getSwFetch: swFetch,
+  filterValues: swFilterName,
+  filterBtn: swFilterBtn,
+  saveFilterProps: swFilterSv,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
 
 Filters.propTypes = {
-  swFilterNum: PropTypes.func.isRequired,
-  nums: PropTypes.string.isRequired,
+  getSwFetch: PropTypes.func.isRequired,
+  filterValues: PropTypes.func.isRequired,
+  filterBtn: PropTypes.func.isRequired,
+  saveFilterProps: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  column: PropTypes.string.isRequired,
+  comparison: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  categories: PropTypes.arrayOf(oneOfType(PropTypes.string)).isRequired,
 };
