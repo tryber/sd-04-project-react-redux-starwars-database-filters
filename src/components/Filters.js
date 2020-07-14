@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { searchFilter, loadElementFilter } from '../actions';
+import { searchFilter } from '../actions'; // loadElementFilter
 
 // const renderFirstFilter = () => (
 //   <div>
@@ -48,7 +48,7 @@ class Filters extends Component {
   // eslint-disable-next-line class-methods-use-this
   renderFirstFilter() {
     const { column } = this.state;
-    const { filterKeys, loadElementFilter } = this.props;
+    const { filterKeys } = this.props; // loadElementFilter
     return (
       <div>
         <select
@@ -122,14 +122,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   filterPlanets: (filtros) => dispatch(searchFilter(filtros)),
-  loadElementFilter: (value) => dispatch(loadElementFilter(value)),
+  // loadElementFilter: (value) => dispatch(loadElementFilter(value)),
 });
 
 Filters.propTypes = {
   filterPlanets: PropTypes.func.isRequired,
-  // filterKeys: PropTypes.shape({
-  //   'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'
-  // }),
+  filterKeys: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // loadElementFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
