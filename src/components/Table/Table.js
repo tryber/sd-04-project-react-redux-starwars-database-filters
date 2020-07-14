@@ -49,13 +49,13 @@ class Table extends React.Component {
             return false;
         }
       });
-    }, data);
+    }, planets);
   }
 
   sortPlanets(arr = this.props.data) {
     const { orderColumn, orderSort } = this.props;
     const columnArray = arr.map((planet) => planet[orderColumn.toLowerCase()]);
-    if (isNaN(Number(columnArray[0]))) columnArray.sort();
+    if (isNaN(columnArray[0])) columnArray.sort();
     else columnArray.sort((a, b) => a - b);
     if (orderSort === 'DESC') columnArray.reverse();
     const orderedPlanets = columnArray.map((columnValue) =>
