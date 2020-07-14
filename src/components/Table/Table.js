@@ -52,16 +52,18 @@ class Table extends React.Component {
     }, planets);
   }
 
-  sortPlanets(arr = this.props.data) {
+  sortPlanets(arr = [...this.props.data]) {
+    if (arr.length === 0) return arr;
     const { orderColumn, orderSort } = this.props;
-    const columnArray = arr.map((planet) => planet[orderColumn.toLowerCase()]);
-    if (isNaN(columnArray[0])) columnArray.sort();
-    else columnArray.sort((a, b) => a - b);
-    if (orderSort === 'DESC') columnArray.reverse();
-    const orderedPlanets = columnArray.map((columnValue) =>
-      arr.find((planet) => planet[orderColumn.toLowerCase()] === columnValue),
-    );
-    return orderedPlanets;
+    const planetKey = orderColumn.toLowerCase();
+
+    if (isNaN(arr[0][planetKey])) {
+      arr.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
+    } else {
+      arr.sort((a, b) => a[planetKey] - b[planetKey]);
+    }
+    if (orderSort === 'DESC') arr.reverse();
+    return arr;
   }
 
   renderTableHead() {
