@@ -6,6 +6,6 @@ const TableHeaders = ({
 }) => <tr>{heads.map((head) => head !== 'residents' && <th key={head}>{head}</th>)}</tr>;
 export default TableHeaders;
 
-TableHeaders.propTypes = {
-  heads: propTypes.arrayOf(propTypes.string).isRequired,
-};
+// TableHeaders.propTypes = {
+//  heads: propTypes.arrayOf(propTypes.string).isRequired,
+// };
