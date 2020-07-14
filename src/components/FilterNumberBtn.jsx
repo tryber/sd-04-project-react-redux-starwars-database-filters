@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
 FilterNumberBtn.propTypes = {
   filterByNumber: PropTypes.func.isRequired,
   state: PropTypes.objectOf(PropTypes.string).isRequired,
+  clearColumnState: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(FilterNumberBtn);
