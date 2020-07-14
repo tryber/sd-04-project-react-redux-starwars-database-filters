@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import fetchPlanets from '../actions/index';
+import { fetchPlanets } from '../actions/index';
+import ConteudoTable from './ConteudoTable';
 
 export class Table extends Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ export class Table extends Component {
   }
 
   render() {
-    const { data, isFetching } = this.props;
+    const { data, isFetching, input } = this.props;
     if (isFetching) return <div>Loading...</div>;
     const title = Object.keys(data[0]).filter((key) => key !== 'residents');
     return (
@@ -22,11 +23,7 @@ export class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {data.map((conteudo) => (
-              <tr>
-                {title.map((element) => <td key={element}>{conteudo[element]}</td>)}
-              </tr>
-            ))}
+            {ConteudoTable(data, title, input)}
           </tbody>
         </table>
       </div>
@@ -38,6 +35,7 @@ const mapStateToProps = (state) => (
   {
     isFetching: state.reducerPlanets.isFetching,
     data: state.reducerPlanets.data,
+    input: state.filters.filterByName.name,
   }
 );
 
@@ -47,8 +45,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   getSWAPI: PropTypes.func.isRequired,
-  data: PropTypes.shape.isRequired,
+  data: PropTypes.array,
   isFetching: PropTypes.bool.isRequired,
+  input: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
