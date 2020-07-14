@@ -25,7 +25,7 @@ export function swFetch() {
     dispatch(swRequest());
     return swApi().then(
       (data) => dispatch(swSuccess(data.results)),
-      (error) => dispatch(swFailure(error.message))
+      (error) => dispatch(swFailure(error.message)),
     );
   };
 }

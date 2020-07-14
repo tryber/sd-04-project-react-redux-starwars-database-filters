@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { swSearch } from '../actions';
-import {swSearchNum} from '../actions';
+import { swSearchNum } from '../actions';
 
 class SearchInput extends React.Component {
   render() {

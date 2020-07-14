@@ -81,12 +81,9 @@ class Filters extends React.Component {
             value={this.state.comparison}
             onChange={this.getValue}
           >
-            {this.state.swComp.map((e) => (
-              <option value={e}>{e}</option>
-            ))}
+            {this.state.swComp.map((e) => (<option value={e}>{e}</option>))}
           </select>
           <input
-            name="value"
             type="number"
             data-testid="value-filter"
             value={this.state.value}
@@ -95,9 +92,7 @@ class Filters extends React.Component {
           <button
             type="button"
             data-testid="button-filter"
-            onClick={() =>
-              this.props.swSearchNum(this.state.filterByNumericValues)
-            }
+            onClick={() => this.props.swSearchNum(this.state.filterByNumericValues)}
           >
             Filter
           </button>
