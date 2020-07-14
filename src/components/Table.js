@@ -72,4 +72,5 @@ Table.propTypes = {
 
 THeadBody.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterName: PropTypes.string.isRequired,
 };
