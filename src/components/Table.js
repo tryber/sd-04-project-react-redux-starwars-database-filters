@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets from '../actions/index';
 
-
-
 export class Table extends Component {
   componentDidMount() {
     const { getSWAPI } = this.props;
@@ -12,20 +10,18 @@ export class Table extends Component {
   }
 
   render() {
-    const { data, isFetching} = this.props;
+    const { data, isFetching } = this.props;
     if (isFetching) return <div>Loading...</div>;
     const title = Object.keys(data[0]).filter((key) => key !== 'residents');
-    console.log(title)
     return (
       <div>
         <table>
           <thead>
             <tr>
-              {title.map((element) => <th key= {element} >{`  ${element}  `}</th>)}
+              {title.map((element) => <th key={element} >{`${element}`}</th>)}
             </tr>
           </thead>
           <tbody>
-            {console.log(data)}
             {data.map((planets) => (
               <tr>
                 {title.map((element) => <td key={element}>{planets[element]}</td>)}
@@ -52,7 +48,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   getSWAPI: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
