@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Table from './components/Table';
+import SearchBar from './components/SearchBar';
 import { fetchPlanets } from './actions';
+import './App.css';
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,8 +14,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="container-fluid">
+        <header className="header">
+          <SearchBar />
           <Table />
         </header>
       </div>
