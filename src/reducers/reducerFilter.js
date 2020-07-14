@@ -15,8 +15,8 @@ const filters = (state = INITIAL_STATE, action) => {
           name: action.name,
         }
       };
-      default:
-        return state;
+    default:
+      return state;
   }
 };
 

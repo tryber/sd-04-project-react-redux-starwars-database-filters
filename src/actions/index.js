@@ -5,7 +5,7 @@ export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
 export const FILTER_NAME = 'FILTER_NAME';
 
 export const filterName = (name) => ({
-  type:FILTER_NAME,
+  type: FILTER_NAME,
   name,
 });
 

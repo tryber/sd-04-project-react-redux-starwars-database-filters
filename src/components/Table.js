@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   getSWAPI: PropTypes.func.isRequired,
-  data: PropTypes.array,
+  data: PropTypes.shape.isRequired,
   isFetching: PropTypes.bool.isRequired,
   input: PropTypes.string.isRequired,
 };
