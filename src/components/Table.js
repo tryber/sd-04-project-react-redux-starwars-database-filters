@@ -22,12 +22,11 @@ export class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {data.map((planets) => (
+            {data.map((conteudo) => (
               <tr>
-                {title.map((element) => <td key={element}>{planets[element]}</td>)}
+                {title.map((element) => <td key={element}>{conteudo[element]}</td>)}
               </tr>
             ))}
-
           </tbody>
         </table>
       </div>
@@ -48,7 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   getSWAPI: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 
