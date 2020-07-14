@@ -3,6 +3,7 @@ import {
   REQUEST_SUCCESS,
   REQUEST_ERROR,
   SEARCH_PLANET,
+  FILTER_NUMBERS,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
     filterByName: {
       name: '',
     },
+    filterByNumericValues: [],
   },
 };
 
@@ -36,12 +38,27 @@ function reducer(state = INITIAL_STATE, action) {
         loading: false,
       };
     case SEARCH_PLANET:
-      console.log('Search_planet: ', action.planetName);
       return {
         ...state,
         filters: {
           ...state.filters,
           filterByName: { name: action.planetName },
+        },
+      };
+    case FILTER_NUMBERS:
+      console.log('Filter: ', action.value);
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: [
+            ...state.filters.filterByNumericValues,
+            {
+              column: action.value.column,
+              comparison: action.value.comparison,
+              value: action.value.value,
+            },
+          ],
         },
       };
     default:

@@ -41,6 +41,7 @@ const mapStateToProps = (state) => ({
   loading: state.loading,
   data: state.data,
   filterName: state.filters.filterByName.name,
+  // filterComparison: state.filters.filterByNumericValues,
 });
 
 Table.propTypes = {
