@@ -19,7 +19,7 @@ function Table({ isLoading, data, searchBar }) {
         </thead>
         <tbody>
           {filterByName.map((planet, i) => (
-            <Tabelas planet={planet} />
+            <Tabelas planet={planet} i={i} />
           ))}
         </tbody>
       </table>
