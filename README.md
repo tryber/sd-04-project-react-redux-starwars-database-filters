@@ -174,7 +174,7 @@ Nos testes, para a criação do `store`, é utilizado o `reducer` que você dese
     * Exemplo: `git checkout master`
   * Agora crie uma branch para qual você vai submeter os `commits` do seu projeto
     * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b joaozinho-react-redux-starwars-datatable-filters`
+    * Exemplo: `git checkout -b djonata-dias-react-redux-starwars-datatable-filters`
 
 4. Crie um diretório `components` dentro de `src` e crie seus componenets dentro deste diretório. Por exemplo, crie um componente `Table` e adicione-o ao `App`:
 

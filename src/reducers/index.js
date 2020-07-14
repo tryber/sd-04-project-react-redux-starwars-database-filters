@@ -1,5 +1,8 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import getPlanets from './getPlanets';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  getPlanets,
+});
+
+export default rootReducer;
