@@ -43,7 +43,7 @@ Table.propTypes = {
 const mapStateToProps = (state) => ({
   isLoading: state.reducerFetch.isLoading,
   data: state.reducerFetch.data.results,
-  searchBar: state.reducerInput.filters.filterByName.name,
+  searchBar: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(Table);

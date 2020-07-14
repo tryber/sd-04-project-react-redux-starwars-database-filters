@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  inputValue: state.reducerInput.filters.filterByName.name,
+  inputValue: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
