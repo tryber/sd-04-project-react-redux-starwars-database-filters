@@ -1,12 +1,10 @@
+import PropTypes from "prop-types";
 import React, { Component } from 'react';
-import './Table.css';
-import { planetsResponseApi } from '../Actions';
 import { connect } from 'react-redux';
+import './Table.css';
 import linhas from './Linhas';
 
 class Table extends Component {
-
-
   render() {
     const { data, isFetching } = this.props;
     if (isFetching) return <span>...Loading</span>;
@@ -27,6 +25,13 @@ class Table extends Component {
       </div>
     );
   }
+}
+
+Table.propTypes = {
+  data: PropTypes.shape({
+    map: PropTypes.func
+  }). isRequired,
+  isFetching: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state) => ({

@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/Table';
 import Search from './components/Search';
-import { connect } from 'react-redux';
 import { planetsResponseApi } from './Actions';
 
 class App extends React.Component {
@@ -19,6 +20,10 @@ class App extends React.Component {
       </div>
     );
   }
+}
+
+App.propTypes = {
+  getSwapi: PropTypes.func.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => ({

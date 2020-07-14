@@ -1,6 +1,3 @@
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-
 import { REQUEST_API, REQUISITION_SUCCESS } from '../Actions';
 
 // import getSwapi from '../services/swApi';
