@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   },
   filterByNumericValues: [],
   order: {
-    column: 'name',
+    column: 'Name',
     sort: 'ASC',
   },
 };
@@ -37,19 +37,7 @@ const applyNumericFilters = (planets, filters) => {
   return filteredPlanets;
 };
 
-// const compare = (column, sort = 'ASC') => {
-//   return function inner(a, b) {
-//   let comparison = 0;
-//   if (a[column] > b[column]) {
-//   comparison = 1;
-//   } else if (a[column] < b[column]) {
-//   comparison = -1;
-//   }
-//   return order === 'DESC' ? comparison * -1 : comparison;
-//   };
-//   }
-
-const applyOrderFilter = (planets, { column, sort }) => {
+const applyOrderFilter = (planets, { column: columnReceived, sort }) => {
   const listOfColumns = [
     'population',
     'orbital_period',
@@ -57,6 +45,9 @@ const applyOrderFilter = (planets, { column, sort }) => {
     'rotation_period',
     'surface_water',
   ];
+
+  const column = columnReceived.toLowerCase();
+
   const newOrderPlanets = planets
     .map((planet) => {
       if (listOfColumns.includes(column)) return { ...planet, [column]: Number(planet[column]) };
