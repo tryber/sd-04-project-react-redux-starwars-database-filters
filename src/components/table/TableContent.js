@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const TableContent = (props) => (
+const TableContent = ({ data }) => (
 
   <tbody>
-    {props.data.map((planet) => (
+    {data.map((planet) => (
       <tr key={planet.name}>
         <td>{planet.name}</td>
         <td>{planet.rotation_period}</td>
@@ -26,5 +27,9 @@ const TableContent = (props) => (
 const mapStateToProps = (state) => ({
   data: state.reducerAPI.data,
 });
+
+TableContent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default connect(mapStateToProps)(TableContent);
