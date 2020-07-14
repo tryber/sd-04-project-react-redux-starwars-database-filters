@@ -1,3 +1,5 @@
+// actions para tratamento de requisições de API
+
 export const DATA_REQUEST = 'API_REQUEST';
 export const DATA_RECEIVED = 'API_RECEIVED';
 export const DATA_RECEIVED_ERROR = 'API_RECEIVING_ERROR';
@@ -24,3 +26,12 @@ export const asyncActionDataFetch = (url) =>
       .then((data) => dispatch(actionDataReceived(data.results)))
       .catch((error) => dispatch(actionDataReceivedError(error)));
   };
+
+// actions para filtragem de planetas por nome
+
+export const NAME_FILTER = 'NAME_FILTER';
+
+export const actionNameFilter = (text) => ({
+  type: NAME_FILTER,
+  text,
+});

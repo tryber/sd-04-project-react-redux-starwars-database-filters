@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Table.css';
+import { checkNamePlanet } from '../helpers';
 
-const THeadBody = ({ data }) => (
+const THeadBody = ({ data, filterName }) => (
   <table>
     <thead>
       <tr>
@@ -23,13 +24,13 @@ const THeadBody = ({ data }) => (
       </tr>
     </thead>
     <tbody>
-      <TBody data={data} />
+      <TBody data={data} filterName={filterName} />
     </tbody>
   </table>
 );
 
-const TBody = ({ data }) =>
-  data.map((planet) => (
+const TBody = ({ data, filterName }) => data.filter((planet) =>
+  checkNamePlanet(planet.name, filterName)).map((planet) => (
     <tr key={planet.name}>
       <td>{planet.name}</td>
       <td>{planet.rotation_period}</td>
@@ -47,17 +48,18 @@ const TBody = ({ data }) =>
     </tr>
   ));
 
-const Table = ({ data, loading }) =>
+const Table = ({ data, loading, filterName }) =>
   (loading ? <p>Loading...</p> :
-  <div>
-    <p>StarWars Datatable with Filters</p>
-    <THeadBody data={data} />
-  </div>
+    <div>
+      <p>StarWars Datatable with Filters</p>
+      <THeadBody data={data} filterName={filterName} />
+    </div>
   );
 
 const mapStateToProps = (state) => ({
   data: state.reducerData.data,
   loading: state.reducerData.loading,
+  filterName: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(Table);

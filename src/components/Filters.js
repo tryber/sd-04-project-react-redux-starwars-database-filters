@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { asyncActionDataFetch } from '../actions';
+import { asyncActionDataFetch, actionNameFilter } from '../actions';
 
 class Filters extends Component {
   componentDidMount() {
@@ -10,10 +10,14 @@ class Filters extends Component {
   }
 
   render() {
+    const { nameChange } = this.props;
     return (
       <div>
         <label htmlFor="filter-planets">Procurar </label>
-        <input type="text" id="filter-planets" />
+        <input
+          type="text" id="filter-planets" data-testid="name-filter"
+          onChange={(e) => nameChange(e.target.value)}
+        />
       </div>
     );
   }
@@ -21,6 +25,7 @@ class Filters extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dataFetch: (url) => dispatch(asyncActionDataFetch(url)),
+  nameChange: (text) => dispatch(actionNameFilter(text)),
 });
 
 export default connect(null, mapDispatchToProps)(Filters);
