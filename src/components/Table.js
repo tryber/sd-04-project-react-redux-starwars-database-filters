@@ -53,7 +53,7 @@ const Table = ({ data, loading, vFilter, nFilter }) => {
               <td key={name + created}>{created}</td>
               <td key={name + edited}>{edited}</td>
             </tr>
-          )
+          ),
         )}
       </tbody>
     </table>
@@ -83,7 +83,6 @@ Table.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object])
   ).isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.bool,
   vFilter: PropTypes.string.isRequired,
   nFilter: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
     .isRequired,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes, { oneOfType } from 'prop-types';
 import { connect } from 'react-redux';
-import { swFetch, swFilterName, swFilterBtn, swFilterSv } from '../actions';
+import { swFilterName, swFilterBtn, swFilterSv } from '../actions';
 
 const Filters = ({
   swFetch,
@@ -22,12 +22,12 @@ const Filters = ({
     />
     <div>
       <select
-        name='column'
+        name="column"
         onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
         value={column}
         data-testid="column-filter"
       >
-        <option aria-label='empty' />
+        <option aria-label="empty" />
         {categories.map((cat) => (
           <option key={cat} value={cat}>
             {cat}
@@ -35,21 +35,21 @@ const Filters = ({
         ))}
       </select>
       <select
-        name='comparison'
+        name="comparison"
         onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
         value={comparison}
         data-testid="comparison-filter"
       >
-        <option aria-label='empty' />
-        <option value='maior que'>maior que</option>
-        <option value='igual a'>igual a</option>
-        <option value='menor que'>menor que</option>
+        <option aria-label="empty" />
+        <option value="maior que">maior que</option>
+        <option value="igual a">igual a</option>
+        <option value="menor que">menor que</option>
       </select>
       <input
-        name='value'
+        name="value"
         value={value}
         onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        type='number'
+        type="number"
         data-testid="value-filter"
       />
       <button
@@ -77,7 +77,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getSwFetch: swFetch,
   filterValues: swFilterName,
   filterBtn: swFilterBtn,
   saveFilterProps: swFilterSv,
@@ -86,7 +85,6 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
 
 Filters.propTypes = {
-  getSwFetch: PropTypes.func.isRequired,
   filterValues: PropTypes.func.isRequired,
   filterBtn: PropTypes.func.isRequired,
   saveFilterProps: PropTypes.func.isRequired,

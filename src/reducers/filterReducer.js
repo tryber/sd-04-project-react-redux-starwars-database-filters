@@ -26,33 +26,21 @@ const INITIAL_STATE = {
 const filterReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SW_FILTER_NAME:
-      return {
-        ...state,
-        filterByName: { name: action.name },
-      };
+      return { ...state, filterByName: { name: action.name } };
     case SW_FILTER_BTN:
-      return {
-        ...state,
-        actualFilter: INITIAL_STATE.actualFilter,
+      return { ...state, actualFilter: INITIAL_STATE.actualFilter,
         filterByName: { name: '' },
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
-        ],
+          { column: action.column, comparison: action.comparison,
+            value: action.value}],
         categories: redFil(state.categories, state.filterByNumericValues),
       };
     case SW_FILTER_SV:
       return {
-        ...state,
-        filterByName: { name: '' },
-        actualFilter: {
+        ...state, filterByName: { name: '' }, actualFilter: {
           ...state.actualFilter,
-          [action.name]: action.value,
-        },
+          [action.name]: action.value},
       };
     case SW_CAT:
       return {

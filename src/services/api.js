@@ -5,8 +5,8 @@ const swApi = () =>
     response
       .json()
       .then((json) =>
-        response.ok ? Promise.resolve(json) : Promise.reject(json)
-      )
+        (response.ok ? Promise.resolve(json) : Promise.reject(json)),
+      ),
   );
 
 export default swApi;

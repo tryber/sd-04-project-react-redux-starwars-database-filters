@@ -27,13 +27,13 @@ export const swFetch = () => (dispatch) => {
   dispatch(swRequest());
   return swApi().then(
     (planets) => dispatch(swSuccess(planets.results)),
-    (error) => dispatch(swFailure(error))
+    (error) => dispatch(swFailure(error)),
   );
 };
 
 export const swFilterName = (name) => ({
   type: SW_FILTER_NAME,
-  name: name,
+  name,
 });
 
 export const swFilterBtn = (column, comparison, value) => ({
