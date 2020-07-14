@@ -5,9 +5,11 @@ import { filterByName } from '../actions/filterByName';
 
 const InputFilter = ({ value, dispatchActionFilterByName }) => (
   <input
+    className="navbar navbar-light"
     data-testid="name-filter"
     value={value}
     onChange={(event) => dispatchActionFilterByName(event.target.value)}
+    placeholder="Search By Planet Name"
   />
 );
 

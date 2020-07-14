@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { fetchPlanets } from './actions';
 import Table from './components/Table';
 import InputFilters from './components/inputFilters';
+import SelectedFilters from './components/SelectedFilters';
+import FilterSelectors from './components/FilterSelectors';
 
 class App extends React.Component {
   componentDidMount() {
@@ -15,6 +17,8 @@ class App extends React.Component {
     return (
       <div>
         <InputFilters />
+        <FilterSelectors />
+        <SelectedFilters />
         <Table />
       </div>
     );
