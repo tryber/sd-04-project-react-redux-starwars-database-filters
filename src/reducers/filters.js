@@ -17,6 +17,13 @@ function filters(state = initialState, action) {
         ...state,
         filterByNumericValues: [...state.filterByNumericValues, action.payload],
       };
+    case searchFilter.REMOVE_NUMERIC_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (item, index) => index !== action.payload,
+        ),
+      };
     default:
       return state;
   }

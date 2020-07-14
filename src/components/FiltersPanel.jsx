@@ -4,6 +4,7 @@ import FilterColumn from './FilterColumn';
 import FilterComparison from './FilterComparison';
 import FilterNumber from './FilterNumber';
 import FilterNumberBtn from './FilterNumberBtn';
+import FilterList from './FilterList';
 
 class FiltersPanel extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class FiltersPanel extends Component {
             clearColumnState={() => this.setState({ column: '' })}
           />
         </form>
+        <FilterList />
       </div>
     );
   }
