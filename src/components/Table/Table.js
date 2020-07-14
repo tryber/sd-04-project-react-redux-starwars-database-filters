@@ -11,7 +11,7 @@ function Table({ isLoading, data }) {
         <thead>
           <tr>
             {Object.keys(data.results[0]).map((e, i) => (
-              <th key={i}> {e} </th>
+              <th key={`${i + 1}`}>{e}</th>
             ))}
           </tr>
         </thead>
@@ -26,11 +26,8 @@ function Table({ isLoading, data }) {
 }
 
 Table.propTypes = {
-  data: PropTypes.shape({
-    results: PropTypes.shape({
-      map: PropTypes.func,
-    }).isRequired,
-  }).isRequired,
+  data: PropTypes.array.isRequired,
+  results: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
