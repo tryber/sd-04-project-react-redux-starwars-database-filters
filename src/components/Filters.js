@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { searchFilter } from '../actions';
+import { searchFilter, loadElementFilter } from '../actions';
 
 // const renderFirstFilter = () => (
 //   <div>
@@ -48,20 +48,28 @@ class Filters extends Component {
   // eslint-disable-next-line class-methods-use-this
   renderFirstFilter() {
     const { column } = this.state;
+    const { filterKeys, loadElementFilter } = this.props;
     return (
       <div>
         <select
           value={column}
           name="column"
           data-testid="column-filter"
-          onChange={(e) => this.handleInputValue(e)}
+          onChange={(e) => {
+            this.handleInputValue(e);
+          }}
         >
           <option value="">Coluna</option>
-          <option value="population">population</option>
+          {filterKeys.map((op) => (
+            <option key={op} value={op}>
+              {op}
+            </option>
+          ))}
+          {/* <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option value="surface_water">surface_water</option> */}
         </select>
       </div>
     );
@@ -108,12 +116,20 @@ class Filters extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filterKeys: state.filterKeys,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   filterPlanets: (filtros) => dispatch(searchFilter(filtros)),
+  loadElementFilter: (value) => dispatch(loadElementFilter(value)),
 });
 
 Filters.propTypes = {
   filterPlanets: PropTypes.func.isRequired,
+  // filterKeys: PropTypes.shape({
+  //   'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'
+  // }),
 };
 
-export default connect(null, mapDispatchToProps)(Filters);
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);

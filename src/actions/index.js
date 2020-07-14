@@ -6,6 +6,7 @@ export const FAILED_RESPONSE = 'FAILED_RESPONSE';
 
 export const CHANGE_SEARCH = 'CHANGE_SEARCH';
 export const SEARCH_FILTER = 'SEARCH_FILTER';
+export const CHARGE_FILTERS = 'CHARGE_FILTERS';
 
 // action para caso de sucesso na resposta da API.
 export const successAPIRequest = (results) => ({ type: SUCCESS_RESPONSE, results });
@@ -27,3 +28,5 @@ export const searchFilter = (numericFilters) => ({
   type: SEARCH_FILTER,
   numericFilters,
 });
+
+export const loadElementFilter = (colFilter) => ({ type: CHARGE_FILTERS, colFilter });

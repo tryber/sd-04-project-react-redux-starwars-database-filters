@@ -15,6 +15,7 @@ const INITIAL_STATE = {
     },
     filterByNumericValues: [],
   },
+  filterKeys: ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
 };
 
 const planetTableReducer = (state = INITIAL_STATE, action) => {
@@ -35,6 +36,7 @@ const planetTableReducer = (state = INITIAL_STATE, action) => {
           ...state.filters,
           filterByNumericValues: [...state.filters.filterByNumericValues, action.numericFilters],
         },
+        // filterKeys: state.filterKeys.map((filtro) => filtro !== action.numericFilters.column),
       };
     default:
       return state;
