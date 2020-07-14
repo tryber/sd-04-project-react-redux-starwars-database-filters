@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { numericFilter } from '../actions/filters';
 
-const FilterNumberBtn = ({ state, filterByNumber }) => (
+const FilterNumberBtn = ({ state, filterByNumber, clearColumnState }) => (
   <button
     type="button"
     data-testid="button-filter"
@@ -11,6 +11,7 @@ const FilterNumberBtn = ({ state, filterByNumber }) => (
       let stateObject = {};
       if (state.column && state.comparison && state.value) {
         stateObject = filterByNumber(state);
+        clearColumnState();
       }
       return stateObject;
     }}

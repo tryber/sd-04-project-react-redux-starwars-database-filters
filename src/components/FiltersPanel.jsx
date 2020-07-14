@@ -36,7 +36,10 @@ class FiltersPanel extends Component {
             onChange={(event) => this.setState({ value: event.target.value })}
             value={value}
           />
-          <FilterNumberBtn state={{ column, comparison, value }} />
+          <FilterNumberBtn
+            state={{ column, comparison, value }}
+            clearColumnState={() => this.setState({ column: '' })}
+          />
         </form>
       </div>
     );

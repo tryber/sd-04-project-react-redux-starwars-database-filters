@@ -19,7 +19,7 @@ const FilterComparison = ({ onChange, value }) => (
     {optionsArray.map((item) => {
       if (!item.value) {
         return (
-          <option key={item.innerHtml} value={item.value} disabled>
+          <option key={item.innerHtml} value={item.value} disabled hidden>
             {item.innerHtml}
           </option>
         );
