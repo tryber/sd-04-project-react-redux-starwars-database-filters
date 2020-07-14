@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/table/Table';
@@ -7,17 +7,18 @@ import requestFetch from './actions';
 
 
 class App extends Component {
-	componentDidMount() {
+  componentDidMount() {
     const { getApi } = this.props;
     getApi();
   }
-	render() {
+
+  render() {
     return (
       <div className="App">
-				<Table />
+        <Table />
       </div>
   	);
-	}
+  }
 }
 
 App.propTypes = {
@@ -25,7 +26,7 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getApi: () => dispatch(requestFetch())
+  getApi: () => dispatch(requestFetch()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
