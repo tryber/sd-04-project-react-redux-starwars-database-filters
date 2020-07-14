@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './Tabela.css';
 
 const TableBody = (props) => {
+  const { data } = props;
+  let planets = data;
   return (
     <tbody>
-      {props.data.map(planet => (
+      {planets.map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td> <td>{planet.climate}</td>{' '}
           <td>{planet.created}</td>
@@ -25,5 +28,9 @@ const TableBody = (props) => {
 const mapStateToProps = (state) => ({
   data: state.reducerGetApi.data,
 });
+
+TableBody.propTypes = {
+  planets: PropTypes.shape.isRequired,
+};
 
 export default connect(mapStateToProps)(TableBody);

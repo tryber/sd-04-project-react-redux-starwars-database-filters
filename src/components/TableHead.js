@@ -5,7 +5,7 @@ const TableHead = () => (
   <div>
     <table>
       <thead>
-        <tr className='Tabela'>
+        <tr className="Tabela">
           <th>name</th> <th>climate</th> <th>created</th> <th>diameter</th>
           <th>edited</th>
           <th>gravity</th> <th>orbital_period</th> <th>population</th>
