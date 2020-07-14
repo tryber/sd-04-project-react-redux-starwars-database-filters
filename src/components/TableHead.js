@@ -1,12 +1,12 @@
 import React from 'react';
 import TableBody from './TableBody';
 
-const TableHead = (props) => {
+const TableHead = () => {
   return (
     <div>
       <table>
         <thead>
-          <tr className='Tabela'>
+          <tr className="Tabela">
             <th>name</th> <th>climate</th> <th>created</th> <th>diameter</th>
             <th>edited</th>
             <th>gravity</th> <th>orbital_period</th> <th>population</th>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchGetApi } from '../action';
 import PropTypes from 'prop-types';
 import TableHead from './TableHead';
+import { connect } from 'react-redux';
+import { fetchGetApi } from '../action';
 
 class Table extends Component {
   componentDidMount() {

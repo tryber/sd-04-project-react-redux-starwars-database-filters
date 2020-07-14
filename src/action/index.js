@@ -24,7 +24,7 @@ export function fetchGetApi() {
 
     return getCurrentAPI().then(
       (data) => dispatch(requestDataApi(data.results)),
-      (erro) => dispatch(requestDataApiErro(erro.message))
+      (erro) => dispatch(requestDataApiErro(erro.message)),
     );
   };
 }
