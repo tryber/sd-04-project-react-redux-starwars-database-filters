@@ -17,11 +17,11 @@ function Table({ isLoading, data, searchBar }) {
             ))}
           </tr>
         </thead>
-        {filterByName.map((planet, i) => (
-          <tbody key={`${i + 1}`}>
+        <tbody>
+          {filterByName.map((planet, i) => (
             <Tabelas planet={planet} />
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </div>
   );
