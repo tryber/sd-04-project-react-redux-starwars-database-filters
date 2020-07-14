@@ -39,6 +39,7 @@ const applyNumericFilters = (planets, filters) => {
 
 const notNumbers = ['Name', 'climate', 'terrain', 'residents', 'films', 'created', 'edited'];
 
+
 const compare = (column, sort = 'ASC') => (a, b) => {
   // convertendos as variáveis que deviam ser number mas são strings:
   const varA = !notNumbers.includes(column) ? Number(a[column]) : a[column];
