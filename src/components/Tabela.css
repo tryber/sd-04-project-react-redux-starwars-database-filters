@@ -1,0 +1,18 @@
+table {
+  border-collapse: collapse;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  margin: 3px 0px 0px 3px;
+  table-layout: auto;
+  width: 300%;
+}
+
+table th {
+  border: 2px solid black;
+  font-size: 18px;
+}
+
+table td {
+  border: 2px solid black;
+  text-align: left;
+}
