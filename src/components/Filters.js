@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { swFilterName, swFilterBtn, swFilterSv } from '../actions';
 
 const Filters = ({
-  swFetch,
   filterValues,
   filterBtn,
   saveFilterProps,

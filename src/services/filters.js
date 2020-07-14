@@ -17,17 +17,21 @@ const fComp = (filteredData, column, comparison, value) => {
   }
 };
 
-const filter = (data, filterName, filterNumber) => {{
-  if (filterNumber.length !== 0) {
-    let filteredData = [...data];
-    filterNumber.forEach(({ column, comparison, value }) => {
-      filteredData = fComp(filteredData, column, comparison, value);
-    });
-    return filteredData;
+const filter = ( data, filterName, filterNumber ) => {
+  {
+    if (filterNumber.length !== 0) {
+      let filteredData = [...data];
+      filterNumber.forEach(({ column, comparison, value }) => {
+        filteredData = fComp(filteredData, column, comparison, value);
+      });
+      return filteredData;
+    }
+    {
+      if (filterName)
+        return data.filter((child) => child.name.includes(filterName));
+      return data;
+    }
   }
-  if (filterName)
-    return data.filter((child) => child.name.includes(filterName));
-  return data;
-}};
+};
 
 export default filter;

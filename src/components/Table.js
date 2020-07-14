@@ -80,7 +80,7 @@ Table.defaultProps = {
 
 Table.propTypes = {
   data: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object])
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
   ).isRequired,
   loading: PropTypes.bool.isRequired,
   vFilter: PropTypes.string.isRequired,
