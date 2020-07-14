@@ -72,7 +72,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   data: state.swapiReducer.data,
   loading: state.swapiReducer.loading,
-  query: state.filterReducer.filters.filterByName.name,
+  query: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps, { fetchingPlanetsInfo })(Table);

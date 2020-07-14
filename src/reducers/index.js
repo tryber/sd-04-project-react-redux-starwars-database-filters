@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { swapiReducer } from './swapiReducer';
-import { filterReducer } from './filterReducer';
+import { filters } from './filters';
 
-const rootReducer = combineReducers({ swapiReducer, filterReducer });
+const rootReducer = combineReducers({ swapiReducer, filters });
 
 export default rootReducer;

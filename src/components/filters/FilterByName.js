@@ -19,7 +19,7 @@ class FilterByName extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  name: state.filterReducer.filters.filterByName.name,
+  name: state.filters.filterByName.name,
 });
 
 
