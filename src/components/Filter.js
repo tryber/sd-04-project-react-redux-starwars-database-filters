@@ -35,7 +35,11 @@ class Filter extends React.Component {
   columnRender() {
     this.bar = 12; // Without CC asked for using this
     const colonumItemsArray = [
-      'Coluna', 'population', 'orbital_period', 'diameter', 'rotation_period',
+      'Coluna',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
       'surface_water',
     ]; // Must refactor this part and subtract object directly
     const activFilterColum = [];
@@ -122,29 +126,33 @@ class Filter extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <div className="form-group">
-            <div className="form-row">
-              <this.columnRender />
-              <this.comparisonRender />
+      <div className="filters">
+        <div>
+          <form>
+            <div className="form-group">
+              <div className="form-row">
+                <this.columnRender />
+                <this.comparisonRender />
+              </div>
             </div>
-          </div>
-          <div className="form-group">
-            <div className="form-row">
-              <input
-                name="value"
-                type="number"
-                className="form-control col-md-8 mr-1"
-                data-testid="value-filter"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-              <this.buttonRender />
+            <div className="form-group">
+              <div className="form-row">
+                <input
+                  name="value"
+                  type="number"
+                  className="form-control col-md-8 mr-1"
+                  data-testid="value-filter"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+                <this.buttonRender />
+              </div>
             </div>
-          </div>
-        </form>
-        <this.filterRender />
+          </form>
+        </div>
+        <div>
+          <this.filterRender />
+        </div>
       </div>
     );
   }
