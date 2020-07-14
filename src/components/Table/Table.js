@@ -13,7 +13,7 @@ function Table({ isLoading, data, searchBar }) {
         <thead>
           <tr>
             {offResidents.map((e, i) => (
-              <td key={`${i + 1}`}>{e}</td>
+              <th key={`${i + 1}`}>{e}</th>
             ))}
           </tr>
         </thead>
