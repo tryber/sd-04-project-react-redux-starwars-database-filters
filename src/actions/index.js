@@ -3,52 +3,39 @@ import swApi from '../services/api';
 export const SW_REQUEST = 'SW_REQUEST';
 export const SW_SUCCESS = 'SW_SUCCESS';
 export const SW_FAILURE = 'SW_FAILURE';
-export const SW_FILTER_NAME = 'SW_FILTER_NAME';
-export const SW_FILTER_NUM = 'SW_FILTER_NUM';
-export const SW_FILTER_BTN = 'SW_FILTER_BTN';
-export const SW_FILTER_SV = 'SW_FILTER_SV';
-export const SW_CAT = 'CAT';
+export const SW_SEARCH = 'SW_SEARCH';
+export const SW_SEARCH_NUM = 'SW_SEARCH_NUM';
 
-const swRequest = () => ({
-  type: SW_REQUEST,
-});
+export const swRequest = () => ({ type: SW_REQUEST, loading: true });
 
-const swSuccess = (json) => ({
+export const swSuccess = (data) => ({
   type: SW_SUCCESS,
-  data: json,
+  loading: false,
+  data,
 });
 
-const swFailure = (error) => ({
+export const swFailure = (error) => ({
   type: SW_FAILURE,
+  loading: false,
   error,
 });
 
-export const swFetch = () => (dispatch) => {
-  dispatch(swRequest());
-  return swApi().then(
-    (planets) => dispatch(swSuccess(planets.results)),
-    (error) => dispatch(swFailure(error)),
-  );
-};
+export function swFetch() {
+  return (dispatch) => {
+    dispatch(swRequest());
+    return swApi().then(
+      (data) => dispatch(swSuccess(data.results)),
+      (error) => dispatch(swFailure(error.message))
+    );
+  };
+}
 
-export const swFilterName = (name) => ({
-  type: SW_FILTER_NAME,
-  name,
-});
-
-export const swFilterBtn = (column, comparison, value) => ({
-  type: SW_FILTER_BTN,
-  column,
-  comparison,
+export const swSearch = (value) => ({
+  type: SW_SEARCH,
   value,
 });
 
-export const swFilterSv = (name, value) => ({
-  type: SW_FILTER_SV,
-  name,
+export const swSearchNum = (value) => ({
+  type: SW_SEARCH_NUM,
   value,
-});
-
-export const swCat = () => ({
-  type: SW_CAT,
 });

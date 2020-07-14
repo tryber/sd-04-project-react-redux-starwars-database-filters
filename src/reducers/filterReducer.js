@@ -1,54 +1,47 @@
-import {
-  SW_FILTER_NAME,
-  SW_FILTER_BTN,
-  SW_FILTER_SV,
-  SW_CAT,
-} from '../actions';
-import redFil from '../services/redFil';
+import { SW_SEARCH, SW_SEARCH_NUM } from '../actions';
 
 const INITIAL_STATE = {
-  actualFilter: {
-    column: '',
-    comparison: '',
-    value: '',
+  filterByName: {
+    name: '',
   },
-  filterByName: { name: '' },
   filterByNumericValues: [],
-  categories: [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
+  colonumItems: [
+    { name: '', available: true },
+    { name: 'population', available: true },
+    { name: 'orbital_period', available: true },
+    { name: 'diameter', available: true },
+    { name: 'rotation_period', available: true },
+    { name: 'surface_water', available: true },
   ],
 };
 
-const filterReducer = (state = INITIAL_STATE, action) => {
+function filterReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SW_FILTER_NAME:
-      return { ...state, filterByName: { name: action.name } };
-    case SW_FILTER_BTN:
+    case SW_SEARCH:
+      return { ...state, filterByName: { name: action.value } };
+    case SW_SEARCH_NUM: {
+      const filter = action.value;
       return {
         ...state,
-        actualFilter: INITIAL_STATE.actualFilter,
-        filterByName: { name: '' },
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.value }],
-        categories: redFil(state.categories, state.filterByNumericValues) };
-    case SW_FILTER_SV:
-      return {
-        ...state,
-        filterByName: { name: '' },
-        actualFilter: { ...state.actualFilter, [action.name]: action.value } };
-    case SW_CAT:
-      return {
-        ...state,
-        categories: redFil(state.categories, state.filterByNumericValues),
+          {
+            column: filter.column,
+            comparison: filter.comparison,
+            value: filter.value,
+          },
+        ],
+        colonumItems: state.colonumItems.map((item) => {
+          if (item.name === filter.column) {
+            return { name: item.name, available: false };
+          }
+          return item;
+        }),
       };
+    }
     default:
       return state;
   }
-};
+}
 
 export default filterReducer;

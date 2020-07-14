@@ -1,21 +1,21 @@
-import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions';
+import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions/';
 
 const INITIAL_STATE = {
-  data: [],
-  loading: false,
+  isLoading: true,
+  data: {},
 };
 
-const swReducer = (state = INITIAL_STATE, action) => {
+function swReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SW_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, isLoading: true };
     case SW_SUCCESS:
-      return { ...state, loading: false, data: action.data };
+      return { ...state, isLoading: false, data: action.data };
     case SW_FAILURE:
-      return { ...state, loading: false, error: action.error };
+      return { ...state, isLoading: false, error: action.error };
     default:
       return state;
   }
-};
+}
 
 export default swReducer;

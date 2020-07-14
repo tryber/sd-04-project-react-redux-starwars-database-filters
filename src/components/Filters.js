@@ -1,95 +1,126 @@
 import React from 'react';
-import PropTypes, { oneOfType } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { swFilterName, swFilterBtn, swFilterSv } from '../actions';
+import { swSearchNum } from '../actions';
 
-const Filters = ({
-  filterValues,
-  filterBtn,
-  saveFilterProps,
-  name,
-  column,
-  comparison,
-  value,
-  categories,
-}) => (
-  <nav>
-    <input
-      value={name}
-      data-testid="name-filter"
-      onChange={(e) => filterValues(e.target.value)}
-    />
-    <div>
+class Filters extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterByNumericValues: {
+        column: '',
+        comparison: '',
+        value: '',
+      },
+      swComp: ['', 'maior que', 'igual a', 'menor que'],
+    };
+    this.getValue = this.getValue.bind(this);
+    this.getCol = this.getCol.bind(this);
+    this.getFil = this.getFil.bind(this);
+  }
+
+  getValue(e) {
+    const { name, value } = e.target;
+    this.setState({
+      filterByNumericValues: {
+        ...this.state.filterByNumericValues,
+        [name]: value,
+      },
+    });
+  }
+
+  getCol() {
+    this.bar = 12; // ai ai cc
+    const colItems = [];
+    this.props.swCol.forEach((e) => {
+      colItems.push(e.name);
+    });
+    const colFil = [];
+    this.props.filterByNumericValues.forEach((e) => {
+      colFil.push(e.column);
+    });
+    let filteredCol = [];
+    filteredCol = colItems.filter((e) => !colFil.includes(e));
+    return (
       <select
         name="column"
-        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        value={column}
         data-testid="column-filter"
+        value={this.state.value}
+        onChange={this.getValue}
       >
-        <option aria-label="empty" />
-        {categories.map((cat) => (
-          <option key={cat} value={cat}>
-            {cat}
-          </option>
+        {filteredCol.map((e) => (
+          <option value={e}>{e}</option>
         ))}
       </select>
-      <select
-        name="comparison"
-        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        value={comparison}
-        data-testid="comparison-filter"
-      >
-        <option aria-label="empty" />
-        <option value="maior que">maior que</option>
-        <option value="igual a">igual a</option>
-        <option value="menor que">menor que</option>
-      </select>
-      <input
-        name="value"
-        value={value}
-        onChange={(e) => saveFilterProps(e.target.name, e.target.value)}
-        type="number"
-        data-testid="value-filter"
-      />
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={() => filterBtn(column, comparison, value)}
-        disabled={!(column && comparison && value)}
-      >
-        FILTER!
-      </button>
-    </div>
-  </nav>
-);
+    );
+  }
 
-const mapStateToProps = (state) => {
-  const { column, comparison, value } = state.filterReducer.actualFilter;
-  const { name } = state.filterReducer.filterByName;
-  return {
-    column,
-    comparison,
-    value,
-    name,
-    categories: state.filterReducer.categories,
-  };
-};
+  getFil() {
+    this.bar = 12; // ai ai ccccccccc
+    return (
+      <div>
+        {this.props.filterByNumericValues.map((fil) => (
+          <div>
+            <p>
+              {fil.column}, {fil.comparison}, {fil.value}
+            </p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-const mapDispatchToProps = {
-  filterValues: swFilterName,
-  filterBtn: swFilterBtn,
-  saveFilterProps: swFilterSv,
+  render() {
+    return (
+      <div>
+        <form>
+          <this.getCol />
+          <select
+            name="comparison"
+            data-testid="comparison-filter"
+            value={this.state.comparison}
+            onChange={this.getValue}
+          >
+            {this.state.swComp.map((e) => (
+              <option value={e}>{e}</option>
+            ))}
+          </select>
+          <input
+            name="value"
+            type="number"
+            data-testid="value-filter"
+            value={this.state.value}
+            onChange={this.getValue}
+          />
+          <button
+            type="button"
+            data-testid="button-filter"
+            onClick={() =>
+              this.props.swSearchNum(this.state.filterByNumericValues)
+            }
+          >
+            Filter
+          </button>
+        </form>
+        <this.getFil />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  swCol: state.filterReducer.colonumItems,
+  filterByNumericValues: state.filterReducer.filterByNumericValues,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  swSearchNum: (e) => dispatch(swSearchNum(e)),
+});
+
+Filters.propTypes = {
+  swSearchNum: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.shape.isRequired,
+  swCol: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
-
-Filters.propTypes = {
-  filterValues: PropTypes.func.isRequired,
-  filterBtn: PropTypes.func.isRequired,
-  saveFilterProps: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  column: PropTypes.string.isRequired,
-  comparison: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(oneOfType(PropTypes.string)).isRequired,
-};

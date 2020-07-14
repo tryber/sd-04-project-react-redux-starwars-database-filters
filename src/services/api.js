@@ -1,11 +1,9 @@
-const URL_BASE = 'https://swapi-trybe.herokuapp.com/api';
-
 const swApi = () =>
-  fetch(`${URL_BASE}/planets/`).then((response) =>
+  fetch('https://swapi-trybe.herokuapp.com/api/planets/').then((response) =>
     response
       .json()
       .then((json) =>
-        (response.ok ? Promise.resolve(json) : Promise.reject(json)),
+        response.ok ? Promise.resolve(json) : Promise.reject(json)
       ),
   );
 
