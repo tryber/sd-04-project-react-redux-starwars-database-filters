@@ -1,6 +1,8 @@
 import { INPUT_TEXT } from '../actions/actionInput';
 
 export const INITIAL_STATE = {
+  data: [],
+  isLoading: true,
   filters: {
     filterByName: {
       name: '',

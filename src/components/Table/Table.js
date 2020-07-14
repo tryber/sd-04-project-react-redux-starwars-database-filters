@@ -6,7 +6,7 @@ import Tabelas from './Tabelas';
 function Table({ isLoading, data, searchBar }) {
   if (isLoading) return <span>L O A D I N G . . .</span>;
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
-  const filterByName = data.filter((e) => e.name.includes(searchBar));
+  const filterByName = data.filter((e) => e.name.toLowerCase().includes(searchBar));
   return (
     <div>
       <table>
