@@ -1,10 +1,8 @@
 import {
-  createStore, combineReducers, applyMiddleware, compose,
+  createStore, applyMiddleware, compose,
 } from 'redux';
 import thunk from 'redux-thunk';
-import planetsReducer from '../reducers';
-
-const rootReducer = combineReducers({ planetsReducer });
+import rootReducer from '../reducers/index';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

@@ -5,7 +5,7 @@ import TableHeader from './TableHeader';
 
 const Table = ({ data, isFetching }) => {
   console.log('Data da API: ', data);
-  console.log(isFetching);
+  console.log('Fetch',isFetching);
   if (isFetching) return <p>Loading...</p>;
   return (
     <table>
@@ -29,8 +29,8 @@ Table.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.data,
-  isFetching: state.isFetching,
+  data: state.planetsReducer.data,
+  isFetching: state.planetsReducer.isFetching,
 });
 
 export default connect(mapStateToProps, null)(Table);

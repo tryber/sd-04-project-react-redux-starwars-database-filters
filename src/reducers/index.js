@@ -1,32 +1,6 @@
-import { REQUEST_PLANETS, RECEIVE_PLANETS, FAIL_REQUEST } from '../actions';
+import { combineReducers } from 'redux';
+import planetsReducer from './planetsReducer';
 
-const INITIAL_STATE = {
-  isFetching: true,
-  data: [],
-};
+const rootReducer = combineReducers({ planetsReducer });
 
-const planetsReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case REQUEST_PLANETS:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case RECEIVE_PLANETS:
-      return {
-        ...state,
-        isFetching: false,
-        data: action.planets,
-      };
-    case FAIL_REQUEST:
-      return {
-        ...state,
-        isFetching: false,
-        error: action.error,
-      };
-    default:
-      return state;
-  }
-};
-
-export default planetsReducer;
+export default rootReducer;
