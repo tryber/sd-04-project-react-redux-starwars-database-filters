@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import './Tabela.css';
 
-const TableBody = props => {
+const TableBody = (props) => {
   return (
     <tbody>
-      {props.data.map((planet) => (
+      {props.data.map(planet => (
         <tr key={planet.name}>
           <td>{planet.name}</td> <td>{planet.climate}</td>{' '}
           <td>{planet.created}</td>
