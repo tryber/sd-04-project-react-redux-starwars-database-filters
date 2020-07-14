@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function Tabela(props) {
-  const planet = props.planet;
-  console.log(planet);
+  const { planet } = props;
   return (
     <tr>
       <td>{planet.name}</td>

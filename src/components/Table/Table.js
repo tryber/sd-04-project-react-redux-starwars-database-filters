@@ -23,16 +23,19 @@ function Table({ isLoading, data, searchBar }) {
           </tbody>
         ))}
       </table>
-      <h1>{searchBar}</h1>
     </div>
   );
 }
+
+Table.defaultProps = {
+  data: [],
+};
 
 Table.propTypes = {
   data: PropTypes.shape({
     filter: PropTypes.func,
     map: PropTypes.func,
-  }).isRequired,
+  }),
   isLoading: PropTypes.bool.isRequired,
   searchBar: PropTypes.string.isRequired,
 };
