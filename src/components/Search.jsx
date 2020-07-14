@@ -4,11 +4,19 @@ import './Search.css';
 class Search extends React.Component {
   render() {
     return (
-    <div>
-      <label className="labels" htmlFor="search">Digite o nome:</label>
-      <input className="serachBar" id="search" data-testid="name-filter" value="Search" readOnly />
-    </div>
-    )
+      <div>
+        <label className="labels" htmlFor="search">
+          Digite o nome:
+        </label>
+        <input
+          className="serachBar"
+          id="search"
+          data-testid="name-filter"
+          value="Search"
+          readOnly
+        />
+      </div>
+    );
   }
 }
 
