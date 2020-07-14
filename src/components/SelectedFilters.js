@@ -4,11 +4,13 @@ import { removeFilters } from '../actions/removeFilters';
 
 const SelectedFilters = ({ selectedFilters, excluirFilters }) => selectedFilters.map(
   ({ column, comparison, value }) => (
-    <div key={column} data-testid="filter">
+    <div className="btn bg-info" key={column} data-testid="filter">
       {`${column} ${comparison} ${value}`}
-      <button type="button" onClick={() => excluirFilters(column)}>
-        X
-      </button>
+      <div className="btn">
+        <button className="btn bg-danger" type="button" onClick={() => excluirFilters(column)}>
+          X
+        </button>
+      </div>
     </div>
   ),
 );

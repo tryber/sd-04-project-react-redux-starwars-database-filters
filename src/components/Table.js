@@ -7,7 +7,7 @@ function filterByText(planets, text) {
   return planets.filter((planet) => text === '' || planet.name.includes(text));
 }
 
-const numericFilter = (planet, column, comparison, value) => {
+const filterForComparison = (planet, column, comparison, value) => {
   switch (comparison) {
     case 'maior que':
       return Number(planet[column]) > Number(value);
@@ -24,7 +24,7 @@ class Table extends React.Component {
   filterNumeric(filteredData) {
     const { filterByNumericValues } = this.props;
     return filterByNumericValues.reduce(
-      (acc, { column, comparison, value }) => acc.filter((planet) => numericFilter(
+      (acc, { column, comparison, value }) => acc.filter((planet) => filterForComparison(
         planet, column, comparison, value,
       )), filteredData,
     );
