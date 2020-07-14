@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
 import { actionInput } from '../actions/actionInput';
+import DropDown from './Dropdown';
 
 function Header({ inputText, inputValue }) {
   return (
@@ -15,6 +16,7 @@ function Header({ inputText, inputValue }) {
           placeholder="Termo de pesquisa"
         />
       </label>
+      <DropDown />
     </div>
   );
 }
