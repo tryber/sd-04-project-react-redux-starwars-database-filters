@@ -1,5 +1,10 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import requestReducer from './requestReducer';
+// import filters from './filterReducer.js';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  // filters,
+  requestReducer,
+});
+
+export default rootReducer;
