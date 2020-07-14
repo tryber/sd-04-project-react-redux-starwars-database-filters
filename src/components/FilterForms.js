@@ -41,31 +41,41 @@ class FilterForms extends React.Component {
     return newOptions;
   }
 
+  renderSelect(options, testId, name) {
+    return (
+      <select onChange={(e) => this.handleChange(e)} data-testid={testId} name={name}>
+        <option defaultValue="" selected disabled hidden>
+          {name}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
   render() {
     const newOptions = this.filterOptions();
     return (
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>
-          <select
+          {this.renderSelect(newOptions, 'column-filter', 'column')}
+          {this.renderSelect(
+            ['maior que', 'menor que', 'igual a'],
+            'comparison-filter',
+            'comparison',
+          )}
+          <input
             onChange={(e) => this.handleChange(e)}
-            data-testid="column-filter"
-            name="column"
-          >
-            <option defaultValue="" selected disabled hidden>Choose here</option>
-            {newOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </select>
-          <select
-            onChange={(e) => this.handleChange(e)}
-            data-testid="comparison-filter"
-            name="comparison"
-          >
-            <option defaultValue selected disabled hidden>Choose here</option>
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
-          <input onChange={(e) => this.handleChange(e)} data-testid="value-filter" type="number" name="number" />
-          <button type="submit" data-testid="button-filter">acionar filtro</button>
+            data-testid="value-filter"
+            type="number"
+            name="number"
+          />
+          <button type="submit" data-testid="button-filter">
+            acionar filtro
+          </button>
         </form>
         <ShowFilters />
       </div>
@@ -75,13 +85,12 @@ class FilterForms extends React.Component {
 
 const mapStateToProps = (state) => ({
   filterByNumericValues: state.filters.filterByNumericValues,
-  options: state.options,
+  options: state.filters.options,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  submitFilterData: (column, comparison, number) => (
-    dispatch(saveFilterData(column, comparison, number))
-  ),
+  submitFilterData: (column, comparison, number) =>
+    dispatch(saveFilterData(column, comparison, number)),
 });
 
 FilterForms.propTypes = {

@@ -17,13 +17,10 @@ const comparisson = (planet, { column, comparison, value }) => {
   }
 };
 
-const Table = ({
-  data, handleInput, inputText, filterByNumericValues,
-}) => {
+const Table = ({ data, handleInput, inputText, filterByNumericValues }) => {
   // console.log(error);
-
   let planets = [...data];
-  const keys = (data.length >= 1) ? Object.keys(data[0]) : [];
+  const keys = data.length >= 1 ? Object.keys(data[0]) : [];
   const tableHeader = keys.filter((key) => key !== 'residents');
   if (filterByNumericValues.length >= 1) {
     filterByNumericValues.forEach((filter) => {
@@ -40,13 +37,17 @@ const Table = ({
       <table>
         <thead>
           <tr>
-            {tableHeader.map((column) => <th key={column}>{column}</th>)}
+            {tableHeader.map((column) => (
+              <th key={column}>{column}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {planets.map((planet) => (
             <tr key={planet.name}>
-              {tableHeader.map((column) => <td key={planet[column]}>{planet[column]}</td>)}
+              {tableHeader.map((column) => (
+                <td key={planet[column]}>{planet[column]}</td>
+              ))}
             </tr>
           ))}
         </tbody>
@@ -55,12 +56,11 @@ const Table = ({
   );
 };
 
-
 const mapStateToProps = (state) => ({
   inputText: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
-  data: state.data,
-  error: state.error,
+  data: state.apiReducer.data,
+  error: state.apiReducer.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

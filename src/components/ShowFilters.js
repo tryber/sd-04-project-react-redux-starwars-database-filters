@@ -12,7 +12,9 @@ const ShowFilters = ({ filterByNumericValues, removeFilter }) => {
           {filterByNumericValues.map(({ column, comparison, value }) => (
             <li key={column} data-testid="filter">
               {`${column} ${comparison} ${value} `}
-              <button type="button" onClick={() => removeFilter(column)}>X</button>
+              <button type="button" onClick={() => removeFilter(column)}>
+                X
+              </button>
             </li>
           ))}
         </ul>
@@ -27,7 +29,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeFilter: (column) => (dispatch(remove(column))),
+  removeFilter: (column) => dispatch(remove(column)),
 });
 
 ShowFilters.propTypes = {

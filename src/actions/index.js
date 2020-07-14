@@ -1,7 +1,7 @@
 import getPlanets from '../services/api';
 
 export const REQUEST_API = 'REQUEST_API';
-export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCES';
+export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCESS';
 export const REQUEST_API_ERROR = 'REQUEST_API_ERROR';
 export const HANDLE_CHANGE = 'HANDLE_CHANGE';
 export const SAVE_FILTER_DATA = 'SAVE_FILTER_DATA';
@@ -42,10 +42,9 @@ export function getSwPlanets() {
   return (dispatch) => {
     dispatch(requestApi());
 
-    return getPlanets()
-      .then(
-        (data) => dispatch(requestApiSuccess(data.results)),
-        (error) => dispatch(requestApiError(error)),
-      );
+    return getPlanets().then(
+      (data) => dispatch(requestApiSuccess(data.results)),
+      (error) => dispatch(requestApiError(error)),
+    );
   };
 }
