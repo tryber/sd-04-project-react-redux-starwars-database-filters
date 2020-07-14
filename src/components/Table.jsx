@@ -9,6 +9,7 @@ const Table = ({ data, loading, filterName, filterComparison }) => {
     if (filterName === '') return array;
     return array.filter((planet) => planet.name.toLowerCase().includes(filterName.toLowerCase()));
   };
+  const arrayPlanets = filterPlanetsName(data);
   const filterPlanetsComparison = (array) => {
     if (filterComparison.length === 0) return array;
     return filterComparison.reduce((acc, crr) => {
@@ -27,7 +28,6 @@ const Table = ({ data, loading, filterName, filterComparison }) => {
       });
     }, array);
   };
-
   if (loading) return <h1>Loading...</h1>;
   return (
     <div>
@@ -40,7 +40,7 @@ const Table = ({ data, loading, filterName, filterComparison }) => {
           </tr>
         </thead>
         <tbody>
-          {filterPlanetsComparison(filterPlanetsName(data)).map((planet) => (
+          {filterPlanetsComparison(arrayPlanets).map((planet) => (
             <tr key={planet.diameter}>
               {keys.map((key) => (
                 <td key={key}>{planet[key]}</td>

@@ -9,6 +9,25 @@ class Search extends Component {
     planets();
   }
 
+  renderBtnForm() {
+    const { filterNumbers } = this.props;
+    return (
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={() => {
+          filterNumbers({
+            column: document.getElementById('columns').value,
+            comparison: document.getElementById('comparison').value,
+            value: document.getElementById('value').value,
+          });
+        }}
+      >
+        Adicionar Filtro
+      </button>
+    );
+  }
+
   renderForm() {
     const { filterNumbers } = this.props;
     return (
@@ -28,19 +47,7 @@ class Search extends Component {
           <option value="igual a">igual a</option>
         </select>
         <input type="number" data-testid="value-filter" id="value" />
-        <button
-          type="button"
-          data-testid="button-filter"
-          onClick={() => {
-            filterNumbers({
-              column: document.getElementById('columns').value,
-              comparison: document.getElementById('comparison').value,
-              value: document.getElementById('value').value,
-            });
-          }}
-        >
-          Adicionar Filtro
-        </button>
+        {this.renderBtnForm()}
       </form>
     );
   }

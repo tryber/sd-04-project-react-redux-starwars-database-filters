@@ -29,10 +29,7 @@ function reducer(state = INITIAL_STATE, action) {
     case SEARCH_PLANET:
       return {
         ...state,
-        filters: {
-          ...state.filters,
-          filterByName: { name: action.planetName },
-        },
+        filters: { ...state.filters, filterByName: { name: action.planetName } },
       };
     case FILTER_NUMBERS:
       return {
