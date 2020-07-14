@@ -40,12 +40,13 @@ const order = (column, sort, planets) => {
 
   if (sort === 'ASC') return newPlanets;
   if (sort === 'DESC') return newPlanets.reverse();
+  return newPlanets;
 };
 
-const Table = ({ data, handleInput, inputText, filterByNumericValues, column, sort }) => {
+const Table = ({ data, handleInput, inputText, filterByNumericValues, col, sort }) => {
   let planets = [...data];
   if (planets.length >= 1) {
-    const newColumn = column.toLowerCase();
+    const newColumn = col.toLowerCase();
     planets = order(newColumn, sort, planets);
   }
   const keys = data.length >= 1 ? Object.keys(data[0]) : [];
@@ -90,7 +91,7 @@ const mapStateToProps = (state) => ({
   filterByNumericValues: state.filters.filterByNumericValues,
   data: state.apiReducer.data,
   error: state.apiReducer.error,
-  column: state.filters.order.column,
+  col: state.filters.order.column,
   sort: state.filters.order.sort,
 });
 
@@ -103,7 +104,7 @@ Table.propTypes = {
   handleInput: PropTypes.func.isRequired,
   inputText: PropTypes.string.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-  column: PropTypes.string.isRequired,
+  col: PropTypes.string.isRequired,
   sort: PropTypes.string.isRequired,
 };
 

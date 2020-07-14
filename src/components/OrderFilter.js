@@ -25,6 +25,24 @@ class OrderFilter extends React.Component {
     submitFilters(column, sort);
   }
 
+  renderRadioButtons() {
+    return (
+      <div onChange={(e) => this.handleChange(e.target)} name="sort">
+        <input
+          data-testid="column-sort-input"
+          id="ASC"
+          name="sort"
+          type="radio"
+          value="ASC"
+          defaultChecked
+        />
+        <label htmlFor="ASC">ASC</label>
+        <input data-testid="column-sort-input" id="DESC" name="sort" type="radio" value="DESC" />
+        <label htmlFor="DESC">DESC</label>
+      </div>
+    );
+  }
+
   render() {
     const { keys } = this.props;
     return (
@@ -40,19 +58,7 @@ class OrderFilter extends React.Component {
             </option>
           ))}
         </select>
-        <div onChange={(e) => this.handleChange(e.target)} name="sort">
-          <input
-            data-testid="column-sort-input"
-            id="ASC"
-            name="sort"
-            type="radio"
-            value="ASC"
-            defaultChecked
-          />
-          <label htmlFor="ASC">ASC</label>
-          <input data-testid="column-sort-input" id="DESC" name="sort" type="radio" value="DESC" />
-          <label htmlFor="DESC">DESC</label>
-        </div>
+        {this.renderRadioButtons()}
         <button
           onClick={(e) => this.handleSubmit(e)}
           data-testid="column-sort-button"
