@@ -6,6 +6,7 @@ import Tabelas from './Tabelas';
 function Table({ isLoading, data, searchBar }) {
   if (isLoading) return <span>L O A D I N G . . .</span>;
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
+  const filterByName = data.filter((e) => e.name.toLowerCase().includes(searchBar));
   return (
     <div>
       <table>
@@ -16,7 +17,7 @@ function Table({ isLoading, data, searchBar }) {
             ))}
           </tr>
         </thead>
-        {data.map((planet, i) => (
+        {filterByName.map((planet, i) => (
           <tbody key={`${i + 1}`}>
             <Tabelas planet={planet} />
           </tbody>
@@ -29,6 +30,7 @@ function Table({ isLoading, data, searchBar }) {
 
 Table.propTypes = {
   data: PropTypes.shape({
+    filter: PropTypes.func,
     map: PropTypes.func,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
