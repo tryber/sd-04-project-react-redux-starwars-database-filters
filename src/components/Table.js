@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import CreateHeadings from '../components/CreateHeadings';
 import CreateBody from '../components/CreateBody';
 
-const filter = (data, name, filterByNumericValues) => { // colocar order
+const filter = (data, name, filterByNumericValues) => {
+  // colocar order
   let filteredData = [...data];
 
-  filteredData = data.sort((a, b) => { // setting the starting order
+  filteredData = data.sort((a, b) => {
+    // setting the starting order
     if (a.name < b.name) {
       return -1;
     }
@@ -18,18 +20,8 @@ const filter = (data, name, filterByNumericValues) => { // colocar order
     return 0;
   });
 
-  // Bonus mas tá dando algum problema que não tive tempo de arrumar
-  // if (order.column !== 'Name') { // setting the order according to user order choices
-  //   if (order.sort === 'ASC') {
-  //     filteredData = data.sort((a, b) => Number(a[order.column]) - Number(b[order.column]));
-  //   }
-  //   if (order.sort === 'DESC') {
-  //     filteredData = data.sort((a, b) => Number(b[order.column]) - Number(a[order.column]));
-  //   }
-  //   return false;
-  // }
-
-  if (filterByNumericValues.length >= 1) { // setting the order according to user comparison choices
+  if (filterByNumericValues.length >= 1) {
+    // setting the order according to user comparison choices
     filterByNumericValues.map(({ column, comparison, value }) => {
       if (comparison === 'maior que') {
         filteredData = filteredData.filter((planet) => Number(planet[column]) > Number(value));
