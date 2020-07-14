@@ -44,9 +44,7 @@ class FilterForms extends React.Component {
   renderSelect(options, testId, name) {
     return (
       <select onChange={(e) => this.handleChange(e)} data-testid={testId} name={name}>
-        <option defaultValue="" selected disabled hidden>
-          {name}
-        </option>
+        <option defaultChecked>{name}</option>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
@@ -96,7 +94,7 @@ const mapDispatchToProps = (dispatch) => ({
 FilterForms.propTypes = {
   submitFilterData: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterForms);

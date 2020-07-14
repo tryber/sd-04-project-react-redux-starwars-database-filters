@@ -1,11 +1,14 @@
-import { HANDLE_CHANGE, SAVE_FILTER_DATA, REMOVE_FILTERS } from '../actions';
+import { HANDLE_CHANGE, SAVE_FILTER_DATA, REMOVE_FILTERS, SORT_FILTERS } from '../actions';
 
 const INICIAL_STATE = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
-
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
   options: ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
 };
 
@@ -32,6 +35,11 @@ const filters = (state = INICIAL_STATE, action) => {
           ({ column }) => column !== action.column,
         ),
         options: [...state.options, action.column],
+      };
+    case SORT_FILTERS:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
