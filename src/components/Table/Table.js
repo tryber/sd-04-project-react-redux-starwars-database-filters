@@ -3,22 +3,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Tabelas from './Tabelas';
 
-function Table({ isLoading, data, searchBar }) {
+function Table({ isLoading, data }) {
   if (isLoading) return <span>L O A D I N G . . .</span>;
-  const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
-  const filterByName = data.filter((e) => e.name.toLowerCase().includes(searchBar));
+  // const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
+  // const filterByName = data.filter((e) => e.name.toLowerCase().includes(searchBar));
   return (
     <div>
       <table>
         <thead>
           <tr>
-            {offResidents.map((e, i) => (
+            {Object.keys(data[0]).map((e, i) => (
               <td key={`${i + 1}`}>{e}</td>
             ))}
           </tr>
         </thead>
         <tbody>
-          {filterByName.map((planet, i) => (
+          {data.map((planet, i) => (
             <Tabelas planet={planet} i={i} />
           ))}
         </tbody>

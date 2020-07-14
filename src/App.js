@@ -11,6 +11,7 @@ class App extends React.Component {
     const { getPlanets } = this.props;
     getPlanets();
   }
+
   render() {
     return (
       <div className="App">
