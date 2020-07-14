@@ -33,7 +33,7 @@ class Table extends React.Component {
   }
 
   filterPlanetsByNumericValues(planets) {
-    const { data, filterNumericValues } = this.props;
+    const { filterNumericValues } = this.props;
     if (filterNumericValues.length === 0) return planets;
     return filterNumericValues.reduce((filteredPlanetsArray, filterNumericValue) => {
       const { column, comparison, value } = filterNumericValue;
