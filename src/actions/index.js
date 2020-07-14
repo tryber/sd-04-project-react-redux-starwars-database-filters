@@ -1,11 +1,15 @@
 // action para solicitar uma api
 import api from '../services/api';
 
+// Declaração das actions de requisição.
 export const API_REQUISITION = 'API_REQUISITION';
 export const API_REQUISITION_SUCCESS = 'API_REQUISITION_SUCCESS';
+
+// Declaração de actions de filtragem.
 export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const NUMERIC_FILTER = 'NUMERIC_FILTER';
 export const DELETE_FILTER = 'DELETE_FILTER';
+export const ORDER_FILTER = 'ORDER_FILTER';
 
 const apiRequisition = () => ({
   type: API_REQUISITION,
@@ -42,4 +46,9 @@ export const numericFilter = (state) => ({
 export const deleteFilter = (column) => ({
   type: DELETE_FILTER,
   column,
+});
+
+export const orderFilter = (state) => ({
+  type: ORDER_FILTER,
+  state,
 });

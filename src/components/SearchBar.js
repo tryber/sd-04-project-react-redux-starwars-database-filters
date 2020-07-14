@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteFilter } from '../actions';
 import TextFilter from './searchBarComponents/TextFilter';
+import SortFilter from './searchBarComponents/SortFilter';
 import NumericFilter from './searchBarComponents/NumericFilter';
 
 class SearchBar extends Component {
@@ -12,10 +13,11 @@ class SearchBar extends Component {
     return (
       <div className="searchBar">
         <TextFilter />
+        <SortFilter />
         <NumericFilter />
         <div>
           <div><h1>Filtros:</h1></div>
-          <div>
+          <div className="filters">
             {filters.map((filter) => (
               <div data-testid="filter">
                 <p key={filter.value}>

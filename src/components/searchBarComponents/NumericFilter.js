@@ -37,7 +37,7 @@ class NumericFilter extends Component {
       <form className="numberInput" onSubmit={(e) => this.handleClick(e)}>
         <label htmlFor="form">Numeric Filter:</label><br />
         <select
-          data-testid="column-filter" name="select" c
+          data-testid="column-filter" name="select" className="input"
           onChange={(e) => this.setState({ column: e.target.value })}
         >
           <option defaultValue>Column</option>

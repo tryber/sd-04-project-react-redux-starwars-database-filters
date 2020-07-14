@@ -1,10 +1,14 @@
-import { SEARCH_TEXT, NUMERIC_FILTER, DELETE_FILTER } from '../actions';
+import { SEARCH_TEXT, NUMERIC_FILTER, DELETE_FILTER, ORDER_FILTER } from '../actions';
 
 const INITIAL_FILTER_STATE = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_FILTER_STATE, action) => {
@@ -33,6 +37,11 @@ const filters = (state = INITIAL_FILTER_STATE, action) => {
         ...state,
         filterByNumericValues: state.filterByNumericValues
           .filter(({ column }) => column !== action.column),
+      };
+    case ORDER_FILTER:
+      return {
+        ...state,
+        order: { column: action.state.column, sort: action.state.sort },
       };
     default:
       return state;

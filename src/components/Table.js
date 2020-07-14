@@ -4,6 +4,19 @@ import PropTypes from 'prop-types';
 import './Table.css';
 
 class Table extends Component {
+  sortLines(planets) {
+    const { column, sort } = this.props.order;
+    const filterCol = column.toLowerCase();
+    let sortPlanets = planets;
+    if (filterCol === 'name' || filterCol === 'climate' || filterCol === 'terrain') {
+      sortPlanets = sortPlanets
+        .sort((a, b) => ((a[filterCol]).toLowerCase()).localeCompare((b[filterCol]).toLowerCase()));
+    }
+    if (sort === 'ASC') sortPlanets = sortPlanets.sort((a, b) => a[column] - b[column]);
+    if (sort === 'DESC') sortPlanets = sortPlanets.sort((a, b) => b[column] - a[column]);
+    return sortPlanets;
+  }
+
   filteredData() {
     const { data, filterByName, filterByNumericValues } = this.props;
     let planets = [...data];
@@ -20,7 +33,7 @@ class Table extends Component {
         });
       });
     }
-    return planets;
+    return this.sortLines(planets);
   }
 
   render() {
@@ -57,6 +70,7 @@ const mapStateToProps = (state) => ({
   data: state.reducer.data,
   filterByNumericValues: state.filters.filterByNumericValues,
   filterByName: state.filters.filterByName.name,
+  order: state.filters.order,
 });
 
 export default connect(mapStateToProps)(Table);
@@ -66,4 +80,5 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   filterByName: PropTypes.string.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  order: PropTypes.objectOf(PropTypes.string).isRequired,
 };
