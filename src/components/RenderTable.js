@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class RenderTable extends Component {
   render() {
-    const { data } = this.props;
+    const { data, name } = this.props;
 
     return (
       <table>
@@ -18,13 +18,15 @@ class RenderTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {data.map(({ residents, ...planet }) => (
-            <tr key={planet.name}>
-              {Object.values(planet).map((value) => (
-                <td key={value}>{value}</td>
-              ))}
-            </tr>
-          ))}
+          {data
+            .filter((planet) => planet.name.includes(name))
+            .map(({ residents, ...planet }) => (
+              <tr key={planet.name}>
+                {Object.values(planet).map((value) => (
+                  <td key={value}>{value}</td>
+                ))}
+              </tr>
+            ))}
         </tbody>
       </table>
     );
@@ -33,11 +35,13 @@ class RenderTable extends Component {
 
 const mapStateToProps = (state) => ({
   data: state.starWarsReducer.data,
+  name: state.starWarsReducer.filters.filterByName.name,
 });
 
 connect(mapStateToProps, null)(RenderTable);
 
 RenderTable.propTypes = {
+  name: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

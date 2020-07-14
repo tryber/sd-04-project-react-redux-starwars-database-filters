@@ -3,7 +3,7 @@ import getPlanetsData from '../services/StarWarsAPI';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
 
-// Actions síncronas
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -14,7 +14,14 @@ const receivePlanets = (json) => ({
   data: json.results,
 });
 
-// Action assíncrona -> redux thunk
+export const filterByName = (value) => ({
+  type: FILTER_BY_NAME,
+  filters: {
+    filterByName: {
+      name: value,
+    },
+  },
+});
 
 export function fetchPlanets() {
   return (dispatch) => {
