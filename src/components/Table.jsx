@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css';
@@ -29,9 +29,9 @@ class Table extends Component {
 
 Table.propTypes = {
   data: PropTypes.shape({
-    map: PropTypes.func
-  }). isRequired,
-  isFetching: PropTypes.bool.isRequired
+    map: PropTypes.func,
+  }).isRequired,
+  isFetching: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = (state) => ({
