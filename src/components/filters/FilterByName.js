@@ -27,4 +27,5 @@ export default connect(mapStateToProps, { filterByText })(FilterByName);
 
 FilterByName.propTypes = {
   name: PropTypes.string.isRequired,
+  filterByText: PropTypes.func.isRequired,
 };
