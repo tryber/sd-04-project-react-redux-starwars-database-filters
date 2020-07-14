@@ -86,7 +86,6 @@ class Table extends React.Component {
 
     const filteredSortedPlanets = this.sortPlanets(filteredPlanets);
 
-
     return (
       <tbody>
         {filteredSortedPlanets.map((planet) => (
