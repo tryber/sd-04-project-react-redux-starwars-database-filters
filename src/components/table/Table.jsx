@@ -39,12 +39,14 @@ class Table extends Component {
     );
   }
 
+
   tableBodyRender() {
     const { head } = this.state;
-    const { data } = this.props;
+    const { data, query } = this.props;
+    const matchQuery = (row) => row.name.toLowerCase().includes(query.toLowerCase());
     return (
       <tbody>
-        {data.map((planet) => (
+        {data.filter(matchQuery).map((planet) => (
           <tr key={planet.name}>
             {head.map((th) => (
               <td key={`${planet.name} ${th}`}>{planet[th]}</td>
@@ -70,9 +72,14 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   data: state.swapiReducer.data,
   loading: state.swapiReducer.loading,
+  query: state.filterReducer.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps, { fetchingPlanetsInfo })(Table);
+
+Table.defaultProps = {
+  query: '',
+};
 
 Table.propTypes = {
   loading: PropTypes.bool.isRequired,
@@ -91,4 +98,5 @@ Table.propTypes = {
       created: PropTypes.string,
     }),
   ).isRequired,
+  query: PropTypes.string,
 };

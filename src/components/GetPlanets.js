@@ -5,8 +5,7 @@ import { fetchingPlanetsInfo } from '../actions/actionCreators';
 
 class GetPlanets extends React.Component {
   componentDidMount() {
-    const { fetchingPlanetsInfo } = this.props;
-    fetchingPlanetsInfo();
+    this.props.fetchingPlanetsInfo();
   }
 
   render() {

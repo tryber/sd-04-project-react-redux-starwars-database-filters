@@ -3,21 +3,28 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByText } from '../../actions/actionCreators';
 
-export class FilterByName extends Component {
+class FilterByName extends Component {
   render() {
+    const { name } = this.props;
+    // console.log(this.props);
     return (
       <input
         type="text"
         data-testeid="name-filter"
+        value={name}
         onChange={(e) => this.props.filterByText(e.target.value)}
 
       />
     );
   }
 }
+const mapStateToProps = (state) => ({
+  name: state.filterReducer.filters.filterByName.name,
+});
 
-export default connect(null, { filterByText })(FilterByName);
+
+export default connect(mapStateToProps, { filterByText })(FilterByName);
 
 FilterByName.propTypes = {
-  filterByText: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };

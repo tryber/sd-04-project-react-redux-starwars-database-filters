@@ -4,7 +4,7 @@ import store from './store';
 import './App.css';
 import Table from './components/table/Table';
 import GetPlanets from './components/GetPlanets';
-import { FilterByName } from './components/filters/FilterByName';
+import FilterByName from './components/filters/FilterByName';
 
 function App() {
   return (
