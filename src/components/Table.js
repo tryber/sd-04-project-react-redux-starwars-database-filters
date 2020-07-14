@@ -1,31 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const tableHeaders = [
+  'name',
+  'climate',
+  'created',
+  'diameter',
+  'edited',
+  'films',
+  'gravity',
+  'orbital_period',
+  'population',
+  'rotation_period',
+  'surface_water',
+  'terrain',
+  'url',
+];
+
 class Table extends React.Component {
   render() {
     const { filteredPlanet } = this.props;
 
-    return ( // refatorar with extern [] and map
+    return (
       <div>
         <table className="table table-striped ">
           <thead className="thead-dark">
             <tr>
-              <th scope="col">name</th><th scope="col">population</th><th scope="col">created</th>
-              <th scope="col">diameter</th><th scope="col">edited</th>
-              <th scope="col">gravity</th><th scope="col">orbital_period</th>
-              <th scope="col">climate</th><th scope="col">rotation_period</th>
-              <th scope="col">surface_water</th><th scope="col">terrain</th>
-              <th scope="col">url</th><th scope="col">films</th>
+              {tableHeaders.map((header) => (
+                <th scope="col" key={header}>
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {filteredPlanet.map((planet) => (
               <tr key={planet.name}>
-                <td>{planet.name}</td><td>{planet.population}</td><td>{planet.created}</td>
-                <td>{planet.diameter}</td><td>{planet.edited}</td><td>{planet.gravity}</td>
-                <td>{planet.orbital_period}</td><td>{planet.climate}</td>
-                <td>{planet.rotation_period}</td><td>{planet.surface_water}</td>
-                <td>{planet.terrain}</td><td>{planet.url}</td><td>{planet.films}</td>
+                {tableHeaders.map((header) => (
+                  <td>{planet[header]}</td>
+                ))}
               </tr>
             ))}
           </tbody>
@@ -36,7 +49,6 @@ class Table extends React.Component {
 }
 
 Table.propTypes = {
-  // planets: PropTypes.shape.isRequired,
   filteredPlanet: PropTypes.arrayOf(PropTypes.object),
 };
 
