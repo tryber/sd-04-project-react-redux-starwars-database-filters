@@ -43,7 +43,7 @@ class Filters extends React.Component {
     });
     let colFil = [];
     colFil = colAr.filter(
-      (n) => !acCol.includes(n)
+      (n) => !acCol.includes(n),
     );
     return (
       <select
@@ -77,7 +77,8 @@ class Filters extends React.Component {
       <div>
         <form>
           <this.getCol />
-          <select name="comparison" data-testid="comparison-filter"
+          <select name="comparison"
+            data-testid="comparison-filter"
             value={this.state.comparison} onChange={this.getValue}
           >
             {this.state.comparisonItems.map((item) => (
@@ -88,7 +89,8 @@ class Filters extends React.Component {
             name="value" type="number" data-testid="value-filter"
             value={this.state.value} onChange={this.getValue}
           />
-          <button type="button" data-testid="button-filter"
+          <button type="button"
+            data-testid="button-filter"
             onClick={() =>
               this.props.swSearchNum(this.state.filterByNumericValues)
             }

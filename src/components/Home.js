@@ -37,8 +37,8 @@ class Home extends React.Component {
         this.compare(
           Number(planet[filter.column]),
           Number(filter.value),
-          filter.comparison
-        )
+          filter.comparison,
+        ),
       );
       return swFiltered;
     });
