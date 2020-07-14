@@ -23,9 +23,8 @@ function generateFilteredColumns(listOfColumns, columns) {
     ));
 }
 
-function generateFilteredValues(listOfComparisons, comparisons) {
+function generateFilteredValues(listOfComparisons) {
   return listOfComparisons
-    .filter((comp) => !comparisons.includes(comp))
     .map((comparison) => (
       <option key={comparison} value={comparison}>
         {comparison}
@@ -46,7 +45,6 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
   const listOfColumns = geratedlistOfColumns();
   const listOfComparisons = ['maior que', 'menor que', 'igual a'];
   const columns = filtersList.map((filter) => filter.column);
-  const comparisons = filtersList.map((filter) => filter.comparison);
   return (
     <div className="filtersContainer">
       <h4>Definir filtro:</h4>
@@ -56,7 +54,7 @@ function renderFilterDropdown(setVariables, setFilteredPlanets, filtersList) {
       </select>
       <select data-testid="comparison-filter" id="comparison">
         <option defaultValue>Comparação</option>
-        {generateFilteredValues(listOfComparisons, comparisons)}
+        {generateFilteredValues(listOfComparisons)}
       </select>
       <input data-testid="value-filter" type="number" id="value" />
       <button
