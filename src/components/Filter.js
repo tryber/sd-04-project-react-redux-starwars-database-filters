@@ -35,11 +35,7 @@ class Filter extends React.Component {
   columnRender() {
     this.bar = 12; // Without CC asked for using this
     const colonumItemsArray = [
-      'Coluna',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
+      'Coluna', 'population', 'orbital_period', 'diameter', 'rotation_period',
       'surface_water',
     ]; // Must refactor this part and subtract object directly
     const activFilterColum = [];
