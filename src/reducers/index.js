@@ -37,7 +37,7 @@ const applyNumericFilters = (planets, filters) => {
   return filteredPlanets;
 };
 
-const notNumbers = ['Name', 'climate', 'terrain', 'residents', 'films', 'created', 'edited'];
+const notNumbers = ['name', 'climate', 'terrain', 'residents', 'films', 'created', 'edited'];
 
 
 const compare = (column, sort = 'ASC') => (a, b) => {
@@ -106,7 +106,10 @@ function reducer(state = INITIAL_STATE, action) {
     case SET_FILTERED_BY_ORDER: {
       const planets = [...state.filteredPlanets];
       const filteredPlanets = applyOrderFilter(planets, state.order);
-      return { ...state, filteredPlanets };
+      return {
+        ...state,
+        filteredPlanets,
+      };
     }
     default:
       return state;
