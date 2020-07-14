@@ -29,7 +29,6 @@ class Search extends Component {
   }
 
   renderForm() {
-    const { filterNumbers } = this.props;
     return (
       <form>
         <select data-testid="column-filter" id="columns">

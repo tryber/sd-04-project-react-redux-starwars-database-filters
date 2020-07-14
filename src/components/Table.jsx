@@ -3,8 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Table.css';
 
+const usedColumns = [
+  'name',
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'climate',
+  'gravity',
+  'terrain',
+  'surface_water',
+  'population',
+  'films',
+  'created',
+  'edited',
+  'url',
+];
+
 const Table = ({ data, loading, filterName, filterComparison }) => {
-  const keys = data.length !== 0 ? Object.keys(data[0]).filter((key) => key !== 'residents') : [];
+  // const keys = data.length !== 0 ? Object.keys(data[0]).filter((key) => key !== 'residents') : [];
   const filterPlanetsName = (array) => {
     if (filterName === '') return array;
     return array.filter((planet) => planet.name.toLowerCase().includes(filterName.toLowerCase()));
@@ -34,7 +50,7 @@ const Table = ({ data, loading, filterName, filterComparison }) => {
       <table>
         <thead>
           <tr>
-            {keys.map((key) => (
+            {usedColumns.map((key) => (
               <th key={key}>{key}</th>
             ))}
           </tr>
@@ -42,7 +58,7 @@ const Table = ({ data, loading, filterName, filterComparison }) => {
         <tbody>
           {filterPlanetsComparison(arrayPlanets).map((planet) => (
             <tr key={planet.diameter}>
-              {keys.map((key) => (
+              {usedColumns.map((key) => (
                 <td key={key}>{planet[key]}</td>
               ))}
             </tr>
