@@ -1,4 +1,4 @@
-import  { FILTER_NAME } from '../actions/index';
+import { FILTER_NAME } from '../actions/index';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -7,13 +7,13 @@ const INITIAL_STATE = {
 };
 
 const filters = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case FILTER_NAME:
       return {
         ...state,
         filterByName: {
           name: action.name,
-        }
+        },
       };
     default:
       return state;
