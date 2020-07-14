@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { filterByName } from '../../actions/filterByName';
+import { filterByText } from '../../actions/actionCreators';
 
 export class FilterByName extends Component {
   render() {
@@ -9,11 +9,15 @@ export class FilterByName extends Component {
       <input
         type="text"
         data-testeid="name-filter"
-        onChange={(e) => this.props.filterByName(e.target.value)}
+        onChange={(e) => this.props.filterByText(e.target.value)}
 
       />
     );
   }
 }
 
-export default FilterByName;
+export default connect(null, { filterByText })(FilterByName);
+
+FilterByName.propTypes = {
+  filterByText: PropTypes.func.isRequired,
+};

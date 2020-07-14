@@ -1,4 +1,8 @@
-import { REQUEST_API, REQUEST_API_SUCCESS } from '../actions';
+import {
+  REQUEST_PLANETS_INFORMATION,
+  PLANET_INFO_REQUEST_SUCCESS,
+  PLANET_INFO_REQUEST_FAILURE,
+} from '../actions/actions';
 
 const initialState = {
   data: [],
@@ -7,12 +11,14 @@ const initialState = {
 
 export const swapiReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_API:
+    case REQUEST_PLANETS_INFORMATION:
       return { ...state, loading: true };
-    case REQUEST_API_SUCCESS:
+    case PLANET_INFO_REQUEST_SUCCESS:
       return { ...state, loading: false, data: action.data };
     default:
       return state;
+    case PLANET_INFO_REQUEST_FAILURE:
+      return { ...state, loading: false, error: action.data };
   }
 };
 

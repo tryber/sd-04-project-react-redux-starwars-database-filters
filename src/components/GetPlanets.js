@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getData } from '../actions';
+import { fetchingPlanetsInfo } from '../actions/actionCreators';
 
 class GetPlanets extends React.Component {
   componentDidMount() {
-    this.props.getData('planets');
+    const { fetchingPlanetsInfo } = this.props;
+    fetchingPlanetsInfo();
   }
 
   render() {
@@ -15,8 +16,8 @@ class GetPlanets extends React.Component {
   }
 }
 
-export default connect(null, { getData })(GetPlanets);
+export default connect(null, { fetchingPlanetsInfo })(GetPlanets);
 
 GetPlanets.propTypes = {
-  getData: PropTypes.func.isRequired,
+  fetchingPlanetsInfo: PropTypes.func.isRequired,
 };

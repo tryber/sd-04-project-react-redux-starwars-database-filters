@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getData } from '../actions';
+import { fetchingPlanetsInfo } from '../../actions/actionCreators';
 
 class Table extends Component {
   constructor(props) {
@@ -72,7 +72,7 @@ const mapStateToProps = (state) => ({
   loading: state.swapiReducer.loading,
 });
 
-export default connect(mapStateToProps, { getData })(Table);
+export default connect(mapStateToProps, { fetchingPlanetsInfo })(Table);
 
 Table.propTypes = {
   loading: PropTypes.bool.isRequired,
