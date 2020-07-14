@@ -17,7 +17,7 @@ const filters = (state = inicialState, action) => {
         },
       };
     case FILTER_BY_NUMERIC_VALUES:
-      console.log(action.column)
+      console.log(action.column);
       return {
         ...state,
         filterByNumericValues: [

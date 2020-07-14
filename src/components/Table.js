@@ -21,13 +21,14 @@ class Table extends React.Component {
     const { name, data, valueFilters } = this.props;
 
     const filterName = data.filter((planet) => (planet.name.toLowerCase().includes(name)));
-    if(valueFilters.length !== 0) {
-      return valueFilters.reduce((newList, { column, comparison, value }) => 
+    if (valueFilters.length !== 0) {
+      return valueFilters.reduce((newList, { column, comparison, value }) =>
       newList.filter((planet) => {
-        if(comparison === 'maior que') return Number(planet[column]) > Number(value);
-        if(comparison === 'igual a') return Number(planet[column]) === Number(value);
-        if(comparison === 'menor que') return Number(planet[column]) < Number(value);
-      }), filterName)
+        if (comparison === 'maior que') return Number(planet[column]) > Number(value);
+        if (comparison === 'igual a') return Number(planet[column]) === Number(value);
+        if (comparison === 'menor que') return Number(planet[column]) < Number(value);
+        return planet;
+      }), filterName);
     }
     return filterName;
   }

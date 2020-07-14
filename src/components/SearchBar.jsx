@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { filterByNumbers } from '../actions/index';
 import FilterName from './FilterName';
 
-
-
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +18,12 @@ class SearchBar extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
+
+  onClick() {
+    const { value, column, comparison } = this.state;
+    this.props.filterByNumbers(column, comparison, value);
+    this.setState({ value: '', column: '', comparison: '' });
+  }
 
   getColumns() {
     const select = this.updateColumn();
@@ -38,12 +42,6 @@ class SearchBar extends React.Component {
 
   handleChange(event, key) {
     this.setState({ [key]: event.target.value });
-  }
-
-  onClick() {
-    const { value, column, comparison } = this.state;
-    this.props.filterByNumbers( column, comparison, value );
-    this.setState({ value: '', column: '', comparison: '' });
   }
 
   updateColumn() {
@@ -75,7 +73,7 @@ class SearchBar extends React.Component {
           type="number"
           value={this.state.value}
           data-testid="value-filter"
-          onChange={ (e) => this.setState({value: e.target.value}) }
+          onChange={(e) => this.setState({ value: e.target.value })}
         />
         <button data-testid="button-filter" onClick={() => this.onClick()}>Filter</button>
       </div>
