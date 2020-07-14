@@ -10,13 +10,13 @@ function Table({ isLoading, data }) {
       <table>
         <thead>
           <tr>
-            {Object.keys(data.results[0]).map((e, index) => (
-              <th key={index}> {e} </th>
+            {Object.keys(data.results[0]).map((e, i) => (
+              <th key={i}> {e} </th>
             ))}
           </tr>
         </thead>
-        {data.results.map((planet, index) => (
-          <tbody key={index}>
+        {data.results.map((planet, i) => (
+          <tbody key={i}>
             <Tabelas planet={planet} />
           </tbody>
         ))}
