@@ -32,7 +32,7 @@ Table.propTypes = {
     map: PropTypes.func,
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   data: state.data,
