@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import CreateHeadings from '../components/CreateHeadings';
 import CreateBody from '../components/CreateBody';
 
-const filter = (data, name, filterByNumericValues, order) => {
+const filter = (data, name, filterByNumericValues) => { // colocar order
   let filteredData = [...data];
 
   filteredData = data.sort((a, b) => { // setting the starting order

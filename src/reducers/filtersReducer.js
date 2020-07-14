@@ -14,12 +14,7 @@ const INITIAL_STATE = {
 function filtersReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.FILTER_BY_NAME:
-      return {
-        ...state,
-        filterByName: {
-          name: action.event,
-        },
-      };
+      return { ...state, filterByName: { name: action.event } };
     case types.FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
@@ -40,10 +35,7 @@ function filtersReducer(state = INITIAL_STATE, action) {
         ),
       };
     case types.FILTER_BY_ORDER:
-      return {
-        ...state,
-        order: { ...state.order, column: action.column, sort: action.sort },
-      };
+      return { ...state, order: { ...state.order, column: action.column, sort: action.sort } };
     default:
       return state;
   }
