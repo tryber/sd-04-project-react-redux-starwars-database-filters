@@ -2,25 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { fetchPlanets } from '../actions';
+import HeaderTable from './HeaderTable';
 
 function planetsTable(planets) {
   return (
     <table className="table">
-      {planets.map((planet) => (
-        <tr className="table-column" key={planet.name}>
-          <td className="table-cell">{planet.climate}</td>
-          <td className="table-cell">{planet.diameter}</td>
-          <td className="table-cell">{planet.gravity}</td>
-          <td className="table-cell">{planet.name}</td>
-          <td className="table-cell">{planet.orbital_period}</td>
-          <td className="table-cell">{planet.population}</td>
-          <td className="table-cell">-</td>
-          <td className="table-cell">{planet.rotation_period}</td>
-          <td className="table-cell">{planet.surface_water}</td>
-          <td className="table-cell">{planet.terrain}</td>
-          <td className="table-cell-url">{planet.url}</td>
-        </tr>
-      ))}
+      <HeaderTable />
+      <tbody>
+        {planets.map((planet) => (
+          <tr className="table-column" key={planet.name}>
+            <td className="table-cell">{planet.name}</td>
+            <td className="table-cell">{planet.rotation_period}</td>
+            <td className="table-cell">{planet.orbital_period}</td>
+            <td className="table-cell">{planet.diameter}</td>
+            <td className="table-cell">{planet.climate}</td>
+            <td className="table-cell">{planet.gravity}</td>
+            <td className="table-cell">{planet.terrain}</td>
+            <td className="table-cell">{planet.surface_water}</td>
+            <td className="table-cell">{planet.population}</td>
+            <td className="table-cell">Residents</td>
+            <td className="table-cell">Films</td>
+            <td className="table-cell">{planet.created}</td>
+            <td className="table-cell">{planet.edited}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
