@@ -20,7 +20,6 @@ const usedColumns = [
 ];
 
 const Table = ({ data, loading, filterName, filterComparison }) => {
-  // const keys = data.length !== 0 ? Object.keys(data[0]).filter((key) => key !== 'residents') : [];
   const filterPlanetsName = (array) => {
     if (filterName === '') return array;
     return array.filter((planet) => planet.name.toLowerCase().includes(filterName.toLowerCase()));
@@ -46,7 +45,7 @@ const Table = ({ data, loading, filterName, filterComparison }) => {
   };
   if (loading) return <h1>Loading...</h1>;
   return (
-    <div>
+    <div className="daniteste">
       <table>
         <thead>
           <tr>
