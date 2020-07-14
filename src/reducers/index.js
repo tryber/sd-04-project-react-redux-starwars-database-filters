@@ -36,7 +36,7 @@ const planetTableReducer = (state = INITIAL_STATE, action) => {
           ...state.filters,
           filterByNumericValues: [...state.filters.filterByNumericValues, action.numericFilters],
         },
-        // filterKeys: state.filterKeys.map((filtro) => filtro !== action.numericFilters.column),
+        filterKeys: state.filterKeys.filter((filtro) => filtro !== action.numericFilters.column),
       };
     default:
       return state;
