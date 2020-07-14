@@ -2,19 +2,13 @@ import {
   FILTER_BY_NAME,
   FILTER_BUTTON,
   SAVE_FILTER,
-  RECAP_CATEGORIES,
   REMOVE_FILTER,
   SAVE_ORDER,
   ORDER_BUTTON,
 } from '../actions';
-import reduceFilter from '../services/reduceFilter';
 
 const INITIAL_STATE = {
-  actualFilter: {
-    column: '',
-    comparison: '',
-    value: '',
-  },
+  actualFilter: { column: '', comparison: '', value: '' },
   actualOrder: { column: '', sort: '' },
   filterByName: { name: '' },
   filterByNumericValues: [],
@@ -41,7 +35,6 @@ const filters = (state = INITIAL_STATE, action) => {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
-        categories: reduceFilter(state.categories, state.filterByNumericValues, action.column),
       };
     case SAVE_FILTER:
       return { ...state, actualFilter: { ...state.actualFilter, [action.name]: action.value } };
@@ -49,10 +42,7 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter((o) => o.column !== action.col),
-        categories: state.categories.concat(action.col),
       };
-    case RECAP_CATEGORIES:
-      return { ...state, categories: reduceFilter(state.categories, state.filterByNumericValues) };
     case SAVE_ORDER:
       return { ...state, actualOrder: { ...state.actualOrder, [action.column]: action.sort } };
     case ORDER_BUTTON:
