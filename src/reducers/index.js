@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import StarsPlanet from './StarsPlanet';
+
+import reducerPlanets from './reducerPlanets';
 
 const rootReducer = combineReducers({
-  StarsPlanet,
+  reducerPlanets,
 });
 
 export default rootReducer;

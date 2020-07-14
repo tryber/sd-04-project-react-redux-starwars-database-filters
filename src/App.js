@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Lista from './components/lista';
-import store from './store';
+import store from './store/index';
+import Table from './components/Table';
+
 
 import './App.css';
 
@@ -10,7 +11,7 @@ function App() {
     <Provider store={store}>
       <header className="App-header">
         STARS WARS
-        <Lista />
+        <Table />
       </header>
     </Provider>
   );
