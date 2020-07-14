@@ -41,3 +41,9 @@ export const deleteFilterByNumericValues = (column) => ({
   type: types.DELETE_FILTER_BY_NUMERIC_VALUES,
   column,
 });
+
+export const filterByOrder = (column, sort) => ({
+  type: types.FILTER_BY_ORDER,
+  column,
+  sort,
+});

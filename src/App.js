@@ -9,6 +9,7 @@ import SearchPlanet from './components/SearchPlanet';
 import ComparisonFilter from './components/ComparisonFilter';
 import Filters from './components/Filters';
 import Table from './components/Table';
+import OrderFilter from './components/OrderFilter';
 
 class App extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <SearchPlanet />
+          <OrderFilter />
           <ComparisonFilter />
           <Filters />
         </header>

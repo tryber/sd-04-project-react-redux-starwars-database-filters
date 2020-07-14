@@ -5,9 +5,31 @@ import PropTypes from 'prop-types';
 import CreateHeadings from '../components/CreateHeadings';
 import CreateBody from '../components/CreateBody';
 
-const filter = (data, name, filterByNumericValues) => {
+const filter = (data, name, filterByNumericValues, order) => {
   let filteredData = [...data];
-  if (filterByNumericValues.length >= 1) {
+
+  filteredData = data.sort((a, b) => { // setting the starting order
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  // Bonus mas tá dando algum problema que não tive tempo de arrumar
+  // if (order.column !== 'Name') { // setting the order according to user order choices
+  //   if (order.sort === 'ASC') {
+  //     filteredData = data.sort((a, b) => Number(a[order.column]) - Number(b[order.column]));
+  //   }
+  //   if (order.sort === 'DESC') {
+  //     filteredData = data.sort((a, b) => Number(b[order.column]) - Number(a[order.column]));
+  //   }
+  //   return false;
+  // }
+
+  if (filterByNumericValues.length >= 1) { // setting the order according to user comparison choices
     filterByNumericValues.map(({ column, comparison, value }) => {
       if (comparison === 'maior que') {
         filteredData = filteredData.filter((planet) => Number(planet[column]) > Number(value));
@@ -18,22 +40,23 @@ const filter = (data, name, filterByNumericValues) => {
       if (comparison === 'igual a') {
         filteredData = filteredData.filter((planet) => Number(planet[column]) === Number(value));
       }
-      return filteredData;
+      return false;
     });
   }
 
   if (name) return data.filter((planet) => planet.name.toUpperCase().includes(name.toUpperCase()));
+
   return filteredData;
 };
 
-const Table = ({ isLoading, data, name, filterByNumericValues }) => {
+const Table = ({ isLoading, data, name, filterByNumericValues, order }) => {
   if (isLoading) return <p>Loading...</p>;
   return (
     <div>
       <h1>StarWars Datatable with Filters</h1>
       <table>
         <CreateHeadings dados={Object.keys(data[0])} />
-        <CreateBody dados={filter(data, name, filterByNumericValues)} />
+        <CreateBody dados={filter(data, name, filterByNumericValues, order)} />
       </table>
     </div>
   );
@@ -44,6 +67,7 @@ const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   name: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 export default connect(mapStateToProps)(Table);
@@ -53,4 +77,5 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  order: PropTypes.objectOf(PropTypes.string).isRequired,
 };

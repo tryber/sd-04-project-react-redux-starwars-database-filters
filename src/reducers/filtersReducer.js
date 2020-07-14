@@ -5,6 +5,10 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 function filtersReducer(state = INITIAL_STATE, action) {
@@ -34,6 +38,11 @@ function filtersReducer(state = INITIAL_STATE, action) {
         filterByNumericValues: state.filterByNumericValues.filter(
           ({ column }) => column !== action.column,
         ),
+      };
+    case types.FILTER_BY_ORDER:
+      return {
+        ...state,
+        order: { ...state.order, column: action.column, sort: action.sort },
       };
     default:
       return state;

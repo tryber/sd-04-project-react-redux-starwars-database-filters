@@ -9,7 +9,7 @@ const Filters = ({ filtersInfo, deleteFilter }) => (
     <p>Filtros</p>
     {filtersInfo.map((filter) => (
       <div key={filter.column} data-testid="filter">
-        <button onClick={() => deleteFilter(filter.column)} type="button" >
+        <button onClick={() => deleteFilter(filter.column)} type="button">
           X
         </button>
         <p>{`${filter.column} | ${filter.comparison} | ${filter.value}`}</p>
