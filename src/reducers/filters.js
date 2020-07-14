@@ -1,5 +1,5 @@
 import {
-  SEARCH_TEXT, COMPARISON_FILTER } from '../actions';
+  SEARCH_TEXT, COMPARISON_FILTER, DELETE_FILTER } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -28,6 +28,13 @@ const filters = (state = INITIAL_STATE, action) => {
             value: action.comparisonFilter.value,
           },
         ],
+      };
+    case DELETE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(({ column }) => (
+          column !== action.deleteFilter.column
+        )),
       };
     default:
       return state;

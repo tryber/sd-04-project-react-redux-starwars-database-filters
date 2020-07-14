@@ -5,6 +5,7 @@ export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
 export const RECEIVE_PLANETS_FAILURE = 'RECEIVE_PLANETS_FAILURE';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const COMPARISON_FILTER = 'COMPARISON_FILTER';
+export const DELETE_FILTER = 'DELETE_FILTER';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -30,6 +31,11 @@ const comparisonFilterAction = (comparisonFilter) => ({
   comparisonFilter,
 });
 
+const deleteFilterAction = (deleteFilter) => ({
+  type: DELETE_FILTER,
+  deleteFilter,
+});
+
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestPlanets());
@@ -42,4 +48,4 @@ export function fetchPlanets() {
   };
 }
 
-export { searchTextAction, comparisonFilterAction };
+export { searchTextAction, comparisonFilterAction, deleteFilterAction };
