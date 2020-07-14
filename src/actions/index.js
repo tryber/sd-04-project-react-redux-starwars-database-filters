@@ -1,5 +1,3 @@
-import planetsAPI from '../services/planetsAPI';
-
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCESS';
 
@@ -12,6 +10,14 @@ const requestPlanetsSuccess = (data) => ({
   data,
 });
 
+function planetsAPI() {
+  return (
+    fetch('https://swapi-trybe.herokuapp.com/api/planets/?format=json')
+      .then((response) => (
+        response
+          .json()
+      )));
+}
 
 export function fetchPlanets() {
   return async (dispatch) => {

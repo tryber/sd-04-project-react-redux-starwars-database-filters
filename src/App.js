@@ -20,7 +20,7 @@ function App() {
             <td className="table-cell">Rotarion period</td>
             <td className="table-cell">Surface water</td>
             <td className="table-cell">Terrain</td>
-            <td className="table-cell">Url</td>
+            <td className="table-cell-url">Url</td>
           </tr>
         </table>
       </header>
