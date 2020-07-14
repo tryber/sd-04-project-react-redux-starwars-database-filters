@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
     return (
       <input
         data-testid="name-filter"
-        className="form-control col-3"
+        className="form-control col-12"
         placeholder="Search a Planet"
         onChange={(e) => this.props.searchBar(e.target.value)}
         value={value}
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 SearchBar.propTypes = {
-  searchBar: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  searchBar: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

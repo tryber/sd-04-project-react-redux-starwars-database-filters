@@ -52,7 +52,7 @@ class MainContainer extends React.Component {
     return (
       <div>
         <div className="filterContainer">
-          <h1>Welcome to the StarWars planet API</h1>
+          {/* <h1>Welcome to the StarWars planet API</h1> */}
           <div className="searchbar">
             <SearchBar />
           </div>
@@ -81,10 +81,16 @@ const mapDispatchToProps = (dispatch) => ({
 
 MainContainer.propTypes = {
   getPlanet: PropTypes.func.isRequired,
-  data: PropTypes.string.isRequired,
-  searchedPlanet: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+  searchedPlanet: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
-  filters: PropTypes.shape.isRequired,
+  filters: PropTypes.shape(),
+};
+
+MainContainer.defaultProps = {
+  data: [],
+  filters: null,
+  searchedPlanet: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

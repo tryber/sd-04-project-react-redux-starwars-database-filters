@@ -18,6 +18,7 @@ class Filter extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.columnRender = this.columnRender.bind(this);
     this.filterRender = this.filterRender.bind(this);
+    this.buttonRender = this.buttonRender.bind(this);
   }
 
   handleChange(event) {
@@ -51,13 +52,15 @@ class Filter extends React.Component {
     return (
       <select
         name="column"
-        className="form-control col-1 "
+        className="form-control col-md-5 mr-3 mb-2"
         data-testid="column-filter"
         value={this.state.value}
         onChange={this.handleChange}
       >
         {colonumItemsFiltered.map((item) => (
-          <option value={item}>{item}</option>
+          <option key={item} value={item}>
+            {item}
+          </option>
         ))}
       </select>
     );
@@ -66,51 +69,78 @@ class Filter extends React.Component {
   filterRender() {
     this.bar = 12; // Without CC asked for using this
     return (
-      <div>
+      <div className="filterListContainer">
         {this.props.filterByNumericValues.map((filter, index) => (
-          <div data-testid="filter">
-            <p>
+          <div data-testid="filter" className="filterList">
+            <div>
               {filter.column} {filter.comparison} {filter.value}
-            </p>
-            <button
-              type="button"
-              className="btn btn-danger btn-sm"
-              onClick={() =>
-                this.props.deleteFilter(index)
-              }
-            >
-              X
-            </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="btn btn-danger "
+                onClick={() => this.props.deleteFilter(index)}
+              >
+                X
+              </button>
+            </div>
           </div>
         ))}
       </div>
     );
   }
 
+  buttonRender() {
+    return (
+      <button
+        type="button"
+        className="btn btn-primary"
+        data-testid="button-filter"
+        onClick={() =>
+          this.props.numericalFilter(this.state.filterByNumericValues)
+        }
+      >
+        Filter
+      </button>
+    );
+  }
+
   render() {
     return (
       <div>
-        <form className="form-inline">
-          <this.columnRender />
-          <select
-            name="comparison" className="form-control col-2" data-testid="comparison-filter"
-            value={this.state.comparison} onChange={this.handleChange}
-          >
-            {this.state.comparisonItems.map((item) => (
-              <option value={item}>{item}</option>))}
-          </select>
-          <input
-            name="value" type="number" className="form-control col-1"
-            data-testid="value-filter" value={this.state.value} onChange={this.handleChange}
-          />
-          <button
-            type="button" className="btn btn-primary" data-testid="button-filter"
-            onClick={() => this.props.numericalFilter(this.state.filterByNumericValues)}
-          >
-            Filter
-          </button>
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <this.columnRender />
+              <select
+                name="comparison"
+                className="form-control col-md-5 mb-2"
+                data-testid="comparison-filter"
+                value={this.state.comparison}
+                onChange={this.handleChange}
+              >
+                {this.state.comparisonItems.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <input
+                name="value"
+                type="number"
+                className="form-control col-md-8 mr-1"
+                data-testid="value-filter"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+              <this.buttonRender />
+            </div>
+          </div>
         </form>
-
         <this.filterRender />
       </div>
     );
@@ -124,13 +154,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   numericalFilter: (e) => dispatch(numericalFilter(e)),
   deleteFilter: (e) => dispatch(deleteFilter(e)),
-
 });
 
 Filter.propTypes = {
   numericalFilter: PropTypes.func.isRequired,
   deleteFilter: PropTypes.func.isRequired,
-  filterByNumericValues: PropTypes.shape.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
