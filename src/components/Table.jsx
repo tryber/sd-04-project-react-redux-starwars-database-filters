@@ -5,9 +5,9 @@ import { fetch } from '../actions';
 
 const Content = ({ data }) => (
   <tbody>
-    {data.map(planet => (
+    {data.map((planet) => (
       <tr key={planet.orbital_period}>
-        {Object.values(planet).map(value => (
+        {Object.values(planet).map((value) => (
           <td key={value}>{value}</td>
         ))}
       </tr>
@@ -28,8 +28,8 @@ class Table extends React.Component {
 
   componentDidMount() {
     const { fetchPlanets } = this.props;
-    fetchPlanets().then(response => {
-      response.data.forEach(planet => {
+    fetchPlanets().then((response) => {
+      response.data.forEach((planet) => {
         // eslint-disable-next-line no-param-reassign
         delete planet.residents;
       });
@@ -42,10 +42,10 @@ class Table extends React.Component {
 
   render() {
     return (
-      <table className='table table-dark'>
+      <table className="table table-dark">
         <thead>
           <tr>
-            {this.state.headersState.map(title => (
+            {this.state.headersState.map((title) => (
               <th key={title}>{title}</th>
             ))}
           </tr>
@@ -56,11 +56,11 @@ class Table extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   planets: state.reducer ? state.reducer.data : [],
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchPlanets: () => dispatch(fetch()),
 });
 
@@ -68,7 +68,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 Content.propTypes = {
