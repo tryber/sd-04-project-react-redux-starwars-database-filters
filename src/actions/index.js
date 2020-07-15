@@ -27,7 +27,6 @@ export const comparisonFilterAction = (comparisonFilter) => ({
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestPlanets());
-
     return getSWAPI()
       .then(
         (results) => dispatch(receivePlanetsSuccess(results)),

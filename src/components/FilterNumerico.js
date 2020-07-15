@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { comparisonFilterAction } from '../actions/index';
 
@@ -6,8 +7,8 @@ export class FilterNumerico extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      column: "colunas",
-      comparison: "comparaçao",
+      column: 'colunas',
+      comparison: 'comparaçao',
       value: 0,
     };
   }
@@ -60,5 +61,9 @@ export class FilterNumerico extends Component {
 const mapDispatchToProps = (dispatch) => ({
   comparison: (Obj) => dispatch(comparisonFilterAction(Obj)),
 });
+
+SelectColumn.propTypes = {
+  comparison: PropTypes.shape.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(FilterNumerico);
