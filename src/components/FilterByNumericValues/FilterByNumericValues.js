@@ -21,7 +21,7 @@ const FilterByNumericValues = (props) => {
   const { filteredColumns } = props;
   const [column, setColumn] = React.useState('');
   const [comparison, setComparison] = React.useState('');
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('');
 
   return (
     <div className="filter-by-numbers">
