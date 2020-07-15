@@ -1,5 +1,4 @@
-import { NAME_FILTER } from '../actions';
-import { NUMERIC_FILTER } from '../actions';
+import { NAME_FILTER, NUMERIC_FILTER, DEL_NUMERIC_FILTER } from '../actions';
 
 const initialState = {
   filterByName: {
@@ -15,6 +14,11 @@ const reducerFilters = (state = initialState, action) => {
     case NUMERIC_FILTER:
       return {
         ...state, filterByNumericValues: [...state.filterByNumericValues, action.numericFilter],
+      };
+    case DEL_NUMERIC_FILTER:
+      return {
+        ...state, filterByNumericValues: state.filterByNumericValues.filter((filter) =>
+          filter.column !== action.numericFilter.column),
       };
     default:
       return state;

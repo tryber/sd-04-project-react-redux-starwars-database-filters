@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { asyncActionDataFetch, actionNameFilter, actionNumericFilter } from '../actions';
+import { asyncActionDataFetch, actionNameFilter, actionNumericFilter, actionDelNumericFilter } from '../actions';
 
 const SelectColumn = ({ columnValues }) =>
   <select
@@ -49,9 +49,14 @@ class Filters extends Component {
     return numericFilter({ column, comparison, value });
   }
 
+  delStoreFilter(e, delNumericFilter) {  // ainda definindo
+    const elFilterValues = e.target.parent;
+    console.log(elFilterValues)
+  }
+
   render() {
     const { columnValues } = this.state;
-    const { nameFilter, numericFilter, filters } = this.props;
+    const { nameFilter, numericFilter, filters, delNumericFilter } = this.props;
     const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
     return (
       <div>
@@ -68,9 +73,11 @@ class Filters extends Component {
         >
           Filtrar
         </button>
+        {/* ainda definindo */}
         {filters.map((filter) =>
-          <p key={filter.column} data-testid="filter">
+          <p key={filter.column} data-testid="filter"> 
             {`${filter.column} ${filter.comparison} ${filter.value}`}
+            <button onClick={(e) => this.delStoreFilter(e, delNumericFilter)}>X</button>
           </p>,
         )}
       </div>
@@ -86,6 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
   dataFetch: (url) => dispatch(asyncActionDataFetch(url)),
   nameFilter: (text) => dispatch(actionNameFilter(text)),
   numericFilter: (oNumericFilter) => dispatch(actionNumericFilter(oNumericFilter)),
+  delNumericFilter: (oNumericFilter) => dispatch(actionDelNumericFilter(oNumericFilter)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
