@@ -1,0 +1,24 @@
+table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+  background-color: rgb(7, 5, 37);
+  color: white;
+}
+
+.container {
+  overflow-y: auto;
+}
