@@ -8,7 +8,7 @@ export class SearchText extends Component {
     const { text } = this.props;
     return (
       <div>
-        <label htmlFor="searchText">Procurar:</label>
+        <label htmlFor="searchText">Procurar:</label><br />
         <input
           type="text"
           data-testid="name-filter"
