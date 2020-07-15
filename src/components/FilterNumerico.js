@@ -15,14 +15,16 @@ export class FilterNumerico extends Component {
   render() {
     const { column, comparison, value } = this.state;
     const comparisons = ['maior que', 'menor que', 'igual a'];
-    const culumns = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const columns = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const listSelected = this.props.colunaSelect.map((option) => option.column);
     return (
       <div>
         <select
           data-testid="column-filter" onChange={(e) => this.setState({ column: e.target.value })}
         >
           <option value="" selected>colunas</option>
-          {culumns.map((element) => <option key={element} value={element}>{element}</option>)}
+          {columns.filter((element) => !listSelected.includes(element))
+            .map((option) => <option key={option} value={option}>{option}</option>)}
         </select>
         <select
           data-testid="comparison-filter"
@@ -45,6 +47,10 @@ export class FilterNumerico extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  colunaSelect: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   comparison: (Obj) => dispatch(comparisonFilterAction(Obj)),
 });
@@ -53,4 +59,4 @@ FilterNumerico.propTypes = {
   comparison: PropTypes.shape.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(FilterNumerico);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterNumerico);

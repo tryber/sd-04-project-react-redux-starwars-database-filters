@@ -310,45 +310,45 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
   });
 });
 
-// describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
-//   test('check avaiable filters', async () => {
-//     const initialState = getStore().getState();
+describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
+  test('check avaiable filters', async () => {
+    const initialState = getStore().getState();
 
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' },
-//           { column: 'population', comparison: 'igual a', value: '200000' },
-//         ],
-//       },
-//     };
+    const initial = {
+      ...initialState,
+      filters:
+      {
+        ...initialState.filters,
+        filterByNumericValues:
+        [
+          { column: 'surface_water', comparison: 'menor que', value: '40' },
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
+          { column: 'population', comparison: 'igual a', value: '200000' },
+        ],
+      },
+    };
 
-//     const { findByTestId } = renderApp(initial);
+    const { findByTestId } = renderApp(initial);
 
-//     const columnFilter = await findByTestId('column-filter');
+    const columnFilter = await findByTestId('column-filter');
 
-//     expect(columnFilter.children).toHaveLength(3);
+    expect(columnFilter.children).toHaveLength(3);
 
-//     const expectedColumnFilters = [
-//       'orbital_period',
-//       'rotation_period',
-//     ];
+    const expectedColumnFilters = [
+      'orbital_period',
+      'rotation_period',
+    ];
 
-//     const foundColumnFilterArray = [];
+    const foundColumnFilterArray = [];
 
-//     for (let index = 0; index < columnFilter.children.length; index += 1) {
-//       const filter = columnFilter.children[index];
-//       foundColumnFilterArray.push(filter.innerHTML);
-//     }
+    for (let index = 0; index < columnFilter.children.length; index += 1) {
+      const filter = columnFilter.children[index];
+      foundColumnFilterArray.push(filter.innerHTML);
+    }
 
-//     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
-//   });
-// });
+    expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
+  });
+});
 
 // describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
 //   test('should show the previously selected filters', async () => {
