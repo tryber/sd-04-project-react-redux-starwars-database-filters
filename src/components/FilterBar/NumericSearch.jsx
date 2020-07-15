@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterValues } from '../../actions/filter';
 
-const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-
-const CreateSelectColumn = ({ onChange, value }) => (
+const CreateSelectColumn = ({ onChange, value, options }) => (
   <select value={value} onChange={(e) => onChange(e)} data-testid="column-filter" id="column">
     <option value="">Column</option>
     {options.map((option) => (
@@ -68,13 +66,20 @@ class NumericSearch extends Component {
 
   render() {
     const { column, comparison, value } = this.state;
+    const { option } = this.props;
+    const optionsExists = option.length <= 0;
     return (
       <form>
-        <CreateSelectColumn onChange={this.handleChange} value={column} />
+        <CreateSelectColumn options={option} onChange={this.handleChange} value={column} />
         <CreateSelectComparison onChange={this.handleChange} value={comparison} />
         <CreateInputValue onChange={this.handleChange} value={value} />
 
-        <button onClick={() => this.handleSubmit()} data-testid="button-filter" type="button">
+        <button
+          disabled={optionsExists}
+          onClick={() => this.handleSubmit()}
+          data-testid="button-filter"
+          type="button"
+        >
           Apply filter
         </button>
       </form>
@@ -82,6 +87,9 @@ class NumericSearch extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  option: state.filters.options,
+});
 const mapDispatchToProps = (dispatch) => ({
   changeValues: (column, comparison, value) => dispatch(filterValues(column, comparison, value)),
 });
@@ -105,4 +113,4 @@ CreateInputValue.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(NumericSearch);
+export default connect(mapStateToProps, mapDispatchToProps)(NumericSearch);
