@@ -43,12 +43,11 @@ class Table extends Component {
   tableBodyRender() {
     const { head } = this.state;
     const { data, query } = this.props;
-    const matchQuery = (row) => {
-      return (row.name.toLowerCase().indexOf(query.toLowerCase()) >=0)
-    }
+    const isPlanetNameThere = (row) => (row.name.toLowerCase().indexOf(query.toLowerCase()) >= 0);
+    // Caso não encontre nenhum string que der match, indexOf retorna -1
     return (
       <tbody>
-        {data.filter(matchQuery).map((planet) => (
+        {data.filter(isPlanetNameThere).map((planet) => (
           <tr key={planet.name}>
             {head.map((th) => (
               <td key={`${planet.name} ${th}`}>{planet[th]}</td>
