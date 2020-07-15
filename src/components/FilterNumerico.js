@@ -40,8 +40,7 @@ export class FilterNumerico extends Component {
         <button
           type="button" data-testid="button-filter"
           onClick={() => this.props.comparison({ column, comparison, value })}
-        >Filtrar
-        </button>
+        >Filtrar</button>
       </div>
     );
   }
@@ -57,6 +56,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 FilterNumerico.propTypes = {
   comparison: PropTypes.shape.isRequired,
+  colunaSelect: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterNumerico);
