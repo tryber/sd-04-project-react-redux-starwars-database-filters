@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { createStore } from 'redux';
 
-const TableBody = ({ data, fetching }) => {
+const TableBody = ({ data }) => {
   return (
     <tbody>
       {data.map(
@@ -41,9 +41,9 @@ const TableBody = ({ data, fetching }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.data,
-  fetching: state.fetching,
+  // fetching: state.fetching,
 });
 
 export default connect(mapStateToProps)(TableBody);

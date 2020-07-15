@@ -4,8 +4,8 @@ const SWAPI = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
 function getPlanets() {
   return fetch(SWAPI)
-    .then(data => data.json())
-    .then(datajson => Promise.resolve(datajson), (errorMsg) => Promise.reject(errorMsg));
+    .then((data) => data.json())
+    .then((datajson) => Promise.resolve(datajson), (errorMsg) => Promise.reject(errorMsg));
   // return Promise.resolve(SWAPI);
 }
 

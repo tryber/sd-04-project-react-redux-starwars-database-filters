@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TableHead from './TableHead';
-import TableBody from './TableBody'
+import TableBody from './TableBody';
 // import { createStore } from 'redux';
 
 const Table = ({ fetching }) => {
@@ -15,7 +15,7 @@ const Table = ({ fetching }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   // data: state.data,
   fetching: state.fetching,
 });

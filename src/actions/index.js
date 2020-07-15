@@ -8,12 +8,12 @@ const requestSWAPI = () => ({
   type: REQUEST_SWAPI,
 });
 
-const requestSuccess = data => ({
+const requestSuccess = (data) => ({
   type: REQUEST_SUCCESS,
   data,
 });
 
-const requestFail = error => ({
+const requestFail = (error) => ({
   type: REQUEST_FAIL,
   error,
 });
@@ -23,8 +23,8 @@ export const getSWAPI = () => {
   return (dispatch) => {
     dispatch(requestSWAPI());
     return getPlanets().then(
-      data => dispatch(requestSuccess(data.results)),
-      error => dispatch(requestFail(error))
+      (data) => dispatch(requestSuccess(data.results)),
+      (error) => dispatch(requestFail(error))
     );
   };
 };
