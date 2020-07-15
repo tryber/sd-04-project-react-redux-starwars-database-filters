@@ -7,15 +7,15 @@ import CreateBody from '../components/CreateBody';
 
 const filter = (data, name, filterByNumericValues) => {
   let filteredData = [...data];
-  filteredData = data.sort((a, b) => { // setting the starting order
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  });
+  // filteredData = data.sort((a, b) => { // starting order - comecei o bonus mas deixei pra lá
+  //   if (a.name < b.name) {
+  //     return -1;
+  //   }
+  //   if (a.name > b.name) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // });
   if (filterByNumericValues.length >= 1) { // setting the order according to user comparison choices
     filterByNumericValues.map(({ column, comparison, value }) => {
       switch (comparison) {
