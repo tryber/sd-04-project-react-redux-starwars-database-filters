@@ -98,9 +98,9 @@ Filters.propTypes = {
 };
 
 SelectColumn.propTypes = {
-  columnValues: PropTypes.Array.isRequired,
+  columnValues: PropTypes.array.isRequired,
 };
 
 SelectComparisom.propTypes = {
-  comparisonValues: PropTypes.Array.isRequired,
+  comparisonValues: PropTypes.array.isRequired,
 };
