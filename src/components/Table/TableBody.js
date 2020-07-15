@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { createStore } from 'redux';
 
-const TableBody = ({ data = [] }) => {
+const TableBody = ({ data }) => {
   return (
     <tbody>
       {data.map(

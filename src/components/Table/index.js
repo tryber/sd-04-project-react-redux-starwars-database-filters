@@ -4,7 +4,7 @@ import TableHead from './TableHead';
 import TableBody from './TableBody';
 // import { createStore } from 'redux';
 
-const Table = ({ fetching = true }) => {
+const Table = ({ fetching }) => {
   return fetching ? (
     <div>LOADING...</div>
   ) : (
