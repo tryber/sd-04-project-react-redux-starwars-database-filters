@@ -35,3 +35,12 @@ export const actionNameFilter = (text) => ({
   type: NAME_FILTER,
   text,
 });
+
+// actions para filtragem de planetas por coluna e valores numéricos
+
+export const NUMERIC_FILTER = 'NUMERIC_FILTER';
+
+export const actionNumericFilter = (numericFilter) => ({
+  type: NUMERIC_FILTER,
+  numericFilter,
+});

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import reducerData from './reducerData';
+import data from './reducerData';
 import filters from './reducerFilters';
 
-const rootReducer = combineReducers({ reducerData, filters });
+const rootReducer = combineReducers({ data, filters });
 
 export default rootReducer;
