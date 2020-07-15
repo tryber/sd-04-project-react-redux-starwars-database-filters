@@ -25,7 +25,8 @@ export class FilterNumerico extends Component {
           {culumns.map((element) => <option key={element} value={element}>{element}</option>)}
         </select>
         <select
-          data-testid="comparison-filter" onChange={(e) => this.setState({ comparison: e.target.value })}
+          data-testid="comparison-filter"
+          onChange={(e) => this.setState({ comparison: e.target.value })}
         >
           <option value="" selected>comparação</option>
           {comparisons.map((element) => <option key={element} value={element}>{element}</option>)}
