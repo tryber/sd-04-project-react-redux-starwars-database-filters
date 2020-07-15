@@ -29,7 +29,7 @@ const filters = (state = INITIAL_STATE, action) => {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
-        options: [...state.options.filter((column) => column !== action.column )],
+        options: [...state.options.filter((column) => column !== action.column)],
       };
     case DELETE_FILTER:
       return {
