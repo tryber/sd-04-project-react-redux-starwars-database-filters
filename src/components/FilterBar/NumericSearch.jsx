@@ -96,12 +96,13 @@ const mapDispatchToProps = (dispatch) => ({
 
 NumericSearch.propTypes = {
   changeValues: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
+  option: PropTypes.arrayOf().isRequired,
 };
 
 CreateSelectColumn.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf().isRequired,
 };
 
 CreateSelectComparison.propTypes = {
