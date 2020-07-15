@@ -43,7 +43,6 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   searchText: PropTypes.string.isRequired,
   comparisonFilter: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
-  deleteFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, null)(Table);
