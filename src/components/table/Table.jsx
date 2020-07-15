@@ -43,7 +43,9 @@ class Table extends Component {
   tableBodyRender() {
     const { head } = this.state;
     const { data, query } = this.props;
-    const matchQuery = (row) => row.name.toLowerCase().includes(query.toLowerCase());
+    const matchQuery = (row) => {
+      return (row.name.toLowerCase().indexOf(query.toLowerCase()) >=0)
+    }
     return (
       <tbody>
         {data.filter(matchQuery).map((planet) => (
