@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 DeleteFunction.propTypes = {
   deleteFilter: PropTypes.func.isRequired,
+  comparisonFilter: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeleteFunction);
