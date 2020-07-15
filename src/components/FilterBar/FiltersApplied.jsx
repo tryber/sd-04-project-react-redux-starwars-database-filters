@@ -12,7 +12,7 @@ const FiltersApplied = ({ filters, removeFilter }) => (
         <p>{filter.comparison}</p>
         <p>{filter.value}</p>
         <button onClick={() => removeFilter(filter.column)} className="remove-button" type="button">
-          X
+          remove filter
         </button>
       </div>
     ))}
