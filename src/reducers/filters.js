@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   },
   filterByNumericValues: [],
   colonumItems: [
-    { name: 'Coluna', available: true },
+    { name: 'Property', available: true },
     { name: 'population', available: true },
     { name: 'orbital_period', available: true },
     { name: 'diameter', available: true },

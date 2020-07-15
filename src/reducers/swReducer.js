@@ -1,4 +1,4 @@
-import { SW_REQUEST, SW_SUCCESS, SW_FAILURE } from '../actions/';
+import { SW_REQUEST, SW_SUCCESS } from '../actions/';
 
 const INITIAL_STATE = {
   isLoading: true,
@@ -11,8 +11,6 @@ function swReducer(state = INITIAL_STATE, action) {
       return { ...state, isLoading: true };
     case SW_SUCCESS:
       return { ...state, isLoading: false, data: action.data };
-    case SW_FAILURE:
-      return { ...state, isLoading: false, error: action.error };
     default:
       return state;
   }

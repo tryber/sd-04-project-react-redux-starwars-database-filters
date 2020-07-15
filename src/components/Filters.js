@@ -13,7 +13,7 @@ class Filters extends React.Component {
         value: '',
       },
 
-      comparisonItems: ['Comparação', 'maior que', 'igual a', 'menor que'],
+      comparisonItems: ['Comp', 'maior que', 'igual a', 'menor que'],
     };
 
     this.getValue = this.getValue.bind(this);

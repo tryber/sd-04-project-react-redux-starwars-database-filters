@@ -5,26 +5,17 @@ import Table from './Table';
 import SearchInput from './SearchInput';
 import Filters from './Filters';
 import { swFetch } from '../actions';
+import compare from '../services/index'
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.compare = this.compare.bind(this);
     this.swFilter = this.swFilter.bind(this);
   }
 
   componentDidMount() {
     const { getSwFetch } = this.props;
     getSwFetch();
-  }
-
-  compare(pValue, fValue, op) {
-    let result = false;
-    if (op === 'maior que') result = pValue > fValue;
-    if (op === 'menor que') result = pValue < fValue;
-    if (op === 'igual a') result = pValue === fValue;
-    this.bar = result;
-    return result;
   }
 
   swFilter() {
@@ -34,7 +25,7 @@ class Home extends React.Component {
     let swFiltered = data.filter((planet) => planet.name.includes(swSearch));
     filterArray.map((filter) => {
       swFiltered = swFiltered.filter((planet) =>
-        this.compare(
+        compare(
           Number(planet[filter.column]),
           Number(filter.value),
           filter.comparison,
@@ -46,12 +37,13 @@ class Home extends React.Component {
   }
 
   render() {
-    const { data, isLoading } = this.props;
+    const { isLoading } = this.props;
+    if (isLoading === true) return <p>Searching for Planets...</p>
     return (
       <div>
         <SearchInput />
         <Filters />
-        {!isLoading && <Table planets={data} swFiltered={this.swFilter()} />}
+        <Table swFiltered={this.swFilter()} />
       </div>
     );
   }
@@ -71,7 +63,6 @@ Home.propTypes = {
   getSwFetch: PropTypes.func.isRequired,
   data: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  // swSearch: PropTypes.string.isRequired,
   swReducer: PropTypes.shape.isRequired,
 };
 
