@@ -7,9 +7,7 @@ import CreateBody from '../components/CreateBody';
 
 const filter = (data, name, filterByNumericValues) => {
   let filteredData = [...data];
-
-  filteredData = data.sort((a, b) => {
-    // setting the starting order
+  filteredData = data.sort((a, b) => { // setting the starting order
     if (a.name < b.name) {
       return -1;
     }
@@ -18,31 +16,27 @@ const filter = (data, name, filterByNumericValues) => {
     }
     return 0;
   });
-
-  if (filterByNumericValues.length >= 1) {
-    // setting the order according to user comparison choices
+  if (filterByNumericValues.length >= 1) { // setting the order according to user comparison choices
     filterByNumericValues.map(({ column, comparison, value }) => {
       switch (comparison) {
         case 'maior que':
           return (filteredData = filteredData.filter(
-            (planet) => Number(planet[column]) > Number(value)
+            (planet) => Number(planet[column]) > Number(value),
           ));
         case 'menor que':
           return (filteredData = filteredData.filter(
-            (planet) => Number(planet[column]) < Number(value)
+            (planet) => Number(planet[column]) < Number(value),
           ));
         case 'igual a':
           return (filteredData = filteredData.filter(
-            (planet) => Number(planet[column]) === Number(value)
+            (planet) => Number(planet[column]) === Number(value),
           ));
         default:
           return false;
       }
     });
   }
-
   if (name) return data.filter((planet) => planet.name.toUpperCase().includes(name.toUpperCase()));
-
   return filteredData;
 };
 
