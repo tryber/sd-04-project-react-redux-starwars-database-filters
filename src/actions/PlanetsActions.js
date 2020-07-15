@@ -12,7 +12,7 @@ export const planetsFetched = (planets) => ({
   data: planets,
 });
 
-export const planetsHasErrored = (bool) => ({
+export const planetsHasErrored = (bool, message) => ({
   type: PLANETS_HAS_ERRORED,
-  hasErrored: bool,
+  hasErrored: { status: bool, message },
 });

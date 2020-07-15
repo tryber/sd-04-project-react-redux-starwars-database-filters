@@ -13,7 +13,7 @@ const planetsFetchData = (url) => (dispatch) => {
     })
     .then((response) => response.json())
     .then((planets) => dispatch(planetsFetched(planets)))
-    .catch(() => dispatch(planetsHasErrored(true)));
+    .catch((error) => dispatch(planetsHasErrored(true, error.message)));
 };
 
 export default planetsFetchData;
