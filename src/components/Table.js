@@ -11,7 +11,7 @@ export class Table extends Component {
   }
 
   render() {
-    const { data, isFetching, input } = this.props;
+    const { data, isFetching, input, comparison } = this.props;
     if (isFetching) return <div>Loading...</div>;
     const title = Object.keys(data[0]).filter((key) => key !== 'residents');
     return (
@@ -23,7 +23,7 @@ export class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {ConteudoTable(data, title, input)}
+            {ConteudoTable(data, title, input, comparison)}
           </tbody>
         </table>
       </div>
@@ -36,6 +36,7 @@ const mapStateToProps = (state) => (
     isFetching: state.reducerPlanets.isFetching,
     data: state.reducerPlanets.data,
     input: state.filters.filterByName.name,
+    comparison:state.filters.filterByNumericValues
   }
 );
 
