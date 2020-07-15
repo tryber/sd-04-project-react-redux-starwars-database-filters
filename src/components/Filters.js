@@ -3,26 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { asyncActionDataFetch, actionNameFilter, actionNumericFilter } from '../actions';
 
-const SelectColumn = ({ columnValues }) => {
-  return (
-    <select
-      id="column-filter" data-testid="column-filter"
-      defaultValue={columnValues[0]}
-    >
-      {columnValues.map((column) => (<option key={column}>{column}</option>))}
-    </select>
-  );
-};
+const SelectColumn = ({ columnValues }) =>
+  <select
+    id="column-filter" data-testid="column-filter"
+    defaultValue={columnValues[0]}
+  >
+    {columnValues.map((column) => (<option key={column}>{column}</option>))}
+  </select>;
 
-const SelectComparisom = ({ comparisonValues }) => {
-  return (
-    <select
-      id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}
-    >
-      {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
-    </select>
-  );
-};
+const SelectComparisom = ({ comparisonValues }) =>
+  <select
+    id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}
+  >
+    {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
+  </select>;
 
 class Filters extends Component {
   constructor(props) {
@@ -101,4 +95,12 @@ Filters.propTypes = {
   nameFilter: PropTypes.func.isRequired,
   numericFilter: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+SelectColumn.propTypes = {
+  columnValues: PropTypes.Array.isRequired,
+};
+
+SelectComparisom.propTypes = {
+  comparisonValues: PropTypes.Array.isRequired,
 };
