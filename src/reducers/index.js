@@ -54,8 +54,8 @@ const compare = (column, sort = 'ASC') => (a, b) => {
 };
 
 const applyOrderFilter = (planets, { column, sort }) => {
-  const a = planets.sort(compare(column, sort));
-  return a;
+  planets.sort(compare(column, sort));
+  return planets;
 };
 
 function reducer(state = INITIAL_STATE, action) {
