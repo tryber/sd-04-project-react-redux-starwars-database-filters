@@ -50,7 +50,8 @@ const compare = (column, sort = 'ASC') => (a, b) => {
   } else if (varA < varB) {
     comparison = -1;
   }
-  return sort === 'DESC' ? comparison * -1 : comparison;
+  const uai = (sort === 'DESC' ? comparison * -1 : comparison);
+  return uai;
 };
 
 const applyOrderFilter = (planets, { column, sort }) => {
