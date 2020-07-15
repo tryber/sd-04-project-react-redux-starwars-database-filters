@@ -18,13 +18,13 @@ const requestFail = (error) => ({
   error,
 });
 
-export const getSWAPI = () => {
+export const getSWAPI = () => (
   //  thunk
-  return (dispatch) => {
+  (dispatch) => {
     dispatch(requestSWAPI());
     return getPlanets().then(
       (data) => dispatch(requestSuccess(data.results)),
-      (error) => dispatch(requestFail(error))
+      (error) => dispatch(requestFail(error)),
     );
-  };
-};
+  }
+);

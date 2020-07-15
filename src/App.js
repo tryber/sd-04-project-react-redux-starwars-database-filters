@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(getSWAPI()),
 });
 
