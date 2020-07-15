@@ -5,7 +5,7 @@ import Table from './Table';
 import SearchInput from './SearchInput';
 import Filters from './Filters';
 import { swFetch } from '../actions';
-import compare from '../services/index'
+import compare from '../services/index';
 
 class Home extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class Home extends React.Component {
 
   render() {
     const { isLoading } = this.props;
-    if (isLoading === true) return <p>Searching for Planets...</p>
+    if (isLoading === true) return <p>Searching for Planets...</p>;
     return (
       <div>
         <SearchInput />

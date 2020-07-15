@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { swSearch } from '../actions';
 
-const SearchInput = ({ value, swSearch }) => (
+const SearchInput = ({ value, swSearched }) => (
   <input
     className="searchInput"
     data-testid="name-filter"
     placeholder="Search a Planet"
     value={value}
-    onChange={(e) => swSearch(e.target.value)}
+    onChange={(e) => swSearched(e.target.value)}
   />
 );
 
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  swSearch: (e) => dispatch(swSearch(e)),
+  swSearched: (e) => dispatch(swSearch(e)),
 });
 
 SearchInput.propTypes = {
