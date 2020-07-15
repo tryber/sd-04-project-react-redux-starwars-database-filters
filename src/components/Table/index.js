@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import TableHead from './TableHead';
 import TableBody from './TableBody';
@@ -25,5 +25,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Table);
 
 Table.propTypes = {
-  fetching: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired,
 };
