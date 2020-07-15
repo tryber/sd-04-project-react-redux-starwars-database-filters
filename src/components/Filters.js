@@ -44,20 +44,24 @@ class Filters extends Component {
           type="text" id="planet-filter" data-testid="name-filter"
           onChange={(e) => nameFilter(e.target.value)}
         />
-        <select id="column-filter" data-testid="column-filter"
-          defaultValue={this.state.columnValues[0]}
-        >
+        <select
+          id="column-filter" data-testid="column-filter"
+          defaultValue={this.state.columnValues[0]}>
           {this.state.columnValues.map((column) => (<option key={column}>{column}</option>))}
         </select>
-        <select id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}>
+        <select
+          id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}>
           {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
         </select>
         <input id="value-filter" type="number" data-testid="value-filter" />
-        <button data-testid="button-filter" onClick={() => this.storeFilters(numericFilter)}>Filtrar</button>
+        <button
+          data-testid="button-filter" onClick={() => this.storeFilters(numericFilter)}>
+          Filtrar
+        </button>
         {filters.map((filter) =>
-          (<p key={filter.column} data-testid="filter">
+          <p key={filter.column} data-testid="filter">
             {`${filter.column} ${filter.comparison} ${filter.value}`}
-          </p>)
+          </p>,
         )}
       </div>
     );

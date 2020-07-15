@@ -14,7 +14,7 @@ const reducerFilters = (state = initialState, action) => {
       return { ...state, filterByName: { name: action.text } };
     case NUMERIC_FILTER:
       return {
-        ...state, filterByNumericValues: [...state.filterByNumericValues, action.numericFilter]
+        ...state, filterByNumericValues: [...state.filterByNumericValues, action.numericFilter],
       };
     default:
       return state;
