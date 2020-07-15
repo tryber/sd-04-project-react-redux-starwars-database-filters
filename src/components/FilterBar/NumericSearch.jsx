@@ -2,42 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterValues } from '../../actions/filter';
-
-const CreateSelectColumn = ({ onChange, value, options }) => (
-  <select value={value} onChange={(e) => onChange(e)} data-testid="column-filter" id="column">
-    <option value="">Column</option>
-    {options.map((option) => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ))}
-  </select>
-);
-
-const CreateSelectComparison = ({ onChange, value }) => (
-  <select
-    value={value}
-    onChange={(e) => onChange(e)}
-    data-testid="comparison-filter"
-    id="comparison"
-  >
-    <option defaultValue>Comparison</option>
-    <option value="maior que">maior que</option>
-    <option value="igual a">igual a</option>
-    <option value="menor que">menor que</option>
-  </select>
-);
-
-const CreateInputValue = ({ onChange, value }) => (
-  <input
-    style={{ width: '90px' }}
-    value={value}
-    onChange={(e) => onChange(e)}
-    data-testid="value-filter"
-    type="number"
-    id="value"
-  />
-);
+import CreateSelectColumn from './CreateSelectColumn';
+import CreateSelectComparison from './CreateSelectComparison';
+import CreateInputValue from './CreateInputValue';
 
 class NumericSearch extends Component {
   constructor(props) {
@@ -97,22 +64,6 @@ const mapDispatchToProps = (dispatch) => ({
 NumericSearch.propTypes = {
   changeValues: PropTypes.func.isRequired,
   option: PropTypes.arrayOf().isRequired,
-};
-
-CreateSelectColumn.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf().isRequired,
-};
-
-CreateSelectComparison.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};
-
-CreateInputValue.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericSearch);
