@@ -10,7 +10,7 @@ class Filters extends Component {
     this.state = {
       columnValues: ['coluna', 'population', 'orbital_period', 'diameter',
         'rotation_period', 'surface_water'],
-    }
+    };
   }
 
   componentDidMount() {
@@ -44,7 +44,9 @@ class Filters extends Component {
           type="text" id="planet-filter" data-testid="name-filter"
           onChange={(e) => nameFilter(e.target.value)}
         />
-        <select id="column-filter" data-testid="column-filter" defaultValue={this.state.columnValues[0]}>
+        <select id="column-filter" data-testid="column-filter"
+          defaultValue={this.state.columnValues[0]}
+        >
           {this.state.columnValues.map((column) => (<option key={column}>{column}</option>))}
         </select>
         <select id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}>
@@ -53,9 +55,9 @@ class Filters extends Component {
         <input id="value-filter" type="number" data-testid="value-filter" />
         <button data-testid="button-filter" onClick={() => this.storeFilters(numericFilter)}>Filtrar</button>
         {filters.map((filter) =>
-          <p key={filter.column} data-testid="filter">
+          (<p key={filter.column} data-testid="filter">
             {`${filter.column} ${filter.comparison} ${filter.value}`}
-          </p>
+          </p>)
         )}
       </div>
     );
@@ -77,4 +79,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Filters);
 Filters.propTypes = {
   dataFetch: PropTypes.func.isRequired,
   nameFilter: PropTypes.func.isRequired,
+  numericFilter: PropTypes.func.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

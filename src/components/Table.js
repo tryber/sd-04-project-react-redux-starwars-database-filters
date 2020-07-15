@@ -52,10 +52,10 @@ const TBody = ({ data, filterName, storeFilters }) => data.filter((planet) =>
 
 const Table = ({ data, loading, filterName, storeFilters }) =>
   (loading ? <p>Loading...</p> :
-    <div>
-      <p>StarWars Datatable with Filters</p>
-      <THeadBody data={data} filterName={filterName} storeFilters={storeFilters} />
-    </div>
+  <div>
+    <p>StarWars Datatable with Filters</p>
+    <THeadBody data={data} filterName={filterName} storeFilters={storeFilters} />
+  </div>
   );
 
 const mapStateToProps = (state) => ({
@@ -71,9 +71,11 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   filterName: PropTypes.string.isRequired,
+  storeFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 THeadBody.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterName: PropTypes.string.isRequired,
+  storeFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

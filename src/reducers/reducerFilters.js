@@ -9,12 +9,13 @@ const initialState = {
 };
 
 const reducerFilters = (state = initialState, action) => {
-  console.log(state)
   switch (action.type) {
     case NAME_FILTER:
       return { ...state, filterByName: { name: action.text } };
     case NUMERIC_FILTER:
-      return { ...state, filterByNumericValues: [ ...state.filterByNumericValues, action.numericFilter ] };
+      return {
+        ...state, filterByNumericValues: [...state.filterByNumericValues, action.numericFilter]
+      };
     default:
       return state;
   }
