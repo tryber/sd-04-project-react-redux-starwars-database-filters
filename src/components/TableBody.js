@@ -6,7 +6,7 @@ import './Tabela.css';
 
 const TableBody = (props) => {
   const { data } = props;
-  let planets = data;
+  const planets = data;
   return (
     <tbody>
       {planets.map((planet) => (
@@ -28,9 +28,5 @@ const TableBody = (props) => {
 const mapStateToProps = (state) => ({
   data: state.reducerGetApi.data,
 });
-
-TableBody.propTypes = {
-  planets: PropTypes.shape.isRequired,
-};
 
 export default connect(mapStateToProps)(TableBody);
