@@ -42,7 +42,7 @@ const TableBody = ({ data }) => (
 
 const mapStateToProps = (state) => ({
   data: state.data,
-  // fetching: state.fetching,
+  // >fetching: state.fetching,
 });
 
 export default connect(mapStateToProps)(TableBody);
