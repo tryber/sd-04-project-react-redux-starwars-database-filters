@@ -3,6 +3,27 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { asyncActionDataFetch, actionNameFilter, actionNumericFilter } from '../actions';
 
+const SelectColumn = ({ columnValues }) => {
+  return (
+    <select
+      id="column-filter" data-testid="column-filter"
+      defaultValue={columnValues[0]}
+    >
+      {columnValues.map((column) => (<option key={column}>{column}</option>))}
+    </select>
+  );
+};
+
+const SelectComparisom = ({ comparisonValues }) => {
+  return (
+    <select
+      id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}
+    >
+      {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
+    </select>
+  );
+};
+
 class Filters extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +56,7 @@ class Filters extends Component {
   }
 
   render() {
+    const { columnValues } = this.state;
     const { nameFilter, numericFilter, filters } = this.props;
     const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
     return (
@@ -44,17 +66,8 @@ class Filters extends Component {
           type="text" id="planet-filter" data-testid="name-filter"
           onChange={(e) => nameFilter(e.target.value)}
         />
-        <select
-          id="column-filter" data-testid="column-filter"
-          defaultValue={this.state.columnValues[0]}
-        >
-          {this.state.columnValues.map((column) => (<option key={column}>{column}</option>))}
-        </select>
-        <select
-          id="comparison-filter" data-testid="comparison-filter" defaultValue={comparisonValues[0]}
-        >
-          {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
-        </select>
+        <SelectColumn columnValues={columnValues} />
+        <SelectComparisom comparisonValues={comparisonValues} />
         <input id="value-filter" type="number" data-testid="value-filter" />
         <button
           data-testid="button-filter" onClick={() => this.storeFilters(numericFilter)}
