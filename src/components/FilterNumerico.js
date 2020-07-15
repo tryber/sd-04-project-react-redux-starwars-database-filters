@@ -7,8 +7,8 @@ export class FilterNumerico extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      column: "colunas",
-      comparison: "comparaçao",
+      column: 'colunas',
+      comparison: 'comparaçao',
       value: 0,
     };
   }
@@ -31,9 +31,6 @@ export class FilterNumerico extends Component {
         >
           <option value="" selected>comparação</option>
           {comparisons.map((element) => <option key={element} value={element}>{element}</option>)}
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
         </select>
         <input
           type="number" data-testid="value-filter"

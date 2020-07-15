@@ -49,6 +49,7 @@ Table.propTypes = {
   data: PropTypes.shape.isRequired,
   isFetching: PropTypes.bool.isRequired,
   input: PropTypes.string.isRequired,
+  comparison: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
