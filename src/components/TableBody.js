@@ -29,4 +29,8 @@ const mapStateToProps = (state) => ({
   data: state.reducerGetApi.data,
 });
 
+TableBody.propTypes = {
+  data: PropTypes.string.isRequired,
+};
+
 export default connect(mapStateToProps)(TableBody);
