@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 SearchInput.propTypes = {
-  swSearch: PropTypes.func.isRequired,
+  swSearched: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 
