@@ -6,7 +6,6 @@ import CreateHeadings from '../components/CreateHeadings';
 import CreateBody from '../components/CreateBody';
 
 const filter = (data, name, filterByNumericValues) => {
-  // colocar order
   let filteredData = [...data];
 
   filteredData = data.sort((a, b) => {
@@ -23,16 +22,22 @@ const filter = (data, name, filterByNumericValues) => {
   if (filterByNumericValues.length >= 1) {
     // setting the order according to user comparison choices
     filterByNumericValues.map(({ column, comparison, value }) => {
-      if (comparison === 'maior que') {
-        filteredData = filteredData.filter((planet) => Number(planet[column]) > Number(value));
+      switch (comparison) {
+        case 'maior que':
+          return (filteredData = filteredData.filter(
+            (planet) => Number(planet[column]) > Number(value)
+          ));
+        case 'menor que':
+          return (filteredData = filteredData.filter(
+            (planet) => Number(planet[column]) < Number(value)
+          ));
+        case 'igual a':
+          return (filteredData = filteredData.filter(
+            (planet) => Number(planet[column]) === Number(value)
+          ));
+        default:
+          return false;
       }
-      if (comparison === 'menor que') {
-        filteredData = filteredData.filter((planet) => Number(planet[column]) < Number(value));
-      }
-      if (comparison === 'igual a') {
-        filteredData = filteredData.filter((planet) => Number(planet[column]) === Number(value));
-      }
-      return false;
     });
   }
 
