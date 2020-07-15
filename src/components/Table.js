@@ -36,7 +36,7 @@ const mapStateToProps = (state) => (
     isFetching: state.reducerPlanets.isFetching,
     data: state.reducerPlanets.data,
     input: state.filters.filterByName.name,
-    comparison:state.filters.filterByNumericValues,
+    comparison: state.filters.filterByNumericValues,
   }
 );
 
