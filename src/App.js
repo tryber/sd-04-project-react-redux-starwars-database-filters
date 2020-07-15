@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { fetchPlanetsAPI } from './actions';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SearchPlanet from './components/SearchPlanet';
+import ComparisonFilter from './components/ComparisonFilter';
+import Filters from './components/Filters';
+import Table from './components/Table';
+import OrderFilter from './components/OrderFilter';
+
+class App extends Component {
+  componentDidMount() {
+    const { getPlanets } = this.props;
+    getPlanets();
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <SearchPlanet />
+          <OrderFilter />
+          <ComparisonFilter />
+          <Filters />
+        </header>
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  getPlanets: () => dispatch(fetchPlanetsAPI()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
+
+App.propTypes = {
+  getPlanets: PropTypes.func.isRequired,
+};
