@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes, { shape } from 'prop-types';
 import { fetch } from '../actions';
 
-const filterByNumericValues = (data, filterNumber) => {
-  return filterNumber.reduce((filteredPlanetsArray, filterNumericValue) => {
+const filterByNumericValues = (data, filterNumber) =>
+  filterNumber.reduce((filteredPlanetsArray, filterNumericValue) => {
     const { column, comparison, value } = filterNumericValue;
     return filteredPlanetsArray.filter((planet) => {
       switch (comparison) {
@@ -19,7 +19,6 @@ const filterByNumericValues = (data, filterNumber) => {
       }
     });
   }, data);
-};
 
 const Content = ({ data, filters }) => {
   const { filterName, filterNumber } = filters;
@@ -92,16 +91,18 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
+const expectedFilterNumber = PropTypes.arrayOf(
+  shape({
+    column: PropTypes.string,
+    comparison: PropTypes.string,
+    value: PropTypes.string,
+  }),
+);
+
 Table.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
   filterName: PropTypes.string.isRequired,
-  filterNumber: PropTypes.arrayOf(
-    shape({
-      column: PropTypes.string,
-      comparison: PropTypes.string,
-      value: PropTypes.string,
-    }),
-  ),
+  filterNumber: expectedFilterNumber,
 };
 
 Table.defaultProps = {
@@ -112,12 +113,6 @@ Content.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   filters: PropTypes.shape({
     filterName: PropTypes.string,
-    filterNumber: PropTypes.arrayOf(
-      shape({
-        column: PropTypes.string,
-        comparison: PropTypes.string,
-        value: PropTypes.string,
-      }),
-    ),
+    filterNumber: expectedFilterNumber,
   }).isRequired,
 };
