@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { asyncActionDataFetch, actionNameFilter, actionNumericFilter, actionDelNumericFilter } from '../actions';
+import { asyncActionDataFetch, actionNameFilter, actionNumericFilter } from '../actions';
 
 const SelectColumn = ({ columnValues }) =>
   <select
@@ -18,29 +18,24 @@ const SelectComparisom = ({ comparisonValues }) =>
     {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
   </select>;
 
-const Filters = ({ dataFetch, nameFilter, numericFilter, filters, delNumericFilter }) => {
+const Filters = ({ dataFetch, nameFilter, numericFilter, filters }) => {
   (() => dataFetch('https://swapi-trybe.herokuapp.com/api/planets/'))();
 
-  const returnStoreColumns = (filters) => {
+  const returnStoreColumns = (f) => {
     const columns = ['coluna', 'population', 'orbital_period', 'diameter',
       'rotation_period', 'surface_water'];
-    const storeColumns = filters.map(({ column }) => column);
+    const storeColumns = f.map(({ column }) => column);
     const updatedColumns = columns.filter((column) => !storeColumns.includes(column));
     return updatedColumns;
   };
 
-  const storeFilters = (numericFilter) => {
+  const storeFilters = (nF) => {
     const elColumn = document.getElementById('column-filter');
     const column = elColumn.options[elColumn.selectedIndex].value;
     const elComparison = document.getElementById('comparison-filter');
     const comparison = elComparison.options[elComparison.selectedIndex].value;
     const value = document.getElementById('value-filter').value;
-    return numericFilter({ column, comparison, value });
-  };
-
-  const delStoreFilter = (e) => {  // arg delNumericFilter - ainda definindo req5
-    const elFilterValues = e.target.parent;
-    console.log(elFilterValues)
+    return nF({ column, comparison, value });
   };
 
   const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
@@ -62,13 +57,12 @@ const Filters = ({ dataFetch, nameFilter, numericFilter, filters, delNumericFilt
       <div>
         {filters.map((filter) => <p key={filter.column} data-testid="filter">
           {`${filter.column} ${filter.comparison} ${filter.value}`}
-          <button onClick={(e) => delStoreFilter(e, delNumericFilter)}>X</button>
+          {/* <button onClick={(e) => delStoreFilter(e, delNumericFilter)}>X</button> */}
         </p>)}
       </div>
     </div>
   );
-}
-// }
+};
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
