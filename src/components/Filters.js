@@ -18,84 +18,57 @@ const SelectComparisom = ({ comparisonValues }) =>
     {comparisonValues.map((comparison) => (<option key={comparison}>{comparison}</option>))}
   </select>;
 
-class Filters extends Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   columnValues: ['coluna', 'population', 'orbital_period', 'diameter',
-    //     'rotation_period', 'surface_water'],
-    // };
-  }
+const Filters = ({ dataFetch, nameFilter, numericFilter, filters, delNumericFilter }) => {
+  (() => dataFetch('https://swapi-trybe.herokuapp.com/api/planets/'))();
 
-  componentDidMount() {
-    const { dataFetch } = this.props;
-    dataFetch('https://swapi-trybe.herokuapp.com/api/planets/');
-  }
-
-  returnStoreColumns(filters) {
-    const columns = [
-      'coluna',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
+  const returnStoreColumns = (filters) => {
+    const columns = ['coluna', 'population', 'orbital_period', 'diameter',
+      'rotation_period', 'surface_water'];
     const storeColumns = filters.map(({ column }) => column);
     const updatedColumns = columns.filter((column) => !storeColumns.includes(column));
     return updatedColumns;
-  }
+  };
 
-  // returnColumns(delColumn) { // ainda definindo req5
-  //   this.setState((state) => ({
-  //     columnValues: state.columnValues.filter((column) => column !== delColumn),
-  //   }));
-  // }
-
-  storeFilters(numericFilter) {
+  const storeFilters = (numericFilter) => {
     const elColumn = document.getElementById('column-filter');
     const column = elColumn.options[elColumn.selectedIndex].value;
     const elComparison = document.getElementById('comparison-filter');
     const comparison = elComparison.options[elComparison.selectedIndex].value;
     const value = document.getElementById('value-filter').value;
-    // this.returnColumns(column); // ainda definindo req5
     return numericFilter({ column, comparison, value });
-  }
+  };
 
-  delStoreFilter(e, delNumericFilter) {  // ainda definindo req5
+  const delStoreFilter = (e) => {  // arg delNumericFilter - ainda definindo req5
     const elFilterValues = e.target.parent;
     console.log(elFilterValues)
-  }
+  };
 
-  render() {
-    // const { columnValues } = this.state;
-    const { nameFilter, numericFilter, filters, delNumericFilter } = this.props;
-    const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
-    return (
-      <div>
-        <label htmlFor="planet-filter">Procurar </label>
-        <input
-          type="text" id="planet-filter" data-testid="name-filter"
-          onChange={(e) => nameFilter(e.target.value)}
-        />
-        <SelectColumn columnValues={this.returnStoreColumns(filters)} />
-        <SelectComparisom comparisonValues={comparisonValues} />
-        <input id="value-filter" type="number" data-testid="value-filter" />
-        <button
-          data-testid="button-filter" onClick={() => this.storeFilters(numericFilter)}
-        >
-          Filtrar
+  const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
+  return (
+    <div>
+      <label htmlFor="planet-filter">Procurar </label>
+      <input
+        type="text" id="planet-filter" data-testid="name-filter"
+        onChange={(e) => nameFilter(e.target.value)}
+      />
+      <SelectColumn columnValues={returnStoreColumns(filters)} />
+      <SelectComparisom comparisonValues={comparisonValues} />
+      <input id="value-filter" type="number" data-testid="value-filter" />
+      <button
+        data-testid="button-filter" onClick={() => storeFilters(numericFilter)}
+      >
+        Filtrar
         </button>
-        <div>
-          {filters.map((filter) => <p key={filter.column} data-testid="filter">
-            {`${filter.column} ${filter.comparison} ${filter.value}`}
-            <button onClick={(e) => this.delStoreFilter(e, delNumericFilter)}>X</button>
-          </p>)}
-        </div>
+      <div>
+        {filters.map((filter) => <p key={filter.column} data-testid="filter">
+          {`${filter.column} ${filter.comparison} ${filter.value}`}
+          <button onClick={(e) => delStoreFilter(e, delNumericFilter)}>X</button>
+        </p>)}
       </div>
-    );
-  }
+    </div>
+  );
 }
+// }
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
@@ -105,7 +78,8 @@ const mapDispatchToProps = (dispatch) => ({
   dataFetch: (url) => dispatch(asyncActionDataFetch(url)),
   nameFilter: (text) => dispatch(actionNameFilter(text)),
   numericFilter: (oNumericFilter) => dispatch(actionNumericFilter(oNumericFilter)),
-  delNumericFilter: (oNumericFilter) => dispatch(actionDelNumericFilter(oNumericFilter)),
+  // delNumericFilter: (oNumericFilter) =>
+  //   dispatch(actionDelNumericFilter(oNumericFilter)), ainda definindo req5
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
