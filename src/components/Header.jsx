@@ -15,7 +15,7 @@ const FilterByName = ({ filterName, filter }) => (
   </div>
 );
 
-const FilterByNumeric = ({ filterNumber, filter }) => {
+const FilterByNumeric = ({ filter }) => {
   const [numericFilter, setNumericFilter] = useState({});
   return (
     <div className="col">
@@ -93,5 +93,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(Header);
 Header.propTypes = {
   filterByNome: PropTypes.func.isRequired,
   filterByNumber: PropTypes.func.isRequired,
+  filterName: PropTypes.string.isRequired,
+};
+
+FilterByNumeric.propTypes = {
+  filter: PropTypes.func.isRequired,
+};
+
+FilterByName.propTypes = {
+  filter: PropTypes.func.isRequired,
   filterName: PropTypes.string.isRequired,
 };
