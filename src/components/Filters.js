@@ -22,10 +22,10 @@ class Filters extends Component {
   constructor(props) {
     super(props);
     this.storeFilters = this.storeFilters.bind(this);
-    this.state = {
-      columnValues: ['coluna', 'population', 'orbital_period', 'diameter',
-        'rotation_period', 'surface_water'],
-    };
+    // this.state = {
+    //   columnValues: ['coluna', 'population', 'orbital_period', 'diameter',
+    //     'rotation_period', 'surface_water'],
+    // };
   }
 
   componentDidMount() {
@@ -33,11 +33,25 @@ class Filters extends Component {
     dataFetch('https://swapi-trybe.herokuapp.com/api/planets/');
   }
 
-  returnColumns(delColumn) {
-    this.setState((state) => ({
-      columnValues: state.columnValues.filter((column) => column !== delColumn),
-    }));
+  returnStoreColumns(filters) {
+    const columns = [
+      'coluna',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    const storeColumns = filters.map(({ column }) => column);
+    const updatedColumns = columns.filter((column) => !storeColumns.includes(column));
+    return updatedColumns;
   }
+
+  // returnColumns(delColumn) { // ainda definindo req5
+  //   this.setState((state) => ({
+  //     columnValues: state.columnValues.filter((column) => column !== delColumn),
+  //   }));
+  // }
 
   storeFilters(numericFilter) {
     const elColumn = document.getElementById('column-filter');
@@ -45,17 +59,17 @@ class Filters extends Component {
     const elComparison = document.getElementById('comparison-filter');
     const comparison = elComparison.options[elComparison.selectedIndex].value;
     const value = document.getElementById('value-filter').value;
-    this.returnColumns(column);
+    // this.returnColumns(column); // ainda definindo req5
     return numericFilter({ column, comparison, value });
   }
 
-  delStoreFilter(e, delNumericFilter) {  // ainda definindo
+  delStoreFilter(e, delNumericFilter) {  // ainda definindo req5
     const elFilterValues = e.target.parent;
     console.log(elFilterValues)
   }
 
   render() {
-    const { columnValues } = this.state;
+    // const { columnValues } = this.state;
     const { nameFilter, numericFilter, filters, delNumericFilter } = this.props;
     const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
     return (
@@ -65,7 +79,7 @@ class Filters extends Component {
           type="text" id="planet-filter" data-testid="name-filter"
           onChange={(e) => nameFilter(e.target.value)}
         />
-        <SelectColumn columnValues={columnValues} />
+        <SelectColumn columnValues={this.returnStoreColumns(filters)} />
         <SelectComparisom comparisonValues={comparisonValues} />
         <input id="value-filter" type="number" data-testid="value-filter" />
         <button
@@ -73,13 +87,12 @@ class Filters extends Component {
         >
           Filtrar
         </button>
-        {/* ainda definindo */}
-        {filters.map((filter) =>
-          <p key={filter.column} data-testid="filter"> 
+        <div>
+          {filters.map((filter) => <p key={filter.column} data-testid="filter">
             {`${filter.column} ${filter.comparison} ${filter.value}`}
             <button onClick={(e) => this.delStoreFilter(e, delNumericFilter)}>X</button>
-          </p>,
-        )}
+          </p>)}
+        </div>
       </div>
     );
   }
