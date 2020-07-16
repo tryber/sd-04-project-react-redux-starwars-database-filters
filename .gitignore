@@ -25,5 +25,5 @@ yarn-error.log*
 # VSCode repo settings
 .vscode
 
-stylelintrc.json
-prettierrc.json
+.stylelintrc.json
+.prettierrc.json
