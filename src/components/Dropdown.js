@@ -21,7 +21,7 @@ function DropDown({
           data-testid="column-filter"
           name="dropdown-filter-category"
         >
-          <option value=""> </option>
+          <option value="">--</option>
           <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
@@ -33,12 +33,12 @@ function DropDown({
           data-testid="comparison-filter"
           name="dropdown-quantity-filter"
         >
-          <option value=""> </option>
+          <option value="">--</option>
           <option value="maior">maior que</option>
           <option value="menor">menor que</option>
           <option value="igual">igual a</option>
         </select>
-        <label>
+        <label htmlFor="input-value">
           <input
             type="number"
             data-testid="value-filter"
