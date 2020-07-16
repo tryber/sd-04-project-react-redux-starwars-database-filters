@@ -61,12 +61,10 @@ class Table extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    planets: state.data,
-    filterName: state.filters.filterByName.name,
-  };
-};
+const mapStateToProps = (state) => ({
+  planets: state.data,
+  filterName: state.filters.filterByName.name,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPlanets: () => dispatch(fetch()),
