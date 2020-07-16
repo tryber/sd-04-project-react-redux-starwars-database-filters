@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
 
 class Header extends React.Component {
@@ -17,26 +18,6 @@ class Header extends React.Component {
               type="text"
             />
           </div>
-          <div className="col">
-            <h2>Ordem</h2>
-          </div>
-          <div className="col">
-            <div className="d-flex">
-              <select>
-                <option value="">Coluna</option>
-              </select>
-              <select>
-                <option value="">Comparação</option>
-              </select>
-            </div>
-            <div className="d-flex">
-              <input type="number" />
-            </div>
-            <button type="button">Filtrar</button>
-          </div>
-          <div className="col">
-            <h2>Filtros</h2>
-          </div>
         </div>
       </div>
     );
@@ -52,3 +33,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+Header.propTypes = {
+  filter: PropTypes.func.isRequired,
+  filterName: PropTypes.string.isRequired,
+};
