@@ -98,7 +98,6 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
   test('input filter should change results', async () => {
     const { findAllByRole, findByTestId, findByText } = renderApp();
     const filterField = await findByTestId('name-filter');
-
     fireEvent.change(filterField, { target: { value: 'o' } });
     let tableRows = await findAllByRole('row');
     expect(tableRows).toHaveLength(8);

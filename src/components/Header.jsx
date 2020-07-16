@@ -25,7 +25,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  filterName: state.reducer.filters.filterByName.name,
+  filterName: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
