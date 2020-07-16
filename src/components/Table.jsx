@@ -4,7 +4,6 @@ import PropTypes, { shape } from 'prop-types';
 import { fetch } from '../actions';
 
 const filterByNumericValues = (data, filterNumber) => {
-  if (!filterNumber.length) return data;
   return filterNumber.reduce((filteredPlanetsArray, filterNumericValue) => {
     const { column, comparison, value } = filterNumericValue;
     return filteredPlanetsArray.filter((planet) => {
@@ -102,7 +101,11 @@ Table.propTypes = {
       comparison: PropTypes.string,
       value: PropTypes.string,
     }),
-  ).isRequired,
+  ),
+};
+
+Table.defaultProps = {
+  filterNumber: [],
 };
 
 Content.propTypes = {
