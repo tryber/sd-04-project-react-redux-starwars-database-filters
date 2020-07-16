@@ -1,9 +1,4 @@
-import {
-  SUCCESS_RESPONSE,
-  FAILED_RESPONSE,
-  CHANGE_SEARCH,
-  SEARCH_FILTER,
-} from '../actions';
+import { SUCCESS_RESPONSE, FAILED_RESPONSE, CHANGE_SEARCH, SEARCH_FILTER } from '../actions';
 
 const INITIAL_STATE = {
   data: [],
@@ -19,7 +14,9 @@ const INITIAL_STATE = {
 };
 
 const planetTableReducer = (state = INITIAL_STATE, action) => {
-  const filtros = state.filters.filterByNumericValues && state.filters.filterByNumericValues.map((act) => act.column);
+  const filtros =
+    state.filters.filterByNumericValues &&
+    state.filters.filterByNumericValues.map((act) => act.column);
   switch (action.type) {
     case SUCCESS_RESPONSE:
       return {
