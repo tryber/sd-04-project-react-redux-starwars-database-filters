@@ -128,7 +128,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Filters.propTypes = {
   filterPlanets: PropTypes.func.isRequired,
-  filterKeys: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   // loadElementFilter: PropTypes.func.isRequired,
 };
 
