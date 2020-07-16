@@ -8,21 +8,21 @@ export const getPlanetsRequest = () => ({
   type: GET_PLANETS_REQUEST,
 });
 
-export const getPlanetsSuccess = (results) => ({
+export const getPlanetsSuccess = results => ({
   type: GET_PLANETS_SUCCESS,
   payload: results,
 });
 
-export const getPlanetsFailure = (error) => ({
+export const getPlanetsFailure = error => ({
   type: GET_PLANETS_FAILURE,
   payload: error,
 });
 
-const getAPIData = (endpoint) => (dispatch) => {
+const getAPIData = endpoint => dispatch => {
   dispatch(getPlanetsRequest());
   apiRequest(endpoint)
-    .then((data) => dispatch(getPlanetsSuccess(data)))
-    .catch((error) => dispatch(getPlanetsFailure(error)));
+    .then(data => dispatch(getPlanetsSuccess(data)))
+    .catch(error => dispatch(getPlanetsFailure(error)));
 };
 
 export default getAPIData;

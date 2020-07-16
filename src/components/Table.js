@@ -77,11 +77,11 @@ Table.propTypes = {
   loading: PropTypes.bool,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  getData: (endpoint) => dispatch(getAPIData(endpoint)),
+const mapDispatchToProps = dispatch => ({
+  getData: endpoint => dispatch(getAPIData(endpoint)),
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.generateTable.data,
   error: state.generateTable.error,
   loading: state.generateTable.loading,
