@@ -1,7 +1,7 @@
 export const INPUT_TEXT = 'INPUT_TEXT';
-export const INPUT_VALUE = 'INPUT_NUMBER';
-export const INPUT_COMPARISON = 'INPUT_COMPARISON';
-export const INPUT_COLUMN = 'INPUT_COLUMN';
+export const ACTION_VALUE = 'ACTION_VALUE';
+export const ACTION_COMPARISON = 'ACTION_COMPARISON';
+export const ACTION_COLUMN = 'ACTION_COLUMN';
 
 export const actionInput = (text) => ({
   type: INPUT_TEXT,
@@ -9,16 +9,16 @@ export const actionInput = (text) => ({
 });
 
 export const actionValue = (value) => ({
-  type: INPUT_VALUE,
+  type: ACTION_VALUE,
   value,
 });
 
 export const actionComparison = (comparison) => ({
-  type: INPUT_COMPARISON,
+  type: ACTION_COMPARISON,
   comparison,
 });
 
 export const actionColumn = (column) => ({
-  type: INPUT_COLUMN,
+  type: ACTION_COLUMN,
   column,
 });

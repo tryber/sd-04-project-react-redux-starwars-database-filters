@@ -1,6 +1,8 @@
-import { INPUT_TEXT, INPUT_COLUMN, INPUT_COMPARISON, INPUT_VALUE } from '../actions/actionInput';
+import { INPUT_TEXT } from '../actions/actionInput';
+import { ADDON_STORE_FILTERS } from '../actions/actionFilter';
 
 export const INITIAL_STATE = {
+  inputNumber: '',
   filterByName: {
     name: '',
   },
@@ -22,32 +24,14 @@ export const filters = (state = INITIAL_STATE, action) => {
           name: action.text,
         },
       };
-    case INPUT_COLUMN:
+    case ADDON_STORE_FILTERS:
       return {
         ...state,
         filterByNumericValues: [
+          ...state.filterByNumericValues,
           {
-            ...state.filterByNumericValues,
             column: action.column,
-          },
-        ],
-      };
-    case INPUT_COMPARISON:
-      return {
-        ...state,
-        filterByNumericValues: [
-          {
-            ...state.filterByNumericValues,
             comparison: action.comparison,
-          },
-        ],
-      };
-    case INPUT_VALUE:
-      return {
-        ...state,
-        filterByNumericValues: [
-          {
-            ...state.filterByNumericValues,
             value: action.value,
           },
         ],

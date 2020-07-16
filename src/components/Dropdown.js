@@ -1,20 +1,23 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { actionValue, actionComparison, actionColumn } from '../actions/actionInput';
+import { actionAddFilter } from '../actions/actionFilter';
 
-function DropDown({ value, comparison, column }) {
-  // let input;
-  // const onSubmit = (event) => {
-  //   event.preventDefault();
-  //   sendFilters(input.value);
-  //   input.value = '';
-  // };
-
+function DropDown({
+  inputValue,
+  inputComparison,
+  inputColumn,
+  column,
+  comparison,
+  value,
+  addOnStoreFilters,
+}) {
   return (
     <div>
-      <forms>
+      <form>
         <select
-          onChange={(e) => column(e)}
+          onChange={(e) => inputColumn(e.target.value)}
           data-testid="column-filter"
           name="dropdown-filter-category"
         >
@@ -26,9 +29,9 @@ function DropDown({ value, comparison, column }) {
           <option value="surface_water">surface_water</option>
         </select>
         <select
+          onChange={(e) => inputComparison(e.target.value)}
           data-testid="comparison-filter"
           name="dropdown-quantity-filter"
-          onChange={(e) => comparison(e)}
         >
           <option value=""> </option>
           <option value="maior">maior que</option>
@@ -39,26 +42,39 @@ function DropDown({ value, comparison, column }) {
           <input
             type="number"
             data-testid="value-filter"
-            onChange={(e) => value(e)}
             placeholder="Digite um número"
+            onChange={(e) => inputValue(e.target.value)}
           />
         </label>
-        <button type="button" data-testid="button-filter">
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={() => addOnStoreFilters(column, comparison, value)}
+        >
           Submit
         </button>
-      </forms>
+      </form>
     </div>
   );
 }
 
+DropDown.propTypes = {
+  inputColumn: PropTypes.func.isRequired,
+  inputComparison: PropTypes.func.isRequired,
+  inputValue: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = (dispacth) => ({
-  value: (event) => dispacth(actionValue(event)),
-  comparison: (event) => dispacth(actionComparison(event)),
-  column: (event) => dispacth(actionColumn(event)),
+  inputValue: (e) => dispacth(actionValue(e)),
+  inputComparison: (e) => dispacth(actionComparison(e)),
+  inputColumn: (e) => dispacth(actionColumn(e)),
+  addOnStoreFilters: (a, b, c) => dispacth(actionAddFilter(a, b, c)),
 });
 
 const mapStateToProps = (state) => ({
-  valueNumber: state.filters.filterByNumericValues.value,
+  column: state.reducerFilter.column,
+  comparison: state.reducerFilter.comparison,
+  value: state.reducerFilter.value,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropDown);
