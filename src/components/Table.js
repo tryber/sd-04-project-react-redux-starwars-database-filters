@@ -11,19 +11,19 @@ export class Table extends Component {
 
   tableHeader = () => (
     <tr>
-      <td>name</td>
-      <td>rotation_period</td>
-      <td>orbital_period</td>
-      <td>diameter</td>
-      <td>climate</td>
-      <td>gravity</td>
-      <td>terrain</td>
-      <td>surface_water</td>
-      <td>population</td>
-      <td>films</td>
-      <td>created</td>
-      <td>edited</td>
-      <td>url</td>
+      <th>name</th>
+      <th>rotation_period</th>
+      <th>orbital_period</th>
+      <th>diameter</th>
+      <th>climate</th>
+      <th>gravity</th>
+      <th>terrain</th>
+      <th>surface_water</th>
+      <th>population</th>
+      <th>films</th>
+      <th>created</th>
+      <th>edited</th>
+      <th>url</th>
     </tr>
   );
 
@@ -59,8 +59,10 @@ export class Table extends Component {
     return (
       <div>
         <h1>StarWars Datatable Filters</h1>
-        {this.tableHeader()}
-        {this.renderTable()}
+        <table>
+          {this.tableHeader()}
+          {this.renderTable()}
+        </table>
       </div>
     );
   }
