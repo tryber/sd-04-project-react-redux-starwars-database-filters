@@ -59,9 +59,13 @@ function DropDown({
 }
 
 DropDown.propTypes = {
+  addOnStoreFilters: PropTypes.func.isRequired,
+  column: PropTypes.string.isRequired,
+  comparison: PropTypes.string.isRequired,
   inputColumn: PropTypes.func.isRequired,
   inputComparison: PropTypes.func.isRequired,
   inputValue: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispacth) => ({
