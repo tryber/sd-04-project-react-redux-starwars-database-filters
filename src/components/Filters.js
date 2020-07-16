@@ -21,7 +21,6 @@ const SelectComparisom = ({ comparisonValues }) =>
 class Filters extends Component {
   constructor(props) {
     super(props);
-    this.storeFilters = this.storeFilters.bind(this);
     // this.state = {
     //   columnValues: ['coluna', 'population', 'orbital_period', 'diameter',
     //     'rotation_period', 'surface_water'],
