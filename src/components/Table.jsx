@@ -1,13 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, { shape } from 'prop-types';
 import { fetch } from '../actions';
 
+const filterByNumericValues = (data, filterNumber) => {
+  if (!filterNumber.length) return data;
+  return filterNumber.reduce((filteredPlanetsArray, filterNumericValue) => {
+    const { column, comparison, value } = filterNumericValue;
+    return filteredPlanetsArray.filter((planet) => {
+      switch (comparison) {
+        case 'maior que':
+          return Number(planet[column]) > Number(value);
+        case 'menor que':
+          return Number(planet[column]) < Number(value);
+        case 'igual a':
+          return Number(planet[column]) === Number(value);
+        default:
+          return false;
+      }
+    });
+  }, data);
+};
+
 const Content = ({ data, filters }) => {
-  const { filterName } = filters;
+  const { filterName, filterNumber } = filters;
+  const planets = filterByNumericValues(data, filterNumber);
   return (
     <tbody>
-      {data
+      {planets
         .filter((planet) => planet.name.toLowerCase().includes(filterName.toLowerCase()))
         .map((planet) => (
           <tr key={planet.orbital_period}>
@@ -44,7 +64,7 @@ class Table extends React.Component {
   }
 
   render() {
-    const { filterName } = this.props;
+    const { filterName, filterNumber } = this.props;
     const { headersState, planetsState } = this.state;
     return (
       <table className="table table-dark">
@@ -55,7 +75,7 @@ class Table extends React.Component {
             ))}
           </tr>
         </thead>
-        <Content data={planetsState} filters={{ filterName }} />
+        <Content data={planetsState} filters={{ filterName, filterNumber }} />
       </table>
     );
   }
@@ -64,6 +84,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   planets: state.data,
   filterName: state.filters.filterByName.name,
+  filterNumber: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -75,11 +96,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 Table.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
   filterName: PropTypes.string.isRequired,
+  filterNumber: PropTypes.arrayOf(
+    shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 Content.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   filters: PropTypes.shape({
     filterName: PropTypes.string,
+    filterNumber: PropTypes.arrayOf(
+      shape({
+        column: PropTypes.string,
+        comparison: PropTypes.string,
+        value: PropTypes.string,
+      }),
+    ),
   }).isRequired,
 };

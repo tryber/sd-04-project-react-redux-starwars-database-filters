@@ -1,4 +1,4 @@
 import fetch from './request';
-import filterByName from './filter';
+import { filterByName, filterByNumeric } from './filter';
 
-export { fetch, filterByName };
+export { fetch, filterByName, filterByNumeric };

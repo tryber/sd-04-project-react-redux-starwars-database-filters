@@ -6,6 +6,7 @@ export const initialState = {
     filterByName: {
       name: '',
     },
+    filterByNumericValues: [],
   },
 };
 
@@ -19,6 +20,16 @@ function reducer(state = initialState, action) {
       return { ...state, error: true, isFetching: false };
     case 'FILTER_BY_NAME':
       return { ...state, filters: { filterByName: { name: action.data } } };
+    case 'FILTER_BY_NUMERIC':
+      // eslint-disable-next-line no-case-declarations
+      const newFilters = [...state.filters.filterByNumericValues, action.data];
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: newFilters,
+        },
+      };
     default:
       return state;
   }
