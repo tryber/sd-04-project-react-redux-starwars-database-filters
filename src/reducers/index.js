@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   isFetching: false,
   error: false,
   data: [],
@@ -17,6 +17,8 @@ function reducer(state = initialState, action) {
       return { ...state, data: action.data, isFetching: false };
     case 'REQUEST_FAILURE':
       return { ...state, error: true, isFetching: false };
+    case 'FILTER_BY_NAME':
+      return { ...state, filters: { filterByName: { name: action.data } } };
     default:
       return state;
   }

@@ -3,21 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetch } from '../actions';
 
-const Content = ({ data }) => (
-  <tbody>
-    {data.map((planet) => (
-      <tr key={planet.orbital_period}>
-        {Object.values(planet).map((value) => (
-          <td key={value}>{value}</td>
+const Content = ({ data, filters }) => {
+  const { filterName } = filters;
+  return (
+    <tbody>
+      {data
+        .filter((planet) => planet.name.toLowerCase().includes(filterName.toLowerCase()))
+        .map((planet) => (
+          <tr key={planet.orbital_period}>
+            {Object.values(planet).map((value) => (
+              <td key={value}>{value}</td>
+            ))}
+          </tr>
         ))}
-      </tr>
-    ))}
-  </tbody>
-);
+    </tbody>
+  );
+};
 
 class Table extends React.Component {
-  // ({ fetchPlanets, planets }) =>
-
   constructor(props) {
     super(props);
     this.state = {
@@ -41,16 +44,18 @@ class Table extends React.Component {
   }
 
   render() {
+    const { filterName } = this.props;
+    const { headersState, planetsState } = this.state;
     return (
       <table className="table table-dark">
         <thead>
           <tr>
-            {this.state.headersState.map((title) => (
+            {headersState.map((title) => (
               <th key={title}>{title}</th>
             ))}
           </tr>
         </thead>
-        <Content data={this.state.planetsState} />
+        <Content data={planetsState} filters={{ filterName }} />
       </table>
     );
   }
@@ -58,6 +63,7 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => ({
   planets: state.reducer ? state.reducer.data : [],
+  filterName: state.reducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -68,8 +74,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
 
 Content.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filters: PropTypes.shape({
+    filterName: PropTypes.string,
+  }).isRequired,
 };
