@@ -18,13 +18,11 @@ export const getPlanetsFailure = error => ({
   payload: error
 });
 
-const getAPIData = endpoint => {
-  return dispatch => {
-    dispatch(getPlanetsRequest());
-    apiRequest(endpoint)
-      .then(data => dispatch(getPlanetsSuccess(data)))
-      .catch(error => dispatch(getPlanetsFailure(error)));
-  };
+const getAPIData = endpoint => dispatch => {
+  dispatch(getPlanetsRequest());
+  apiRequest(endpoint)
+    .then(data => dispatch(getPlanetsSuccess(data)))
+    .catch(error => dispatch(getPlanetsFailure(error)));
 };
 
 export default getAPIData;
