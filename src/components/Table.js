@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import getAPIData from "../actions";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import getAPIData from '../actions';
 
 export class Table extends Component {
   componentDidMount() {
     const { getData } = this.props;
-    getData("planets");
+    getData('planets');
   }
 
   tableHeader = () => (
@@ -68,23 +68,23 @@ export class Table extends Component {
 
 Table.propTypes = {
   data: PropTypes.shape({
-    map: PropTypes.func
+    map: PropTypes.func,
   }),
   error: PropTypes.shape({
-    message: PropTypes.string
+    message: PropTypes.string,
   }),
   getData: PropTypes.func,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 const mapDispatchToProps = dispatch => ({
-  getData: endpoint => dispatch(getAPIData(endpoint))
+  getData: endpoint => dispatch(getAPIData(endpoint)),
 });
 
 const mapStateToProps = state => ({
   data: state.generateTable.data,
   error: state.generateTable.error,
-  loading: state.generateTable.loading
+  loading: state.generateTable.loading,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

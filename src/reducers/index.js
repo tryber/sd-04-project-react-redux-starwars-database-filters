@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
-import generateTable from "./generateTable";
+import { combineReducers } from 'redux';
+import generateTable from './generateTable';
 
 const rootReducer = combineReducers({
-  generateTable
+  generateTable,
 });
 
 export default rootReducer;

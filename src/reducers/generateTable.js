@@ -1,13 +1,13 @@
 import {
   GET_PLANETS_REQUEST,
   GET_PLANETS_SUCCESS,
-  GET_PLANETS_FAILURE
-} from "../actions";
+  GET_PLANETS_FAILURE,
+} from '../actions';
 
 const initialState = {
   data: [],
   error: null,
-  loading: false
+  loading: false,
 };
 
 function generateTable(state = initialState, { type, payload, error }) {
@@ -15,20 +15,20 @@ function generateTable(state = initialState, { type, payload, error }) {
     case GET_PLANETS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case GET_PLANETS_SUCCESS:
       return {
         ...state,
         data: payload.results,
-        loading: false
+        loading: false,
       };
     case GET_PLANETS_FAILURE:
       return {
         ...state,
         data: [],
         error,
-        loading: false
+        loading: false,
       };
     default:
       return state;
