@@ -351,7 +351,7 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
 });
 
 describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
-  test.skip('should show the previously selected filters', async () => {
+  test('should show the previously selected filters', async () => {
     const initialState = getStore().getState();
 
     const initial = {

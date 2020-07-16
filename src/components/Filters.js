@@ -45,7 +45,6 @@ class Filters extends Component {
     this.setState({ [name]: String(value) });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   renderFirstFilter() {
     const { column } = this.state;
     const { filterKeys } = this.props; // loadElementFilter
@@ -76,7 +75,6 @@ class Filters extends Component {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   renderSecondFilter() {
     const { comparison, value } = this.state;
     const { filterPlanets } = this.props; // Função do filtro.

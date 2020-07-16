@@ -19,14 +19,14 @@ const INITIAL_STATE = {
 };
 
 const planetTableReducer = (state = INITIAL_STATE, action) => {
-  // const filtros = state.filters.filterByNumericValues.map((act) => act.column);
+  const filtros = state.filters.filterByNumericValues && state.filters.filterByNumericValues.map((act) => act.column);
   switch (action.type) {
     case SUCCESS_RESPONSE:
       return {
         ...state,
         isFetching: false,
         data: action.results,
-        // filterKeys: state.filterKeys.filter((filtro) => !filtros.includes(filtro)),
+        filterKeys: state.filterKeys.filter((filtro) => !filtros.includes(filtro)),
       };
     case FAILED_RESPONSE:
       return { ...state, isFetching: false, error: action.message };
