@@ -5,12 +5,14 @@ import { filterTable } from '../action/actionFilter';
 
 const FilterTable = ({ filter }) => (
   <div>
-    <label>Filter by name:</label>
-    <input
-      data-testid="name-filter"
-      type="text"
-      onChange={(e) => filter(e.target.value)}
-    />
+    <form htmlFor="name">
+      <label for="name">Filter by name:</label>
+      <input
+        data-testid="name-filter"
+        type="text"
+        onChange={(e) => filter(e.target.value)}
+      />
+    </form>
   </div>
 );
 
