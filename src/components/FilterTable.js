@@ -6,7 +6,7 @@ import { filterTable } from '../action/actionFilter';
 const FilterTable = ({ filter }) => (
   <div>
     <form htmlFor="name">
-      <label for="name">Filter by name:</label>
+      <label htmlFor="name">Filter by name:</label>
       <input
         data-testid="name-filter"
         type="text"
