@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TableHead from './TableHead';
+import FilterTable from './FilterTable';
 import { fetchGetApi } from '../action';
 
 class Table extends Component {
@@ -14,6 +15,7 @@ class Table extends Component {
     return (
       <div>
         <div>StarWars Datatable with Filters</div>
+        <FilterTable />
         {!loading && <TableHead />}
       </div>
     );
