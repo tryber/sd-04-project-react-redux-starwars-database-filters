@@ -21,12 +21,25 @@ function reducer(state = initialState, action) {
     case 'FILTER_BY_NAME':
       return { ...state, filters: { filterByName: { name: action.data } } };
     case 'FILTER_BY_NUMERIC':
-      // eslint-disable-next-line no-case-declarations
       return {
         ...state,
         filters: {
           ...state.filters,
           filterByNumericValues: [...state.filters.filterByNumericValues, action.data],
+        },
+      };
+    case 'REMOVE_FILTER':
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: state.filters.filterByNumericValues.filter(
+            (f) => (
+              action.filter.column !== f.column &&
+              action.filter.comparison !== f.comparison &&
+              action.filter.value !== f.value
+            ),
+          ),
         },
       };
     default:

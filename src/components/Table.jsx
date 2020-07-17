@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes, { shape } from 'prop-types';
+import PropTypes from 'prop-types';
 import { fetch } from '../actions';
 
 const filterByNumericValues = (data, filterNumber) =>
@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 const expectedFilterNumber = PropTypes.arrayOf(
-  shape({
+  PropTypes.shape({
     column: PropTypes.string,
     comparison: PropTypes.string,
     value: PropTypes.string,

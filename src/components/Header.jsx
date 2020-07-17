@@ -1,7 +1,26 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { filterByName, filterByNumeric } from '../actions';
+import { filterByName, filterByNumeric, removeFilter } from '../actions';
+
+const NumericFilters = ({ filters, remove }) => (
+  <div className="col">
+    <h2>Filtros</h2>
+    <div>
+      {filters.map((filter) => (
+        <div data-testid="filter" key={filter.value}>
+          {console.log(filter)}
+          <p>{filter.column}</p>
+          <p>{filter.comparison}</p>
+          <p>{filter.value}</p>
+          <button type="button" onClick={() => remove(filter)}>
+            X
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const FilterByName = ({ filterName, filter }) => (
   <div className="col">
@@ -57,7 +76,11 @@ const FilterByNumeric = ({ filter }) => {
           type="number"
         />
       </div>
-      <button data-testid="button-filter" type="button" onClick={() => filter(numericFilter)}>
+      <button
+        data-testid="button-filter"
+        type="button"
+        onClick={() => filter(numericFilter)}
+      >
         Filtrar
       </button>
     </div>
@@ -66,12 +89,13 @@ const FilterByNumeric = ({ filter }) => {
 
 class Header extends React.Component {
   render() {
-    const { filterByNome, filterByNumber, filterName } = this.props;
+    const { filterByNome, filterByNumber, filterName, filterNumber, remove } = this.props;
     return (
       <div className="jumbotron">
         <div className="row">
           <FilterByName filterName={filterName} filter={filterByNome} />
-          <FilterByNumeric filterNumber={1} filter={filterByNumber} />
+          <FilterByNumeric filter={filterByNumber} />
+          <NumericFilters filters={filterNumber} remove={remove} />
         </div>
       </div>
     );
@@ -80,20 +104,35 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => ({
   filterName: state.filters.filterByName.name,
-  filterNumber: state.filters.filterByName.name,
+  filterNumber: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   filterByNome: (name) => dispatch(filterByName(name)),
   filterByNumber: (filter) => dispatch(filterByNumeric(filter)),
+  remove: (id) => dispatch(removeFilter(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
+const expectedFilterNumber = PropTypes.arrayOf(
+  PropTypes.shape({
+    column: PropTypes.string,
+    comparison: PropTypes.string,
+    value: PropTypes.string,
+  }),
+);
+
 Header.propTypes = {
   filterByNome: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
   filterByNumber: PropTypes.func.isRequired,
   filterName: PropTypes.string.isRequired,
+  filterNumber: expectedFilterNumber,
+};
+
+Header.defaultProps = {
+  filterNumber: [],
 };
 
 FilterByNumeric.propTypes = {
@@ -103,4 +142,13 @@ FilterByNumeric.propTypes = {
 FilterByName.propTypes = {
   filter: PropTypes.func.isRequired,
   filterName: PropTypes.string.isRequired,
+};
+
+NumericFilters.propTypes = {
+  filters: expectedFilterNumber,
+  remove: PropTypes.func.isRequired,
+};
+
+NumericFilters.defaultProps = {
+  filters: [],
 };
