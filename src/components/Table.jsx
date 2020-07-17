@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetch } from '../actions';
+import { expectedFilterNumber } from './Header';
 
 const filterByNumericValues = (data, filterNumber) =>
   filterNumber.reduce((filteredPlanetsArray, filterNumericValue) => {
@@ -90,14 +91,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
-
-const expectedFilterNumber = PropTypes.arrayOf(
-  PropTypes.shape({
-    column: PropTypes.string,
-    comparison: PropTypes.string,
-    value: PropTypes.string,
-  }),
-);
 
 Table.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,

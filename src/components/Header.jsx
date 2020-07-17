@@ -115,7 +115,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
-const expectedFilterNumber = PropTypes.arrayOf(
+export const expectedFilterNumber = PropTypes.arrayOf(
   PropTypes.shape({
     column: PropTypes.string,
     comparison: PropTypes.string,
