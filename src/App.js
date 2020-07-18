@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import planetsFetchData from './middlewares/PlanetsThunk';
 
-export class App extends Component {
+class App extends Component {
   componentDidMount() {
-    const { fetchData } = this.props;
+    console.log('mount')
+    const { fetchPlanetsData } = this.props;
 
-    fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
+    fetchPlanetsData('https://swapi-trybe.herokuapp.com/api/planets');
   }
 
   render() {
+    console.log('render')
+    const { planetsLoading } = this.props;
+
+    if (planetsLoading) return <span>loading...</span>;
+
     return (
       <div>
         <p>teste</p>
@@ -17,12 +23,15 @@ export class App extends Component {
     );
   }
 }
-// const mapStateToProps = (state) => ({});
+
+const mapStateToProps = (state) => ({
+  planetsLoading: state.planetsLoading.isLoading,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (url) => dispatch(planetsFetchData(url)),
+    fetchPlanetsData: (url) => dispatch(planetsFetchData(url)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

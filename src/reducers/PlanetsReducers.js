@@ -5,7 +5,7 @@ import {
 } from '../actions/PlanetsActions';
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   data: [],
   hasErrored: false,
 };
@@ -23,7 +23,7 @@ export const planetsLoading = (state = initialState, { type, isLoading }) => {
 export const planets = (state = initialState, { type, data }) => {
   switch (type) {
     case PLANETS_FETCH_SUCCESS:
-      return { ...state, data };
+      return { ...state, data: [...state.data, ...data] };
 
     default:
       return state;
@@ -33,7 +33,7 @@ export const planets = (state = initialState, { type, data }) => {
 export const planetsErrored = (state = initialState, { type, hasErrored }) => {
   switch (type) {
     case PLANETS_HAS_ERRORED:
-      return { ...state, hasErrored };
+      return { ...state, hasErrored: { ...state.hasErrored, ...hasErrored } };
 
     default:
       return state;
