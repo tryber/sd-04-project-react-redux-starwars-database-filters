@@ -1,6 +1,6 @@
 import * as apiActions from '../actions/apiRequests';
 
-const initialState = { loading: true, data: [], error: '' };
+const initialState = { loading: true, headers: [], data: [], error: '' };
 
 function apiRequest(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +13,9 @@ function apiRequest(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        headers: Object.keys(action.payload[0]).filter(
+          (item) => item !== 'residents',
+        ),
         data: action.payload,
         error: '',
       };

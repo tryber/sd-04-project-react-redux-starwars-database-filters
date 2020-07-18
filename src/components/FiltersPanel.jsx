@@ -5,6 +5,7 @@ import FilterComparison from './FilterComparison';
 import FilterNumber from './FilterNumber';
 import FilterNumberBtn from './FilterNumberBtn';
 import FilterList from './FilterList';
+import FilterOrder from './FilterOrder';
 
 class FiltersPanel extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class FiltersPanel extends Component {
           />
         </form>
         <FilterList />
+        <FilterOrder />
       </div>
     );
   }

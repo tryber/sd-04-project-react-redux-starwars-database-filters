@@ -46,16 +46,13 @@ class Table extends Component {
   }
 
   render() {
-    const { getPlanets, loading } = this.props;
+    const { getPlanets, loading, tableHeaders } = this.props;
     if (loading) return <h1>Loading</h1>;
-    const headers = Object.keys(getPlanets[0]).filter(
-      (item) => item !== 'residents',
-    );
     return (
       <table>
         <thead>
           <tr>
-            {headers.map((planetKey) => (
+            {tableHeaders.map((planetKey) => (
               <th key={planetKey}>{planetKey}</th>
             ))}
           </tr>
@@ -63,7 +60,7 @@ class Table extends Component {
         <tbody>
           {this.filter(getPlanets).map((planet) => (
             <tr key={`${planet.name}${planet.rotation_period}`}>
-              {headers.map((planetKey) => (
+              {tableHeaders.map((planetKey) => (
                 <td key={`${planet.name}${planet[planetKey]}`}>
                   {planet[planetKey]}
                 </td>
@@ -78,6 +75,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   getPlanets: state.apiRequest.data,
+  tableHeaders: state.apiRequest.headers,
   loading: state.apiRequest.loading,
   filterName: state.filters.filterByName.name,
   filterNumber: state.filters.filterByNumericValues,
@@ -90,6 +88,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   requestPlanets: PropTypes.func.isRequired,
   getPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tableHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
   loading: PropTypes.bool.isRequired,
   filterName: PropTypes.string.isRequired,
   filterNumber: PropTypes.arrayOf(PropTypes.object).isRequired,

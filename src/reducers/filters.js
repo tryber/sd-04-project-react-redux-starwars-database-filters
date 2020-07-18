@@ -3,6 +3,7 @@ import * as searchFilter from '../actions/filters';
 const initialState = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: {},
 };
 
 function filters(state = initialState, action) {
@@ -23,6 +24,12 @@ function filters(state = initialState, action) {
         filterByNumericValues: state.filterByNumericValues.filter(
           (item, index) => index !== action.payload,
         ),
+      };
+    case searchFilter.ORDER_FILTER:
+      return {
+        ...state,
+        order: state.order,
+        ...action.payload,
       };
     default:
       return state;
