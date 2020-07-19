@@ -7,8 +7,12 @@ class Table extends Component {
   static dynamicSort(property, order) {
     const sortOrder = order === 'ASC' ? 1 : -1;
     return function (a, b) {
-      const result =
-        a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+      let result = 0;
+      if (a[property] < b[property]) {
+        result = -1;
+      } else if (a[property] > b[property]) {
+        result = 1;
+      }
       return result * sortOrder;
     };
   }
