@@ -29,11 +29,27 @@ const renderData = (planets) => {
   return planetsData;
 };
 
-const Table = ({ planets }) => {
+const handleFilters = ({ filterByName = '' }, planets) => {
+  let filterResult = planets;
+
+  if (filterByName) {
+    filterResult = planets
+      .filter((planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()));
+  }
+  return filterResult;
+};
+
+const Table = ({ planets, filters }) => {
+  let filteredPlanets = planets;
+
+  if (Object.keys(filters).length > 0) {
+    filteredPlanets = handleFilters(filters, planets);
+  }
+
   return (
     <table>
       {renderHeader(planets)}
-      <tbody>{renderData(planets)}</tbody>
+      <tbody>{renderData(filteredPlanets)}</tbody>
     </table>
   );
 };

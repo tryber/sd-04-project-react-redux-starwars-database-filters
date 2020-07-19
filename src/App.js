@@ -12,14 +12,14 @@ class App extends Component {
   }
 
   render() {
-    const { planetsLoading, planets } = this.props;
+    const { planetsLoading, planets, filters } = this.props;
 
     if (planetsLoading) return <span>loading...</span>;
-
+    console.log(filters)
     return (
       <div>
         <Filters />
-        <Table planets={planets} />
+        <Table planets={planets} filters={filters} />
       </div>
     );
   }
@@ -28,6 +28,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   planetsLoading: state.planetsLoading.isLoading,
   planets: state.planets.data,
+  filters: state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => {
