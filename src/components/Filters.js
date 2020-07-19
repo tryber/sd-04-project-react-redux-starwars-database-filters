@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   asyncActionDataFetch, actionNameFilter,
-  actionNumericFilter, actionDelNumericFilter
+  actionNumericFilter, actionDelNumericFilter,
 } from '../actions';
 
 const SelectColumn = ({ columnValues }) =>
@@ -35,14 +35,13 @@ const Filters = ({ dataFetch, nameFilter, numericFilter, filters, delNumericFilt
     e.preventDefault();
     const elColumn = document.getElementById('column-filter');
     const column = elColumn.options[elColumn.selectedIndex].value;
-    console.log(column)
     const elComparison = document.getElementById('comparison-filter');
     const comparison = elComparison.options[elComparison.selectedIndex].value;
     const value = document.getElementById('value-filter').value;
     return nF({ column, comparison, value });
   };
 
-  const delStoreFilter = (column, dNF, e) => dNF(column);
+  const delStoreFilter = (column, dNF) => dNF(column);
 
   const comparisonValues = ['comparação', 'maior que', 'menor que', 'igual a'];
 
@@ -54,7 +53,6 @@ const Filters = ({ dataFetch, nameFilter, numericFilter, filters, delNumericFilt
         onChange={(e) => nameFilter(e.target.value)}
       />
       <form onSubmit={(e) => storeFilters(numericFilter, e)}>
-        {console.log(document.forms)}
         <SelectColumn columnValues={returnStoreColumns(filters)} />
         <SelectComparisom comparisonValues={comparisonValues} />
         <input id="value-filter" type="number" data-testid="value-filter" />
@@ -62,7 +60,7 @@ const Filters = ({ dataFetch, nameFilter, numericFilter, filters, delNumericFilt
       </form>
       {filters.map(({ column, comparison, value }) => <div key={column} data-testid="filter">
         {`${column} ${comparison} ${value}`}
-        <button onClick={(e) => delStoreFilter(column, delNumericFilter, e)}>X</button>
+        <button onClick={() => delStoreFilter(column, delNumericFilter)}>X</button>
       </div>)}
     </div>
   );
@@ -87,6 +85,7 @@ Filters.propTypes = {
   nameFilter: PropTypes.func.isRequired,
   numericFilter: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  delNumericFilter: PropTypes.func.isRequired,
 };
 
 SelectColumn.propTypes = {
