@@ -46,7 +46,7 @@ export const actionNumericFilter = (numericFilter) => ({
   numericFilter,
 });
 
-export const actionDelNumericFilter = (numericFilter) => ({
+export const actionDelNumericFilter = (columnFilter) => ({
   type: DEL_NUMERIC_FILTER,
-  numericFilter,
+  columnFilter,
 });

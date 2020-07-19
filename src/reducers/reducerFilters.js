@@ -8,6 +8,7 @@ const initialState = {
 };
 
 const reducerFilters = (state = initialState, action) => {
+  console.log(state)
   switch (action.type) {
     case NAME_FILTER:
       return { ...state, filterByName: { name: action.text } };
@@ -15,11 +16,11 @@ const reducerFilters = (state = initialState, action) => {
       return {
         ...state, filterByNumericValues: [...state.filterByNumericValues, action.numericFilter],
       };
-    case DEL_NUMERIC_FILTER: // ainda definindo req5
+    case DEL_NUMERIC_FILTER:
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter((filter) =>
-          filter.column !== action.numericFilter.column),
+          filter.column !== action.columnFilter),
       };
     default:
       return state;
