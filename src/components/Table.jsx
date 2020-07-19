@@ -4,6 +4,15 @@ import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions/apiRequests';
 
 class Table extends Component {
+  static dynamicSort(property, order) {
+    const sortOrder = order === 'ASC' ? 1 : -1;
+    return function (a, b) {
+      const result =
+        a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+      return result * sortOrder;
+    };
+  }
+
   constructor(props) {
     super(props);
     this.filter = this.filter.bind(this);
@@ -15,7 +24,7 @@ class Table extends Component {
   }
 
   filter(arr) {
-    const { filterName, filterNumber } = this.props;
+    const { filterName, filterNumber, filterOrder } = this.props;
     let filtered = [];
     filtered =
       filterName === ''
@@ -41,6 +50,8 @@ class Table extends Component {
         }
       });
     }
+
+    filtered.sort(Table.dynamicSort(filterOrder.column, filterOrder.sort));
 
     return filtered;
   }
@@ -79,6 +90,7 @@ const mapStateToProps = (state) => ({
   loading: state.apiRequest.loading,
   filterName: state.filters.filterByName.name,
   filterNumber: state.filters.filterByNumericValues,
+  filterOrder: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -92,6 +104,7 @@ Table.propTypes = {
   loading: PropTypes.bool.isRequired,
   filterName: PropTypes.string.isRequired,
   filterNumber: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterOrder: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

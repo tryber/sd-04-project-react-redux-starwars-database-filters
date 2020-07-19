@@ -3,7 +3,10 @@ import * as searchFilter from '../actions/filters';
 const initialState = {
   filterByName: { name: '' },
   filterByNumericValues: [],
-  order: {},
+  order: {
+    column: 'name',
+    sort: 'ASC',
+  },
 };
 
 function filters(state = initialState, action) {
@@ -28,8 +31,11 @@ function filters(state = initialState, action) {
     case searchFilter.ORDER_FILTER:
       return {
         ...state,
-        order: state.order,
-        ...action.payload,
+        order: {
+          ...state.order,
+          column: action.payload.column,
+          sort: action.payload.sort,
+        },
       };
     default:
       return state;
