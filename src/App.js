@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import planetsFetchData from './middlewares/PlanetsThunk';
+import { planetsFetchData } from './actions/PlanetsActions';
 import Table from './components/Table';
 
 class App extends Component {
