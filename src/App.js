@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { planetsFetchData } from './actions/PlanetsActions';
 import Table from './components/Table';
+import Filters from './containers/Filters';
 
 class App extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class App extends Component {
 
     return (
       <div>
+        <Filters />
         <Table planets={planets} />
       </div>
     );
