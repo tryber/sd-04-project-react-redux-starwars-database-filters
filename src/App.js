@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import planetsFetchData from './middlewares/PlanetsThunk';
+import Table from './components/Table';
 
 class App extends Component {
   componentDidMount() {
-    console.log('mount')
     const { fetchPlanetsData } = this.props;
 
     fetchPlanetsData('https://swapi-trybe.herokuapp.com/api/planets');
   }
 
   render() {
-    console.log('render')
-    const { planetsLoading } = this.props;
+    const { planetsLoading, planets } = this.props;
 
     if (planetsLoading) return <span>loading...</span>;
 
     return (
       <div>
-        <p>teste</p>
+        <Table planets={planets} />
       </div>
     );
   }
@@ -26,6 +25,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   planetsLoading: state.planetsLoading.isLoading,
+  planets: state.planets.data,
 });
 
 const mapDispatchToProps = (dispatch) => {

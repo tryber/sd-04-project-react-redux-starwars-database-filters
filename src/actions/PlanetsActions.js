@@ -17,18 +17,3 @@ export const planetsHasErrored = (bool, message) => ({
   hasErrored: { status: bool, message },
 });
 
-export const planetsFetchData = (url) => (dispatch) => {
-  dispatch(planetsIsLoading(true));
-
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) throw Error(response.statusText);
-
-      dispatch(planetsIsLoading(false));
-
-      return response;
-    })
-    .then((response) => response.json())
-    .then((planets) => dispatch(planetsFetched(planets)))
-    .catch((error) => dispatch(planetsHasErrored(true, error.message)));
-};
