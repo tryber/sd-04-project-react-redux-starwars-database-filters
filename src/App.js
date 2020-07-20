@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <Header />
-      <h1>Star Wars Planets</h1>
+      <h1>Star Wars Planet</h1>
       <Table />
     </div>
   );
