@@ -31,10 +31,8 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPlanetsData: (url) => dispatch(planetsFetchData(url)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetchPlanetsData: (url) => dispatch(planetsFetchData(url)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
