@@ -1,5 +1,8 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import generateTable from './generateTable';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  generateTable,
+});
+
+export default rootReducer;
