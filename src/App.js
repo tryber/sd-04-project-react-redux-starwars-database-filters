@@ -1,18 +1,33 @@
 import React from 'react';
-import './App.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import './styles/App.css';
 import Table from './components/Table';
 import Header from './components/Header';
+import { getAPI } from './actions';
 
-// Iniciando o projeto
+class App extends React.Component {
+  componentDidMount() {
+    const { getAPIProps } = this.props;
+    getAPIProps();
+  }
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <h1>Star Wars Planet</h1>
-      <Table />
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <Header />
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatch = {
+  getAPIProps: getAPI,
+};
+
+export default connect(null, mapDispatch)(App);
+
+App.propTypes = {
+  getAPIProps: PropTypes.func.isRequired,
+};

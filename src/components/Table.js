@@ -1,73 +1,106 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
-import fetchPlanets from '../actions/fetchPlanets';
-import RenderTable from './renderTable';
-import './table.css';
+import { connect } from 'react-redux';
+import filterFunction from '../services/filterFunction';
 
-// function renderTable(tableHeaderTitles, filteredPlanets) {
-//   return (
-//     <table>
-//       <thead>
-//         <tr>
-//           {tableHeaderTitles
-//             .filter((title) => title !== 'residents')
-//             .map((title) => (
-//               <th key={title}>{title}</th>
-//             ))}
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {filteredPlanets.map((planet) => (
-//           <tr key={planet.name}>
-//             {Object.values(planet)
-//               .filter((_, index) => index !== 9)
-//               .map((value) => (
-//                 <td key={value}>{value}</td>
-//               ))}
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// }
+const Table = ({ data, loading, filterValues, error, filterNumber, order }) => {
+  if (loading) return <h3>Loading</h3>;
+  if (error) return <h3>{error.message}</h3>;
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rotation Period</th>
+          <th>Orbital Period</th>
+          <th>Diameter</th>
+          <th>Climate</th>
+          <th>Gravity</th>
+          <th>Terrain</th>
+          <th>Surface Water</th>
+          <th>Population</th>
+          <th>Residents</th>
+          <th>Films</th>
+          <th>Created</th>
+          <th>Edited</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filterFunction(data, filterValues, filterNumber, order).map(
+          ({
+            name,
+            rotation_period: rotationPeriod,
+            orbital_period: orbitalPeriod,
+            diameter,
+            climate,
+            gravity,
+            terrain,
+            surface_water: surfaceWater,
+            population,
+            residents,
+            films,
+            created,
+            edited,
+          }) => (
+            <tr key={name}>
+              <td key={name + name}>{name}</td>
+              <td key={name + rotationPeriod}>{rotationPeriod}</td>
+              <td key={name + orbitalPeriod}>{orbitalPeriod}</td>
+              <td key={name + diameter}>{diameter}</td>
+              <td key={name + climate}>{climate}</td>
+              <td key={name + gravity}>{gravity}</td>
+              <td key={name + terrain}>{terrain}</td>
+              <td key={name + surfaceWater}>{surfaceWater}</td>
+              <td key={name + population}>{population}</td>
+              <td key={name + residents}>{residents}</td>
+              <td key={name + films}>{films}</td>
+              <td key={name + created}>{created}</td>
+              <td key={name + edited}>{edited}</td>
+            </tr>
+          ),
+        )}
+      </tbody>
+    </table>
+  );
+};
 
-class Table extends Component {
-  componentDidMount() {
-    const { fetchPlanets: fetch } = this.props;
-    fetch();
-  }
+const mapState = (state) => {
+  const { filterByName, filterByNumericValues, order } = state.filters;
+  const { data, loading, error } = state.api;
+  return {
+    data,
+    loading,
+    error,
+    filterValues: filterByName.name,
+    filterNumber: filterByNumericValues,
+    order,
+  };
+};
 
-  test() {
-    const { filteredPlanets } = this.props;
-    return filteredPlanets;
-  }
+export default connect(mapState)(Table);
 
-  render() {
-    const { planetsData, filteredPlanets, isFetching } = this.props;
-    if (isFetching) return <p>Loading...</p>;
-    const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
-    return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
-  }
-}
-
-const mapStateToProps = (state) => ({
-  planetsData: state.filters.planetsData,
-  isFetching: state.filters.isFetching,
-  filteredPlanets: state.filters.filteredPlanets,
-  nameToFilter: state.filters.filterByName.name,
-  filterByNumericValues: state.filters.filterByNumericValues,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+Table.defaultProps = {
+  error: false,
+};
 
 Table.propTypes = {
-  planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchPlanets: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
+  ).isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  filterValues: PropTypes.string.isRequired,
+  filterNumber: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object]))
+    .isRequired,
+  order: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string])).isRequired,
 };
+// jeito de fazer a tabela automática:
+// {data.length !== 0 && filterFunction(data, filterValues, filterNumber, order).map(
+//   (title) => (
+//     <tr key={title.name}>
+//       {Object.keys(title).map((category) => (
+//         <td key={title[category] + title[category]}>{title[category]}</td>
+//       ))}
+//     </tr>
+//   )
+// )}
