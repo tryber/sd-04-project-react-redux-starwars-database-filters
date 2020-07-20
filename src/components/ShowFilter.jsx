@@ -17,6 +17,10 @@ const ShowFilter = (props) => {
   );
 };
 
+ShowFilter.propTypes = {
+  filter: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 const mapStateToProps = (state) => ({ filter: state.filters.filterByNumericValues });
 
 export default connect(mapStateToProps)(ShowFilter);

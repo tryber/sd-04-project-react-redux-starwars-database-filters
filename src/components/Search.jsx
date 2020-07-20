@@ -106,6 +106,7 @@ Search.propTypes = {
   name: PropTypes.string.isRequired,
   search: PropTypes.func.isRequired,
   filterNumbers: PropTypes.func.isRequired,
+  filterByNumbers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
