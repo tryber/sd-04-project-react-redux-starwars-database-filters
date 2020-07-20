@@ -1,6 +1,6 @@
 import React from 'react';
 
-function THead() {
+function TableHead() {
   return (
     <thead>
       <tr>
@@ -22,4 +22,4 @@ function THead() {
   );
 }
 
-export default THead;
+export default TableHead;

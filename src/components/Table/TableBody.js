@@ -5,9 +5,10 @@ import orderFuncAsc from '../Filters/orderFuncAsc';
 import orderFuncDesc from '../Filters/orderFuncDesc';
 
 function TableBody({ planets, name, numericValues, columnSort, sort }) {
-  const data = sort === 'ASC'
-    ? orderFuncAsc(planets, name, numericValues, columnSort)
-    : orderFuncDesc(planets, name, numericValues, columnSort);
+  const data =
+    sort === 'ASC'
+      ? orderFuncAsc(planets, name, numericValues, columnSort)
+      : orderFuncDesc(planets, name, numericValues, columnSort);
   return (
     <tbody>
       {data.map((planet) => (
