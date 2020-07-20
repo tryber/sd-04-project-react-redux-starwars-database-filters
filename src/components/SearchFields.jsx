@@ -6,7 +6,6 @@ import { filterByName } from '../actions/filters';
 class SearchFields extends Component {
   render() {
     const { filterName: filter, filterByNameValue } = this.props;
-    console.log(filterByNameValue);
     return (
       <form>
         <input
@@ -21,7 +20,7 @@ class SearchFields extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  filterByNameValue: state.filterPlanets.filters.filterByName,
+  filterByNameValue: state.filterPlanets.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({

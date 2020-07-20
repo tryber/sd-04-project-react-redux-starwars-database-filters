@@ -44,9 +44,7 @@ class Table extends Component {
     const {
       planets, isFetching, filters, filteredPlanets,
     } = this.props;
-    console.log(!filters);
-    const dataPlanets = !filters ? Object.values(planets) : filteredPlanets;
-    console.log(filteredPlanets);
+    const dataPlanets = !filters.filterByName.name ? Object.values(planets) : filteredPlanets;
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
