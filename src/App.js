@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import FiltersPanel from './components/FiltersPanel';
 import Table from './components/Table';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Header />
         <FiltersPanel />
         <Table />
+        <Footer />
       </header>
     </div>
   );

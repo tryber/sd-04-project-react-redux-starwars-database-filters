@@ -7,6 +7,7 @@ const FilterNumberBtn = ({ state, filterByNumber, clearColumnState }) => (
   <button
     type="button"
     data-testid="button-filter"
+    className="button"
     onClick={() => {
       let stateObject = {};
       if (state.column && state.comparison && state.value) {

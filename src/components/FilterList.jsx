@@ -4,16 +4,22 @@ import { connect } from 'react-redux';
 import { removeNumericFilter } from '../actions/filters';
 
 const FilterList = ({ filters, removeFilter }) => (
-  <div>
-    <p>Filters</p>
-    {filters.map((item, index) => (
-      <div key={item.column} data-testid="filter">
-        <p>{`${item.column} ${item.comparison} ${item.value}`}</p>
-        <button type="button" onClick={() => removeFilter(index)}>
-          X
-        </button>
-      </div>
-    ))}
+  <div className="filter-list-container">
+    <h3 className="caption">Filters list</h3>
+    <div className="filter-items-container">
+      {filters.map((item, index) => (
+        <div key={item.column} data-testid="filter" className="filter-item">
+          <p className="list-item-text">{`${item.column} ${item.comparison} ${item.value}`}</p>
+          <button
+            type="button"
+            className="button"
+            onClick={() => removeFilter(index)}
+          >
+            X
+          </button>
+        </div>
+      ))}
+    </div>
   </div>
 );
 

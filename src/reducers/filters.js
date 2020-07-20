@@ -4,7 +4,7 @@ const initialState = {
   filterByName: { name: '' },
   filterByNumericValues: [],
   order: {
-    column: 'name',
+    column: 'Name',
     sort: 'ASC',
   },
 };

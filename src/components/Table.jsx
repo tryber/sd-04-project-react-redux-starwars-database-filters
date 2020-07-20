@@ -2,16 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions/apiRequests';
+import './Table.css';
 
 class Table extends Component {
   static dynamicSort(property, order) {
     const sortOrder = order === 'ASC' ? 1 : -1;
     return function (a, b) {
       let result = 0;
-      if (a[property] < b[property]) {
-        result = -1;
-      } else if (a[property] > b[property]) {
-        result = 1;
+      if (Number.isNaN(+a[property.toLowerCase()])) {
+        if (a[property.toLowerCase()] < b[property.toLowerCase()]) {
+          result = -1;
+        } else if (a[property.toLowerCase()] > b[property.toLowerCase()]) {
+          result = 1;
+        }
+      }
+
+      if (!Number.isNaN(a[property.toLowerCase()])) {
+        if (+a[property.toLowerCase()] < +b[property.toLowerCase()]) {
+          result = -1;
+        } else if (+a[property.toLowerCase()] > +b[property.toLowerCase()]) {
+          result = 1;
+        }
       }
       return result * sortOrder;
     };
@@ -64,26 +75,28 @@ class Table extends Component {
     const { getPlanets, loading, tableHeaders } = this.props;
     if (loading) return <h1>Loading</h1>;
     return (
-      <table>
-        <thead>
-          <tr>
-            {tableHeaders.map((planetKey) => (
-              <th key={planetKey}>{planetKey}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {this.filter(getPlanets).map((planet) => (
-            <tr key={`${planet.name}${planet.rotation_period}`}>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
               {tableHeaders.map((planetKey) => (
-                <td key={`${planet.name}${planet[planetKey]}`}>
-                  {planet[planetKey]}
-                </td>
+                <th key={planetKey}>{planetKey}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {this.filter(getPlanets).map((planet) => (
+              <tr key={`${planet.name}${planet.rotation_period}`}>
+                {tableHeaders.map((planetKey) => (
+                  <td key={`${planet.name}${planet[planetKey]}`}>
+                    {planet[planetKey]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

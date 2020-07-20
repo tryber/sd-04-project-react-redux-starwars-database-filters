@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import { search } from '../actions/filters';
 
 const FilterSearch = ({ searchName }) => (
-  <label htmlFor="search">
-    Search
+  <div className="filter-search-container">
     <input
       type="text"
       name="search"
       id="search"
+      placeholder="Search by name"
       data-testid="name-filter"
+      className="filter-search-input"
       onChange={(event) => searchName(event.target.value)}
     />
-  </label>
+  </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,50 +1,21 @@
 import React, { Component } from 'react';
 import FilterSearch from './FilterSearch';
-import FilterColumn from './FilterColumn';
-import FilterComparison from './FilterComparison';
-import FilterNumber from './FilterNumber';
-import FilterNumberBtn from './FilterNumberBtn';
 import FilterList from './FilterList';
 import FilterOrder from './FilterOrder';
+import FilterNumbers from './FilterNumbers';
+import './FiltersPanel.css';
 
 class FiltersPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      column: '',
-      comparison: '',
-      value: '',
-    };
-  }
-
   render() {
-    const { column, comparison, value } = this.state;
     return (
-      <div>
+      <div className="filters-panel-container">
+        <h2 className="filter-panel-title">Filters</h2>
         <form>
           <FilterSearch />
-          <p>Filter by numbers</p>
-          <FilterColumn
-            onChange={(event) => this.setState({ column: event.target.value })}
-            value={column}
-          />
-          <FilterComparison
-            onChange={(event) =>
-              this.setState({ comparison: event.target.value })
-            }
-            value={comparison}
-          />
-          <FilterNumber
-            onChange={(event) => this.setState({ value: event.target.value })}
-            value={value}
-          />
-          <FilterNumberBtn
-            state={{ column, comparison, value }}
-            clearColumnState={() => this.setState({ column: '' })}
-          />
+          <FilterNumbers />
+          <FilterOrder />
         </form>
         <FilterList />
-        <FilterOrder />
       </div>
     );
   }
