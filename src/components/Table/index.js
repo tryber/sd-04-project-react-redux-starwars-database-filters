@@ -1,7 +1,9 @@
 import React from 'react';
 
+const getHeaders = (planets) => Object.keys(planets[0]).filter((header) => header !== 'residents');
+
 const renderHeader = (planets) => {
-  const tableHeaders = Object.keys(planets[0]).filter((header) => header !== 'residents');
+  const tableHeaders = getHeaders(planets);
 
   return (
     <thead>
@@ -14,10 +16,24 @@ const renderHeader = (planets) => {
   );
 };
 
-const renderData = (planets) => {
-  const planetsData = [];
+const handlePlanetSort = (planets, order) => {
+  const { column, sort } = order;
 
-  planets.forEach((planet) => {
+  return planets.sort((planetA, planetB) => {
+    if (sort === 'ASC') {
+      return planetA[column.toLowerCase()] > planetB[column.toLowerCase()] ? 1 : -1;
+    }
+    if (sort === 'DESC') {
+      return planetA[column.toLowerCase()] < planetB[column.toLowerCase()] ? 1 : -1;
+    }
+  });
+};
+
+const renderData = (planets, order) => {
+  const planetsData = [];
+  const sortedPlanets = handlePlanetSort(planets, order);
+
+  sortedPlanets.forEach((planet) => {
     const columns = Object.keys(planet)
       .filter((header) => header !== 'residents')
       .map((data) => <td>{planet[data]}</td>);
@@ -71,8 +87,8 @@ const Table = ({ planets, filters }) => {
 
   return (
     <table>
-      {renderHeader(planets)}
-      <tbody>{renderData(filteredPlanets)}</tbody>
+      {renderHeader(planets, filters)}
+      <tbody>{renderData(filteredPlanets, filters.order)}</tbody>
     </table>
   );
 };

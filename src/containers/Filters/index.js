@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import {
   filterByName,
   filterByNumericValue,
+  orderByColumn,
   removeNumericFilter,
 } from '../../actions/FiltersActions';
+import Planets from '../../testData';
 import FiltersList from '../../components/FiltersList';
 
 const columnFilterOptions = [
@@ -42,12 +44,53 @@ const handleNumericFilters = (searchByNumber) => {
   }
 };
 
+const handleSortFilters = (sortByColumn) => {
+  const column = document.querySelector('#sort-column').value;
+  const sortASC = document.querySelector('#sort-asc');
+
+  if (column && sortASC) {
+    sortByColumn({
+      column,
+      sort: (sortASC.checked) ? 'ASC' : 'DESC',
+    });
+  }
+};
+
+const getHeaders = () => Object.keys(Planets.results[0]).filter((header) => header !== 'residents');
+
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+const renderSortFilters = (sortByColumn) => (
+  <form>
+    <select data-testid="column-sort" id="sort-column">
+      {getHeaders().map((option) => (
+        <option value={capitalizeFirstLetter(option)}>{capitalizeFirstLetter(option)}</option>))}
+    </select>
+    <label>
+      ASC
+      <input data-testid="column-sort-input" id="sort-asc" name="sort-order" type="radio" value="ASC" defaultChecked />
+    </label>
+    <label>
+      DESC
+      <input data-testid="column-sort-input" id="sort-desc" name="sort-order" type="radio" value="DESC" />
+    </label>
+    <button
+      type="button"
+      data-testid="column-sort-button"
+      onClick={() => handleSortFilters(sortByColumn)}
+    >
+      Filter
+    </button>
+  </form>
+);
+
 
 const Filters = (
   {
     searchByName,
     searchByNumber,
     filterByNumericValues,
+    sortByColumn,
     removeFilter,
   },
 ) => (
@@ -59,7 +102,6 @@ const Filters = (
         placeholder="Search by Name"
         onChange={(e) => searchByName(e.target.value)}
       />
-
       {renderColumnFilter(filterByNumericValues)}
       <select id="comparison-selector" data-testid="comparison-filter">
         <option value="vazio">vazio</option>
@@ -76,6 +118,7 @@ const Filters = (
         Filter
       </button>
     </form>
+    {renderSortFilters(sortByColumn)}
     <FiltersList filters={filterByNumericValues} filterDeletionHandler={removeFilter} />
   </div>
 );
@@ -87,6 +130,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   searchByName: (text) => dispatch(filterByName(text)),
   searchByNumber: (filter) => dispatch(filterByNumericValue(filter)),
+  sortByColumn: (filter) => dispatch(orderByColumn(filter)),
   removeFilter: (filter) => dispatch(removeNumericFilter(filter)),
 });
 
