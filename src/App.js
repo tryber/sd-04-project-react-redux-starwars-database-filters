@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { planetsFetchData } from './actions/PlanetsActions';
+import Table from './components/Table';
+import Filters from './containers/Filters';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    const { fetchPlanetsData } = this.props;
+
+    fetchPlanetsData('https://swapi-trybe.herokuapp.com/api/planets');
+  }
+
+  render() {
+    const { planetsLoading, planets, filters } = this.props;
+
+    if (planetsLoading) return <span>loading...</span>;
+
+    return (
+      <div>
+        <Filters />
+        <Table planets={planets} filters={filters} />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  planetsLoading: state.planetsLoading.isLoading,
+  planets: state.planets.data,
+  filters: state.filters,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPlanetsData: (url) => dispatch(planetsFetchData(url)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
