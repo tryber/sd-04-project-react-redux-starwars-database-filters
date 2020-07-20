@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPlanets, changeSearch, filtered } from '../actions';
 
+const initialColumns = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 class Search extends Component {
   componentDidMount() {
     const { planets } = this.props;
@@ -28,16 +36,26 @@ class Search extends Component {
     );
   }
 
+  filterColumns(columnsInState) {
+    if (columnsInState.length === 0) return initialColumns;
+    const usedColumns = columnsInState.map((numericFilter) => numericFilter.column);
+    return initialColumns.filter((columnOption) => !usedColumns.includes(columnOption));
+  }
+
   renderForm() {
+    const { filterByNumbers } = this.props;
     return (
       <form>
         <select data-testid="column-filter" id="columns">
           <option defaultValue>Selecione</option>
-          <option value="population">population</option>
+          {/* <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option value="surface_water">surface_water</option> */}
+          {this.filterColumns(filterByNumbers).map((column) => (
+            <option key={column}>{column}</option>
+          ))}
         </select>
         <select data-testid="comparison-filter" id="comparison">
           <option defaultValue>Selecione</option>
@@ -74,7 +92,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => ({
   name: state.filters.filterByName.name,
-  filterByNumbers: state.filters.filterByNumericValues, //array
+  filterByNumbers: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
