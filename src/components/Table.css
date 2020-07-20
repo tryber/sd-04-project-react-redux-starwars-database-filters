@@ -1,0 +1,26 @@
+table {
+  border-collapse: collapse;
+  font-size: 17px;
+  width: max-content;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+thead {
+  background-color: gray;
+}
+
+th {
+  padding: 5px;
+  text-align: center;
+}
+
+td {
+  max-width: 100px;
+  overflow: hidden;
+  text-align: center;
+}
