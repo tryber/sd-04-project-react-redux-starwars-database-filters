@@ -21,8 +21,8 @@ const failurePlanets = (error) => ({
 const getAPIData = (endpoint) => (dispatch) => {
   dispatch(requestPlanets());
   apiPlanets(endpoint)
-    .then(data => dispatch(successPlanets(data)))
-    .catch(error => dispatch(failurePlanets(error)));
+    .then((data) => dispatch(successPlanets(data)))
+    .catch((error) => dispatch(failurePlanets(error)));
 };
 
 export default getAPIData;
