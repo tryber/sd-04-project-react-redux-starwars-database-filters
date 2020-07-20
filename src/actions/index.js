@@ -1,4 +1,4 @@
-import apiPlanets from '../services/required';
+import apiPlanets from '../services';
 
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
@@ -8,7 +8,7 @@ export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 export const REMOVE_FILTER_BY_NUMERIC_VALUES = 'REMOVE_FILTER_BY_NUMERIC_VALUES';
 export const ORDER_COLUMN = 'ORDER_COLUMN';
 
-const resquestPlanets = () => ({
+const requestPlanets = () => ({
   type: REQUEST_PLANETS,
 });
 
@@ -24,7 +24,7 @@ const failurePlanets = (error) => ({
 
 export function requestFetch() {
   return (dispatch) => {
-    dispatch(resquestPlanets());
+    dispatch(requestPlanets());
 
     return apiPlanets().then(
       (json) => dispatch(successPlanets(json.results)),
