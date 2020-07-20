@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const renderHeader = (planets) => {
   const tableHeaders = Object.keys(planets[0]).filter((header) => header !== 'residents');
@@ -33,9 +32,8 @@ const handleNameFilter = ({ filterByName }, planets) => {
   let filterResult = planets;
 
   if (filterByName.name) {
-    filterResult = planets.filter((planet) =>
-      planet.name.toLowerCase().includes(filterByName.name.toLowerCase())
-    );
+    filterResult = planets
+      .filter((planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()));
   }
 
   return filterResult;
