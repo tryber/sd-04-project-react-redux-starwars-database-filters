@@ -20,7 +20,7 @@ class SearchFields extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  filterByNameValue: state.filterPlanets.filters.filterByName.name,
+  filterByNameValue: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({

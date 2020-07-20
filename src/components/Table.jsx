@@ -58,7 +58,7 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.planets,
   isFetching: state.getPlanets.isFetching,
   filteredPlanets: state.getPlanets.filteredPlanets,
-  filters: state.filterPlanets.filters,
+  filters: state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({
