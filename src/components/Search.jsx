@@ -11,21 +11,16 @@ const initialColumns = [
   'surface_water',
 ];
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
+const filterColumns = (columnsInState) => {
+  if (columnsInState.length === 0) return initialColumns;
+  const usedColumns = columnsInState.map((numericFilter) => numericFilter.column);
+  return initialColumns.filter((columnOption) => !usedColumns.includes(columnOption));
+};
 
-    this.filterColumns = this.filterColumns.bind(this)
-  }
+class Search extends Component {
   componentDidMount() {
     const { planets } = this.props;
     planets();
-  }
-
-  filterColumns(columnsInState) {
-    if (columnsInState.length === 0) return initialColumns;
-    const usedColumns = columnsInState.map((numericFilter) => numericFilter.column);
-    return initialColumns.filter((columnOption) => !usedColumns.includes(columnOption));
   }
 
   renderBtnForm() {
@@ -58,7 +53,7 @@ class Search extends Component {
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
           <option value="surface_water">surface_water</option> */}
-          {this.filterColumns(filterByNumbers).map((column) => (
+          {filterColumns(filterByNumbers).map((column) => (
             <option key={column}>{column}</option>
           ))}
         </select>
