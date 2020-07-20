@@ -66,14 +66,23 @@ const renderSortFilters = (sortByColumn) => (
       {getHeaders().map((option) => (
         <option value={capitalizeFirstLetter(option)}>{capitalizeFirstLetter(option)}</option>))}
     </select>
-    <label>
-      ASC
-      <input data-testid="column-sort-input" id="sort-asc" name="sort-order" type="radio" value="ASC" defaultChecked />
-    </label>
-    <label>
-      DESC
-      <input data-testid="column-sort-input" id="sort-desc" name="sort-order" type="radio" value="DESC" />
-    </label>
+    <label htmlFor="sort-asc">ASC</label>
+    <input
+      data-testid="column-sort-input"
+      id="sort-asc"
+      name="sort-order"
+      type="radio"
+      value="ASC"
+      defaultChecked
+    />
+    <label htmlFor="sort-desc">DESC</label>
+    <input
+      data-testid="column-sort-input"
+      id="sort-desc"
+      name="sort-order"
+      type="radio"
+      value="DESC"
+    />
     <button
       type="button"
       data-testid="column-sort-button"
