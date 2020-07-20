@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { fetchPlanets } from '../actions';
+import { fetchPlanets } from '../actions/ApiRequest';
+import { applyFilters } from '../actions/filters';
 import HeaderTable from './HeaderTable';
 
 function planetsTable(planets) {
@@ -38,14 +39,18 @@ class Table extends Component {
     fetch();
   }
 
+
   render() {
-    const { planets, isFetching } = this.props;
-    const dataPlanets = planets ? Object.values(planets) : [];
-    console.log(planets);
+    const {
+      planets, isFetching, filters, filteredPlanets,
+    } = this.props;
+    console.log(!filters);
+    const dataPlanets = !filters ? Object.values(planets) : filteredPlanets;
+    console.log(filteredPlanets);
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
-        { planetsTable(dataPlanets) }
+        {planetsTable(dataPlanets)}
       </div>
     );
   }
@@ -54,14 +59,19 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   planets: state.getPlanets.planets,
   isFetching: state.getPlanets.isFetching,
+  filteredPlanets: state.getPlanets.filteredPlanets,
+  filters: state.filterPlanets.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   planetsAPI: () => dispatch(fetchPlanets()),
+  applyFilters,
 });
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   planetsAPI: PropTypes.func.isRequired,
 };
