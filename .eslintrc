@@ -6,6 +6,7 @@
     "no-alert": "off",
     "prefer-arrow-callback": "off",
     "func-names": "off",
+    "react/prop-types": "off",
     "react/jsx-filename-extension": [
       1,
       {

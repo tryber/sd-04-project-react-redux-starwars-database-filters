@@ -29,21 +29,46 @@ const renderData = (planets) => {
   return planetsData;
 };
 
-const handleFilters = ({ filterByName = '' }, planets) => {
+const handleNameFilter = ({ filterByName }, planets) => {
   let filterResult = planets;
 
-  if (filterByName) {
-    filterResult = planets
-      .filter((planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()));
+  if (filterByName.name) {
+    filterResult = planets.filter((planet) =>
+      planet.name.toLowerCase().includes(filterByName.name.toLowerCase())
+    );
   }
+
+  return filterResult;
+};
+
+const handleNumericFilter = ({ filterByNumericValues }, planets) => {
+  let filterResult = planets;
+
+  filterByNumericValues.forEach((filter) => {
+    const { column, comparison, value } = filter;
+    if (comparison === 'maior que') {
+      filterResult = filterResult.filter((planet) => Number(planet[column]) > Number(value));
+    }
+    if (comparison === 'igual a') {
+      filterResult = filterResult.filter((planet) => Number(planet[column]) === Number(value));
+    }
+    if (comparison === 'menor que') {
+      filterResult = filterResult.filter((planet) => Number(planet[column]) < Number(value));
+    }
+  });
+
   return filterResult;
 };
 
 const Table = ({ planets, filters }) => {
   let filteredPlanets = planets;
 
-  if (Object.keys(filters).length > 0) {
-    filteredPlanets = handleFilters(filters, planets);
+  if (filters.filterByName.name) {
+    filteredPlanets = handleNameFilter(filters, planets);
+  }
+
+  if (filters.filterByNumericValues.length > 0) {
+    filteredPlanets = handleNumericFilter(filters, planets);
   }
 
   return (
@@ -55,14 +80,3 @@ const Table = ({ planets, filters }) => {
 };
 
 export default Table;
-
-Table.propTypes = {
-  planets: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      rotation_period: PropTypes.string,
-      orbital_period: PropTypes.string,
-      diameter: PropTypes.string,
-    }),
-  ).isRequired,
-};

@@ -15,7 +15,7 @@ class App extends Component {
     const { planetsLoading, planets, filters } = this.props;
 
     if (planetsLoading) return <span>loading...</span>;
-    console.log(filters)
+
     return (
       <div>
         <Filters />
