@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const NumberFilters = () => (
-  <form onSubmit={(e) => {
-    e.preventDefault();
-    console.log(e.target);
-  }}
+  <form
+    onSubmit={(e) => {
+      e.preventDefault();
+      console.log(e.target);
+    }}
   >
     <select data-testid="column-filter">
       <option value="population">Population</option>
