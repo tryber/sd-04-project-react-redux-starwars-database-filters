@@ -12,9 +12,20 @@ const initialColumns = [
 ];
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+
+    this.filterColumns = this.filterColumns.bind(this)
+  }
   componentDidMount() {
     const { planets } = this.props;
     planets();
+  }
+
+  filterColumns(columnsInState) {
+    if (columnsInState.length === 0) return initialColumns;
+    const usedColumns = columnsInState.map((numericFilter) => numericFilter.column);
+    return initialColumns.filter((columnOption) => !usedColumns.includes(columnOption));
   }
 
   renderBtnForm() {
@@ -34,12 +45,6 @@ class Search extends Component {
         Adicionar Filtro
       </button>
     );
-  }
-
-  filterColumns(columnsInState) {
-    if (columnsInState.length === 0) return initialColumns;
-    const usedColumns = columnsInState.map((numericFilter) => numericFilter.column);
-    return initialColumns.filter((columnOption) => !usedColumns.includes(columnOption));
   }
 
   renderForm() {
