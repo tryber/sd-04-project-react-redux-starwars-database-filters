@@ -2,63 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+const compareFilters = (planets, { column, comparison, value }) => {
+  switch (comparison) {
+    case 'maior que':
+      return Number(planets[column]) > Number(value);
+    case 'menor que':
+      return Number(planets[column]) < Number(value);
+    case 'igual a':
+      return Number(planets[column]) === Number(value);
+    default:
+      return false;
+  }
+};
+
 const TableBody = ({ planets, filter, filterNumeric }) => {
   console.log('planetas não filtrados', planets);
 
-  const filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
+  let filteredPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
 
-  const columnFilter = filterNumeric.map((filter) => filter.column);
+  filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
 
-  const valueFilter = filterNumeric.map((filter) => filter.value);
-
-  const comparisonResult = filterNumeric.map((filter) => {
-    switch (filter.comparison) {
-      case 'maior que':
-        return '>';
-      case 'menor que':
-        return '<';
-      case 'igual a':
-        return '===';
-      default:
-        return null;
-    }
-  });
-
-  console.log('columnFilter: ', columnFilter);
-  console.log('comparison', comparisonResult);
-  console.log('value: ', valueFilter);
-
-  console.log('filtros', filterNumeric);
-
-  const filteredNumeric = filteredPlanets.filter((planet, index) => {
-    console.log('index do filteredNumeric', index);
-
-    return planet[columnFilter] < Number(valueFilter);
-  });
-
-  console.log('filtros com map', filteredNumeric);
+  if (filterNumeric.length > 0) {
+    console.log('filterNumeric', filterNumeric);
+    filterNumeric.forEach(
+      (filter) => (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
+    );
+  }
+  const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
 
   return (
     <tbody>
       {filteredPlanets.map((planet) => (
         <tr key={planet.name}>
-          <td>{planet.name}</td>
-          <td>{planet.rotation_period}</td>
-          <td>{planet.orbital_period}</td>
-          <td>{planet.diameter}</td>
-          <td>{planet.climate}</td>
-          <td>{planet.gravity}</td>
-          <td>{planet.terrain}</td>
-          <td>{planet.surface_water}</td>
-          <td>{planet.population}</td>
-          <td>
-            {planet.films.map((film) => (
-              <span key={film}>{film}</span>
-            ))}
-          </td>
-          <td>{planet.created}</td>
-          <td>{planet.edited}</td>
-          <td>{planet.url}</td>
+          {objKeys.map((key) => (
+            <td key={key}>{planet[key]}</td>
+          ))}
         </tr>
       ))}
     </tbody>
