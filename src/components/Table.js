@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   getCurrentApi: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,  
+  loading: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

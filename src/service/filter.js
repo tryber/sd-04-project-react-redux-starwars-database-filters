@@ -10,18 +10,18 @@ function filter(data, inputText, filterByNumericValues) {
     filterByNumericValues.forEach((itens) => {
       if (itens.comparison === 'maior que') {
         filterData = data.filter(
-          (item) => Number(item[itens.column]) > Number([itens.value])
+          (item) => Number(item[itens.column]) > Number([itens.value]),
         );
         console.log(filterData, itens.comparison);
       }
       if (itens.comparison === 'igual a') {
         filterData = data.filter(
-          (item) => Number(item[itens.column]) === Number([itens.value])
+          (item) => Number(item[itens.column]) === Number([itens.value]),
         );
       }
       if (itens.comparison === 'menor que') {
         filterData = data.filter(
-          (item) => Number(item[itens.column]) < Number([itens.value])
+          (item) => Number(item[itens.column]) < Number([itens.value]),
         );
       }
     });
