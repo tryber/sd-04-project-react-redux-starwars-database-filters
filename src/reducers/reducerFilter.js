@@ -37,6 +37,7 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByNumericValues: state.filterByNumericValues.filter(
           ({ column }) => column !== action.column,
         ),
+        options: [...state.options, action.column],
       };
     default:
       return state;

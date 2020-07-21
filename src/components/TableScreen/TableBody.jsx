@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const TableBody = ({ planets, filter, filterNumeric }) => {
+  console.log('planetas não filtrados', planets);
+
   const filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
-  console.log(filterNumeric);
+
+  const columnFilter = filterNumeric.map((filter) => filter.column);
+
+  const valueFilter = filterNumeric.map((filter) => filter.value);
+
+  const comparisonResult = filterNumeric.map((filter) => {
+    switch (filter.comparison) {
+      case 'maior que':
+        return '>';
+      case 'menor que':
+        return '<';
+      case 'igual a':
+        return '===';
+      default:
+        return null;
+    }
+  });
+
+  console.log('columnFilter: ', columnFilter);
+  console.log('comparison', comparisonResult);
+  console.log('value: ', valueFilter);
+
+  console.log('filtros', filterNumeric);
+
+  const filteredNumeric = filteredPlanets.filter((planet, index) => {
+    console.log('index do filteredNumeric', index);
+
+    return planet[columnFilter] > valueFilter;
+  });
+
+  console.log('filtros com map', filteredNumeric);
 
   return (
     <tbody>

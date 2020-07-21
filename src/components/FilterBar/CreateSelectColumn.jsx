@@ -15,7 +15,7 @@ const CreateSelectColumn = ({ onChange, value, options }) => (
 CreateSelectColumn.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf().isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CreateSelectColumn;

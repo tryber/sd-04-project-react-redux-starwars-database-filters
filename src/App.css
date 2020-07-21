@@ -8,11 +8,11 @@ table, th, td {
 }
 
 thead {
-  color: blue;
+  color: black;
 }
 
 .t01 tr:nth-child(even) {
-  background-color: #eea;
+  background-color: lightgrey;
 }
 
 .t01 tr:nth-child(odd) {
@@ -21,7 +21,6 @@ thead {
 
 th, td {
   padding: 2px;
-  text-align: le;
 }
 
 .header-content {

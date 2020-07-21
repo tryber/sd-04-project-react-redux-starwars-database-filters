@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 NumericSearch.propTypes = {
   changeValues: PropTypes.func.isRequired,
-  option: PropTypes.arrayOf().isRequired,
+  option: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericSearch);
