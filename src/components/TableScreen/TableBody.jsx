@@ -15,14 +15,14 @@ const compareFilters = (planets, { column, comparison, value }) => {
   }
 };
 
-const TableBody = ({ planets, filter, filterNumeric }) => {
+const TableBody = ({ planets, filterByName, filterNumeric }) => {
   console.log(planets);
 
   let filteredPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
 
   console.log('planetas em ordem', filteredPlanets);
 
-  filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
+  filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filterByName));
 
   if (filterNumeric.length > 0) {
     filterNumeric.forEach(
@@ -70,12 +70,12 @@ const TableBody = ({ planets, filter, filterNumeric }) => {
 
 const mapStateToProps = (state) => ({
   planets: state.reducerAPI.data,
-  filter: state.filters.filterByName.name,
+  filterByName: state.filters.filterByName.name,
   filterNumeric: state.filters.filterByNumericValues,
 });
 
 TableBody.propTypes = {
-  filter: PropTypes.string.isRequired,
+  filterByName: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
