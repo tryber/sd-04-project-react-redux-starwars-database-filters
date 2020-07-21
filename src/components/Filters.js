@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(filterCombiner(column, compar, number)),
 });
 
-Filters.protoTypes = {
+Filters.propTypes = {
   btnInput: PropTypes.string.isRequired,
 };
 
