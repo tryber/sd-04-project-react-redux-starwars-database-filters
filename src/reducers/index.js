@@ -1,16 +1,24 @@
-import { ACAO_A_SER_DESENVOLVIDA } from '../action';
-
 const INITIAL_STATE = {
-  data: 0,
+  isLoaded: false,
+  items: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ACAO_A_SER_DESENVOLVIDA:
+    case 'REQUEST_API':
       return {
-
+        ...state,
+        isLoaded: false,
+      };
+    case 'RECEIVE_API':
+      return {
+        ...state,
+        isLoaded: true,
+        items: action.items,
       };
     default:
       return state;
   }
 };
+
+export default reducer;
