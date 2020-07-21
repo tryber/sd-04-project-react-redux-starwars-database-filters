@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -33,7 +33,7 @@ const TableBody = ({ planets, filter, filterNumeric }) => {
   const filteredNumeric = filteredPlanets.filter((planet, index) => {
     console.log('index do filteredNumeric', index);
 
-    return planet[columnFilter] > valueFilter;
+    return planet[columnFilter] < Number(valueFilter);
   });
 
   console.log('filtros com map', filteredNumeric);
