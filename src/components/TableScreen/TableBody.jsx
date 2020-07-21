@@ -25,8 +25,7 @@ const TableBody = ({ planets, filter, filterNumeric }) => {
   if (filterNumeric.length > 0) {
     console.log('filterNumeric', filterNumeric);
     filterNumeric.forEach(
-      (filter) =>
-        (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
+      () => (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
     );
   }
   const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
