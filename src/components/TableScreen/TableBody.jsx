@@ -16,18 +16,22 @@ const compareFilters = (planets, { column, comparison, value }) => {
 };
 
 const TableBody = ({ planets, filter, filterNumeric }) => {
-  console.log('planetas não filtrados', planets);
+  console.log(planets);
 
   let filteredPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
+
+  console.log('planetas em ordem', filteredPlanets);
 
   filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filter));
 
   if (filterNumeric.length > 0) {
-    console.log('filterNumeric', filterNumeric);
     filterNumeric.forEach(
-      () => (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
+      (filter) =>
+        (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
     );
   }
+
+  console.log('planetas filtrados por ultimo', filteredPlanets);
   const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
 
   return (
@@ -39,6 +43,27 @@ const TableBody = ({ planets, filter, filterNumeric }) => {
           ))}
         </tr>
       ))}
+
+      {/* {filteredPlanets.map((planet) => (
+        <tr key={planet.name}>
+          <td>{planet.name}</td>
+          <td>{planet.rotation_period}</td>
+          <td>{planet.orbital_period}</td>
+          <td>{planet.diameter}</td>
+          <td>{planet.climate}</td>
+          <td>{planet.gravity}</td>
+          <td>{planet.surface_water}</td>
+          <td>{planet.population}</td>
+          <td>
+            {planet.films.map((film) => (
+              <span key={film}>{film}</span>
+            ))}
+          </td>
+          <td>{planet.created}</td>
+          <td>{planet.edited}</td>
+          <td>{planet.url}</td>
+        </tr>
+      ))} */}
     </tbody>
   );
 };
