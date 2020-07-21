@@ -6,11 +6,11 @@ import filter from '../service/filter';
 import './Tabela.css';
 
 const TableBody = (props) => {
-  const { data, texto } = props;
+  const { data, texto, filtros } = props;
 
   return (
     <tbody>
-      {filter(data, texto).map((planet) => (
+      {filter(data, texto, filtros).map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td> <td>{planet.climate}</td>{' '}
           <td>{planet.created}</td>
@@ -29,11 +29,13 @@ const TableBody = (props) => {
 const mapStateToProps = (state) => ({
   data: state.reducerGetApi.data,
   texto: state.filters.filterByName.name,
+  filtros: state.filters.filterByNumericValues,
 });
 
 TableBody.propTypes = {
   data: PropTypes.string.isRequired,
   texto: PropTypes.func.isRequired,
+  filtros: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(TableBody);
