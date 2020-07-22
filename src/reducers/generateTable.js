@@ -5,12 +5,12 @@ import {
 } from '../actions';
 
 const initialState = {
-  data: [],
+  data: {},
   error: null,
   loading: false,
 };
 
-function generateTable(state = initialState, { type, payload, error }) {
+function generateTable(state = initialState, { type, error, data }) {
   switch (type) {
     case GET_PLANETS_REQUEST:
       return {
@@ -20,7 +20,7 @@ function generateTable(state = initialState, { type, payload, error }) {
     case GET_PLANETS_SUCCESS:
       return {
         ...state,
-        data: payload.results,
+        data,
         loading: false,
       };
     case GET_PLANETS_FAILURE:

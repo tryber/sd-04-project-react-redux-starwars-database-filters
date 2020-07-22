@@ -9,74 +9,59 @@ export class Table extends Component {
     getData('planets');
   }
 
-  tableHeader = () => (
+  tableHeader = data => (
     <tr>
-      <th>name</th>
-      <th>rotation_period</th>
-      <th>orbital_period</th>
-      <th>diameter</th>
-      <th>climate</th>
-      <th>gravity</th>
-      <th>terrain</th>
-      <th>surface_water</th>
-      <th>population</th>
-      <th>films</th>
-      <th>created</th>
-      <th>edited</th>
-      <th>url</th>
+      {Object.keys(data).map((attr, i) => <th key={i}>{attr}</th>)}
     </tr>
   );
 
-  renderTable = () => {
-    const { data } = this.props;
-    return data.map((planet, i) => (
-      <tr key={i}>
-        <td>{planet.name}</td>
-        <td>{planet.rotation_period}</td>
-        <td>{planet.orbital_period}</td>
-        <td>{planet.diameter}</td>
-        <td>{planet.climate}</td>
-        <td>{planet.gravity}</td>
-        <td>{planet.terrain}</td>
-        <td>{planet.surface_water}</td>
-        <td>{planet.population}</td>
-        <td>{planet.films}</td>
-        <td>{planet.created}</td>
-        <td>{planet.edited}</td>
-        <td>{planet.url}</td>
-      </tr>
-    ));
-  };
+  renderTable = data => data.map((planet, i) => (
+    <tr key={i}>
+      {Object.values(planet).map((attr, y) => <td key={y}>{attr}</td>)}
+    </tr>
+  ));
 
   render() {
-    const { error, loading } = this.props;
-    if (error) {
-      return <div>{error.message}</div>;
+    const { error, loading, data: { results } } = this.props;
+    if (results) {
+      return (
+        <div>
+          <h1>StarWars Datatable Filters</h1>
+          <table>
+            <thead>{this.tableHeader(results[0])}</thead>
+            <tbody>{this.renderTable(results)}</tbody>
+          </table>
+        </div>
+      );
     }
     if (loading) {
       return <div>Loading...</div>;
     }
-    return (
-      <div>
-        <h1>StarWars Datatable Filters</h1>
-        <table>
-          {this.tableHeader()}
-          {this.renderTable()}
-        </table>
-      </div>
-    );
+    if (error) {
+      return <div>{error.message}</div>;
+    }
+    return <div>Something went terribly wrong</div>;
   }
 }
 
 Table.propTypes = {
   data: PropTypes.shape({
-    map: PropTypes.func,
+    results: PropTypes.shape({
+      map: PropTypes.func,
+    }),
   }),
   error: PropTypes.shape({
     message: PropTypes.string,
   }),
   getData: PropTypes.func,
   loading: PropTypes.bool,
+};
+
+Table.defaultProps = {
+  getData: () => console.log('Should be a function'),
+  data: {
+    results: null,
+  },
 };
 
 const mapDispatchToProps = dispatch => ({

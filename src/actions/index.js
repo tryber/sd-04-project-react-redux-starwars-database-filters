@@ -8,14 +8,14 @@ export const getPlanetsRequest = () => ({
   type: GET_PLANETS_REQUEST,
 });
 
-export const getPlanetsSuccess = results => ({
+export const getPlanetsSuccess = data => ({
   type: GET_PLANETS_SUCCESS,
-  payload: results,
+  data,
 });
 
 export const getPlanetsFailure = error => ({
   type: GET_PLANETS_FAILURE,
-  payload: error,
+  error,
 });
 
 const getAPIData = endpoint => dispatch => {
