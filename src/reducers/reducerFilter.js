@@ -1,4 +1,4 @@
-import { FILTERED_NAME, FILTERED_VALUES, DELETE_FILTER } from '../actions/types';
+import { FILTERED_NAME, FILTERED_VALUES, DELETE_FILTER, FILTERED_ORDER } from '../actions/types';
 
 const selectOptions = [
   'population',
@@ -12,7 +12,10 @@ const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
   options: selectOptions,
-  filterOrder: {},
+  order: {
+    column: 'name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -38,6 +41,11 @@ const filters = (state = INITIAL_STATE, action) => {
           ({ column }) => column !== action.column,
         ),
         options: [...state.options, action.column],
+      };
+    case FILTERED_ORDER:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;

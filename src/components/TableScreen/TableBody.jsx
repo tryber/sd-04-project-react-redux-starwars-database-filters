@@ -20,8 +20,6 @@ const TableBody = ({ planets, filterByName, filterNumeric }) => {
 
   let filteredPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
 
-  console.log('planetas em ordem', filteredPlanets);
-
   filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filterByName));
 
   if (filterNumeric.length > 0) {
@@ -38,9 +36,10 @@ const TableBody = ({ planets, filterByName, filterNumeric }) => {
     <tbody>
       {filteredPlanets.map((planet) => (
         <tr key={planet.name}>
-          {objKeys.map((key) => (
-            <td key={key}>{planet[key]}</td>
-          ))}
+          {objKeys.map((key) => {
+            console.log(planet['residents']);
+            return <td key={key}>{planet[key]}</td>;
+          })}
         </tr>
       ))}
 
