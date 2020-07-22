@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { filterByNumber } from '../actions/filters';
 
-const NumberFilters = () => (
+const NumberFilters = ({ filterByNumberProps }) => (
   <form
     onSubmit={(e) => {
       e.preventDefault();
-      console.log(e.target);
+      const inputValues = e.target.children;
+      filterByNumberProps({
+        columns: inputValues[0].value,
+        comparison: inputValues[1].value,
+        value: inputValues[2].value,
+      });
     }}
   >
     <select data-testid="column-filter">
@@ -16,13 +23,21 @@ const NumberFilters = () => (
       <option value="surface_water">Surface water</option>
     </select>
     <select data-testid="comparison-filter">
-      <option value=">">More than</option>
-      <option value="<">Less than</option>
-      <option value="=">Equal to</option>
+      <option value="maior que">More than</option>
+      <option value="menor que">Less than</option>
+      <option value="igual a">Equal to</option>
     </select>
     <input data-testid="value-filter" type="number" />
     <button data-testid="button-filter" type="submit">Apply filters</button>
   </form>
 );
 
-export default connect()(NumberFilters);
+const mapDispatchToProps = (dispatch) => ({
+  filterByNumberProps: (e) => dispatch(filterByNumber(e)),
+});
+
+export default connect(null, mapDispatchToProps)(NumberFilters);
+
+NumberFilters.propTypes = {
+  filterByNumberProps: PropTypes.func.isRequired,
+};
