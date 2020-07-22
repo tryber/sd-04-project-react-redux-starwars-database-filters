@@ -44,8 +44,7 @@ const filters = (state = INITIAL_STATE, action) => {
       };
     case FILTERED_ORDER:
       return {
-        ...state,
-        order: { column: action.column, sort: action.sort },
+        ...state, order: { column: action.column, sort: action.sort },
       };
     default:
       return state;

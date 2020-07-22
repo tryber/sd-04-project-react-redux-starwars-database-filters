@@ -37,7 +37,6 @@ const TableBody = ({ planets, filterByName, filterNumeric }) => {
       {filteredPlanets.map((planet) => (
         <tr key={planet.name}>
           {objKeys.map((key) => {
-            console.log(planet['residents']);
             return <td key={key}>{planet[key]}</td>;
           })}
         </tr>
