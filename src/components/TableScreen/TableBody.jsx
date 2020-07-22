@@ -15,16 +15,16 @@ const compareFilters = (planets, { column, comparison, value }) => {
   }
 };
 
-// const filterByOrder = ({ column, sort }, planets) => {
-//   switch (sort) {
-//     case 'ASC':
-//       return planets.sort((a, b) => a[column] - b[column]);
-//     case 'DESC':
-//       return planets.sort((a, b) => b[column] - a[column]);
-//     default:
-//       return null;
-//   }
-// };
+const filterByOrder = ({ column, sort }, planets) => {
+  switch (sort) {
+    case 'ASC':
+      return planets.sort((a, b) => a[column] - b[column]);
+    case 'DESC':
+      return planets.sort((a, b) => b[column] - a[column]);
+    default:
+      return null;
+  }
+};
 
 const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
   console.log('filtros por ordem: ', filterOrder);
@@ -41,7 +41,8 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
     );
   }
 
-  // const newPlanets = filterByOrder(filterOrder, filteredPlanets);
+  const newPlanets = filterByOrder(filterOrder, filteredPlanets);
+  console.log('order:',newPlanets);
 
   const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
 
