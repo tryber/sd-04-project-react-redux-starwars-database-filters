@@ -41,7 +41,7 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
     );
   }
 
-  const newPlanets = filterByOrder(filterOrder, filteredPlanets);
+  // const newPlanets = filterByOrder(filterOrder, filteredPlanets);
 
   const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
 
