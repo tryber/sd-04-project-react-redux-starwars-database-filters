@@ -1,8 +1,9 @@
 import React from 'react';
-import planetHeaders from '../../services/data';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { filterOrder } from '../../actions/filter';
+import planetHeaders from '../../services/data';
 
 class Order extends Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class Order extends Component {
   createSelectOrder() {
     return (
       <div>
-        <label htmlFor="sort">Sort the Planets</label>
         <select
           onChange={(event) => this.handleChange(event)}
           data-testid="column-sort"
@@ -48,6 +48,7 @@ class Order extends Component {
   render() {
     return (
       <form>
+        <h3>Filter by order</h3>
         {this.createSelectOrder()}
         <label htmlFor="ASC">ASC</label>
         <input
@@ -84,5 +85,10 @@ const mapDispatch = (dispatch) => ({
 const mapState = (state) => ({
   sort: state.filters.order.sort,
 });
+
+Order.propTypes = {
+  changeSort: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired,
+};
 
 export default connect(mapState, mapDispatch)(Order);

@@ -15,12 +15,23 @@ const compareFilters = (planets, { column, comparison, value }) => {
   }
 };
 
+const filterByOrder = (planets, { column, sort }) => {
+  switch (sort) {
+    case 'ASC':
+      return planets.sort((a, b) => a[column] - b[column]);
+    case 'DESC':
+      return planets.sort((a, b) => b[column].localeCompare(a[column]));
+    default:
+      return null;
+  }
+};
+
 const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
-  console.log(planets);
+  console.log('filtros por ordem: ', filterOrder);
 
-  let filteredPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
-
-  filteredPlanets = planets.filter((planet) => planet.name.toLowerCase().includes(filterByName));
+  let filteredPlanets = planets
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .filter((planet) => planet.name.toLowerCase().includes(filterByName));
 
   if (filterNumeric.length > 0) {
     filterNumeric.forEach(
@@ -28,11 +39,12 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
         (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
     );
   }
+  
+  filterByOrder(planets, filterOrder);
 
-  console.log('planetas filtrados por ultimo', filteredPlanets);
+  console.log('planetas filtrados:', filteredPlanets);
+
   const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
-
-  console.log('filtros por ordem: ', filterOrder);
 
   return (
     <tbody>

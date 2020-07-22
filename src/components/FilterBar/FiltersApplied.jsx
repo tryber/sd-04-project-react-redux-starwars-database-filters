@@ -5,7 +5,7 @@ import { deleteFilter } from '../../actions/filter';
 
 const FiltersApplied = ({ filters, removeFilter }) => (
   <div className="filters-applied">
-    {filters.length > 0 ? <h4>Filters applied</h4> : null}
+    {filters.length > 0 ? <h3>Filters applied</h3> : null}
     {filters.map((filter) => (
       <div data-testid="filter" className="filters-card" key={filter.column}>
         <p>{filter.column}</p>

@@ -37,6 +37,7 @@ class NumericSearch extends Component {
     const optionsExists = option.length <= 0;
     return (
       <form>
+        <h3>Filter by numeric values</h3>
         <CreateSelectColumn options={option} onChange={this.handleChange} value={column} />
         <CreateSelectComparison onChange={this.handleChange} value={comparison} />
         <CreateInputValue onChange={this.handleChange} value={value} />
