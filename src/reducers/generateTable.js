@@ -7,7 +7,7 @@ import {
 const initialState = {
   data: {},
   error: null,
-  loading: false,
+  loading: true,
 };
 
 function generateTable(state = initialState, { type, error, data }) {
