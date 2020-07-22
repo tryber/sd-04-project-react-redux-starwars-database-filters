@@ -39,7 +39,7 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
         (filteredPlanets = filteredPlanets.filter((planet) => compareFilters(planet, filter))),
     );
   }
-  
+
   filterByOrder(planets, filterOrder);
 
   console.log('planetas filtrados:', filteredPlanets);
@@ -91,6 +91,7 @@ TableBody.propTypes = {
   filterByName: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterOrder: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TableBody);

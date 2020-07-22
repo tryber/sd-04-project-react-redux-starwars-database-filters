@@ -46,6 +46,7 @@ class Order extends Component {
   }
 
   render() {
+    console.log(this.props.sort);
     return (
       <form>
         <h3>Filter by order</h3>
@@ -82,13 +83,8 @@ const mapDispatch = (dispatch) => ({
   changeSort: (column, sort) => dispatch(filterOrder(column, sort)),
 });
 
-const mapState = (state) => ({
-  sort: state.filters.order.sort,
-});
-
 Order.propTypes = {
   changeSort: PropTypes.func.isRequired,
-  sort: PropTypes.string.isRequired,
 };
 
-export default connect(mapState, mapDispatch)(Order);
+export default connect(null, mapDispatch)(Order);
