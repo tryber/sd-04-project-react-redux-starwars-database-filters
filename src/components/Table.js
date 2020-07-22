@@ -22,7 +22,9 @@ const filterPlanetByName = (planets, teste = '') => planets.filter((planet) => p
   planets.filter((planet) => comparison(planet, filtro));
 }; */
 
-const Table = ({ data, isFetching, name, filterByNumericValues }) => {
+const Table = ({
+  data, isFetching, name, filterByNumericValues,
+}) => {
   let planets = [...data];
   console.log('Planets: ', planets);
   console.log('state filterNumeric', filterByNumericValues);
@@ -57,6 +59,7 @@ const Table = ({ data, isFetching, name, filterByNumericValues }) => {
 
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
 };
