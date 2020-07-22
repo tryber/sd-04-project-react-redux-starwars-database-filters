@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Table from './components/Table';
 import SearchBar from './components/SearchBar';
 import { fetchPlanets } from './actions';
-import './App.css';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   componentDidMount() {
@@ -14,11 +14,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <header className="header">
+      <div>
+        <header>
           <SearchBar />
-          <Table />
+          <Filter />
         </header>
+        <section>
+          <Table />
+        </section>
       </div>
     );
   }

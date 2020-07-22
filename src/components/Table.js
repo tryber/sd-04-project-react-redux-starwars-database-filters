@@ -3,20 +3,47 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 
-const filterPlanetByName = (planets, name = '') => planets.filter((planet) => planet.name.includes(name));
+const comparison = (planet, { column, comparison, value }) => {
+  switch (comparison) {
+    case 'maior que':
+      return Number(planet[column]) > Number(value);
+    case 'menor que':
+      return Number(planet[column]) < Number(value);
+    case 'igual a':
+      return Number(planet[column]) === Number(value);
+    default:
+      return false;
+  }
+};
 
-const Table = ({ data, isFetching, name }) => {
-  console.log('Data da API: ', data);
-  console.log('Fetch: ', isFetching);
-  let filteredPlanets = data;
-  filteredPlanets = filterPlanetByName(data, name);
-  console.log('filtered planets', filteredPlanets);
+const filterPlanetByName = (planets, teste = '') => planets.filter((planet) => planet.name.includes(teste));
+
+/* const filterPlanetByNumericValue = (planets, filtro) => {
+  planets.filter((planet) => comparison(planet, filtro));
+}; */
+
+const Table = ({ data, isFetching, name, filterByNumericValues }) => {
+  let planets = [...data];
+  console.log('Planets: ', planets);
+  console.log('state filterNumeric', filterByNumericValues);
+
+  if (filterByNumericValues.length > 0) {
+    console.log('filtro antes da func', filterByNumericValues[0]);
+    filterByNumericValues.forEach((filter) => {
+      planets = planets.filter((planet) => comparison(planet, filter));
+    });
+    console.log('filtered planets: ', planets);
+  }
+
+  if (name !== '') planets = filterPlanetByName(planets, name);
+
   if (isFetching) return <p>Loading...</p>;
+
   return (
     <table className="table table-bordered table-dark">
       <TableHeader heads={Object.keys(data[0])} />
       <tbody>
-        {filteredPlanets.map((planet) => (
+        {planets.map((planet) => (
           <tr key={planet.name}>
             {Object.values(planet).map((item) => (
               <td key={item}>{item}</td>
@@ -38,6 +65,7 @@ const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   isFetching: state.planetsReducer.isFetching,
   name: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, null)(Table);
