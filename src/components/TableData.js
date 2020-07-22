@@ -31,7 +31,7 @@ export default class TableData extends Component {
 }
 
 TableData.propTypes = {
-  results: PropTypes.array,
+  results: PropTypes.shape,
 };
 
 TableData.defaultProps = {

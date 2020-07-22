@@ -17,7 +17,9 @@ export class Table extends Component {
     let { data: { results } } = this.props;
     if (results) {
       if (planetName !== '') {
-        results = results.filter(planet => planet.name.toUpperCase().includes(planetName.toUpperCase()));
+        results = results.filter(
+          planet => planet.name.toUpperCase().includes(planetName.toUpperCase()),
+        );
       }
       return (
         <div>
