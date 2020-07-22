@@ -7,22 +7,6 @@ table, th, td {
   font-size: 9pt;
 }
 
-thead {
-  color: black;
-}
-
-.t01 tr:nth-child(even) {
-  background-color: lightgrey;
-}
-
-.t01 tr:nth-child(odd) {
-  background-color: #fff;
-}
-
-th, td {
-  padding: 2px;
-}
-
 .header-content {
   align-items: center;
   display: flex;
@@ -34,9 +18,4 @@ th, td {
   display: flex;
   justify-content: space-evenly;
   font-size: small;
-}
-
-.filters-card {
-  border: black 1px solid;  
-  border-radius: 5px;
 }
