@@ -51,7 +51,7 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
 
   return (
     <tbody>
-      {newPlanets.map((planet) => (
+      {filteredPlanets.map((planet) => (
         <tr key={planet.name}>
           {objKeys.map((key) => (
             <td key={key}>{planet[key]}</td>
