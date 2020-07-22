@@ -6,7 +6,7 @@ import Order from './Order';
 
 const FilterBar = () => (
   <header className="header-content">
-    <h3>Filter Planets</h3>
+    <h3>Filter Star Wars Planets</h3>
     <NameSearch />
     <NumericSearch />
     <FiltersApplied />

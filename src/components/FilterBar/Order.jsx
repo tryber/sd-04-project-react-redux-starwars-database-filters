@@ -45,6 +45,19 @@ class Order extends Component {
     this.setState({ column: '', sort: '' });
   }
 
+  createButon() {
+    return (
+      <button
+        className="btn-small btn-dark"
+        onClick={() => this.handleSubmit()}
+        data-testid="column-sort-button"
+        type="button"
+      >
+        Filter
+      </button>
+    );
+  }
+
   render() {
     return (
       <form>
@@ -70,14 +83,7 @@ class Order extends Component {
           data-testid="column-sort-input"
         />
 
-        <button
-          className="btn-small btn-dark"
-          onClick={() => this.handleSubmit()}
-          data-testid="column-sort-button"
-          type="button"
-        >
-          Filter
-        </button>
+        {this.createButon()}
       </form>
     );
   }
