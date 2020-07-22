@@ -15,7 +15,7 @@ const filters = (state = INITIAL_FILTERS, action) => {
       console.log(action.filter);
       return {
         ...state,
-        filterByNumericValues: [action.filter],
+        filterByNumericValues: action.filter,
       };
     default:
       return state;
