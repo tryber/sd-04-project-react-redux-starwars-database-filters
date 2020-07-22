@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
   options: selectOptions,
   order: {
-    column: 'name',
+    column: 'Name',
     sort: 'ASC',
   },
 };

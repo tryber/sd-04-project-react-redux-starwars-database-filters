@@ -2,6 +2,7 @@ import React from 'react';
 import NameSearch from './NameSearch';
 import NumericSearch from './NumericSearch';
 import FiltersApplied from './FiltersApplied';
+import Order from './Order';
 
 const FilterBar = () => (
   <header className="header-content">
@@ -9,6 +10,7 @@ const FilterBar = () => (
     <NameSearch />
     <NumericSearch />
     <FiltersApplied />
+    <Order />
   </header>
 );
 

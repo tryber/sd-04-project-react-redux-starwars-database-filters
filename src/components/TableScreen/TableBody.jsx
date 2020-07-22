@@ -15,7 +15,7 @@ const compareFilters = (planets, { column, comparison, value }) => {
   }
 };
 
-const TableBody = ({ planets, filterByName, filterNumeric }) => {
+const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
   console.log(planets);
 
   let filteredPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
@@ -32,13 +32,15 @@ const TableBody = ({ planets, filterByName, filterNumeric }) => {
   console.log('planetas filtrados por ultimo', filteredPlanets);
   const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
 
+  console.log('filtros por ordem: ', filterOrder);
+
   return (
     <tbody>
       {filteredPlanets.map((planet) => (
         <tr key={planet.name}>
-          {objKeys.map((key) => {
-            return <td key={key}>{planet[key]}</td>;
-          })}
+          {objKeys.map((key) => (
+            <td key={key}>{planet[key]}</td>
+          ))}
         </tr>
       ))}
 
@@ -70,6 +72,7 @@ const mapStateToProps = (state) => ({
   planets: state.reducerAPI.data,
   filterByName: state.filters.filterByName.name,
   filterNumeric: state.filters.filterByNumericValues,
+  filterOrder: state.filters.order,
 });
 
 TableBody.propTypes = {
