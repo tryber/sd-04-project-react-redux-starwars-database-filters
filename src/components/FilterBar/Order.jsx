@@ -46,7 +46,6 @@ class Order extends Component {
   }
 
   render() {
-    console.log(this.props.sort);
     return (
       <form>
         <h3>Filter by order</h3>
