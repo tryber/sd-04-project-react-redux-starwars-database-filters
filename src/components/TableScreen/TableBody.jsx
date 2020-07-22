@@ -44,7 +44,10 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
   filterByOrder(filterOrder, filteredPlanets);
   // console.log('order:', newPlanets);
 
-  const objKeys = filteredPlanets.length > 0 ? Object.keys(filteredPlanets[0]) : null;
+  const objKeys =
+    filteredPlanets.length > 0
+      ? Object.keys(filteredPlanets[0]).filter((header) => header !== 'residents')
+      : null;
 
   return (
     <tbody>

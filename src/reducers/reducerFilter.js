@@ -1,6 +1,7 @@
 import { FILTERED_NAME, FILTERED_VALUES, DELETE_FILTER, FILTERED_ORDER } from '../actions/types';
 
 const selectOptions = [
+  'name',
   'population',
   'orbital_period',
   'diameter',
@@ -13,7 +14,7 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
   options: selectOptions,
   order: {
-    column: 'Name',
+    column: 'N  ame',
     sort: 'ASC',
   },
 };
@@ -44,7 +45,8 @@ const filters = (state = INITIAL_STATE, action) => {
       };
     case FILTERED_ORDER:
       return {
-        ...state, order: { column: action.column, sort: action.sort },
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
