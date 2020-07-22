@@ -10,7 +10,7 @@ class Table extends Component {
     const { loading } = this.props;
     if (loading) return <Loading />;
     return (
-      <table className="t01">
+      <table className="table table-striped table-dark">
         <TableHeader />
         <TableBody />
       </table>

@@ -36,13 +36,14 @@ class NumericSearch extends Component {
     const { option } = this.props;
     const optionsExists = option.length <= 0;
     return (
-      <form>
+      <form className="form-group">
         <h3>Filter by numeric values</h3>
         <CreateSelectColumn options={option} onChange={this.handleChange} value={column} />
         <CreateSelectComparison onChange={this.handleChange} value={comparison} />
         <CreateInputValue onChange={this.handleChange} value={value} />
 
         <button
+          className="btn-small btn-dark"
           disabled={optionsExists}
           onClick={() => this.handleSubmit()}
           data-testid="button-filter"

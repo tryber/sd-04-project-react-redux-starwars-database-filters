@@ -70,7 +70,12 @@ class Order extends Component {
           data-testid="column-sort-input"
         />
 
-        <button onClick={() => this.handleSubmit()} data-testid="column-sort-button" type="button">
+        <button
+          className="btn-small btn-dark"
+          onClick={() => this.handleSubmit()}
+          data-testid="column-sort-button"
+          type="button"
+        >
           Filter
         </button>
       </form>
