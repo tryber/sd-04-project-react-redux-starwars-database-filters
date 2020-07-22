@@ -21,8 +21,8 @@ class Order extends Component {
         <select
           onChange={(event) => this.handleChange(event)}
           data-testid="column-sort"
-          name="sort"
-          id="sort"
+          name="column"
+          id="column"
         >
           <option value="">Choose the column</option>
           {planetHeaders.map((header) => (
@@ -54,7 +54,7 @@ class Order extends Component {
         <input
           value="ASC"
           onChange={(event) => this.handleChange(event)}
-          name="column"
+          name="sort"
           id="ASC"
           type="radio"
           data-testid="column-sort-input"
@@ -64,7 +64,7 @@ class Order extends Component {
         <input
           value="DESC"
           onChange={(event) => this.handleChange(event)}
-          name="column"
+          name="sort"
           id="DESC"
           type="radio"
           data-testid="column-sort-input"

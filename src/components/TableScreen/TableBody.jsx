@@ -15,12 +15,12 @@ const compareFilters = (planets, { column, comparison, value }) => {
   }
 };
 
-const filterByOrder = (planets, { column, sort }) => {
+const filterByOrder = ({ column, sort }, planets) => {
   switch (sort) {
     case 'ASC':
       return planets.sort((a, b) => a[column] - b[column]);
     case 'DESC':
-      return planets.sort((a, b) => b[column].localeCompare(a[column]));
+      return planets.sort((a, b) => b[column] - a[column]);
     default:
       return null;
   }
@@ -28,6 +28,7 @@ const filterByOrder = (planets, { column, sort }) => {
 
 const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
   console.log('filtros por ordem: ', filterOrder);
+  console.log(planets[0]);
 
   let filteredPlanets = planets
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -40,7 +41,9 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
     );
   }
 
-  filterByOrder(planets, filterOrder);
+  const newPlanets = filterByOrder(filterOrder, planets);
+
+  console.log('new planets:', newPlanets);
 
   console.log('planetas filtrados:', filteredPlanets);
 
@@ -48,7 +51,7 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
 
   return (
     <tbody>
-      {filteredPlanets.map((planet) => (
+      {newPlanets.map((planet) => (
         <tr key={planet.name}>
           {objKeys.map((key) => (
             <td key={key}>{planet[key]}</td>
