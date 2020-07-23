@@ -4,30 +4,28 @@ import { connect } from 'react-redux';
 import Tabelas from './Tabelas';
 
 function Table({ isLoading, data, searchBar, filtros }) {
-  const allFilters = (filtro) => {
-    const planets = data.filter((elem) => elem.name.includes(searchBar));
-    if (filtro.length !== 0) {
-      return filtro.reduce(
-        (acc, index) => {
-          switch (index.comparison) {
-            case 'maior que':
-              return planets.filter((elem) => Number(elem[index.column]) > Number(index.value));
-            case 'menor que':
-              return planets.filter((elem) => Number(elem[index.column]) < Number(index.value));
-            case 'igual a':
-              return planets.filter((elem) => Number(elem[index.column]) === Number(index.value));
-            default:
-              return planets;
-          }
-        },
-        [planets],
-      );
-    }
-    return planets;
+  const allFilters = () => {
+    const planets = data.filter((planet) => planet.name.includes(searchBar));
+    if (filtros.length === 0) return planets;
+    return filtros.reduce((acc, filtro) => {
+      const { column, comparison, value } = filtro;
+      return acc.filter((planet) => {
+        switch (comparison) {
+          case 'maior que':
+            return Number(planet[column]) > Number(value);
+          case 'menor que':
+            return Number(planet[column]) < Number(value);
+          case 'igual a':
+            return Number(planet[column]) === Number(value);
+          default:
+            return false;
+        }
+      });
+    }, planets);
   };
 
   if (isLoading) return <span>L O A D I N G . . . .</span>;
-  const planetsFiltred = allFilters(filtros);
+  const planetsFiltred = allFilters();
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
     <div>
