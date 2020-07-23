@@ -3,31 +3,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import linha from './TableBody';
 
+const handleTabela = (filterValues, data, filterByName) => {
+  const filtrado = data.filter((elem) => elem.name.includes(filterByName));
+  if (filterValues.length !== 0) {
+    switch (filterValues[0].comparison) {
+      case 'maior que':
+        return filtrado.filter((elem) => elem[filterValues[0].column] > filterValues[0].value);
+      case 'menor que':
+        return filtrado.filter((elem) => elem[filterValues[0].column] < filterValues[0].value);
+      case 'igual a':
+        return filtrado.filter((elem) => elem[filterValues[0].column] === filterValues[0].value);
+      default:
+        return filtrado;
+    }
+  }
+  return filtrado;
+}
 class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: '',
     };
-    this.handleTabela = this.handleTabela.bind(this);
+    // this.handleTabela = this.handleTabela.bind(this);
   }
 
-  handleTabela(filterValues, data, filterByName) {
-    const filtrado = data.filter((elem) => elem.name.includes(filterByName));
-    if (filterValues.length !== 0) {
-      switch (filterValues[0].comparison) {
-        case 'maior que':
-          return filtrado.filter((elem) => elem[filterValues[0].column] > filterValues[0].value);
-        case 'menor que':
-          return filtrado.filter((elem) => elem[filterValues[0].column] < filterValues[0].value);
-        case 'igual a':
-          return filtrado.filter((elem) => elem[filterValues[0].column] === filterValues[0].value);
-        default:
-          return filtrado;
-      }
-    }
-    return filtrado;
-  }
 
   render() {
     const { data, isLoading, filterByName, filterValues } = this.props;
@@ -42,7 +42,7 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.handleTabela(filterValues, data, filterByName).map((item) => linha(item))}
+          {handleTabela(filterValues, data, filterByName).map((item) => linha(item))}
         </tbody>
       </table>
     );
