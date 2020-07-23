@@ -60,9 +60,9 @@ class SearchBar extends React.Component {
             {comp.map((e) => <option value={e}>{e}</option>)}
           </select>
           <label htmlFor="numero">Digite o numero desejado:
-            <input name="numero" type="number"
-              value={numero}
-              onChange={this.handleNumero} data-testid="value-filter"
+            <input name="numero"
+              type="number"
+              value={numero} onChange={this.handleNumero} data-testid="value-filter"
             />
           </label>
           <button type="button" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise
