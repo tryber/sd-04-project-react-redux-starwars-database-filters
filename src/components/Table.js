@@ -4,20 +4,20 @@ import { connect } from 'react-redux';
 import linha from './TableBody';
 
 const handleTabela = (fValues, data, filterByName) => {
-  const filtrado = data.filter((elem) => elem.name.includes(filterByName));
+  const fil = data.filter((elem) => elem.name.includes(filterByName));
   if (fValues.length !== 0) {
     switch (fValues[0].comparison) {
       case 'maior que':
-        return filtrado.filter((elem) => Number(elem[fValues[0].column]) > Number(fValues[0].value));
+        return fil.filter((elem) => Number(elem[fValues[0].column]) > Number(fValues[0].value));
       case 'menor que':
-        return filtrado.filter((elem) => Number(elem[fValues[0].column]) < Number(fValues[0].value));
+        return fil.filter((elem) => Number(elem[fValues[0].column]) < Number(fValues[0].value));
       case 'igual a':
-        return filtrado.filter((elem) => Number(elem[fValues[0].column]) === Number(fValues[0].value));
+        return fil.filter((elem) => Number(elem[fValues[0].column]) === Number(fValues[0].value));
       default:
-        return filtrado;
+        return fil;
     }
   }
-  return filtrado;
+  return fil;
 };
 
 class Table extends React.Component {
