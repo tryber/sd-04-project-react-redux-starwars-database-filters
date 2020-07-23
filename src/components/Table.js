@@ -8,11 +8,11 @@ const handleTabela = (filterValues, data, filterByName) => {
   if (filterValues.length !== 0) {
     switch (filterValues[0].comparison) {
       case 'maior que':
-        return filtrado.filter((elem) => elem[filterValues[0].column] > filterValues[0].value);
+        return filtrado.filter((elem) => Number(elem[filterValues[0].column]) > Number(filterValues[0].value));
       case 'menor que':
-        return filtrado.filter((elem) => elem[filterValues[0].column] < filterValues[0].value);
+        return filtrado.filter((elem) => Number(elem[filterValues[0].column]) < Number(filterValues[0].value));
       case 'igual a':
-        return filtrado.filter((elem) => elem[filterValues[0].column] === filterValues[0].value);
+        return filtrado.filter((elem) => Number(elem[filterValues[0].column]) === Number(filterValues[0].value));
       default:
         return filtrado;
     }
