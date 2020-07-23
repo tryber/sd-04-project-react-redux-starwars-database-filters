@@ -3,16 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import linha from './TableBody';
 
-const handleTabela = (filterValues, data, filterByName) => {
+const handleTabela = (fValues, data, filterByName) => {
   const filtrado = data.filter((elem) => elem.name.includes(filterByName));
-  if (filterValues.length !== 0) {
-    switch (filterValues[0].comparison) {
+  if (fValues.length !== 0) {
+    switch (fValues[0].comparison) {
       case 'maior que':
-        return filtrado.filter((elem) => Number(elem[filterValues[0].column]) > Number(filterValues[0].value));
+        return filtrado.filter((elem) => Number(elem[fValues[0].column]) > Number(fValues[0].value));
       case 'menor que':
-        return filtrado.filter((elem) => Number(elem[filterValues[0].column]) < Number(filterValues[0].value));
+        return filtrado.filter((elem) => Number(elem[fValues[0].column]) < Number(fValues[0].value));
       case 'igual a':
-        return filtrado.filter((elem) => Number(elem[filterValues[0].column]) === Number(filterValues[0].value));
+        return filtrado.filter((elem) => Number(elem[fValues[0].column]) === Number(fValues[0].value));
       default:
         return filtrado;
     }
@@ -31,7 +31,7 @@ class Table extends React.Component {
 
 
   render() {
-    const { data, isLoading, filterByName, filterValues } = this.props;
+    const { data, isLoading, filterByName, fValues } = this.props;
     if (isLoading) return <span>Loading...</span>;
     const planetas = data[0];
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
@@ -43,7 +43,7 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {handleTabela(filterValues, data, filterByName).map((item) => linha(item))}
+          {handleTabela(fValues, data, filterByName).map((item) => linha(item))}
         </tbody>
       </table>
     );
@@ -56,7 +56,7 @@ Table.propTypes = {
     map: PropTypes.func,
   }).isRequired,
   filterByName: PropTypes.bool.isRequired,
-  filterValues: PropTypes.func.isRequired,
+  fValues: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => ({
   data: state.reducer.data,
   isLoading: state.reducer.isLoading,
   filterByName: state.filters.filterByName.name,
-  filterValues: state.filters.filterByNumericValues,
+  fValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Table);
