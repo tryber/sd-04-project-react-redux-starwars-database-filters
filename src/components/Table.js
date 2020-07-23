@@ -12,7 +12,7 @@ class Table extends React.Component {
     this.handleTabela = this.handleTabela.bind(this);
   }
 
-  handleTabela = (filterValues, data, filterByName) => {
+  handleTabela(filterValues, data, filterByName) {
     const filtrado = data.filter((elem) => elem.name.includes(filterByName));
     if (filterValues.length !== 0) {
       switch (filterValues[0].comparison) {
