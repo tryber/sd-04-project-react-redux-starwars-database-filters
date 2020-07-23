@@ -11,7 +11,7 @@ export const VALOR_NUMERICO = 'VALOR_NUMERICO';
 // }
 
 export function valorNumerico(coluna, comparacao, numero) {
-  return { type: VALOR_NUMERICO, coluna, comparacao, numero }
+  return { type: VALOR_NUMERICO, coluna, comparacao, numero };
 }
 
 export function inputName(event) {

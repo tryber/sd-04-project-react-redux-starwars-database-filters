@@ -41,9 +41,9 @@ export const filters = (state = INITIAL_STATE, action) => {
             column: action.coluna,
             comparison: action.comparacao,
             value: action.numero,
-          }
-        ]
-      }
+          },
+        ],
+      };
     // case 'maior':
     //   return {
     //     ...state,
