@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import getAPIData, { filterByName } from '../actions';
+import getAPIData from '../actions';
 import TableData from './TableData';
+import { TableHeader } from './TableHeader';
 
 export class Table extends Component {
   componentDidMount() {
@@ -10,27 +11,34 @@ export class Table extends Component {
     getData('planets');
   }
 
+  applyNameFilter = (planetName, results) => {
+    if (planetName !== '') {
+      results = results.filter(
+        planet => planet.name.toUpperCase().includes(planetName.toUpperCase()),
+      );
+    }
+    return results;
+  }
+
+  applyNumFilter = (planetName, results) => {
+    if (planetName !== '') {
+      results = results.filter(
+        planet => planet.name.toUpperCase().includes(planetName.toUpperCase()),
+      );
+    }
+    return results;
+  }
+
   render() {
     const {
-      error, loading, nameFilter, planetName,
+      error, loading, planetName, data: { results },
     } = this.props;
-    let { data: { results } } = this.props;
     if (results) {
-      if (planetName !== '') {
-        results = results.filter(
-          planet => planet.name.toUpperCase().includes(planetName.toUpperCase()),
-        );
-      }
+      const filteredResults = this.applyNameFilter(planetName, results);
       return (
         <div>
-          <h1>StarWars Datatable Filters</h1>
-          <input
-            type="text"
-            value={planetName}
-            data-testid="name-filter"
-            onChange={e => nameFilter(e.target.value)}
-          />
-          <TableData results={results} />
+          <TableHeader />
+          <TableData results={filteredResults} />
         </div>
       );
     }
@@ -53,20 +61,11 @@ Table.propTypes = {
   }),
   getData: PropTypes.func,
   loading: PropTypes.bool,
-  nameFilter: PropTypes.func,
   planetName: PropTypes.string,
-};
-
-Table.defaultProps = {
-  getData: () => console.log('Should be a function'),
-  data: {
-    results: null,
-  },
 };
 
 const mapDispatchToProps = dispatch => ({
   getData: endpoint => dispatch(getAPIData(endpoint)),
-  nameFilter: event => dispatch(filterByName(event)),
 });
 
 const mapStateToProps = state => ({
@@ -74,6 +73,9 @@ const mapStateToProps = state => ({
   error: state.generateTable.error,
   loading: state.generateTable.loading,
   planetName: state.filters.filterByName.name,
+  numComparison: state.filters.filterByNumericValues.comparison,
+  numColumn: state.filters.filterByNumericValues.column,
+  numValue: state.filters.filterByNumericValues.value,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

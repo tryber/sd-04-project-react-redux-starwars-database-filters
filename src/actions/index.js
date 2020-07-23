@@ -5,6 +5,7 @@ export const GET_PLANETS_SUCCESS = 'GET_PLANETS_SUCCESS';
 export const GET_PLANETS_FAILURE = 'GET_PLANETS_FAILURE';
 
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+export const FILTER_BY_NUM_VAL = 'FILTER_BY_NUM_VAL';
 
 export const getPlanetsRequest = () => ({
   type: GET_PLANETS_REQUEST,
@@ -32,4 +33,11 @@ export default getAPIData;
 export const filterByName = name => ({
   type: FILTER_BY_NAME,
   name,
+});
+
+export const filterByNumVal = (column, comparison, value) => ({
+  type: FILTER_BY_NUM_VAL,
+  column,
+  comparison,
+  value,
 });
