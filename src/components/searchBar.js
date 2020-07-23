@@ -59,12 +59,13 @@ class SearchBar extends React.Component {
           <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
             {comp.map((e) => <option value={e}>{e}</option>)}
           </select>
-            <input
-              type="number" value={numero} 
-              onChange={this.handleN} data-testid="value-filter"
-            />
+          <input
+            type="number" value={numero}
+            onChange={this.handleN} data-testid="value-filter"
+          />
           <button
-            type="button" data-testid="button-filter" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise
+            type="button" data-testid="button-filter" onClick={() => valorNumerico1(coluna, comparacao, numero)}
+          >Pesquise
           </button>
         </form>
       </div>
