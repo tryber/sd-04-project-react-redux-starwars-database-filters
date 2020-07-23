@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './App.css';
+import Table from './components/TableScreen/Table';
+import FilterBar from './components/FilterBar/FilterBar';
+import MyFooter from './components/MyFooter';
+import requestFetch from './actions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    const { callAPI } = this.props;
+    callAPI();
+  }
+  render() {
+    return (
+      <div className="App">
+        <FilterBar />
+        <Table />
+        <MyFooter />
+      </div>
+    );
+  }
 }
+const mapDispatchToProps = (dispatch) => ({
+  callAPI: () => dispatch(requestFetch()),
+});
 
-export default App;
+App.propTypes = {
+  callAPI: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(App);
