@@ -38,9 +38,7 @@ class Table extends React.Component {
       <table>
         <thead>
           <tr>
-            {objPlanetas.map((planet) => (
-              <th>{planet}</th>
-            ))}
+            {objPlanetas.map((planet) => (<th>{planet}</th>))}
           </tr>
         </thead>
         <tbody>
@@ -54,11 +52,11 @@ class Table extends React.Component {
 Table.propTypes = {
   data: PropTypes.shape({
     filter: PropTypes.func,
-    map: PropTypes.func
+    map: PropTypes.func,
   }).isRequired,
   filterByName: PropTypes.bool.isRequired,
-  filterValues: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  filterValues: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

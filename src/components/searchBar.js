@@ -30,13 +30,13 @@ class SearchBar extends React.Component {
     })
   }
 
-  handleComparacao = (event) => {
+  handleComparacao(event) {
     this.setState({
       comparacao: event.target.value
     })
   }
 
-  handleNumero = (event) => {
+  handleNumero(event) {
     this.setState({
       numero: event.target.value
     })
@@ -44,6 +44,7 @@ class SearchBar extends React.Component {
 
   render() {
     const { inputName1, valorNumerico1, tratarData1, data } = this.props;
+    const { numero, comparacao, coluna } = this.state;
     return (
       <div>
         <form>
@@ -51,7 +52,7 @@ class SearchBar extends React.Component {
           <input type="text" name="inputTexto" data-testid="name-filter" onChange={inputName1} />
         </form>
         <form>
-          <select value={this.state.coluna} onChange={this.handleColuna} data-testid="column-filter">
+          <select value={coluna} onChange={this.handleColuna} data-testid="column-filter">
             <option selected value="">Escolha a coluna</option>
             <option value="population">Population</option>
             <option value="orbital_period">Orbital period</option>
@@ -59,19 +60,16 @@ class SearchBar extends React.Component {
             <option value="rotation_period">Rotation period</option>
             <option value="surface_water">Surface water</option>
           </select>
-          <select value={this.state.comparacao} onChange={this.handleComparacao} data-testid="comparison-filter">
+          <select value={comparacao} onChange={this.handleComparacao} data-testid="comparison-filter">
             <option selected value="">Escolha comparacao</option>
             <option value="maior">Maior que</option>
             <option value="menor">Menor que</option>
             <option value="igual">Igual a</option>
           </select>
           <label>Digite o numero desejado:
-            <input type="number" value={this.state.numero} onChange={this.handleNumero} data-testid="value-filter" />
+            <input type="number" value={numero} onChange={this.handleNumero} data-testid="value-filter" />
           </label>
-          <button type="button" onClick={() => valorNumerico1(this.state.coluna,
-            this.state.comparacao, this.state.numero)}
-          >Pesquise
-          </button>
+          <button type="button" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise</button>
         </form>
       </div>
     );
