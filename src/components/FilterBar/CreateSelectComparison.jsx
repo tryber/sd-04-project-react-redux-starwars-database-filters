@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CreateSelectComparison = ({ onChange, value }) => (
+const CreateSelectComparison = ({ handleChange, value }) => (
   <select
     value={value}
-    onChange={(e) => onChange(e)}
+    onChange={(e) => handleChange(e)}
     data-testid="comparison-filter"
     id="comparison"
   >
@@ -16,7 +16,7 @@ const CreateSelectComparison = ({ onChange, value }) => (
 );
 
 CreateSelectComparison.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 

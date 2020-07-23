@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CreateInputValue = ({ onChange, value }) => (
+const CreateInputValue = ({ handleChange, value }) => (
   <input
     style={{ width: '90px' }}
     value={value}
-    onChange={(e) => onChange(e)}
+    onChange={(e) => handleChange(e)}
     data-testid="value-filter"
     type="number"
     id="value"
@@ -13,7 +13,7 @@ const CreateInputValue = ({ onChange, value }) => (
 );
 
 CreateInputValue.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 

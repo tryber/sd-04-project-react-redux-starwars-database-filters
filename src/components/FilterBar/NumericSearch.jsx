@@ -41,11 +41,11 @@ class NumericSearch extends Component {
         <CreateSelectColumn
           filter={filterByNumericValues}
           options={option}
-          onChange={this.handleChange}
+          handleChange={this.handleChange}
           value={column}
         />
-        <CreateSelectComparison onChange={this.handleChange} value={comparison} />
-        <CreateInputValue onChange={this.handleChange} value={value} />
+        <CreateSelectComparison handleChange={this.handleChange} value={comparison} />
+        <CreateInputValue handleChange={this.handleChange} value={value} />
 
         <button
           className="btn-small btn-dark"
