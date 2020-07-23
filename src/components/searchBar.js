@@ -13,7 +13,7 @@ class SearchBar extends React.Component {
     };
     this.handleColuna = this.handleColuna.bind(this);
     this.handleCom = this.handleCom.bind(this);
-    this.handleNumero = this.handleNumero.bind(this);
+    this.handleN = this.handleN.bind(this);
     // this.handleRedux = this.handleRedux.bind(this);
   }
   // handleRedux = () => {
@@ -35,7 +35,7 @@ class SearchBar extends React.Component {
     });
   }
 
-  handleNumero(event) {
+  handleN(event) {
     this.setState({
       numero: event.target.value,
     });
@@ -59,13 +59,12 @@ class SearchBar extends React.Component {
           <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
             {comp.map((e) => <option value={e}>{e}</option>)}
           </select>
-          <label htmlFor="numero">Digite o numero desejado:
             <input
-              name="numero" type="number" value={numero} onChange={this.handleNumero} data-testid="value-filter"
+              type="number" value={numero} 
+              onChange={this.handleN} data-testid="value-filter"
             />
-          </label>
-          <button type="button" data-testid="button-filter"
-            onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise
+          <button
+            type="button" data-testid="button-filter" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise
           </button>
         </form>
       </div>
