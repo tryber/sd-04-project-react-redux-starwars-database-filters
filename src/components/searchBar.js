@@ -44,7 +44,8 @@ class SearchBar extends React.Component {
   render() {
     const { inputName1, valorNumerico1 } = this.props;
     const { numero, comparacao, coluna } = this.state;
-    const array = ["","population", "orbital_period", "diameter", "rotation_period", "surface_water" ]
+    const array = ['','population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water' ];
+    const comp = ['', 'maior que', 'menor que', 'igual a']
     return (
       <div>
         <form>
@@ -53,18 +54,18 @@ class SearchBar extends React.Component {
         </form>
         <form>
           <select value={coluna} onChange={this.handleColuna} data-testid="column-filter">
-            {array.map(e => <option value={e}>{e}</option>)}
+            {array.map((e) => <option value={e}>{e}</option>)}
           </select>
           <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
-            <option selected value="">Escolha comparacao</option>
-            <option value="maior que">Maior que</option>
-            <option value="menor que">Menor que</option>
-            <option value="igual a">Igual a</option>
+            {comp.map((e) => <option value={e}>{e}</option>)}
           </select>
-          <label>Digite o numero desejado:
-            <input type="number" value={numero} onChange={this.handleNumero} data-testid="value-filter" />
+          <label htmlFor="numero">Digite o numero desejado:
+            <input name="numero" type="number" value={numero}
+            onChange={this.handleNumero} data-testid="value-filter"
+          />
           </label>
-          <button type="button" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise</button>
+          <button type="button" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise
+          </button>
         </form>
       </div>
     );
