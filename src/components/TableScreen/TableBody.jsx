@@ -27,9 +27,6 @@ const filterByOrder = ({ column, sort }, planets) => {
 };
 
 const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
-  console.log('filtros por ordem: ', filterOrder);
-  console.log(planets[0]);
-
   let filteredPlanets = planets
     .sort((a, b) => a.name.localeCompare(b.name))
     .filter((planet) => planet.name.toLowerCase().includes(filterByName));
@@ -46,7 +43,7 @@ const TableBody = ({ planets, filterByName, filterNumeric, filterOrder }) => {
 
   const objKeys =
     filteredPlanets.length > 0
-      ? Object.keys(filteredPlanets[0]).filter((header) => header !== 'residents')
+      ? Object.keys(filteredPlanets[0]).filter((tableData) => tableData !== 'residents')
       : null;
 
   return (

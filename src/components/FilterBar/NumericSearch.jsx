@@ -33,12 +33,17 @@ class NumericSearch extends Component {
 
   render() {
     const { column, comparison, value } = this.state;
-    const { option } = this.props;
+    const { option, filterByNumericValues } = this.props;
     const optionsExists = option.length <= 0;
     return (
       <form className="form-group">
         <h3>Filter by numeric values</h3>
-        <CreateSelectColumn options={option} onChange={this.handleChange} value={column} />
+        <CreateSelectColumn
+          filter={filterByNumericValues}
+          options={option}
+          onChange={this.handleChange}
+          value={column}
+        />
         <CreateSelectComparison onChange={this.handleChange} value={comparison} />
         <CreateInputValue onChange={this.handleChange} value={value} />
 
@@ -58,6 +63,7 @@ class NumericSearch extends Component {
 
 const mapStateToProps = (state) => ({
   option: state.filters.options,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 const mapDispatchToProps = (dispatch) => ({
   changeValues: (column, comparison, value) => dispatch(filterValues(column, comparison, value)),
@@ -66,6 +72,7 @@ const mapDispatchToProps = (dispatch) => ({
 NumericSearch.propTypes = {
   changeValues: PropTypes.func.isRequired,
   option: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericSearch);

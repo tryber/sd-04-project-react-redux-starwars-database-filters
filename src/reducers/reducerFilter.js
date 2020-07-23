@@ -1,7 +1,6 @@
 import { FILTERED_NAME, FILTERED_VALUES, DELETE_FILTER, FILTERED_ORDER } from '../actions/types';
 
 const selectOptions = [
-  'name',
   'population',
   'orbital_period',
   'diameter',
@@ -14,7 +13,7 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
   options: selectOptions,
   order: {
-    column: 'N  ame',
+    column: 'Name',
     sort: 'ASC',
   },
 };
