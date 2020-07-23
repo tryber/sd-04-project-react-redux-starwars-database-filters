@@ -44,8 +44,8 @@ class SearchBar extends React.Component {
   render() {
     const { inputName1, valorNumerico1 } = this.props;
     const { numero, comparacao, coluna } = this.state;
-    const array = ['','population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water' ];
-    const comp = ['', 'maior que', 'menor que', 'igual a']
+    const array = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const comp = ['', 'maior que', 'menor que', 'igual a'];
     return (
       <div>
         <form>
@@ -60,9 +60,10 @@ class SearchBar extends React.Component {
             {comp.map((e) => <option value={e}>{e}</option>)}
           </select>
           <label htmlFor="numero">Digite o numero desejado:
-            <input name="numero" type="number" value={numero}
-            onChange={this.handleNumero} data-testid="value-filter"
-          />
+            <input name="numero" type="number"
+              value={numero}
+              onChange={this.handleNumero} data-testid="value-filter"
+            />
           </label>
           <button type="button" onClick={() => valorNumerico1(coluna, comparacao, numero)}>Pesquise
           </button>
@@ -85,6 +86,6 @@ const mapDispatchToProps = (dispatch) => ({
   //   dispatch(trataData(coluna, comparacao, numero, data))
 });
 
-const mapStateToProps = (state) => ({ data: state.reducer.data })
+const mapStateToProps = (state) => ({ data: state.reducer.data });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

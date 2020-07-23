@@ -31,7 +31,6 @@ class Table extends React.Component {
 
   render() {
     const { data, isLoading, filterByName, filterValues } = this.props;
-    console.log(data)
     if (isLoading) return <span>Loading...</span>;
     const planetas = data[0];
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
