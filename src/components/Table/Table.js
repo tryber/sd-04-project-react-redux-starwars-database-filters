@@ -9,8 +9,6 @@ function Table({ isLoading, data, searchBar, filtros }) {
     if (filtro.length !== 0) {
       return filtro.reduce(
         (acc, index) => {
-          console.log(index.comparison, index.column, index.value);
-
           switch (index.comparison) {
             case 'maior que':
               return planets.filter((elem) => Number(elem[index.column]) > Number(index.value));
@@ -28,7 +26,7 @@ function Table({ isLoading, data, searchBar, filtros }) {
     return planets;
   };
 
-  if (isLoading) return <span>L O A D I N G . . .</span>;
+  if (isLoading) return <span>L O A D I N G . . . .</span>;
   const planetsFiltred = allFilters(filtros);
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
@@ -51,17 +49,14 @@ function Table({ isLoading, data, searchBar, filtros }) {
   );
 }
 
-Table.defaultProps = {
-  data: [],
-};
-
 Table.propTypes = {
   data: PropTypes.shape({
     filter: PropTypes.func,
-    map: PropTypes.func,
-  }),
+  }).isRequired,
   filtros: PropTypes.shape({
-    forEach: PropTypes.func,
+    column: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    comparison: PropTypes.string.isRequired,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   searchBar: PropTypes.string.isRequired,
