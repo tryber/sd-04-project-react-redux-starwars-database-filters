@@ -36,7 +36,7 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
 const mapStateToProps = (state) => ({
   filterByNumberState: state.filters.filterByNumericValues,
 });
-
+// test
 const mapDispatchToProps = (dispatch) => ({
   filterByNumberProps: (e) => dispatch(filterByNumber(e)),
 });
