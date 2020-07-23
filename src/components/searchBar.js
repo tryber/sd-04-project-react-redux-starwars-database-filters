@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { inputName, valorNumerico, trataData } from '../actions/index';
+import { inputName, valorNumerico } from '../actions/index';
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coluna: "",
-      comparacao: "",
-      numero: "",
-    }
+      coluna: '',
+      comparacao: '',
+      numero: '',
+    };
     this.handleColuna = this.handleColuna.bind(this);
-    this.handleComparacao = this.handleComparacao.bind(this);
+    this.handleCom = this.handleCom.bind(this);
     this.handleNumero = this.handleNumero.bind(this);
     // this.handleRedux = this.handleRedux.bind(this);
   }
-  
   // handleRedux = () => {
   //   let coluna = this.state.coluna
   //   let comparacao = this.state.comparacao
@@ -26,25 +25,26 @@ class SearchBar extends React.Component {
 
   handleColuna(event) {
     this.setState({
-      coluna: event.target.value
-    })
+      coluna: event.target.value,
+    });
   }
 
-  handleComparacao(event) {
+  handleCom(event) {
     this.setState({
-      comparacao: event.target.value
-    })
+      comparacao: event.target.value,
+    });
   }
 
   handleNumero(event) {
     this.setState({
-      numero: event.target.value
-    })
+      numero: event.target.value,
+    });
   }
 
   render() {
-    const { inputName1, valorNumerico1, tratarData1, data } = this.props;
+    const { inputName1, valorNumerico1 } = this.props;
     const { numero, comparacao, coluna } = this.state;
+    const array = ["","population", "orbital_period", "diameter", "rotation_period", "surface_water" ]
     return (
       <div>
         <form>
@@ -53,18 +53,13 @@ class SearchBar extends React.Component {
         </form>
         <form>
           <select value={coluna} onChange={this.handleColuna} data-testid="column-filter">
-            <option selected value="">Escolha a coluna</option>
-            <option value="population">Population</option>
-            <option value="orbital_period">Orbital period</option>
-            <option value="diameter">Diameter</option>
-            <option value="rotation_period">Rotation period</option>
-            <option value="surface_water">Surface water</option>
+            {array.map(e => <option value={e}>{e}</option>)}
           </select>
-          <select value={comparacao} onChange={this.handleComparacao} data-testid="comparison-filter">
+          <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
             <option selected value="">Escolha comparacao</option>
-            <option value="maior">Maior que</option>
-            <option value="menor">Menor que</option>
-            <option value="igual">Igual a</option>
+            <option value="maior que">Maior que</option>
+            <option value="menor que">Menor que</option>
+            <option value="igual a">Igual a</option>
           </select>
           <label>Digite o numero desejado:
             <input type="number" value={numero} onChange={this.handleNumero} data-testid="value-filter" />
@@ -78,6 +73,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   inputName1: PropTypes.func.isRequired,
+  valorNumerico1: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

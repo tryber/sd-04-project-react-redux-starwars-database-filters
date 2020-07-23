@@ -16,11 +16,11 @@ class Table extends React.Component {
     const filtrado = data.filter((elem) => elem.name.includes(filterByName));
     if (filterValues.length !== 0) {
       switch (filterValues[0].comparison) {
-        case 'maior':
+        case 'maior que':
           return filtrado.filter((elem) => elem[filterValues[0].column] > filterValues[0].value);
-        case 'menor':
+        case 'menor que':
           return filtrado.filter((elem) => elem[filterValues[0].column] < filterValues[0].value);
-        case 'igual':
+        case 'igual a':
           return filtrado.filter((elem) => elem[filterValues[0].column] === filterValues[0].value);
         default:
           return filtrado;
@@ -31,6 +31,7 @@ class Table extends React.Component {
 
   render() {
     const { data, isLoading, filterByName, filterValues } = this.props;
+    console.log(data)
     if (isLoading) return <span>Loading...</span>;
     const planetas = data[0];
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
