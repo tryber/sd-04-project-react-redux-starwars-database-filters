@@ -43,10 +43,7 @@ const filters = (state = INITIAL_STATE, action) => {
         options: [...state.options, action.column],
       };
     case FILTERED_ORDER:
-      return {
-        ...state,
-        order: { column: action.column, sort: action.sort },
-      };
+      return { ...state, order: { column: action.column, sort: action.sort } };
     default:
       return state;
   }
