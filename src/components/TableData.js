@@ -19,12 +19,16 @@ export default class TableData extends Component {
 
   render() {
     const { results } = this.props;
+    const planets = results.map(planet => {
+      delete planet.residents;
+      return planet;
+    });
     return (
       <table>
         <thead>
-          <tr>{this.tableHeader(results[0])}</tr>
+          <tr>{this.tableHeader(planets[0])}</tr>
         </thead>
-        <tbody>{this.renderTable(results)}</tbody>
+        <tbody>{this.renderTable(planets)}</tbody>
       </table>
     );
   }
