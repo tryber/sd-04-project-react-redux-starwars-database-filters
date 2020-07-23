@@ -18,7 +18,8 @@ const handleTabela = (filterValues, data, filterByName) => {
     }
   }
   return filtrado;
-}
+};
+
 class Table extends React.Component {
   constructor(props) {
     super(props);
