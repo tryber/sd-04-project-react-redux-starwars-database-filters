@@ -4,25 +4,32 @@ import { connect } from 'react-redux';
 import Tabelas from './Tabelas';
 
 function Table({ isLoading, data, searchBar, filtros }) {
-  const allFilters = () => {
-    let planets = [];
-    if (filtros.length > 0) {
-      filtros.forEach(({ column, comparison, value }) => {
-        planets = planets.filter((planet) => {
-          if (comparison === 'menor') return Number(planet[column]) < Number(value);
-          if (comparison === 'igual') return Number(planet[column]) === Number(value);
-          if (comparison === 'maior') return Number(planet[column]) > Number(value);
-          return null;
-        });
-      });
+  const allFilters = (filtro) => {
+    const planets = data.filter((elem) => elem.name.includes(searchBar));
+    if (filtro.length !== 0) {
+      return filtro.reduce(
+        (acc, index) => {
+          console.log(index.comparison, index.column, index.value);
+
+          switch (index.comparison) {
+            case 'maior que':
+              return planets.filter((elem) => Number(elem[index.column]) > Number(index.value));
+            case 'menor que':
+              return planets.filter((elem) => Number(elem[index.column]) < Number(index.value));
+            case 'igual a':
+              return planets.filter((elem) => Number(elem[index.column]) === Number(index.value));
+            default:
+              return planets;
+          }
+        },
+        [planets],
+      );
     }
-    planets = data.filter((e) => e.name.toLowerCase().includes(searchBar));
-    console.log(planets);
     return planets;
   };
 
   if (isLoading) return <span>L O A D I N G . . .</span>;
-  const planetsFiltred = allFilters();
+  const planetsFiltred = allFilters(filtros);
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
     <div>
@@ -53,6 +60,9 @@ Table.propTypes = {
     filter: PropTypes.func,
     map: PropTypes.func,
   }),
+  filtros: PropTypes.shape({
+    forEach: PropTypes.func,
+  }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   searchBar: PropTypes.string.isRequired,
 };

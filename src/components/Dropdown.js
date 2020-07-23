@@ -34,9 +34,9 @@ function DropDown({
           name="dropdown-quantity-filter"
         >
           <option value="">--</option>
-          <option value="maior">maior que</option>
-          <option value="menor">menor que</option>
-          <option value="igual">igual a</option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
         </select>
         <label htmlFor="input-value">
           <input
