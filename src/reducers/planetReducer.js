@@ -1,9 +1,8 @@
-import { GET_DATA, REQUEST_DATA, FAILED_REQUEST } from '../actions/dataAction';
+import { GET_DATA, REQUEST_DATA } from '../actions/dataAction';
 
 const INITIAL_STATE = {
   isFetching: false,
-  planetPath: '',
-  error: '',
+  planets: [],
 }
 
 export function planetReducer(state = INITIAL_STATE, action) {
@@ -11,9 +10,7 @@ export function planetReducer(state = INITIAL_STATE, action) {
     case REQUEST_DATA:
       return { ...state, isFetching: true };
     case GET_DATA:
-      return { ...state, isFetching: false, planetPath: action.payload };
-    case FAILED_REQUEST:
-      return { ...state, isFetching:false, error: action.payload };
+      return { ...state, isFetching: false, planets: action.payload };
     default:
       return state;
   }

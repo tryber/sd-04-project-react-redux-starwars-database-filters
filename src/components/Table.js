@@ -1,43 +1,58 @@
 import React, { Component } from 'react';
 import { fetchPlanet } from '../actions/dataAction';
+import { connect } from 'react-redux';
+import { getPlanet} from '../services/api'
 
 class Table extends Component {
-  // componentDidMount() {
-  //     fetchPlanet();
-  //     console.log(fetchPlanet());
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      planets: [],
+    }
+  }
+  
+  componentDidMount() {
+      getPlanet().then((planets) => this.setState((state) => ({...state, planets})));
+  }
 
   render() {
+    
+    const { planets } = this.state;
+    console.log()
     return (
       <div>
         <table>
           <thead>
             <tr>
               <td>Name</td>
+              <td>Population</td>
+              <td>Climate</td>
+              <td>Diameter</td>
+              <td>Gravity</td>
+              <td>Orbital Period</td>
+              <td>Rotation Period</td>
+              <td>Surface Water</td>
+              <td>Terrain</td>
+              <td>Films</td>
+              <td>URL</td>
             </tr>
-            {/* <td>Population</td>
-            <td>Climate</td>
-            <td>Diameter</td>
-            <td>Gravity</td>
-            <td>Orbital Period</td>
-            <td>Rotation Period</td>
-            <td>Surface Water</td>
-            <td>Terrain</td>
-            <td>URL</td> */}
           </thead>
           <tbody>
+          {planets.map((item) => (
             <tr>
-              <td>Tatooine</td>
+              <td key={item.name}>{item.name}</td>
+              <td key={item.population}>{item.population}</td>
+              <td key={item.climate}>{item.climate}</td>
+              <td key={item.diameter}>{item.diameter}</td>
+              <td key={item.gravity}>{item.gravity}</td>
+              <td key={item.orbital_period}>{item.orbital_period}</td>
+              <td key={item.rotation_period}>{item.rotation_period}</td>
+              <td key={item.surface_water}>{item.surface_water}</td>
+              <td key={item.terrain}>{item.terrain}</td>
+              <td key={item.films[0]}>{item.films}</td>
+              <td key={item.url}>{item.url}</td>
             </tr>
-            {/* <td>2000000</td>
-            <td>Arid</td>
-            <td>10465</td>
-            <td>1 standard</td>
-            <td>304</td>
-            <td>23</td>
-            <td>1</td>
-            <td>Dessert</td>
-            <td>url</td> */}
+            ))}
           </tbody>
         </table>
       </div>
@@ -45,4 +60,12 @@ class Table extends Component {
   }
 }
 
-export default Table;
+const mapStateToProps = (state) => ({
+  planets: state.planetReducer.planets,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getPlanets: (value) => dispatch(fetchPlanet(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
