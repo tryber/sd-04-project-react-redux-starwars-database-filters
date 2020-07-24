@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAPI } from '../action';
-import PropTypes from 'prop-types';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -11,6 +10,7 @@ class Table extends React.Component {
 
   render() {
     const { items, isLoaded } = this.props;
+    console.log(items)
     if (!isLoaded) {
       return <p>Loading</p>;
     }
@@ -18,14 +18,9 @@ class Table extends React.Component {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Orbital Period</th>
-            <th>Diameter</th>
-            <th>Climate</th>
-            <th>Gravity</th>
-            <th>Terrain</th>
-            <th>Surface Water</th>
-            <th>Population</th>
+            <th>Name</th><th>Orbital Period</th><th>Diameter</th>
+            <th>Climate</th><th>Gravity</th><th>Terrain</th>
+            <th>Surface Water</th><th>Population</th>
           </tr>
         </thead>
         {items.map((item) => (
@@ -46,12 +41,6 @@ class Table extends React.Component {
     );
   }
 }
-
-Table.propTypes = {
-  items: PropTypes.array.isRequired,
-  isLoaded: PropTypes.bool.isRequired,
-  fetch: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   isLoaded: state.reducer.isLoaded,
