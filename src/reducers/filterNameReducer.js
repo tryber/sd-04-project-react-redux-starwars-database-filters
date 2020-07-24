@@ -5,6 +5,8 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  columns: ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
+  comparisons: ['maior que', 'igual a', 'menor que'],
 };
 
 const filters = (state = INITIAL_STATE, action) => {

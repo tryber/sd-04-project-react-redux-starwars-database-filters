@@ -1,9 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { connect } from 'react-redux';
 import { filterPlanetByNumber } from '../actions/filterPlanetByName';
 
-const Filter = ({ value, dispatchFilterPlanetByNumber }) => {
+const Option = ({ value, children }) => <option value={value}>{children}</option>;
+
+const Filter = ({ value, dispatchFilterPlanetByNumber, columns, comparisons }) => {
   const getFilterInfo = (e) => {
     e.preventDefault();
     const filterData = {
@@ -15,24 +17,23 @@ const Filter = ({ value, dispatchFilterPlanetByNumber }) => {
     dispatchFilterPlanetByNumber(filterData);
   };
   console.log('State value: ', value);
+  console.log('Colunas: ', columns);
   return (
     <div className="numeric-filter">
       <form onSubmit={(e) => getFilterInfo(e)}>
         <select data-testid="column-filter" name="column" id="column">
-          <option value="population">Population</option>
-          <option value="orbital_period">Orbital Period</option>
-          <option value="diameter">Diamenter</option>
-          <option value="rotation_period">Rotation Period</option>
-          <option value="surface_water">Surface Water</option>
+          {columns.map((column) => (
+            <Option value={column}>{column}</Option>
+          ))}
         </select>
 
         <select data-testid="comparison-filter" name="comparison" id="comparison">
-          <option value="maior que">maior que</option>
-          <option value="igual a">igual a</option>
-          <option value="menor que">menor que</option>
+          {comparisons.map((comparison) => (
+            <Option value={comparison}>{comparison}</Option>
+          ))}
         </select>
 
-        <input name="input" />
+        <input data-testid="value-filter" name="input" type="number" />
 
         <button data-testid="button-filter" type="submit">Add Filter</button>
       </form>
@@ -43,10 +44,19 @@ const Filter = ({ value, dispatchFilterPlanetByNumber }) => {
 Filter.propTypes = {
   value: PropTypes.number.isRequired,
   dispatchFilterPlanetByNumber: PropTypes.func.isRequired,
+  columns: PropTypes.arrayOf(string).isRequired,
+  comparisons: PropTypes.arrayOf(string).isRequired,
+};
+
+Option.propTypes = {
+  children: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   value: state.filters.filterByNumericValues,
+  columns: state.filters.columns,
+  comparisons: state.filters.comparisons,
 });
 
 const mapDispatchToProps = (dispatch) => ({
