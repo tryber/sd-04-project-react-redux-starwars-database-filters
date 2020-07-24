@@ -8,13 +8,13 @@ const numericFilter = (filteredPlanets, numberFilter) => {
         switch (comparison) {
           case 'maior que':
             console.log('maior que');
-            return Number(planet[column]) > value;
+            return Number(planet[column]) > Number(value);
           case 'menor que':
             console.log('menor que');
-            return Number(planet[column]) < value;
+            return Number(planet[column]) < Number(value);
           case 'igual a':
             console.log('igual a');
-            return Number(planet[column]) === value;
+            return Number(planet[column]) === Number(value);
           default:
             return false;
         }
