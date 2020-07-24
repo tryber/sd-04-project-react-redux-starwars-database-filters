@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { fetchPlanet } from '../actions/dataAction';
 import { connect } from 'react-redux';
-import { getPlanet} from '../services/api'
+import { fetchPlanet } from '../actions/dataAction';
+import { getPlanet } from '../services/api'
 import { TableHead } from './TableHead';
 
 class Table extends Component {
