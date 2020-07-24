@@ -1,5 +1,10 @@
-import starWarsReducer from './starWars';
+import { combineReducers } from 'redux';
+import { starWarsAPIReducer, filters, selectFilter } from './reducer';
 
-const rootReducer = starWarsReducer;
+const rootReducer = combineReducers({
+  starWarsAPIReducer,
+  filters,
+  selectFilter,
+});
 
 export default rootReducer;

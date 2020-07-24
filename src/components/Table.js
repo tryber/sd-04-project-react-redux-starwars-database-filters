@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { fetchPlanets, filterByName } from '../actions';
 
 import RenderTable from './RenderTable';
+import SelectFilter from './SelectFilter';
+import FiltersList from './FiltersList';
 
 class Table extends Component {
   componentDidMount() {
@@ -25,6 +27,8 @@ class Table extends Component {
           data-testid="name-filter"
           onChange={(event) => filterName(event.target.value)}
         />
+        <SelectFilter />
+        <FiltersList />
         {isFetching && 'Loading...'}
         {data.length > 0 && <RenderTable data={data} name={name} />}
       </div>
@@ -33,14 +37,14 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isFetching: state.isFetching,
-  data: state.data,
+  isFetching: state.starWarsAPIReducer.isFetching,
+  data: state.starWarsAPIReducer.data,
   name: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanetsData: () => dispatch(fetchPlanets()),
-  filterName: (name) => dispatch(filterByName(name)),
+  filterName: (payload) => dispatch(filterByName(payload)),
 });
 
 Table.propTypes = {
