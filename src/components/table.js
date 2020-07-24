@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPI } from '../action';
 
@@ -41,6 +42,23 @@ class Table extends React.Component {
     );
   }
 }
+
+Table.propTypes = {
+  isLoaded: PropTypes.bool.isRequired,
+  fetch: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      orbital_period: PropTypes.string,
+      diameter: PropTypes.string,
+      climate: PropTypes.string,
+      gravity: PropTypes.string,
+      terrain: PropTypes.string,
+      surface_water: PropTypes.string,
+      population: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   isLoaded: state.reducer.isLoaded,
