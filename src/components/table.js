@@ -55,7 +55,7 @@ Table.propTypes = {
       terrain: PropTypes.string,
       surface_water: PropTypes.string,
       population: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };
 
