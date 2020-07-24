@@ -1,62 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAPI } from '../action';
-// import planetsData from '../services/API';
+import PropTypes from 'prop-types';
 
 class Table extends React.Component {
-/*  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      isLoaded: false,
-    };
-  } */
-
   componentDidMount() {
-    /* planetsData()
-      .then((json) => {
-        this.setState({
-          isLoaded: true,
-          items: json.results,
-        });
-      }); */
     const { fetch } = this.props;
     fetch();
   }
 
   render() {
     const { items, isLoaded } = this.props;
-    console.log(items)
     if (!isLoaded) {
       return <p>Loading</p>;
     }
     return (
-      <ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Orbital Period</th>
+            <th>Diameter</th>
+            <th>Climate</th>
+            <th>Gravity</th>
+            <th>Terrain</th>
+            <th>Surface Water</th>
+            <th>Population</th>
+          </tr>
+        </thead>
         {items.map((item) => (
-          <li key={item.name}>
-            <p>Name: {item.name}</p>
-            <p>Rotation Period: {item.rotation_period}</p>
-            <p>Orbital Period: {item.orbital_period}</p>
-            <p>Diameter: {item.diameter}</p>
-            <p>Climate: {item.climate}</p>
-            <p>Gravity: {item.gravity}</p>
-            <p>Terrain: {item.terrain}</p>
-            <p>Surface Water: {item.surface_water}</p>
-            <p>Population: {item.population}</p>
-          </li>
+          <tbody key={item.name}>
+            <tr>
+              <td>{item.name}</td>
+              <td>{item.orbital_period}</td>
+              <td>{item.diameter}</td>
+              <td>{item.climate}</td>
+              <td>{item.gravity}</td>
+              <td>{item.terrain}</td>
+              <td>{item.surface_water}</td>
+              <td>{item.population}</td>
+            </tr>
+          </tbody>
         ))}
-      </ul>
+      </table>
     );
   }
 }
 
-const mapleStateToProps = (state) => ({
+Table.propTypes = {
+  items: PropTypes.array.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  fetch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
   isLoaded: state.reducer.isLoaded,
   items: state.reducer.items,
 });
 
-const mapleDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   fetch: () => dispatch(fetchAPI()),
 });
 
-export default connect(mapleStateToProps, mapleDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
