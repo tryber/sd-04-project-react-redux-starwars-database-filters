@@ -11,7 +11,6 @@ class Table extends React.Component {
 
   render() {
     const { items, isLoaded } = this.props;
-    console.log(items)
     if (!isLoaded) {
       return <p>Loading</p>;
     }
