@@ -11,6 +11,7 @@ class Table extends React.Component {
 
   render() {
     const { items, isLoaded } = this.props;
+    console.log(items)
     if (!isLoaded) {
       return <p>Loading</p>;
     }
@@ -20,20 +21,19 @@ class Table extends React.Component {
           <tr>
             <th>Name</th><th>Orbital Period</th><th>Diameter</th>
             <th>Climate</th><th>Gravity</th><th>Terrain</th>
-            <th>Surface Water</th><th>Population</th>
+            <th>Surface Water</th><th>Population</th><th>Rotation Period</th>
+            <th>Films</th><th>Created</th><th>Edited</th><th>Url</th>
           </tr>
         </thead>
         {items.map((item) => (
           <tbody key={item.name}>
             <tr>
-              <td>{item.name}</td>
-              <td>{item.orbital_period}</td>
-              <td>{item.diameter}</td>
-              <td>{item.climate}</td>
-              <td>{item.gravity}</td>
-              <td>{item.terrain}</td>
-              <td>{item.surface_water}</td>
-              <td>{item.population}</td>
+              <td>{item.name}</td><td>{item.orbital_period}</td><td>{item.diameter}</td>
+              <td>{item.climate}</td><td>{item.gravity}</td><td>{item.terrain}</td>
+              <td>{item.surface_water}</td><td>{item.population}</td>
+              <td>{item.rotation_period}</td><td>{item.films}</td>
+              <td>{item.created}</td><td>{item.edited}</td>
+              <td>{item.url}</td>
             </tr>
           </tbody>
         ))}
