@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 
-const comparison = (planet, { column, comparison, value }) => {
+const comparation = (planet, { column, comparison, value }) => {
   switch (comparison) {
     case 'maior que':
       return Number(planet[column]) > Number(value);
@@ -18,10 +18,6 @@ const comparison = (planet, { column, comparison, value }) => {
 
 const filterPlanetByName = (planets, teste = '') => planets.filter((planet) => planet.name.includes(teste));
 
-/* const filterPlanetByNumericValue = (planets, filtro) => {
-  planets.filter((planet) => comparison(planet, filtro));
-}; */
-
 const Table = ({
   data, isFetching, name, filterByNumericValues,
 }) => {
@@ -32,7 +28,7 @@ const Table = ({
   if (filterByNumericValues.length > 0) {
     console.log('filtro antes da func', filterByNumericValues[0]);
     filterByNumericValues.forEach((filter) => {
-      planets = planets.filter((planet) => comparison(planet, filter));
+      planets = planets.filter((planet) => comparation(planet, filter));
     });
     console.log('filtered planets: ', planets);
   }

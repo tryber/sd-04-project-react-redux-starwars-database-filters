@@ -5,7 +5,9 @@ import { filterPlanetByNumber } from '../actions/filterPlanetByName';
 
 const Option = ({ value, children }) => <option value={value}>{children}</option>;
 
-const Filter = ({ value, dispatchFilterPlanetByNumber, columns, comparisons }) => {
+const Filter = ({
+  value, dispatchFilterPlanetByNumber, columns, comparisons,
+}) => {
   const getFilterInfo = (e) => {
     e.preventDefault();
     const filterData = {
@@ -16,13 +18,25 @@ const Filter = ({ value, dispatchFilterPlanetByNumber, columns, comparisons }) =
     console.log(filterData);
     dispatchFilterPlanetByNumber(filterData);
   };
+
+  const filterColumns = () => {
+    let filteredColumns = [...columns];
+    if (value.length > 0) {
+      value.forEach(({ column }) => {
+        filteredColumns = filteredColumns.filter((select) => select !== column);
+      });
+    }
+    return filteredColumns;
+  };
   console.log('State value: ', value);
   console.log('Colunas: ', columns);
+
+
   return (
     <div className="numeric-filter">
       <form onSubmit={(e) => getFilterInfo(e)}>
         <select data-testid="column-filter" name="column" id="column">
-          {columns.map((column) => (
+          {filterColumns().map((column) => (
             <Option value={column}>{column}</Option>
           ))}
         </select>
