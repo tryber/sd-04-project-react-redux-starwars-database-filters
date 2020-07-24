@@ -4,6 +4,6 @@ const getPlanet = async () => {
   const dataJSON = await data.json();
   console.log(dataJSON.results);
   return dataJSON.results;
-}
+};
 
-export { getPlanet };
+export default getPlanet;

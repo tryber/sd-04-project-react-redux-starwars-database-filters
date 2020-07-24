@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { planetReducer } from './planetReducer';
+import planetReducer from './planetReducer';
 
 const rootReducer = combineReducers({ planetReducer });
 

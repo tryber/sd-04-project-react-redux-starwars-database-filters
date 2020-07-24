@@ -3,9 +3,9 @@ import { GET_DATA, REQUEST_DATA } from '../actions/dataAction';
 const INITIAL_STATE = {
   isFetching: false,
   planets: [],
-}
+};
 
-export function planetReducer(state = INITIAL_STATE, action) {
+function planetReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_DATA:
       return { ...state, isFetching: true };
@@ -15,3 +15,5 @@ export function planetReducer(state = INITIAL_STATE, action) {
       return state;
   }
 }
+
+export default planetReducer;
