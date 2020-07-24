@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlanet } from '../actions/dataAction';
-import { getPlanet } from '../services/api'
+import { getPlanet } from '../services/api';
 import { TableHead } from './TableHead';
 
 class Table extends Component {
@@ -9,7 +9,7 @@ class Table extends Component {
     super(props);
     this.state = {
       planets: [],
-    }
+    };
   }
   
   componentDidMount() {
