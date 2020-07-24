@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByNumber } from '../actions/filters';
 
-const columnFilter = (optionsArray, testId) => (
+const columnFilter = (optionsArray, testId, id) => (
   <select data-testid={testId}>
-    {optionsArray.map(({ value, text }) => (<option key={value} value={value}>{text}</option>))}
+    {optionsArray.map(({ value, text }) => (
+      <option id={id} key={value} value={value}>{text}</option>
+    ))}
   </select>
 );
 
@@ -33,6 +35,13 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
         comparison: e.target.children[1].value,
         value: e.target.children[2].value,
       };
+      const columnOptions = document.querySelectorAll('#column-option');
+      columnOptions.forEach((option) => {
+        if (option.value === e.target.children[0].value) {
+          option.remove();
+        }
+      });
+      console.log(columnOptions);
       const filterNumber = filterByNumberState;
       if (filterByNumberState.length === 0) {
         filterNumber.push(inputValues);
@@ -51,8 +60,8 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
       }
     }}
   >
-    {columnFilter(columnArray, 'column-filter')}
-    {columnFilter(comparisonArray, 'comparison-filter')}
+    {columnFilter(columnArray, 'column-filter', 'column-option')}
+    {columnFilter(comparisonArray, 'comparison-filter', 'comparison-option')}
     <input data-testid="value-filter" type="number" />
     <button data-testid="button-filter" type="submit">Apply filters</button>
   </form>
