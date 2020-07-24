@@ -12,7 +12,6 @@ const filters = (state = INITIAL_FILTERS, action) => {
         filterByName: { name: action.name },
       };
     case FILTER_BY_NUMBER:
-      console.log(action.filter);
       return {
         ...state,
         filterByNumericValues: action.filter,
