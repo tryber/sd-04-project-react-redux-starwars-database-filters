@@ -1,7 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchAPI } from '../action';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fetchAPI } from "../action";
+import TableH from './tableH';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -15,28 +16,33 @@ class Table extends React.Component {
       return <p>Loading</p>;
     }
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th><th>Orbital Period</th><th>Diameter</th>
-            <th>Climate</th><th>Gravity</th><th>Terrain</th>
-            <th>Surface Water</th><th>Population</th><th>Rotation Period</th>
-            <th>Films</th><th>Created</th><th>Edited</th><th>Url</th>
-          </tr>
-        </thead>
-        {items.map((item) => (
-          <tbody key={item.name}>
-            <tr>
-              <td>{item.name}</td><td>{item.orbital_period}</td><td>{item.diameter}</td>
-              <td>{item.climate}</td><td>{item.gravity}</td><td>{item.terrain}</td>
-              <td>{item.surface_water}</td><td>{item.population}</td>
-              <td>{item.rotation_period}</td><td>{item.films}</td>
-              <td>{item.created}</td><td>{item.edited}</td>
-              <td>{item.url}</td>
-            </tr>
-          </tbody>
-        ))}
-      </table>
+      <div>
+        <label htmlFor='names'>Procurar
+        <input type='text' placeholder='digite um nome' />
+        </label>
+        <table className="table table-sm">
+          <TableH />
+          {items.map((item) => (
+            <tbody key={item.name}>
+              <tr>
+                <td>{item.name}</td>
+                <td>{item.orbital_period}</td>
+                <td>{item.diameter}</td>
+                <td>{item.climate}</td>
+                <td>{item.gravity}</td>
+                <td>{item.terrain}</td>
+                <td>{item.surface_water}</td>
+                <td>{item.population}</td>
+                <td>{item.rotation_period}</td>
+                <td>{item.films}</td>
+                <td>{item.created}</td>
+                <td>{item.edited}</td>
+                <td>{item.url}</td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
     );
   }
 }
