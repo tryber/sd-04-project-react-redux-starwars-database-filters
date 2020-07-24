@@ -72,7 +72,8 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  nameFilter: PropTypes.string.isRequired,
+  numberFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   planetsAPI: PropTypes.func.isRequired,
 };
