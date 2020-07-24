@@ -20,7 +20,6 @@ const getPlanets = (state = INITIAL_PLANETS_STATE, action) => {
         ...state, planets: action.data, filteredPlanets: action.data, isFetching: false,
       };
     case FILTER_BY_NAME:
-      console.log(state.filteredPlanets);
       return {
         ...state,
         filteredPlanets: state.planets.filter(
@@ -28,7 +27,6 @@ const getPlanets = (state = INITIAL_PLANETS_STATE, action) => {
         ),
       };
     case FILTER_BY_NUMBER:
-      console.log(state.filteredPlanets);
       return {
         ...state,
         filteredPlanets: numericFilter(state.filteredPlanets, action.filter),
