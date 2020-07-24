@@ -28,14 +28,27 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
   <form
     onSubmit={(e) => {
       e.preventDefault();
-      const inputValues = e.target.children;
-      const filterArray = filterByNumberState;
-      filterArray.push({
-        columns: inputValues[0].value,
-        comparison: inputValues[1].value,
-        value: inputValues[2].value,
-      });
-      filterByNumberProps(filterArray);
+      const inputValues = {
+        column: e.target.children[0].value,
+        comparison: e.target.children[1].value,
+        value: e.target.children[2].value,
+      };
+      const filterNumber = filterByNumberState;
+      if (filterByNumberState.length === 0) {
+        filterNumber.push(inputValues);
+        filterByNumberProps(filterNumber);
+      } else {
+        if (!filterNumber.find((filter) => filter.column === inputValues.column)) {
+          filterNumber.push(inputValues);
+        }
+        const newFilter = filterNumber.map((filter) => {
+          if (filter.column === inputValues.column) {
+            return inputValues;
+          }
+          return filter;
+        });
+        filterByNumberProps(newFilter);
+      }
     }}
   >
     {columnFilter(columnArray, 'column-filter')}

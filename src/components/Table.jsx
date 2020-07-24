@@ -5,6 +5,7 @@ import { fetchPlanets } from '../actions/ApiRequest';
 import { applyFilters } from '../actions/filters';
 import HeaderTable from './HeaderTable';
 
+
 function planetsTable(planets) {
   return (
     <table className="table">
@@ -32,19 +33,19 @@ function planetsTable(planets) {
   );
 }
 
-
 class Table extends Component {
   componentDidMount() {
     const { planetsAPI: fetch } = this.props;
     fetch();
   }
 
-
   render() {
     const {
-      planets, isFetching, filters, filteredPlanets,
+      planets, isFetching, nameFilter, numberFilter, filteredPlanets,
     } = this.props;
-    const dataPlanets = !filters.filterByName.name ? Object.values(planets) : filteredPlanets;
+    const dataPlanets = !nameFilter.name && numberFilter.length === 0
+      ? Object.values(planets)
+      : filteredPlanets;
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
@@ -58,7 +59,9 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.planets,
   isFetching: state.getPlanets.isFetching,
   filteredPlanets: state.getPlanets.filteredPlanets,
-  filters: state.filters,
+  nameFilter: state.filters.filterByName,
+  numberFilter: state.filters.filterByNumericValues,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
