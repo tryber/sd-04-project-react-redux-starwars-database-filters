@@ -18,6 +18,6 @@ function TableHead() {
       </tr>
     </thead>
   );
-};
+}
 
 export default TableHead;
