@@ -6,7 +6,6 @@ const planetsAPI = () =>
       .json()
       // .then((json) => (
       //   response.ok ? Promise.resolve(json) : Promise.reject(json)
-      ),
-  );
+);
 
 export default planetsAPI;
