@@ -31,9 +31,6 @@ const filters = (state = INITIAL_STATE, action) => {
         ],
       };
     case REMOVE_FILTER:
-      console.log('State: ', state.filterByNumericValues.filter(
-        ({ column }) => console.log(column, action),
-      ));
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(

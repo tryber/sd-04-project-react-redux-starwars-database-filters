@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 
 const comparation = (planet, { column, comparison, value }) => {
-  console.log(planet, column);
-  console.log(column);
   switch (comparison) {
     case 'maior que':
       return Number(planet[column]) > Number(value);
