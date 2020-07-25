@@ -38,25 +38,31 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
       console.log(inputValues);
       const columnOptions = document.querySelectorAll('#column-option');
       columnOptions.forEach((option) => {
-        if (option.value === e.target.children[0].value
-           && e.target.children[0].value
-          && e.target.children[1].value) {
+        if (option.value === inputValues.column
+          && inputValues.column
+          && inputValues.comparison) {
+          console.log('remove');
           option.remove();
         }
       });
       console.log(columnOptions);
       const filterNumber = filterByNumberState;
       if (filterByNumberState.length === 0
-        && e.target.children[0].value
-        && e.target.children[1].value) {
+        && inputValues.column
+        && inputValues.comparison) {
+        console.log('array vazio e push');
+        filterNumber.push(inputValues);
+        filterByNumberProps(filterNumber);
+      } else if (!filterNumber.find((filter) => filter.column === inputValues.column)
+        && inputValues.column
+        && inputValues.comparison) {
+        console.log('push se não tiver o filtro');
+
         filterNumber.push(inputValues);
         filterByNumberProps(filterNumber);
       } else {
-        if (!filterNumber.find((filter) => filter.column === inputValues.column)
-        && e.target.children[0].value
-        && e.target.children[1].value) {
-          filterNumber.push(inputValues);
-        }
+        console.log('substitui o filtro');
+
         const newFilter = filterNumber.map((filter) => {
           if (filter.column === inputValues.column) {
             return inputValues;
