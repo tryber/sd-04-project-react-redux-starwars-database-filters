@@ -61,7 +61,8 @@ class Filter extends React.Component {
           <select
             onChange={(e) => this.handleChange(e)}
             data-testid="comparison-filter"
-            name="comparison" id="comparison"
+            name="comparison"
+            id="comparison"
           >
             <option value="defaultChecked">comparação</option>
             {comparisons.map((comparison) => (
@@ -69,7 +70,12 @@ class Filter extends React.Component {
             ))}
           </select>
 
-          <input onChange={(e) => this.handleChange(e)} data-testid="value-filter" name="value" type="number" />
+          <input
+            onChange={(e) => this.handleChange(e)}
+            data-testid="value-filter"
+            name="value"
+            type="number"
+          />
 
           <button data-testid="button-filter" type="submit">Add Filter</button>
         </form>

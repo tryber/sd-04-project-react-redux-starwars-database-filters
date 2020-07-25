@@ -13,7 +13,12 @@ const FiltersPanel = ({ filters, dispatchRemoveFilter }) => {
             {filters.map(({ column, comparison, value }, index) => (
               <li key={column} data-testid="filter">
                 {`${column} ${comparison} ${value}`}
-                <button type="button" onClick={() => dispatchRemoveFilter(filters[index])}>X</button>
+                <button
+                  type="button"
+                  onClick={() => dispatchRemoveFilter(filters[index])}
+                >
+                  X
+                </button>
               </li>
             ))}
           </ul>
