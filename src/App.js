@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import Proptypes from 'prop-types';
 
 import { getSWAPI } from './actions';
 import Table from './components/Table/index';
@@ -30,5 +30,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(App);
 
 App.propTypes = {
-  getPlanets: PropTypes.func.isRequired,
+  getPlanets: Proptypes.func.isRequired,
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import Proptypes from 'prop-types';
 // import { createStore } from 'redux';
 
 const TableBody = ({ data }) => (
@@ -48,5 +48,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(TableBody);
 
 TableBody.protoTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: Proptypes.arrayOf(Proptypes.objectOf(Proptypes.string)).isRequired,
 };
