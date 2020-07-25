@@ -37,13 +37,13 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
       };
       const columnOptions = document.querySelectorAll('#column-option');
       columnOptions.forEach((option) => {
-        if (option.value === e.target.children[0].value && option.value !== 'Column') {
+        if (option.value === e.target.children[0].value && !e.target.children[0].value) {
           option.remove();
         }
       });
       console.log(columnOptions);
       const filterNumber = filterByNumberState;
-      if (filterByNumberState.length === 0 && e.target.children[0].value !== 'Column') {
+      if (filterByNumberState.length === 0 && !e.target.children[0].value) {
         filterNumber.push(inputValues);
         filterByNumberProps(filterNumber);
       } else {
@@ -62,7 +62,7 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
   >
     {/* {columnFilter(columnArray, 'column-filter', 'column-option')} */}
     <select data-testid="column-filter">
-      <option id="column-option" value="Column">Column</option>
+      <option id="column-option">Column</option>
       <option id="column-option" value="population">population</option>
       <option id="column-option" value="orbital_period">orbital_period</option>
       <option id="column-option" value="diameter">diameter</option>
