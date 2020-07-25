@@ -47,6 +47,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(TableBody);
 
-TableBody.protoTypes = {
+TableBody.propTypes = {
   data: Proptypes.arrayOf(Proptypes.objectOf(Proptypes.string)).isRequired,
 };
