@@ -20,19 +20,19 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: [...state.filterByNumericValues, {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          }],
+          column: action.column,
+          comparison: action.comparison,
+          value: action.value,
+        }],
       };
     case REMOVE_FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
         filterByNumericValues: [
-            ...state.filterByNumericValues.filter(
+          ...state.filterByNumericValues.filter(
               (filter) => filter !== action.filterKeys,
             ),
-          ],
+        ],
       };
     default:
       return state;
