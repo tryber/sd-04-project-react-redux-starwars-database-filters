@@ -61,7 +61,7 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
     }}
   >
     {/* {columnFilter(columnArray, 'column-filter', 'column-option')} */}
-    <select data-testid="column">
+    <select data-testid="column-filter">
       <option id="column-option" value="Column">Column</option>
       <option id="column-option" value="population">population</option>
       <option id="column-option" value="orbital_period">orbital_period</option>
