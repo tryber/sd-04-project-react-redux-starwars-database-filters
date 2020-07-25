@@ -20,7 +20,7 @@ class SearchPlanet extends Component {
 
 SearchPlanet.propTypes = {
   search: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   planets: state.searchReducer.planets,
