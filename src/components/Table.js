@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchPlanet } from '../actions/dataAction';
 import TableHead from './TableHead';
 
@@ -12,15 +13,15 @@ class Table extends Component {
   render() {
     const { planets, isFetching } = this.props;
     if (!isFetching) {
-      return <div>Loading</div>
+      return <div>Loading</div>;
     }
     return (
       <div>
         <table>
           <TableHead />
           <tbody>
-            {planets.map((item, index) => (
-              <tr key={index}>
+            {planets.map((item) => (
+              <tr key={item.name}>
                 <td>{item.name}</td>
                 <td>{item.population}</td>
                 <td>{item.climate}</td>
@@ -41,6 +42,12 @@ class Table extends Component {
       </div>
     );
   }
+}
+
+Table.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  planets: PropTypes.object.isRequired,
+  getPlanets: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({

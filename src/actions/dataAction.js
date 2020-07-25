@@ -23,7 +23,7 @@ export function fetchPlanet() {
     dispatch(requestData());
     return getPlanet()
     .then(
-      (planets) => dispatch(getData({planets: planets.results})),
+      (planets) => dispatch(getData({ planets: planets.results })),
     );
   };
 }

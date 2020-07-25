@@ -1,18 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import searchPlanet from '../actions/searchAction';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import searchPlanet from "../actions/searchAction";
 
 class SearchPlanet extends Component {
   render() {
-    const { searchPlanet, planets } = this.props;
+    const { search } = this.props;
     return (
       <div>
-        <label htmlFor='filter'>Procurar</label>
-        <input data-testid='name-filter' onChange={(e) => searchPlanet(e.target.value)} value={planets} />
+        <label htmlFor="filter">Procurar</label>
+        <input
+          data-testid="name-filter"
+          onChange={(e) => search(e.target.value)}
+        />
       </div>
     );
   }
 }
+
+SearchPlanet.propTypes = {
+  search: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = (state) => ({
   planets: state.searchReducer.planets,
 });
