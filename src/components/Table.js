@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 
 const comparation = (planet, { column, comparison, value }) => {
+  console.log(planet, column);
+  console.log(column);
   switch (comparison) {
     case 'maior que':
       return Number(planet[column]) > Number(value);
@@ -22,15 +24,11 @@ const Table = ({
   data, isFetching, name, filterByNumericValues,
 }) => {
   let planets = [...data];
-  console.log('Planets: ', planets);
-  console.log('state filterNumeric', filterByNumericValues);
 
   if (filterByNumericValues.length > 0) {
-    console.log('filtro antes da func', filterByNumericValues[0]);
     filterByNumericValues.forEach((filter) => {
       planets = planets.filter((planet) => comparation(planet, filter));
     });
-    console.log('filtered planets: ', planets);
   }
 
   if (name !== '') planets = filterPlanetByName(planets, name);

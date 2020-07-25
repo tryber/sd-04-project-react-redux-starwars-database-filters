@@ -1,25 +1,38 @@
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes, { string, object } from 'prop-types';
 import { connect } from 'react-redux';
 import { filterPlanetByNumber } from '../actions/filterPlanetByName';
 
 const Option = ({ value, children }) => <option value={value}>{children}</option>;
 
-const Filter = ({
-  value, dispatchFilterPlanetByNumber, columns, comparisons,
-}) => {
-  const getFilterInfo = (e) => {
-    e.preventDefault();
-    const filterData = {
-      column: e.target.column.value,
-      comparison: e.target.comparison.value,
-      value: e.target.input.value,
+class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      column: '',
+      comparison: '',
+      value: '',
     };
-    console.log(filterData);
-    dispatchFilterPlanetByNumber(filterData);
-  };
 
-  const filterColumns = () => {
+    this.getFilterInfo = this.getFilterInfo.bind(this);
+    this.filterColumns = this.filterColumns.bind(this);
+  }
+
+  getFilterInfo(e) {
+    e.preventDefault();
+    const { dispatchFilterPlanetByNumber } = this.props;
+    const { column, comparison, input } = e.target;
+    console.log(e.target.input.value);
+    this.setState({
+      column: column.value,
+      comparison: comparison.value,
+      value: input.value,
+    });
+    dispatchFilterPlanetByNumber(this.state);
+  }
+
+  filterColumns() {
+    const { value, columns } = this.props;
     let filteredColumns = [...columns];
     if (value.length > 0) {
       value.forEach(({ column }) => {
@@ -27,36 +40,36 @@ const Filter = ({
       });
     }
     return filteredColumns;
-  };
-  console.log('State value: ', value);
-  console.log('Colunas: ', columns);
+  }
 
+  render() {
+    const { comparisons } = this.props;
+    return (
+      <div className="numeric-filter">
+        <form onSubmit={(e) => this.getFilterInfo(e)}>
+          <select data-testid="column-filter" name="column" id="column">
+            {this.filterColumns().map((column) => (
+              <Option key={column} value={column}>{column}</Option>
+            ))}
+          </select>
 
-  return (
-    <div className="numeric-filter">
-      <form onSubmit={(e) => getFilterInfo(e)}>
-        <select data-testid="column-filter" name="column" id="column">
-          {filterColumns().map((column) => (
-            <Option value={column}>{column}</Option>
-          ))}
-        </select>
+          <select data-testid="comparison-filter" name="comparison" id="comparison">
+            {comparisons.map((comparison) => (
+              <Option key={comparison} value={comparison}>{comparison}</Option>
+            ))}
+          </select>
 
-        <select data-testid="comparison-filter" name="comparison" id="comparison">
-          {comparisons.map((comparison) => (
-            <Option value={comparison}>{comparison}</Option>
-          ))}
-        </select>
+          <input data-testid="value-filter" name="input" type="number" />
 
-        <input data-testid="value-filter" name="input" type="number" />
-
-        <button data-testid="button-filter" type="submit">Add Filter</button>
-      </form>
-    </div>
-  );
-};
+          <button data-testid="button-filter" type="submit">Add Filter</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 Filter.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.arrayOf(object).isRequired,
   dispatchFilterPlanetByNumber: PropTypes.func.isRequired,
   columns: PropTypes.arrayOf(string).isRequired,
   comparisons: PropTypes.arrayOf(string).isRequired,

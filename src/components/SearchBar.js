@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { filterPlanetByName } from '../actions/filterPlanetByName';
 
 const SearchBar = ({ value, dispatchFilterPlanetByName }) => {
-  console.log('value: ', value);
   return (
     <form>
       <div>

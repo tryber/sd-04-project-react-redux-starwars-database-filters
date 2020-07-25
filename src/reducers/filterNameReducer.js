@@ -1,4 +1,4 @@
-import { FILTER_NAME, FILTER_NUMBER } from '../actions/filterPlanetByName';
+import { FILTER_NAME, FILTER_NUMBER, REMOVE_FILTER } from '../actions/filterPlanetByName';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -29,6 +29,16 @@ const filters = (state = INITIAL_STATE, action) => {
             value: action.filterData.value,
           },
         ],
+      };
+    case REMOVE_FILTER:
+      console.log('State: ', state.filterByNumericValues.filter(
+        ({ column }) => console.log(column, action),
+      ));
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          ({ column }) => column !== action.filter.column,
+        ),
       };
     default:
       return state;
