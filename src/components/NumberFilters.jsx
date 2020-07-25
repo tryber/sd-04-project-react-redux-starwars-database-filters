@@ -20,7 +20,7 @@ const columnFilter = (optionsArray, testId, id) => (
 //   { value: 'surface_water', text: 'surface_water' },
 // ];
 const comparisonArray = [
-  { value: '', text: 'Comparison' },
+  { text: 'Comparison' },
   { value: 'maior que', text: 'maior que' },
   { value: 'menor que', text: 'menor que' },
   { value: 'igual a', text: 'igual a' },
@@ -37,13 +37,15 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
       };
       const columnOptions = document.querySelectorAll('#column-option');
       columnOptions.forEach((option) => {
-        if (option.value === e.target.children[0].value && !e.target.children[0].value) {
+        if (option.value === e.target.children[0].value) {
           option.remove();
         }
       });
       console.log(columnOptions);
       const filterNumber = filterByNumberState;
-      if (filterByNumberState.length === 0 && !e.target.children[0].value) {
+      if (filterByNumberState.length === 0
+        && !e.target.children[0].value
+        && !e.target.children[1].value) {
         filterNumber.push(inputValues);
         filterByNumberProps(filterNumber);
       } else {
