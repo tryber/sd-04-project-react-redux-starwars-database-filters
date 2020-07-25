@@ -46,9 +46,21 @@ class Table extends Component {
 
 Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  planets: PropTypes.object.isRequired,
+  planets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      population: PropTypes.string,
+      climate: PropTypes.string,
+      diameter: PropTypes.string,
+      gravity: PropTypes.string,
+      orbital_period: PropTypes.string,
+      rotation_period: PropTypes.string,
+      surface_water: PropTypes.string,
+      terrain: PropTypes.string,
+    }).isRequired
+  ),
   getPlanets: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   isFetching: state.planetReducer.isFetching,

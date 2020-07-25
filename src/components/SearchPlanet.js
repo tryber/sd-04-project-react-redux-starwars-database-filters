@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import searchPlanet from "../actions/searchAction";
+import searchPlanet from '../actions/searchAction';
 
 class SearchPlanet extends Component {
   render() {
