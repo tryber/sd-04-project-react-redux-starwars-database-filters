@@ -5,12 +5,12 @@ import {
   } from '../actions';
 
 const INITIAL_STATE = {
-    filterByName: { name: '' },
-    filterByNumericValues: [],
-  };
+   filterByName: { name: '' },
+  filterByNumericValues: [],
+};
 
 const filters = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
+  switch (action.type) {
       case FILTER_BY_NAME:
         return {
           ...state,
@@ -37,6 +37,6 @@ const filters = (state = INITIAL_STATE, action) => {
       default:
         return state;
     }
-  };
+};
 
 export default filters;
