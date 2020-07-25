@@ -22,8 +22,6 @@ class Filter extends React.Component {
   getFilterInfo(e) {
     e.preventDefault();
     const { dispatchFilterPlanetByNumber } = this.props;
-    const { column, comparison, value } = this.state;
-    console.log(column, comparison, value);
     dispatchFilterPlanetByNumber(this.state);
   }
 
