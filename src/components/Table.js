@@ -57,8 +57,8 @@ Table.propTypes = {
       rotation_period: PropTypes.string,
       surface_water: PropTypes.string,
       terrain: PropTypes.string,
-    }).isRequired
-  ),
+    }),
+  ).isRequired,
   getPlanets: PropTypes.func.isRequired,
 };
 
