@@ -60,17 +60,16 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
 
         filterNumber.push(inputValues);
         filterByNumberProps(filterNumber);
-      } else {
-        console.log('substitui o filtro');
-
-        const newFilter = filterNumber.map((filter) => {
-          if (filter.column === inputValues.column) {
-            return inputValues;
-          }
-          return filter;
-        });
-        filterByNumberProps(newFilter);
       }
+      console.log('substitui o filtro');
+
+      const newFilter = filterNumber.map((filter) => {
+        if (filter.column === inputValues.column) {
+          return inputValues;
+        }
+        return filter;
+      });
+      filterByNumberProps(newFilter);
     }}
   >
     {/* {columnFilter(columnArray, 'column-filter', 'column-option')} */}
