@@ -8,9 +8,9 @@ const INITIAL_STATE = {
 function planetReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_DATA:
-      return { ...state, isFetching: true };
+      return { ...state, isFetching: false };
     case GET_DATA:
-      return { ...state, isFetching: false, planets: action.payload };
+      return { ...state, isFetching: true, planets: action.planets };
     default:
       return state;
   }

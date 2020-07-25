@@ -3,16 +3,18 @@ import getPlanet from '../services/api';
 export const GET_DATA = 'GET_DATA';
 export const REQUEST_DATA = 'REQUEST_DATA';
 
-export function getData(json) {
+export function getData(planets) {
   return {
     type: GET_DATA,
-    payload: json.message,
+    isFetching: true,
+    planets,
   };
 }
 
 export function requestData() {
   return {
     type: REQUEST_DATA,
+    isFetching: false,
   };
 }
 
@@ -21,7 +23,7 @@ export function fetchPlanet() {
     dispatch(requestData());
     return getPlanet()
     .then(
-      (json) => dispatch(getData(json)),
+      (planets) => dispatch(getData({planets: planets.results})),
     );
   };
 }

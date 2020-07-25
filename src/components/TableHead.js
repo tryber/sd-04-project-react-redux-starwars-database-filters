@@ -4,17 +4,19 @@ function TableHead() {
   return (
     <thead>
       <tr>
-        <td>Name</td>
-        <td>Population</td>
-        <td>Climate</td>
-        <td>Diameter</td>
-        <td>Gravity</td>
-        <td>Orbital Period</td>
-        <td>Rotation Period</td>
-        <td>Surface Water</td>
-        <td>Terrain</td>
-        <td>Films</td>
-        <td>URL</td>
+        <th>Name</th>
+        <th>Population</th>
+        <th>Climate</th>
+        <th>Diameter</th>
+        <th>Gravity</th>
+        <th>Orbital Period</th>
+        <th>Rotation Period</th>
+        <th>Surface Water</th>
+        <th>Terrain</th>
+        <th>Films</th>
+        <th>Created</th>
+        <th>Edited</th>
+        <th>URL</th>
       </tr>
     </thead>
   );
