@@ -46,14 +46,23 @@ class Filter extends React.Component {
     return (
       <div className="numeric-filter">
         <form onSubmit={(e) => this.getFilterInfo(e)}>
-          <select onChange={(e) => this.handleChange(e)} data-testid="column-filter" name="column" id="column">
+          <select
+            onChange={(e) => this.handleChange(e)}
+            data-testid="column-filter"
+            name="column"
+            id="column"
+          >
             <option value="defaultChecked">colunas</option>
             {this.filterColumns().map((column) => (
               <Option key={column} value={column}>{column}</Option>
             ))}
           </select>
 
-          <select onChange={(e) => this.handleChange(e)} data-testid="comparison-filter" name="comparison" id="comparison">
+          <select
+            onChange={(e) => this.handleChange(e)}
+            data-testid="comparison-filter"
+            name="comparison" id="comparison"
+          >
             <option value="defaultChecked">comparação</option>
             {comparisons.map((comparison) => (
               <Option key={comparison} value={comparison}>{comparison}</Option>
