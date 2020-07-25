@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import getAPIData from '../actions';
 import TableData from './TableData';
-import { TableHeader } from './TableHeader';
+import TableHeader from './TableHeader';
 
-export class Table extends Component {
+class Table extends Component {
   componentDidMount() {
     const { getData } = this.props;
     getData('planets');
