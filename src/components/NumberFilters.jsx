@@ -20,7 +20,7 @@ const columnFilter = (optionsArray, testId, id) => (
 //   { value: 'surface_water', text: 'surface_water' },
 // ];
 const comparisonArray = [
-  { text: 'Comparison' },
+  { value: '', text: 'Comparison' },
   { value: 'maior que', text: 'maior que' },
   { value: 'menor que', text: 'menor que' },
   { value: 'igual a', text: 'igual a' },
@@ -35,21 +35,26 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
         comparison: e.target.children[1].value,
         value: e.target.children[2].value,
       };
+      console.log(inputValues);
       const columnOptions = document.querySelectorAll('#column-option');
       columnOptions.forEach((option) => {
-        if (option.value === e.target.children[0].value) {
+        if (option.value === e.target.children[0].value
+           && e.target.children[0].value
+          && e.target.children[1].value) {
           option.remove();
         }
       });
       console.log(columnOptions);
       const filterNumber = filterByNumberState;
       if (filterByNumberState.length === 0
-        && !e.target.children[0].value
-        && !e.target.children[1].value) {
+        && e.target.children[0].value
+        && e.target.children[1].value) {
         filterNumber.push(inputValues);
         filterByNumberProps(filterNumber);
       } else {
-        if (!filterNumber.find((filter) => filter.column === inputValues.column) && e.target.children[0].value !== 'Column') {
+        if (!filterNumber.find((filter) => filter.column === inputValues.column)
+        && e.target.children[0].value
+        && e.target.children[1].value) {
           filterNumber.push(inputValues);
         }
         const newFilter = filterNumber.map((filter) => {
@@ -64,7 +69,7 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
   >
     {/* {columnFilter(columnArray, 'column-filter', 'column-option')} */}
     <select data-testid="column-filter">
-      <option id="column-option">Column</option>
+      <option id="column-option" value="">Column</option>
       <option id="column-option" value="population">population</option>
       <option id="column-option" value="orbital_period">orbital_period</option>
       <option id="column-option" value="diameter">diameter</option>
