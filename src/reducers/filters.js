@@ -5,19 +5,19 @@ import {
   } from '../actions';
 
 const INITIAL_STATE = {
-   filterByName: { name: '' },
+  filterByName: { name: '' },
   filterByNumericValues: [],
 };
 
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-      case FILTER_BY_NAME:
-        return {
+    case FILTER_BY_NAME:
+      return {
           ...state,
           filterByName: { name: action.name },
         };
-      case FILTER_BY_NUMERIC_VALUES:
-        return {
+    case FILTER_BY_NUMERIC_VALUES:
+      return {
           ...state,
           filterByNumericValues: [...state.filterByNumericValues, {
             column: action.column,
@@ -25,8 +25,8 @@ const filters = (state = INITIAL_STATE, action) => {
             value: action.value,
           }],
         };
-      case REMOVE_FILTER_BY_NUMERIC_VALUES:
-        return {
+    case REMOVE_FILTER_BY_NUMERIC_VALUES:
+      return {
           ...state,
           filterByNumericValues: [
             ...state.filterByNumericValues.filter(
@@ -34,9 +34,9 @@ const filters = (state = INITIAL_STATE, action) => {
             ),
           ],
         };
-      default:
-        return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default filters;
