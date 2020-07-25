@@ -44,7 +44,8 @@ class Table extends Component {
     const { head } = this.state;
     const { data, query } = this.props;
     const isPlanetNameThere = (row) => (row.name.toLowerCase().indexOf(query.toLowerCase()) >= 0);
-    // Caso não encontre nenhum string que der match, indexOf retorna -1
+    // indexOf retorna -1 caso não ache row. Assim, encontrados serão > 0,
+    // retornando True, para assim ser filtravel.
     return (
       <tbody>
         {data.filter(isPlanetNameThere).map((planet) => (

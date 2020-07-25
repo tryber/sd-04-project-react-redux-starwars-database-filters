@@ -3,6 +3,7 @@ import {
   PLANET_INFO_REQUEST_SUCCESS,
   PLANET_INFO_REQUEST_FAILURE,
   FILTER_BY_TEXT,
+  SAVE_FILTER_DATA,
 } from './actions';
 
 import getAllPlanetsFromAPI from '../service/starWarsAPI';
@@ -39,10 +40,18 @@ const filterByText = (name) => ({
   name,
 });
 
+const saveFilterData = (column, comparison, number) => ({
+  type: SAVE_FILTER_DATA,
+  column,
+  comparison,
+  number,
+});
+
 export {
   requestPlanetsInfo,
   requestPlanetInfoSucess,
   requestPlantInfoFailure,
   fetchingPlanetsInfo,
   filterByText,
+  saveFilterData,
 };
