@@ -9,6 +9,7 @@ const INITIAL_PLANETS_STATE = {
 };
 
 const getPlanets = (state = INITIAL_PLANETS_STATE, action) => {
+  const planetsCTS = state.filteredPlanets.length === 0 ? state.planets : state.filteredPlanets;
   switch (action.type) {
     case REQUEST_PLANETS:
       return {
@@ -17,19 +18,20 @@ const getPlanets = (state = INITIAL_PLANETS_STATE, action) => {
       };
     case REQUEST_PLANETS_SUCCESS:
       return {
-        ...state, planets: action.data, filteredPlanets: action.data, isFetching: false,
+        ...state, planets: action.data, isFetching: false,
       };
     case FILTER_BY_NAME:
       return {
         ...state,
-        filteredPlanets: state.planets.filter(
+        filteredPlanets: planetsCTS.filter(
           ({ name }) => (name.toLowerCase()).includes(action.name.toLowerCase()),
         ),
       };
     case FILTER_BY_NUMBER:
+
       return {
         ...state,
-        filteredPlanets: numericFilter(state.filteredPlanets, action.filter),
+        filteredPlanets: numericFilter(planetsCTS, action.filter),
       };
     default:
       return state;
