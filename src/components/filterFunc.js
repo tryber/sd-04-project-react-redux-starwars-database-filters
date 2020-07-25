@@ -27,5 +27,5 @@ const filterFunc = (planets, name, numericValues) => (
           planets,
         )
   );
-  
+
 export default filterFunc;

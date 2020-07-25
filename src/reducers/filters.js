@@ -3,13 +3,13 @@ import {
     FILTER_BY_NUMERIC_VALUES,
     REMOVE_FILTER_BY_NUMERIC_VALUES,
   } from '../actions';
-  
-  const INITIAL_STATE = {
+
+const INITIAL_STATE = {
     filterByName: { name: '' },
     filterByNumericValues: [],
   };
-  
-  const filters = (state = INITIAL_STATE, action) => {
+
+const filters = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case FILTER_BY_NAME:
         return {
@@ -38,5 +38,5 @@ import {
         return state;
     }
   };
-  
+
 export default filters;
