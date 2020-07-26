@@ -41,20 +41,6 @@ class FilterValues extends Component {
     );
   }
 
-  updateColumns() {
-    const { numericValues } = this.props;
-    const columns = [
-      '',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-    const chosenColumns = numericValues.map(({ column }) => column);
-    return columns.filter((item) => !chosenColumns.includes(item));
-  }
-
   getComparation() {
     const comparation = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -69,6 +55,20 @@ class FilterValues extends Component {
         ))}
       </select>
     );
+  }
+
+  updateColumns() {
+    const { numericValues } = this.props;
+    const columns = [
+      '',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    const chosenColumns = numericValues.map(({ column }) => column);
+    return columns.filter((item) => !chosenColumns.includes(item));
   }
 
   render() {

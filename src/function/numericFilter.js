@@ -24,7 +24,7 @@ function numericFilter(planets, name, numeric) {
                 return planet.name.includes(name);
             }
           }),
-        planets
+        planets,
       );
 }
 
