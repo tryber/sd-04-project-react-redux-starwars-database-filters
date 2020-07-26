@@ -6,6 +6,7 @@ import {
   REMOVE_FILTER,
 } from '../actions/filterByNumeric';
 import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
+import { SORT_FILTER } from '../actions/filterByOrder';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -62,7 +63,11 @@ function reducer(state = INITIAL_STATE, action) {
       const newFilteredByNumericValues = state.filterByNumericValues.filter(
         ({ column }) => column !== action.filterToRemove.column);
       return { ...state, filterByNumericValues: newFilteredByNumericValues };
-    } default: return state;
+    }
+    case SORT_FILTER:
+      return { ...state, order: { column: action.column, sort: action.sort } };
+    default:
+      return state;
   }
 }
 

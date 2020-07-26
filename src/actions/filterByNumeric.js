@@ -12,5 +12,4 @@ export function setNumericFilterVariables(filter) {
 }
 
 export const setPlanetsFilteredByNumeric = () => ({ type: SET_FILTERED_BY_NUMERIC });
-
 export const removeFilter = (filterToRemove) => ({ type: REMOVE_FILTER, filterToRemove });

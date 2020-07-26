@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets from '../actions/fetchPlanets';
 import RenderTable from './renderTable';
+// import { compare, sortData } from '../usingSort';
 
 class Table extends Component {
   componentDidMount() {
@@ -29,6 +30,7 @@ const mapStateToProps = (state) => ({
   filteredPlanets: state.filters.filteredPlanets,
   nameToFilter: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -42,4 +44,5 @@ Table.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
 };
