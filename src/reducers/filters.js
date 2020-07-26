@@ -1,10 +1,8 @@
 import { FILTER_BY_NAME } from '../actions/dataAction';
 
 const INITIAL_STATE = {
-  
-    filterByName: {
-      name: '',
-    
+  filterByName: {
+    name: '',
   },
 };
 
