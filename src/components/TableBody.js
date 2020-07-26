@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 class TableBody extends Component {
   render() {
     const { planets, name } = this.props;
-    const filterName = planets.filter((planet) => planet.name.includes(name));
+    const data = planets.filter((planet) => planet.name.includes(name));
     return (
       <tbody>
-        {filterName.map((item) => (
+        {data.map((item) => (
           <tr key={item.name}>
             <td>{item.name}</td>
             <td>{item.population}</td>
