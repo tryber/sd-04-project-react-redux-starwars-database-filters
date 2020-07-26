@@ -22,7 +22,7 @@ class Table extends Component {
     const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
     return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
   }
-};
+}
 
 const mapStateToProps = (state) => ({
   planetsData: state.filters.planetsData,
