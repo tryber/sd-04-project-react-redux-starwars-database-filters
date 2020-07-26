@@ -33,7 +33,7 @@ export function filterByNumericValues(column, comparison, value) {
     column,
     comparison,
     value,
-  }
+  };
 }
 
 export function fetchPlanet() {
