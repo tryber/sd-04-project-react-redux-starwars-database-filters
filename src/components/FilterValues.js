@@ -18,22 +18,6 @@ class FilterValues extends Component {
     this.setState({ [field]: e.target.value });
   }
 
-  getComparation() {
-    const comparation = ['', 'maior que', 'menor que', 'igual a'];
-    return (
-      <select
-        value={this.state.comparation}
-        onChange={(e) => this.onChange(e, 'comparation')}
-      >
-        {comparation.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
-    );
-  }
-
   onClick() {
     const { column, comparation, number } = this.state;
     const { filterByNumber } = this.props;
@@ -69,6 +53,22 @@ class FilterValues extends Component {
     ];
     const chosenColumns = numericValues.map(({ column }) => column);
     return columns.filter((item) => !chosenColumns.includes(item));
+  }
+
+  getComparation() {
+    const comparation = ['', 'maior que', 'menor que', 'igual a'];
+    return (
+      <select
+        value={this.state.comparation}
+        onChange={(e) => this.onChange(e, 'comparation')}
+      >
+        {comparation.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
   }
 
   render() {
