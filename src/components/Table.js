@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets from '../actions/fetchPlanets';
 import RenderTable from './renderTable';
-import './table.css';
 
 class Table extends Component {
   componentDidMount() {
