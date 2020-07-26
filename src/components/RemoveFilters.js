@@ -39,6 +39,6 @@ RemoveFilters.propTypes = {
     }),
   ).isRequired,
   removeNumeric: PropTypes.func.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(RemoveFilters);

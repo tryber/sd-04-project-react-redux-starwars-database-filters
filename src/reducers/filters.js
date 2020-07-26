@@ -2,7 +2,7 @@ import {
   FILTER_BY_NAME,
   FILTER_BY_NUMERIC_VALUE,
   REMOVE_FILTERS,
-} from "../actions/dataAction";
+} from '../actions/dataAction';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -35,7 +35,7 @@ function filters(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
-            (key) => key !== action.filteredKeys
+            (key) => key !== action.filteredKeys,
           ),
         ],
       };

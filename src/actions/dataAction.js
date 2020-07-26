@@ -41,7 +41,7 @@ export function removeFilters(filteredKeys) {
   return {
     type: REMOVE_FILTERS,
     filteredKeys,
-  }
+  };
 }
 
 export function fetchPlanet() {
