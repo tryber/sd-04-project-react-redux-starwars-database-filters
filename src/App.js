@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home';
+import Table from './components/Table';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
+    <div>
+      <Header />
+      <h1>Star Wars Planets</h1>
+      <Table />
     </div>
   );
 }
