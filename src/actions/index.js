@@ -11,6 +11,11 @@ export const SELECT_COLUMN = 'SELECT_COLUMN';
 export const SELECT_COMPARISON = 'SELECT_COMPARISON';
 export const SELECT_NUMBER = 'SELECT_NUMBER';
 
+export const UPDATE_OPTIONS = 'UPDATE_OPTIONS';
+
+export const UPDATE_ORDER_COLUMN = 'UPDATE_ORDER_COLUMN';
+export const UPDATE_ORDER_SORT = 'UPDATE_ORDER_SORT';
+
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
 });
@@ -47,6 +52,21 @@ export const selectComparison = (payload) => ({
 
 export const selectNumber = (payload) => ({
   type: SELECT_NUMBER,
+  payload,
+});
+
+export const updateOptions = (payload) => ({
+  type: UPDATE_OPTIONS,
+  payload,
+});
+
+export const updateOrderColumn = (payload) => ({
+  type: UPDATE_ORDER_COLUMN,
+  payload,
+});
+
+export const updateOrderSort = (payload) => ({
+  type: UPDATE_ORDER_SORT,
   payload,
 });
 

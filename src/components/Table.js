@@ -7,6 +7,7 @@ import { fetchPlanets, filterByName } from '../actions';
 import RenderTable from './RenderTable';
 import SelectFilter from './SelectFilter';
 import FiltersList from './FiltersList';
+import FilterSort from './FilterSort';
 
 class Table extends Component {
   componentDidMount() {
@@ -15,10 +16,7 @@ class Table extends Component {
   }
 
   render() {
-    const {
-      isFetching, data, name, filterName,
-    } = this.props;
-
+    const { isFetching, data, filterName } = this.props;
     return (
       <div>
         <div>StarWars Datatable with Filters</div>
@@ -29,8 +27,9 @@ class Table extends Component {
         />
         <SelectFilter />
         <FiltersList />
+        <FilterSort />
         {isFetching && 'Loading...'}
-        {data.length > 0 && <RenderTable data={data} name={name} />}
+        {data.length > 0 && <RenderTable />}
       </div>
     );
   }
@@ -39,7 +38,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   isFetching: state.starWarsAPIReducer.isFetching,
   data: state.starWarsAPIReducer.data,
-  name: state.filters.filterByName.name,
+  numericFilters: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -51,8 +50,23 @@ Table.propTypes = {
   getPlanetsData: PropTypes.func.isRequired,
   filterName: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  data: RenderTable.propTypes.isRequired,
-  name: RenderTable.propTypes.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      diameter: PropTypes.string,
+      rotation_period: PropTypes.string,
+      orbital_period: PropTypes.string,
+      gravity: PropTypes.string,
+      population: PropTypes.string,
+      climate: PropTypes.string,
+      terrain: PropTypes.string,
+      surface_water: PropTypes.string,
+      films: PropTypes.array,
+      url: PropTypes.string,
+      created: PropTypes.string,
+      edited: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

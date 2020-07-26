@@ -7,6 +7,7 @@ import {
   SELECT_COLUMN,
   SELECT_COMPARISON,
   SELECT_NUMBER,
+  UPDATE_OPTIONS,
 } from '../actions/index';
 
 const INITIAL_STATE_API = {
@@ -19,12 +20,26 @@ const INITIAL_STATE_FILTERS = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const INITIAL_STATE_SELECT = {
   column: '',
   comparison: '',
   value: '',
+};
+
+const INITIAL_STATE_OPTIONS = {
+  options: [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ],
 };
 
 export const starWarsAPIReducer = (state = INITIAL_STATE_API, action) => {
@@ -89,6 +104,20 @@ export const selectFilter = (state = INITIAL_STATE_SELECT, action) => {
       return {
         ...state,
         value: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const availableOptions = (state = INITIAL_STATE_OPTIONS, action) => {
+  switch (action.type) {
+    case UPDATE_OPTIONS:
+      return {
+        ...state,
+        options: [
+          ...state.options.filter((option) => option !== action.payload),
+        ],
       };
     default:
       return state;

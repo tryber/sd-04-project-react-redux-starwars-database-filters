@@ -2,7 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const RenderTable = ({ data, name }) => (
+const filterData = (datatable, name, numericFilters) => {
+  let filteredData = [];
+  if (name === '') filteredData = datatable;
+  if (name !== '') {
+    filteredData = datatable.filter((planet) => planet.name.includes(name));
+  }
+  if (numericFilters.length > 0) {
+    numericFilters.forEach((filter) => {
+      if (filter.comparison === 'maior que') {
+        filteredData = filteredData.filter(
+          (planet) => planet[filter.column] > Number(filter.value),
+        );
+      }
+      if (filter.comparison === 'menor que') {
+        filteredData = filteredData.filter(
+          (planet) => planet[filter.column] < Number(filter.value),
+        );
+      }
+      if (filter.comparison === 'igual a') {
+        filteredData = filteredData.filter(
+          (planet) => planet[filter.column] === filter.value,
+        );
+      }
+    });
+  }
+  return filteredData;
+};
+
+const RenderTable = ({ data, name, numericFilters }) => (
   <table>
     <thead>
       <tr>
@@ -14,15 +42,15 @@ const RenderTable = ({ data, name }) => (
       </tr>
     </thead>
     <tbody>
-      {data
-        .filter((planet) => planet.name.includes(name))
-        .map(({ residents, ...planet }) => (
+      {filterData(data, name, numericFilters).map(
+        ({ residents, ...planet }) => (
           <tr key={planet.name}>
             {Object.values(planet).map((value) => (
               <td key={value}>{value}</td>
             ))}
           </tr>
-        ))}
+        ),
+      )}
     </tbody>
   </table>
 );
@@ -30,9 +58,8 @@ const RenderTable = ({ data, name }) => (
 const mapStateToProps = (state) => ({
   data: state.starWarsAPIReducer.data,
   name: state.filters.filterByName.name,
+  numericFilters: state.filters.filterByNumericValues,
 });
-
-connect(mapStateToProps, null)(RenderTable);
 
 RenderTable.propTypes = {
   name: PropTypes.string.isRequired,
@@ -53,6 +80,13 @@ RenderTable.propTypes = {
       edited: PropTypes.string,
     }).isRequired,
   ).isRequired,
+  numericFilters: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
 };
 
-export default RenderTable;
+export default connect(mapStateToProps, null)(RenderTable);
