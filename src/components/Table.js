@@ -57,6 +57,9 @@ const mapStateToProps = (state) => ({
   filteredPlanets: state.filters.filteredPlanets,
   nameToFilter: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  data: state.swAPI.data,
+  searchText: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
   order: state.filters.order,
 });
 
@@ -74,4 +77,7 @@ Table.propTypes = {
   order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
   objKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchText: PropTypes.string.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
