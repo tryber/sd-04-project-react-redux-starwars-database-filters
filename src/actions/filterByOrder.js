@@ -1,4 +1,4 @@
-export const SORT_FILTER = 'SORT_FILTER';
+export default sortFilter;
 
 const sortFilter = (sort, column) => ({
   type: SORT_FILTER,

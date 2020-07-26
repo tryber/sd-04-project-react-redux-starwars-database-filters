@@ -1,13 +1,13 @@
 const sortData = (data, { column, sort }) => {
-    if (sort === 'DESC') {
-      return data.sort((a, b) => Number(b[column]) - Number(a[column]));
-    }
-    if (sort === 'ASC') {
-      return data.sort((a, b) => Number(a[column]) - Number(b[column]));
-    }
-    return false;
-  };
-  
+  if (sort === 'DESC') {
+    return data.sort((a, b) => Number(b[column]) - Number(a[column]));
+  }
+  if (sort === 'ASC') {
+    return data.sort((a, b) => Number(a[column]) - Number(b[column]));
+  }
+  return false;
+};
+
 const compare = (planeta, column, comparison, value) => {
   switch (comparison) {
     case 'menor que':
