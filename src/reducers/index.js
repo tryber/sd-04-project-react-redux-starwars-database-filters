@@ -36,13 +36,6 @@ const applyNumericFilters = (planets, filters) => {
   return filteredPlanets;
 };
 
-const notNumbers = ['name', 'climate', 'terrain', 'residents', 'films', 'created', 'edited'];
-
-const applyOrderFilter = (planets, { column, sort }) => {
-  planets.sort(compare(column, sort));
-  return planets;
-};
-
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case REQUEST_PLANETS:
