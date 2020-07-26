@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets from '../actions/fetchPlanets';
 import RenderTable from './renderTable';
-// import { compare, sortData } from '../usingSort';
 
 class Table extends Component {
   componentDidMount() {
-    const { filteredPlanets: fetch } = this.props;
+    const { fetchPlanets: fetch } = this.props;
     fetch();
   }
 
@@ -40,7 +39,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // fetchPlanets: PropTypes.func.isRequired,
+  fetchPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
