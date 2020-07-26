@@ -43,18 +43,14 @@ function reducer(state = INITIAL_STATE, action) {
         ...state,
         planetsData: action.planetsData,
         filteredPlanets: action.planetsData.sort((a, b) => a.name.localeCompare(b.name)),
-        isFetching: false,
-      };
+        isFetching: false };
     case NAME_TO_FILTER: return { ...state, filterByName: { name: action.name } };
     case SET_FILTERED_BY_NAME: return { ...state, filteredPlanets: action.planets };
     case SET_FILTER_VARIABLES: {
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.value },
-        ],
-      };
+        filterByNumericValues: [ ...state.filterByNumericValues,
+          { column: action.column, comparison: action.comparison, value: action.value }]};
     }
     case SET_FILTERED_BY_NUMERIC: {
       const planets = state
@@ -64,12 +60,9 @@ function reducer(state = INITIAL_STATE, action) {
     }
     case REMOVE_FILTER: {
       const newFilteredByNumericValues = state.filterByNumericValues.filter(
-        ({ column }) => column !== action.filterToRemove.column,
-      );
+        ({ column }) => column !== action.filterToRemove.column);
       return { ...state, filterByNumericValues: newFilteredByNumericValues };
-    }
-    default:
-      return state;
+    } default: return state;
   }
 }
 
