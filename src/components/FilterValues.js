@@ -29,6 +29,7 @@ class FilterValues extends Component {
     const select = this.updateColumns();
     return (
       <select
+        data-testid="column-filter"
         value={this.state.column}
         onChange={(e) => this.onChange(e, 'column')}
       >
@@ -45,6 +46,7 @@ class FilterValues extends Component {
     const comparation = ['', 'maior que', 'menor que', 'igual a'];
     return (
       <select
+        data-testid="comparison-filter"
         value={this.state.comparation}
         onChange={(e) => this.onChange(e, 'comparation')}
       >
@@ -77,11 +79,12 @@ class FilterValues extends Component {
         {this.getColumns()}
         {this.getComparation()}
         <input
+          data-testid="value-filter"
           type="number"
           value={this.state.number}
           onChange={(e) => this.onChange(e, 'number')}
         />
-        <button onClick={this.onClick}>Filtrar</button>
+        <button data-testid="button-filter" onClick={this.onClick}>Filtrar</button>
       </div>
     );
   }
