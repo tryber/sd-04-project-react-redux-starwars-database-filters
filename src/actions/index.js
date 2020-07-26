@@ -12,9 +12,9 @@ const requestingPlanets = () => ({
 
 const sucessPlanets = (data) => {
   return {
-  type: REQUEST_PLANETS_SUCCESS,
-  data,
-}
+    type: REQUEST_PLANETS_SUCCESS,
+    data,
+  };
 };
 
 const failurePlanets = (error) => ({
@@ -25,22 +25,22 @@ const failurePlanets = (error) => ({
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestingPlanets());
-    
+
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
       (error) => dispatch(failurePlanets(error)),
-      )
-    }
-  }
-  
-  export const filterByName = (name) => ({
-    type: FILTER_BY_NAME,
-    name,
-  });
+    );
+  };
+}
 
-  export const filterByNumericValues = (column, comparison, value) => ({
-    type: FILTER_BY_NUMERIC_VALUES,
-    column,
-    comparison,
-    value,
-  });
+export const filterByName = (name) => ({
+  type: FILTER_BY_NAME,
+  name,
+});
+
+export const filterByNumericValues = (column, comparison, value) => ({
+  type: FILTER_BY_NUMERIC_VALUES,
+  column,
+  comparison,
+  value,
+});

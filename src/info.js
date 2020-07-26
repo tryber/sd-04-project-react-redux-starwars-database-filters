@@ -18,7 +18,7 @@ const API = 'https://swapi-trybe.herokuapp.com/api/planets';
           <th>Url</th>
         </tr>
       </thead>
-    </table>
+</table>
 
 REQUESTING_PLANETS
 REQUEST_PLANETS_SUCCESS
@@ -26,6 +26,7 @@ REQUEST_PLANETS_FAILURE
 
 import { REQUESTING_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_FAILURE } from '../actions';
 
+<div>
 <td>{planet.rotation_period}</td>
 <td>{planet.orbital_period}</td>
 <td>{planet.diameter}</td>
@@ -42,6 +43,7 @@ import { REQUESTING_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_FAILURE } 
 <td>{planet.created}</td>
 <td>{planet.edited}</td>
 <td>{planet.url}</td>
+</div>
 
 const columns = [
   'population',

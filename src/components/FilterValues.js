@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { filterByNumericValues } from '../actions';
 import { connect } from 'react-redux';
+import { filterByNumericValues } from '../actions';
 
 class FilterValues extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class FilterValues extends Component {
       column: '',
       comparation: '',
       number: '',
-    }
+    };
 
     this.onClick = this.onClick.bind(this);
   }
@@ -32,22 +32,6 @@ class FilterValues extends Component {
     this.setState({ [field]: event.target.value });
   }
 
-  getColumns() {
-    const select = this.updateColumns();
-    return (
-      <select
-        value={this.state.column}
-        onChange={(event) => this.onChange(event, 'column')}
-      >
-        {select.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
-    )
-  }
-
   getComparation() {
     const comparation = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -61,14 +45,30 @@ class FilterValues extends Component {
           </option>
         ))}
       </select>
-    )
+    );
   }
 
   onClick() {
     const { column, comparation, number } = this.state;
-    const { filterByNumericValues } = this.props;
+    // const { filterByNumericValues } = this.props;
     filterByNumericValues(column, comparation, number);
     this.setState({ column: '', comparation: '', number: '' });
+  }
+
+  getColumns() {
+    const select = this.updateColumns();
+    return (
+      <select
+        value={this.state.column}
+        onChange={(event) => this.onChange(event, 'column')}
+      >
+        {select.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
   }
 
   render() {
@@ -85,17 +85,17 @@ class FilterValues extends Component {
           Filtrar
         </button>
       </div>
-    )
+    );
   }
 }
 
 const mapState = (state) => ({
   numericValues: state.filters.filterByNumericValues,
-})
+});
 
 const mapDispatch = (dispatch) => ({
   filterByNumericValues: (column, comparison, value) =>
-    dispatch(filterByNumericValues(column, comparison, value))
-})
+    dispatch(filterByNumericValues(column, comparison, value)),
+});
 
 export default connect(mapState, mapDispatch)(FilterValues);

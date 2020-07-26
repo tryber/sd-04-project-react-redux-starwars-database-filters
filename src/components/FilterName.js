@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { filterByName } from '../actions';
 import { connect } from 'react-redux';
+import { filterByName } from '../actions';
 
 class FilterName extends Component {
   render() {
-    const { filterByName } = this.props;
+    // const { filterByName } = this.props;
     return (
       <div>
         <input

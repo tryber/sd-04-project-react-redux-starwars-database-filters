@@ -26,7 +26,6 @@ function Table() {
   );
 }
 
-export default Table;
 import React from 'react';
 import TableBody from './TableBody';
 
