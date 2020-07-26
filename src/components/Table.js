@@ -53,13 +53,10 @@ const compareData = ({ data, searchText, filterByNumericValues, order }) => {
 
 const mapStateToProps = (state) => ({
   planetsData: state.filters.planetsData,
-  isFetching: state.swAPI.isFetching,
+  isFetching: state.filters.isFetching,
   filteredPlanets: state.filters.filteredPlanets,
   nameToFilter: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
-  data: state.swAPI.data,
-  searchText: state.filters.filterByName.name,
-  order: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -69,14 +66,8 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  // planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // fetchPlanets: PropTypes.func.isRequired,
-  // isFetching: PropTypes.bool.isRequired,
-  // filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
-  // objKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  searchText: PropTypes.string.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchPlanets: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
