@@ -38,13 +38,6 @@ const applyNumericFilters = (planets, filters) => {
 
 const notNumbers = ['name', 'climate', 'terrain', 'residents', 'films', 'created', 'edited'];
 
-const compare = (column = 'ASC') => (a, b) => {
-  const let1 = !notNumbers.includes(column) ? Number(a[column]) : a[column];
-  const let2 = !notNumbers.includes(column) ? Number(b[column]) : b[column];
-  if (let1 > let2) comparison = 1;
-  else if (let1 < let2) comparison = -1;
-};
-
 const applyOrderFilter = (planets, { column, sort }) => {
   planets.sort(compare(column, sort));
   return planets;
