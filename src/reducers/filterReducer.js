@@ -13,8 +13,8 @@ function filterReducer(state = INITIAL_STATE, action) {
     case FILTER_BY_NAME:
       return {
         ...state,
-        filters: { filterByName: { name: action.name } 
-      }};
+        filters: { filterByName: { name: action.name } },
+      };
     default:
       return state;
   }
