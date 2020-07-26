@@ -81,7 +81,6 @@ const mapStateToProps = (state) => ({
   comparison: state.selectFilter.comparison,
   number: state.selectFilter.value,
   options: state.availableOptions.options,
-  numericFilters: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

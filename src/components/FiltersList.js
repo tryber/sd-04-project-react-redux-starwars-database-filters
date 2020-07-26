@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import { updateNumericFilters } from '../actions/index';
 
-const FiltersList = ({ numericFilters, updateFilters }) => (
+const FiltersList = ({ arrayFilters, updateFilters }) => (
   <div>
     <h1>Filtros</h1>
-    {numericFilters.map((filter) => (
+    {arrayFilters.map((filter) => (
       <span data-testid="filter" key={filter.value}>
         <p>{`${filter.column} ${filter.comparison} ${filter.value}`}</p>
         <button type="button" onClick={() => updateFilters(filter)}>
@@ -19,7 +19,7 @@ const FiltersList = ({ numericFilters, updateFilters }) => (
 );
 
 const mapStateToProps = (state) => ({
-  numericFilters: state.filters.filterByNumericValues,
+  arrayFilters: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 FiltersList.propTypes = {
   updateFilters: PropTypes.func.isRequired,
-  numericFilters: PropTypes.arrayOf(
+  arrayFilters: PropTypes.arrayOf(
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,

@@ -16,7 +16,7 @@ class Table extends Component {
   }
 
   render() {
-    const { isFetching, data, filterName } = this.props;
+    const { isFetching, arrayPlanets, filterName } = this.props;
     return (
       <div>
         <div>StarWars Datatable with Filters</div>
@@ -29,7 +29,7 @@ class Table extends Component {
         <FiltersList />
         <FilterSort />
         {isFetching && 'Loading...'}
-        {data.length > 0 && <RenderTable />}
+        {arrayPlanets.length > 0 && <RenderTable />}
       </div>
     );
   }
@@ -37,7 +37,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   isFetching: state.starWarsAPIReducer.isFetching,
-  data: state.starWarsAPIReducer.data,
+  arrayPlanets: state.starWarsAPIReducer.data,
   numericFilters: state.filters.filterByNumericValues,
 });
 
@@ -50,7 +50,7 @@ Table.propTypes = {
   getPlanetsData: PropTypes.func.isRequired,
   filterName: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  data: PropTypes.arrayOf(
+  arrayPlanets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       diameter: PropTypes.string,
