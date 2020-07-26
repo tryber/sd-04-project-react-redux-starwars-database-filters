@@ -24,7 +24,7 @@ class Table extends Component {
   }
 }
 
-const Table = ({ data, searchText, filterByNumericValues, order }) => {
+const compareData = ({ data, searchText, filterByNumericValues, order }) => {
   const objKeys =
     data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
   let planets = data.sort((a, b) => a.name.localeCompare(b.name));
@@ -59,7 +59,6 @@ const mapStateToProps = (state) => ({
   filterByNumericValues: state.filters.filterByNumericValues,
   data: state.swAPI.data,
   searchText: state.filters.filterByName.name,
-  filterByNumericValues: state.filters.filterByNumericValues,
   order: state.filters.order,
 });
 
@@ -70,13 +69,13 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchPlanets: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // fetchPlanets: PropTypes.func.isRequired,
+  // isFetching: PropTypes.bool.isRequired,
+  // filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
-  objKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // objKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   searchText: PropTypes.string.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
