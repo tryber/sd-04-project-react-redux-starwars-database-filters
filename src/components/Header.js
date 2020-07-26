@@ -131,8 +131,6 @@ class Header extends Component {
       setFilteredPlanets,
       filtersList,
       isFetching,
-      setOrder,
-      setFilteredPlanetsByOrder,
     } = this.props;
     if (isFetching) return <p>Loading...</p>;
     return (
@@ -147,7 +145,6 @@ class Header extends Component {
             }}
           />
           {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
-          {renderFiltersOrder(planetsData, setOrder, setFilteredPlanetsByOrder)}
         </div>
         {renderFiltersSetted(filtersList, remove, setFilteredPlanets)}
       </div>
