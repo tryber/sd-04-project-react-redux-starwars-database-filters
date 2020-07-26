@@ -56,7 +56,7 @@ class Filter extends React.Component {
           </option>
         ))}
       </select>
-    )
+    );
   }
 
   render() {
