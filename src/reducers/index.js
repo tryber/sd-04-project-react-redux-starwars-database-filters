@@ -6,7 +6,6 @@ import {
   REMOVE_FILTER,
 } from '../actions/filterByNumeric';
 import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
-import { SET_ORDER_FILTER, SET_FILTERED_BY_ORDER } from '../actions/filterByOrder';
 
 const INITIAL_STATE = {
   isFetching: true,
