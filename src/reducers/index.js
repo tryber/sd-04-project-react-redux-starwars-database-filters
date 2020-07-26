@@ -38,19 +38,18 @@ const applyNumericFilters = (planets, filters) => {
 
 const notNumbers = ['name', 'climate', 'terrain', 'residents', 'films', 'created', 'edited'];
 
-
-// const compare = (column, sort = 'ASC') => (a, b) => {
-//   const varA = !notNumbers.includes(column) ? Number(a[column]) : a[column];
-//   const varB = !notNumbers.includes(column) ? Number(b[column]) : b[column];
-//   let comparison = 0;
-//   if (varA > varB) {
-//     comparison = 1;
-//   } else if (varA < varB) {
-//     comparison = -1;
-//   }
-//   const uai = (sort === 'DESC' ? comparison * -1 : comparison);
-//   return uai;
-// };
+const compare = (column, sort = 'ASC') => (a, b) => {
+  const varA = !notNumbers.includes(column) ? Number(a[column]) : a[column];
+  const varB = !notNumbers.includes(column) ? Number(b[column]) : b[column];
+  let comparison = 0;
+  if (varA > varB) {
+    comparison = 1;
+  } else if (varA < varB) {
+    comparison = -1;
+  }
+  const uai = (sort === 'DESC' ? comparison * -1 : comparison);
+  return uai;
+};
 
 const applyOrderFilter = (planets, { column, sort }) => {
   planets.sort(compare(column, sort));
@@ -93,23 +92,23 @@ function reducer(state = INITIAL_STATE, action) {
       );
       return { ...state, filterByNumericValues: newFilteredByNumericValues };
     }
-    // case SET_ORDER_FILTER: {
-    //   return {
-    //     ...state,
-    //     order: {
-    //       column: action.column,
-    //       sort: action.sortKey,
-    //     },
-    //   };
-    // }
-    // case SET_FILTERED_BY_ORDER: {
-    //   const planets = [...state.filteredPlanets];
-    //   const filteredPlanets = applyOrderFilter(planets, state.order);
-    //   return {
-    //     ...state,
-    //     filteredPlanets,
-    //   };
-    // }
+    case SET_ORDER_FILTER: {
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sortKey,
+        },
+      };
+    }
+    case SET_FILTERED_BY_ORDER: {
+      const planets = [...state.filteredPlanets];
+      const filteredPlanets = applyOrderFilter(planets, state.order);
+      return {
+        ...state,
+        filteredPlanets,
+      };
+    }
     default:
       return state;
   }
