@@ -72,23 +72,6 @@ function reducer(state = INITIAL_STATE, action) {
       );
       return { ...state, filterByNumericValues: newFilteredByNumericValues };
     }
-    case SET_ORDER_FILTER: {
-      return {
-        ...state,
-        order: {
-          column: action.column,
-          sort: action.sortKey,
-        },
-      };
-    }
-    case SET_FILTERED_BY_ORDER: {
-      const planets = [...state.filteredPlanets];
-      const filteredPlanets = applyOrderFilter(planets, state.order);
-      return {
-        ...state,
-        filteredPlanets,
-      };
-    }
     default:
       return state;
   }
