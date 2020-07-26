@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TableHead from './TableHead';
 import TableBody from './TableBody';
-import { connect } from 'react-redux';
+
 
 class Table extends Component {
   render() {
@@ -16,4 +17,4 @@ class Table extends Component {
   }
 }
 
-export default connect(null, null) (Table);
+export default connect(null, null)(Table);

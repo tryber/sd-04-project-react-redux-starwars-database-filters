@@ -7,9 +7,8 @@ import FilterName from './FilterName';
 
 class Home extends Component {
   componentDidMount() {
-    const {fetch} = this.props;
+    const { fetch } = this.props;
     fetch();
-    console.log(fetch());
   }
   render() {
     const { isFetching } = this.props;
@@ -35,6 +34,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 Home.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

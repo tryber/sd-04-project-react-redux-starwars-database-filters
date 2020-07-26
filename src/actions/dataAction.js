@@ -23,10 +23,9 @@ export function filterByName(name) {
   return {
     type: FILTER_BY_NAME,
     name,
-  }
+  };
 }
 
-// action creator: é observada pelo applymiddleware(am) caso seja uma action normal o am passa pelo reducer normal. 
 export function fetchPlanet() {
   return (dispatch) => {
     dispatch(requestData());
