@@ -91,36 +91,6 @@ function renderFiltersSetted(filtersList, remove, setFilteredPlanets) {
   );
 }
 
-function renderFiltersOrder(planetsData, setOrder, setFilteredPlanetsByOrder) {
-  const columns = Object.keys(planetsData[0]);
-  return (
-    <div><h3>Ordenar:</h3>
-      <select data-testid="column-sort" id="column-sort">
-        {columns
-          .filter((title) => title !== 'residents')
-          .map((title) => (<option key={title}>{title}</option>))}
-      </select><div>
-        <input data-testid="column-sort-input" id="ASC" name="column" type="radio" value="ASC" />
-        <label htmlFor="ASC">ASC</label>
-        <input data-testid="column-sort-input" id="DESC" name="column" type="radio" value="DESC" />
-        <label htmlFor="DESC">DESC</label>
-        <button
-          data-testid="column-sort-button"
-          type="button"
-          onClick={() => {
-            const selectSort = document.querySelector('input[name="column"]:checked').value;
-            const selectColumn = document.querySelector('#column-sort').value;
-            const order = {
-              column: selectColumn,
-              sort: selectSort,
-            };
-            setOrder(order);
-            setFilteredPlanetsByOrder();
-          }}
-        > Filtrar </button></div></div>
-  );
-}
-
 class Header extends Component {
   render() {
     const {
