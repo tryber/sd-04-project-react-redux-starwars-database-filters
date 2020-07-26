@@ -40,8 +40,14 @@ const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
         filterNumber.push(inputValues);
         filterByNumberProps(filterNumber);
       }
-      console.log(inputValues);
       const columnOptions = document.querySelectorAll('#column-option');
+      console.log(columnArray);
+      columnArray.forEach((option, index) => {
+        if (option.value === inputValues.column) {
+          columnArray.splice(index, 1);
+        }
+      });
+      console.log(columnArray);
       columnOptions.forEach((option) => {
         if (option.value === inputValues.column
           && inputValues.column
