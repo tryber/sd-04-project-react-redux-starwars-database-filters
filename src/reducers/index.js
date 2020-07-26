@@ -44,7 +44,7 @@ const compare = (column, sort = 'ASC') => (a, b) => {
   let comparison = 0;
   if (varA > varB) comparison = 1;
   else if (varA < varB) comparison = -1;
-  const sos = (sort === 'DESC' ? comparison * -1 : comparison);
+  const sos = (sort === 'DESC' ? comparison * -1 : comparison) 
   return sos;
 };
 
