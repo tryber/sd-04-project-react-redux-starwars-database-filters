@@ -49,8 +49,8 @@ function reducer(state = INITIAL_STATE, action) {
     case SET_FILTER_VARIABLES: {
       return {
         ...state,
-        filterByNumericValues: [ ...state.filterByNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.value }]};
+        filterByNumericValues: [...state.filterByNumericValues,
+          { column: action.column, comparison: action.comparison, value: action.value }] };
     }
     case SET_FILTERED_BY_NUMERIC: {
       const planets = state
