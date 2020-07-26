@@ -1,13 +1,11 @@
 import React from 'react';
-import Table from './components/Table';
-import SearchPlanet from './components/SearchPlanet';
+import Home from './components/Home';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <SearchPlanet />
-      <Table />
+      <Home />
     </div>
   );
 }

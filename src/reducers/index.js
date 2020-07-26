@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import planetReducer from './planetReducer';
-import searchReducer from './searchReducer';
+import filterReducer from './filterReducer';
 
-const rootReducer = combineReducers({ planetReducer, searchReducer });
+const rootReducer = combineReducers({ planetReducer, filterReducer });
 
 export default rootReducer;
