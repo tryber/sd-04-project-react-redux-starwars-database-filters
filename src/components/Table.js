@@ -5,26 +5,7 @@ import fetchPlanets from '../actions/fetchPlanets';
 import RenderTable from './renderTable';
 import { compare, sortData } from '../usingSort';
 
-class Table extends Component {
-  componentDidMount() {
-    const { fetchPlanets: fetch } = this.props;
-    fetch();
-  }
-
-  test() {
-    const { filteredPlanets } = this.props;
-    return filteredPlanets;
-  }
-
-  render() {
-    const { planetsData, filteredPlanets, isFetching } = this.props;
-    if (isFetching) return <p>Loading...</p>;
-    const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
-    return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
-  }
-}
-
-const compareData = ({ data, searchText, filterByNumericValues, order }) => {
+const orderingPlanets = ({ data, searchText, filterByNumericValues, order }) => {
   const objKeys =
     data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
   let planets = data.sort((a, b) => a.name.localeCompare(b.name));
@@ -50,6 +31,25 @@ const compareData = ({ data, searchText, filterByNumericValues, order }) => {
     </table>
   );
 };
+
+class Table extends Component {
+  componentDidMount() {
+    const { orderingPlanets: fetch } = this.props;
+    fetch();
+  }
+
+  test() {
+    const { filteredPlanets } = this.props;
+    return filteredPlanets;
+  }
+
+  render() {
+    const { planetsData, filteredPlanets, isFetching } = this.props;
+    if (isFetching) return <p>Loading...</p>;
+    const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
+    return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
+  }
+}
 
 const mapStateToProps = (state) => ({
   planetsData: state.filters.planetsData,
