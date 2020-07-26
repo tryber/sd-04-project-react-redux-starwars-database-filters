@@ -1,44 +1,38 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchPlanets } from '../actions';
 import Table from './Table';
-import FilterPlanet from './FilterPlanet';
+import { connect } from 'react-redux';
+import { fetchPlanets } from '../actions';
+import FilterName from './FilterName';
 import FilterValues from './FilterValues';
-import RemoveFilter from './RemoveFilter';
 
-class Home extends Component {
+export class Home extends Component {
 
   componentDidMount() {
-    const { getPlanets } = this.props;
-    getPlanets();
+    const { fetchPlanets } = this.props;
+    fetchPlanets();
+    console.log(fetchPlanets())
   }
 
   render() {
-    if (this.props.loading) return <h2>Loading...</h2>;
+    const { isFetching } = this.props;
+    if (isFetching) return <h3>Loading...</h3>
     return (
       <div>
-        <h2>StarWars DataTable</h2>
-        <FilterPlanet />
+        <h3>Strawars DataTable</h3>
+        <FilterName />
         <FilterValues />
-        <RemoveFilter />
         <Table />
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = (state) => ({
-  loading: state.getPlanets.isFetching,
+const mapState = (state) => ({
+  isFetching: state.getPlanets.isFetching,
+})
+
+const mapDispatch = (dispatch) => ({
+  fetchPlanets: () => dispatch(fetchPlanets()),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getPlanets: () => dispatch(fetchPlanets()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-Home.propTypes = {
-  getPlanets: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-};
+export default connect(mapState, mapDispatch)(Home);

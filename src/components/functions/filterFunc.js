@@ -1,31 +1,33 @@
-const filterFunc = (planets, name, numericValues) => (
-    numericValues.length === 0
-      ? planets.filter((planet) => planet.name.includes(name))
-      : numericValues.reduce(
+const filterFunc = (planets, name, numericValues) => {
+    return (
+      numericValues.length === 0
+        ? planets.filter((planet) => planet.name.includes(name))
+        : numericValues.reduce(
           (acc, { column, comparison, value }) =>
             acc.filter((planet) => {
-              switch (comparison) {
+              switch(comparison) {
                 case 'maior que':
                   return (
                     planet.name.includes(name) &&
-                    parseFloat(planet[column]) > parseFloat(value)
-                  );
+                    Number(planet[column]) > Number(value)
+                  )
                 case 'menor que':
                   return (
                     planet.name.includes(name) &&
-                    parseFloat(planet[column]) < parseFloat(value)
-                  );
+                    Number(planet[column]) < Number(value)
+                  )
                 case 'igual a':
                   return (
                     planet.name.includes(name) &&
-                    parseFloat(planet[column]) === parseFloat(value)
-                  );
+                    Number(planet[column]) === Number(value)
+                  )
                 default:
                   return planet.name.includes(name);
               }
             }),
           planets,
         )
-  );
+    )
+  }
 
 export default filterFunc;

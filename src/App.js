@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import Table from './components/Table';
+import Home from './components/Home';
 
 function App() {
   return (
-    <div>
-      <h1>Star Wars Planets</h1>
-      <Table />
+    <div className="App">
+      <Home />
     </div>
   );
 }
