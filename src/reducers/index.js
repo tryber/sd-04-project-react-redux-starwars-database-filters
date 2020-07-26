@@ -37,7 +37,7 @@ const applyNumericFilters = (planets, filters) => {
 };
 
 function reducer(state = INITIAL_STATE, action) {
-  switch (action.type) { 
+  switch(action.type) { 
     case REQUEST_PLANETS: return { ...state };
     case REQUEST_PLANETS_SUCCESS: return {
       ...state,
@@ -47,8 +47,8 @@ function reducer(state = INITIAL_STATE, action) {
     case NAME_TO_FILTER: return { ...state, filterByName: { name: action.name } };
     case SET_FILTERED_BY_NAME: return { ...state, filteredPlanets: action.planets };
     case SET_FILTER_VARIABLES: { return {
-        ...state,
-        filterByNumericValues: [...state.filterByNumericValues,
+      ...state,
+      filterByNumericValues: [...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value }] };
     }
     case SET_FILTERED_BY_NUMERIC: {
