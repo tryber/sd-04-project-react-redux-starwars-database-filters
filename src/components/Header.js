@@ -168,8 +168,6 @@ const mapDispatchToProps = (dispatch) => ({
   setVariables: (filter) => dispatch(setNumericFilterVariables(filter)),
   setFilteredPlanets: () => dispatch(setPlanetsFilteredByNumeric()),
   remove: (filterToRemove) => dispatch(removeFilter(filterToRemove)),
-  setOrder: (order) => dispatch(setOrderFilter(order)),
-  setFilteredPlanetsByOrder: () => dispatch(setFilteredByOrder()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
@@ -182,6 +180,4 @@ Header.propTypes = {
   setVariables: PropTypes.func.isRequired,
   setFilteredPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  setOrder: PropTypes.func.isRequired,
-  setFilteredPlanetsByOrder: PropTypes.func.isRequired,
 };
