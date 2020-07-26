@@ -37,8 +37,7 @@ const applyNumericFilters = (planets, filters) => {
 
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REQUEST_PLANETS:
-      return { ...state };
+    case REQUEST_PLANETS: return { ...state };
     case REQUEST_PLANETS_SUCCESS:
       return {
         ...state,
@@ -46,10 +45,8 @@ function reducer(state = INITIAL_STATE, action) {
         filteredPlanets: action.planetsData.sort((a, b) => a.name.localeCompare(b.name)),
         isFetching: false,
       };
-    case NAME_TO_FILTER:
-      return { ...state, filterByName: { name: action.name } };
-    case SET_FILTERED_BY_NAME:
-      return { ...state, filteredPlanets: action.planets };
+    case NAME_TO_FILTER: return { ...state, filterByName: { name: action.name } };
+    case SET_FILTERED_BY_NAME: return { ...state, filteredPlanets: action.planets };
     case SET_FILTER_VARIABLES: {
       return {
         ...state,
