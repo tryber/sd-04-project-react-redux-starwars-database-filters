@@ -7,7 +7,8 @@ import RenderTable from './renderTable';
 
 class Table extends Component {
   // orderingPlanets = ({ planetsData, searchText, filterByNumericValues, order }) => {
-  //   const objKeys = planetsData.length !== 0 ? Object.keys(planetsData[0]).filter((keys) => keys !== 'residents') : [];
+  //   const objKeys = planetsData.length !== 0 ? Object.keys(planetsData[0]).filter((keys) => 
+  // keys !== 'residents') : [];
   //     let planets = planetsData.sort((a, b) => a.name.localeCompare(b.name));
   //     if (order.column !== 'Name') {
   //       planets = sortData(planets, order);
@@ -46,7 +47,7 @@ class Table extends Component {
     const { planetsData, filteredPlanets, isFetching } = this.props;
     if (isFetching) return <p>Loading...</p>;
     const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
-    return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
+  return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
     }
   }
 
