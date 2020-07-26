@@ -42,10 +42,10 @@ const compare = (column, sort = 'ASC') => (a, b) => {
   const varA = !notNumbers.includes(column) ? Number(a[column]) : a[column];
   const varB = !notNumbers.includes(column) ? Number(b[column]) : b[column];
   let comparison = 0;
-  if (varA > varB) comparison = 1;
-  else if (varA < varB) comparison = -1;
-  const sos = (sort === 'DESC' ? comparison * -1 : comparison) 
-  return sos;
+  // if (varA > varB) comparison = 1;
+  // else if (varA < varB) comparison = -1;
+  // const sos = (sort === 'DESC' ? comparison * -1 : comparison);
+  // return sos;
 };
 
 const applyOrderFilter = (planets, { column, sort }) => {
