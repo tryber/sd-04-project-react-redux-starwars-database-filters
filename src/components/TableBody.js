@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class TableBody extends Component {
   render() {
@@ -47,7 +47,7 @@ TableBody.propTypes = {
       rotation_period: PropTypes.string,
       surface_water: PropTypes.string,
       terrain: PropTypes.string,
-    })
+    }),
   ).isRequired,
   name: PropTypes.string.isRequired,
 };

@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Home.propTypes = {
+  fetch: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 
