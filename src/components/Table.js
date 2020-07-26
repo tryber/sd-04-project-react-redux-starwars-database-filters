@@ -53,7 +53,7 @@ const Table = ({ data, searchText, filterByNumericValues, order }) => {
 
 const mapStateToProps = (state) => ({
   planetsData: state.filters.planetsData,
-  isFetching: state.filters.isFetching,
+  isFetching: state.swAPI.isFetching,
   filteredPlanets: state.filters.filteredPlanets,
   nameToFilter: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
@@ -72,4 +72,6 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
+  objKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

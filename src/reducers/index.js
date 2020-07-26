@@ -37,7 +37,7 @@ const applyNumericFilters = (planets, filters) => {
 };
 
 function reducer(state = INITIAL_STATE, action) {
-  switch(action.type) { 
+  switch (action.type) {
     case REQUEST_PLANETS: return { ...state };
     case REQUEST_PLANETS_SUCCESS: return {
       ...state,
