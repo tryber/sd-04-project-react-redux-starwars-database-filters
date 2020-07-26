@@ -14,20 +14,6 @@ class FilterValues extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  updateColumns() {
-    const { numericValues } = this.props;
-    const columns = [
-      '',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-    const chosenColumns = numericValues.map(({ column }) => column);
-    return columns.filter((item) => !chosenColumns.includes(item));
-  }
-
   onChange(e, field) {
     this.setState({ [field]: e.target.value });
   }
@@ -71,6 +57,20 @@ class FilterValues extends Component {
     );
   }
 
+  updateColumns() {
+    const { numericValues } = this.props;
+    const columns = [
+      '',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    const chosenColumns = numericValues.map(({ column }) => column);
+    return columns.filter((item) => !chosenColumns.includes(item));
+  }
+
   render() {
     return (
       <div>
@@ -102,7 +102,7 @@ FilterValues.propTypes = {
       columns: PropTypes.string,
       comparison: PropTypes.string,
       value: PropTypes.number,
-    })
+    }),
   ).isRequired,
   filterByNumber: PropTypes.func.isRequired,
 };

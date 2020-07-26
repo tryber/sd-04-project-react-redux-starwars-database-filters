@@ -1,9 +1,9 @@
-const numericFilter = (planets, name, numeric) => {
+function numericFilter(planets, name, numeric) {
   return (
-    numeric.length === 0 
+    numeric.length === 0
      ? planets.filter((planet) => planet.name.includes(name))
      : numeric.reduce(
-       (acc, { column, comparison, value }) => 
+       (acc, { column, comparison, value }) =>
        acc.filter((planet) => {
           switch(comparison) {
             case 'maior que':
