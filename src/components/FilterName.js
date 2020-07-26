@@ -20,7 +20,7 @@ class FilterName extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  planetName: state.filterReducer.filters.filterByName.name,
+  planetName: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({

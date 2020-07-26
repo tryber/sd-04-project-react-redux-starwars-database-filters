@@ -32,7 +32,7 @@ class TableBody extends Component {
 
 const mapStateToProps = (state) => ({
   planets: state.planetReducer.planets.planets,
-  name: state.filterReducer.filters.filterByName.name,
+  name: state.filters.filterByName.name,
 });
 
 TableBody.propTypes = {
