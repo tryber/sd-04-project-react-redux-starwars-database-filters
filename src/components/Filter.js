@@ -3,8 +3,6 @@ import PropTypes, { string, object } from 'prop-types';
 import { connect } from 'react-redux';
 import { filterPlanetByNumber } from '../actions/filterPlanetByName';
 
-const Option = ({ value, children }) => <option value={value}>{children}</option>;
-
 class Filter extends React.Component {
   constructor(props) {
     super(props);
@@ -41,42 +39,40 @@ class Filter extends React.Component {
     return filteredColumns;
   }
 
+  renderSelect(columns, testId, name) {
+    return (
+      <select
+        onChange={(e) => this.handleChange(e)}
+        data-testid={testId}
+        name={name}
+      >
+        <option defaultChecked>{name}</option>
+        {columns.map((column) => (
+          <option
+            key={column}
+            value={column}
+          >
+            {column}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
   render() {
+    const filteredColumns = this.filterColumns();
     const { comparisons } = this.props;
     return (
       <div className="numeric-filter">
         <form onSubmit={(e) => this.getFilterInfo(e)}>
-          <select
-            onChange={(e) => this.handleChange(e)}
-            data-testid="column-filter"
-            name="column"
-            id="column"
-          >
-            <option value="defaultChecked">colunas</option>
-            {this.filterColumns().map((column) => (
-              <Option key={column} value={column}>{column}</Option>
-            ))}
-          </select>
-
-          <select
-            onChange={(e) => this.handleChange(e)}
-            data-testid="comparison-filter"
-            name="comparison"
-            id="comparison"
-          >
-            <option value="defaultChecked">comparação</option>
-            {comparisons.map((comparison) => (
-              <Option key={comparison} value={comparison}>{comparison}</Option>
-            ))}
-          </select>
-
+          {this.renderSelect(filteredColumns, 'column-filter', 'column')}
+          {this.renderSelect(comparisons, 'comparison-filter', 'comparison')}
           <input
             onChange={(e) => this.handleChange(e)}
             data-testid="value-filter"
             name="value"
             type="number"
           />
-
           <button data-testid="button-filter" type="submit">Add Filter</button>
         </form>
       </div>
@@ -89,11 +85,6 @@ Filter.propTypes = {
   dispatchFilterPlanetByNumber: PropTypes.func.isRequired,
   columns: PropTypes.arrayOf(string).isRequired,
   comparisons: PropTypes.arrayOf(string).isRequired,
-};
-
-Option.propTypes = {
-  children: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
