@@ -6,7 +6,7 @@ import {
   REMOVE_FILTER,
 } from '../actions/filterByNumeric';
 import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS } from '../actions/fetchPlanets';
-import { SORT_FILTER } from '../actions/filterByOrder';
+import { SEARCH_TEXT, SORT_FILTER } from '../actions/filterByOrder';
 
 const INITIAL_STATE = {
   isFetching: true,
@@ -65,6 +65,7 @@ function reducer(state = INITIAL_STATE, action) {
     case SORT_FILTER:
       return { ...state, order: { column: action.column, sort: action.sort } };
     default: return state;
+    case SEARCH_TEXT: return { ...state, filterByName: { name: action.searchText } };
   }
 }
 
