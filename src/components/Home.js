@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Table from './Table';
 import { fetchPlanet } from '../actions/dataAction';
 import FilterName from './FilterName';
+import FilterValues from './FilterValues';
 
 class Home extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class Home extends Component {
     return (
       <div className="App">
         <FilterName />
+        <FilterValues />
         <Table />
       </div>
     );

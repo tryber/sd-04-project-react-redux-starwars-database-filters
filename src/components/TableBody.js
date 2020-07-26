@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import numericFilter from '../function/numericFilter';
 
 class TableBody extends Component {
   render() {
-    const { planets, name } = this.props;
-    const data = planets.filter((planet) => planet.name.includes(name));
+    const { planets, name, numeric } = this.props;
+    const data = numericFilter(planets, name, numeric);
     return (
       <tbody>
         {data.map((item) => (
@@ -33,6 +34,7 @@ class TableBody extends Component {
 const mapStateToProps = (state) => ({
   planets: state.planetReducer.planets.planets,
   name: state.filters.filterByName.name,
+  numeric: state.filters.filterByNumericValues,
 });
 
 TableBody.propTypes = {
@@ -50,6 +52,7 @@ TableBody.propTypes = {
     }),
   ).isRequired,
   name: PropTypes.string.isRequired,
+  numeric: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, null)(TableBody);
