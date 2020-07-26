@@ -5,7 +5,7 @@ import fetchPlanets from '../actions/fetchPlanets';
 import RenderTable from './renderTable';
 import { compare, sortData } from '../usingSort';
 
-const orderingPlanets = ({ data, searchText, filterByNumericValues, order }) => {
+const orderingPlanets = ({ planetsData, searchText, filterByNumericValues, order }) => {
   const objKeys =
     data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
   let planets = data.sort((a, b) => a.name.localeCompare(b.name));
