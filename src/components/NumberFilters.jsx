@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { filterByNumber } from '../actions/filters';
+import ShowFilters from './ShowFilters';
 
 const columnFilter = (optionsArray, testId, id) => (
   <select data-testid={testId}>
@@ -26,47 +27,51 @@ const comparisonArray = [
   { value: 'igual a', text: 'igual a' },
 ];
 
-const NumberFilters = ({ filterByNumberProps, filterByNumberState }) => (
-  <form
-    onSubmit={(e) => {
-      e.preventDefault();
-      const inputValues = {
-        column: e.target.children[0].value,
-        comparison: e.target.children[1].value,
-        value: e.target.children[2].value,
-      };
-      const filterNumber = filterByNumberState;
-      if (inputValues.column && inputValues.comparison) {
-        filterNumber.push(inputValues);
-        filterByNumberProps(filterNumber);
-      }
-      const columnOptions = document.querySelectorAll('#column-option');
-      console.log(columnArray);
-      columnArray.forEach((option, index) => {
-        if (option.value === inputValues.column) {
-          columnArray.splice(index, 1);
+const NumberFilters = ({
+  filterByNumberProps,
+  filterByNumberState,
+}) => (
+  <div>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const inputValues = {
+          column: e.target.children[0].value,
+          comparison: e.target.children[1].value,
+          value: e.target.children[2].value,
+        };
+        const filterNumber = filterByNumberState;
+        const columnOptions = document.querySelectorAll('#column-option');
+        columnArray.forEach((option, index) => {
+          if (option.value === inputValues.column) {
+            columnArray.splice(index, 1);
+          }
+        });
+        if (inputValues.column && inputValues.comparison) {
+          filterNumber.push(inputValues);
+          filterByNumberProps(filterNumber);
         }
-      });
-      console.log(columnArray);
-      columnOptions.forEach((option) => {
-        if (option.value === inputValues.column
-          && inputValues.column
-          && inputValues.comparison) {
-          option.remove();
-        }
-      });
-    }}
-  >
-    {columnFilter(columnArray, 'column-filter', 'column-option')}
-    {columnFilter(comparisonArray, 'comparison-filter', 'comparison-option')}
-    <input data-testid="value-filter" type="number" />
-    <button data-testid="button-filter" type="submit">Filtrar</button>
-  </form>
+        columnOptions.forEach((option) => {
+          if (option.value === inputValues.column
+              && inputValues.column
+              && inputValues.comparison) {
+            option.remove();
+          }
+        });
+      }}
+    >
+      {columnFilter(columnArray, 'column-filter', 'column-option')}
+      {columnFilter(comparisonArray, 'comparison-filter', 'comparison-option')}
+      <input data-testid="value-filter" type="number" />
+      <button data-testid="button-filter" type="submit">Filtrar</button>
+    </form>
+    <ShowFilters />
+  </div>
 );
+
 const mapStateToProps = (state) => ({
   filterByNumberState: state.filters.filterByNumericValues,
 });
-// test
 const mapDispatchToProps = (dispatch) => ({
   filterByNumberProps: (e) => dispatch(filterByNumber(e)),
 });

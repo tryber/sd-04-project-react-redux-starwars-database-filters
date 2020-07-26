@@ -69,13 +69,16 @@ const mapDispatchToProps = (dispatch) => ({
   applyFilters,
 });
 
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.defaultProps = {
+  nameFilter: { name: '' },
+};
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  nameFilter: PropTypes.string.isRequired,
   numberFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   planetsAPI: PropTypes.func.isRequired,
+  nameFilter: PropTypes.shape(PropTypes.string),
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);

@@ -28,7 +28,6 @@ const getPlanets = (state = INITIAL_PLANETS_STATE, action) => {
         ),
       };
     case FILTER_BY_NUMBER:
-
       return {
         ...state,
         filteredPlanets: numericFilter(planetsCTS, action.filter),

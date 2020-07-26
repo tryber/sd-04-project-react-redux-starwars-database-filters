@@ -3,6 +3,7 @@ import { FILTER_BY_NAME, FILTER_BY_NUMBER } from '../actions/filters';
 const INITIAL_FILTERS = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  columns: [],
 };
 const filters = (state = INITIAL_FILTERS, action) => {
   switch (action.type) {
