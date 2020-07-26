@@ -4,6 +4,7 @@ export const GET_DATA = 'GET_DATA';
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUE = 'FILTER_BY_NUMERIC_VALUE';
+export const REMOVE_FILTERS = 'REMOVE_FILTERS';
 
 function getData(planets) {
   return {
@@ -34,6 +35,13 @@ export function filterByNumericValues(column, comparison, value) {
     comparison,
     value,
   };
+}
+
+export function removeFilters(filteredKeys) {
+  return {
+    type: REMOVE_FILTERS,
+    filteredKeys,
+  }
 }
 
 export function fetchPlanet() {

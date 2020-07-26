@@ -5,6 +5,7 @@ import Table from './Table';
 import { fetchPlanet } from '../actions/dataAction';
 import FilterName from './FilterName';
 import FilterValues from './FilterValues';
+import RemoveFilters from './RemoveFilters';
 
 class Home extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class Home extends Component {
       <div className="App">
         <FilterName />
         <FilterValues />
+        <RemoveFilters />
         <Table />
       </div>
     );

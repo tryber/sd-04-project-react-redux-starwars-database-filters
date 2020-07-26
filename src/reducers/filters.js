@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUE } from '../actions/dataAction';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUE, REMOVE_FILTERS } from '../actions/dataAction';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -23,6 +23,12 @@ function filters(state = INITIAL_STATE, action) {
           value: action.value,
         }],
       };
+    case REMOVE_FILTERS:
+      return {
+        ...state.filterByNumericValues.filter(
+          (key) => key !== action.filteredKeys
+        ),
+      }
     default:
       return state;
   }
