@@ -53,8 +53,10 @@ Table.propTypes = {
   }).isRequired,
   filtros: PropTypes.shape({
     column: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
     comparison: PropTypes.string.isRequired,
+    length: PropTypes.number,
+    reduce: PropTypes.func,
+    value: PropTypes.string.isRequired,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
   searchBar: PropTypes.string.isRequired,
