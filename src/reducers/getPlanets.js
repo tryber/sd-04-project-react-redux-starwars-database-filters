@@ -10,9 +10,9 @@ const getPlanets = (state = INITIAL_STATE, action) => {
     case REQUEST_PLANETS:
       return { ...state, isFetching: true };
     case REQUEST_PLANETS_SUCCESS:
-      return { ...state, data: [...action.data], isFetching: false};
-      case REQUEST_PLANETS_FAILURE:
-        return { ...state, isFetching: false, error: action.error};
+      return { ...state, data: [...action.data], isFetching: false };
+    case REQUEST_PLANETS_FAILURE:
+      return { ...state, isFetching: false, error: action.error };
     default:
       return state;
   }

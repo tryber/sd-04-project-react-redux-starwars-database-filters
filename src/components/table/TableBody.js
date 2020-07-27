@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 function TableBody({ planets }) {
   return (
@@ -15,7 +16,7 @@ function TableBody({ planets }) {
           <td>{planet.terrain}</td>
           <td>{planet.surface_water}</td>
           <td>{planet.population}</td>
-          <td>{planet.films.map((film) => (      
+          <td>{planet.films.map((film) => (
             <span key={film}>{film}</span>
           ))}
           </td>
@@ -33,3 +34,23 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(TableBody);
+
+TableBody.propTypes = {
+  planets: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rotation_period: PropTypes.string,
+      orbital_period: PropTypes.string,
+      diameter: PropTypes.string,
+      climate: PropTypes.string,
+      gravity: PropTypes.string,
+      terrain: PropTypes.string,
+      surface_water: PropTypes.string,
+      population: PropTypes.string,
+      film: PropTypes.string,
+      created: PropTypes.string,
+      edited: PropTypes.string,
+      url: PropTypes.string,
+    }),
+  ).isRequired,
+};

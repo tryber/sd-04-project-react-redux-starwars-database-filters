@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { requestFetch } from '../action/index';
 import Table from './table/table';
 
@@ -31,3 +32,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+Home.propTypes = {
+  getPlanets: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
