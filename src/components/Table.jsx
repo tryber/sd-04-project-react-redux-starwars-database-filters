@@ -34,13 +34,13 @@ function planetsTable(planets) {
 }
 const orderPlanets = ({ sort, column }, dataPlanets) => {
   dataPlanets.sort((a, b) => {
-    const x = a[column.toLowerCase()].toLowerCase();
-    const y = b[column.toLowerCase()].toLowerCase();
+    const x = a[column.toLowerCase()];
+    const y = b[column.toLowerCase()];
 
-    if (sort === 'ASC' && x > y) {
+    if (sort === 'ASC' && x < y) {
       return -1;
     }
-    if (sort === 'DESC' && x < y) {
+    if (sort === 'DESC' && x > y) {
       return -1;
     }
     return 0;
