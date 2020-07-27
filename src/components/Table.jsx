@@ -5,8 +5,6 @@ import { fetchPlanets } from '../actions/ApiRequest';
 import { applyFilters } from '../actions/filters';
 import HeaderTable from './HeaderTable';
 import numericFilter from '../helpers/numericFilter';
-import OrderFilter from './OrderFilter';
-
 
 function planetsTable(planets) {
   return (
