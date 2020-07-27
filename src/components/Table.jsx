@@ -42,12 +42,23 @@ class Table extends Component {
 
   render() {
     const {
-      planets, isFetching, nameFilter, numberFilter,
+      planets, isFetching, nameFilter, numberFilter, orderFilter,
     } = this.props;
+    console.log(orderFilter);
     const namePlanets = planets.filter(
       ({ name }) => (name.toLowerCase()).includes(nameFilter.name.toLowerCase()),
     );
     const dataPlanets = numericFilter(namePlanets, numberFilter);
+    dataPlanets.sort((a, b) => {
+      if (a[orderFilter.column] < b[orderFilter.column]
+        && orderFilter.sort === 'ASC') {
+        return -1;
+      }
+      if (a[orderFilter.column] < b[orderFilter.column] && orderFilter.sort === 'DESC') {
+        return 1;
+      }
+      return 0;
+    });
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
@@ -63,6 +74,7 @@ const mapStateToProps = (state) => ({
   filteredPlanets: state.getPlanets.filteredPlanets,
   nameFilter: state.filters.filterByName,
   numberFilter: state.filters.filterByNumericValues,
+  orderFilter: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -81,4 +93,7 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   planetsAPI: PropTypes.func.isRequired,
   nameFilter: PropTypes.shape(PropTypes.string),
+  orderFilter: PropTypes.shape(
+    PropTypes.object,
+  ).isRequired,
 };

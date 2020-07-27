@@ -1,8 +1,11 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMBER, DELETE_FILTER } from '../actions/filters';
+import {
+  FILTER_BY_NAME, FILTER_BY_NUMBER, DELETE_FILTER, ORDER_FILTER,
+} from '../actions/filters';
 
 const INITIAL_FILTERS = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: { column: '', sort: '' },
 };
 const filters = (state = INITIAL_FILTERS, action) => {
   switch (action.type) {
@@ -22,6 +25,11 @@ const filters = (state = INITIAL_FILTERS, action) => {
         filterByNumericValues: [].concat(action.filter),
       };
     }
+    case ORDER_FILTER:
+      return {
+        ...state,
+        order: action.order,
+      };
     default:
       return state;
   }

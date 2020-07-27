@@ -3,6 +3,7 @@ import '../css/App.css';
 import hearderImage from '../images/star-wars.png';
 import SearchFields from './SearchFields';
 import NumberFilters from './NumberFilters';
+import OrderFilter from './OrderFilter';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <img src={hearderImage} alt="star-wars" width="100%" height="800px" />
         <SearchFields />
         <NumberFilters />
+        <OrderFilter />
       </header>
     </div>
   );
