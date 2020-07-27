@@ -2,6 +2,7 @@ import getPlanetsAPI from '../services/planetsAPI';
 
 export const IS_LOADED = 'IS_LOADED';
 export const DATA_RESULTS = 'DATA_RESULTS';
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
 const isLoaded = () => ({
   type: 'IS_LOADED',
@@ -19,3 +20,8 @@ export default function fetchPlanets() {
       .then((data) => dispatch(dataResults(data.results)));
   };
 }
+
+export const filterByName = (name) => ({
+  type: 'FILTER_BY_NAME',
+  name,
+});
