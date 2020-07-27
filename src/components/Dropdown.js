@@ -18,8 +18,8 @@ function DropDown({
     let values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     console.log(filtros.length);
     if (filtros.length !== 0) {
-      filtros.map((e) => {
-        return (values = values.filter((i) => e.column !== i));
+      return filtros.map((e) => {
+        values = values.filter((i) => e.column !== i);
       });
     }
     return (
@@ -74,6 +74,10 @@ DropDown.propTypes = {
   addOnStoreFilters: PropTypes.func.isRequired,
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
+  filtros: PropTypes.shape({
+    length: PropTypes.number,
+    map: PropTypes.func,
+  }).isRequired,
   inputColumn: PropTypes.func.isRequired,
   inputComparison: PropTypes.func.isRequired,
   inputValue: PropTypes.func.isRequired,
