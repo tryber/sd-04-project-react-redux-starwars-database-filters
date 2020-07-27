@@ -3,19 +3,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import linha from './TableBody';
 
+const compare = (data, fValues) => {
+  switch (fValues.comparison) {
+    case 'maior que':
+      return Number(data[fValues.column]) > Number(fValues.value);
+    case 'menor que':
+      return  Number(data[fValues.column]) < Number(fValues.value);
+    case 'igual a':
+      return  Number(data[fValues.column]) === Number(fValues.value);
+    default:
+      return data;
+  }
+}
+
 const handleTabela = (fValues, data, filterByName) => {
-  const fil = data.filter((elem) => elem.name.includes(filterByName));
+  let fil = data.filter((elem) => elem.name.includes(filterByName));
   if (fValues.length !== 0) {
-    switch (fValues[0].comparison) {
-      case 'maior que':
-        return fil.filter((elem) => Number(elem[fValues[0].column]) > Number(fValues[0].value));
-      case 'menor que':
-        return fil.filter((elem) => Number(elem[fValues[0].column]) < Number(fValues[0].value));
-      case 'igual a':
-        return fil.filter((elem) => Number(elem[fValues[0].column]) === Number(fValues[0].value));
-      default:
-        return fil;
-    }
+    fValues.forEach((filtro) => {
+      fil = fil.filter((data) => compare(data, filtro))});
   }
   return fil;
 };
@@ -29,7 +34,6 @@ class Table extends React.Component {
     // this.handleTabela = this.handleTabela.bind(this);
   }
 
-
   render() {
     const { data, isLoading, filterByName, fValues } = this.props;
     if (isLoading) return <span>Loading...</span>;
@@ -39,12 +43,12 @@ class Table extends React.Component {
       <table>
         <thead>
           <tr>
-            {objPlanetas.map((planet) => (<th>{planet}</th>))}
+            {objPlanetas.map((planet) => (
+              <th>{planet}</th>
+            ))}
           </tr>
         </thead>
-        <tbody>
-          {handleTabela(fValues, data, filterByName).map((item) => linha(item))}
-        </tbody>
+        <tbody>{handleTabela(fValues, data, filterByName).map((item) => linha(item))}</tbody>
       </table>
     );
   }

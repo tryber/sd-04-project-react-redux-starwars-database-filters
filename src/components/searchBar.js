@@ -82,8 +82,6 @@ const mapDispatchToProps = (dispatch) => ({
   inputName1: (event) => dispatch(inputName(event)),
   valorNumerico1: (numero, coluna, comparacao) =>
     dispatch(valorNumerico(numero, coluna, comparacao)),
-  // tratarData1: (coluna, comparacao, numero, data) =>
-  //   dispatch(trataData(coluna, comparacao, numero, data))
 });
 
 const mapStateToProps = (state) => ({ data: state.reducer.data });
