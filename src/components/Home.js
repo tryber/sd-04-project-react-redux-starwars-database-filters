@@ -17,6 +17,7 @@ class Home extends Component {
       <div>
         <label htmlFor="pName">
           <input
+            data-testid="name-filter"
             id="pName"
             type="text"
             placeholder="Nome do planeta"
