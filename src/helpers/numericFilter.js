@@ -3,6 +3,7 @@ const numericFilter = (planets, numberFilter) => {
   return (
     numberFilter.reduce((acc, cur) => {
       const { column, comparison, value } = cur;
+      if (!comparison || !column || !value) { return planets; }
       return (acc.filter((planet) => {
         switch (comparison) {
           case 'maior que':

@@ -46,12 +46,15 @@ const NumberFilters = ({ filterByNumberProps, filterByNumericValues }) => {
             comparison: e.target.children[1].value,
             value: e.target.children[2].value,
           };
-          filterByNumberProps(inputValues);
+          if (inputValues.column || inputValues.comparison || inputValues.value) {
+            filterByNumberProps(inputValues);
+          }
         }}
       >
         {columnFilter(filteredColumns, 'column-filter', 'column-option')}
         {columnFilter(comparisonArray, 'comparison-filter', 'comparison-option')}
         <input data-testid="value-filter" type="number" />
+
         <button data-testid="button-filter" type="submit">Filtrar</button>
       </form>
       <ShowFilters />
