@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import { saveFilterData } from '../../actions/actionCreators';
 
 class FilterByNumericValues extends Component {
@@ -94,6 +94,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumericValues);
 
 FilterByNumericValues.propTypes = {
-  options: PropTypes.arrayOf(PropTypes(string)).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   setFilterValues: PropTypes.func.isRequired,
 };
