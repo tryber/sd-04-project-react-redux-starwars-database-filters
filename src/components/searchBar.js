@@ -14,14 +14,20 @@ class SearchBar extends React.Component {
     this.handleColuna = this.handleColuna.bind(this);
     this.handleCom = this.handleCom.bind(this);
     this.handleN = this.handleN.bind(this);
-    // this.handleRedux = this.handleRedux.bind(this);
+    this.filtraroption = this.filtraroption.bind(this);
   }
-  // handleRedux = () => {
-  //   let coluna = this.state.coluna
-  //   let comparacao = this.state.comparacao
-  //   let numero = this.state.numero
-  //   this.valorNumerico1(coluna, comparacao, numero)
-  // }
+
+  filtraroption(fValues, options) {
+    if (fValues.length !== 0) {
+      console.log('dentrofiltro');
+      let opcao = options;
+      fValues.forEach(({ column }) => {
+        opcao = opcao.filter((op) => op !== column);
+      });
+      return opcao;
+    }
+    return options;
+  }
 
   handleColuna(event) {
     this.setState({
@@ -42,7 +48,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { inputName1, valorNumerico1, options } = this.props;
+    const { inputName1, valorNumerico1, options, fValues } = this.props;
     const { numero, comparacao, coluna } = this.state;
     const comp = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -53,18 +59,22 @@ class SearchBar extends React.Component {
         </form>
         <form>
           <select value={coluna} onChange={this.handleColuna} data-testid="column-filter">
-            {options.map((e) => <option value={e}>{e}</option>)}
+            {this.filtraroption(fValues, options).map((e) => (
+              <option value={e}>{e}</option>
+            ))}
           </select>
           <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
-            {comp.map((e) => <option value={e}>{e}</option>)}
+            {comp.map((e) => (
+              <option value={e}>{e}</option>
+            ))}
           </select>
-          <input
-            type="number" value={numero} onChange={this.handleN} data-testid="value-filter"
-          />
+          <input type="number" value={numero} onChange={this.handleN} data-testid="value-filter" />
           <button
-            type="button" data-testid="button-filter"
+            type="button"
+            data-testid="button-filter"
             onClick={() => valorNumerico1(coluna, comparacao, numero)}
-          >Pesquise
+          >
+            Pesquise
           </button>
         </form>
       </div>
