@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { deleteNumericFilter } from '../actions/filters';
 
-const deletFilter = async (numberFilters, updateFilter, column) => {
+const deletFilter = (numberFilters, updateFilter, column) => {
   numberFilters.forEach((filter, index) => {
     if (filter.column === column) {
       numberFilters.splice(index, 1);
     }
   });
-  await updateFilter(numberFilters);
+  updateFilter(numberFilters);
 };
 const ShowFilters = ({ filterByNumberState, deleteFilterProps }) => (
 

@@ -19,7 +19,7 @@ const filters = (state = INITIAL_FILTERS, action) => {
     case DELETE_FILTER: {
       return {
         ...state,
-        filterByNumericValues: [action.filter],
+        filterByNumericValues: [].concat(action.filter),
       };
     }
     default:
