@@ -17,7 +17,7 @@ const TableHead = () => (
       <th>Edited</th>
       <th>Url</th>
     </tr>
-  </thead>  
+  </thead>
 );
 
 export default TableHead;
