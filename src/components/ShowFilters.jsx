@@ -47,4 +47,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShowFilters);
 
 ShowFilters.propTypes = {
   filterByNumberState: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteFilterProps: PropTypes.func.isRequired,
 };
