@@ -44,14 +44,12 @@ function DropDown({
   const filtrosFeitos = () => {
     if (filtros.length !== 0) {
       return filtros.map((e, index) => (
-        <button
-          data-testid="filter"
-          onClick={() => onClickDeleteFilter(index)}
-          type="button"
-          key={e.column}
-        >
-          {e.column}
-        </button>
+        <span data-testid="filter">
+          <p>{e.column}</p>
+          <button onClick={() => onClickDeleteFilter(index)} type="button" key={e.column}>
+            X
+          </button>
+        </span>
       ));
     }
     return null;
