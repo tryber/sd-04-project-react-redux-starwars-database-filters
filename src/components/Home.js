@@ -11,7 +11,7 @@ class Home extends Component {
   }
 
   render() {
-    const { isLoaded, filterByName } = this.props;
+    const { isLoaded, filterBN } = this.props;
     if (isLoaded) return <p>Loading</p>;
     return (
       <div>
@@ -20,7 +20,7 @@ class Home extends Component {
             id="pName"
             type="text"
             placeholder="Nome do planeta"
-            onChange={(event) => filterByName(event.target.value)}
+            onChange={(event) => filterBN(event.target.value)}
           />
         </label>
         <Table />
@@ -32,7 +32,7 @@ class Home extends Component {
 Home.propTypes = {
   fetchP: PropTypes.func.isRequired,
   isLoaded: PropTypes.bool.isRequired,
-  filterByName: PropTypes.func.isRequired,
+  filterBN: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchP: () => dispatch(fetchPlanets()),
-  filterByName: (planetName) => dispatch((filterByName(planetName))),
+  filterBN: (planetName) => dispatch((filterByName(planetName))),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
