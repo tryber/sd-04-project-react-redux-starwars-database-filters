@@ -23,7 +23,7 @@ export function fetchPlanets() {
 }
 
 export const filterByName = (name) => ({
-  type: 'FILTER_BY_NAME',
+  type: FILTER_BY_NAME,
   name,
 });
 
