@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets, { filterByName } from '../actions';
 import Table from './Table';
+import FilterValues from './FilterValues';
 
 class Home extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class Home extends Component {
             onChange={(event) => filterBN(event.target.value)}
           />
         </label>
+        <FilterValues />
         <Table />
       </div>
     );
