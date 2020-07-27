@@ -36,7 +36,7 @@ export const filters = (state = INITIAL_STATE, action) => {
     case VALOR_NUMERICO:
       return {
         ...state,
-        options: state.options.filter(ele => ele !== action.coluna),
+        options: state.options.filter((ele) => ele !== action.coluna),
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -45,7 +45,7 @@ export const filters = (state = INITIAL_STATE, action) => {
             value: action.numero,
           },
         ],
-      };    
+      };
     default:
       return state;
   }

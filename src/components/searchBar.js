@@ -42,7 +42,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { inputName1, valorNumerico1, fValues, options } = this.props;
+    const { inputName1, valorNumerico1, options } = this.props;
     const { numero, comparacao, coluna } = this.state;
     const comp = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -74,7 +74,10 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   inputName1: PropTypes.func.isRequired,
-  valorNumerico1: PropTypes.func.isRequired,
+  options: PropTypes.shape({
+    map: PropTypes.func
+  }).isRequired,
+  valorNumerico1: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -83,9 +86,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(valorNumerico(numero, coluna, comparacao)),
 });
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
   fValues: state.filters.filterByNumericValues,
-  options : state.filters.options,
+  options: state.filters.options,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
