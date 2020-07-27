@@ -14,14 +14,19 @@ function DropDown({
   addOnStoreFilters,
   filtros,
 }) {
-  const selectColumn = () => {
-    console.log(filtros.length);
-    let values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    if (filtros.length !== 0) {
-      values = filtros.map((filtro) => values.filter((e) => filtro.column !== e));
-      return values;
+  const filtrosOptions = () => {
+    const values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    if (filtros.length > 0) {
+      const filtrados = filtros.map((e) => e.column);
+      console.log(filtrados);
+      return values.filter((e) => !filtrados.includes(e));
     }
+    return values;
+  };
 
+  const selectedColumn = () => {
+    const values = filtrosOptions();
+    console.log(values);
     return (
       <select
         onChange={(e) => inputColumn(e.target.value)}
@@ -39,7 +44,7 @@ function DropDown({
   return (
     <div>
       <form>
-        {selectColumn()}
+        {selectedColumn()}
         <select
           onChange={(e) => inputComparison(e.target.value)}
           data-testid="comparison-filter"
