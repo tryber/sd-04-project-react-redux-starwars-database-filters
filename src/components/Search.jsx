@@ -1,7 +1,8 @@
-import React from 'react';
-import './Search.css';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { filteredName } from '../Actions';
+import './Search.css';
 
 // deve ter conexão com a store
 class Search extends React.Component {
@@ -23,6 +24,10 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  filteredName: PropTypes.func.isRequired,
+};
 
 const mapToProps = (state) => ({
   name: state.filters.filterByName.name,

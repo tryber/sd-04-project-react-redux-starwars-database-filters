@@ -7,7 +7,6 @@ import linhas from './Linhas';
 class Table extends Component {
   render() {
     const { data, isFetching, name } = this.props;
-    console.log(data);
     const filterName = data.filter((planet) => planet.name.includes(name));
 
     if (isFetching) return <span>...Loading</span>;
@@ -25,6 +24,7 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>{filterName.map((chosenPlanet) => linhas(chosenPlanet))}</tbody>
+
         </table>
       </div>
     );
@@ -35,6 +35,7 @@ Table.propTypes = {
   data: PropTypes.shape({
     map: PropTypes.func,
   }).isRequired,
+  name: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 
