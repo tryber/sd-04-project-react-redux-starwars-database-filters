@@ -1,34 +1,8 @@
-import { REQUEST_API, REQUISITION_SUCCESS, FILTER_BY_NAME } from '../Actions';
+import { combineReducers } from 'redux';
 
-// import getSwapi from '../services/swApi';
+import getPlanets from './getPlanets';
+import filters from './filters';
 
-const INITIAL_STATE = {
-  data: [],
-  filterByName: { name: '' },
-  isFetching: true,
-};
+const rootReducer = combineReducers({ getPlanets, filters });
 
-const reducers = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case REQUEST_API:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case REQUISITION_SUCCESS:
-      return {
-        ...state,
-        data: [...action.data],
-        isFetching: false,
-      };
-    case FILTER_BY_NAME:
-      return {
-        ...state,
-        filterByName: { name: action.name },
-      };
-    default:
-      return state;
-  }
-};
-
-export default reducers;
+export default rootReducer;

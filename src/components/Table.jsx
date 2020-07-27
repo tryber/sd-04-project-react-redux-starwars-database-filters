@@ -37,9 +37,9 @@ Table.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.data,
-  name: state.filterByName.name,
-  isFetching: state.isFetching,
+  data: state.getPlanets.data,
+  name: state.filters.filterByName.name,
+  isFetching: state.getPlanets.isFetching,
 });
 
 export default connect(mapStateToProps)(Table);
