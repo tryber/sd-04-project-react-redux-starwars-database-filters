@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -7,80 +7,96 @@ import {
   selectColumn,
   selectComparison,
   selectNumber,
-  updateOptions,
 } from '../actions';
 
 const comparisonOptions = ['maior que', 'menor que', 'igual a'];
 
-const renderSelectColumn = (changeColumn, options) => (
-  <select
-    data-testid="column-filter"
-    onChange={(event) => changeColumn(event.target.value)}
-  >
-    <option defaultValue>Coluna</option>
-    {options.map((option) => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ))}
-  </select>
-);
+const options = [
+  'Coluna',
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
 
-const renderSelectComparison = (changeComparison) => (
-  <select
-    data-testid="comparison-filter"
-    onChange={(event) => changeComparison(event.target.value)}
-  >
-    <option defaultValue>Comparação</option>
-    {comparisonOptions.map((item) => (
-      <option key={item} value={item}>
-        {item}
-      </option>
-    ))}
-  </select>
-);
+class SelectFilter extends Component {
+  renderSelectColumn() {
+    const { changeColumn, numericFilters } = this.props;
+    return (
+      <select
+        data-testid="column-filter"
+        onChange={(event) => changeColumn(event.target.value)}
+      >
+        {options
+          .filter((option) => !numericFilters.includes(option))
+          .map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+      </select>
+    );
+  }
 
-const renderInputNumber = (changeNumber) => (
-  <input
-    type="number"
-    data-testid="value-filter"
-    onChange={(event) => changeNumber(event.target.value)}
-  />
-);
+  renderSelectComparison() {
+    const { changeComparison } = this.props;
+    return (
+      <select
+        data-testid="comparison-filter"
+        onChange={(event) => changeComparison(event.target.value)}
+      >
+        <option defaultValue>Comparação</option>
+        {comparisonOptions.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
-const SelectFilter = ({
-  column,
-  comparison,
-  number,
-  changeColumn,
-  changeComparison,
-  changeNumber,
-  saveNumericFilter,
-  options,
-  changeOptions,
-}) => (
-  <div>
-    {renderSelectColumn(changeColumn, options)}
-    {renderSelectComparison(changeComparison)}
-    {renderInputNumber(changeNumber)}
-    <button
-      type="button"
-      data-testid="button-filter"
-      onClick={() => {
-        saveNumericFilter({ column, comparison, value: number });
-        changeOptions(column);
-      }}
-    >
-      Filtrar
-    </button>
-  </div>
-);
+  renderInputNumber() {
+    const { changeNumber } = this.props;
+    return (
+      <input
+        type="number"
+        data-testid="value-filter"
+        onChange={(event) => changeNumber(event.target.value)}
+      />
+    );
+  }
+
+  render() {
+    const {
+      column, comparison, number, saveNumericFilter,
+    } = this.props;
+    return (
+      <div>
+        {this.renderSelectColumn()}
+        {this.renderSelectComparison()}
+        {this.renderInputNumber()}
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={() => {
+            saveNumericFilter({ column, comparison, value: number });
+          }}
+        >
+          Filtrar
+        </button>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   column: state.selectFilter.column,
   comparison: state.selectFilter.comparison,
   number: state.selectFilter.value,
-  options: state.availableOptions.options,
+  numericFilters: state.filters.filterByNumericValues.map(
+    (filter) => filter.column,
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -88,7 +104,6 @@ const mapDispatchToProps = (dispatch) => ({
   changeColumn: (payload) => dispatch(selectColumn(payload)),
   changeComparison: (payload) => dispatch(selectComparison(payload)),
   changeNumber: (payload) => dispatch(selectNumber(payload)),
-  changeOptions: (payload) => dispatch(updateOptions(payload)),
 });
 
 SelectFilter.propTypes = {
@@ -99,8 +114,13 @@ SelectFilter.propTypes = {
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  changeOptions: PropTypes.func.isRequired,
+  numericFilters: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }).isRequired,
+  ).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectFilter);
