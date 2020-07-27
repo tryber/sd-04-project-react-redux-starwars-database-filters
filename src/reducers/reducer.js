@@ -1,6 +1,7 @@
 import { REQUEST_API, GET_API, INPUT_NAME, VALOR_NUMERICO } from '../actions';
 
 const INITIAL_STATE = {
+  options: ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
   data: {},
   isLoading: true,
   filterByName: { name: '' },
@@ -35,6 +36,7 @@ export const filters = (state = INITIAL_STATE, action) => {
     case VALOR_NUMERICO:
       return {
         ...state,
+        options: state.options.filter(ele => ele !== action.coluna),
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -43,22 +45,7 @@ export const filters = (state = INITIAL_STATE, action) => {
             value: action.numero,
           },
         ],
-      };
-    // case 'maior':
-    //   return {
-    //     ...state,
-    //     data: action.data.filter(elem => action.numero > elem.action.coluna)
-    //   }
-    // case 'menor':
-    //   return {
-    //     ...state,
-    //     data: action.data.filter(elem => action.numero < elem.action.coluna)
-    //   }
-    // case 'igual':
-    //   return {
-    //     ...state,
-    //     data: action.data.filter(elem => action.numero == elem.action.coluna)
-    //   }
+      };    
     default:
       return state;
   }
