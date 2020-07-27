@@ -5,6 +5,7 @@ import { fetchPlanets } from '../actions/ApiRequest';
 import { applyFilters } from '../actions/filters';
 import HeaderTable from './HeaderTable';
 import numericFilter from '../helpers/numericFilter';
+import OrderFilter from './OrderFilter';
 
 
 function planetsTable(planets) {
@@ -33,7 +34,19 @@ function planetsTable(planets) {
     </table>
   );
 }
-
+const orderPlanets = ({ sort, column }, dataPlanets) => {
+  switch (sort) {
+    case 'ASC': {
+      return (dataPlanets.sort((a, b) => a[column].toLowerCase() - b[column].toLowerCase()));
+    }
+    case 'DESC': {
+      return (dataPlanets.sort((a, b) => b[column].toLowerCase() - a[column].toLowerCase()));
+    }
+    default: {
+      return null;
+    }
+  }
+};
 class Table extends Component {
   componentDidMount() {
     const { planetsAPI: fetch } = this.props;
@@ -49,15 +62,8 @@ class Table extends Component {
       ({ name }) => (name.toLowerCase()).includes(nameFilter.name.toLowerCase()),
     );
     const dataPlanets = numericFilter(namePlanets, numberFilter);
-    dataPlanets.sort((a, b) => {
-      const x = a[orderFilter.column].toLowerCase();
-      const y = b[orderFilter.column].toLowerCase();
-      if (x > y
-        && orderFilter.sort === 'ASC') { return 1; }
-      if (x < y
-         && orderFilter.sort === 'DESC') { return -1; }
-      return 0;
-    });
+    orderPlanets(orderFilter, dataPlanets);
+
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
