@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/Table';
 import Search from './components/Search';
-import { planetsResponseApi } from './actions/Actions';
+import { planetsResponseApi } from './actions';
 
 class App extends React.Component {
   componentDidMount() {

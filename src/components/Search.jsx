@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { filterByNameAct } from '../actions/Actions';
+import { filterByNameAct } from '../actions';
 import './Search.css';
 
 // deve ter conexão com a store
