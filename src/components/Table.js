@@ -8,19 +8,20 @@ const compare = (data, fValues) => {
     case 'maior que':
       return Number(data[fValues.column]) > Number(fValues.value);
     case 'menor que':
-      return  Number(data[fValues.column]) < Number(fValues.value);
+      return Number(data[fValues.column]) < Number(fValues.value);
     case 'igual a':
-      return  Number(data[fValues.column]) === Number(fValues.value);
+      return Number(data[fValues.column]) === Number(fValues.value);
     default:
       return data;
   }
-}
+};
 
 const handleTabela = (fValues, data, filterByName) => {
   let fil = data.filter((elem) => elem.name.includes(filterByName));
   if (fValues.length !== 0) {
     fValues.forEach((filtro) => {
-      fil = fil.filter((data) => compare(data, filtro))});
+      fil = fil.filter((planeta) => compare(planeta, filtro));
+    });
   }
   return fil;
 };
