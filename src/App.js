@@ -1,14 +1,12 @@
 import React from 'react';
 
-import apiPlanets from './services/index';
+import Home from './components/Home';
 
 function App() {
   console.log(apiPlanets)
   return (
     <div className="App">
-      <p>
-        {apiPlanets}
-      </p>      
+      <Home />
     </div>
   );
 }
