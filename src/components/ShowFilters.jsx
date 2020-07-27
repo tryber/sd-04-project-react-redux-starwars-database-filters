@@ -15,7 +15,7 @@ const ShowFilters = ({ filterByNumberState, deleteFilterProps }) => (
 
   <ul>
     {filterByNumberState.map((option) => (
-      <li id={option.column} key={option.column}>
+      <li id={option.column} data-testid="filter" key={option.column}>
         {option.column}
             :
         {option.value}
