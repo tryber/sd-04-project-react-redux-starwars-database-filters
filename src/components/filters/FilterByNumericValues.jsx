@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes, { string } from 'prop-types';
 import { saveFilterData } from '../../actions/actionCreators';
 
 class FilterByNumericValues extends Component {
@@ -50,7 +51,11 @@ class FilterByNumericValues extends Component {
   renderSelectComparison() {
     const comparison = ['maior que', 'menor que', 'igual a'];
     return (
-      <select name="comparison" onChange={(event) => this.handleOnChange(event)} data-testid="comparison-filter">
+      <select
+        name="comparison"
+        onChange={(event) => this.handleOnChange(event)}
+        data-testid="comparison-filter"
+      >
         <option defaultChecked>Comparação</option>
         {comparison.map((e) => <option key={e} value={e}>{e}</option>)}
       </select>
@@ -81,7 +86,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setFilterValues: (column, comparison, value) => dispatch(saveFilterData(column, comparison, value)),
+  setFilterValues: (column, comparison, value) => dispatch(
+    saveFilterData(column, comparison, value),
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumericValues);
+
+FilterByNumericValues.propTypes = {
+  options: PropTypes.arrayOf(PropTypes(string)).isRequired,
+  setFilterValues: PropTypes.func.isRequired,
+};

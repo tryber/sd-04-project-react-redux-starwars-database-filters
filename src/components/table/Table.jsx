@@ -131,4 +131,11 @@ Table.propTypes = {
     }),
   ).isRequired,
   query: PropTypes.string,
+  filterNumericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.any,
+    }),
+  ).isRequired,
 };
