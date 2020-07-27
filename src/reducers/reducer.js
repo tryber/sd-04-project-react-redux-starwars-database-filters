@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   data: {},
   isLoading: true,
   filterByName: { name: '' },
-  filterByNumericValues: [{ column: 'surface_water', comparison: 'menor que', value: '40' },],
+  filterByNumericValues: [],
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {

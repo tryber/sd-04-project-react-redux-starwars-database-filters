@@ -4,6 +4,18 @@ import { connect } from 'react-redux';
 import { inputName, valorNumerico } from '../actions/index';
 
 class SearchBar extends React.Component {
+  static filOpt(fValues, options) {
+    if (fValues.length !== 0) {
+      console.log('dentrofiltro');
+      let opcao = options;
+      fValues.forEach(({ column }) => {
+        opcao = opcao.filter((op) => op !== column);
+      });
+      return opcao;
+    }
+    return options;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,19 +26,6 @@ class SearchBar extends React.Component {
     this.handleColuna = this.handleColuna.bind(this);
     this.handleCom = this.handleCom.bind(this);
     this.handleN = this.handleN.bind(this);
-    this.filtraroption = this.filtraroption.bind(this);
-  }
-
-  filtraroption(fValues, options) {
-    if (fValues.length !== 0) {
-      console.log('dentrofiltro');
-      let opcao = options;
-      fValues.forEach(({ column }) => {
-        opcao = opcao.filter((op) => op !== column);
-      });
-      return opcao;
-    }
-    return options;
   }
 
   handleColuna(event) {
@@ -59,9 +58,7 @@ class SearchBar extends React.Component {
         </form>
         <form>
           <select value={coluna} onChange={this.handleColuna} data-testid="column-filter">
-            {this.filtraroption(fValues, options).map((e) => (
-              <option value={e}>{e}</option>
-            ))}
+            {SearchBar.filOpt(fValues, options).map((e) => (<option value={e}>{e}</option>))}
           </select>
           <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
             {comp.map((e) => (
@@ -83,11 +80,12 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
+  fValues: PropTypes.func.isRequired,
   inputName1: PropTypes.func.isRequired,
   options: PropTypes.shape({
-    map: PropTypes.func,
+    map: PropTypes.func
   }).isRequired,
-  valorNumerico1: PropTypes.func.isRequired,
+  valorNumerico1: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
