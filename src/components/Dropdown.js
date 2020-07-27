@@ -12,22 +12,34 @@ function DropDown({
   comparison,
   value,
   addOnStoreFilters,
+  filtros,
 }) {
+  const selectColumn = () => {
+    let values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    console.log(filtros.length);
+    if (filtros.length !== 0) {
+      filtros.map((e) => {
+        return (values = values.filter((i) => e.column !== i));
+      });
+    }
+    return (
+      <select
+        onChange={(e) => inputColumn(e.target.value)}
+        data-testid="column-filter"
+        name="dropdown-filter-category"
+      >
+        <option value="">--</option>
+        {values.map((e) => (
+          <option value={e}>{e}</option>
+        ))}
+      </select>
+    );
+  };
+
   return (
     <div>
       <form>
-        <select
-          onChange={(e) => inputColumn(e.target.value)}
-          data-testid="column-filter"
-          name="dropdown-filter-category"
-        >
-          <option value="">--</option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
-        </select>
+        {selectColumn()}
         <select
           onChange={(e) => inputComparison(e.target.value)}
           data-testid="comparison-filter"
@@ -79,6 +91,7 @@ const mapStateToProps = (state) => ({
   column: state.reducerFilter.column,
   comparison: state.reducerFilter.comparison,
   value: state.reducerFilter.value,
+  filtros: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropDown);
