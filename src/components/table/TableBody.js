@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const TableBody = ({ planets }) => {
+function TableBody({ planets }) {
   return (
     <tbody>
       {planets.map((planet) => (
@@ -15,7 +15,7 @@ const TableBody = ({ planets }) => {
           <td>{planet.terrain}</td>
           <td>{planet.surface_water}</td>
           <td>{planet.population}</td>
-          <td>{planet.films.map((film) => (            
+          <td>{planet.films.map((film) => (      
             <span key={film}>{film}</span>
           ))}
           </td>

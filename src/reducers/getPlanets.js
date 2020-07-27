@@ -3,7 +3,7 @@ import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_FAILURE } fro
 const INITIAL_STATE = {
   data: [],
   isFetching: false,
-}
+};
 
 const getPlanets = (state = INITIAL_STATE, action) => {
   switch (action.type) {

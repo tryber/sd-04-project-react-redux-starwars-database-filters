@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { requestFetch } from '../action/index'
+import { requestFetch } from '../action/index';
 import Table from './table/table';
 
 class Home extends Component {
@@ -12,7 +12,7 @@ class Home extends Component {
 
   render() {
     const { loading } = this.props;
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <h1>Loading...</h1>;
     return (
       <div>
         <h1>StarWars Datatable with Filters</h1>
