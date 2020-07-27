@@ -83,9 +83,9 @@ SearchBar.propTypes = {
   fValues: PropTypes.func.isRequired,
   inputName1: PropTypes.func.isRequired,
   options: PropTypes.shape({
-    map: PropTypes.func
+    map: PropTypes.func,
   }).isRequired,
-  valorNumerico1: PropTypes.func.isRequired
+  valorNumerico1: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
