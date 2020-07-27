@@ -33,17 +33,18 @@ function planetsTable(planets) {
   );
 }
 const orderPlanets = ({ sort, column }, dataPlanets) => {
-  switch (sort) {
-    case 'ASC': {
-      return (dataPlanets.sort((a, b) => a[column].toLowerCase() - b[column].toLowerCase()));
+  dataPlanets.sort((a, b) => {
+    const x = a[column].toLowerCase();
+    const y = b[column].toLowerCase();
+
+    if (sort === 'ASC' && x > y) {
+      return -1;
     }
-    case 'DESC': {
-      return (dataPlanets.sort((a, b) => b[column].toLowerCase() - a[column].toLowerCase()));
+    if (sort === 'DESC' && x < y) {
+      return -1;
     }
-    default: {
-      return null;
-    }
-  }
+    return 0;
+  });
 };
 class Table extends Component {
   componentDidMount() {
