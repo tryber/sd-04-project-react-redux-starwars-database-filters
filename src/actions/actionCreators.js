@@ -40,11 +40,11 @@ const filterByText = (name) => ({
   name,
 });
 
-const saveFilterData = (column, comparison, number) => ({
+const saveFilterData = (column, comparison, value) => ({
   type: SAVE_FILTER_DATA,
   column,
   comparison,
-  number,
+  value,
 });
 
 export {

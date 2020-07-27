@@ -19,23 +19,24 @@ class FilterByNumericValues extends Component {
   handleOnChange(event) {
     const { value, name } = event.target;
     this.setState({ [name]: value });
+    console.log(name);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const { setFilterValues } = this.props;
-    const { column, comparison, number } = this.state;
+    const { column, comparison, value } = this.state;
     // console.log(event.target.column.value);
-    setFilterValues(column, comparison, number);
+    setFilterValues(column, comparison, value);
   }
 
   renderSelectColumn() {
     const { options } = this.props;
     return (
-      <select onChange={(e) => this.handleOnChange(e)} data-testid="column-filter">
+      <select name="column" onChange={(e) => this.handleOnChange(e)} data-testid="column-filter">
+        <option defaultChecked>Coluna</option>
         {options.map((column) => (
           <option
-            name={column}
             key={column}
             value={column}
           >
@@ -49,14 +50,14 @@ class FilterByNumericValues extends Component {
   renderSelectComparison() {
     const comparison = ['maior que', 'menor que', 'igual a'];
     return (
-      <select onChange={(event) => this.handleOnChange(event)} data-testid="comparison-filter">
-        {comparison.map((e) => <option name="comparison" key={e} value={e}>{e}</option>)}
+      <select name="comparison" onChange={(event) => this.handleOnChange(event)} data-testid="comparison-filter">
+        <option defaultChecked>Comparação</option>
+        {comparison.map((e) => <option key={e} value={e}>{e}</option>)}
       </select>
     );
   }
 
   render() {
-    const { value } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         {this.renderSelectColumn()}
@@ -65,7 +66,7 @@ class FilterByNumericValues extends Component {
           onChange={(e) => this.handleOnChange(e)}
           data-testid="value-filter"
           type="number"
-          name="number"
+          name="value"
         />
         <button type="submit" data-testid="button-filter">
             acionar filtro
@@ -80,7 +81,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setFilterValues: (column, comparison, number) => dispatch(saveFilterData()),
+  setFilterValues: (column, comparison, value) => dispatch(saveFilterData(column, comparison, value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumericValues);

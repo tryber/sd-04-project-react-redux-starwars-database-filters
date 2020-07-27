@@ -18,7 +18,7 @@ export const filters = (state = initialState, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.number },
+          { column: action.column, comparison: action.comparison, value: action.value },
         ],
       };
     default:

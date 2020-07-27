@@ -26,6 +26,33 @@ class Table extends Component {
     };
   }
 
+  filterPlanetsByName(query) {
+    const { data } = this.props;
+    if (query === '') return data;
+    return data.filter(({ name }) => name.toLowerCase().includes(query.toLowerCase()));
+  }
+
+  filterPlanetsByNumericValues(planets) {
+    const { filterNumericValues } = this.props;
+
+    if (filterNumericValues.length === 0) return planets;
+    return filterNumericValues.reduce((filteredPlanetsArray, filterNumericValue) => {
+      const { column, comparison, value } = filterNumericValue;
+      return filteredPlanetsArray.filter((planet) => {
+        switch (comparison) {
+          case 'maior que':
+            return Number(planet[column]) > Number(value);
+          case 'menor que':
+            return Number(planet[column]) < Number(value);
+          case 'igual a':
+            return Number(planet[column]) === Number(value);
+          default:
+            return false;
+        }
+      });
+    }, planets);
+  }
+
   tableHeadRender() {
     const { head } = this.state;
     return (
@@ -42,19 +69,21 @@ class Table extends Component {
 
   tableBodyRender() {
     const { head } = this.state;
-    const { data, query } = this.props;
-    const isPlanetNameThere = (row) => (row.name.toLowerCase().indexOf(query.toLowerCase()) >= 0);
-    // indexOf retorna -1 caso não ache row. Assim, encontrados serão > 0,
-    // retornando True, para assim ser filtravel.
+    const { query } = this.props;
+
+    const filteredByNamePlanets = this.filterPlanetsByName(query);
+    const filteredPlanets = this.filterPlanetsByNumericValues(filteredByNamePlanets);
+
     return (
       <tbody>
-        {data.filter(isPlanetNameThere).map((planet) => (
-          <tr key={planet.name}>
-            {head.map((th) => (
-              <td key={`${planet.name} ${th}`}>{planet[th]}</td>
-            ))}
-          </tr>
-        ))}
+        {filteredPlanets
+          .map((planet) => (
+            <tr key={planet.name}>
+              {head.map((th) => (
+                <td key={`${planet.name} ${th}`}>{planet[th]}</td>
+              ))}
+            </tr>
+          ))}
       </tbody>
     );
   }
@@ -75,6 +104,7 @@ const mapStateToProps = (state) => ({
   data: state.swapiReducer.data,
   loading: state.swapiReducer.loading,
   query: state.filters.filterByName.name,
+  filterNumericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, { fetchingPlanetsInfo })(Table);
