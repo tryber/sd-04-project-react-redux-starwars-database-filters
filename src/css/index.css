@@ -1,12 +1,12 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Cantarell', 'Droid Sans', 'Helvetica Neue', 'Roboto', sans-serif, 'Segoe UI', 'Oxygen',
-  'Ubuntu';  
-  margin: 0;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, 'Cantarell', 'Droid Sans', 'Helvetica Neue',
+  'Roboto', sans-serif, 'Segoe UI', 'Oxygen', 'Ubuntu';  
+  margin: 0;
+}
+
