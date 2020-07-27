@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPlanetsAPIAct } from '../actions';
 
 const Table = (props) => {
-  const { getPlanets, data } = props;
+  const { data } = props;
   if (!data) return 'Double Loading';
   const keys = Object.keys(data.results[0]).filter(
     (header) => header !== 'residents',
@@ -21,13 +22,21 @@ const Table = (props) => {
         <tbody>
           {data.results.map((planet) => (
             <tr key={planet.name}>
-              {keys.map((column) => <td>{planet[column]}</td>)}
+              {keys.map((column) => (
+                <td>{planet[column]}</td>
+              ))}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
+};
+
+Table.propTypes = {
+  data: PropTypes.shape({
+    results: PropTypes.arrayOf(Object).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({

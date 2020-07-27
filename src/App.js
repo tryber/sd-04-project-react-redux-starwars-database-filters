@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import Table from './components/Table';
 import { getPlanetsAPIAct } from './actions';
+import Table from './components/Table';
 
 class App extends React.Component {
   componentWillMount() {
@@ -11,7 +12,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isFetching, getPlanets } = this.props;
+    const { isFetching } = this.props;
     if (isFetching) return 'Loading';
     return (
       <div className="App">
@@ -23,6 +24,11 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  getPlanets: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   ...state.listaReducers,
