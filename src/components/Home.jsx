@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { conect } from 'react-redux';
+import { connect } from 'react-redux';
 import { requestFetch } from '../action/index'
 import Table from './table/table';
 
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(requestFetch()),
 });
 
-export default conect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
