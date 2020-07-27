@@ -25,4 +25,4 @@ function planetsResponseApi() {
   };
 }
 
-export { filterByNameAct, planetsResponseApi }
+export { filterByNameAct, planetsResponseApi };
