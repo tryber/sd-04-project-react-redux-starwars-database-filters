@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   isFetching: false,
+  data: '',
 };
 
 function listaReducers(state = INITIAL_STATE, action) {
