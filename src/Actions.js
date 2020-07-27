@@ -4,16 +4,16 @@ export const REQUEST_API = 'REQUEST_API';
 export const REQUISITION_SUCCESS = 'REQUISITION_SUCCESS';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
-export const requestApi = () => ({
+const requestApi = () => ({
   type: REQUEST_API,
 });
 
-export const receiveData = (data) => ({
+const receiveData = (data) => ({
   type: REQUISITION_SUCCESS,
   data,
 });
 
-export const filteredName = (name) => ({
+export const filterByNameAct = (name) => ({
   type: FILTER_BY_NAME,
   name,
 });
