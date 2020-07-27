@@ -50,13 +50,12 @@ class Table extends Component {
     );
     const dataPlanets = numericFilter(namePlanets, numberFilter);
     dataPlanets.sort((a, b) => {
-      if (a[orderFilter.column] < b[orderFilter.column]
-        && orderFilter.sort === 'ASC') {
-        return -1;
-      }
-      if (a[orderFilter.column] < b[orderFilter.column] && orderFilter.sort === 'DESC') {
-        return 1;
-      }
+      const x = a[orderFilter.column].toLowerCase();
+      const y = b[orderFilter.column].toLowerCase();
+      if (x > y
+        && orderFilter.sort === 'ASC') { return 1; }
+      if (x < y
+         && orderFilter.sort === 'DESC') { return -1; }
       return 0;
     });
     if (isFetching && !planets) { return (<div>Loading...</div>); }

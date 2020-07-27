@@ -5,7 +5,7 @@ import {
 const INITIAL_FILTERS = {
   filterByName: { name: '' },
   filterByNumericValues: [],
-  order: { column: '', sort: '' },
+  order: { column: 'name', sort: 'ASC' },
 };
 const filters = (state = INITIAL_FILTERS, action) => {
   switch (action.type) {

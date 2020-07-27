@@ -14,16 +14,18 @@ const OrderFilter = ({ orderFilterProps }) => (
 
   >
     <select name="columnName" data-testid="column-sort">
-      <option name="column" value="">Column</option>
-      <option name="column" value="name">name</option>
-      <option name="column" value="rotation_period">rotation_period</option>
-      <option name="column" value="obital_period">obital_period</option>
-      <option name="column" value="diameter">diameter</option>
-      <option name="column" value="gravity">gravity</option>
-      <option name="column" value="terrain">terrain</option>
-      <option name="column" value="population">population</option>
-      <option name="column" value="created">created</option>
-      <option name="column" value="edited">edited</option>
+      <option value="">Column</option>
+      <option value="name">name</option>
+      <option value="rotation_period">rotation_period</option>
+      <option value="orbital_period">obital_period</option>
+      <option value="diameter">diameter</option>
+      <option value="climate">climate</option>
+      <option value="gravity">gravity</option>
+      <option value="terrain">terrain</option>
+      <option value="surface_water">surface_water</option>
+      <option value="population">population</option>
+      <option value="created">created</option>
+      <option value="edited">edited</option>
     </select>
     <label htmlFor="ASC">
       <input
