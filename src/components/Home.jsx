@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { conect } from 'react-redux';
 import { requestFetch } from '../action/index'
+import Table from './table/table';
 
 class Home extends Component {
 
@@ -15,6 +16,7 @@ class Home extends Component {
     return (
       <div>
         <h1>StarWars Datatable with Filters</h1>
+        <Table />
       </div>
     );
   }
