@@ -15,13 +15,13 @@ function DropDown({
   filtros,
 }) {
   const selectColumn = () => {
-    let values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     console.log(filtros.length);
+    let values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     if (filtros.length !== 0) {
-      return filtros.map((e) => {
-        values = values.filter((i) => e.column !== i);
-      });
+      values = filtros.map((filtro) => values.filter((e) => filtro.column !== e));
+      return values;
     }
+
     return (
       <select
         onChange={(e) => inputColumn(e.target.value)}
