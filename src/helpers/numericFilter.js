@@ -1,5 +1,5 @@
-const numericFilter = (filteredPlanets, numberFilter) => {
-  if (numberFilter.length === 0) { return filteredPlanets; }
+const numericFilter = (planets, numberFilter) => {
+  if (numberFilter.length === 0) { return planets; }
   return (
     numberFilter.reduce((acc, cur) => {
       const { column, comparison, value } = cur;
@@ -15,7 +15,7 @@ const numericFilter = (filteredPlanets, numberFilter) => {
             return false;
         }
       }));
-    }, filteredPlanets)
+    }, planets)
   );
 };
 

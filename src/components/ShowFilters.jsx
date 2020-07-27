@@ -8,8 +8,11 @@ class ShowFilters extends Component {
     return (
       <ul>
         {filterByNumberState.map((option) => (
-          <li key={option.value}>
+          <li key={option.column}>
+            {option.column}
+            :
             {option.value}
+            <button>X</button>
           </li>
         ))}
       </ul>

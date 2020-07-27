@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import { fetchPlanets } from '../actions/ApiRequest';
 import { applyFilters } from '../actions/filters';
 import HeaderTable from './HeaderTable';
+import numericFilter from '../helpers/numericFilter';
 
 
 function planetsTable(planets) {
@@ -41,11 +42,12 @@ class Table extends Component {
 
   render() {
     const {
-      planets, isFetching, nameFilter, numberFilter, filteredPlanets,
+      planets, isFetching, nameFilter, numberFilter,
     } = this.props;
-    const dataPlanets = !nameFilter.name && numberFilter.length === 0
-      ? planets
-      : filteredPlanets;
+    const namePlanets = planets.filter(
+      ({ name }) => (name.toLowerCase()).includes(nameFilter.name.toLowerCase()),
+    );
+    const dataPlanets = numericFilter(namePlanets, numberFilter);
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
@@ -61,7 +63,6 @@ const mapStateToProps = (state) => ({
   filteredPlanets: state.getPlanets.filteredPlanets,
   nameFilter: state.filters.filterByName,
   numberFilter: state.filters.filterByNumericValues,
-
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -76,7 +77,6 @@ Table.defaultProps = {
 };
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filteredPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
   numberFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   planetsAPI: PropTypes.func.isRequired,
