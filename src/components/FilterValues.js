@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByNumericValues } from '../actions';
@@ -14,15 +15,22 @@ class FilterValues extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-
   onChange(event, field) {
     this.setState({ [field]: event.target.value });
   }
 
+  onClick() {
+    const { column, comparation, number } = this.state;
+    const { onFilterByNumericValues } = this.props;
+    onFilterByNumericValues(column, comparation, number);
+    this.setState({ column: '', comparation: '', number: '' });
+  }
+
   getColumns() {
     const select = this.updateColumns();
+    const { column } = this.state;
     return (
-      <select value={this.state.column} onChange={(event) => this.onChange(event, 'column')}>
+      <select value={column} onChange={(event) => this.onChange(event, 'column')}>
         {select.map((item) => (
           <option key={item} value={item}>
             {item}
@@ -34,9 +42,10 @@ class FilterValues extends Component {
 
   getComparation() {
     const comparation = ['', 'maior que', 'menor que', 'igual a'];
+    const { comparation: comp } = this.state;
     return (
       <select
-        value={this.state.comparation}
+        value={comp}
         onChange={(event) => this.onChange(event, 'comparation')}
       >
         {comparation.map((item) => (
@@ -62,35 +71,35 @@ class FilterValues extends Component {
     return columns.filter((item) => !chosenColumns.includes(item));
   }
 
-  onClick() {
-    const { column, comparation, number } = this.state;
-    const { filterByNumericValues } = this.props;
-    filterByNumericValues(column, comparation, number);
-    this.setState({ column: '', comparation: '', number: '' });
-  }
-
   render() {
+    const { number } = this.state;
     return (
       <div>
         {this.getColumns()}
         {this.getComparation()}
         <input
           type="number"
-          value={this.state.number}
+          value={number}
           onChange={(event) => this.onChange(event, 'number')}
         />
-        <button onClick={this.onClick}>Filtrar</button>
+        <button type="button" onClick={this.onClick}>Filtrar</button>
       </div>
     );
   }
 }
+
+FilterValues.propTypes = {
+  onFilterByNumericValues: PropTypes.func.isRequired,
+  numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 const mapState = (state) => ({
   numericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatch = (dispatch) => ({
-  filterByNumericValues: (column, comparison, value) => dispatch(filterByNumericValues(column, comparison, value)),
+  onFilterByNumericValues:
+    (column, comparison, value) => dispatch(filterByNumericValues(column, comparison, value)),
 });
 
 export default connect(mapState, mapDispatch)(FilterValues);

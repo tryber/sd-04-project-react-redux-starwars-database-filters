@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import filterFunc from './functions/filterFunc';
 
@@ -34,6 +35,13 @@ class TableBody extends Component {
     );
   }
 }
+
+TableBody.propTypes = {
+  planets: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  numericValues: PropTypes.number.isRequired,
+};
+
 
 const mapState = (state) => ({
   planets: state.getPlanets.data,

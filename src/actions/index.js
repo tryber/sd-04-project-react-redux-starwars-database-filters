@@ -20,6 +20,9 @@ const failurePlanets = (error) => ({
   error,
 });
 
+// Action criator assíncrono - é uma função do Thunk
+// Esse é composto de 3 action síncronas.
+// São essas 3 acima.
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestingPlanets());
@@ -31,11 +34,13 @@ export function fetchPlanets() {
   };
 }
 
+// Action criator síncrono
 export const filterByName = (name) => ({
   type: FILTER_BY_NAME,
   name,
 });
 
+// Action criator síncrono
 export const filterByNumericValues = (column, comparison, value) => ({
   type: FILTER_BY_NUMERIC_VALUES,
   column,

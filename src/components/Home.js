@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Table from './Table';
 import { fetchPlanets } from '../actions';
 import FilterName from './FilterName';
@@ -7,9 +8,8 @@ import FilterValues from './FilterValues';
 
 export class Home extends Component {
   componentDidMount() {
-    const { fetchPlanets } = this.props;
-    fetchPlanets();
-    console.log(fetchPlanets());
+    const { onFetchPlanets } = this.props;
+    onFetchPlanets();
   }
 
   render() {
@@ -25,6 +25,11 @@ export class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  onFetchPlanets: PropTypes.func.isRequired,
+  isFetching: PropTypes.func.isRequired,
+};
 
 const mapState = (state) => ({
   isFetching: state.getPlanets.isFetching,
