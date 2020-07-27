@@ -1,5 +1,3 @@
-import getGravatarApi from '../services/GET_Gravatar_API';
-
 const INITIAL_STATE = {
   isFetching: false,
 };
@@ -10,6 +8,8 @@ function listaReducers(state = INITIAL_STATE, action) {
       return { ...state, isFetching: true };
     case 'SUCCESS':
       return { ...state, isFetching: false, data: action.data };
+    default:
+      return { ...state };
   }
 }
 
