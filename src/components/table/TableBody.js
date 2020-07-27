@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-function TableBody({ planets }) {
+function TableBody({ planets, filterName }) {
   return (
     <tbody>
       {planets.map((planet) => (
@@ -31,6 +31,7 @@ function TableBody({ planets }) {
 
 const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
+  
 });
 
 export default connect(mapStateToProps)(TableBody);
