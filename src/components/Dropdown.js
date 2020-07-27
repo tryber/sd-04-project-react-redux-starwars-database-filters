@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { actionValue, actionComparison, actionColumn } from '../actions/actionInput';
 import { actionAddFilter } from '../actions/actionFilter';
+import { deleteFilter } from '../actions/actionDelete';
 
 function DropDown({
   inputValue,
@@ -13,12 +14,12 @@ function DropDown({
   value,
   addOnStoreFilters,
   filtros,
+  onClickDeleteFilter,
 }) {
   const filtrosOptions = () => {
     const values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     if (filtros.length > 0) {
       const filtrados = filtros.map((e) => e.column);
-      console.log(filtrados);
       return values.filter((e) => !filtrados.includes(e));
     }
     return values;
@@ -26,7 +27,6 @@ function DropDown({
 
   const selectedColumn = () => {
     const values = filtrosOptions();
-    console.log(values);
     return (
       <select
         onChange={(e) => inputColumn(e.target.value)}
@@ -39,6 +39,17 @@ function DropDown({
         ))}
       </select>
     );
+  };
+
+  const filtrosFeitos = () => {
+    if (filtros.length !== 0) {
+      return filtros.map((e, index) => (
+        <button onClick={() => onClickDeleteFilter(index)} type="button" key={e.column}>
+          {e.column}
+        </button>
+      ));
+    }
+    return null;
   };
 
   return (
@@ -71,6 +82,7 @@ function DropDown({
           Submit
         </button>
       </form>
+      {filtrosFeitos()}
     </div>
   );
 }
@@ -86,6 +98,7 @@ DropDown.propTypes = {
   inputColumn: PropTypes.func.isRequired,
   inputComparison: PropTypes.func.isRequired,
   inputValue: PropTypes.func.isRequired,
+  onClickDeleteFilter: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 
@@ -94,6 +107,7 @@ const mapDispatchToProps = (dispacth) => ({
   inputComparison: (e) => dispacth(actionComparison(e)),
   inputColumn: (e) => dispacth(actionColumn(e)),
   addOnStoreFilters: (a, b, c) => dispacth(actionAddFilter(a, b, c)),
+  onClickDeleteFilter: (deleted) => dispacth(deleteFilter(deleted)),
 });
 
 const mapStateToProps = (state) => ({

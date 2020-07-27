@@ -1,5 +1,6 @@
 import { INPUT_TEXT } from '../actions/actionInput';
 import { ADDON_STORE_FILTERS } from '../actions/actionFilter';
+import { DELETE_FILTER } from '../actions/actionDelete';
 
 export const INITIAL_STATE = {
   inputNumber: '',
@@ -29,6 +30,13 @@ export const filters = (state = INITIAL_STATE, action) => {
             value: action.value,
           },
         ],
+      };
+    case DELETE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (filtro, index) => index !== action.deleted,
+        ),
       };
     default:
       return state;
