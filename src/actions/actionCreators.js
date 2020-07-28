@@ -4,6 +4,7 @@ import {
   PLANET_INFO_REQUEST_FAILURE,
   FILTER_BY_TEXT,
   SAVE_FILTER_DATA,
+  RESET_FILTER,
 } from './actions';
 
 import getAllPlanetsFromAPI from '../service/starWarsAPI';
@@ -47,6 +48,13 @@ const saveFilterData = (column, comparison, value) => ({
   value,
 });
 
+
+
+
+export const resetFilter = (filters) => ({
+  type: RESET_FILTER,
+  filters,
+});
 export {
   requestPlanetsInfo,
   requestPlanetInfoSucess,

@@ -1,4 +1,4 @@
-import { FILTER_BY_TEXT, SAVE_FILTER_DATA } from '../actions/actions';
+import { FILTER_BY_TEXT, SAVE_FILTER_DATA, RESET_FILTER } from '../actions/actions';
 
 const initialState = {
   filterByName: { name: '' },
@@ -21,6 +21,8 @@ export const filters = (state = initialState, action) => {
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
       };
+    case RESET_FILTER:
+      return { ...state, filterByNumericValues: action.filters };
     default:
       return state;
   }
