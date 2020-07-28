@@ -1,5 +1,5 @@
 import { INPUT_TEXT } from '../actions/actionInput';
-import { ADDON_STORE_FILTERS } from '../actions/actionFilter';
+import { ADDON_STORE_FILTERS, RADION_ASC } from '../actions/actionFilter';
 import { DELETE_FILTER } from '../actions/actionDelete';
 
 export const INITIAL_STATE = {
@@ -8,6 +8,10 @@ export const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 export const filters = (state = INITIAL_STATE, action) => {
@@ -37,6 +41,15 @@ export const filters = (state = INITIAL_STATE, action) => {
         filterByNumericValues: state.filterByNumericValues.filter(
           (filtro, index) => index !== action.deleted,
         ),
+      };
+    case RADION_ASC:
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          column: action.column,
+          sort: action.radio,
+        },
       };
     default:
       return state;

@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Tabelas from './Tabelas';
 
-function Table({ isLoading, data, searchBar, filtros }) {
+function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
   const allFilters = () => {
     const planets = data.filter((planet) => planet.name.includes(searchBar));
     if (filtros.length === 0) return planets;
@@ -24,8 +24,20 @@ function Table({ isLoading, data, searchBar, filtros }) {
     }, planets);
   };
 
+  const sortData = () => {
+    const planets = allFilters();
+    const filterColumn = orderColumn.toLowerCase();
+    if (isNaN(planets[0][filterColumn])) {
+      planets.sort((a, b) => (a[filterColumn] > b[filterColumn] ? 1 : -1));
+    } else {
+      planets.sort((a, b) => a[filterColumn] > b[filterColumn]);
+    }
+    if (order === 'DESC') planets.reverse();
+    return planets;
+  };
+
   if (isLoading) return <span>L O A D I N G . . . .</span>;
-  const planetsFiltred = allFilters();
+  const planetsFiltred = sortData();
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
     <div>
@@ -67,6 +79,8 @@ const mapStateToProps = (state) => ({
   data: state.reducerFetch.data.results,
   searchBar: state.filters.filterByName.name,
   filtros: state.filters.filterByNumericValues,
+  order: state.filters.order.sort,
+  orderColumn: state.filters.order.column,
 });
 
 export default connect(mapStateToProps)(Table);
