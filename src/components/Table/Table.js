@@ -5,8 +5,8 @@ import Tabelas from './Tabelas';
 import sortData from '../../services/SortData';
 
 function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
-  const allFilters = (data) => {
-    const planets = data.filter((planet) => planet.name.includes(searchBar));
+  const allFilters = (dataPlanets) => {
+    const planets = dataPlanets.filter((planet) => planet.name.includes(searchBar));
     if (filtros.length === 0) return planets;
     return filtros.reduce((acc, filtro) => {
       const { column, comparison, value } = filtro;
@@ -25,7 +25,7 @@ function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
     }, planets);
   };
 
-  if (isLoading) return <span>L O A D I N G . . . .</span>;
+  if (isLoading) return <span>L O A D I N G . . . . . </span>;
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
     <div>
