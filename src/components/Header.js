@@ -7,7 +7,7 @@ import {
   setPlanetsFilteredByNumeric,
   removeFilter,
 } from '../actions/filterByNumeric';
-// import Sort from './Sort';
+import Sort from './Sort';
 
 function geratedlistOfColumns() {
   return ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
@@ -123,7 +123,50 @@ class Header extends Component {
   }
 }
 
+const orderData = ({ data, searchText, filterByNumericValues, order }) => {
+  const objKeys =
+    data.length !== 0 ? Object.keys(data[0]).filter((keys) => keys !== 'residents') : [];
+  let planets = data.sort((a, b) => a.name.localeCompare(b.name));
+  if (order.column !== 'Name') {
+    planets = sortData(planets, order);
+  }
+  if (typeof filteredByNumeric && filteredByNumeric.length > 0) {
+    filteredByNumeric.forEach((filter) => {
+      const { column, comparison, value } = filter;
+      planets = planets.filter((planeta) => compare(planeta, column, comparison, value));
+    });
+  }
+  if (searchText !== '') {
+    planets = planets.filter(
+      (planet) =>
+        planet.name.includes(searchText.toUpperCase()) ||
+        planet.name.includes(searchText.toLowerCase()),
+    );
+  }
+  return (
+    <table className="table">
+      <Table planets={planets} objKeys={objKeys} />
+    </table>
+  );
+};
+
+// const mapStateToProps = (state) => ({
+//   data: state.swAPI.data,
+//   searchText: state.filters.filterByName.name,
+//   order: state.filters.order,
+// });
+
+orderData.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  searchText: PropTypes.string.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  order: PropTypes.shape({ column: PropTypes.string, order: PropTypes.string }).isRequired,
+};
+
 const mapStateToProps = (state) => ({
+  data: state.swAPI.data,
+  searchText: state.filters.filterByName.name,
+  order: state.filters.order,
   planetsData: state.filters.planetsData,
   filteredPlanets: state.filters.filteredPlanets,
   filteredByNumeric: state.filters.filteredByNumeric,
