@@ -11,7 +11,7 @@ class FilterOrder extends Component {
       inputSort: 'ASC',
     };
 
-    this.onOrderChange =this.onOrderChange.bind(this);
+    this.onOrderChange = this.onOrderChange.bind(this);
     this.getColumns = this.getColumns.bind(this);
     this.getRadios = this.getRadios.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -74,7 +74,7 @@ class FilterOrder extends Component {
         />
         <label htmlFor="DESC">DESC</label>
       </div>
-    )
+    );
   }
 
   render() {
