@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import { getPlanetsAPIAct } from './actions';
 import Table from './components/Table';
+import Input from './components/Input';
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class App extends React.Component {
     if (isFetching) return <p>Loading</p>;
     return (
       <div>
+        <Input />
         <p>StarWars Datatable with Filters</p>
         <Table />
       </div>
