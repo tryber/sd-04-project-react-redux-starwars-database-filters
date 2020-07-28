@@ -24,7 +24,7 @@ class SortItems extends Component {
     sortItems(column, sort);
   }
 
-  render() {
+  buidColumns() {
     const { header } = this.props;
     const headers = Object.keys(header[0]);
     headers.splice(9, 1);
@@ -32,7 +32,7 @@ class SortItems extends Component {
       <div>
         <select
           data-testid="column-sort"
-          onChange={(e) => this.onChange(e, 'column')}
+          onChange={(e) => this.onChange(e, "column")}
           value={this.state.column}
         >
           {headers.map((item) => (
@@ -41,6 +41,13 @@ class SortItems extends Component {
             </option>
           ))}
         </select>
+      </div>
+    );
+  }
+
+  buildCheckers() {
+    return (
+      <div>
         <label htmlFor="sort">
           <input
             defaultChecked
@@ -48,7 +55,7 @@ class SortItems extends Component {
             type="radio"
             name="sort"
             value="ASC"
-            onChange={(e) => this.onChange(e, 'sort')}
+            onChange={(e) => this.onChange(e, "sort")}
           />
           ASC
         </label>
@@ -58,10 +65,19 @@ class SortItems extends Component {
             type="radio"
             name="sort"
             value="DESC"
-            onChange={(e) => this.onChange(e, 'sort')}
+            onChange={(e) => this.onChange(e, "sort")}
           />
           DESC
         </label>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        {this.buidColumns()}
+        {this.buildCheckers()}
         <button data-testid="column-sort-button" onClick={this.onClick}>
           Filtrar
         </button>

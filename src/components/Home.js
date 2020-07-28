@@ -22,8 +22,8 @@ class Home extends Component {
       <div className="App">
         <FilterName />
         <FilterValues />
-        <RemoveFilters />
         <SortItems />
+        <RemoveFilters />
         <Table />
       </div>
     );
