@@ -86,10 +86,9 @@ function DropDown({
         </select>
         <label htmlFor="ASC">
           <input
-            onChange={(e) => dispatchRadio(e.target.value, orderColumn)}
+            onChange={(e) => dispatchRadio('ASC', orderColumn)}
             type="radio"
             name="radio"
-            checked
             data-testid="column-sort-input"
             value="ASC"
           />
@@ -97,7 +96,7 @@ function DropDown({
         </label>
         <label htmlFor="DESC">
           <input
-            onChange={(e) => dispatchRadio(e.target.value, orderColumn)}
+            onChange={(e) => dispatchRadio('DESC', orderColumn)}
             type="radio"
             name="radio"
             data-testid="column-sort-input"

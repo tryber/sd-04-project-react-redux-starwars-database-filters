@@ -30,7 +30,7 @@ function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
     if (isNaN(planets[0][filterColumn])) {
       planets.sort((a, b) => (a[filterColumn] > b[filterColumn] ? 1 : -1));
     } else {
-      planets.sort((a, b) => a[filterColumn] > b[filterColumn]);
+      planets.sort((a, b) => a[filterColumn] - b[filterColumn]);
     }
     if (order === 'DESC') planets.reverse();
     return planets;
