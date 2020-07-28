@@ -10,7 +10,7 @@ class FilterByName extends Component {
     return (
       <input
         type="text"
-        data-testeid="name-filter"
+        data-testid="name-filter"
         value={name}
         onChange={(e) => this.props.filterByText(e.target.value)}
 
