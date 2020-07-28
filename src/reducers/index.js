@@ -1,5 +1,16 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import {
+  starWarsAPIReducer,
+  filters,
+  selectFilter,
+  changeSort,
+} from './reducer';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  starWarsAPIReducer,
+  filters,
+  selectFilter,
+  changeSort,
+});
+
+export default rootReducer;
