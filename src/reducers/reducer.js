@@ -52,7 +52,7 @@ export const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: state.filterByNumericValues
         .filter((ele) => ele.column !== action.coluna),
-      }
+      };
     default:
       return state;
   }
