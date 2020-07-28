@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.table-cell {
+  border: 1px solid;
+  font-weight: 800;
+  width: 150px;
+}
+.table-cell-url {
+  border: 1px solid;
+  font-weight: 800;
+  padding: 0;
+  width: 330px;
+}
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}

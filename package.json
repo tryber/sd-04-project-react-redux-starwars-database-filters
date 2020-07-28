@@ -39,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "devtools": "^6.2.0",
+    "redux-devtools-extension": "^2.13.8",
+    "webdriverio": "^6.2.0"
   }
 }
