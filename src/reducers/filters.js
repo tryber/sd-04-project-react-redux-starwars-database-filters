@@ -32,13 +32,12 @@ function filters(state = INITIAL_STATE, action) {
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
             (key) => key !== action.filteredKeys,
-          ),
-        ],
+          )],
       };
     case SORT_ITEMS:
       return {
         ...state, 
-        order: { column: action.column, sort: action.sort, },
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
