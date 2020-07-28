@@ -5,8 +5,9 @@ import { inputName, valorNumerico } from '../actions/index';
 
 class SearchBar extends React.Component {
   static filOpt(fValues, options) {
+    console.log(fValues)
+    console.log('op', options)
     if (fValues.length !== 0) {
-      console.log('dentrofiltro');
       let opcao = options;
       fValues.forEach(({ column }) => {
         opcao = opcao.filter((op) => op !== column);
@@ -26,6 +27,12 @@ class SearchBar extends React.Component {
     this.handleColuna = this.handleColuna.bind(this);
     this.handleCom = this.handleCom.bind(this);
     this.handleN = this.handleN.bind(this);
+  }
+
+  handleX(fValues) {
+    return (
+      <div></div>
+    )
   }
 
   handleColuna(event) {
@@ -61,17 +68,13 @@ class SearchBar extends React.Component {
             {SearchBar.filOpt(fValues, options).map((e) => (<option value={e}>{e}</option>))}
           </select>
           <select value={comparacao} onChange={this.handleCom} data-testid="comparison-filter">
-            {comp.map((e) => (
-              <option value={e}>{e}</option>
-            ))}
+            {comp.map((e) => (<option value={e}>{e}</option>))}
           </select>
           <input type="number" value={numero} onChange={this.handleN} data-testid="value-filter" />
           <button
-            type="button"
-            data-testid="button-filter"
+            type="button" data-testid="button-filter"
             onClick={() => valorNumerico1(coluna, comparacao, numero)}
-          >
-            Pesquise
+          >Pesquise
           </button>
         </form>
       </div>

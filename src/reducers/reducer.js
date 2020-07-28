@@ -1,8 +1,9 @@
-import { REQUEST_API, GET_API, INPUT_NAME, VALOR_NUMERICO } from '../actions';
+import { REQUEST_API, GET_API, INPUT_NAME, VALOR_NUMERICO, TRATA_FILTRO } from '../actions';
 
 const INITIAL_STATE = {
   options: ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
   data: {},
+  filtros: [],
   isLoading: true,
   filterByName: { name: '' },
   filterByNumericValues: [],
@@ -36,7 +37,7 @@ export const filters = (state = INITIAL_STATE, action) => {
     case VALOR_NUMERICO:
       return {
         ...state,
-        options: state.options.filter((ele) => ele !== action.coluna),
+        // options: state.options.filter((ele) => ele !== action.coluna),
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -46,6 +47,13 @@ export const filters = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+      case TRATA_FILTRO:
+         const toot = {
+          ...state,
+          filterByNumericValues: state.filterByNumericValues.filter((ele) => ele.column !== action.coluna)
+        }
+        console.log('toot',toot)
+        return toot
     default:
       return state;
   }

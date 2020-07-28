@@ -4,11 +4,11 @@ export const REQUEST_API = 'REQUEST_API';
 export const GET_API = 'GET_API';
 export const INPUT_NAME = 'INPUT_NAME';
 export const VALOR_NUMERICO = 'VALOR_NUMERICO';
+export const TRATA_FILTRO = 'TRATA_FILTRO';
 
-// action que recebe valores do imput e trata o data
-// export function trataData (coluna, comparacao, numero, data) {
-//   return { type: comparacao, coluna, numero, data}
-// }
+export function trataFiltro(coluna) {
+  return { type: TRATA_FILTRO, coluna };
+}
 
 export function valorNumerico(coluna, comparacao, numero) {
   return { type: VALOR_NUMERICO, coluna, comparacao, numero };
