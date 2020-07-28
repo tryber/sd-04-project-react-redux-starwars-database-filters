@@ -26,8 +26,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  fetchPlanets: PropTypes.func,
-  isFetching: PropTypes.bool,
+  fetchPlanets: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

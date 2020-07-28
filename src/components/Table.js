@@ -37,7 +37,7 @@ class Table extends React.Component {
           <thead>
             <tr>
               {tableHeader.map((column) => (
-                <th>{column}</th>
+                <th key={column}>{column}</th>
               ))}
             </tr>
           </thead>
@@ -50,7 +50,7 @@ class Table extends React.Component {
 Table.propTypes = {
   data: PropTypes.shape({
     length: PropTypes.number,
-  }),
+  }).isRequired,
 };
 /*
 consy { data } = this.props;
