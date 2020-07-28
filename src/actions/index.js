@@ -16,6 +16,8 @@ export const UPDATE_OPTIONS = 'UPDATE_OPTIONS';
 export const UPDATE_ORDER_COLUMN = 'UPDATE_ORDER_COLUMN';
 export const UPDATE_ORDER_SORT = 'UPDATE_ORDER_SORT';
 
+export const UPDATE_ORDER_FILTER = 'UPDATE_ORDER_FILTER';
+
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
 });
@@ -67,6 +69,11 @@ export const updateOrderColumn = (payload) => ({
 
 export const updateOrderSort = (payload) => ({
   type: UPDATE_ORDER_SORT,
+  payload,
+});
+
+export const updateOrderFilter = (payload) => ({
+  type: UPDATE_ORDER_FILTER,
   payload,
 });
 

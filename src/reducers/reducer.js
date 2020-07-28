@@ -7,6 +7,9 @@ import {
   SELECT_COLUMN,
   SELECT_COMPARISON,
   SELECT_NUMBER,
+  UPDATE_ORDER_COLUMN,
+  UPDATE_ORDER_SORT,
+  UPDATE_ORDER_FILTER,
 } from '../actions/index';
 
 const INITIAL_STATE_API = {
@@ -29,6 +32,11 @@ const INITIAL_STATE_SELECT = {
   column: '',
   comparison: '',
   value: '',
+};
+
+const INITIAL_STATE_SORT = {
+  column: '',
+  sort: '',
 };
 
 export const starWarsAPIReducer = (state = INITIAL_STATE_API, action) => {
@@ -72,6 +80,11 @@ export const filters = (state = INITIAL_STATE_FILTERS, action) => {
           ),
         ],
       };
+    case UPDATE_ORDER_FILTER:
+      return {
+        ...state,
+        order: { column: action.payload.column, sort: action.payload.sort },
+      };
     default:
       return state;
   }
@@ -93,6 +106,24 @@ export const selectFilter = (state = INITIAL_STATE_SELECT, action) => {
       return {
         ...state,
         value: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const changeSort = (state = INITIAL_STATE_SORT, action) => {
+  switch (action.type) {
+    case UPDATE_ORDER_COLUMN:
+      return {
+        ...state,
+        column:
+          action.payload.charAt(0).toUpperCase() + action.payload.slice(1),
+      };
+    case UPDATE_ORDER_SORT:
+      return {
+        ...state,
+        sort: action.payload,
       };
     default:
       return state;

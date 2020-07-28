@@ -30,7 +30,33 @@ const filterData = (datatable, name, numericFilters) => {
   return filteredData;
 };
 
-const RenderTable = ({ data, name, numericFilters }) => (
+function compareValues(key, order = 'ASC') {
+  return function innerSort(a, b) {
+    let val1 = a[key];
+    let val2 = b[key];
+
+    if (
+      key === 'rotation_period'
+      || key === 'orbital_period'
+      || key === 'diameter'
+    ) {
+      val1 = Number(a[key]);
+      val2 = Number(b[key]);
+    }
+
+    let comparison = 0;
+    if (val1 > val2) {
+      comparison = 1;
+    } else if (val1 < val2) {
+      comparison = -1;
+    }
+    return order === 'DESC' ? comparison * -1 : comparison;
+  };
+}
+
+const RenderTable = ({
+  data, name, numericFilters, column, sort,
+}) => (
   <table>
     <thead>
       <tr>
@@ -42,15 +68,15 @@ const RenderTable = ({ data, name, numericFilters }) => (
       </tr>
     </thead>
     <tbody>
-      {filterData(data, name, numericFilters).map(
-        ({ residents, ...planet }) => (
+      {filterData(data, name, numericFilters)
+        .sort(compareValues(column, sort))
+        .map(({ residents, ...planet }) => (
           <tr key={planet.name}>
             {Object.values(planet).map((value) => (
               <td key={value}>{value}</td>
             ))}
           </tr>
-        ),
-      )}
+        ))}
     </tbody>
   </table>
 );
@@ -59,6 +85,8 @@ const mapStateToProps = (state) => ({
   data: state.starWarsAPIReducer.data,
   name: state.filters.filterByName.name,
   numericFilters: state.filters.filterByNumericValues,
+  column: state.filters.order.column.toLowerCase(),
+  sort: state.filters.order.sort,
 });
 
 RenderTable.propTypes = {
@@ -87,6 +115,8 @@ RenderTable.propTypes = {
       value: PropTypes.string,
     }).isRequired,
   ).isRequired,
+  column: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, null)(RenderTable);
