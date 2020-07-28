@@ -35,7 +35,8 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter((filter) => filter !== action.obj),
-        ] };
+        ],
+      };
     case ORDER_COLUMN:
       return {
         ...state,

@@ -13,12 +13,12 @@ export class FilterValues extends Component {
       comparation: '',
     };
 
-    this.updateColumn = this.updateColumn.bind(this);
-    this.onNumberChange = this.onNumberChange.bind(this);
-    this.onSelectChange = this.onSelectChange.bind(this);
     this.getColumns = this.getColumns.bind(this);
     this.getComparation = this.getComparation.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onNumberChange = this.onNumberChange.bind(this);
+    this.onSelectChange = this.onSelectChange.bind(this);
+    this.updateColumn = this.updateColumn.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +49,7 @@ export class FilterValues extends Component {
     return (
       <select
         onChange={(event) => this.onSelectChange(event, 'column')}
-        data-testis="column-filter"
+        data-testid="column-filter"
         value={this.state.column}
       >
         {select.map((option) => (
@@ -127,7 +127,7 @@ FilterValues.propTypes = {
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
-      value: PropTypes.string,
+      value:PropTypes.string,
     }),
   ).isRequired,
   filterByNumericValues: PropTypes.func.isRequired,

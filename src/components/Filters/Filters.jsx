@@ -1,14 +1,16 @@
 import React from 'react';
 import FilterName from './FilterName';
-import FilterOrder from './FilterOrder';
 import FilterValues from './FilterValues';
+import FilterOrder from './FilterOrder';
+import RemoveFilter from './RemoveFilter';
 
 function Filters() {
   return (
     <div>
       <FilterName />
-      <FilterOrder />
       <FilterValues />
+      <FilterOrder />
+      <RemoveFilter />
     </div>
   );
 }

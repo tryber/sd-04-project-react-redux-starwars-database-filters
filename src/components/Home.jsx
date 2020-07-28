@@ -12,7 +12,8 @@ class Home extends React.Component {
   }
 
   render() {
-    if (this.props.loading) return <h1>Loading...</h1>;
+    const { loading } = this.props;
+    if (loading) return <h1>Loading...</h1>;
     return (
       <div>
         <h1>StarWars Datatable with Filters</h1>
