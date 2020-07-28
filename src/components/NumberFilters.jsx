@@ -35,7 +35,6 @@ const NumberFilters = ({ filterByNumberProps, filterByNumericValues }) => {
     );
   }, columnArray);
 
-  console.log(filteredColumns);
   return (
     <div>
       <form

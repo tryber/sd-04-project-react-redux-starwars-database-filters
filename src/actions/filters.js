@@ -34,7 +34,6 @@ export function deleteNumericFilter(filter) {
 }
 
 export function orderFilter(order) {
-  console.log(order);
   return ({
     type: ORDER_FILTER,
     order,

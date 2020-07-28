@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { fetchPlanets } from '../actions/ApiRequest';
 import { applyFilters } from '../actions/filters';
-import HeaderTable from './HeaderTable';
 import numericFilter from '../helpers/numericFilter';
 
 function planetsTable(planets) {
   return (
     <table className="table">
-      <HeaderTable />
+
       <tbody>
         {planets.map((planet) => (
           <tr className="table-column" key={planet.name}>
@@ -32,20 +31,7 @@ function planetsTable(planets) {
     </table>
   );
 }
-const orderPlanets = ({ sort, column }, dataPlanets) => {
-  dataPlanets.sort((a, b) => {
-    const x = a[column.toLowerCase()];
-    const y = b[column.toLowerCase()];
 
-    if (sort === 'ASC' && x < y) {
-      return -1;
-    }
-    if (sort === 'DESC' && x > y) {
-      return -1;
-    }
-    return 0;
-  });
-};
 class Table extends Component {
   componentDidMount() {
     const { planetsAPI: fetch } = this.props;
@@ -56,13 +42,20 @@ class Table extends Component {
     const {
       planets, isFetching, nameFilter, numberFilter, orderFilter,
     } = this.props;
-    console.log(orderFilter);
+    const column = orderFilter.column.toLowerCase();
     const namePlanets = planets.filter(
       ({ name }) => (name.toLowerCase()).includes(nameFilter.name.toLowerCase()),
     );
     const dataPlanets = numericFilter(namePlanets, numberFilter);
-    orderPlanets(orderFilter, dataPlanets);
+    if (column === 'name' || column === 'climate') {
+      dataPlanets.sort((a, b) => (a[column]).localeCompare(b[column]));
+    } else if (orderFilter.sort === 'ASC') {
+      dataPlanets.sort((a, b) => (Number(a[column]) - Number(b[column])));
+    } else {
+      dataPlanets.sort((a, b) => (Number(b[column]) - Number(a[column])));
+    }
 
+    // orderPlanets(orderFilter, dataPlanets);
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
