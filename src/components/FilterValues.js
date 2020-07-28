@@ -30,7 +30,11 @@ class FilterValues extends Component {
     const select = this.updateColumns();
     const { column } = this.state;
     return (
-      <select value={column} onChange={(event) => this.onChange(event, 'column')}>
+      <select
+        value={column}
+        data-testid="column-filter"
+        onChange={(event) => this.onChange(event, 'column')}
+      >
         {select.map((item) => (
           <option key={item} value={item}>
             {item}
@@ -46,6 +50,7 @@ class FilterValues extends Component {
     return (
       <select
         value={comp}
+        data-testid="comparison-filter"
         onChange={(event) => this.onChange(event, 'comparation')}
       >
         {comparation.map((item) => (
@@ -79,18 +84,27 @@ class FilterValues extends Component {
         {this.getComparation()}
         <input
           type="number"
+          data-testid="value-filter"
           value={number}
           onChange={(event) => this.onChange(event, 'number')}
         />
-        <button type="button" onClick={this.onClick}>Filtrar</button>
+        <button type="button" onClick={this.onClick}>
+          Filtrar
+        </button>
       </div>
     );
   }
 }
 
 FilterValues.propTypes = {
-  onFilterByNumericValues: PropTypes.func.isRequired,
-  numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  numericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ).isRequired,
+  filterByNumericValues: PropTypes.func.isRequired,
 };
 
 const mapState = (state) => ({

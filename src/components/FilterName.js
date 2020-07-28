@@ -10,6 +10,7 @@ class FilterName extends Component {
       <div>
         <input
           type="text"
+          data-testid="name-filter"
           placeholder="Type a planet name"
           onChange={(event) => onFilterByName(event.target.value)}
         />
