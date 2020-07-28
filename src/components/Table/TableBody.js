@@ -6,27 +6,27 @@ import Proptypes from 'prop-types';
 class TableBody extends Component {
   render() {
     const { data, name } = this.props;
-    const filterName = data.filter((data) => data.name.includes(name));
+    const filterName = data.filter((planet) => planet.name.includes(name));
     return (
       <tbody>
-        {filterName.map((data) => (
-          <tr key={data.name}>
-            {data.name}
-            <td>{data.rotation_period}</td>
-            <td>{data.orbitalPeriod}</td>
-            <td>{data.diameter}</td>
-            <td>{data.climate}</td>
-            <td>{data.gravity}</td>
-            <td>{data.terrain}</td>
-            <td key={data.surface_water}>{data.surface_water}</td>
-            <td>{data.population}</td>
+        {filterName.map((planet) => (
+          <tr key={planet.name}>
+            {planet.name}
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbitalPeriod}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td key={planet.surface_water}>{planet.surface_water}</td>
+            <td>{planet.population}</td>
             <td>
-              {data.films.map((film) => (
+              {planet.films.map((film) => (
                 <span key={film}>{film}</span>
               ))}
             </td>
-            <td>{data.created}</td>
-            <td>{data.edited}</td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
           </tr>
         ))}
       </tbody>

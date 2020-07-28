@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { filterByName } from '../../redux/actions';
 // import { createStore } from 'redux';
@@ -25,5 +26,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   filterByName: (Name) => dispatch(filterByName(Name)),
 });
+
+FilterByName.propTypes = {
+  filterByName: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByName);

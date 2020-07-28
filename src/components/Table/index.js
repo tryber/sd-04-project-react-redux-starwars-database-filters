@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import TableHead from './TableHead';
 import TableBody from './TableBody';
 
-const Table = ({ fetching }) =>
-  fetching ? (
+const Table = ({ fetching }) => {
+  return fetching ? (
     <div>LOADING...</div>
   ) : (
     <table>
@@ -14,6 +14,7 @@ const Table = ({ fetching }) =>
       <TableBody />
     </table>
   );
+};
 
 const mapStateToProps = (state) => ({
   // data: state.data,
