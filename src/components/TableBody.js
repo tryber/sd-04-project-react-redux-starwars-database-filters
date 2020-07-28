@@ -52,7 +52,7 @@ TableBody.propTypes = {
       terrain: PropTypes.string,
       surface_water: PropTypes.string,
       population: PropTypes.string,
-    })
+    }),
   ).isRequired,
   name: PropTypes.string.isRequired,
   numericValues: PropTypes.arrayOf(PropTypes.shape(propsRepetidas)).isRequired,
