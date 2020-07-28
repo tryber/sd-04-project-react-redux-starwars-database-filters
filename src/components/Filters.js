@@ -12,6 +12,8 @@ class Filters extends Component {
       comparFilter: '',
       numberFilter: '',
     };
+
+    this.updateCategorias = this.updateCategorias.bind(this);
   }
 
   getState(name, value) {
@@ -20,19 +22,38 @@ class Filters extends Component {
     });
   }
 
+  updateCategorias() {
+    const { filterCompar } = this.props;
+
+    const columnCategorias = [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+
+    const optColumns = filterCompar.map(({ column }) => column);
+    return [
+      ...columnCategorias.filter((option) => !optColumns.includes(option)),
+    ];
+  }
+
   firstFilter() {
+    const options = this.updateCategorias();
+
     return (
       <div>
         <select
-          data-testid="column-filter"
+          data-testid='column-filter'
           onChange={(e) => this.getState('colunmFilter', e.target.value)}
         >
-          <option value="">Coluna</option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option>Coluna</option>
+          {options.map((opt) => (
+            <option value={opt} key={opt}>
+              {opt}
+            </option>
+          ))}
         </select>
       </div>
     );
@@ -44,22 +65,22 @@ class Filters extends Component {
     return (
       <div>
         <select
-          data-testid="comparison-filter"
+          data-testid='comparison-filter'
           onChange={(e) => this.getState('comparFilter', e.target.value)}
         >
-          <option value="">Comparação</option>
-          <option value="maior que">maior que</option>
-          <option value="igual a">igual a</option>
-          <option value="menor que">menor que</option>
+          <option value=''>Comparação</option>
+          <option value='maior que'>maior que</option>
+          <option value='igual a'>igual a</option>
+          <option value='menor que'>menor que</option>
         </select>
         <input
-          type="number"
-          data-testid="value-filter"
+          type='number'
+          data-testid='value-filter'
           onChange={(e) => this.getState('numberFilter', e.target.value)}
         />
         <button
-          type="button"
-          data-testid="button-filter"
+          type='button'
+          data-testid='button-filter'
           onClick={() => btnInput(colunmFilter, comparFilter, numberFilter)}
         >
           Filtrar
@@ -83,9 +104,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(filterCombiner(column, compar, number)),
 });
 
+const mapStateToProps = (state) => ({
+  filterCompar: state.filters.filterByNumericValues,
+});
+
 Filters.propTypes = {
   btnInput: PropTypes.string.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Filters);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);
