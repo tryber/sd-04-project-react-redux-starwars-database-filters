@@ -32,6 +32,16 @@ function planetsTable(planets) {
   );
 }
 
+const orderPlanets = (dataPlanets, column, orderFilter) => {
+  if (column === 'name' || column === 'climate') {
+    dataPlanets.sort((a, b) => (a[column]).localeCompare(b[column]));
+  } else if (orderFilter.sort === 'ASC') {
+    dataPlanets.sort((a, b) => (Number(a[column]) - Number(b[column])));
+  } else {
+    dataPlanets.sort((a, b) => (Number(b[column]) - Number(a[column])));
+  }
+};
+
 class Table extends Component {
   componentDidMount() {
     const { planetsAPI: fetch } = this.props;
@@ -47,15 +57,7 @@ class Table extends Component {
       ({ name }) => (name.toLowerCase()).includes(nameFilter.name.toLowerCase()),
     );
     const dataPlanets = numericFilter(namePlanets, numberFilter);
-    if (column === 'name' || column === 'climate') {
-      dataPlanets.sort((a, b) => (a[column]).localeCompare(b[column]));
-    } else if (orderFilter.sort === 'ASC') {
-      dataPlanets.sort((a, b) => (Number(a[column]) - Number(b[column])));
-    } else {
-      dataPlanets.sort((a, b) => (Number(b[column]) - Number(a[column])));
-    }
-
-    // orderPlanets(orderFilter, dataPlanets);
+    orderPlanets(dataPlanets, column, orderFilter);
     if (isFetching && !planets) { return (<div>Loading...</div>); }
     return (
       <div>
