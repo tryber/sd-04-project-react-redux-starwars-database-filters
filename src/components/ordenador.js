@@ -7,9 +7,9 @@ class Ordenador extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opt: "",
-      radio: "",
-    }
+      opt: '',
+      radio: '',
+    };
     this.handleopt = this.handleopt.bind(this);
     this.handleradio = this.handleradio.bind(this);
   }
@@ -33,29 +33,34 @@ class Ordenador extends React.Component {
     const { opt, radio } = this.state;
     const { trataOrdem1 } = this.props;
     return (
-      <div>
-        <form>
-            <select value={opt} onChange={this.handleopt} data-testid="column-sort">
-              {options.map((ele) => (<option value={ele}>{ele}</option>))};
-            </select>
-            <label>ASC
-              <input
-                value={radio} onClick={this.handleradio} data-testid="column-sort-input"
-                type="radio" name="radio" value="ASC"
-              />
-            </label>
-            <label>DESC
-              <input
-                value={radio} onClick={this.handleradio} data-testid="column-sort-input"
-                type="radio" name="radio" value="DESC"
-              />
-            </label>            
-            <button type="button" data-testid="column-sort-button" onClick={() => trataOrdem1(opt, radio)}>Filtrar</button>
-        </form>
-      </div>
+      <form>
+        <select value={opt} onChange={this.handleopt} data-testid="column-sort">
+          {options.map((ele) => (<option value={ele}>{ele}</option>))};
+        </select>
+        <label htmlFor='radio'>ASC
+          <input
+            value={radio} onClick={this.handleradio} data-testid="column-sort-input"q
+            type="radio" name="radio" value="ASC"
+          />
+        </label>
+        <label htmlFor='radio'>DESC
+          <input
+            value={radio} onClick={this.handleradio} data-testid="column-sort-input"
+            type="radio" name="radio" value="DESC"
+          />
+        </label>            
+          <button
+            type="button" data-testid="column-sort-button" onClick={() => trataOrdem1(opt, radio)}
+          >Filtrar
+          </button>
+      </form>
     )
   }
 }
+
+Ordenador.propTypes = {
+  trataOrdem1: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   trataOrdem1: (opt, radio) => dispatch(trataOrdem(opt, radio)),
