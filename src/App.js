@@ -1,16 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getSwPlanets } from './actions';
 import './App.css';
 import Table from './components/Table';
-import Header from './components/Header';
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <h1>Star Wars Planets</h1>
-      <Table />
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchSwPlanets } = this.props;
+    fetchSwPlanets();
+  }
+
+  render() {
+    return (
+      <div>
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  fetchSwPlanets: () => dispatch(getSwPlanets()),
+});
+
+App.propTypes = {
+  fetchSwPlanets: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(App);
