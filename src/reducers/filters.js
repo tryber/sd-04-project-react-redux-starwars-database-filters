@@ -17,7 +17,7 @@ function filters(state = INITIAL_STATE, action) {
       return { ...state, filterByName: { name: action.name } };
     case FILTER_BY_NUMERIC_VALUE:
       return {
-        ...state, 
+        ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -28,7 +28,7 @@ function filters(state = INITIAL_STATE, action) {
       };
     case REMOVE_FILTERS:
       return {
-        ...state, 
+        ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
             (key) => key !== action.filteredKeys,
@@ -36,7 +36,7 @@ function filters(state = INITIAL_STATE, action) {
       };
     case SORT_ITEMS:
       return {
-        ...state, 
+        ...state,
         order: { column: action.column, sort: action.sort },
       };
     default:
