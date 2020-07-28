@@ -17,6 +17,14 @@ const Filtros = ({ fValues, trataFiltro1 }) => {
   return <h2>Escolha seus filtros</h2>;
 };
 
+Filtros.propTypes = {
+  fValues: PropTypes.shape({
+    length: PropTypes.number,
+    map: PropTypes.func
+  }).isRequired,
+  trataFiltro1: PropTypes.func.isRequired,
+}
+
 const mapDidpatchToProps = (dispatch) => ({
   trataFiltro1: (coluna) => dispatch(trataFiltro(coluna)),
 });

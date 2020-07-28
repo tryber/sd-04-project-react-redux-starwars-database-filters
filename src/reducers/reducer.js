@@ -37,7 +37,7 @@ export const filters = (state = INITIAL_STATE, action) => {
     case VALOR_NUMERICO:
       return {
         ...state,
-        // options: state.options.filter((ele) => ele !== action.coluna),
+        options: state.options.filter((ele) => ele !== action.coluna),
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
@@ -47,13 +47,12 @@ export const filters = (state = INITIAL_STATE, action) => {
           },
         ],
       };
-      case TRATA_FILTRO:
-         const toot = {
-          ...state,
-          filterByNumericValues: state.filterByNumericValues.filter((ele) => ele.column !== action.coluna)
-        }
-        console.log('toot',toot)
-        return toot
+    case TRATA_FILTRO:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues
+        .filter((ele) => ele.column !== action.coluna),
+      }
     default:
       return state;
   }

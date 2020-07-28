@@ -5,8 +5,6 @@ import { inputName, valorNumerico } from '../actions/index';
 
 class SearchBar extends React.Component {
   static filOpt(fValues, options) {
-    console.log(fValues)
-    console.log('op', options)
     if (fValues.length !== 0) {
       let opcao = options;
       fValues.forEach(({ column }) => {
@@ -27,12 +25,6 @@ class SearchBar extends React.Component {
     this.handleColuna = this.handleColuna.bind(this);
     this.handleCom = this.handleCom.bind(this);
     this.handleN = this.handleN.bind(this);
-  }
-
-  handleX(fValues) {
-    return (
-      <div></div>
-    )
   }
 
   handleColuna(event) {
