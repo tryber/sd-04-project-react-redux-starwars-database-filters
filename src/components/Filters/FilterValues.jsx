@@ -127,7 +127,7 @@ FilterValues.propTypes = {
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
-      value:PropTypes.string,
+      value: PropTypes.string,
     }),
   ).isRequired,
   filterByNumericValues: PropTypes.func.isRequired,
