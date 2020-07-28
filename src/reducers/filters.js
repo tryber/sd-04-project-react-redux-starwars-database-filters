@@ -2,6 +2,11 @@ import { FILTER_BY_NAME } from '../action/index';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
+  filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
