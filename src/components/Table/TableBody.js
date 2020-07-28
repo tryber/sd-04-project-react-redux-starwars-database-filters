@@ -13,7 +13,7 @@ class TableBody extends Component {
           <tr key={planet.name}>
             {planet.name}
             <td>{planet.rotation_period}</td>
-            <td>{planet.orbitalPeriod}</td>
+            <td>{planet.orbital_period}</td>
             <td>{planet.diameter}</td>
             <td>{planet.climate}</td>
             <td>{planet.gravity}</td>
