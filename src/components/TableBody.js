@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import filtersFunc from './filtersFunc';
+import filtersFunc from './function';
 
 class TableBody extends Component {
   render() {
