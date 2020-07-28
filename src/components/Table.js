@@ -26,27 +26,26 @@ const handleTabela = (fValues, data, filterByName) => {
   return fil;
 };
 
+const sortTabela = (data, opt, radio) => {
+  const filterColumn = opt.toLowerCase();
+  if (isNaN(data[0][filterColumn])) {
+    data.sort((a, b) => (a[filterColumn] > b[filterColumn] ? 1 : -1));
+  } else {
+    data.sort((a, b) => a[filterColumn] - b[filterColumn]);
+  }
+  if (radio === 'DESC') data.reverse();
+  return data;
+};
+
 class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: '',
     };
-    this.sortTabela = this.sortTabela.bind(this);
+    // this.sortTabela = this.sortTabela.bind(this);
   }
-
-  sortTabela = (data, opt, radio) => {
-    const filterColumn = opt.toLowerCase();
-    if (isNaN(data[0][filterColumn])) {
-      data.sort((a, b) => (a[filterColumn] > b[filterColumn] ? 1 : -1));
-    } else {
-      data.sort((a, b) => a[filterColumn] - b[filterColumn]);
-    }
-    if (radio === 'DESC') data.reverse();
-    return data;
-  };
   
-
   render() {
     const { data, isLoading, filterByName, fValues, ordem } = this.props;
     console.log('ordem', ordem.opt)
@@ -62,7 +61,7 @@ class Table extends React.Component {
             ))}
           </tr>
         </thead>
-        <tbody>{this.sortTabela(handleTabela(fValues, data, filterByName), ordem.column, ordem.sort).map((item) => linha(item))}</tbody>
+        <tbody>{sortTabela(handleTabela(fValues, data, filterByName), ordem.column, ordem.sort).map((item) => linha(item))}</tbody>
       </table>
     );
   }
