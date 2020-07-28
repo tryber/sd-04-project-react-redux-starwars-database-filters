@@ -31,7 +31,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  ...state.listaReducers,
+  ...state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({

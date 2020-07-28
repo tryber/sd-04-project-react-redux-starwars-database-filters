@@ -1,11 +1,12 @@
 const INITIAL_STATE = {
   isFetching: true,
-  data: ['3', '4'],
-  keys: [],
-  inputText: '',
+  data: [],
+  filterByName: {
+    name: '',
+  },
 };
 
-function listaReducers(state = INITIAL_STATE, action) {
+function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'REQUEST_API':
       return { ...state, isFetching: true };
@@ -16,10 +17,15 @@ function listaReducers(state = INITIAL_STATE, action) {
         data: action.data.results,
       };
     case 'CHANGE_TEXT_INPUT':
-      return { ...state, [action.name]: action.value };
+      return {
+        ...state,
+        filterByName: {
+          name: action.value,
+        },
+      };
     default:
       return { ...state };
   }
 }
 
-export default listaReducers;
+export default filters;

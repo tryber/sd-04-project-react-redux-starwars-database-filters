@@ -40,8 +40,8 @@ Table.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.listaReducers.data,
-  inputText: state.listaReducers.inputText,
+  data: state.filters.data,
+  inputText: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
