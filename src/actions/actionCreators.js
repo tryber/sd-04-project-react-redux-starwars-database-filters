@@ -5,6 +5,7 @@ import {
   FILTER_BY_TEXT,
   SAVE_FILTER_DATA,
   RESET_FILTER,
+  ORDER,
 } from './actions';
 
 import getAllPlanetsFromAPI from '../service/starWarsAPI';
@@ -53,6 +54,12 @@ const resetFilter = (filters) => ({
   filters,
 });
 
+const orderColumn = (column, sort) => ({
+  type: ORDER,
+  column,
+  sort,
+});
+
 export {
   requestPlanetsInfo,
   requestPlanetInfoSucess,
@@ -61,4 +68,5 @@ export {
   filterByText,
   saveFilterData,
   resetFilter,
+  orderColumn,
 };

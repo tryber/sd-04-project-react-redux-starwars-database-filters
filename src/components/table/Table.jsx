@@ -53,6 +53,20 @@ class Table extends Component {
     }, planets);
   }
 
+  sortPlanets(planets = [...this.props.data]) {
+    if (planets.length === 0) return planets;
+    const { orderColumn, orderSort } = this.props;
+    const planetKey = orderColumn.toLowerCase();
+
+    if (isNaN(planets[0][planetKey])) {
+      planets.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
+    } else {
+      planets.sort((a, b) => a[planetKey] - b[planetKey]);
+    }
+    if (orderSort === 'DESC') planets.reverse();
+    return planets;
+  }
+
   tableHeadRender() {
     const { head } = this.state;
     return (
@@ -73,10 +87,11 @@ class Table extends Component {
 
     const filteredByNamePlanets = this.filterPlanetsByName(query);
     const filteredPlanets = this.filterPlanetsByNumericValues(filteredByNamePlanets);
+    const filteredSortedPlanets = this.sortPlanets(filteredPlanets);
 
     return (
       <tbody>
-        {filteredPlanets
+        {filteredSortedPlanets
           .map((planet) => (
             <tr key={planet.name}>
               {head.map((th) => (
@@ -105,6 +120,8 @@ const mapStateToProps = (state) => ({
   loading: state.swapiReducer.loading,
   query: state.filters.filterByName.name,
   filterNumericValues: state.filters.filterByNumericValues,
+  orderColumn: state.filters.order.column,
+  orderSort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps, { fetchingPlanetsInfo })(Table);
@@ -138,4 +155,6 @@ Table.propTypes = {
       value: PropTypes.any,
     }),
   ).isRequired,
+  orderColumn: PropTypes.string.isRequired,
+  orderSort: PropTypes.string.isRequired,
 };

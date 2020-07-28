@@ -1,9 +1,10 @@
-import { FILTER_BY_TEXT, SAVE_FILTER_DATA, RESET_FILTER } from '../actions/actions';
+import { FILTER_BY_TEXT, SAVE_FILTER_DATA, RESET_FILTER, ORDER } from '../actions/actions';
 
 const initialState = {
   filterByName: { name: '' },
   filterByNumericValues: [],
   options: ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
+  order: { column: 'Name', sort: 'ASC' },
 };
 
 export const filters = (state = initialState, action) => {
@@ -23,6 +24,11 @@ export const filters = (state = initialState, action) => {
       };
     case RESET_FILTER:
       return { ...state, filterByNumericValues: action.filters };
+    case ORDER:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
+      };
     default:
       return state;
   }
