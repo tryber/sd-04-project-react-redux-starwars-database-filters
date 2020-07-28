@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 ByName.propTypes = {
-  filterByName: PropTypes.func.isRequired,
+  ByName: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ByName);
