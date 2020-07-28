@@ -5,6 +5,11 @@ export const GET_API = 'GET_API';
 export const INPUT_NAME = 'INPUT_NAME';
 export const VALOR_NUMERICO = 'VALOR_NUMERICO';
 export const TRATA_FILTRO = 'TRATA_FILTRO';
+export const TRATA_ORDEM = 'TRATA_ORDEM';
+
+export function trataOrdem(opt, radio) {
+  return { type: TRATA_ORDEM, opt, radio };
+}
 
 export function trataFiltro(coluna) {
   return { type: TRATA_FILTRO, coluna };

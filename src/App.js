@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Table from './components/Table';
 import SearchBar from './components/searchBar';
+import Ordenador from './components/ordenador';
 import Filtros from './components/filtros';
 import { fetchApi } from './actions/index';
 
@@ -19,6 +20,7 @@ class App extends React.Component {
         <header className="App-header">
           <SearchBar />
           <Filtros />
+          <Ordenador />
         </header>
         <Table />
       </div>

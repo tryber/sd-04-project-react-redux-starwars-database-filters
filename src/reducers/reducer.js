@@ -1,9 +1,10 @@
 import { REQUEST_API, GET_API, INPUT_NAME, VALOR_NUMERICO, TRATA_FILTRO } from '../actions';
+import { TRATA_ORDEM } from '../actions/index';
 
 const INITIAL_STATE = {
   options: ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
   data: {},
-  filtros: [],
+  order: { column: "Name", sort: "ASC" },
   isLoading: true,
   filterByName: { name: '' },
   filterByNumericValues: [],
@@ -21,6 +22,15 @@ export const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         data: action.data.results,
         isLoading: false,
+      };
+    case TRATA_ORDEM:
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          column: action.opt,
+          sort: action.radio,
+        },
       };
     default:
       return state;

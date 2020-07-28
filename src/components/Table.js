@@ -32,11 +32,24 @@ class Table extends React.Component {
     this.state = {
       data: '',
     };
-    // this.handleTabela = this.handleTabela.bind(this);
+    this.sortTabela = this.sortTabela.bind(this);
   }
 
+  sortTabela = (data, opt, radio) => {
+    const filterColumn = opt.toLowerCase();
+    if (isNaN(data[0][filterColumn])) {
+      data.sort((a, b) => (a[filterColumn] > b[filterColumn] ? 1 : -1));
+    } else {
+      data.sort((a, b) => a[filterColumn] - b[filterColumn]);
+    }
+    if (radio === 'DESC') data.reverse();
+    return data;
+  };
+  
+
   render() {
-    const { data, isLoading, filterByName, fValues } = this.props;
+    const { data, isLoading, filterByName, fValues, ordem } = this.props;
+    console.log('ordem', ordem.opt)
     if (isLoading) return <span>Loading...</span>;
     const planetas = data[0];
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
@@ -49,7 +62,7 @@ class Table extends React.Component {
             ))}
           </tr>
         </thead>
-        <tbody>{handleTabela(fValues, data, filterByName).map((item) => linha(item))}</tbody>
+        <tbody>{this.sortTabela(handleTabela(fValues, data, filterByName), ordem.column, ordem.sort).map((item) => linha(item))}</tbody>
       </table>
     );
   }
@@ -67,6 +80,7 @@ Table.propTypes = {
 
 const mapStateToProps = (state) => ({
   data: state.reducer.data,
+  ordem: state.reducer.order,
   isLoading: state.reducer.isLoading,
   filterByName: state.filters.filterByName.name,
   fValues: state.filters.filterByNumericValues,
