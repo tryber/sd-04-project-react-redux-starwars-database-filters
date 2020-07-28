@@ -1,11 +1,12 @@
 import {
   REQUEST_PLANETS,
   REQUEST_PLANETS_SUCCESS,
+  REQUEST_PLANETS_FAIL
 } from '../actions';
 
 const INITIAL_PLANETS = {
   isFetching: false,
-  data: {},
+  data: [],
 };
 
 const planets = (state = INITIAL_PLANETS, action) => {
@@ -18,9 +19,15 @@ const planets = (state = INITIAL_PLANETS, action) => {
     case REQUEST_PLANETS_SUCCESS:
       return {
         ...state,
-        data: action.planets,
+        data: [...action.data],
         isFetching: false,
       };
+    case REQUEST_PLANETS_FAIL:
+      return {
+        ...state,
+        error: action.error,
+        isFetching: false,
+      }  
     default:
       return state;
   }

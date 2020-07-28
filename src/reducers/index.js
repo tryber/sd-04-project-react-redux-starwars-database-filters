@@ -6,9 +6,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-/* function emptyReducer() {
-  return {};
-}
-
-export default emptyReducer; */
