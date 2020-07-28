@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { changeInputAct } from '../actions/index';
 
 const Input = (props) => {
-  const { filters, changeInput } = props;
+  const { changeInput } = props;
   return (
     <div>
       <label htmlFor="inputText">Texto Contém</label>
@@ -20,9 +20,7 @@ const Input = (props) => {
 
 Input.propTypes = {
   changeInput: PropTypes.func.isRequired,
-  inputText: PropTypes.string.isRequired,
 };
-
 
 const mapDispatchToProps = (dispatch) => ({
   changeInput: (event) => dispatch(changeInputAct(event.target)),
