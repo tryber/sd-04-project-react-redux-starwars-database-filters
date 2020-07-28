@@ -4,7 +4,7 @@ import { TRATA_ORDEM } from '../actions/index';
 const INITIAL_STATE = {
   options: ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
   data: {},
-  order: { column: "Name", sort: "ASC" },
+  order: { column: 'Name', sort: 'ASC' },
   isLoading: true,
   filterByName: { name: '' },
   filterByNumericValues: [],

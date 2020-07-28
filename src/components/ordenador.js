@@ -37,24 +37,24 @@ class Ordenador extends React.Component {
         <select value={opt} onChange={this.handleopt} data-testid="column-sort">
           {options.map((ele) => (<option value={ele}>{ele}</option>))};
         </select>
-        <label htmlFor='radio'>ASC
+        <label htmlFor="radio">ASC
           <input
             value={radio} onClick={this.handleradio} data-testid="column-sort-input"q
             type="radio" name="radio" value="ASC"
           />
         </label>
-        <label htmlFor='radio'>DESC
+        <label htmlFor="radio">DESC
           <input
             value={radio} onClick={this.handleradio} data-testid="column-sort-input"
             type="radio" name="radio" value="DESC"
           />
-        </label>            
-          <button
-            type="button" data-testid="column-sort-button" onClick={() => trataOrdem1(opt, radio)}
-          >Filtrar
-          </button>
+        </label>
+        <button
+          type="button" data-testid="column-sort-button" onClick={() => trataOrdem1(opt, radio)}
+        >Filtrar
+        </button>
       </form>
-    )
+    );
   }
 }
 
