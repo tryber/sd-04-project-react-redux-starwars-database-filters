@@ -1,26 +1,33 @@
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import { requestFetchApi } from './actions/actionFetch';
+import Table from './components/Table/Table';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { getPlanets } = this.props;
+    getPlanets();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  getPlanets: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getPlanets: () => dispatch(requestFetchApi()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
