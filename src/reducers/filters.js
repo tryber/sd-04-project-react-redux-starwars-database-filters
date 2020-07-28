@@ -1,9 +1,4 @@
-import {
-  FILTER_BY_NAME,
-  FILTER_BY_NUMERIC_VALUE,
-  REMOVE_FILTERS,
-  SORT_ITEMS,
-} from '../actions/dataAction';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUE, REMOVE_FILTERS, SORT_ITEMS, } from '../actions/dataAction';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -50,7 +45,7 @@ function filters(state = INITIAL_STATE, action) {
         order: {
           column: action.column,
           sort: action.sort,
-        }
+        },
       };
     default:
       return state;

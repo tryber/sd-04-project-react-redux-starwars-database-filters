@@ -7,7 +7,9 @@ import sortDesc from '../function/sortDescFilter';
 class TableBody extends Component {
   render() {
     const { planets, name, numeric, column, sort } = this.props;
-    const data = sort === 'ASC' ? sortAsc(planets, name, numeric, column) : sortDesc(planets, name, numeric, column)
+    const data = sort === 'ASC'
+      ? sortAsc(planets, name, numeric, column)
+      : sortDesc(planets, name, numeric, column);
     return (
       <tbody>
         {data.map((item) => (
@@ -21,9 +23,9 @@ class TableBody extends Component {
             <td>{item.rotation_period}</td>
             <td>{item.surface_water}</td>
             <td>{item.terrain}</td>
-            <td>{item.films.map((film => (
+            <td>{item.films.map((film) => (
               <p key={film}>{film}</p>
-            )))}</td>
+            ))}</td>
             <td>{item.edited}</td>
             <td>{item.created}</td>
             <td>{item.url}</td>

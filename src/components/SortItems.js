@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { sortByColumn } from "../actions/dataAction";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { sortByColumn } from '../actions/dataAction';
 
 class SortItems extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      column: "Name",
-      sort: "ASC",
+      column: 'Name',
+      sort: 'ASC',
     };
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -32,7 +32,7 @@ class SortItems extends Component {
       <div>
         <select
           data-testid="column-sort"
-          onChange={(e) => this.onChange(e, "column")}
+          onChange={(e) => this.onChange(e, 'column')}
           value={this.state.column}
         >
           {headers.map((item) => (
@@ -48,7 +48,7 @@ class SortItems extends Component {
             type="radio"
             name="sort"
             value="ASC"
-            onChange={(e) => this.onChange(e, "sort")}
+            onChange={(e) => this.onChange(e, 'sort')}
           />
           ASC
         </label>
@@ -58,7 +58,7 @@ class SortItems extends Component {
             type="radio"
             name="sort"
             value="DESC"
-            onChange={(e) => this.onChange(e, "sort")}
+            onChange={(e) => this.onChange(e, 'sort')}
           />
           DESC
         </label>
@@ -92,8 +92,7 @@ SortItems.propTypes = {
       terrain: PropTypes.string,
     })
   ).isRequired,
-  column: PropTypes.string.isRequired,
-  sort: PropTypes.string.isRequired,
+  sortItems: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortItems);

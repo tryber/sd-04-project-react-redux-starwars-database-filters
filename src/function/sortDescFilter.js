@@ -1,10 +1,11 @@
 import numericFilter from './numericFilter';
 
-const sortPlanet = (array) => array.sort(function(a, b){
-  if (a.name < b.name) return 1;
-  if (a.name > b.name) return -1;
-  return 0;
-});
+const sortPlanet = (array) =>
+  array.sort(function (a, b) {
+    if (a.name < b.name) return 1;
+    if (a.name > b.name) return -1;
+    return 0;
+  });
 
 const sortDESC = (planets, name, numeric, column) => {
   if (column === 'Name') {
@@ -12,8 +13,8 @@ const sortDESC = (planets, name, numeric, column) => {
     return sortPlanet(filter);
   }
   return numericFilter(planets, name, numeric).sort(
-    (a, b) => b[column] - a[column],
+    (a, b) => b[column] - a[column]
   );
-}
+};
 
 export default sortDESC;
