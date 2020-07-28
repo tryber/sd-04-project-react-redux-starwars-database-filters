@@ -17,12 +17,7 @@ export const INITIAL_STATE = {
 export const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case INPUT_TEXT:
-      return {
-        ...state,
-        filterByName: {
-          name: action.text,
-        },
-      };
+      return { ...state, filterByName: { name: action.text } };
     case ADDON_STORE_FILTERS:
       return {
         ...state,
@@ -43,14 +38,7 @@ export const filters = (state = INITIAL_STATE, action) => {
         ),
       };
     case RADION_ASC:
-      return {
-        ...state,
-        order: {
-          ...state.order,
-          column: action.column,
-          sort: action.radio,
-        },
-      };
+      return { ...state, order: { ...state.order, column: action.column, sort: action.radio } };
     default:
       return state;
   }
