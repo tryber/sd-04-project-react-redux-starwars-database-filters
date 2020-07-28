@@ -104,7 +104,7 @@ FilterValues.propTypes = {
       value: PropTypes.string,
     }),
   ).isRequired,
-  filterByNumericValues: PropTypes.func.isRequired,
+  onFilterByNumericValues: PropTypes.func.isRequired,
 };
 
 const mapState = (state) => ({
