@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 import { fetchPlanets, filterByName } from '../actions';
 
-import RenderTable from './RenderTable';
+// import RenderTable from './RenderTable';
 import SelectFilter from './SelectFilter';
 import FiltersList from './FiltersList';
 import FilterSort from './FilterSort';
+
+import TableClass from './TableClass';
 
 class Table extends Component {
   componentDidMount() {
@@ -29,7 +31,7 @@ class Table extends Component {
         <FiltersList />
         <FilterSort />
         {isFetching && 'Loading...'}
-        {arrayPlanets.length > 0 && <RenderTable />}
+        {arrayPlanets.length > 0 && <TableClass />}
       </div>
     );
   }
