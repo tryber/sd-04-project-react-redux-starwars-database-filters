@@ -71,6 +71,10 @@ Table.propTypes = {
     value: PropTypes.string.isRequired,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  order: PropTypes.string.isRequired,
+  orderColumn: PropTypes.shape({
+    toLowerCase: PropTypes.func,
+  }).isRequired,
   searchBar: PropTypes.string.isRequired,
 };
 

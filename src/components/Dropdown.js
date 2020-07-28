@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { actionValue, actionComparison, actionColumn } from '../actions/actionInput';
 import { actionAddFilter, actionRadio } from '../actions/actionFilter';
+import { actionValue, actionComparison, actionColumn } from '../actions/actionInput';
 import { deleteFilter } from '../actions/actionDelete';
+import RadioButton from './RadioButton';
 
 function DropDown({
   inputValue,
@@ -15,9 +16,6 @@ function DropDown({
   addOnStoreFilters,
   filtros,
   onClickDeleteFilter,
-  dispatchRadio,
-  order,
-  orderColumn,
 }) {
   const filtrosOptions = () => {
     const values = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
@@ -58,59 +56,6 @@ function DropDown({
     return null;
   };
 
-  const radionButton = () => {
-    const sortlines = [
-      'name',
-      'rotation_period',
-      'orbital_period',
-      'diameter',
-      'climate',
-      'gravity',
-      'terrain',
-      'surface_water',
-      'population',
-      'films',
-      'created',
-      'edited',
-      'url',
-    ];
-    return (
-      <div>
-        <select
-          onChange={(event) => dispatchRadio(order, event.target.value)}
-          data-testid="column-sort"
-        >
-          {sortlines.map((e) => (
-            <option value={e}>{e}</option>
-          ))}
-        </select>
-        <label htmlFor="ASC">
-          <input
-            onChange={(e) => dispatchRadio('ASC', orderColumn)}
-            type="radio"
-            name="radio"
-            data-testid="column-sort-input"
-            value="ASC"
-          />
-          ASC
-        </label>
-        <label htmlFor="DESC">
-          <input
-            onChange={(e) => dispatchRadio('DESC', orderColumn)}
-            type="radio"
-            name="radio"
-            data-testid="column-sort-input"
-            value="DESC"
-          />
-          DESC
-        </label>
-        <button data-testid="column-sort-button" type="button">
-          Sort
-        </button>
-      </div>
-    );
-  };
-
   return (
     <div>
       <form>
@@ -140,7 +85,7 @@ function DropDown({
         >
           Submit
         </button>
-        {radionButton()}
+        <RadioButton />
       </form>
       {filtrosFeitos()}
     </div>
