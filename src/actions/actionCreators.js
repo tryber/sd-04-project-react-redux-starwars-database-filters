@@ -48,13 +48,11 @@ const saveFilterData = (column, comparison, value) => ({
   value,
 });
 
-
-
-
-export const resetFilter = (filters) => ({
+const resetFilter = (filters) => ({
   type: RESET_FILTER,
   filters,
 });
+
 export {
   requestPlanetsInfo,
   requestPlanetInfoSucess,
@@ -62,4 +60,5 @@ export {
   fetchingPlanetsInfo,
   filterByText,
   saveFilterData,
+  resetFilter,
 };
