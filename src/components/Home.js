@@ -30,7 +30,7 @@ export class Home extends Component {
 
 Home.propTypes = {
   onFetchPlanets: PropTypes.func.isRequired,
-  isFetching: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

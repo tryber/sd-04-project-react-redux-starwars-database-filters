@@ -88,7 +88,7 @@ class FilterValues extends Component {
           value={number}
           onChange={(event) => this.onChange(event, 'number')}
         />
-        <button type="button" onClick={this.onClick}>
+        <button type="button" data-testid="button-filter" onClick={this.onClick}>
           Filtrar
         </button>
       </div>
