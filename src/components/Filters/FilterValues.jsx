@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByNumericValues } from '../../actions';
 
-class FilterValue extends React.Component {
+export class FilterValues extends Component {
   constructor(props) {
     super(props);
 
@@ -35,9 +35,13 @@ class FilterValue extends React.Component {
   }
 
   onClick() {
-    const { number, column, comparation } = this.state;
+    const { column, comparation, number } = this.state;
     this.props.filterByNumericValues(column, comparation, number);
-    this.setState({ number: '', column: '', comparation: '' });
+    this.setState({
+      column: '',
+      comparation: '',
+      number: '',
+    });
   }
 
   getColumns() {
@@ -45,7 +49,7 @@ class FilterValue extends React.Component {
     return (
       <select
         onChange={(event) => this.onSelectChange(event, 'column')}
-        data-testid="column-filter"
+        data-testis="column-filter"
         value={this.state.column}
       >
         {select.map((option) => (
