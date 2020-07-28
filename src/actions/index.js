@@ -14,7 +14,7 @@ const dataResults = (data) => ({
   data,
 });
 
-export function fetchPlanets() {
+export default function fetchPlanets() {
   return (dispatch) => {
     dispatch(isLoaded());
     getPlanetsAPI()
@@ -23,11 +23,11 @@ export function fetchPlanets() {
 }
 
 export const filterByName = (name) => ({
-  type: FILTER_BY_NAME,
+  type: 'FILTER_BY_NAME',
   name,
 });
 
-export const filterByNumericValue = (column, comparison, value) => ({
+export const filterByNumericValues = (column, comparison, value) => ({
   type: 'FILTER_BY_NUMERIC_VALUES',
   column,
   comparison,
