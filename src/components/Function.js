@@ -8,17 +8,17 @@ const FiltersFunc = (planets, name, numericValues) => (
             case 'maior que':
               return (
                 planet.name.includes(name)
-                  && planet[column] > value
+                  && Number(planet[column]) > Number(value)
               );
             case 'menor que':
               return (
                 planet.name.includes(name)
-                  && planet[column] < value
+                  && Number(planet[column]) < Number(value)
               );
             case 'igual a':
               return (
                 planet.name.includes(name)
-                  && planet[column] === value
+                  && Number(planet[column]) === Number(value)
               );
             default:
               return planet.name.includes(name);
