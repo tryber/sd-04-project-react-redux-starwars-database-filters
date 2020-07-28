@@ -7,7 +7,7 @@ import {
   setPlanetsFilteredByNumeric,
   removeFilter,
 } from '../actions/filterByNumeric';
-// import Sort from './Sort';
+import Sort from './Sort';
 
 function geratedlistOfColumns() {
   return ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];

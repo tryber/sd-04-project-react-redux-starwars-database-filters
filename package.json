@@ -14071,5 +14071,8 @@
         "decamelize": "^1.2.0"
       }
     }
+  },
+  "devDependencies": {
+    "cypress": "^4.11.0"
   }
 }
