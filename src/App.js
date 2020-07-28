@@ -13,13 +13,11 @@ class App extends React.Component {
 
   render() {
     const { isFetching } = this.props;
-    if (isFetching) return 'Loading';
+    if (isFetching) return <p>Loading</p>;
     return (
-      <div className="App">
+      <div>
         <p>StarWars Datatable with Filters</p>
-        <header className="App-header">
-          <Table />
-        </header>
+        <Table />
       </div>
     );
   }

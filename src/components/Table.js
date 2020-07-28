@@ -1,30 +1,28 @@
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPlanetsAPIAct } from '../actions';
 
 const Table = (props) => {
   const { data } = props;
-  if (!data) return 'Double Loading';
-  const keys = Object.keys(data.results[0]).filter(
-    (header) => header !== 'residents',
-  );
   return (
     <div>
       <table>
         <thead>
           <tr>
-            {keys.map((param) => (
-              <th>{param}</th>
-            ))}
+            {Object.keys(data[0])
+              .filter((header) => header !== 'residents').map((chaveDoHeader) => (
+                <th key={chaveDoHeader}>{chaveDoHeader}</th>
+              ))}
           </tr>
         </thead>
         <tbody>
-          {data.results.map((planet) => (
+          {data.map((planet) => (
             <tr key={planet.name}>
-              {keys.map((column) => (
-                <td>{planet[column]}</td>
-              ))}
+              {Object.keys(data[0])
+                .filter((header) => header !== 'residents').map((column) => (
+                  <td key={planet[column]}>{planet[column]}</td>
+                ))}
             </tr>
           ))}
         </tbody>
@@ -34,13 +32,11 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.shape({
-    results: PropTypes.arrayOf(Object).isRequired,
-  }).isRequired,
+  data: PropTypes.arrayOf(Object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  ...state.listaReducers,
+  data: state.listaReducers.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
