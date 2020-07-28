@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import filtersFunc from './function';
+import filtersFunc from '/home/leonhard/Documentos/Trybe/sd-04-project-react-redux-starwars-database-filters/src/components/function';
 
 class TableBody extends Component {
   render() {
