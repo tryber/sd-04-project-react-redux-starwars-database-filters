@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 
 import TableHead from './TableHead';
 import TableBody from './TableBody';
-// import { createStore } from 'redux';
 
-const Table = ({ fetching }) => (
+const Table = ({ fetching }) =>
   fetching ? (
     <div>LOADING...</div>
   ) : (
@@ -14,8 +13,7 @@ const Table = ({ fetching }) => (
       <TableHead />
       <TableBody />
     </table>
-  )
-);
+  );
 
 const mapStateToProps = (state) => ({
   // data: state.data,

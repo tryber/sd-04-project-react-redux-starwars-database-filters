@@ -1,9 +1,11 @@
-import getPlanets from '../services/SWAPI';
+import getPlanets from '../../services/SWAPI';
 
 export const REQUEST_SWAPI = 'REQUEST_SWAPI';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
+//  actions API
 const requestSWAPI = () => ({
   type: REQUEST_SWAPI,
 });
@@ -18,7 +20,7 @@ const requestFail = (error) => ({
   error,
 });
 
-export const getSWAPI = () => (
+export const getSWAPI = () =>
   //  thunk
   (dispatch) => {
     dispatch(requestSWAPI());
@@ -26,5 +28,10 @@ export const getSWAPI = () => (
       (data) => dispatch(requestSuccess(data.results)),
       (error) => dispatch(requestFail(error)),
     );
-  }
-);
+  };
+
+//  action filter
+export const filterByName = (name) => ({
+  type: FILTER_BY_NAME,
+  name,
+});

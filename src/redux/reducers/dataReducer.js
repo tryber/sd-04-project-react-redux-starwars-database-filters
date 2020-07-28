@@ -1,13 +1,12 @@
-// import { combineReducers } from 'redux';
 import { REQUEST_SWAPI, REQUEST_SUCCESS, REQUEST_FAIL } from '../actions';
 
 const INITIAL_STATE = {
-  data: [],
   fetching: false,
+  data: [],
   error: '',
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+const dataReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REQUEST_SWAPI:
       return {
@@ -18,7 +17,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case REQUEST_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        data: [...action.data],
         fetching: false,
       };
 
@@ -34,7 +33,4 @@ const reducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-// const rootReducer = combineReducers({});
-
-// export default rootReducer;
-export default reducer;
+export default dataReducer;
