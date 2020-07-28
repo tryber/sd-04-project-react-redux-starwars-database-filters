@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import Filters from './Filters';
 import Table from './Table';
 
@@ -23,6 +24,11 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  fetchPlanets: PropTypes.func,
+  isFetching: PropTypes.bool,
+};
 
 const mapStateToProps = (state) => ({
   isFetching: state.planets.isFetching,

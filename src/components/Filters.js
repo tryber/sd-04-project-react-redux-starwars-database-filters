@@ -8,11 +8,11 @@ export class Filters extends Component {
 }
 
 /* const mapStateToProps = (state) => ({
-  
+
 });
 
 const mapDispatchToProps = {
-  
+
 }; */
 
 export default connect(null, null)(Filters);

@@ -1,7 +1,7 @@
 import {
   REQUEST_PLANETS,
   REQUEST_PLANETS_SUCCESS,
-  REQUEST_PLANETS_FAIL
+  REQUEST_PLANETS_FAIL,
 } from '../actions';
 
 const INITIAL_PLANETS = {
@@ -27,7 +27,7 @@ const planets = (state = INITIAL_PLANETS, action) => {
         ...state,
         error: action.error,
         isFetching: false,
-      }  
+      };
     default:
       return state;
   }
