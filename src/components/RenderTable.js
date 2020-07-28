@@ -30,56 +30,61 @@ const filterData = (datatable, name, numericFilters) => {
   return filteredData;
 };
 
+const numericKeys = [
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'surface_water',
+  'population',
+];
 
-const numericKeys = ['rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population'];
+const ascSortNumber = (filtered, column) =>
+  filtered.sort((a, b) => Number(a[column]) - Number(b[column]));
 
-function compareValues(key, order = 'ASC') {
-  return function compare(a, b) {
-    let val1 = a[key];
-    let val2 = b[key];
+const ascSortString = (filtered, column) =>
+  filtered.sort((a, b) => {
+    if (a[column] > b[column]) return 1;
+    if (a[column] < b[column]) return -1;
+    return 0;
+  });
 
-    if (numericKeys.includes(key)) {
-      val1 = Number(a[key]);
-      val2 = Number(b[key]);
-    }
-
-    let comparison = 0;
-    if (val1 > val2) {
-      comparison = 1;
-    }
-    if (val1 < val2) {
-      comparison = -1;
-    }
-    return order === 'DESC' ? comparison * -1 : comparison;
-  };
-}
+const orderAscDesc = (filtered, column, sort) => {
+  const sorted = numericKeys.includes(column)
+    ? ascSortNumber(filtered, column)
+    : ascSortString(filtered, column);
+  return sort === 'DESC' ? sorted.reverse() : sorted;
+};
 
 const RenderTable = ({
   data, name, numericFilters, column, sort,
-}) => (
-  <table>
-    <thead>
-      <tr>
-        {Object.keys(data[0])
-          .filter((element) => element !== 'residents')
-          .map((key) => (
-            <th key={key}>{key}</th>
-          ))}
-      </tr>
-    </thead>
-    <tbody>
-      {filterData(data, name, numericFilters)
-        .sort(compareValues(column, sort))
-        .map(({ residents, ...planet }) => (
-          <tr key={planet.name}>
-            {Object.values(planet).map((value) => (
-              <td key={value}>{value}</td>
+}) => {
+  const filtered = filterData(data, name, numericFilters);
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          {Object.keys(data[0])
+            .filter((element) => element !== 'residents')
+            .map((key) => (
+              <th key={key}>{key}</th>
             ))}
-          </tr>
-        ))}
-    </tbody>
-  </table>
-);
+        </tr>
+      </thead>
+      <tbody>
+        {orderAscDesc(filtered, column, sort).map(
+          ({ residents, ...planet }) => (
+            <tr key={planet.name}>
+              {Object.values(planet).map((value) => (
+                <td key={value}>{value}</td>
+              ))}
+            </tr>
+          ),
+        )}
+      </tbody>
+    </table>
+  );
+};
 
 const mapStateToProps = (state) => ({
   data: state.starWarsAPIReducer.data,
