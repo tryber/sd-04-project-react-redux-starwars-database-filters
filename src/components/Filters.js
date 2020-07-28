@@ -45,7 +45,7 @@ class Filters extends Component {
     return (
       <div>
         <select
-          data-testid='column-filter'
+          data-testid="column-filter"
           onChange={(e) => this.getState('colunmFilter', e.target.value)}
         >
           <option>Coluna</option>
@@ -65,22 +65,22 @@ class Filters extends Component {
     return (
       <div>
         <select
-          data-testid='comparison-filter'
+          data-testid="comparison-filter"
           onChange={(e) => this.getState('comparFilter', e.target.value)}
         >
-          <option value=''>Comparação</option>
-          <option value='maior que'>maior que</option>
-          <option value='igual a'>igual a</option>
-          <option value='menor que'>menor que</option>
+          <option value="">Comparação</option>
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
+          <option value="menor que">menor que</option>
         </select>
         <input
-          type='number'
-          data-testid='value-filter'
+          type="number"
+          data-testid="value-filter"
           onChange={(e) => this.getState('numberFilter', e.target.value)}
         />
         <button
-          type='button'
-          data-testid='button-filter'
+          type="button"
+          data-testid="button-filter"
           onClick={() => btnInput(colunmFilter, comparFilter, numberFilter)}
         >
           Filtrar
@@ -110,6 +110,7 @@ const mapStateToProps = (state) => ({
 
 Filters.propTypes = {
   btnInput: PropTypes.string.isRequired,
+  filterCompar: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
