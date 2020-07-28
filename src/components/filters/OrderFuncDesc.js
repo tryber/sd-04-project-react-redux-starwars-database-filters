@@ -1,9 +1,9 @@
 import filterFunc from './FilterFunc';
 
 const orderName = (array) => array.sort(function (a, b) {
-  if(a.name < b.name) return 1;
+  if (a.name < b.name) return 1;
   else if (a.name > b.name) return -1;
-  else return 0;
+  return 0;
 });
 
 const orderFuncAsc = (planets, name, numericValues, columnSort) => {
