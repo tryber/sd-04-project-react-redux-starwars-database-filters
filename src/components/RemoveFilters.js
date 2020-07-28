@@ -6,7 +6,6 @@ import { removeFilters } from '../actions/dataAction';
 
 function RemoveFilters({ numericValues, removeNumeric }) {
   const removeFiltered = (item) => removeNumeric(item);
-  console.log(numericValues);
   return (
     <div>
       <h3>Filtrados</h3>
