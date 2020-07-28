@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { filterByName } from '../../redux/actions';
+import { filterByName } from '../../actions';
 // import { createStore } from 'redux';
 
 class ByName extends Component {

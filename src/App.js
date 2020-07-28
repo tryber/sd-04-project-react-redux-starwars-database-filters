@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 
-import { getSWAPI } from './redux/actions';
+import { getSWAPI } from './actions';
 import Filters from './components/Filters';
 import Table from './components/Table/index';
 // import './App.css';
