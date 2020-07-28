@@ -24,7 +24,7 @@ export function fetchPlanets() {
 
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
-      (error) => dispatch(failurePlanets(error))
+      (error) => dispatch(failurePlanets(error)),
     );
   };
 }
