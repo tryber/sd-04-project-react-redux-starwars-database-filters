@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Tabelas from './Tabelas';
+import sortData from '../../services/SortData';
 
 function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
-  const allFilters = () => {
+  const allFilters = (data) => {
     const planets = data.filter((planet) => planet.name.includes(searchBar));
     if (filtros.length === 0) return planets;
     return filtros.reduce((acc, filtro) => {
@@ -24,18 +25,6 @@ function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
     }, planets);
   };
 
-  const sortData = () => {
-    const planets = allFilters();
-    const filterColumn = orderColumn.toLowerCase();
-    if (isNaN(planets[0][filterColumn])) {
-      planets.sort((a, b) => (a[filterColumn] > b[filterColumn] ? 1 : -1));
-    } else {
-      planets.sort((a, b) => a[filterColumn] - b[filterColumn]);
-    }
-    if (order === 'DESC') planets.reverse();
-    return planets;
-  };
-
   if (isLoading) return <span>L O A D I N G . . . .</span>;
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
@@ -49,7 +38,7 @@ function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
           </tr>
         </thead>
         <tbody>
-          {sortData().map((planet, i) => (
+          {sortData(allFilters(data), orderColumn, order).map((planet, i) => (
             <Tabelas planet={planet} i={i} />
           ))}
         </tbody>
