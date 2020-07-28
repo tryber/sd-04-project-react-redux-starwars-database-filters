@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-function TableBody({ planets, filterName }) {
+function TableBody({ planets, name, numericValues, columnSort, sort }) {
+  const data = sort === 'ASC'
+    ? orderFuncAsc(planets, name, numericValues, columnSort, sort)
+    : orderFuncDesc(planets, name, numericValues, columnSort, sort);
   return (
     <tbody>
-      {planets.map((planet) => (
+      {data.map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td>
           <td>{planet.rotation_period}</td>
@@ -31,7 +34,8 @@ function TableBody({ planets, filterName }) {
 
 const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
-  
+  name: state.filters.filterByName.name,
+  sort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps)(TableBody);

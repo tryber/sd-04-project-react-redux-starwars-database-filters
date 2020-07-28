@@ -1,8 +1,7 @@
-import { FILTER_BY_NAME } from '../action/index';
+import { FILTER_BY_NAME, ORDER_COLUMN } from '../action/index';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
-  filterByNumericValues: [],
   order: {
     column: 'Name',
     sort: 'ASC',
@@ -14,6 +13,8 @@ const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
       return { ...state, filterByName: { name: action.name } }
+    case ORDER_COLUMN:
+      return { ...state, order: { column: action.column, sort: action.sort } }
     default:
       return state;
   }

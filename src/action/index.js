@@ -4,6 +4,7 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCCESS';
 export const REQUEST_PLANETS_FAILURE = 'REQUEST_PLANETS_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+export const ORDER_COLUMN = 'ORDER_COLUMN';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -32,4 +33,10 @@ export function requestFetch() {
 export const filterByName = (name) => ({
   type: FILTER_BY_NAME,
   name,
+});
+
+export const orderColumns = (column, sort) => ({
+  type: ORDER_COLUMN,
+  column,
+  sort,
 });
