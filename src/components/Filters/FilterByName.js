@@ -7,13 +7,13 @@ import { filterByName } from '../../redux/actions';
 
 class ByName extends Component {
   render() {
-    const { ByName } = this.props;
+    const { filterByName } = this.props;
     return (
       <input
         type="text"
         data-testid="name-filter"
         placeholder="filter by name"
-        onChange={(event) => ByName(event.target.value)}
+        onChange={(event) => filterByName(event.target.value)}
       />
     );
   }
@@ -24,11 +24,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  ByName: (Name) => dispatch(filterByName(Name)),
+  filterByName: (Name) => dispatch(filterByName(Name)),
 });
 
 ByName.propTypes = {
-  ByName: PropTypes.func.isRequired,
+  filterByName: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ByName);
