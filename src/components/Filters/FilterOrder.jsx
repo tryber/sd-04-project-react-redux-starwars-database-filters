@@ -37,7 +37,7 @@ class FilterOrder extends Component {
       'surface_water',
     ];
     return (
-      <select 
+      <select
         onChange={(event) => this.onOrderChange(event, 'columnSort')}
         data-testid="column-sort"
         value={this.state.columnSort}
