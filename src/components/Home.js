@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
-import { fetchPlanets } from '../actions';
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchPlanets } from '../actions';
 import Filters from './Filters';
 import Table from './Table';
 
 class Home extends Component {
   componentDidMount() {
-    const { fetchPlanets } = this.props;
-    fetchPlanets();
-    console.log(fetchPlanets());
+    const { planetsFetch } = this.props;
+    planetsFetch();
+    console.log(planetsFetch());
   }
 
   render() {
@@ -26,7 +26,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  fetchPlanets: PropTypes.func.isRequired,
+  planetsFetch: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 
@@ -35,7 +35,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets()),
+  planetsFetch: () => dispatch(fetchPlanets()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
