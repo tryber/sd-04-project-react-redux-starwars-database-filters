@@ -41,7 +41,7 @@ class FilterByNumericValues extends Component {
       });
     }
     return newOptions;
-   }
+  }
 
   renderSelectColumn(options) {
     return (
