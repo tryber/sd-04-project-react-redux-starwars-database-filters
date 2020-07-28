@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByNumericValues } from '../actions';
+import { propsRepetidas } from './TableBody';
 
 class FilterValues extends Component {
   constructor(props) {
@@ -98,11 +99,9 @@ class FilterValues extends Component {
 
 FilterValues.propTypes = {
   fBNV: PropTypes.func.isRequired,
-  numericValues: PropTypes.arrayOf(PropTypes.shape({
-    column: PropTypes.string,
-    comparison: PropTypes.string,
-    value: PropTypes.string,
-  })).isRequired,
+  numericValues: PropTypes.arrayOf(PropTypes.shape(
+    propsRepetidas,
+  )).isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import FiltersFunc from './Function';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import FiltersFunc from "./Function";
 
 class TableBody extends Component {
   render() {
@@ -35,6 +35,12 @@ class TableBody extends Component {
   }
 }
 
+export const propsRepetidas = {
+  column: PropTypes.string,
+  comparison: PropTypes.string,
+  value: PropTypes.string,
+};
+
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(
     PropTypes.shape({
@@ -49,11 +55,7 @@ TableBody.propTypes = {
     }),
   ).isRequired,
   name: PropTypes.string.isRequired,
-  numericValues: PropTypes.arrayOf(PropTypes.shape({
-    column: PropTypes.string,
-    comparison: PropTypes.string,
-    value: PropTypes.string,
-  })).isRequired,
+  numericValues: PropTypes.arrayOf(PropTypes.shape(propsRepetidas)).isRequired,
 };
 
 const mapStateToProps = (state) => ({
