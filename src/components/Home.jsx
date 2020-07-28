@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Table from './Table/Table';
+import Filters from './Filters/Filters';
 import { requestFetch } from '../actions';
 
 class Home extends React.Component {
@@ -15,6 +16,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1>StarWars Datatable with Filters</h1>
+        <Filters />
         <Table />
       </div>
     );
