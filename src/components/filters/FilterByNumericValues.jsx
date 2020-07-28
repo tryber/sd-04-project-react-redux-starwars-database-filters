@@ -32,15 +32,15 @@ class FilterByNumericValues extends Component {
     setFilterValues(column, comparison, value);
   }
 
-   filterOptions() {
-      const { filterByNumericValues, options } = this.props;
-      let newOptions = [...options];
-      if (filterByNumericValues.length >= 1) {
-        filterByNumericValues.forEach(({ column }) => {
-          newOptions = newOptions.filter((option) => option !== column);
-        });
-      }
-      return newOptions;
+  filterOptions() {
+    const { filterByNumericValues, options } = this.props;
+    let newOptions = [...options];
+    if (filterByNumericValues.length >= 1) {
+      filterByNumericValues.forEach(({ column }) => {
+        newOptions = newOptions.filter((option) => option !== column);
+      });
+    }
+    return newOptions;
    }
 
   renderSelectColumn(options) {
@@ -109,7 +109,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumericValue
 FilterByNumericValues.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   setFilterValues: PropTypes.func.isRequired,
-  numericFilters: PropTypes.arrayOf(
+  filterByNumericValues: PropTypes.arrayOf(
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
