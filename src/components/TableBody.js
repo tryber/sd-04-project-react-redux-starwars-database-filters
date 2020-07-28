@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import filtersFunc from '/home/leonhard/Documentos/Trybe/sd-04-project-react-redux-starwars-database-filters/src/components/function';
+import FiltersFunc from './Function';
 
 class TableBody extends Component {
   render() {
     const { planets, name, numericValues } = this.props;
-    const data = filtersFunc(planets, name, numericValues);
+    const data = FiltersFunc(planets, name, numericValues);
     return (
       <tbody>
         {data.map((planet) => (
