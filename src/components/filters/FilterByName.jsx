@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByName } from '../../action';
 
-class FilterByName extends Component {
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          data-testid="name-filter"
-          placeholder="Pesquise um planeta"
-          onChange={(event) => this.props.filterByName(event.target.value)}
-        />
-      </div>
-    );
-  }
+function FilterByName({ filterByName }) {
+  return (
+    <div>
+      <input
+        type="text"
+        data-testid="name-filter"
+        placeholder="Pesquise um planeta"
+        onChange={(event) => filterByName(event.target.value)}
+      />
+    </div>
+  );
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -24,6 +22,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(null, mapDispatchToProps)(FilterByName);
 
-FilterByName.protoType = {
+FilterByName.propTypes = {
   filterByName: PropTypes.func.isRequired,
 };
