@@ -30,12 +30,15 @@ const filterData = (datatable, name, numericFilters) => {
   return filteredData;
 };
 
+
+const numericKeys = ['rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population'];
+
 function compareValues(key, order = 'ASC') {
-  return function innerSort(a, b) {
+  return function compare(a, b) {
     let val1 = a[key];
     let val2 = b[key];
 
-    if (key === 'diameter') {
+    if (numericKeys.includes(key)) {
       val1 = Number(a[key]);
       val2 = Number(b[key]);
     }
