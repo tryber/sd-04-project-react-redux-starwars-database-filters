@@ -67,16 +67,16 @@ TableBody.propTypes = {
       url: PropTypes.string,
     }),
   ).isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   numericValues: PropTypes.arrayOf(
     PropTypes.shape({
-      column:PropTypes.string,
+      column: PropTypes.string,
       comparison: PropTypes.string,
       value: PropTypes.string,
       columnSort: PropTypes.string,
       sort: PropTypes.string,
     }),
   ).isRequired,
-  columnSort: PropType.string.isRequired,
+  columnSort: PropTypes.string.isRequired,
   sort: PropTypes.string.isRequired,
 };
