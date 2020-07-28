@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
   filterByName: (Name) => dispatch(filterByName(Name)),
 });
 
-FilterByName.propTypes = {
+ByName.propTypes = {
   filterByName: PropTypes.func.isRequired,
 };
 
