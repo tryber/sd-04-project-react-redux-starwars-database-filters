@@ -32,7 +32,7 @@ class SortItems extends Component {
       <div>
         <select
           data-testid="column-sort"
-          onChange={(e) => this.onChange(e, "column")}
+          onChange={(e) => this.onChange(e, 'column')}
           value={this.state.column}
         >
           {headers.map((item) => (
@@ -55,7 +55,7 @@ class SortItems extends Component {
             type="radio"
             name="sort"
             value="ASC"
-            onChange={(e) => this.onChange(e, "sort")}
+            onChange={(e) => this.onChange(e, 'sort')}
           />
           ASC
         </label>
@@ -65,7 +65,7 @@ class SortItems extends Component {
             type="radio"
             name="sort"
             value="DESC"
-            onChange={(e) => this.onChange(e, "sort")}
+            onChange={(e) => this.onChange(e, 'sort')}
           />
           DESC
         </label>
@@ -106,7 +106,7 @@ SortItems.propTypes = {
       rotation_period: PropTypes.string,
       surface_water: PropTypes.string,
       terrain: PropTypes.string,
-    })
+    }),
   ).isRequired,
   sortItems: PropTypes.func.isRequired,
 };

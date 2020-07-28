@@ -13,7 +13,7 @@ const sortASC = (planets, name, numeric, column) => {
     return sortPlanet(filter);
   }
   return numericFilter(planets, name, numeric).sort(
-    (a, b) => a[column] - b[column]
+    (a, b) => a[column] - b[column],
   );
 };
 
