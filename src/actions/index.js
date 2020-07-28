@@ -1,4 +1,4 @@
-import getPlanets from '../services/api';
+import getPlanets from '../services/planetsAPI';
 
 export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_API_SUCCESS = 'REQUEST_API_SUCCESS';
