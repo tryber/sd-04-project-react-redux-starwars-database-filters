@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 };
 
 const filters = (state = INITIAL_STATE, action) => {
-  console.log(state)
+  console.log(state.filterByName)
   switch (action.type) {
     case FILTER_BY_NAME:
       return { ...state, filterByName: { name: action.name } };

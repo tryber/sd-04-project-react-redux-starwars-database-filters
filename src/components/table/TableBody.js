@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import orderFuncAsc from '../filters/OrderFuncAsc';
+import orderFuncDesc from '../filters/OrderFuncDesc';
 
 function TableBody({ planets, name, numericValues, columnSort, sort }) {
   const data = sort === 'ASC'
@@ -36,6 +38,8 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
   name: state.filters.filterByName.name,
   sort: state.filters.order.sort,
+  numericValues: state.filters.filterByNumericValues,
+  columnSort: state.filters.order.column,
 });
 
 export default connect(mapStateToProps)(TableBody);
