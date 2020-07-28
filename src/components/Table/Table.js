@@ -37,7 +37,6 @@ function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
   };
 
   if (isLoading) return <span>L O A D I N G . . . .</span>;
-  const planetsFiltred = sortData();
   const offResidents = Object.keys(data[0]).filter((e) => e !== 'residents');
   return (
     <div>
@@ -50,7 +49,7 @@ function Table({ isLoading, data, searchBar, filtros, orderColumn, order }) {
           </tr>
         </thead>
         <tbody>
-          {planetsFiltred.map((planet, i) => (
+          {sortData().map((planet, i) => (
             <Tabelas planet={planet} i={i} />
           ))}
         </tbody>
