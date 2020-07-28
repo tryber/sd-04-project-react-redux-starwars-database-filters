@@ -31,12 +31,12 @@ Home.propTypes = {
   isFetching: PropTypes.func.isRequired,
 };
 
-const mapState = (state) => ({
+const mapStateToProps = (state) => ({
   isFetching: state.getPlanets.isFetching,
 });
 
-const mapDispatch = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets()),
+const mapDispatchToProps = (dispatch) => ({
+  onFetchPlanets: () => dispatch(fetchPlanets()),
 });
 
-export default connect(mapState, mapDispatch)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
