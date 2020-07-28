@@ -35,11 +35,7 @@ function compareValues(key, order = 'ASC') {
     let val1 = a[key];
     let val2 = b[key];
 
-    if (
-      key === 'rotation_period'
-      || key === 'orbital_period'
-      || key === 'diameter'
-    ) {
+    if (key === 'diameter') {
       val1 = Number(a[key]);
       val2 = Number(b[key]);
     }
@@ -47,7 +43,8 @@ function compareValues(key, order = 'ASC') {
     let comparison = 0;
     if (val1 > val2) {
       comparison = 1;
-    } else if (val1 < val2) {
+    }
+    if (val1 < val2) {
       comparison = -1;
     }
     return order === 'DESC' ? comparison * -1 : comparison;
