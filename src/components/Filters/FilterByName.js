@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { filterByName } from '../../redux/actions';
 // import { createStore } from 'redux';
 
-class FilterByName extends Component {
+class ByName extends Component {
   render() {
     const { filterByName } = this.props;
     return (
@@ -31,4 +31,4 @@ FilterByName.propTypes = {
   filterByName: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterByName);
+export default connect(mapStateToProps, mapDispatchToProps)(ByName);
