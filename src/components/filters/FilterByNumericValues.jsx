@@ -15,6 +15,7 @@ class FilterByNumericValues extends Component {
     this.renderSelectColumn = this.renderSelectColumn.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.filterOptions = this.filterOptions.bind(this);
   }
 
   handleOnChange(event) {
@@ -31,8 +32,18 @@ class FilterByNumericValues extends Component {
     setFilterValues(column, comparison, value);
   }
 
-  renderSelectColumn() {
-    const { options } = this.props;
+   filterOptions() {
+      const { filterByNumericValues, options } = this.props;
+      let newOptions = [...options];
+      if (filterByNumericValues.length >= 1) {
+        filterByNumericValues.forEach(({ column }) => {
+          newOptions = newOptions.filter((option) => option !== column);
+        });
+      }
+      return newOptions;
+   }
+
+  renderSelectColumn(options) {
     return (
       <select name="column" onChange={(e) => this.handleOnChange(e)} data-testid="column-filter">
         <option defaultChecked>Coluna</option>
@@ -63,9 +74,10 @@ class FilterByNumericValues extends Component {
   }
 
   render() {
+    const newOptions = this.filterOptions();
     return (
       <form onSubmit={this.handleSubmit}>
-        {this.renderSelectColumn()}
+        {this.renderSelectColumn(newOptions)}
         {this.renderSelectComparison()}
         <input
           onChange={(e) => this.handleOnChange(e)}
@@ -83,6 +95,7 @@ class FilterByNumericValues extends Component {
 
 const mapStateToProps = (state) => ({
   options: state.filters.options,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -96,4 +109,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumericValue
 FilterByNumericValues.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   setFilterValues: PropTypes.func.isRequired,
+  numericFilters: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ).isRequired,
 };
