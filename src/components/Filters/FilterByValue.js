@@ -9,6 +9,7 @@ class FilterValue extends Component {
     super(props);
     this.state = { column: '', comparison: '', value: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.filterColumn = this.filterColumn.bind(this);
   }
 
   handleChange(event, field) {
@@ -22,7 +23,8 @@ class FilterValue extends Component {
     this.setState({ column: '', comparison: '', value: '' });
   }
 
-  renderColumns() {
+  filterColumn = () => {
+    const { numericValues } = this.props;
     const columns = [
       '',
       'population',
@@ -31,7 +33,12 @@ class FilterValue extends Component {
       'rotation_period',
       'surface_water',
     ];
-    const options = columns;
+    const selectedFilter = numericValues.map(({ column }) => column);
+    return columns.filter((column) => !selectedFilter.includes(column));
+  };
+
+  renderColumns() {
+    const options = this.filterColumn();
     return (
       <select
         data-testid="column-filter"
