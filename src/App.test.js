@@ -466,7 +466,7 @@ describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou 
 
     for (let index = 0; index < rows.length; index += 1) {
       const row = rows[index];
-      appPlanetList.push(parseInt(row.children[2].innerHTML, 10));
+      appPlanetList.push(parseInt(row.children[3].innerHTML, 10));
     }
 
     appPlanetList.shift();

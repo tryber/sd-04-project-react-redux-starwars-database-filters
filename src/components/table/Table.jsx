@@ -11,8 +11,8 @@ class Table extends Component {
       head: [
         'name',
         'climate',
-        'diameter',
         'edited',
+        'diameter',
         'films',
         'gravity',
         'orbital_period',
