@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TableHead from './TableHead';
 import FilterTable from './FilterTable';
 import Filters from './Filters';
+import RemoveFilter from './RemoveFilters';
 import { fetchGetApi } from '../action';
 
 class Table extends Component {
@@ -18,6 +19,7 @@ class Table extends Component {
         <div>StarWars Datatable with Filters</div>
         <FilterTable />
         <Filters />
+        <RemoveFilter />
         {!loading && <TableHead />}
       </div>
     );

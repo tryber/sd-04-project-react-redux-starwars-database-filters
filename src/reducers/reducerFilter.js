@@ -1,4 +1,8 @@
-import { FILTER_TABLE, FILTER_COMBINER } from '../action/actionFilter';
+import {
+  FILTER_TABLE,
+  FILTER_COMBINER,
+  REMOVE_FILTER,
+} from '../action/actionFilter';
 
 // const INITIAL_STATE = {
 //   text: '',
@@ -33,6 +37,14 @@ const filters = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues:
+          state.filterByNumericValues.filter((obj) => obj !== action.obj),
+        
+      };
+
     default:
       return state;
   }
