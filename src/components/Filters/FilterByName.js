@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { filterByName } from '../../actions';
+
 // import { createStore } from 'redux';
 
 class ByName extends Component {

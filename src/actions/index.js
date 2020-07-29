@@ -1,9 +1,12 @@
 import getPlanets from '../services/SWAPI';
 
+//  CONST REQUEST API ACTIONS
 export const REQUEST_SWAPI = 'REQUEST_SWAPI';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
+//  CONST FILTER ACTIONS
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 
 //  actions API
 const requestSWAPI = () => ({
@@ -34,4 +37,11 @@ export const getSWAPI = () =>
 export const filterByName = (name) => ({
   type: FILTER_BY_NAME,
   name,
+});
+
+export const filterByNumericValues = (column, comparison, value) => ({
+  type: FILTER_BY_NUMERIC_VALUES,
+  column,
+  comparison,
+  value,
 });
