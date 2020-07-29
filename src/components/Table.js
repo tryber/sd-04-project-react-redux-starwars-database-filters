@@ -70,7 +70,7 @@ class Table extends React.Component {
 Table.propTypes = {
   data: PropTypes.shape({
     filter: PropTypes.func,
-    map: PropTypes.func
+    map: PropTypes.func,
   }).isRequired,
   fValues: PropTypes.func.isRequired,
   filterByName: PropTypes.bool.isRequired,
