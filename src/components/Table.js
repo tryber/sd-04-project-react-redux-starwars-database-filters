@@ -1,4 +1,5 @@
 import React from 'react';
+import TableBody from './TableBody';
 
 const Table = () => (
   <table>
@@ -19,6 +20,7 @@ const Table = () => (
         <th>Url</th>
       </tr>
     </thead>
+    <TableBody />
   </table>
 );
 

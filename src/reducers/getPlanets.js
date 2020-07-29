@@ -1,32 +1,32 @@
 import {
   REQUESTING_PLANETS,
-  SUCESS_PLANETS,
-  FAILURE_PLANETS,
+  REQUEST_PLANETS_SUCCESS,
+  REQUEST_PLANETS_FAILURE,
 } from '../actions';
 
 const INITIAL_STATE = {
-  isFetching: false,
+  isFetching: true,
   data: [],
 };
 
-export const getPlanets = (state = INITIAL_STATE, action) => {
+const getPlanets = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REQUESTING_PLANETS:
       return {
         ...state,
         isFetching: true,
       };
-    case SUCESS_PLANETS:
+    case REQUEST_PLANETS_SUCCESS:
       return {
         ...state,
         data: [...action.data],
         isFetching: false,
       };
-    case FAILURE_PLANETS:
+    case REQUEST_PLANETS_FAILURE:
       return {
         ...state,
-        isFetching: false,
         error: action.error,
+        isFetching: false,
       };
     default:
       return state;

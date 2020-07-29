@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import getPlanetsAPI from '../services/getPlanetsAPI';
+import { connect } from 'react-redux';
+import { fetchPlanets } from '../actions';
 import Table from './Table';
 
-getPlanetsAPI().then((data) => console.log(data.results));
-
 export class Home extends Component {
+  componentDidMount() {
+    const { fetchPlanets } = this.props;
+    console.log(fetchPlanets());
+    fetchPlanets();
+  }
+
   render() {
+    const { isFetching } = this.props;
+    if (isFetching) return <h3>Loading...</h3>;
     return (
       <div>
         <Table />
@@ -14,4 +21,12 @@ export class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  isFetching: state.getPlanets.isFetching,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPlanets: () => dispatch(fetchPlanets()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
