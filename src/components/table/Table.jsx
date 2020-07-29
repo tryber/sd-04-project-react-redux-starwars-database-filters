@@ -63,6 +63,7 @@ class Table extends Component {
     } else {
       planets.sort((a, b) => a[planetKey] - b[planetKey]);
     }
+
     if (orderSort === 'DESC') planets.reverse();
     return planets;
   }
