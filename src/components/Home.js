@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
 import Filters from './Filters';
 import Table from './Table';
+import FilterNumValues from './FilterNumValues';
 
 class Home extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class Home extends Component {
       <div>
         <h3>StarWars Datatable with Filters</h3>
         <Filters />
+        <FilterNumValues />
         <Table />
       </div>
     );
