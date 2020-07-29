@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByName } from '../actions';
@@ -16,6 +17,10 @@ class FilterName extends Component {
       </div>
     );
   }
+}
+
+FilterName.propTypes = {
+  changeName: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
