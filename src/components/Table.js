@@ -17,6 +17,21 @@ const filterPlanet = (planet, filter) => {
   return false;
 };
 
+const CreateTableHeader = (data) => {
+  Object.keys(data)
+    .filter((header) => header !== 'residents')
+    .map((chaveDoHeader) => <th key={chaveDoHeader}>{chaveDoHeader}</th>);
+};
+const CreateTableBody = (data, filteredData) => filteredData.map((planet) => (
+  <tr key={planet.name}>
+    {Object.keys(data[0])
+      .filter((header) => header !== 'residents')
+      .map((column) => (
+        <td key={planet[column]}>{planet[column]}</td>
+      ))}
+  </tr>
+));
+
 const Table = (props) => {
   const { data, inputText, filterByNumericValues } = props;
   let filteredData = !inputText
@@ -31,24 +46,10 @@ const Table = (props) => {
     <div>
       <table>
         <thead>
-          <tr>
-            {Object.keys(data[0])
-              .filter((header) => header !== 'residents')
-              .map((chaveDoHeader) => (
-                <th key={chaveDoHeader}>{chaveDoHeader}</th>
-              ))}
-          </tr>
+          <tr>{CreateTableHeader(data[0])}</tr>
         </thead>
         <tbody>
-          {filteredData.map((planet) => (
-            <tr key={planet.name}>
-              {Object.keys(data[0])
-                .filter((header) => header !== 'residents')
-                .map((column) => (
-                  <td key={planet[column]}>{planet[column]}</td>
-                ))}
-            </tr>
-          ))}
+          {CreateTableBody(data, filteredData)}
         </tbody>
       </table>
     </div>
@@ -56,8 +57,8 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.arrayOf().isRequired,
-  filterByNumericValues: PropTypes.shape(Object).isRequired,
+  data: PropTypes.arrayOf(Object).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(Object).isRequired,
   inputText: PropTypes.string.isRequired,
 };
 

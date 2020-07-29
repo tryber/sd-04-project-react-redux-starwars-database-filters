@@ -4,6 +4,19 @@ import { connect } from 'react-redux';
 import { changeInputCompAct, filterCompAct } from '../actions/index';
 
 class Comparador extends React.Component {
+  static CreateOptions() {
+    return {
+      first: [
+        'population',
+        'orbital_period',
+        'diam eter',
+        'rotation_period',
+        'surface_water',
+      ],
+      second: ['', 'maior que', 'menor que', 'igual a'],
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +28,7 @@ class Comparador extends React.Component {
     this.inputMethod = this.inputMethod.bind(this);
     this.filterMethod = this.filterMethod.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
+    this.CreateOptions = this.CreateOptions.bind(this);
   }
 
   comparisonMethod() {
@@ -49,36 +63,22 @@ class Comparador extends React.Component {
       >
         <option defaultChecked>column</option>
         {filteredOptions.map((option) => (
-          <option value={option}>{option}</option>
+          <option value={option} key={option}>
+            {option}
+          </option>
         ))}
       </select>
     );
   }
 
   render() {
-    const options = {
-      first: [
-        'population',
-        'orbital_period',
-        'diameter',
-        'rotation_period',
-        'surface_water',
-      ],
-      second: ['', 'maior que', 'menor que', 'igual a'],
-    };
-
+    const options = this.CreateOptions();
     const newOptions = this.filterMethod(options.first);
     const { column } = this.state;
     return (
       <div>
-        {this.renderSelect(
-          newOptions,
-          'column-filter',
-          'column',
-          column,
-        )}
+        {this.renderSelect(newOptions, 'column-filter', 'column', column)}
         {this.renderSelect(options.second, 'comparison-filter', 'comparison')}
-
         <input
           data-testid="value-filter"
           type="text"
@@ -98,7 +98,7 @@ class Comparador extends React.Component {
 }
 
 Comparador.propTypes = {
-  filterByNumericValues: PropTypes.shape(Object).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.func).isRequired,
   handleComparisor: PropTypes.func.isRequired,
 };
 
