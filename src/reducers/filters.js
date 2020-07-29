@@ -13,6 +13,7 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: action.name },
       };
     case FILTER_BY_NUMERIC_VALUES:
+      // console.log(action.column, "reducer");
       return {
         ...state,
         filterByNumericValues: [

@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-// import './Table.css';
+import './Table.css';
 import linhas from './Linhas';
 import filterAll from './filterAll';
 
 const Table = (props) => {
   const { data, isFetching, name, numericValues } = props;
   // const filterName = data.filter((planet) => planet.name.includes(name));
+  console.log(name,"table teste");
   const filterData = filterAll(data, name, numericValues);
+  console.log(name);
 
   if (isFetching) return <span>...Loading</span>;
   const planeta1 = data;
@@ -30,10 +32,12 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.any,
-  isFetching: PropTypes.any,
-  name: PropTypes.any,
-  numericValues: PropTypes.any,
+  data: PropTypes.shape({
+    map: PropTypes.func,
+  }).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  numericValues: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
