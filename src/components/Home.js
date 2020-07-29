@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import fetchPlanets, { filterByName } from '../actions';
 import Table from './Table';
 import FilterValues from './FilterValues';
+import RemoveFilters from './RemoveFilters';
 
 class Home extends Component {
   componentDidMount() {
@@ -27,6 +28,7 @@ class Home extends Component {
         </label>
         <FilterValues />
         <Table />
+        <RemoveFilters />
       </div>
     );
   }

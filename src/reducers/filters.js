@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTER_BY_NUMERIC_VALUES } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
@@ -20,6 +20,15 @@ const filters = (state = INITIAL_STATE, action) => {
           comparison: action.comparison,
           value: action.value,
         }],
+      };
+    case REMOVE_FILTER_BY_NUMERIC_VALUES:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues.filter(
+            (item) => item !== action.filterKeys,
+          ),
+        ],
       };
     default:
       return state;
