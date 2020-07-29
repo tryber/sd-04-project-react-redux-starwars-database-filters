@@ -28,5 +28,4 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
 });
 
-
 export default connect(mapStateToProps)(TableBody);
