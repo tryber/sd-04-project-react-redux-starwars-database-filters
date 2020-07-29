@@ -21,7 +21,7 @@ class FilterValue extends Component {
     filterByValues(column, comparison, value);
     this.setState({ column: '', comparison: '', value: '' });
   }
-  
+
   renderColumns() {
     const columns = [
       '',
