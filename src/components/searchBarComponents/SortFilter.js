@@ -7,6 +7,19 @@ class SortFilter extends Component {
   constructor(props) {
     super(props);
     this.state = { column: '', sort: '' };
+    this.input = this.input.bind(this);
+  }
+
+  input(value) {
+    return (
+      <label htmlFor="sort">
+        <input
+          data-testid="column-sort-input" name="sort" type="radio" value={value}
+          onChange={(e) => this.setState({ sort: e.target.value })}
+        />
+        {value}
+      </label>
+    );
   }
 
   render() {
@@ -25,20 +38,8 @@ class SortFilter extends Component {
           ))}
         </select>
         <br />
-        <label htmlFor="sort">
-          <input
-            data-testid="column-sort-input" name="sort" type="radio" value="ASC"
-            onChange={(e) => this.setState({ sort: e.target.value })}
-          />
-          ASC
-        </label>
-        <label htmlFor="sort">
-          <input
-            data-testid="column-sort-input" name="sort" type="radio" value="DESC"
-            onChange={(e) => this.setState({ sort: e.target.value })}
-          />
-          DESC
-        </label>
+        {this.input('ASC')}
+        {this.input('DSC')}
         <br />
         <button
           data-testid="column-sort-button" type="button"

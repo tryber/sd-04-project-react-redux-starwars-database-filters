@@ -11,6 +11,18 @@ const INITIAL_FILTER_STATE = {
   },
 };
 
+const numercFilter = (state, action) => ({
+  ...state,
+  filterByNumericValues: [
+    ...state.filterByNumericValues,
+    {
+      column: action.state.column,
+      comparison: action.state.comparison,
+      value: action.state.value,
+    },
+  ],
+});
+
 const filters = (state = INITIAL_FILTER_STATE, action) => {
   switch (action.type) {
     case SEARCH_TEXT:
@@ -21,22 +33,17 @@ const filters = (state = INITIAL_FILTER_STATE, action) => {
         },
       };
     case NUMERIC_FILTER:
-      return {
-        ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          {
-            column: action.state.column,
-            comparison: action.state.comparison,
-            value: action.state.value,
-          },
-        ],
-      };
+      return numercFilter(state, action);
     case DELETE_FILTER:
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues
           .filter(({ column }) => column !== action.column),
+      };
+    case ORDER_FILTER:
+      return {
+        ...state,
+        order: { column: action.state.column, sort: action.state.sort },
       };
     default:
       return state;
