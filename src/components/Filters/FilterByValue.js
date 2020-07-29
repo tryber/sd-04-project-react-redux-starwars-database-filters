@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Proptypes from 'prop-types';
 
 import { filterByNumericValues } from '../../actions';
 
@@ -16,8 +17,8 @@ class FilterValue extends Component {
 
   handleSubmit() {
     const { column, comparison, value } = this.state;
-    const { filterByNumericValues } = this.props;
-    filterByNumericValues(column, comparison, value);
+    const { filterByValues } = this.props;
+    filterByValues(column, comparison, value);
     this.setState({ column: '', comparison: '', value: '' });
   }
 
@@ -91,8 +92,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByNumericValues: (column, comparison, value) =>
+  filterByValues: (column, comparison, value) =>
     dispatch(filterByNumericValues(column, comparison, value)),
 });
+
+FilterValue.propTypes = {
+  filterByValue: Proptypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterValue);

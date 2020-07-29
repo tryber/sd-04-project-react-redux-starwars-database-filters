@@ -49,4 +49,5 @@ export default connect(mapStateToProps)(TableBody);
 TableBody.propTypes = {
   data: Proptypes.arrayOf(Proptypes.string).isRequired,
   name: Proptypes.string.isRequired,
+  numericValues: Proptypes.string.isRequired,
 };
