@@ -17,9 +17,9 @@ class SearchBar extends Component {
         <NumericFilter />
         <div>
           <div><h1>Filtros:</h1></div>
-          <div className="filters">
+          <div>
             {filters.map((filter) => (
-              <div data-testid="filter">
+              <div data-testid="filter" className="filters">
                 <p key={filter.value}>
                   {filter.column} {filter.comparison} {filter.value}
                 </p>

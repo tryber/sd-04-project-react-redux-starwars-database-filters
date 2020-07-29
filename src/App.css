@@ -1,6 +1,6 @@
 body {
   background-image: url('https://images5.alphacoders.com/667/thumb-1920-667417.jpg');
-  background-size: contain;
+  background-size: auto;
 }
 
 .logo {
@@ -30,7 +30,7 @@ body {
 }
 
 .filters {
-  border-radius: 2px;
-  background-color: gray;
-  opacity: 0.7;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px black solid;
 }

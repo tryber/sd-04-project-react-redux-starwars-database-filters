@@ -19,6 +19,11 @@ class NumericFilter extends Component {
     event.preventDefault();
     const { state } = this;
     this.props.numericFilter(state);
+    this.setState = {
+      column: '',
+      comparison: '',
+      value: 0,
+    };
   }
 
   availableFilters() {

@@ -25,8 +25,11 @@ const filters = (state = INITIAL_FILTER_STATE, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          { column: action.state.column, comparison: action.state.comparison,
-            value: action.state.value },
+          {
+            column: action.state.column,
+            comparison: action.state.comparison,
+            value: action.state.value,
+          },
         ],
       };
     case DELETE_FILTER:
