@@ -1,26 +1,39 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Table from './components/Table';
+import SearchBar from './components/searchBar';
+import Ordenador from './components/ordenador';
+import Filtros from './components/filtros';
+import { fetchApi } from './actions/index';
+
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchApi1 } = this.props;
+    fetchApi1();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <SearchBar />
+          <Filtros />
+          <Ordenador />
+        </header>
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  fetchApi1: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchApi1: () => dispatch(fetchApi()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
