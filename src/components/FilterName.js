@@ -45,4 +45,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(FilterPlanet);
 
 FilterPlanet.propTypes = {
   filterByName: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };

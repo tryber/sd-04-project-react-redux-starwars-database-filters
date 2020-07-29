@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
 import Table from './Table';
-import FilterNameNovo from './filterNameNovo';
+import FilterName from './FilterName';
 
 export class Home extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ export class Home extends Component {
     if (isFetching) return <h3>Loading...</h3>;
     return (
       <div>
-        <FilterNameNovo />
+        <FilterName />
         <Table />
       </div>
     );
