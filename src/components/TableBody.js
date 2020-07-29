@@ -28,8 +28,5 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableBody);
+export default connect(mapStateToProps)(TableBody);
