@@ -23,13 +23,18 @@ const failurePlanets = (error) => ({
   error,
 });
 
+export const filterByName = (name) => ({
+  type: FILTER_BY_NAME,
+  name,
+});
+
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestingPlanets());
 
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
-      (error) => dispatch(failurePlanets(error)),
+      (error) => dispatch(failurePlanets(error))
     );
   };
 }

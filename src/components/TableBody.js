@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 class TableBody extends Component {
   render() {
-    const { planets } = this.props;
+    const { planets, name } = this.props;
+    const filterName = planets.filter((element) => element.name.includes(name));
     return (
       <tbody>
-        {planets.map((element) => (
+        {filterName.map((element) => (
           <tr key={element.name}>
             <td>{element.name}</td>
             <td>{element.rotation_period}</td>
@@ -18,6 +19,10 @@ class TableBody extends Component {
             <td>{element.terrain}</td>
             <td>{element.surface_water}</td>
             <td>{element.population}</td>
+            <td>{element.films[0]}</td>
+            <td>{element.created}</td>
+            <td>{element.edited}</td>
+            <td>{element.url}</td>
           </tr>
         ))}
       </tbody>
@@ -27,6 +32,7 @@ class TableBody extends Component {
 
 const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
+  name: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(TableBody);
