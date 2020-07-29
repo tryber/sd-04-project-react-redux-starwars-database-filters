@@ -60,7 +60,24 @@ class Comparador extends React.Component {
         data-testid={test}
         value={value}
       >
-        <option defaultChecked>column</option>
+        <option defaultChecked value="">column</option>
+        {filteredOptions.map((option) => (
+          <option value={option} key={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
+  renderSecondSelect(filteredOptions, test, name, value) {
+    return (
+      <select
+        name={name}
+        onChange={this.inputMethod}
+        data-testid={test}
+        value={value}
+      >
         {filteredOptions.map((option) => (
           <option value={option} key={option}>
             {option}
@@ -77,7 +94,7 @@ class Comparador extends React.Component {
     return (
       <div>
         {this.renderSelect(newOptions, 'column-filter', 'column', column)}
-        {this.renderSelect(options.second, 'comparison-filter', 'comparison')}
+        {this.renderSecondSelect(options.second, 'comparison-filter', 'comparison')}
         <input
           data-testid="value-filter"
           type="text"
@@ -97,7 +114,7 @@ class Comparador extends React.Component {
 }
 
 Comparador.propTypes = {
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.func).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(Object).isRequired,
   handleComparisor: PropTypes.func.isRequired,
 };
 

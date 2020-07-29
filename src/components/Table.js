@@ -17,11 +17,16 @@ const filterPlanet = (planet, filter) => {
   return false;
 };
 
-const CreateTableHeader = (data) => {
-  Object.keys(data)
-    .filter((header) => header !== 'residents')
-    .map((chaveDoHeader) => <th key={chaveDoHeader}>{chaveDoHeader}</th>);
-};
+const CreateTableHeader = (data) => (
+  <tr>
+    {Object.keys(data)
+      .filter((header) => header !== 'residents')
+      .map((chaveDoHeader) => (
+        <th key={chaveDoHeader}>{chaveDoHeader}</th>
+      ))}
+  </tr>
+);
+
 const CreateTableBody = (data, filteredData) => filteredData.map((planet) => (
   <tr key={planet.name}>
     {Object.keys(data[0])
@@ -45,12 +50,8 @@ const Table = (props) => {
   return (
     <div>
       <table>
-        <thead>
-          <tr>{CreateTableHeader(data[0])}</tr>
-        </thead>
-        <tbody>
-          {CreateTableBody(data, filteredData)}
-        </tbody>
+        <thead>{CreateTableHeader(data[0])}</thead>
+        <tbody>{CreateTableBody(data, filteredData)}</tbody>
       </table>
     </div>
   );
