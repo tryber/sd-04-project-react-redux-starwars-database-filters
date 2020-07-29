@@ -1,0 +1,20 @@
+table, th, td {
+  border: 1px solid black;
+  margin-top: 100px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: 15px;
+  overflow: auto;
+  width: 60%;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+
+.table-container {
+  overflow-y: auto;
+}
