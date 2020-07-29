@@ -28,7 +28,6 @@ class Comparador extends React.Component {
     this.inputMethod = this.inputMethod.bind(this);
     this.filterMethod = this.filterMethod.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
-    this.CreateOptions = this.CreateOptions.bind(this);
   }
 
   comparisonMethod() {
@@ -72,7 +71,7 @@ class Comparador extends React.Component {
   }
 
   render() {
-    const options = this.CreateOptions();
+    const options = Comparador.CreateOptions();
     const newOptions = this.filterMethod(options.first);
     const { column } = this.state;
     return (
