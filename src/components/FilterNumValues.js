@@ -14,11 +14,10 @@ class FilterNumValues extends Component {
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  
   handleOnChange(event, field) {
     this.setState({ [field]: event.target.value });
   }
-  
+
   getColumns() {
     const selectColumn = this.updateColumns();
     return (
@@ -35,7 +34,7 @@ class FilterNumValues extends Component {
       </select>
     );
   }
-  
+
   getComparison() {
     const comparison = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -52,7 +51,7 @@ class FilterNumValues extends Component {
       </select>
     );
   }
-  
+
   updateColumns() {
     const { numericValues } = this.props;
     const columns = [

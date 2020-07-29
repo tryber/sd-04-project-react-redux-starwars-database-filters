@@ -18,11 +18,14 @@ const filters = (state = INITIAL_STATE, action) => {
     case FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
-        filterByNumericValues: [...state.filterByNumericValues,{
-          column: action.column,
-          comparison: action.comparison,
-          value: action.value,
-        }]
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
       };
     default:
       return state;
