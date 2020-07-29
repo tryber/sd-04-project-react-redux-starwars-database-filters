@@ -1,4 +1,9 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTER_BY_NUMERIC_VALUES } from '../actions';
+import {
+  FILTER_BY_NAME,
+  FILTER_BY_NUMERIC_VALUES,
+  REMOVE_FILTER_BY_NUMERIC_VALUES,
+  SORTING,
+} from '../actions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
@@ -27,6 +32,16 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
             (item) => item !== action.filterKeys,
+          ),
+        ],
+      };
+    case SORTING:
+      console.log(state)
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues.filter(
+            (sort) => sort === action.column, action.act,
           ),
         ],
       };
