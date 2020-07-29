@@ -40,9 +40,9 @@ const filters = (state = INITIAL_STATE, action) => {
     case REMOVE_FILTER:
       return {
         ...state,
-        filterByNumericValues:
-          state.filterByNumericValues.filter((obj) => obj !== action.obj),
-        
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (obj) => obj !== action.obj
+        ),
       };
 
     default:

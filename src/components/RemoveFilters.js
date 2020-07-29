@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeFilter } from '../action/actionFilter';
 
-const RemoveFilter = ({ filters, removeFilter }) => {
+const RemoveFilter = (props) => {
+  const  { filters, removeFilter } = props;
+
   const onClick = (obj) => removeFilter(obj);
 
   return filters.map((filtro) => (
@@ -14,7 +16,7 @@ const RemoveFilter = ({ filters, removeFilter }) => {
       </button>
     </div>
   ));
-};
+  };
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
@@ -32,7 +34,7 @@ RemoveFilter.PropTypes = {
       value: PropTypes.string,
     }),
   ).isRequired,
-  filters: PropTypes.func.isRequired,
+  // filters: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RemoveFilter);
