@@ -135,7 +135,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
-  test.skip('should have the column selection filter', async () => {
+  test('should have the column selection filter', async () => {
     const { findByTestId } = renderApp();
 
     const columnFilter = await findByTestId('column-filter');
@@ -163,7 +163,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
   });
 
-  test.skip('should have the comparison selection filter', async () => {
+  test('should have the comparison selection filter', async () => {
     const { findByTestId } = renderApp();
 
     const comparisonFilter = await findByTestId('comparison-filter');
@@ -189,7 +189,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
   });
 
-  test.skip('should have the value input filter', async () => {
+  test('should have the value input filter', async () => {
     const { findByTestId } = renderApp();
 
     const valueFilter = await findByTestId('value-filter');
@@ -197,7 +197,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
   });
 
-  test.skip('should have the filter button', async () => {
+  test('should have the filter button', async () => {
     const { findByTestId } = renderApp();
 
     const buttonFilter = await findByTestId('button-filter');
@@ -205,7 +205,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
   });
 
-  test.skip('should filter with less than', async () => {
+  test('should filter with less than', async () => {
     const { findByTestId, findAllByRole, store } = renderApp();
 
     const columnFilter = await findByTestId('column-filter');
@@ -227,7 +227,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
-  test.skip('should filter with greather than', async () => {
+  test('should filter with greather than', async () => {
     const initialState = getStore().getState();
     const initial = {
       ...initialState,
@@ -263,7 +263,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
-  test.skip('should filter with equal to', async () => {
+  test('should filter with equal to', async () => {
     const initialState = getStore().getState();
 
     const initial = {
@@ -311,7 +311,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 });
 
 describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
-  test.skip('check avaiable filters', async () => {
+  test('check avaiable filters', async () => {
     const initialState = getStore().getState();
 
     const initial = {
@@ -350,8 +350,8 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
   });
 });
 
-describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
-  test.skip('should show the previously selected filters', async () => {
+/* describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
+  test('should show the previously selected filters', async () => {
     const initialState = getStore().getState();
 
     const initial = {
@@ -373,7 +373,7 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
     expect(selectedFilters).toHaveLength(3);
   });
 
-  test.skip('each filter should have a X button that removes the filter', async () => {
+  test('each filter should have a X button that removes the filter', async () => {
     const initialState = getStore().getState();
 
     const initial = {
@@ -410,9 +410,10 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
     expect(store.getState().filters.filterByNumericValues).toHaveLength(0);
   });
 });
+ */
 
-describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
-  test.skip('check planet table starting order', async () => {
+/* describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
+  test('check planet table starting order', async () => {
     let sortedPlanets = [];
 
     for (let index = 0; index < testData.results.length; index += 1) {
@@ -438,7 +439,7 @@ describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou 
     expect(store.getState().filters.order.sort).toEqual('ASC');
   });
 
-  test.skip('change table order', async () => {
+  test('change table order', async () => {
     let sortedPlanets = [];
 
     for (let index = 0; index < testData.results.length; index += 1) {
@@ -473,4 +474,4 @@ describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou 
 
     expect(appPlanetList).toEqual(sortedPlanets.reverse());
   });
-});
+}); */

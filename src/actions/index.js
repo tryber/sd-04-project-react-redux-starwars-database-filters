@@ -3,6 +3,7 @@ import getSwapi from '../services/swApi';
 export const REQUEST_API = 'REQUEST_API';
 export const REQUISITION_SUCCESS = 'REQUISITION_SUCCESS';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 
 const requestApi = () => ({
   type: REQUEST_API,
@@ -18,6 +19,13 @@ const filterByNameAct = (name) => ({
   name,
 });
 
+const filterByNumericValues = (column, comparison, value) => ({
+  type: FILTER_BY_NUMERIC_VALUES,
+  column,
+  comparison,
+  value,
+});
+
 function planetsResponseApi() {
   return (dispatch) => {
     dispatch(requestApi());
@@ -25,4 +33,4 @@ function planetsResponseApi() {
   };
 }
 
-export { filterByNameAct, planetsResponseApi };
+export { filterByNameAct, planetsResponseApi, filterByNumericValues };

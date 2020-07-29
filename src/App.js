@@ -5,6 +5,7 @@ import './App.css';
 import Table from './components/Table';
 import Search from './components/Search';
 import { planetsResponseApi } from './actions';
+import FilterValues from './components/FilterValues';
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Search />
+        <FilterValues />
         <Table />
       </div>
     );
