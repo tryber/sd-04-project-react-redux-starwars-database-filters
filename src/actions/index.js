@@ -17,11 +17,11 @@ const receiveData = (data) => ({
   data,
 });
 
-export function fetchData(request) {
+export function fetchData(url) {
   return (dispatch) => {
     dispatch(requestData());
 
-    return requestFromApi(request)
+    return requestFromApi(url)
       .then(
         (data) => dispatch(receiveData(data.results)),
       );
