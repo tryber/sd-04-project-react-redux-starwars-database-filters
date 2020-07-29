@@ -10,12 +10,10 @@ const requestingPlanets = () => ({
   type: REQUESTING_PLANETS,
 });
 
-const sucessPlanets = (data) => {
-  return {
+const sucessPlanets = (data) => ({
     type: REQUEST_PLANETS_SUCCESS,
     data,
-  };
-};
+});
 
 const failurePlanets = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
