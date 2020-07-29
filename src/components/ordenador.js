@@ -37,13 +37,13 @@ class Ordenador extends React.Component {
         <select value={opt} onChange={this.handleopt} data-testid="column-sort">
           {options.map((ele) => (<option value={ele}>{ele}</option>))};
         </select>
-        <label htmlFor="radio">ASC
+        <label htmlFor="radios">ASC
           <input
             value={radio} onClick={this.handleradio} data-testid="column-sort-input"q
             type="radio" name="radios" value="ASC"
           />
         </label>
-        <label htmlFor="radio">DESC
+        <label htmlFor="radios">DESC
           <input
             value={radio} onClick={this.handleradio} data-testid="column-sort-input"
             type="radio" name="radios" value="DESC"
