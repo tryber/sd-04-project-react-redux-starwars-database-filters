@@ -38,11 +38,6 @@ const filters = (state = INITIAL_FILTER_STATE, action) => {
         filterByNumericValues: state.filterByNumericValues
           .filter(({ column }) => column !== action.column),
       };
-    case ORDER_FILTER:
-      return {
-        ...state,
-        order: { column: action.state.column, sort: action.state.sort },
-      };
     default:
       return state;
   }
