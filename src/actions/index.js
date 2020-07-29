@@ -11,8 +11,8 @@ const requestingPlanets = () => ({
 });
 
 const sucessPlanets = (data) => ({
-    type: REQUEST_PLANETS_SUCCESS,
-    data,
+  type: REQUEST_PLANETS_SUCCESS,
+  data,
 });
 
 const failurePlanets = (error) => ({
