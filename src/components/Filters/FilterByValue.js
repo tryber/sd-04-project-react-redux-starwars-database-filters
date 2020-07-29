@@ -9,6 +9,7 @@ class FilterValue extends Component {
     super(props);
     this.state = { column: '', comparison: '', value: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.filterColumn = this.filterColumn.bind(this);
   }
 
   handleChange(event, field) {

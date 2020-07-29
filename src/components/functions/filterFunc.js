@@ -1,4 +1,4 @@
-function filterFunc(planets, name, numericValues){
+function filterFunc(planets, name, numericValues) {
   return numericValues.length === 0
     ? planets.filter((planet) => planet.name.includes(name))
     : numericValues.reduce(
@@ -17,6 +17,6 @@ function filterFunc(planets, name, numericValues){
           }),
         planets,
       );
-};
+}
 
 export default filterFunc;
