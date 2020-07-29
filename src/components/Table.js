@@ -8,9 +8,7 @@ import filterAll from './filterAll';
 const Table = (props) => {
   const { data, isFetching, name, numericValues } = props;
   // const filterName = data.filter((planet) => planet.name.includes(name));
-  console.log(name,"table teste");
   const filterData = filterAll(data, name, numericValues);
-  console.log(name);
 
   if (isFetching) return <span>...Loading</span>;
   const planeta1 = data;
