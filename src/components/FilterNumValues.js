@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByNumericValues } from '../actions';
@@ -13,24 +14,11 @@ class FilterNumValues extends Component {
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  updateColumns() {
-    const { numericValues } = this.props;
-    const columns = [
-      '',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-    const chosenColumns = numericValues.map(({ column }) => column);
-    return columns.filter((item) => !chosenColumns.includes(item));
-  }
-
+  
   handleOnChange(event, field) {
     this.setState({ [field]: event.target.value });
   }
-
+  
   getColumns() {
     const selectColumn = this.updateColumns();
     return (
@@ -47,14 +35,14 @@ class FilterNumValues extends Component {
       </select>
     );
   }
-
+  
   getComparison() {
     const comparison = ['', 'maior que', 'menor que', 'igual a'];
     return (
       <select
-        data-testid="comparison-filter"
-        value={this.state.comparison}
-        onChange={(event) => this.handleOnChange(event, 'comparison')}
+      data-testid="comparison-filter"
+      value={this.state.comparison}
+      onChange={(event) => this.handleOnChange(event, 'comparison')}
       >
         {comparison.map((item) => (
           <option key={item} value={item}>
@@ -63,6 +51,20 @@ class FilterNumValues extends Component {
         ))}
       </select>
     );
+  }
+  
+  updateColumns() {
+    const { numericValues } = this.props;
+    const columns = [
+      '',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    const chosenColumns = numericValues.map(({ column }) => column);
+    return columns.filter((item) => !chosenColumns.includes(item));
   }
 
   handleOnClick() {
@@ -83,16 +85,18 @@ class FilterNumValues extends Component {
           value={this.state.number}
           onChange={(event) => this.handleOnChange(event, 'number')}
         />
-        <button 
-          data-testid="button-filter"
-          onClick={this.handleOnClick}
-        >
+        <button data-testid="button-filter" onClick={this.handleOnClick}>
           Filtrar
         </button>
       </div>
     );
   }
 }
+
+FilterNumValues.propTypes = {
+  filteredByNumericValues: PropTypes.func.isRequired,
+  numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
