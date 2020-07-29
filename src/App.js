@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getSwPlanets } from './actions';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Table from './components/Table';
+
+class App extends React.Component {
+  componentDidMount() {
+    const { fetchSwPlanets } = this.props;
+    fetchSwPlanets();
+  }
+
+  render() {
+    return (
+      <div>
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  fetchSwPlanets: () => dispatch(getSwPlanets()),
+});
+
+// const mapStateToProps = (state) => ({
+//   isLoading: state.reducer.isLoading,
+// });
+
+App.propTypes = {
+  fetchSwPlanets: PropTypes.func.isRequired,
+  // isLoading: PropTypes.bool.isRequired,
+};
+// um burgão para o cacique
+export default connect(null, mapDispatchToProps)(App);
