@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByName } from '../actions';
 
 class FilterName extends Component {
   render() {
-    const { filterByName } = this.props;
+    const { filterName } = this.props;
     return (
       <div>
         <input
           type="text"
           placeholder="type a planet name"
-          onChange={(e) => filterByName(e.target.value)}
+          onChange={(e) => filterName(e.target.value)}
         />
       </div>
     );
@@ -22,7 +23,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (planetName) => dispatch(filterByName(planetName)),
+  filterName: (planetName) => dispatch(filterByName(planetName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
+
+FilterName.propTypes = {
+  filterName: PropTypes.string.isRequired,
+};

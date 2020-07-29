@@ -39,4 +39,5 @@ export default connect(mapStateToProps)(TableBody);
 
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  name: PropTypes.string.isRequired,
 };
