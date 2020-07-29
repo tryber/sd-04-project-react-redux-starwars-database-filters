@@ -2,34 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchPlanets from '../actions/fetchPlanets';
+import RenderTable from './renderTable';
 import './table.css';
 
-function renderTable(tableHeaderTitles, planets) {
-  return (
-    <table>
-      <thead>
-        <tr>
-          {tableHeaderTitles
-            .filter((title) => title !== 'residents')
-            .map((title) => (
-              <th key={title}>{title}</th>
-            ))}
-        </tr>
-      </thead>
-      <tbody>
-        {planets.map((planet) => (
-          <tr key={planet.name}>
-            {Object.values(planet)
-              .filter((_, index) => index !== 9)
-              .map((value) => (
-                <td key={value}>{value}</td>
-              ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+// function renderTable(tableHeaderTitles, filteredPlanets) {
+//   return (
+//     <table>
+//       <thead>
+//         <tr>
+//           {tableHeaderTitles
+//             .filter((title) => title !== 'residents')
+//             .map((title) => (
+//               <th key={title}>{title}</th>
+//             ))}
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {filteredPlanets.map((planet) => (
+//           <tr key={planet.name}>
+//             {Object.values(planet)
+//               .filter((_, index) => index !== 9)
+//               .map((value) => (
+//                 <td key={value}>{value}</td>
+//               ))}
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+// }
 
 class Table extends Component {
   componentDidMount() {
@@ -37,16 +38,16 @@ class Table extends Component {
     fetch();
   }
 
+  test() {
+    const { filteredPlanets } = this.props;
+    return filteredPlanets;
+  }
+
   render() {
-    const {
-      planetsData,
-      filteredPlanets,
-      isFetching,
-    } = this.props;
+    const { planetsData, filteredPlanets, isFetching } = this.props;
     if (isFetching) return <p>Loading...</p>;
     const headerTitles = planetsData ? Object.keys(planetsData[0]) : [];
-    const planets = filteredPlanets;
-    return renderTable(headerTitles, planets);
+    return <RenderTable tableHeaderTitles={headerTitles} filteredPlanets={filteredPlanets} />;
   }
 }
 

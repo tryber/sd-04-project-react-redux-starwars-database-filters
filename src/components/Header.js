@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterPlanetsByName from '../actions/filterByName';
+import { setOrderFilter, setFilteredByOrder } from '../actions/filterByOrder';
+
 import './header.css';
 import {
   setNumericFilterVariables,
@@ -24,12 +26,11 @@ function generateFilteredColumns(listOfColumns, columns) {
 }
 
 function generateFilteredValues(listOfComparisons) {
-  return listOfComparisons
-    .map((comparison) => (
-      <option key={comparison} value={comparison}>
-        {comparison}
-      </option>
-    ));
+  return listOfComparisons.map((comparison) => (
+    <option key={comparison} value={comparison}>
+      {comparison}
+    </option>
+  ));
 }
 
 function generateNewFilter() {
@@ -93,6 +94,45 @@ function renderFiltersSetted(filtersList, remove, setFilteredPlanets) {
   );
 }
 
+function renderFiltersOrder(planetsData, setOrder, setFilteredPlanetsByOrder) {
+  const columns = Object.keys(planetsData[0]);
+  return (
+    <div>
+      <h3>Ordenar:</h3>
+      <select data-testid="column-sort" id="column-sort">
+        {columns
+          .filter((title) => title !== 'residents')
+          .map((title) => (
+            <option key={title}>{title}</option>
+          ))}
+      </select>
+      <div>
+        <input data-testid="column-sort-input" id="ASC" name="column" type="radio" value="ASC" />
+        <label htmlFor="ASC">ASC</label>
+        <input data-testid="column-sort-input" id="DESC" name="column" type="radio" value="DESC" />
+        <label htmlFor="DESC">DESC</label>
+        <button
+          data-testid="column-sort-button"
+          type="button"
+          onClick={() => {
+            const selectSort = document.querySelector('input[name="column"]:checked').value;
+            const selectColumn = document.querySelector('#column-sort').value;
+            const order = {
+              column: selectColumn,
+              sort: selectSort,
+            };
+            setOrder(order);
+            setFilteredPlanetsByOrder();
+            // this.forceUpdate();
+          }}
+        >
+          Filtrar
+        </button>
+      </div>
+    </div>
+  );
+}
+
 class Header extends Component {
   render() {
     const {
@@ -102,7 +142,11 @@ class Header extends Component {
       setVariables,
       setFilteredPlanets,
       filtersList,
+      isFetching,
+      setOrder,
+      setFilteredPlanetsByOrder,
     } = this.props;
+    if (isFetching) return <p>Loading...</p>;
     return (
       <div>
         <div className="container">
@@ -115,6 +159,7 @@ class Header extends Component {
             }}
           />
           {renderFilterDropdown(setVariables, setFilteredPlanets, filtersList)}
+          {renderFiltersOrder(planetsData, setOrder, setFilteredPlanetsByOrder)}
         </div>
         {renderFiltersSetted(filtersList, remove, setFilteredPlanets)}
       </div>
@@ -127,6 +172,7 @@ const mapStateToProps = (state) => ({
   filteredPlanets: state.filters.filteredPlanets,
   filteredByNumeric: state.filters.filteredByNumeric,
   filtersList: state.filters.filterByNumericValues,
+  isFetching: state.filters.isFetching,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -134,6 +180,8 @@ const mapDispatchToProps = (dispatch) => ({
   setVariables: (filter) => dispatch(setNumericFilterVariables(filter)),
   setFilteredPlanets: () => dispatch(setPlanetsFilteredByNumeric()),
   remove: (filterToRemove) => dispatch(removeFilter(filterToRemove)),
+  setOrder: (order) => dispatch(setOrderFilter(order)),
+  setFilteredPlanetsByOrder: () => dispatch(setFilteredByOrder()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
@@ -145,4 +193,7 @@ Header.propTypes = {
   filtersList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setVariables: PropTypes.func.isRequired,
   setFilteredPlanets: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  setOrder: PropTypes.func.isRequired,
+  setFilteredPlanetsByOrder: PropTypes.func.isRequired,
 };
