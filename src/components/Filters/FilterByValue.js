@@ -101,6 +101,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 FilterValue.propTypes = {
   filterByValues: Proptypes.func.isRequired,
+  numericValues: Proptypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterValue);
