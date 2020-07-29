@@ -40,7 +40,7 @@ class Ordenador extends React.Component {
         <label htmlFor="radios">ASC
           <input
             onClick={this.handleradio} data-testid="column-sort-input"
-            type="radio"  name="radios"  value="ASC"
+            type="radio" name="radios"  value="ASC"
           />
         </label>
         <label htmlFor="radios">DESC
