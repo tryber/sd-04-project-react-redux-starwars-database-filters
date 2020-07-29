@@ -19,7 +19,9 @@ class FilterValue extends Component {
   handleSubmit() {
     const { column, comparison, value } = this.state;
     const { filterByValues } = this.props;
-    filterByValues(column, comparison, value);
+    if (column !== '' && comparison !== '' && value !== '') {
+      filterByValues(column, comparison, value);
+    }
     this.setState({ column: '', comparison: '', value: '' });
   }
 
