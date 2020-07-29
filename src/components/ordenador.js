@@ -39,13 +39,13 @@ class Ordenador extends React.Component {
         </select>
         <label htmlFor="radios">ASC
           <input
-            value={radio} onClick={this.handleradio} data-testid="column-sort-input"
-            type="radio" name="radios" value="ASC"
+            onClick={this.handleradio} data-testid="column-sort-input"
+            type="radio"  name="radios"  value="ASC"
           />
         </label>
         <label htmlFor="radios">DESC
           <input
-            value={radio} onClick={this.handleradio} data-testid="column-sort-input"
+            onClick={this.handleradio} data-testid="column-sort-input"
             type="radio" name="radios" value="DESC"
           />
         </label>
