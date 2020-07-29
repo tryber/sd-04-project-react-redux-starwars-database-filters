@@ -1,34 +1,44 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
 
-class FilterName extends Component {
+class FilterPlanet extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+    };
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(event) {
+    this.setState({ text: event.target.value });
+    this.props.filterByName(event.target.value);
+  }
+
   render() {
-    const { filterName } = this.props;
     return (
       <div>
         <input
           data-testid="name-filter"
           type="text"
-          placeholder="type a planet name"
-          onChange={(e) => filterName(e.target.value)}
+          placeholder="Type a Planet Name"
+          value={this.state.text}
+          onChange={(event) => this.onChange(event)}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  name: state.filters.filterByName.name,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  filterName: (planetName) => dispatch(filterByName(planetName)),
+  filterByName: (planetName) => dispatch(filterByName(planetName)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
+export default connect(null, mapDispatchToProps)(FilterPlanet);
 
-FilterName.propTypes = {
-  filterName: PropTypes.string.isRequired,
+FilterPlanet.propTypes = {
+  filterByName: PropTypes.func.isRequired,
 };
