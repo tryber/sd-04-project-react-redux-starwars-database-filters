@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { filterByName } from '../actions';
 
 /*
 consy { data } = this.props;
