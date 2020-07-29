@@ -45,10 +45,9 @@ class Table extends React.Component {
     };
     // this.sortTabela = this.sortTabela.bind(this);
   }
-  
+
   render() {
     const { data, isLoading, filterByName, fValues, ordem } = this.props;
-    console.log('ordem', ordem.opt)
     if (isLoading) return <span>Loading...</span>;
     const planetas = data[0];
     const objPlanetas = Object.keys(planetas).filter((item) => item !== 'residents');
@@ -61,7 +60,8 @@ class Table extends React.Component {
             ))}
           </tr>
         </thead>
-        <tbody>{sortTabela(handleTabela(fValues, data, filterByName), ordem.column, ordem.sort).map((item) => linha(item))}</tbody>
+        <tbody>{sortTabela(handleTabela(fValues, data, filterByName), ordem.column, ordem.sort)
+          .map((item) => linha(item))}</tbody>
       </table>
     );
   }
@@ -70,11 +70,16 @@ class Table extends React.Component {
 Table.propTypes = {
   data: PropTypes.shape({
     filter: PropTypes.func,
-    map: PropTypes.func,
+    map: PropTypes.func
   }).isRequired,
-  filterByName: PropTypes.bool.isRequired,
   fValues: PropTypes.func.isRequired,
+  filterByName: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  ordem: PropTypes.shape({
+    column: PropTypes.string,
+    opt: PropTypes.string,
+    sort: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
