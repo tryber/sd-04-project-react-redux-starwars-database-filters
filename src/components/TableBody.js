@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPlanets } from '../actions';
 
 class TableBody extends Component {
-  componentDidMount() {
-    const { fetchPlanets } = this.props;
-  }
-
   render() {
     const { planets } = this.props;
-    console.log(planets);
     return (
       <tbody>
         {planets.map((element) => (
