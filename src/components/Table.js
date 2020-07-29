@@ -30,11 +30,10 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
-  name: PropTypes.string.isRequired,
-  isFetching: PropTypes.bool.isRequired,
+  data: PropTypes.any,
+  isFetching: PropTypes.any,
+  name: PropTypes.any,
+  numericValues: PropTypes.any,
 };
 
 const mapStateToProps = (state) => ({
