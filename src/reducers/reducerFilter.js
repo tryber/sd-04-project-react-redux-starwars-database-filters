@@ -41,8 +41,7 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (obj) => obj !== action.obj
-        ),
+          (obj) => obj !== action.obj),
       };
 
     default:

@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { removeFilter } from '../action/actionFilter';
 
-const RemoveFilter = (props) => {
-  const  { filters, removeFilter } = props;
-
+const RemoveFilter = ({ filters, removeFilter }) => {
   const onClick = (obj) => removeFilter(obj);
 
   return filters.map((filtro) => (
@@ -34,7 +32,7 @@ RemoveFilter.PropTypes = {
       value: PropTypes.string,
     }),
   ).isRequired,
-  // filters: PropTypes.func.isRequired,
+  removeFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RemoveFilter);
