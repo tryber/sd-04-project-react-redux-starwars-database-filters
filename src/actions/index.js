@@ -50,4 +50,4 @@ export const filterByNumericValues = (column, comparison, value) => ({
 export const removeFilters = (filters) => ({
   type: REMOVE_FILTERS,
   filters,
-})
+});

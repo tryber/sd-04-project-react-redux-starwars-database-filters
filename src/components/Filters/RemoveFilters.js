@@ -14,7 +14,7 @@ class RemoveFilters extends Component {
     return numericValues.map((item) => (
       <div data-testid="filter" key={item.value}>
         <span>{`${item.column} ${item.comparison} ${item.value}`}</span>
-        <button type="button" onClick={() =>this.handleRemoveFilter(item)}>
+        <button type="button" onClick={() => this.handleRemoveFilter(item)}>
           x
         </button>
       </div>
@@ -33,6 +33,6 @@ const mapDispatchToProps = (dispatch) => ({
 RemoveFilters.propTypes = {
   removeFilter: Proptypes.func.isRequired,
   numericValues: Proptypes.string.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(RemoveFilters);
