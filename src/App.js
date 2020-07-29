@@ -33,5 +33,5 @@ App.propTypes = {
   fetchSwPlanets: PropTypes.func.isRequired,
   // isLoading: PropTypes.bool.isRequired,
 };
-
+// um burgão para o cacique
 export default connect(null, mapDispatchToProps)(App);
