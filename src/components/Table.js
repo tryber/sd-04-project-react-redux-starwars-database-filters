@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { filterByName } from '../actions';
 
 /*
 consy { data } = this.props;
@@ -12,9 +13,11 @@ const getHeaders = (planets) => Object.keys(planets[0]).filter((header) => heade
 
 class Table extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, name } = this.props;
     const keys = data.length >= 1 ? Object.keys(data[0]) : [];
     const tableHeader = keys.filter((key) => key !== 'residents');
+
+    const filterName = data.filter((planet) => planet.name.includes(name));
 
     return (
       <div>
@@ -28,7 +31,7 @@ class Table extends React.Component {
           </thead>
 
           <tbody>
-            {data.map((planet) => (
+            {filterName.map((planet) => (
               <tr key={planet.name}>
                 {tableHeader.map((column) => (
                   <td key={planet[column]}>{planet[column]}</td>
@@ -44,10 +47,12 @@ class Table extends React.Component {
 
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   data: state.planets.data,
+  name: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(Table);

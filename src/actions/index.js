@@ -4,6 +4,8 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_SWAPI_PLANETS_SUCCESS';
 export const REQUEST_PLANETS_FAIL = 'REQUEST_PLANETS_FAIL';
 
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
+
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
 });
@@ -27,3 +29,8 @@ export function fetchPlanets() {
     );
   };
 }
+
+export const filterByName = (name) => ({
+  type: FILTER_BY_NAME,
+  name,
+});

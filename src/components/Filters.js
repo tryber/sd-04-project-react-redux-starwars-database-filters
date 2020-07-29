@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import FilterName from './FilterName';
 
 export class Filters extends Component {
   render() {
-    return <div>Filtros</div>;
+    return (
+      <div>
+        Filtros
+        <FilterName />
+      </div>
+    );
   }
 }
 
-/* const mapStateToProps = (state) => ({
-
-});
-
-const mapDispatchToProps = {
-
-}; */
-
-export default connect(null, null)(Filters);
+export default Filters;
