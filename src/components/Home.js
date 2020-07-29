@@ -5,8 +5,6 @@ import { fetchPlanets } from '../actions';
 import Table from './Table';
 import FilterNameNovo from './filterNameNovo';
 
-
-
 export class Home extends Component {
   componentDidMount() {
     const { getPlanets } = this.props;

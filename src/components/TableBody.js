@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 class TableBody extends Component {
   render() {
     const { planets, name } = this.props;
-    console.log(name)
     const filterName = planets.filter((element) => element.name.includes(name));
     return (
       <tbody>
