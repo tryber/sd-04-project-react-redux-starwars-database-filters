@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 class TableBody extends Component {
   render() {
     const { planets, name } = this.props;
+    console.log(name)
     const filterName = planets.filter((element) => element.name.includes(name));
     return (
       <tbody>
@@ -19,7 +20,7 @@ class TableBody extends Component {
             <td>{element.terrain}</td>
             <td>{element.surface_water}</td>
             <td>{element.population}</td>
-            <td>{element.films[0]}</td>
+            <td>{element.films}</td>
             <td>{element.created}</td>
             <td>{element.edited}</td>
             <td>{element.url}</td>

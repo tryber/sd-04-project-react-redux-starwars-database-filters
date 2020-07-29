@@ -11,7 +11,6 @@ const requestingPlanets = () => ({
 });
 
 const sucessPlanets = (data) => {
-  console.log('aqui', data);
   return {
     type: REQUEST_PLANETS_SUCCESS,
     data,
@@ -23,18 +22,20 @@ const failurePlanets = (error) => ({
   error,
 });
 
-export const filterByName = (name) => ({
+const filterByName = (name) => ({
   type: FILTER_BY_NAME,
   name,
 });
 
-export function fetchPlanets() {
+function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestingPlanets());
 
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
-      (error) => dispatch(failurePlanets(error)),
+      (error) => dispatch(failurePlanets(error))
     );
   };
 }
+
+export { filterByName, fetchPlanets };
