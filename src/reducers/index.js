@@ -1,5 +1,7 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import { swapiReducer } from './swapiReducer';
+import { filters } from './filters';
 
-export default emptyReducer;
+const rootReducer = combineReducers({ swapiReducer, filters });
+
+export default rootReducer;

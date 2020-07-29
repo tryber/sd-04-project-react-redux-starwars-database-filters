@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Table from './components/table/Table';
+import GetPlanets from './components/GetPlanets';
+import FilterByName from './components/filters/FilterByName';
+import FilterByNumericValues from './components/filters/FilterByNumericValues';
+import NumericFilter from './components/filters/NumericFilter';
+import Order from './components/filters/Order';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FilterByName />
+      <FilterByNumericValues />
+      <NumericFilter />
+      <Order />
+      <Table />
+      <GetPlanets />
     </div>
   );
 }
