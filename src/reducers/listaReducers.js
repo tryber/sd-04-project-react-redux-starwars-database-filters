@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
 };
 
 function filters(state = INITIAL_STATE, action) {
@@ -22,6 +23,26 @@ function filters(state = INITIAL_STATE, action) {
         filterByName: {
           name: action.value,
         },
+      };
+    case 'CHANGE_TEXT_INPUT_COMPARISOR':
+      return {
+        ...state,
+        filterByNumericValues: {
+          ...state.filterByNumericValues,
+          [action.name]: action.value,
+        },
+      };
+    case 'COMPARISOR':
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
       };
     default:
       return { ...state };
