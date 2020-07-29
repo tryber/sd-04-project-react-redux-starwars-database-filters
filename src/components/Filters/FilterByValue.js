@@ -23,7 +23,7 @@ class FilterValue extends Component {
     this.setState({ column: '', comparison: '', value: '' });
   }
 
-  filterColumn = () => {
+  filterColumn() {
     const { numericValues } = this.props;
     const columns = [
       '',
@@ -35,7 +35,7 @@ class FilterValue extends Component {
     ];
     const selectedFilter = numericValues.map(({ column }) => column);
     return columns.filter((column) => !selectedFilter.includes(column));
-  };
+  }
 
   renderColumns() {
     const options = this.filterColumn();
