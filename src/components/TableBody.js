@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class TableBody extends Component {
   render() {
@@ -29,3 +30,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(TableBody);
+
+TableBody.propTypes = {
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
