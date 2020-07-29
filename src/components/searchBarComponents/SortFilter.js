@@ -39,7 +39,7 @@ class SortFilter extends Component {
         </select>
         <br />
         {this.input('ASC')}
-        {this.input('DSC')}
+        {this.input('DESC')}
         <br />
         <button
           data-testid="column-sort-button" type="button"
