@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import linhas from './Linhas';
 import filterAll from './filterAll';
+import linhas from './Linhas';
 
 const Table = (props) => {
   const { data, isFetching, name, numericValues } = props;
