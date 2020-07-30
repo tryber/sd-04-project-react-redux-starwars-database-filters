@@ -1,4 +1,4 @@
-const filterAll = (data, name, numericValues) =>
+function filterAll(data, name, numericValues) {
   numericValues.length === 0
     ? data.filter((planet) => planet.name.includes(name))
     : numericValues.reduce(
@@ -17,4 +17,6 @@ const filterAll = (data, name, numericValues) =>
           }),
         data,
       );
+}
+
 export default filterAll;
