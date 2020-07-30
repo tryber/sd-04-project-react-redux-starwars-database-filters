@@ -5,7 +5,7 @@ import FilterPlanet from './FilterPlanet';
 function App() {
   return (
     <table>
-        <FilterPlanet />
+      <FilterPlanet />
       <thead>
         <tr>
           <th>Name</th>

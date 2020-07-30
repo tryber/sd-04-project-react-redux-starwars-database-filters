@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Table from './Table';
@@ -5,7 +6,7 @@ import fetchPlanets from '../actions';
 import './HomeLoading.css';
 import './Home.css';
 
-export class Home extends Component {
+class Home extends Component {
   componentDidMount() {
     const { buscaPlaneta } = this.props;
     buscaPlaneta();
@@ -23,6 +24,11 @@ export class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  buscaPlaneta: PropTypes.func.isRequired,
+  isFetching: PropTypes.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
