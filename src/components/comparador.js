@@ -7,9 +7,10 @@ class Comparador extends React.Component {
   static CreateOptions() {
     return {
       first: [
+        '',
         'population',
         'orbital_period',
-        'diam eter',
+        'diameter',
         'rotation_period',
         'surface_water',
       ],
@@ -60,7 +61,6 @@ class Comparador extends React.Component {
         data-testid={test}
         value={value}
       >
-        <option defaultChecked value="">column</option>
         {filteredOptions.map((option) => (
           <option value={option} key={option}>
             {option}

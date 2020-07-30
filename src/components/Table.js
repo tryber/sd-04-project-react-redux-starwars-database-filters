@@ -26,7 +26,6 @@ const CreateTableHeader = (data) => (
       ))}
   </tr>
 );
-
 const CreateTableBody = (data, filteredData) => filteredData.map((planet) => (
   <tr key={planet.name}>
     {Object.keys(data[0])
@@ -36,7 +35,6 @@ const CreateTableBody = (data, filteredData) => filteredData.map((planet) => (
       ))}
   </tr>
 ));
-
 const Table = (props) => {
   const { data, inputText, filterByNumericValues } = props;
   let filteredData = !inputText
