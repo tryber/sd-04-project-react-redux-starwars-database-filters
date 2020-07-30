@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -33,6 +34,11 @@ class TableBody extends Component {
     );
   }
 }
+
+TableBody.propTypes = {
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 
 function mapStateToProps(state) {
   return {
