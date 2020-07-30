@@ -8,23 +8,23 @@ const filterFunc = (planets, name, numericValues) =>
               case 'maior que':
                 return (
                   planet.name.includes(name) &&
-                  Number(planet[column]) > Number(value)
+                  parseFloat(planet[column]) > parseFloat(value)
                 );
               case 'menor que':
                 return (
                   planet.name.includes(name) &&
-                  Number(planet[column]) < Number(value)
+                  parseFloat(planet[column]) < parseFloat(value)
                 );
               case 'igual a':
                 return (
                   planet.name.includes(name) &&
-                  Number(planet[column]) === Number(value)
+                  parseFloat(planet[column]) === parseFloat(value)
                 );
               default:
-                return planet.name.includes(name);
+                return planet.name.includesI(name);
             }
           }),
-        planets
+        planets,
       );
 
 export default filterFunc;
