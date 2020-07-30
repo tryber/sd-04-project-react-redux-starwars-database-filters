@@ -2,7 +2,6 @@ import React from 'react';
 import TableBody from './TableBody';
 
 function App() {
-
   return (
     <table>
       <thead>
