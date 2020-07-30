@@ -1,5 +1,7 @@
-import { createStore } from 'redux';
-import { Reducers } from '../reducers';
-import getPlanets from '../services/getPlanetsAPI'
+import { createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk'
+import rootReducer from '../reducers';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export const Store = createStore(Reducers);
