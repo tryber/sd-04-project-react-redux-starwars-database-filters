@@ -18,9 +18,9 @@ class FilterNumValues extends Component {
     const selectColumn = this.updateColumns();
     return (
       <select
-      data-testid="column-filter"
-      value={this.state.column}
-      onChange={(event) => this.handleOnChange(event, 'column')}
+        data-testid="column-filter"
+        value={this.state.column}
+        onChange={(event) => this.handleOnChange(event, 'column')}
       >
         {selectColumn.map((item) => (
           <option key={item} value={item}>
@@ -84,7 +84,10 @@ class FilterNumValues extends Component {
           value={this.state.number}
           onChange={(event) => this.handleOnChange(event, 'number')}
         />
-        <button data-testid="button-filter" onClick={this.handleOnClick}>
+        <button
+          data-testid="button-filter"
+          onClick={this.handleOnClick}
+        >
           Filtrar
         </button>
       </div>
