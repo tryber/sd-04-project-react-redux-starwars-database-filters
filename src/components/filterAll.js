@@ -1,5 +1,5 @@
 function filterAll(data, name, numericValues) {
-  numericValues.length === 0
+  return numericValues.length === 0
     ? data.filter((planet) => planet.name.includes(name))
     : numericValues.reduce(
         (acc, { column, comparison, value: number }) =>
