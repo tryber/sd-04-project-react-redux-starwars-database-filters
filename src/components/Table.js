@@ -1,9 +1,11 @@
 import React from 'react';
 import TableBody from './TableBody';
+import FilterPlanet from './FilterPlanet';
 
 function App() {
   return (
     <table>
+        <FilterPlanet />
       <thead>
         <tr>
           <th>Name</th>
