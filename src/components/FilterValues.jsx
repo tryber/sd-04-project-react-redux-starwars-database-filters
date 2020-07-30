@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { filterByNumericValues } from '../actions';
+import PropTypes from 'prop-types';
 
 class filterValues extends Component {
   constructor(props) {
@@ -89,6 +90,11 @@ class filterValues extends Component {
     );
   }
 }
+
+filterValues.propTypes = {
+  filterByNumeric: PropTypes.func.isRequired,
+  numericValues: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
