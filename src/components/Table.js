@@ -1,19 +1,28 @@
 import React from 'react';
-
-const Table = () => <div>StarWars Datatable with Filters</div>;
-
-import React from 'react';
-import './App.css';
-
-import Table from './components/Table';
+import TableBody from './TableBody';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Table />
-      </header>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rotation Period</th>
+          <th>Orbital period</th>
+          <th>Diameter</th>
+          <th>Climate</th>
+          <th>Gravity</th>
+          <th>Terrain</th>
+          <th>surface water</th>
+          <th>Population</th>
+          <th>Film</th>
+          <th>Created</th>
+          <th>Edited</th>
+          <th>Url</th>
+        </tr>
+      </thead>
+      <TableBody />
+    </table>
   );
 }
 
