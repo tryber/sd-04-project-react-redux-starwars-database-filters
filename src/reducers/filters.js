@@ -33,7 +33,7 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
-            (element) => element !== action.filterKeys
+            (element) => element !== action.filterKeys,
           ),
         ],
       };

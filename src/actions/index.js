@@ -36,7 +36,7 @@ const filterByNumericValue = (column, comparison, value) => ({
 const removeFilter = (filterKeys) => ({
   type: REMOVE_FILTER,
   filterKeys,
-})
+}),
 
 function fetchPlanets() {
   return (dispatch) => {
