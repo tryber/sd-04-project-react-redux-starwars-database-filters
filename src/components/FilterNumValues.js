@@ -14,17 +14,13 @@ class FilterNumValues extends Component {
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  handleOnChange(event, field) {
-    this.setState({ [field]: event.target.value });
-  }
-
   getColumns() {
     const selectColumn = this.updateColumns();
     return (
       <select
-        data-testid="column-filter"
-        value={this.state.column}
-        onChange={(event) => this.handleOnChange(event, 'column')}
+      data-testid="column-filter"
+      value={this.state.column}
+      onChange={(event) => this.handleOnChange(event, 'column')}
       >
         {selectColumn.map((item) => (
           <option key={item} value={item}>
@@ -39,9 +35,9 @@ class FilterNumValues extends Component {
     const comparison = ['', 'maior que', 'menor que', 'igual a'];
     return (
       <select
-      data-testid="comparison-filter"
-      value={this.state.comparison}
-      onChange={(event) => this.handleOnChange(event, 'comparison')}
+        data-testid="comparison-filter"
+        value={this.state.comparison}
+        onChange={(event) => this.handleOnChange(event, 'comparison')}
       >
         {comparison.map((item) => (
           <option key={item} value={item}>
@@ -50,6 +46,10 @@ class FilterNumValues extends Component {
         ))}
       </select>
     );
+  }
+
+  handleOnChange(event, field) {
+    this.setState({ [field]: event.target.value });
   }
 
   updateColumns() {
