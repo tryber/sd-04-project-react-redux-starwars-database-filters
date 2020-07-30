@@ -38,16 +38,16 @@ const removeFilter = (filterKeys) => ({
   filterKeys,
 });
 
-const fetchPlanets = () => {
+function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestingPlanets());
 
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
-      (error) => dispatch(failurePlanets(error)),
+      (error) => dispatch(failurePlanets(error))
     );
   };
-}
+};
 
 export default filterByNumericValue;
 
