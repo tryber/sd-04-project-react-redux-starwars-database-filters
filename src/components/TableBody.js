@@ -42,13 +42,5 @@ export default connect(mapStateToProps)(TableBody);
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
-  numericValues: PropTypes.arrayOf(
-    PropTypes.shape({
-      column: PropTypes.string,
-      comparison: PropTypes.string,
-      value: PropTypes.string,
-      columnSort: PropTypes.string,
-      sort: PropTypes.string,
-    })
-  ).isRequired,
+  NumericValues: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
