@@ -25,15 +25,24 @@ const filterByName = (name) => ({
   name,
 });
 
+const filterByNumericValue = (column, comparison, value) => ({
+  type: FILTER_BY_NUMERIC_VALUES,
+  column,
+  comparison,
+  value,
+});
+
 function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestingPlanets());
 
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
-      (error) => dispatch(failurePlanets(error)),
+      (error) => dispatch(failurePlanets(error))
     );
   };
 }
+
+export default filterByNumericValue;
 
 export { filterByName, fetchPlanets };

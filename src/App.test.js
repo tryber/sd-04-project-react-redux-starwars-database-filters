@@ -22,7 +22,7 @@ const renderApp = (initialState) => {
     ...render(
       <Provider store={store}>
         <App />
-      </Provider>,
+      </Provider>
     ),
     store,
   };
@@ -36,7 +36,7 @@ const mockFetch = () => {
   global.fetch = jest.fn(() => apiResponse);
 };
 
-describe('1 - Fazer uma requisição para o endpoint /planets da API de Star Wars e preencher uma tabela com os dados retornados, com exceção dos da coluna residents', () => {
+/* describe('1 - Fazer uma requisição para o endpoint /planets da API de Star Wars e preencher uma tabela com os dados retornados, com exceção dos da coluna residents', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -50,13 +50,19 @@ describe('1 - Fazer uma requisição para o endpoint /planets da API de Star War
     const planets = testData.results;
     for (let planetIndex = 0; planetIndex < planets.length; planetIndex += 1) {
       const name = await findByText(planets[planetIndex].name);
-      const rotationPeriod = await findAllByText(planets[planetIndex].rotation_period);
-      const orbitalPeriod = await findAllByText(planets[planetIndex].orbital_period);
+      const rotationPeriod = await findAllByText(
+        planets[planetIndex].rotation_period
+      );
+      const orbitalPeriod = await findAllByText(
+        planets[planetIndex].orbital_period
+      );
       const diameter = await findAllByText(planets[planetIndex].diameter);
       const climate = await findAllByText(planets[planetIndex].climate);
       const gravity = await findAllByText(planets[planetIndex].gravity);
       const terrain = await findAllByText(planets[planetIndex].terrain);
-      const surfaceWater = await findAllByText(planets[planetIndex].surface_water);
+      const surfaceWater = await findAllByText(
+        planets[planetIndex].surface_water
+      );
       const population = await findAllByText(planets[planetIndex].population);
 
       expect(name).toBeInTheDocument();
@@ -130,7 +136,7 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
     expect(store.getState().filters.filterByName.name).toEqual('');
   });
 });
-/* 
+ */
 describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
@@ -160,7 +166,9 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
       foundColumnFilterArray.push(item.innerHTML);
     }
 
-    expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
+    expect(foundColumnFilterArray).toEqual(
+      expect.arrayContaining(expectedColumnFilters)
+    );
   });
 
   test('should have the comparison selection filter', async () => {
@@ -172,11 +180,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 
     expect(comparisonFilter.children).toHaveLength(4);
 
-    const expectedColumnComparisons = [
-      'maior que',
-      'igual a',
-      'menor que',
-    ];
+    const expectedColumnComparisons = ['maior que', 'igual a', 'menor que'];
 
     const foundComparisonFilterArray = [];
 
@@ -186,7 +190,9 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
       foundComparisonFilterArray.push(item.innerHTML);
     }
 
-    expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
+    expect(foundComparisonFilterArray).toEqual(
+      expect.arrayContaining(expectedColumnComparisons)
+    );
   });
 
   test('should have the value input filter', async () => {
@@ -224,18 +230,18 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     const expectedFilters = [
       { column: 'surface_water', comparison: 'menor que', value: '40' },
     ];
-    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+    expect(store.getState().filters.filterByNumericValues).toEqual(
+      expectedFilters
+    );
   });
 
   test('should filter with greather than', async () => {
     const initialState = getStore().getState();
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
+        filterByNumericValues: [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
         ],
       },
@@ -260,7 +266,9 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
       { column: 'surface_water', comparison: 'menor que', value: '40' },
       { column: 'diameter', comparison: 'maior que', value: '8900' },
     ];
-    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+    expect(store.getState().filters.filterByNumericValues).toEqual(
+      expectedFilters
+    );
   });
 
   test('should filter with equal to', async () => {
@@ -268,23 +276,18 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
+        filterByNumericValues: [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
         ],
       },
     };
 
-    const {
-      findByTestId,
-      findAllByRole,
-      findByText,
-      store,
-    } = renderApp(initial);
+    const { findByTestId, findAllByRole, findByText, store } = renderApp(
+      initial
+    );
 
     const columnFilter = await findByTestId('column-filter');
     const comparisonFilter = await findByTestId('comparison-filter');
@@ -306,10 +309,13 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
       { column: 'diameter', comparison: 'maior que', value: '8900' },
       { column: 'population', comparison: 'igual a', value: '200000' },
     ];
-    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+    expect(store.getState().filters.filterByNumericValues).toEqual(
+      expectedFilters
+    );
   });
 });
 
+/*
 describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
   test('check avaiable filters', async () => {
     const initialState = getStore().getState();
