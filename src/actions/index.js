@@ -38,7 +38,7 @@ const removeFilter = (filterKeys) => ({
   filterKeys,
 }),
 
-function fetchPlanets() {
+const fetchPlanets = () => {
   return (dispatch) => {
     dispatch(requestingPlanets());
 
