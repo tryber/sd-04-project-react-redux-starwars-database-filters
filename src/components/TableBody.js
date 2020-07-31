@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import filterFunc from './functions/filterFunc';
+import orderFuncAsc from './orderFuncAsc';
+import orderFuncDesc from './orderFuncDesc';
 
 class TableBody extends Component {
   render() {
-    const { planets, name, NumericValues } = this.props;
-    const data = filterFunc(planets, name, NumericValues);
+    const { planets, name, NumericValues, sort, columnSort } = this.props;
+    const data =
+      sort === 'ASC'
+        ? orderFuncAsc(planets, name, NumericValues, columnSort)
+        : orderFuncDesc(planets, name, NumericValues, columnSort);
     return (
       <tbody>
         {data.map((element) => (
@@ -35,12 +39,21 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
   name: state.filters.filterByName.name,
   NumericValues: state.filters.filterByNumericValues,
+  columnSort: state.filters.order.column,
+  sort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps)(TableBody);
+
+TableBody.defaultProps = {
+  columnSort: 'Name',
+  sort: 'ASC',
+};
 
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   NumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columnSort: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
 };

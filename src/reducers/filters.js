@@ -2,11 +2,16 @@ import {
   FILTER_BY_NAME,
   FILTER_BY_NUMERIC_VALUES,
   REMOVE_FILTER,
+  ORDER_COLUMN,
 } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -33,10 +38,12 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
-            (element) => element !== action.filterKeys,
+            (element) => element !== action.filterKeys
           ),
         ],
       };
+    case ORDER_COLUMN:
+      return { ...state, order: { column: action.column, sort: action.sort } };
     default:
       return state;
   }
