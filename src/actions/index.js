@@ -30,7 +30,7 @@ const filterByNumericValues = (column, comparison, value) => ({
 const removeFilter = (willRemove) => ({
   type: REMOVE_FILTER,
   willRemove,
-})
+});
 
 function planetsResponseApi() {
   return (dispatch) => {
@@ -38,7 +38,5 @@ function planetsResponseApi() {
     return getSwapi().then((planets) => dispatch(receiveData(planets.results)));
   };
 }
-
-
 
 export { filterByNameAct, planetsResponseApi, filterByNumericValues, removeFilter };
