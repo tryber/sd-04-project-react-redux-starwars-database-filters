@@ -10,7 +10,6 @@ class FilterOrder extends Component {
       columnSort: 'Name',
       inputSort: 'ASC',
     };
-
   }
 
   onOrderChange(e, key) {
