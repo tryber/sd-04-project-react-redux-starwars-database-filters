@@ -4,6 +4,7 @@ export const REQUEST_API = 'REQUEST_API';
 export const REQUISITION_SUCCESS = 'REQUISITION_SUCCESS';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 const requestApi = () => ({
   type: REQUEST_API,
@@ -26,6 +27,11 @@ const filterByNumericValues = (column, comparison, value) => ({
   value,
 });
 
+const removeFilter = (willRemove) => ({
+  type: REMOVE_FILTER,
+  willRemove,
+})
+
 function planetsResponseApi() {
   return (dispatch) => {
     dispatch(requestApi());
@@ -33,4 +39,6 @@ function planetsResponseApi() {
   };
 }
 
-export { filterByNameAct, planetsResponseApi, filterByNumericValues };
+
+
+export { filterByNameAct, planetsResponseApi, filterByNumericValues, removeFilter };

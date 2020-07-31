@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import filterAll from './filterAll';
 import linhas from './Linhas';
+import './Table.css';
 
 const Table = (props) => {
   const { data, isFetching, name, numericValues } = props;
