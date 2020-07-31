@@ -31,10 +31,10 @@ class Table extends Component {
 
   render() {
     const {
-      error, loading, planetName, data: { results },
+      error, loading, planetName, data,
     } = this.props;
-    if (results) {
-      const filteredResults = this.applyNameFilter(planetName, results);
+    if (data) {
+      const filteredResults = this.applyNameFilter(planetName, data);
       return (
         <div>
           <TableHeader />
@@ -50,12 +50,7 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  data: PropTypes.shape({
-    results: PropTypes.shape({
-      map: PropTypes.func,
-      filter: PropTypes.func,
-    }),
-  }),
+  data: PropTypes.arrayOf(PropTypes.object),
   error: PropTypes.shape({
     message: PropTypes.string,
   }),

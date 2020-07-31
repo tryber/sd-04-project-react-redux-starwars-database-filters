@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class TableData extends Component {
-  tableHeader = data => {
+  renderHeader = data => {
     if (data) {
       return Object.keys(data).map((attr, i) => <th key={i}>{attr}</th>);
     }
@@ -19,23 +19,19 @@ export default class TableData extends Component {
 
   render() {
     const { results } = this.props;
-    const planets = results.map(planet => {
-      delete planet.residents;
-      return planet;
-    });
     return (
       <table>
         <thead>
-          <tr>{this.tableHeader(planets[0])}</tr>
+          <tr>{this.renderHeader(results[0])}</tr>
         </thead>
-        <tbody>{this.renderTable(planets)}</tbody>
+        <tbody>{this.renderTable(results)}</tbody>
       </table>
     );
   }
 }
 
 TableData.propTypes = {
-  results: PropTypes.shape,
+  results: PropTypes.arrayOf(PropTypes.object),
 };
 
 TableData.defaultProps = {

@@ -3,3 +3,11 @@ table {
   overflow-x: auto;
   white-space: nowrap;
 }
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 20px;
+}
+.item {
+  align-self: center;
+}

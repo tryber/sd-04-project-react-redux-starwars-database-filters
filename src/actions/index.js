@@ -21,10 +21,18 @@ export const getPlanetsFailure = error => ({
   error,
 });
 
+const removeResidents = data => {
+  const dataset = data.results.map(planet => {
+    delete planet.residents;
+    return planet;
+  });
+  return dataset;
+};
+
 const getAPIData = endpoint => dispatch => {
   dispatch(getPlanetsRequest());
   apiRequest(endpoint)
-    .then(data => dispatch(getPlanetsSuccess(data)))
+    .then(data => dispatch(getPlanetsSuccess(removeResidents(data))))
     .catch(error => dispatch(getPlanetsFailure(error)));
 };
 
