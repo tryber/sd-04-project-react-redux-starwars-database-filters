@@ -33,7 +33,7 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: [
-          ...state.filterByNumericValues.filter((element) => element !== action.willRemove),
+          ...state.filterByNumericValues.filter((item) => item !== action.willRemove),
         ],
       };
     case ORDER_COLUMN:

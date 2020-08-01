@@ -83,11 +83,7 @@ class FilterOrder extends React.Component {
       <div>
         {this.getColumns()}
         {this.getRadios()}
-        <button
-          data-testid="column-sort-button"
-          type="button"
-          onClick={this.onClick}
-        >
+        <button data-testid="column-sort-button" type="button" onClick={this.onClick}>
           Ordenar
         </button>
       </div>
