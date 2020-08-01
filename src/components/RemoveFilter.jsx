@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { removeFilter } from '../actions';
 
 function RemoveFilter({ numericValues, remove }) {
+  /* desestrutura valores numericos salvos no store e o valor a ser removido */
   const onClick = (type) => remove(type);
 
   return numericValues.map((type) => (

@@ -7,6 +7,7 @@ import Search from './components/Search';
 import { planetsResponseApi } from './actions';
 import FilterValues from './components/FilterValues';
 import RemoveFilter from './components/RemoveFilter';
+import FilterOrder from './components/filterOrder';
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends React.Component {
         <Search />
         <FilterValues />
         <RemoveFilter />
+        <FilterOrder />
         <Table />
       </div>
     );
