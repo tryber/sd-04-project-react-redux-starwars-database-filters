@@ -1,26 +1,39 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
+import Table from './components/Table';
+import Search from './components/Search';
+import { planetsResponseApi } from './actions';
+import FilterValues from './components/FilterValues';
+import RemoveFilter from './components/RemoveFilter';
+import FilterOrder from './components/filterOrder';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { getSwapi } = this.props;
+    getSwapi();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Search />
+        <FilterValues />
+        <RemoveFilter />
+        <FilterOrder />
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  getSwapi: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getSwapi: () => dispatch(planetsResponseApi()),
+});
+
+export default connect(null, mapDispatchToProps)(App);

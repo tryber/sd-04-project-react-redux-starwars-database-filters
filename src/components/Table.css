@@ -1,0 +1,9 @@
+.tabela {
+  background-color: cornflowerblue;
+  border: solid navy 2px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-left: 30px;
+  margin-top: 400px;
+  width: 1000px;
+}
