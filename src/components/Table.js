@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import filterAll from './filterAll';
+// import filterAll from './filterAll';
 import linhas from './Linhas';
 import './Table.css';
 import orderFuncAsc from '../components/orderFuncAsc';
@@ -18,7 +18,7 @@ const Table = (props) => {
 
   if (isFetching) return <span>...Loading</span>;
   const planeta1 = data;
-  const colunas = Object.keys(planeta1[0]).filter((campo) => campo !== 'residents');
+  const colunas = Object.keys(planeta1[0]).filter((field) => field !== 'residents');
   return (
     <div>
       <table className="tabela">
@@ -29,7 +29,7 @@ const Table = (props) => {
             ))}
           </tr>
         </thead>
-        <tbody>{ordemData.map((chosenPlanet) => linhas(chosenPlanet))}</tbody>
+        <tbody>{ordemData.map((selectedPlanet) => linhas(selectedPlanet))}</tbody>
       </table>
     </div>
   );
@@ -42,6 +42,9 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   numericValues: PropTypes.func.isRequired,
+  planets: PropTypes.func.isRequired,
+  columnSort: PropTypes.func.isRequired,
+  sort: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
