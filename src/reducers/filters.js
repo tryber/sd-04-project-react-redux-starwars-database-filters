@@ -8,6 +8,10 @@ import {
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -36,14 +40,13 @@ const filters = (state = INITIAL_STATE, action) => {
         ],
       };
     case SORTING:
-      console.log(state)
+      console.log(action.sort);
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues.filter(
-            (sort) => sort === action.column, action.act,
-          ),
-        ],
+        order: {
+          column: action.column,
+          sort: action.sort,
+        },
       };
     default:
       return state;

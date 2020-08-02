@@ -24,34 +24,45 @@ class Sort extends Component {
     super(props);
     this.state = {
       column: options,
-      act: 'ASC',
+      sort: '',
     };
 
     this.onClick = this.onClick.bind(this);
+    this.radioButton = this.radioButton.bind(this);
   }
 
   onClick() {
-    const { column, act } = this.state;
+    const { column, sort } = this.state;
     const { sorter } = this.props;
-    document.querySelectorAll('tr');
-    sorter(column, act);
-    this.setState({ column: 'Name', act: 'ASC' });
+    sorter(column, sort);
+  }
+
+  onChange(value) {
+    this.setState({
+      column: value,
+      sort: 'ASC',
+    });
+  }
+
+  radioButton(value) {
+    this.setState({
+      sort: value,
+    });
   }
 
   render() {
-    const { toFilter } = this.props;
     return (
       <div>
-        <select data-testid="column-sort">
+        <select data-testid="column-sort" onChange={(e) => this.onChange(e.target.value)}>
           {options.map((ops) => (<option key={ops}>{ops}</option>))}
         </select>
         <label htmlFor="ASC">
           ASC
-          <input data-testid="column-sort-input" id="ASC" name="sort" type="radio" defaultChecked />
+          <input data-testid="column-sort-input" id="ASC" name="sort" type="radio" value="ASC" onChange={() => this.radioButton('ASC')} />
         </label>
-        <label htmlFor="DSC">
-          DSC
-          <input data-testid="column-sort-input" id="ASC" name="sort" type="radio" />
+        <label htmlFor="DESC">
+          DESC
+          <input data-testid="column-sort-input" id="DESC" name="sort" type="radio" value="DESC" onChange={() => this.radioButton('DESC')} />
         </label>
         <button data-testid="column-sort-button" type="button" onClick={this.onClick}>
           Filtrar
@@ -63,26 +74,10 @@ class Sort extends Component {
 
 Sort.propTypes = {
   sorter: PropTypes.func.isRequired,
-  toFilter: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      orbital_period: PropTypes.string,
-      diameter: PropTypes.string,
-      climate: PropTypes.string,
-      gravity: PropTypes.string,
-      terrain: PropTypes.string,
-      surface_water: PropTypes.string,
-      population: PropTypes.string,
-    }),
-  ).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  toFilter: state.getPlanets.data,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  sorter: (data) => dispatch(sorting(data)),
+  sorter: (column, sort) => dispatch(sorting(column, sort)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sort);
+export default connect(null, mapDispatchToProps)(Sort);

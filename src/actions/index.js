@@ -41,8 +41,8 @@ export const removeNumericFilter = (filterKeys) => ({
   filterKeys,
 });
 
-export const sorting = (column, act) => ({
+export const sorting = (column, sort) => ({
   type: 'SORTING',
   column,
-  act,
+  sort,
 });
