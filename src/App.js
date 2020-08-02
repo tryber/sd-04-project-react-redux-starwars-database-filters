@@ -5,6 +5,7 @@ import './App.css';
 import { getPlanetsAPIAct } from './actions';
 import Table from './components/Table';
 import Input from './components/Input';
+import Filters from './components/Filters';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,11 +14,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { isFetching } = this.props;
+    const { isFetching, filterByNumericValues } = this.props;
     if (isFetching) return <p>Loading</p>;
     return (
       <div>
         <Input />
+        {(filterByNumericValues.length > 0) ? <Filters /> : <p>Nenhum filtro aplicado</p>}
         <p>StarWars Datatable with Filters</p>
         <Table />
       </div>
@@ -26,6 +28,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
+  filterByNumericValues: PropTypes.arrayOf(Object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };

@@ -25,12 +25,13 @@ function filters(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
+          { column: action.column, comparison: action.comparison, value: action.value },
         ],
+      };
+    case 'REMOVE_FILTER':
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(({ c }) => c !== action.column),
       };
     default:
       return { ...state };

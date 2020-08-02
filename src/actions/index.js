@@ -23,3 +23,7 @@ export function getPlanetsAPIAct() {
     return getPlanetsAPI().then((data) => dispatch(successApi(data)));
   };
 }
+export const removeFilterAct = (c) => ({
+  type: 'REMOVE_FILTER',
+  c,
+});
