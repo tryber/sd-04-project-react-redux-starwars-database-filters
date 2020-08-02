@@ -6,14 +6,14 @@ import { filterPlanet } from '../actions';
 // function Filter(searchPlanet) {
 class Filter extends Component {
   render() {
-    console.log(this.props);
-    const { filterPlanet } = this.props;
+    // console.log(this.props);
+    // const { filterPlanet } = this.props;
     return (
       <div>
         <input
           data-testid="name-filter"
           type="text"
-          onChange={(event) => filterPlanet(event.target.value)}
+          onChange={(event) => this.props.filterPlanet(event.target.value)}
         />
       </div>
     );
