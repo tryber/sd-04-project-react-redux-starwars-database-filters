@@ -27,7 +27,7 @@ class Home extends Component {
 
 Home.propTypes = {
   buscaPlaneta: PropTypes.func.isRequired,
-  isFetching: PropTypes.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {

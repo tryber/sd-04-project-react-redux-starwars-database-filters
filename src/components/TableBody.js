@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 
 class TableBody extends Component {
   render() {
-    const { planets } = this.props;
+    const { planets, name } = this.props;
+    const filterName = planets.filter((planet) => planet.name.includes(name));
 
     return (
       <tbody>
-        {planets.map((planet) => (
+        {filterName.map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>
             <td>{planet.rotation_period}</td>
@@ -36,13 +37,15 @@ class TableBody extends Component {
 }
 
 TableBody.propTypes = {
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  name: PropTypes.string.isRequired,
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 
 function mapStateToProps(state) {
   return {
     planets: state.getPlanets.data,
+    name: state.filters.filterByName.name,
   };
 }
 
