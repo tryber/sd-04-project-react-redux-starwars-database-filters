@@ -31,7 +31,7 @@ function filters(state = INITIAL_STATE, action) {
     case 'REMOVE_FILTER':
       return {
         ...state,
-        filterByNumericValues: state.filterByNumericValues.filter(({ c }) => c !== action.column),
+        filterByNumericValues: state.filterByNumericValues.filter((c) => c.column !== action.c),
       };
     default:
       return { ...state };
