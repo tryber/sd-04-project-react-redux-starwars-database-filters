@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { filterPlanet } from '../actions';
 
 // function Filter(searchPlanet) {
@@ -28,3 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+
+Filter.propTypes = {
+  filterPlanet: PropTypes.func.isRequired,
+};

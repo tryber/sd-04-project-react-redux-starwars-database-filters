@@ -28,10 +28,10 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {filterPlanet.map((planet, i) => (
-            <tr key={i}>
-              {attributes.map((prop, j) => (
-                <td key={j}>{planet[prop]}</td>
+          {filterPlanet.map((planet) => (
+            <tr key={planet.name}>
+              {attributes.map((prop) => (
+                <td key={prop}>{planet[prop]}</td>
               ))}
             </tr>
           ))}
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  filterPlanet: PropTypes.arrayOf(
+  planets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       rotation_period: PropTypes.string,
