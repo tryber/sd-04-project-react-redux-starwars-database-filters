@@ -10,6 +10,7 @@ class FilterPlanet extends Component {
       <div>
         <input
           type="text"
+          data-testid="name-filter"
           placeholder="preencha"
           onChange={
             (event) => filterByName(event.target.value)
