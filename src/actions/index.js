@@ -20,4 +20,4 @@ export function fetchApiPlanets() {
       (data) => dispatch(pedirPlanetsConcluido(data)),
     );
   };
-};
+}
