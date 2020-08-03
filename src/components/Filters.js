@@ -21,6 +21,59 @@ class Filters extends Component {
     this.enableOption = this.enableOption.bind(this);
   }
 
+  getOrdered() {
+    const { changeOrd } = this.props;
+    const { orderColumn, orderSort } = this.state;
+    return (
+      <div>
+        <p>Select order:</p>
+        {this.selectOrder()}
+        <input
+          data-testid="column-sort-input"
+          type="radio" name="order" value="ASC"
+          onClick={(event) => this.setState({ orderSort: event.target.value })}
+        />
+        <input
+          data-testid="column-sort-input"
+          type="radio" name="order" value="DESC"
+          onClick={(event) => this.setState({ orderSort: event.target.value })}
+        />
+        <button
+          data-testid="column-sort-button"
+          type="button"
+          onClick={() => changeOrd({ column: orderColumn, sort: orderSort })}
+        >
+          Order
+        </button>
+      </div>
+    );
+  }
+
+  selectOrder() {
+    return (
+      <div>
+        <select
+          data-testid="column-sort" id="orderColumn"
+          onChange={(event) => this.setState({ orderColumn: event.target.value })}
+        >
+          <option>name</option>
+          <option>climate</option>
+          <option>created</option>
+          <option>diameter</option>
+          <option>edited</option>
+          <option>films</option>
+          <option>gravity</option>
+          <option>orbital_period</option>
+          <option>population</option>
+          <option>rotation_period</option>
+          <option>surface_water</option>
+          <option>terrain</option>
+          <option>url</option>
+        </select>
+      </div>
+    );
+  }
+
   selectAnOption() {
     const { column } = this.state;
     const { avaliableFilters } = this.props;
@@ -167,6 +220,7 @@ Filters.propTypes = {
   deleteFil: PropTypes.func.isRequired,
   disableCol: PropTypes.func.isRequired,
   enableCol: PropTypes.func.isRequired,
+  changeOrd: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
