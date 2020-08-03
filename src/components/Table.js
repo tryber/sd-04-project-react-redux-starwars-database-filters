@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchGetPlanet } from '../actions';
+import compareFunc from '../service/compareFunc';
 // import Filter from './Filter';
 
 class Table extends Component {
@@ -11,8 +12,10 @@ class Table extends Component {
   }
 
   render() {
-    const { planets, name } = this.props;
-    const filterPlanet = planets.filter((planet) => planet.name.includes(name));
+    const { planets, name, comparisonParams } = this.props;
+    const filterPlanet = compareFunc(planets, name, comparisonParams);
+    console.log(filterPlanet);
+    // const filterPlanet = planets.filter((planet) => planet.name.includes(name));
     const attributes = planets[0]
       ? Object.keys(planets[0]).filter((attribute) => attribute !== 'residents')
       : [];
@@ -44,6 +47,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   planets: state.reducer.data,
   name: state.filters.filterByName.name,
+  comparisonParams: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -70,6 +74,7 @@ Table.propTypes = {
       url: PropTypes.string,
     }),
   ).isRequired,
+  comparisonParams: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
