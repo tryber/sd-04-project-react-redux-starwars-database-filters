@@ -6,6 +6,7 @@ import { fetchPlanets } from '../actions';
 import FilterName from './FilterName';
 import FilterValues from './FilterValues';
 import RemoveFilter from './RemoveFilter';
+import OrderFilter from './OrderFilter';
 
 export class Home extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ export class Home extends Component {
       <div>
         <h3>Strawars DataTable</h3>
         <FilterName />
+        <OrderFilter />
         <FilterValues />
         <RemoveFilter />
         <Table />
