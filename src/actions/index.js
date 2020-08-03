@@ -10,12 +10,12 @@ const requestingPlanets = () => ({
 
 const sucessPlanets = (data) => ({
   type: REQUEST_PLANETS_SUCSSES,
-  data
+  data,
 });
 
 const failurePlanets = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
-  error
+  error,
 });
 
 export function fetchPlanets() {
@@ -24,6 +24,6 @@ export function fetchPlanets() {
     return getPlanetsAPI().then(
       (data) => dispatch(sucessPlanets(data.results)),
       (error) => dispatch(failurePlanets(error)),
-    )
-  }
+    );
+  };
 }

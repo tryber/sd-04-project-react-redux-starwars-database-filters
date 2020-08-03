@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import Table from './components/Table';
-import {fetchPlanets } from './actions';
+import { fetchPlanets } from './actions';
 // import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
 
   render() {
     const { isFetching } = this.props;
-    if (isFetching) return <h1>Loading...</h1>
+    if (isFetching) return <h1>Loading...</h1>;
     return (
       <div className="App">
         <header className="App-header">
@@ -26,11 +26,11 @@ class App extends Component {
 }
 
 const mapState = (state) => ({
-  isFetching: state.getPlanets.isFetching
+  isFetching: state.getPlanets.isFetching,
 });
 
 const mapDispatch = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets())
+  fetchPlanets: () => dispatch(fetchPlanets()),
 });
 
 
