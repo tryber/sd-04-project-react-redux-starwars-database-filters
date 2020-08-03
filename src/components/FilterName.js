@@ -1,46 +1,34 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
 
 class FilterName extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-    };
-
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(event) {
-    this.setState({ text: event.target.value });
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.filterByName(event.target.value);
-  }
-
   render() {
+    const { onFilterByName } = this.props;
     return (
       <div>
         <input
-          data-testid="name-filter"
           type="text"
-          placeholder="Type a Planet Name"
-          // eslint-disable-next-line react/destructuring-assignment
-          value={this.state.text}
-          onChange={(event) => this.onChange(event)}
+          data-testid="name-filter"
+          placeholder="Type a planet name"
+          onChange={(event) => onFilterByName(event.target.value)}
         />
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  filterByName: (planetName) => dispatch(filterByName(planetName)),
+FilterName.propTypes = {
+  onFilterByName: PropTypes.func.isRequired,
+};
+
+const mapState = (state) => ({
+  name: state.filters.filterByName.name,
 });
 
-export default connect(null, mapDispatchToProps)(FilterName);
+const mapDispatch = (dispatch) => ({
+  onFilterByName: (planetName) => dispatch(filterByName(planetName)),
+});
 
-FilterName.propTypes = {
-  filterByName: PropTypes.func.isRequired,
-};
+export default connect(mapState, mapDispatch)(FilterName);
