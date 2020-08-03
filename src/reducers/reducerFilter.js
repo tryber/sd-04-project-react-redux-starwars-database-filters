@@ -1,13 +1,4 @@
-import {
-  FILTER_TABLE,
-  FILTER_COMBINER,
-  REMOVE_FILTER,
-  SORT_FILTER,
-} from '../action/actionFilter';
-
-// const INITIAL_STATE = {
-//   text: '',
-// };
+import { FILTER_TABLE, FILTER_COMBINER, REMOVE_FILTER, SORT_FILTER, } from '../action/actionFilter';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -28,7 +19,7 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: {
           name: action.name,
         },
-        //text: action.text,
+        
       };
     case FILTER_COMBINER:
       return {
@@ -46,16 +37,13 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (obj) => obj !== action.obj
+          (obj) => obj !== action.obj,
         ),
       };
     case SORT_FILTER:
       return {
         ...state,
-        order: {
-          column: action.column,
-          sort: action.sort,
-        },
+        order: { column: action.column, sort: action.sort, },
       };
     default:
       return state;

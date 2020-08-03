@@ -54,4 +54,4 @@ const orderAscDesc = (filtered, column, sort) => {
   return sort === 'DESC' ? sorted.reverse() : sorted;
 };
 
-export {filter, orderAscDesc};
+export { filter, orderAscDesc };

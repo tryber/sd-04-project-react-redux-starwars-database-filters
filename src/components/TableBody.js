@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {filter, orderAscDesc} from '../service/filter';
+import { filter, orderAscDesc } from '../service/filter';
 
 import './Tabela.css';
 
@@ -38,6 +38,8 @@ const mapStateToProps = (state) => ({
 
 TableBody.propTypes = {
   data: PropTypes.string.isRequired,
+  column: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
   texto: PropTypes.func.isRequired,
   filtros: PropTypes.string.isRequired,
 };
