@@ -29,19 +29,7 @@ class FilterValues extends Component {
     this.setState({ [field]: event.target.value });
   }
 
-  getColumns() {
-    const { columns } = this.state;
-    const select = this.updateColums();
-    return (
-      <select data-testid="column-filter" value={columns} onChange={(event) => this.onChange(event, 'columns')}>
-        {select.map((filter) => (
-          <option key={filter} value={filter}>
-            {filter}
-          </option>
-        ))}
-      </select>
-    );
-  }
+  
 
   getCoparation() {
     const comparison = ['', 'maior que', 'menor que', 'igual a'];
@@ -74,6 +62,20 @@ class FilterValues extends Component {
     );
   }
 }
+
+getColumns() {
+    const { columns } = this.state;
+    const select = this.updateColums();
+    return (
+      <select data-testid="column-filter" value={columns} onChange={(event) => this.onChange(event, 'columns')}>
+        {select.map((filter) => (
+          <option key={filter} value={filter}>
+            {filter}
+          </option>
+        ))}
+      </select>
+    );
+  }
 
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
