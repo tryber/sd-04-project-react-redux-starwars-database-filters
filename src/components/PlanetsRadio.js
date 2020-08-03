@@ -8,7 +8,7 @@ const PlanetsRadio = ({ onClick }) => (
         type="radio"
         name="sort"
         value="ASC"
-        test="column-sort-input"
+        data-testid="column-sort-input"
         onClick={onClick}
       />
       ASC
@@ -18,7 +18,7 @@ const PlanetsRadio = ({ onClick }) => (
         type="radio"
         value="DESC"
         name="sort"
-        test="column-sort-input"
+        data-testid="column-sort-input"
         onClick={onClick}
       />
       DESC
