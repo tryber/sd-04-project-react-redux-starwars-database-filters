@@ -18,12 +18,12 @@ class Compare extends Component {
       //   'surface_water',
       // ],
       parameter: '',
-      parameters: [
-        '',
-        'maior que',
-        'menor que',
-        'igual a',
-      ],
+      // parameters: [
+      //   '',
+      //   'maior que',
+      //   'menor que',
+      //   'igual a',
+      // ],
       value: '',
     };
     this.onClick = this.onClick.bind(this);
@@ -66,7 +66,13 @@ class Compare extends Component {
   }
 
   getCompare() {
-    const operators = this.state.parameters;
+    // const operators = this.state.parameters;
+    const operators = [
+      '',
+      'maior que',
+      'menor que',
+      'igual a',
+    ];
     return (
       <select
         data-testid="comparison-filter"
