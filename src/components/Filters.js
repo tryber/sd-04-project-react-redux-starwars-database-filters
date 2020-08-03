@@ -81,7 +81,7 @@ class Filters extends Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={() => btnInput(colunmFilter, comparFilter, numberFilter)}
+          onClick={() => btnInput(colunmFilter, comparFilter, numberFilter)}updateCategorias
         >
           Filtrar
         </button>

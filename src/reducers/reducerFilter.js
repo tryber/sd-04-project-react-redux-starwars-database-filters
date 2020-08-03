@@ -2,6 +2,7 @@ import {
   FILTER_TABLE,
   FILTER_COMBINER,
   REMOVE_FILTER,
+  SORT_FILTER,
 } from '../action/actionFilter';
 
 // const INITIAL_STATE = {
@@ -13,6 +14,10 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -41,9 +46,17 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (obj) => obj !== action.obj),
+          (obj) => obj !== action.obj
+        ),
       };
-
+    case SORT_FILTER:
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sort,
+        },
+      };
     default:
       return state;
   }

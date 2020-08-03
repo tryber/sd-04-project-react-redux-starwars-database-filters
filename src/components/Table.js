@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TableHead from './TableHead';
-import FilterTable from './FilterTable';
+import FilterTable from './FilterByName';
 import Filters from './Filters';
 import RemoveFilter from './RemoveFilters';
+import FilterSort from './FilterSort'
 import { fetchGetApi } from '../action';
 
 class Table extends Component {
@@ -20,6 +21,7 @@ class Table extends Component {
         <FilterTable />
         <Filters />
         <RemoveFilter />
+        <FilterSort />
         {!loading && <TableHead />}
       </div>
     );

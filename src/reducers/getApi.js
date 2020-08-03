@@ -8,7 +8,6 @@ const INITIAL_STATE = {
 const reducerGetApi = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case RESQUEST_API:
-      console.log('received action:', action);
       return {
         ...state,
         loading: true,

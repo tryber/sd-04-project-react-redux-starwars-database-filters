@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterTable } from '../action/actionFilter';
 
-const FilterTable = ({ filter }) => (
+const FilterByName = ({ filter }) => (
   <div>
     <form htmlFor="name">
       <label htmlFor="name">Filter by name:</label>
@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
   filter: (text) => dispatch(filterTable(text)),
 });
 
-FilterTable.propTypes = {
+FilterByName.propTypes = {
   filter: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(FilterTable);
+export default connect(null, mapDispatchToProps)(FilterByName);

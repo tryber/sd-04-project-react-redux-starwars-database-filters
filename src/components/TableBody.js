@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import filter from '../service/filter';
+import {filter, orderAscDesc} from '../service/filter';
 
 import './Tabela.css';
 
 const TableBody = (props) => {
-  const { data, texto, filtros } = props;
+  const { data, texto, filtros, column, sort } = props;
+
+  const filtered = filter(data, texto, filtros);
 
   return (
     <tbody>
-      {filter(data, texto, filtros).map((planet) => (
+      {orderAscDesc(filtered, column, sort).map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td> <td>{planet.climate}</td>{' '}
           <td>{planet.created}</td>
@@ -30,6 +32,8 @@ const mapStateToProps = (state) => ({
   data: state.reducerGetApi.data,
   texto: state.filters.filterByName.name,
   filtros: state.filters.filterByNumericValues,
+  column: state.filters.order.column.toLowerCase(),
+  sort: state.filters.order.sort,
 });
 
 TableBody.propTypes = {

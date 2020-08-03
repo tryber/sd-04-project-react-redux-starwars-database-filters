@@ -20,11 +20,10 @@ export const requestDataApiErro = (erro) => ({
 
 export function fetchGetApi() {
   return (dispatch) => {
-    dispatch(requestApi());
-
+    dispatch(requestApi());    
     return getCurrentAPI().then(
       (data) => dispatch(requestDataApi(data.results)),
-      (erro) => dispatch(requestDataApiErro(erro.message)),
+      (erro) => dispatch(requestDataApiErro(erro.message))
     );
   };
 }
