@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByName } from '../actions';
+import { filterName } from '../actions';
 
 class FilterPlanet extends Component {
   render() {
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (planetName) => dispatch(filterByName(planetName)),
+  filterByName: (planetName) => dispatch(filterName(planetName)),
 
 });
 

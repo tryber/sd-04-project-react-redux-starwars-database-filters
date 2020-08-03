@@ -38,7 +38,7 @@ class TableBody extends Component {
 
 TableBody.propTypes = {
   name: PropTypes.string.isRequired,
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 
