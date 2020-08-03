@@ -51,7 +51,7 @@ class Compare extends Component {
     // const attributes = this.state.properties;
     return (
       <select
-        data-testeid="column-filter"
+        data-testid="column-filter"
         value={this.state.property}
         onChange={(e) => this.onChange(e, 'property')}
       >
