@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Table from './Table';
 import fetchPlanets from '../action/actions';
+
 class Home extends Component {
   componentDidMount() {
     const { getPlanets } = this.props;
