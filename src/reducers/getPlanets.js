@@ -1,12 +1,8 @@
-import {
-  REQUESTING_PLANETS,
-  REQUEST_PLANETS_ERROR,
-  REQUEST_PLANETS_SUCCESS,
-} from "../actions";
+import { REQUESTING_PLANETS, REQUEST_PLANETS_ERROR, REQUEST_PLANETS_SUCCESS } from '../actions';
 
 const INITIAL_STATE = {
-    isLoading: true,
-    data: [],
+  isLoading: true,
+  data: [],
 };
 
 const getPlanets = (state = INITIAL_STATE, action) => {

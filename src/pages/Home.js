@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Table from "../components/Table";
-import { connect } from "react-redux";
-import { fetchPlanets } from "../actions";
+import React, { Component } from 'react';
+import Table from '../components/Table';
+import { connect } from 'react-redux';
+import { fetchPlanets } from '../actions';
 
 export class Home extends Component {
   componentDidMount() {
@@ -10,7 +10,7 @@ export class Home extends Component {
   }
   render() {
     const { isLoading } = this.props;
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <h3>Loading...</h3>;
     return (
       <div>
         <h1>Star Wars Planets</h1>

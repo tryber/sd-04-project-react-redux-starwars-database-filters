@@ -10,10 +10,8 @@ class BodyTable extends Component {
           <tr key={planet.name}>
             {Object.keys(planet).map((information) => (
               <td>
-                {information == "films"
-                  ? planet[information].map((film) => (
-                      <span key={film}>{film}</span>
-                    ))
+                {information == 'films'
+                  ? planet[information].map((film) => <span key={film}>{film}</span>)
                   : planet[information]}
                 {planet[information]}
               </td>

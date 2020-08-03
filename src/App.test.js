@@ -172,11 +172,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 
     expect(comparisonFilter.children).toHaveLength(4);
 
-    const expectedColumnComparisons = [
-      'maior que',
-      'igual a',
-      'menor que',
-    ];
+    const expectedColumnComparisons = ['maior que', 'igual a', 'menor que'];
 
     const foundComparisonFilterArray = [];
 
@@ -221,9 +217,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     const tableRows = await findAllByRole('row');
     expect(tableRows).toHaveLength(7);
 
-    const expectedFilters = [
-      { column: 'surface_water', comparison: 'menor que', value: '40' },
-    ];
+    const expectedFilters = [{ column: 'surface_water', comparison: 'menor que', value: '40' }];
     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
   });
 
@@ -231,13 +225,9 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
     const initialState = getStore().getState();
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
-          { column: 'surface_water', comparison: 'menor que', value: '40' },
-        ],
+        filterByNumericValues: [{ column: 'surface_water', comparison: 'menor que', value: '40' }],
       },
     };
     const { findByTestId, findAllByRole, store } = renderApp(initial);
@@ -268,23 +258,16 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
+        filterByNumericValues: [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
         ],
       },
     };
 
-    const {
-      findByTestId,
-      findAllByRole,
-      findByText,
-      store,
-    } = renderApp(initial);
+    const { findByTestId, findAllByRole, findByText, store } = renderApp(initial);
 
     const columnFilter = await findByTestId('column-filter');
     const comparisonFilter = await findByTestId('comparison-filter');
@@ -316,11 +299,9 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
 
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
+        filterByNumericValues: [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
           { column: 'diameter', comparison: 'maior que', value: '8900' },
           { column: 'population', comparison: 'igual a', value: '200000' },
@@ -334,10 +315,7 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
 
     expect(columnFilter.children).toHaveLength(3);
 
-    const expectedColumnFilters = [
-      'orbital_period',
-      'rotation_period',
-    ];
+    const expectedColumnFilters = ['orbital_period', 'rotation_period'];
 
     const foundColumnFilterArray = [];
 
@@ -356,11 +334,9 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
 
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
+        filterByNumericValues: [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
           { column: 'diameter', comparison: 'maior que', value: '8900' },
           { column: 'population', comparison: 'igual a', value: '200000' },
@@ -378,11 +354,9 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
 
     const initial = {
       ...initialState,
-      filters:
-      {
+      filters: {
         ...initialState.filters,
-        filterByNumericValues:
-        [
+        filterByNumericValues: [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
           { column: 'diameter', comparison: 'maior que', value: '8900' },
           { column: 'population', comparison: 'igual a', value: '200000' },
