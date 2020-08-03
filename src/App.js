@@ -37,7 +37,6 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   ...state.filters,
-  ...state.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
