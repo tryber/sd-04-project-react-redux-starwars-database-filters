@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Table from './Table';
 import PropTypes from 'prop-types';
-
+import Table from './Table';
+import { fetchPlanets } from '../action/requestActions';
 class Home extends Component {
   componentDidMount() {
     const { getPlanets } = this.props;
