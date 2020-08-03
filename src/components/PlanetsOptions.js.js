@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import options from '../service/planets';
 
 const PlanetsOptions = ({ onChange }) => {
+ 
   return (
     <select name="column" data-testid="column-sort" onChange={onChange}>
       <option>Ordem</option>
@@ -14,7 +15,7 @@ const PlanetsOptions = ({ onChange }) => {
 };
 
 PlanetsOptions.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.string.isRequired,
 };
 
 
