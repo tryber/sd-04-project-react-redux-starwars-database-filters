@@ -8,10 +8,13 @@ const requestingPlanets = () => ({
   type: REQUESTING_PLANETS
 });
 
-const sucessPlanets = (data) => ({
+const sucessPlanets = (data) => {
+  console.log('aqui2' + JSON.stringify(data));
+  return({
+  
   type: REQUEST_PLANETS_SUCSSES,
   data
-});
+});}
 
 const failurePlanets = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
@@ -20,9 +23,10 @@ const failurePlanets = (error) => ({
 
 export function fetchPlanets() {
   return (dispatch) => {
+    console.log("aqui");
     dispatch(requestingPlanets());
     return getPlanetsAPI().then(
-      (data) => dispatch(sucessPlanets(data.results)),
+      (data) => {console.log('aqui' + data); return dispatch(sucessPlanets(data.results))},
       (error) => dispatch(failurePlanets(error))
     )
   }

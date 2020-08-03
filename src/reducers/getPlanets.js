@@ -1,24 +1,23 @@
-import { REQUESTING_PLANETS, REQUEST_PLANETS_SUCSSES, REQUEST_PLANETS_FAILURE } from '../actions';
-
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
 };
 
 const getPlanets = (state = INITIAL_STATE, action) => {
-  switch(action) {
-    case REQUESTING_PLANETS:
+  console.log(action);
+  switch(action.type) {
+    case 'REQUESTING_PLANETS':
       return {
         ...state,
         isFetching: true,
       }
-    case REQUEST_PLANETS_SUCSSES:
+    case 'REQUEST_PLANETS_SUCSSES':
       return {
         ...state,
         data: [...action.data],
         isFetching: false,
       }
-    case REQUEST_PLANETS_FAILURE:
+    case 'REQUEST_PLANETS_FAILURE':
       return {
         ...state,
         error: action.error,

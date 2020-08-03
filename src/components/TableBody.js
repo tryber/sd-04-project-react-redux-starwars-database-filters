@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 class TableBody extends Component {
   render() {
     const { planets } = this.props;
+    console.log('planets' + planets);
     return (
       <tbody>
         {planets.map((planet) => (
