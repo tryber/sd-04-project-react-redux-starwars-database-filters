@@ -4,11 +4,13 @@ const filterFunc = (planets, name, numericValues) => (numericValues.length === 0
     (acc, { column, comparison, value }) => acc.filter((planet) => {
       switch (comparison) {
         case 'maior que':
-          return planet.name.includes(name) && Number(planet[column]) > Number(value);
+          return planet.name.includes(name) && parseFloat(planet[column]) > parseFloat(value);
         case 'menor que':
-          return planet.name.includes(name) && Number(planet[column]) < Number(value);
+          return planet.name.includes(name) && parseFloat(planet[column]) < parseFloat(value);
         case 'igual a':
-          return planet.name.includes(name) && Number(planet[column]) === Number(value);
+          return (
+            planet.name.includes(name) && parseFloat(planet[column]) === parseFloat(value)
+          );
         default:
           return planet.name.includes(name);
       }
