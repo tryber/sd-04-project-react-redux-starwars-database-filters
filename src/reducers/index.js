@@ -1,5 +1,7 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import reducerGetApi from './getApi';
+import filters from './reducerFilter';
 
-export default emptyReducer;
+const rootReducer = combineReducers({ reducerGetApi, filters });
+
+export default rootReducer;
