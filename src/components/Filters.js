@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FilterName from './FilterName';
 import FilterNumValues from './FilterNumValues';
 import RemoveFilter from './RemoveFilter';
+import ColumnOrder from './ColumnOrder';
 
 export class Filters extends Component {
   render() {
@@ -11,6 +12,7 @@ export class Filters extends Component {
         <FilterName />
         <FilterNumValues />
         <RemoveFilter />
+        <ColumnOrder />
       </div>
     );
   }
