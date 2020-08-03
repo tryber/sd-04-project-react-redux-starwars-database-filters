@@ -7,7 +7,7 @@ class OrderFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: 'ASC',
+      sort: 'ASC',
       column: 'name',
     };
     this.renderRadioButtons = this.renderRadioButtons.bind(this);
@@ -21,13 +21,13 @@ class OrderFilter extends React.Component {
       >
         <input
           data-testid="column-sort-input"
-          name="order"
+          name="sort"
           type="radio"
           value="ASC"
           defaultChecked
         />
         <label htmlFor="ASC">ASC</label>
-        <input data-testid="column-sort-input" name="order" type="radio" value="DESC" />
+        <input data-testid="column-sort-input" name="sort" type="radio" value="DESC" />
         <label htmlFor="DESC">DESC</label>
       </div>
     );
@@ -35,7 +35,7 @@ class OrderFilter extends React.Component {
 
   render() {
     const { data, submitRadio } = this.props;
-    const { column, order } = this.state;
+    const { column, sort } = this.state;
     return (
       <div>
         <select
@@ -52,7 +52,7 @@ class OrderFilter extends React.Component {
         {this.renderRadioButtons()}
         <button
           type="button"
-          onClick={() => submitRadio(column, order)}
+          onClick={() => submitRadio(column, sort)}
           data-testid="column-sort-button"
         >
           Filter
@@ -72,7 +72,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  submitRadio: (column, order) => dispatch(submitRadioAct(column, order)),
+  submitRadio: (column, sort) => dispatch(submitRadioAct(column, sort)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderFilter);
