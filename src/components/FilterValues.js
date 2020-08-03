@@ -29,7 +29,6 @@ class FilterValues extends Component {
     this.setState({ [field]: event.target.value });
   }
 
-  
 
   getCoparation() {
     const comparison = ['', 'maior que', 'menor que', 'igual a'];
@@ -51,19 +50,7 @@ class FilterValues extends Component {
     this.setState({ columns: '', comparison: '', number: '' });
   }
 
-  render() {
-    return (
-      <div>
-        {this.getColumns()}
-        {this.getCoparation()}
-        <input data-testid="value-filter" type="number" value={this.state.number} onChange={(event) => this.onChange(event, 'number')} />
-        <button data-testid="button-filter" onClick={this.onClick}>Filtrar</button>
-      </div>
-    );
-  }
-}
-
-getColumns() {
+  getColumns() {
     const { columns } = this.state;
     const select = this.updateColums();
     return (
@@ -76,6 +63,18 @@ getColumns() {
       </select>
     );
   }
+
+  render() {
+    return (
+      <div>
+        {this.getColumns()}
+        {this.getCoparation()}
+        <input data-testid="value-filter" type="number" value={this.state.number} onChange={(event) => this.onChange(event, 'number')} />
+        <button data-testid="button-filter" onClick={this.onClick}>Filtrar</button>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
