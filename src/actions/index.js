@@ -1,7 +1,11 @@
 import getPlanetsAPI from '../services/getPlanetsAPI';
 
+export const REQUESTING_PLANETS = 'REQUESTING_PLANETS';
+export const REQUEST_PLANETS_SUCSSES = 'REQUEST_PLANETS_SUCSSES';
+export const REQUEST_PLANETS_FAILURE = 'REQUEST_PLANETS_FAILURE';
+
 const requestingPlanets = () => ({
-  type: REUESTING_PLANETS
+  type: REQUESTING_PLANETS
 });
 
 const sucessPlanets = (data) => ({
