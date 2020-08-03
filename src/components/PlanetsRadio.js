@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PlanetsRadio = ({ onClick }) => {
-  
+const PlanetsRadio = ({ onClick }) => {  
   return (
     <div>
       <label htmlFor="orderASC">
@@ -30,7 +29,7 @@ const PlanetsRadio = ({ onClick }) => {
 };
 
 PlanetsRadio.propTypes = {
-  onClick: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PlanetsRadio;
