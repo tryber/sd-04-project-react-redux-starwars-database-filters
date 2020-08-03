@@ -1,4 +1,4 @@
-import { getPlanetsAPI } from '../services/pegaPlanets';
+import getPlanetsAPI from '../services/pegaPlanets';
 
 export const PEDIR_PLANETS = 'PEDIR_PLANETS';
 export const PEDIR_PLANETS_CONCLUIDO = 'PEDIR_PLANETS_CONCLUIDO';
@@ -17,7 +17,7 @@ export function fetchApiPlanets() {
     dispatch(pedirPlanets());
     return getPlanetsAPI()
     .then(
-      (data) => dispatch(pedirPlanetsConcluido(data))
+      (data) => dispatch(pedirPlanetsConcluido(data)),
     );
-  }
+  };
 };

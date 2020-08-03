@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class TableBody extends Component {
-  printado(aux) {
-    console.log(aux);
-  }
-
   render() {
     const { dados, keys } = this.props;
     return (

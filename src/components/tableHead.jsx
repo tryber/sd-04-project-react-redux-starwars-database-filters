@@ -22,8 +22,8 @@ class TableHead extends Component {
     const { heads } = this.state;
     return (
       <tr>
-        {heads.map((head, index) => (
-          <th key={`${head} ${index}`}>{head}</th>
+        {heads.map((head) => (
+          <th key={`${head} head`}>{head}</th>
         ))}
       </tr>
     );

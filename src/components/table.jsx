@@ -23,7 +23,7 @@ class Table extends Component {
         'terrain',
         'url',
       ],
-    }
+    };
   }
 
   render() {
