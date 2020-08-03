@@ -102,6 +102,7 @@ class Compare extends Component {
   setProperty() {
     const { comparisonParams } = this.props;
     const properties = [
+      '',
       'population',
       'orbital_period',
       'diameter',
