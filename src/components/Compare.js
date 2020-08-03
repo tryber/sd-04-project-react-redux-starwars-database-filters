@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByNumericValues } from '../actions';
 
@@ -45,8 +46,8 @@ class Compare extends Component {
 
   onClick() {
     const { property, parameter, value } = this.state;
-    const { filterByNumericValues } = this.props;
-    filterByNumericValues(property, parameter, value);
+    // const { filterByNumericValues } = this.props;
+    this.props.filterByNumericValues(property, parameter, value);
     this.setState({ property: '', parameter: '', value: '' });
   }
 
@@ -124,3 +125,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Compare);
+
+Compare.propTypes = {
+  filterByNumericValues: PropTypes.func.isRequired,
+};
