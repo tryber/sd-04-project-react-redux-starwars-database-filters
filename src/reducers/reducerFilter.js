@@ -1,4 +1,4 @@
-import { FILTER_TABLE, FILTER_COMBINER, REMOVE_FILTER, SORT_FILTER, } from '../action/actionFilter';
+import { FILTER_TABLE, FILTER_COMBINER, REMOVE_FILTER, SORT_FILTER } from '../action/actionFilter';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -19,7 +19,6 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: {
           name: action.name,
         },
-        
       };
     case FILTER_COMBINER:
       return {
@@ -43,7 +42,7 @@ const filters = (state = INITIAL_STATE, action) => {
     case SORT_FILTER:
       return {
         ...state,
-        order: { column: action.column, sort: action.sort, },
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
