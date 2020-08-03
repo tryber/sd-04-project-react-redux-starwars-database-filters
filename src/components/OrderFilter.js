@@ -43,11 +43,11 @@ class OrderFilter extends React.Component {
           data-testid="column-sort"
           name="column"
         >
-          {Object.keys(data[0])
+          {data[0] ? Object.keys(data[0])
             .filter((header) => header !== 'residents')
             .map((columnHeader) => (
               <option key={columnHeader}>{columnHeader}</option>
-            ))}
+            )) : ''}
         </select>
         {this.renderRadioButtons()}
         <button
@@ -68,7 +68,7 @@ OrderFilter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  ...state.filters,
+  data: state.getPlanets.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
