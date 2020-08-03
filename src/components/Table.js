@@ -15,7 +15,7 @@ class Table extends Component {
   render() {
     const { planets, name, comparisonParams } = this.props;
     const filterPlanet = compareFunc(planets, name, comparisonParams);
-    console.log(filterPlanet);
+    // console.log(filterPlanet);
     // const filterPlanet = planets.filter((planet) => planet.name.includes(name));
     const attributes = planets[0]
       ? Object.keys(planets[0]).filter((attribute) => attribute !== 'residents')
@@ -58,23 +58,24 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  planets: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      rotation_period: PropTypes.string,
-      orbital_period: PropTypes.string,
-      diameter: PropTypes.string,
-      climate: PropTypes.string,
-      gravity: PropTypes.string,
-      terrain: PropTypes.string,
-      surface_water: PropTypes.string,
-      population: PropTypes.string,
-      film: PropTypes.string,
-      created: PropTypes.string,
-      edited: PropTypes.string,
-      url: PropTypes.string,
-    }),
-  ).isRequired,
+  // planets: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     name: PropTypes.string,
+  //     rotation_period: PropTypes.string,
+  //     orbital_period: PropTypes.string,
+  //     diameter: PropTypes.string,
+  //     climate: PropTypes.string,
+  //     gravity: PropTypes.string,
+  //     terrain: PropTypes.string,
+  //     surface_water: PropTypes.string,
+  //     population: PropTypes.string,
+  //     film: PropTypes.string,
+  //     created: PropTypes.string,
+  //     edited: PropTypes.string,
+  //     url: PropTypes.string,
+  //   }),
+  // ).isRequired,
+  planets: PropTypes.arrayOf(PropTypes.string).isRequired,
   comparisonParams: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,

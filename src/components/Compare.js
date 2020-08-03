@@ -9,16 +9,17 @@ class Compare extends Component {
 
     this.state = {
       property: '',
-      properties: [
-        '',
-        'diameter',
-        'orbital_period',
-        'population',
-        'rotation_period',
-        'surface_water',
-      ],
+      // properties: [
+      //   '',
+      //   'diameter',
+      //   'orbital_period',
+      //   'population',
+      //   'rotation_period',
+      //   'surface_water',
+      // ],
       parameter: '',
       parameters: [
+        '',
         'maior que',
         'menor que',
         'igual a',
@@ -28,17 +29,20 @@ class Compare extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  // setProperty() {
-  //   const properties = [
-  //     '',
-  //     'diameter',
-  //     'orbital_period',
-  //     'population',
-  //     'rotatio_period',
-  //     'surface_water',
-  //   ];
-  //   return properties;
-  // }
+  setProperty() {
+    const { comparisonParams } = this.props;
+    const properties = [
+      '',
+      'diameter',
+      'orbital_period',
+      'population',
+      'rotatio_period',
+      'surface_water',
+    ];
+    const propUpdated = comparisonParams.map(({ column }) => column);
+    return properties.filter((property) => !propUpdated.includes(property));
+    // return properties;
+  }
 
   onChange(e, key) {
     this.setState({ [key]: e.target.value });
@@ -51,10 +55,15 @@ class Compare extends Component {
     this.setState({ property: '', parameter: '', value: '' });
   }
 
+  // updateProperties(){
+  //   const { comparisonParams } = this.props;
+  //     const listProps = comparisonParams.map(({ column }) => column);
+  //     this.setState({ properties: properties.filter((param) => !listProps.includes(param)) });
+  // }
 
   getAttribute() {
-    // const attributes = this.setProperty();
-    const attributes = this.state.properties;
+    const attributes = this.setProperty();
+    // const attributes = this.state.properties;
     return (
       <select
         data-testeid="column-filter"
@@ -128,4 +137,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Compare);
 
 Compare.propTypes = {
   filterByNumericValues: PropTypes.func.isRequired,
+  comparisonParams: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
