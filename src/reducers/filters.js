@@ -8,7 +8,7 @@ import {
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
-  order: { column: 'name', sort: 'asc' },
+  order: { column: 'name', sort: 'ASC' },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -38,7 +38,7 @@ const filters = (state = INITIAL_STATE, action) => {
         ],
       };
     case SUBMIT_RADIO:
-      return { ...state, order: { sort: action.order, column: action.column } };
+      return { ...state, order: { sort: action.sort, column: action.column } };
     default:
       return state;
   }

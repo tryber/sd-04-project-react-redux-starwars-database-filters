@@ -55,8 +55,11 @@ export const removeNumericFilter = (filterKeys) => ({
   filterKeys,
 });
 
-export const submitRadioAct = (column, sort) => ({
-  type: SUBMIT_RADIO,
-  column,
-  sort,
-});
+export const submitRadioAct = (column, sort) => {
+  console.log(sort);
+  return ({
+    type: SUBMIT_RADIO,
+    column,
+    sort,
+  });
+};

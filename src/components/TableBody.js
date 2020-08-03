@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import filterFunc from './functions/filterFunc';
+import dataSort from './functions/filterFunc';
 
 class TableBody extends Component {
   render() {
-    const { planets, name, numericValues } = this.props;
-    const data = filterFunc(planets, name, numericValues);
+    const {
+      planets, name, numericValues, order,
+    } = this.props;
+    const data = dataSort(planets, name, numericValues, order);
     // const filterName = planets.filter((planet) => planet.name.includes(name));
     return (
       <tbody>
@@ -36,10 +38,6 @@ class TableBody extends Component {
   }
 }
 
-// TableBody.defaultProps = {
-//   columnSort: 'Name',
-//   sort: 'ASC',
-// };
 
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(
@@ -69,6 +67,10 @@ TableBody.propTypes = {
       sort: PropTypes.string,
     }),
   ).isRequired,
+  order: PropTypes.shape({
+    column: PropTypes.string,
+    sort: PropTypes.string,
+  }).isRequired,
 };
 
 
@@ -76,6 +78,7 @@ const mapState = (state) => ({
   planets: state.getPlanets.data,
   name: state.filters.filterByName.name,
   numericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 export default connect(mapState)(TableBody);

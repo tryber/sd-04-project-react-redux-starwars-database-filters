@@ -16,7 +16,7 @@ class OrderFilter extends React.Component {
   renderRadioButtons() {
     return (
       <div
-        onChange={(event) => this.setState({ [event.target.name]: event.target.value })}
+        onChange={(event) => this.setState({ sort: event.target.value })}
         name="sort"
       >
         <input
@@ -37,6 +37,7 @@ class OrderFilter extends React.Component {
     const { data, submitRadio } = this.props;
     const { column, sort } = this.state;
     return (
+
       <div>
         <select
           onChange={(event) => this.setState({ column: event.target.value })}
