@@ -8,7 +8,7 @@ import { fetchPlanets } from './actions';
 class App extends Component {
 
   componentDidMount() {
-    const { fetchPlanets } = this.props;
+    fetchPlanets = this.props;
     fetchPlanets();
   }
 
