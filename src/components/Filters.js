@@ -167,7 +167,6 @@ Filters.propTypes = {
   deleteFil: PropTypes.func.isRequired,
   disableCol: PropTypes.func.isRequired,
   enableCol: PropTypes.func.isRequired,
-  changeOrd: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
