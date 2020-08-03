@@ -21,9 +21,7 @@ const filters = (state = INITIAL_STATE, action) => {
           {
             column: action.column,
             comparison: action.compar,
-            value: action.number,
-          },
-        ],
+            value: action.number }],
       };
     case REMOVE_FILTER:
       return {
@@ -37,8 +35,7 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         order: { column: action.column, sort: action.sort },
       };
-    default:
-      return state;
+    default: return state;
   }
 };
 
