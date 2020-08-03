@@ -13,7 +13,7 @@ const sucessPlanets = (data) => ({
   data
 });
 
-const failuePlanets = (error) => ({
+const failurePlanets = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
   error
 });
