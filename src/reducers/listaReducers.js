@@ -33,6 +33,8 @@ function filters(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter((c) => c.column !== action.c),
       };
+    case 'SUBMIT_RADIO':
+      return { ...state, order: { sort: action.order, column: action.column } };
     default:
       return { ...state };
   }

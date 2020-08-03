@@ -17,6 +17,31 @@ const filterPlanet = (planet, filter) => {
   return false;
 };
 
+const ordering = (column, sort, planets) => {
+  const newPlanets = [...planets];
+  if (!Number(newPlanets[0][column])) {
+    newPlanets.sort(function (a, b) {
+      const x = a[column].toLowerCase();
+      const y = b[column].toLowerCase();
+      if (x < y) {
+        return -1;
+      }
+      if (x > y) {
+        return 1;
+      }
+      return 0;
+    });
+  } else {
+    newPlanets.sort(function (a, b) {
+      return a[column] - b[column];
+    });
+  }
+
+  if (sort === 'ASC') return newPlanets;
+  if (sort === 'DESC') return newPlanets.reverse();
+  return newPlanets;
+};
+
 const CreateTableHeader = (data) => (
   <tr>
     {Object.keys(data)
@@ -36,7 +61,9 @@ const CreateTableBody = (data, filteredData) => filteredData.map((planet) => (
   </tr>
 ));
 const Table = (props) => {
-  const { data, inputText, filterByNumericValues } = props;
+  const {
+    data, inputText, filterByNumericValues, order,
+  } = props;
   let filteredData = !inputText
     ? [...data]
     : [...data].filter((planet) => planet.name.includes(inputText));
@@ -44,6 +71,9 @@ const Table = (props) => {
     filterByNumericValues.forEach((filtro) => {
       filteredData = filteredData.filter((planet) => filterPlanet(planet, filtro));
     });
+  }
+  if (order) {
+    filteredData = ordering(order.column, order.sort, filteredData);
   }
   return (
     <div>
@@ -56,15 +86,17 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.arrayOf(Object).isRequired,
-  filterByNumericValues: PropTypes.arrayOf(Object).isRequired,
+  data: PropTypes.arrayOf().isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.func).isRequired,
   inputText: PropTypes.string.isRequired,
+  order: PropTypes.arrayOf(Object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   data: state.filters.data,
   inputText: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  ...state.OrderFilterReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({

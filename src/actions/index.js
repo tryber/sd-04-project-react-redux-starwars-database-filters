@@ -27,3 +27,8 @@ export const removeFilterAct = (c) => ({
   type: 'REMOVE_FILTER',
   c,
 });
+export const submitRadioAct = (column, order) => ({
+  type: 'SUBMIT_RADIO',
+  column,
+  order,
+});

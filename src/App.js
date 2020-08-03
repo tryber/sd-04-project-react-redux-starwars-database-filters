@@ -6,6 +6,7 @@ import { getPlanetsAPIAct } from './actions';
 import Table from './components/Table';
 import Input from './components/Input';
 import Filters from './components/Filters';
+import OrderFilter from './components/orderFilter';
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends React.Component {
     return (
       <div>
         <Input />
+        <OrderFilter />
         {(filterByNumericValues.length > 0) ? <Filters /> : <p>Nenhum filtro aplicado</p>}
         <p>StarWars Datatable with Filters</p>
         <Table />
@@ -35,6 +37,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   ...state.filters,
+  ...state.OrderFilterReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
