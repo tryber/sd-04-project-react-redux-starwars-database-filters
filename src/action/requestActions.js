@@ -1,24 +1,14 @@
 import getPlanetsAPI from '../services/getPlanetsAPI';
 
-const REQUEST = 'REQUEST_PLANETS';
-const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
-const REQUEST_FAILURE = 'REQUEST_FAILURE';
+const requestSuccess = (data) => ({ type: 'REQUEST_SUCCESS', data });
 
-const request = () => ({ type: REQUEST });
+const requestFailure = () => ({ type: 'REQUEST_FAILURE' });
 
-const requestSuccess = (data) => ({type: REQUEST_SUCCESS, data,});
-
-const requestFailure = () => ({ type: REQUEST_FAILURE });
-
-export const fetchPlanets = () => {
+export default function fetchPlanets() {
   return (dispatch) => {
-    dispatch(request());
-  
     return getPlanetsAPI().then(
       (data) => dispatch(requestSuccess(data.results)),
       (error) => dispatch(requestFailure(error)),
-    )
-  }
+    );
+  };
 }
-
-export fetchPlanets;
