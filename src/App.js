@@ -1,26 +1,46 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
+import { getPlanetsAPIAct } from './actions';
+import Table from './components/Table';
+import Input from './components/Input';
+import Filters from './components/Filters';
+import OrderFilter from './components/orderFilter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { getPlanets } = this.props;
+    getPlanets();
+  }
+
+  render() {
+    const { isFetching, filterByNumericValues } = this.props;
+    if (isFetching) return <p>Loading</p>;
+    return (
+      <div>
+        <Input />
+        <OrderFilter />
+        {(filterByNumericValues.length > 0) ? <Filters /> : <p>Nenhum filtro aplicado</p>}
+        <p>StarWars Datatable with Filters</p>
+        <Table />
+      </div>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  filterByNumericValues: PropTypes.arrayOf(Object).isRequired,
+  getPlanets: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  ...state.filters,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getPlanets: () => dispatch(getPlanetsAPIAct()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
