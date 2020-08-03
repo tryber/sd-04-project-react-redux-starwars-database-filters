@@ -21,8 +21,8 @@ const ordering = (column, sort, planets) => {
   const newPlanets = [...planets];
   if (!Number(newPlanets[0][column])) {
     newPlanets.sort(function (a, b) {
-      const x = a[column].toLowerCase();
-      const y = b[column].toLowerCase();
+      const x = a[column.toLowerCase()].toLowerCase();
+      const y = b[column.toLowerCase()].toLowerCase();
       if (x < y) {
         return -1;
       }
@@ -72,9 +72,9 @@ const Table = (props) => {
       filteredData = filteredData.filter((planet) => filterPlanet(planet, filtro));
     });
   }
-  if (order) {
-    filteredData = ordering(order.column, order.sort, filteredData);
-  }
+
+  filteredData = ordering(order.column, order.sort, filteredData);
+
   return (
     <div>
       <table>
@@ -86,7 +86,7 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  data: PropTypes.arrayOf().isRequired,
+  data: PropTypes.arrayOf(Object).isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.func).isRequired,
   inputText: PropTypes.string.isRequired,
   order: PropTypes.arrayOf(Object).isRequired,
@@ -96,7 +96,7 @@ const mapStateToProps = (state) => ({
   data: state.filters.data,
   inputText: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
-  ...state.OrderFilterReducer,
+  ...state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({

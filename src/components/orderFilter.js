@@ -73,7 +73,7 @@ OrderFilter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  ...state.OrderFilterReducer,
+  ...state.order,
   ...state.filters,
 });
 
