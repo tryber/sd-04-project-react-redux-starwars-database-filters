@@ -44,7 +44,7 @@ const filters = (state = INITIAL_STATE, action) => {
           column: action.column,
           sort: action.sort,
         },
-      }
+      };
     default:
       return state;
   }

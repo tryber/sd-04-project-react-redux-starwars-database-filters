@@ -25,8 +25,8 @@ class Table extends React.Component {
         <table>
           <thead>
             <tr>
-              {tableHeader.map((column) => (
-                <th key={column}>{column}</th>
+              {tableHeader.map((columns) => (
+                <th key={columns}>{columns}</th>
               ))}
             </tr>
           </thead>
@@ -34,8 +34,8 @@ class Table extends React.Component {
           <tbody>
             {orderDataPlanets.map((planet) => (
               <tr key={planet.name}>
-                {tableHeader.map((column) => (
-                  <td key={planet[column]}>{planet[column]}</td>
+                {tableHeader.map((columns) => (
+                  <td key={planet[columns]}>{planet[columns]}</td>
                 ))}
               </tr>
             ))}

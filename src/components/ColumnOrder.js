@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sortColumns } from '../actions';
@@ -18,7 +19,7 @@ class ColumnOrder extends Component {
     const tableHeader = keys.filter((key) => key !== 'residents');
     return (
       <div>
-        {/*Seleciona Coluna*/}
+        {/* Seleciona Coluna */}
         <select
           data-testid="column-sort"
           onChange={(event) => this.setState({ column: event.target.value })}
@@ -29,7 +30,7 @@ class ColumnOrder extends Component {
             </option>
           ))}
         </select>
-        {/*ASC e DESC*/}
+        {/* ASC e DESC */}
         <div>
           <label htmlFor="orderASC">
             ASC
@@ -54,7 +55,7 @@ class ColumnOrder extends Component {
             />
           </label>
         </div>
-        {/*Botão Filtrar*/}
+        {/* Botão Filtrar */}
         <button
           data-testid="column-sort-button"
           type="button"
@@ -66,6 +67,11 @@ class ColumnOrder extends Component {
     );
   }
 }
+
+ColumnOrder.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  orderColumns: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   data: state.planets.data,
