@@ -30,11 +30,9 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: [
-          ...state.filterByNumericValues.filter(
-            (item) => item !== action.filtered
-          ),
-        ]
-      }
+          ...state.filterByNumericValues.filter((item) => item !== action.filtered),
+        ],
+      };
     default:
       return state;
   }
