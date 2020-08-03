@@ -12,6 +12,35 @@ class ColumnOrder extends Component {
     };
   }
 
+  ascDesc() {
+    return (
+      <div>
+        <label htmlFor="orderASC">
+          ASC
+          <input
+            data-testid="column-sort-input"
+            id="orderASC"
+            name="order"
+            type="radio"
+            value="ASC"
+            onChange={(event) => this.setState({ sort: event.target.value })}
+          />
+        </label>
+        <label htmlFor="orderDESC">
+          DESC
+          <input
+            data-testid="column-sort-input"
+            id="orderDESC"
+            name="order"
+            type="radio"
+            value="DESC"
+            onChange={(event) => this.setState({ sort: event.target.value })}
+          />
+        </label>
+      </div>
+    );
+  }
+
   render() {
     const { column, sort } = this.state;
     const { data, orderColumns } = this.props;
@@ -24,37 +53,14 @@ class ColumnOrder extends Component {
           data-testid="column-sort"
           onChange={(event) => this.setState({ column: event.target.value })}
         >
-          {tableHeader.map((column) => (
-            <option key={column} value={column.toLowerCase()}>
-              {column}
+          {tableHeader.map((columns) => (
+            <option key={columns} value={columns.toLowerCase()}>
+              {columns}
             </option>
           ))}
         </select>
         {/* ASC e DESC */}
-        <div>
-          <label htmlFor="orderASC">
-            ASC
-            <input
-              data-testid="column-sort-input"
-              id="orderASC"
-              name="order"
-              type="radio"
-              value="ASC"
-              onChange={(event) => this.setState({ sort: event.target.value })}
-            />
-          </label>
-          <label htmlFor="orderDESC">
-            DESC
-            <input
-              data-testid="column-sort-input"
-              id="orderDESC"
-              name="order"
-              type="radio"
-              value="DESC"
-              onChange={(event) => this.setState({ sort: event.target.value })}
-            />
-          </label>
-        </div>
+        {this.ascDesc()}
         {/* Botão Filtrar */}
         <button
           data-testid="column-sort-button"
