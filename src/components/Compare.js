@@ -29,21 +29,6 @@ class Compare extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  setProperty() {
-    const { comparisonParams } = this.props;
-    const properties = [
-      '',
-      'diameter',
-      'orbital_period',
-      'population',
-      'rotatio_period',
-      'surface_water',
-    ];
-    const propUpdated = comparisonParams.map(({ column }) => column);
-    return properties.filter((property) => !propUpdated.includes(property));
-    // return properties;
-  }
-
   onChange(e, key) {
     this.setState({ [key]: e.target.value });
   }
@@ -108,6 +93,20 @@ class Compare extends Component {
     );
   }
 
+  setProperty() {
+    const { comparisonParams } = this.props;
+    const properties = [
+      '',
+      'diameter',
+      'orbital_period',
+      'population',
+      'rotatio_period',
+      'surface_water',
+    ];
+    const propUpdated = comparisonParams.map(({ column }) => column);
+    return properties.filter((property) => !propUpdated.includes(property));
+    // return properties;
+  }
 
   render() {
     return (
