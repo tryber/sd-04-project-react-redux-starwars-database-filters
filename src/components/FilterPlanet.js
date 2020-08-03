@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterName } from '../actions';
 
+
 class FilterPlanet extends Component {
   render() {
     const { filterByName } = this.props;

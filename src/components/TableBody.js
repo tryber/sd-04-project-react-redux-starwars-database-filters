@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import filterFunc from './FilterFun';
 
 
 class TableBody extends Component {
   render() {
-    const { planets, name } = this.props;
-    const filterName = planets.filter((planet) => planet.name.includes(name));
+    const { planets, name, numericValues } = this.props;
+    const data = filterFunc(planets, name, numericValues);
+    // const filterName = planets.filter((planet) => planet.name.includes(name));
 
     return (
       <tbody>
-        {filterName.map((planet) => (
+        {data.map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>
             <td>{planet.rotation_period}</td>
@@ -46,6 +48,7 @@ function mapStateToProps(state) {
   return {
     planets: state.getPlanets.data,
     name: state.filters.filterByName.name,
+    numericValues: state.filters.filterByNumericValues,
   };
 }
 

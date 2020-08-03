@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Table from './Table';
 import fetchPlanets from '../actions';
+import FilterValues from './FilterValues';
 import './HomeLoading.css';
 import './Home.css';
+import FilterPlanet from './FilterPlanet';
 
 class Home extends Component {
   componentDidMount() {
@@ -19,6 +21,8 @@ class Home extends Component {
     return (
       <div className="home">
         <h1 className="home-title">Star Wars DataTable</h1>
+        <FilterPlanet />
+        <FilterValues />
         <Table />
       </div>
     );

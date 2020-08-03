@@ -85,230 +85,230 @@ const mockFetch = () => {
 //   });
 // });
 
-describe('2 - Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
-  beforeAll(mockFetch);
-  beforeEach(cleanup);
-
-  test('should have a input field for name filters', async () => {
-    const { findByTestId } = renderApp();
-    const filterField = await findByTestId('name-filter');
-    expect(filterField).toBeInTheDocument();
-  });
-
-  test('input filter should change results', async () => {
-    const { findAllByRole, findByTestId, findByText } = renderApp();
-    const filterField = await findByTestId('name-filter');
-
-    fireEvent.change(filterField, { target: { value: 'o' } });
-    let tableRows = await findAllByRole('row');
-    expect(tableRows).toHaveLength(8);
-    expect(await findByText('Coruscant')).toBeInTheDocument();
-    expect(await findByText('Dagobah')).toBeInTheDocument();
-    expect(await findByText('Endor')).toBeInTheDocument();
-    expect(await findByText('Hoth')).toBeInTheDocument();
-    expect(await findByText('Kamino')).toBeInTheDocument();
-    expect(await findByText('Naboo')).toBeInTheDocument();
-    expect(await findByText('Tatooine')).toBeInTheDocument();
-
-    fireEvent.change(filterField, { target: { value: 'oo' } });
-    tableRows = await findAllByRole('row');
-    expect(tableRows).toHaveLength(3);
-    expect(await findByText('Naboo')).toBeInTheDocument();
-    expect(await findByText('Tatooine')).toBeInTheDocument();
-
-    fireEvent.change(filterField, { target: { value: '' } });
-  });
-
-  test('should change store filter values', async () => {
-    const { findByTestId, store } = renderApp();
-    const filterField = await findByTestId('name-filter');
-    fireEvent.change(filterField, { target: { value: 'o' } });
-    expect(store.getState().filters.filterByName.name).toEqual('o');
-    fireEvent.change(filterField, { target: { value: 'oo' } });
-    expect(store.getState().filters.filterByName.name).toEqual('oo');
-    fireEvent.change(filterField, { target: { value: '' } });
-    expect(store.getState().filters.filterByName.name).toEqual('');
-  });
-});
-
-// describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
+// describe('2 - Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
 //   beforeAll(mockFetch);
 //   beforeEach(cleanup);
 
-//   test('should have the column selection filter', async () => {
+//   test('should have a input field for name filters', async () => {
 //     const { findByTestId } = renderApp();
-
-//     const columnFilter = await findByTestId('column-filter');
-
-//     expect(columnFilter).toHaveProperty('nodeName', 'SELECT');
-
-//     expect(columnFilter.children).toHaveLength(6);
-
-//     const expectedColumnFilters = [
-//       'population',
-//       'orbital_period',
-//       'diameter',
-//       'rotation_period',
-//       'surface_water',
-//     ];
-
-//     const foundColumnFilterArray = [];
-
-//     for (let index = 0; index < columnFilter.children.length; index += 1) {
-//       const item = columnFilter.children[index];
-//       expect(item).toHaveProperty('nodeName', 'OPTION');
-//       foundColumnFilterArray.push(item.innerHTML);
-//     }
-
-//     expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
+//     const filterField = await findByTestId('name-filter');
+//     expect(filterField).toBeInTheDocument();
 //   });
 
-//   test('should have the comparison selection filter', async () => {
-//     const { findByTestId } = renderApp();
+//   test('input filter should change results', async () => {
+//     const { findAllByRole, findByTestId, findByText } = renderApp();
+//     const filterField = await findByTestId('name-filter');
 
-//     const comparisonFilter = await findByTestId('comparison-filter');
-
-//     expect(comparisonFilter).toHaveProperty('nodeName', 'SELECT');
-
-//     expect(comparisonFilter.children).toHaveLength(4);
-
-//     const expectedColumnComparisons = [
-//       'maior que',
-//       'igual a',
-//       'menor que',
-//     ];
-
-//     const foundComparisonFilterArray = [];
-
-//     for (let index = 0; index < comparisonFilter.children.length; index += 1) {
-//       const item = comparisonFilter.children[index];
-//       expect(item).toHaveProperty('nodeName', 'OPTION');
-//       foundComparisonFilterArray.push(item.innerHTML);
-//     }
-
-//     expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
-//   });
-
-//   test('should have the value input filter', async () => {
-//     const { findByTestId } = renderApp();
-
-//     const valueFilter = await findByTestId('value-filter');
-
-//     expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
-//   });
-
-//   test('should have the filter button', async () => {
-//     const { findByTestId } = renderApp();
-
-//     const buttonFilter = await findByTestId('button-filter');
-
-//     expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
-//   });
-
-//   test('should filter with less than', async () => {
-//     const { findByTestId, findAllByRole, store } = renderApp();
-
-//     const columnFilter = await findByTestId('column-filter');
-//     const comparisonFilter = await findByTestId('comparison-filter');
-//     const valueFilter = await findByTestId('value-filter');
-//     const buttonFilter = await findByTestId('button-filter');
-
-//     fireEvent.change(columnFilter, { target: { value: 'surface_water' } });
-//     fireEvent.change(comparisonFilter, { target: { value: 'menor que' } });
-//     fireEvent.change(valueFilter, { target: { value: '40' } });
-//     fireEvent.click(buttonFilter);
-
-//     const tableRows = await findAllByRole('row');
-//     expect(tableRows).toHaveLength(7);
-
-//     const expectedFilters = [
-//       { column: 'surface_water', comparison: 'menor que', value: '40' },
-//     ];
-//     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
-//   });
-
-//   test('should filter with greather than', async () => {
-//     const initialState = getStore().getState();
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//         ],
-//       },
-//     };
-//     const { findByTestId, findAllByRole, store } = renderApp(initial);
-
-//     const columnFilter = await findByTestId('column-filter');
-//     const comparisonFilter = await findByTestId('comparison-filter');
-//     const valueFilter = await findByTestId('value-filter');
-//     const buttonFilter = await findByTestId('button-filter');
-
-//     fireEvent.change(columnFilter, { target: { value: 'diameter' } });
-//     fireEvent.change(comparisonFilter, { target: { value: 'maior que' } });
-//     fireEvent.change(valueFilter, { target: { value: '8900' } });
-//     fireEvent.click(buttonFilter);
-
-//     const tableRows = await findAllByRole('row');
-
-//     expect(tableRows).toHaveLength(5);
-
-//     const expectedFilters = [
-//       { column: 'surface_water', comparison: 'menor que', value: '40' },
-//       { column: 'diameter', comparison: 'maior que', value: '8900' },
-//     ];
-//     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
-//   });
-
-//   test('should filter with equal to', async () => {
-//     const initialState = getStore().getState();
-
-//     const initial = {
-//       ...initialState,
-//       filters:
-//       {
-//         ...initialState.filters,
-//         filterByNumericValues:
-//         [
-//           { column: 'surface_water', comparison: 'menor que', value: '40' },
-//           { column: 'diameter', comparison: 'maior que', value: '8900' }
-//         ],
-//       },
-//     };
-
-//     const {
-//       findByTestId,
-//       findAllByRole,
-//       findByText,
-//       store,
-//     } = renderApp(initial);
-
-//     const columnFilter = await findByTestId('column-filter');
-//     const comparisonFilter = await findByTestId('comparison-filter');
-//     const valueFilter = await findByTestId('value-filter');
-//     const buttonFilter = await findByTestId('button-filter');
-
-//     fireEvent.change(columnFilter, { target: { value: 'population' } });
-//     fireEvent.change(comparisonFilter, { target: { value: 'igual a' } });
-//     fireEvent.change(valueFilter, { target: { value: '200000' } });
-//     fireEvent.click(buttonFilter);
-
-//     const tableRows = await findAllByRole('row');
-
-//     expect(tableRows).toHaveLength(2);
+//     fireEvent.change(filterField, { target: { value: 'o' } });
+//     let tableRows = await findAllByRole('row');
+//     expect(tableRows).toHaveLength(8);
+//     expect(await findByText('Coruscant')).toBeInTheDocument();
+//     expect(await findByText('Dagobah')).toBeInTheDocument();
+//     expect(await findByText('Endor')).toBeInTheDocument();
+//     expect(await findByText('Hoth')).toBeInTheDocument();
+//     expect(await findByText('Kamino')).toBeInTheDocument();
+//     expect(await findByText('Naboo')).toBeInTheDocument();
 //     expect(await findByText('Tatooine')).toBeInTheDocument();
 
-//     const expectedFilters = [
-//       { column: 'surface_water', comparison: 'menor que', value: '40' },
-//       { column: 'diameter', comparison: 'maior que', value: '8900' },
-//       { column: 'population', comparison: 'igual a', value: '200000' },
-//     ];
-//     expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+//     fireEvent.change(filterField, { target: { value: 'oo' } });
+//     tableRows = await findAllByRole('row');
+//     expect(tableRows).toHaveLength(3);
+//     expect(await findByText('Naboo')).toBeInTheDocument();
+//     expect(await findByText('Tatooine')).toBeInTheDocument();
+
+//     fireEvent.change(filterField, { target: { value: '' } });
+//   });
+
+//   test('should change store filter values', async () => {
+//     const { findByTestId, store } = renderApp();
+//     const filterField = await findByTestId('name-filter');
+//     fireEvent.change(filterField, { target: { value: 'o' } });
+//     expect(store.getState().filters.filterByName.name).toEqual('o');
+//     fireEvent.change(filterField, { target: { value: 'oo' } });
+//     expect(store.getState().filters.filterByName.name).toEqual('oo');
+//     fireEvent.change(filterField, { target: { value: '' } });
+//     expect(store.getState().filters.filterByName.name).toEqual('');
 //   });
 // });
+
+describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
+  beforeAll(mockFetch);
+  beforeEach(cleanup);
+
+  test('should have the column selection filter', async () => {
+    const { findByTestId } = renderApp();
+
+    const columnFilter = await findByTestId('column-filter');
+
+    expect(columnFilter).toHaveProperty('nodeName', 'SELECT');
+
+    expect(columnFilter.children).toHaveLength(6);
+
+    const expectedColumnFilters = [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+
+    const foundColumnFilterArray = [];
+
+    for (let index = 0; index < columnFilter.children.length; index += 1) {
+      const item = columnFilter.children[index];
+      expect(item).toHaveProperty('nodeName', 'OPTION');
+      foundColumnFilterArray.push(item.innerHTML);
+    }
+
+    expect(foundColumnFilterArray).toEqual(expect.arrayContaining(expectedColumnFilters));
+  });
+
+  test('should have the comparison selection filter', async () => {
+    const { findByTestId } = renderApp();
+
+    const comparisonFilter = await findByTestId('comparison-filter');
+
+    expect(comparisonFilter).toHaveProperty('nodeName', 'SELECT');
+
+    expect(comparisonFilter.children).toHaveLength(4);
+
+    const expectedColumnComparisons = [
+      'maior que',
+      'igual a',
+      'menor que',
+    ];
+
+    const foundComparisonFilterArray = [];
+
+    for (let index = 0; index < comparisonFilter.children.length; index += 1) {
+      const item = comparisonFilter.children[index];
+      expect(item).toHaveProperty('nodeName', 'OPTION');
+      foundComparisonFilterArray.push(item.innerHTML);
+    }
+
+    expect(foundComparisonFilterArray).toEqual(expect.arrayContaining(expectedColumnComparisons));
+  });
+
+  test('should have the value input filter', async () => {
+    const { findByTestId } = renderApp();
+
+    const valueFilter = await findByTestId('value-filter');
+
+    expect(valueFilter).toHaveProperty('nodeName', 'INPUT');
+  });
+
+  test('should have the filter button', async () => {
+    const { findByTestId } = renderApp();
+
+    const buttonFilter = await findByTestId('button-filter');
+
+    expect(buttonFilter).toHaveProperty('nodeName', 'BUTTON');
+  });
+
+  test('should filter with less than', async () => {
+    const { findByTestId, findAllByRole, store } = renderApp();
+
+    const columnFilter = await findByTestId('column-filter');
+    const comparisonFilter = await findByTestId('comparison-filter');
+    const valueFilter = await findByTestId('value-filter');
+    const buttonFilter = await findByTestId('button-filter');
+
+    fireEvent.change(columnFilter, { target: { value: 'surface_water' } });
+    fireEvent.change(comparisonFilter, { target: { value: 'menor que' } });
+    fireEvent.change(valueFilter, { target: { value: '40' } });
+    fireEvent.click(buttonFilter);
+
+    const tableRows = await findAllByRole('row');
+    expect(tableRows).toHaveLength(7);
+
+    const expectedFilters = [
+      { column: 'surface_water', comparison: 'menor que', value: '40' },
+    ];
+    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+  });
+
+  test('should filter with greather than', async () => {
+    const initialState = getStore().getState();
+    const initial = {
+      ...initialState,
+      filters:
+      {
+        ...initialState.filters,
+        filterByNumericValues:
+        [
+          { column: 'surface_water', comparison: 'menor que', value: '40' },
+        ],
+      },
+    };
+    const { findByTestId, findAllByRole, store } = renderApp(initial);
+
+    const columnFilter = await findByTestId('column-filter');
+    const comparisonFilter = await findByTestId('comparison-filter');
+    const valueFilter = await findByTestId('value-filter');
+    const buttonFilter = await findByTestId('button-filter');
+
+    fireEvent.change(columnFilter, { target: { value: 'diameter' } });
+    fireEvent.change(comparisonFilter, { target: { value: 'maior que' } });
+    fireEvent.change(valueFilter, { target: { value: '8900' } });
+    fireEvent.click(buttonFilter);
+
+    const tableRows = await findAllByRole('row');
+
+    expect(tableRows).toHaveLength(5);
+
+    const expectedFilters = [
+      { column: 'surface_water', comparison: 'menor que', value: '40' },
+      { column: 'diameter', comparison: 'maior que', value: '8900' },
+    ];
+    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+  });
+
+  test('should filter with equal to', async () => {
+    const initialState = getStore().getState();
+
+    const initial = {
+      ...initialState,
+      filters:
+      {
+        ...initialState.filters,
+        filterByNumericValues:
+        [
+          { column: 'surface_water', comparison: 'menor que', value: '40' },
+          { column: 'diameter', comparison: 'maior que', value: '8900' }
+        ],
+      },
+    };
+
+    const {
+      findByTestId,
+      findAllByRole,
+      findByText,
+      store,
+    } = renderApp(initial);
+
+    const columnFilter = await findByTestId('column-filter');
+    const comparisonFilter = await findByTestId('comparison-filter');
+    const valueFilter = await findByTestId('value-filter');
+    const buttonFilter = await findByTestId('button-filter');
+
+    fireEvent.change(columnFilter, { target: { value: 'population' } });
+    fireEvent.change(comparisonFilter, { target: { value: 'igual a' } });
+    fireEvent.change(valueFilter, { target: { value: '200000' } });
+    fireEvent.click(buttonFilter);
+
+    const tableRows = await findAllByRole('row');
+
+    expect(tableRows).toHaveLength(2);
+    expect(await findByText('Tatooine')).toBeInTheDocument();
+
+    const expectedFilters = [
+      { column: 'surface_water', comparison: 'menor que', value: '40' },
+      { column: 'diameter', comparison: 'maior que', value: '8900' },
+      { column: 'population', comparison: 'igual a', value: '200000' },
+    ];
+    expect(store.getState().filters.filterByNumericValues).toEqual(expectedFilters);
+  });
+});
 
 // describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
 //   test('check avaiable filters', async () => {
