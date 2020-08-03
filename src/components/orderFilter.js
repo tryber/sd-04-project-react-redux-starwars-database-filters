@@ -15,7 +15,10 @@ class OrderFilter extends React.Component {
 
   renderRadioButtons() {
     return (
-      <div onChange={(event) => this.setState({ [event.target.name]: event.target.value })} name="sort">
+      <div
+        onChange={(event) => this.setState({ [event.target.name]: event.target.value })}
+        name="sort"
+      >
         <input
           data-testid="column-sort-input"
           name="order"
@@ -24,7 +27,12 @@ class OrderFilter extends React.Component {
           defaultChecked
         />
         <label htmlFor="ASC">ASC</label>
-        <input data-testid="column-sort-input" name="order" type="radio" value="DESC" />
+        <input
+          data-testid="column-sort-input"
+          name="order"
+          type="radio"
+          value="DESC"
+        />
         <label htmlFor="DESC">DESC</label>
       </div>
     );
@@ -35,7 +43,11 @@ class OrderFilter extends React.Component {
     const { column, order } = this.state;
     return (
       <div>
-        <select onChange={(event) => this.setState({ column: event.target.value })} data-testid="column-sort" name="column">
+        <select
+          onChange={(event) => this.setState({ column: event.target.value })}
+          data-testid="column-sort"
+          name="column"
+        >
           {Object.keys(data[0])
             .filter((header) => header !== 'residents')
             .map((columnHeader) => (
@@ -43,7 +55,13 @@ class OrderFilter extends React.Component {
             ))}
         </select>
         {this.renderRadioButtons()}
-        <button type="button" onClick={() => submitRadio(column, order)} data-testid="column-sort-button">Filter</button>
+        <button
+          type="button"
+          onClick={() => submitRadio(column, order)}
+          data-testid="column-sort-button"
+        >
+          Filter
+        </button>
       </div>
     );
   }
