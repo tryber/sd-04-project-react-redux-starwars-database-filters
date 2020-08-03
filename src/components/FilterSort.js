@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import options from '../service/planets';
+import PlanetsOptions from './PlantesOptions.js';
 import { sortFilter } from '../action/actionFilter';
 
 class FilterSort extends Component {
@@ -24,16 +24,9 @@ class FilterSort extends Component {
 
     return (
       <div>
-        <select
-          name="column"
-          data-testid="column-sort"
-          onChange={(event) => this.getState(event.target)}
-        >
-          <option>Ordem</option>
-          {options.map((opt) => (
-            <option>{opt}</option>
-          ))}
-        </select>
+        <PlanetsOptions
+          onChange={(event) => this.getState(event.target)}         
+        />
         <label htmlFor="orderASC">
           <input
             type="radio"
@@ -52,7 +45,7 @@ class FilterSort extends Component {
             test="column-sort-input"
             onClick={(event) => this.getState(event.target)}
           />
-          DSC
+          DSC"
         </label>
         <button
           type="button"

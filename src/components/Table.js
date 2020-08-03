@@ -5,7 +5,7 @@ import TableHead from './TableHead';
 import FilterTable from './FilterByName';
 import Filters from './Filters';
 import RemoveFilter from './RemoveFilters';
-import FilterSort from './FilterSort'
+import FilterSort from './FilterSort';
 import { fetchGetApi } from '../action';
 
 class Table extends Component {

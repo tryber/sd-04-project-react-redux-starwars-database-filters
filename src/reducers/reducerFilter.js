@@ -1,14 +1,9 @@
 import { FILTER_TABLE, FILTER_COMBINER, REMOVE_FILTER, SORT_FILTER } from '../action/actionFilter';
 
 const INITIAL_STATE = {
-  filterByName: {
-    name: '',
-  },
+  filterByName: { name: '' },
   filterByNumericValues: [],
-  order: {
-    column: 'Name',
-    sort: 'ASC',
-  },
+  order: { column: 'Name', sort: 'ASC' },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -16,9 +11,7 @@ const filters = (state = INITIAL_STATE, action) => {
     case FILTER_TABLE:
       return {
         ...state,
-        filterByName: {
-          name: action.name,
-        },
+        filterByName: { name: action.name },
       };
     case FILTER_COMBINER:
       return {
