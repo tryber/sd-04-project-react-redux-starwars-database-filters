@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PlanetsOptions from './PlanetsOptions.js.js';
-import PlanetsRadio from './PlanetsRadio'
+import PlanetsRadio from './PlanetsRadio';
 import { sortFilter } from '../action/actionFilter';
 
 class FilterSort extends Component {
@@ -26,7 +26,7 @@ class FilterSort extends Component {
     return (
       <div>
         <PlanetsOptions onChange={(event) => this.getState(event.target)} />
-        <PlanetsRadio onClick={(event) => this.getState(event.target)}/>
+        <PlanetsRadio onClick={(event) => this.getState(event.target)} />
         <button
           type="button"
           data-testid="column-sort-button"

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PlanetsRadio = ({ onClick }) => {
   return (
@@ -25,6 +26,10 @@ const PlanetsRadio = ({ onClick }) => {
       </label>
     </div>
   );
+};
+
+PlanetsRadio.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PlanetsRadio;

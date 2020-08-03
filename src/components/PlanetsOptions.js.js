@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import options from '../service/planets';
 
 const PlanetsOptions = ({ onChange }) => {
@@ -11,5 +12,10 @@ const PlanetsOptions = ({ onChange }) => {
     </select>
   );
 };
+
+PlanetsOptions.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
 
 export default PlanetsOptions;
