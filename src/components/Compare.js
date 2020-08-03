@@ -102,11 +102,10 @@ class Compare extends Component {
   setProperty() {
     const { comparisonParams } = this.props;
     const properties = [
-      '',
-      'diameter',
-      'orbital_period',
       'population',
-      'rotatio_period',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
       'surface_water',
     ];
     const propUpdated = comparisonParams.map(({ column }) => column);
