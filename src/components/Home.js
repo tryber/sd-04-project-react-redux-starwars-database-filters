@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Filter from './Filter';
-import Compare from './Compare';
+// import Compare from './Compare';
 import Table from './Table';
 
 class Home extends Component {
@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <div>
         <Filter />
-        <Compare />
+        {/* <Compare /> */}
         <Table />
       </div>
     );

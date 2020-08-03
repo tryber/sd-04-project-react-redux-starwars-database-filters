@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchGetPlanet } from '../actions';
+import Compare from './Compare';
 import compareFunc from '../service/compareFunc';
 // import Filter from './Filter';
 
@@ -21,8 +22,8 @@ class Table extends Component {
       : [];
     return (
       <div>
-        <span>StarWars Datatable with Filters</span>
-        {/* <Filter /> */}
+        {/* <span>StarWars Datatable with Filters</span> */}
+        <Compare />
         <thead>
           <tr>
             {attributes.map((index) => (
