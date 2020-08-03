@@ -50,7 +50,7 @@ class OrderFilter extends React.Component {
 }
 
 OrderFilter.propTypes = {
-  data: PropTypes.arrayof(Object).isRequired,
+  data: PropTypes.arrayOf(Object).isRequired,
   submitRadio: PropTypes.func.isRequired,
 };
 
