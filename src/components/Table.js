@@ -1,7 +1,9 @@
 import React from 'react'
+import TableBody from './TableBody'
 
 function Table() {
   return (
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -19,6 +21,8 @@ function Table() {
           <th>Url</th
         </tr>
       </thead>
+      <TableBody />
+    </table>
   );
 };
 
