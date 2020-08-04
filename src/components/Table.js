@@ -33,7 +33,7 @@ class Table extends Component {
     const {
       error, loading, planetName, data,
     } = this.props;
-    if (data) {
+    if (data.length !== 0) {
       const filteredResults = this.applyNameFilter(planetName, data);
       return (
         <div>
@@ -43,7 +43,12 @@ class Table extends Component {
       );
     }
     if (loading) {
-      return <div>Loading...</div>;
+      return (
+        <div>
+          <TableHeader />
+          <p>Loading...</p>
+        </div>
+      );
     }
     return <div>{error.message}</div>;
   }
@@ -67,10 +72,10 @@ const mapStateToProps = state => ({
   data: state.generateTable.data,
   error: state.generateTable.error,
   loading: state.generateTable.loading,
-  planetName: state.filters.filterByName.name,
-  numComparison: state.filters.filterByNumericValues.comparison,
-  numColumn: state.filters.filterByNumericValues.column,
-  numValue: state.filters.filterByNumericValues.value,
+  planetName: state.allFilters.filters.filterByName.name,
+  numComparison: state.allFilters.filters.filterByNumericValues.comparison,
+  numColumn: state.allFilters.filters.filterByNumericValues.column,
+  numValue: state.allFilters.filters.filterByNumericValues.value,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

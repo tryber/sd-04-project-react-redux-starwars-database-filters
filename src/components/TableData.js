@@ -6,7 +6,7 @@ export default class TableData extends Component {
     if (data) {
       return Object.keys(data).map((attr, i) => <th key={i}>{attr}</th>);
     }
-    return <p>Nothing found</p>;
+    return <p>NOTHING FOUND</p>;
   };
 
   renderTable = data => data.map((planet, i) => (

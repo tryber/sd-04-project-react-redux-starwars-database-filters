@@ -1,16 +1,94 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByName } from '../actions';
+import { filterByName, filterByNumVal } from '../actions';
 
 class TableHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      column: '',
+      comparison: '',
+      value: 0,
+    };
+  }
+
   handleSumbit = event => {
     event.preventDefault();
-    console.log(event.target.value);
+    const { filterByNumVal } = this.props;
+    const { column, comparison, value } = this.state;
+    filterByNumVal(column, comparison, value);
+    this.setState({
+      column: '',
+      comparison: '',
+      value: 0,
+    });
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  renderCompSelect = () => {
+    const { comparison } = this.state;
+    return (
+      <>
+        <label htmlFor="comparison-filter">Comparação:</label>
+        <select
+          id="comparison-filter"
+          name="comparison"
+          data-testid="comparison-filter"
+          onChange={event => this.handleChange(event)}
+          value={comparison}
+        >
+          <option value="" />
+          <option value="maior que">Maior Que</option>
+          <option value="menor que">Menor Que</option>
+          <option value="igual a">Igual A</option>
+        </select>
+      </>
+    );
+  }
+
+  renderColumnSelect = () => {
+    const { numFilters } = this.props;
+    const { column } = this.state;
+    const columns = [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    const stateColumns = numFilters.map(({ column }) => column);
+    const filteredColumns = [
+      '',
+      ...columns.filter(option => !stateColumns.includes(option)),
+    ];
+    return (
+      <>
+        <label htmlFor="column-filter">Coluna:</label>
+        <select
+          id="column-filter"
+          name="column"
+          data-testid="column-filter"
+          onChange={event => this.handleChange(event)}
+          value={column}
+        >
+          {filteredColumns.map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </>
+    );
   }
 
   render() {
     const { planetName, filterByName } = this.props;
+    const { value } = this.state;
     return (
       <>
         <h1>StarWars Datatable Filters</h1>
@@ -26,24 +104,15 @@ class TableHeader extends Component {
           <div className="container small">
             <form action="" onSubmit={event => this.handleSumbit(event)}>
               <div className="item">
-                <label htmlFor="column-filter">Coluna:</label>
-                <select name="column-filter" data-testid="column-filter">
-                  <option value="population">Population</option>
-                  <option value="orbital_period">Orbital Period</option>
-                  <option value="diameter">Diameter</option>
-                  <option value="rotation_period">Rotation Period</option>
-                  <option value="surface_water">Surface Water</option>
-                </select>
-                <label htmlFor="comparison-filter">Comparação:</label>
-                <select name="comparison-filter" data-testid="comparison-filter">
-                  <option value="maior que">Maior Que</option>
-                  <option value="menor que">Menor Que</option>
-                  <option value="igual a">Igual A</option>
-                </select>
+                {this.renderColumnSelect()}
+                {this.renderCompSelect()}
               </div>
               <input
                 type="number"
                 data-testid="value-filter"
+                name="value"
+                value={value}
+                onChange={event => this.handleChange(event)}
               />
               <input
                 type="submit"
@@ -60,6 +129,7 @@ class TableHeader extends Component {
 
 TableHeader.propTypes = {
   filterByName: PropTypes.func,
+  filterByNumVal: PropTypes.func,
   planetName: PropTypes.string,
 };
 
@@ -68,7 +138,8 @@ TableHeader.propTypes = {
 // });
 
 const mapStateToProps = state => ({
-  planetName: state.filters.filterByName.name,
+  planetName: state.allFilters.filters.filterByName.name,
+  numFilters: state.allFilters.filters.filterByNumericValues,
 });
 
-export default connect(mapStateToProps, { filterByName })(TableHeader);
+export default connect(mapStateToProps, { filterByName, filterByNumVal })(TableHeader);

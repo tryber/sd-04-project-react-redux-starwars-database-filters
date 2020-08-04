@@ -32,6 +32,7 @@
     "no-console": "off",
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
+    "no-shadow": "off",
     "prefer-arrow-callback": "off",
     "react/jsx-filename-extension": [
       1,

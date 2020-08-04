@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import generateTable from './generateTable';
-import filters from './filters';
+import allFilters from './allFilters';
 
 const rootReducer = combineReducers({
-  generateTable, filters,
+  generateTable, allFilters,
 });
 
 export default rootReducer;
