@@ -1,4 +1,5 @@
 
+import PropTypes from "prop-types";
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByName } from '../actions';
@@ -6,7 +7,7 @@ import { filterByName } from '../actions';
 
 class FilterPlanet extends Component {
   render() {
-    const { filterByName } = this.props;
+    const { filterByNamea } = this.props;
     return (
       <div>
         <input
@@ -14,13 +15,17 @@ class FilterPlanet extends Component {
           data-testid="name-filter"
           placeholder="preencha"
           onChange={
-            (event) => filterByName(event.target.value)
+            (event) => filterByNamea(event.target.value)
             }
         />
       </div>
     );
   }
 }
+
+FilterPlanet.propTypes = {
+  filterByNamea: PropTypes.func.isRequired,
+};
 
 
 const mapStateToProps = (state) => ({
