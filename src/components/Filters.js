@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { filterBy } from '../actions/actionFilter';
+import { filterBy, removeFilterClear } from '../actions/actionFilter';
 
 const valueOptions = [
   'population',
@@ -99,36 +99,25 @@ class Filters extends React.Component {
   }
 
   filtersRender() {
-    const {
-      filterByNumericValues,
-      filterByNumericValues: { column, comparison, value },
-    } = this.state;
-    if (filterByNumericValues.length === 0) return <div />;
-    return (
-      <div>
+    const { filterByNumericValues, clearFilter } = this.props;
+    if (!filterByNumericValues) return <div />;
+    return filterByNumericValues.map(({ column, comparison, value }) => (
+      <div data-testid="filter">
         <span>{`${column} - `}</span>
         <span>{`${comparison} - `}</span>
         <span>{`${value} `}</span>
-        <button
-          type="button"
-          data-testid="filter"
-          onClick={() => this.clearFilter(column)}
-        >
+        <button type="button" onClick={() => clearFilter(column)}>
           X
         </button>
       </div>
-    );
-  }
-
-  clearFilter(columnRemove) {
-    const { filterByNumericValues, submitValues } = this.state;
-    submitValues(filterByNumericValues.filter(({ column }) => column !== columnRemove));
+    ));
   }
 
   submitFilter(e) {
     const { submitValues } = this.props;
     e.preventDefault();
     submitValues(this.state);
+    this.setState({ value: '', column: '', comparison: '' });
   }
 
   render() {
@@ -168,6 +157,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   submitValues: (values) => dispatch(filterBy(values)),
+  clearFilter: (column) => dispatch(removeFilterClear(column)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

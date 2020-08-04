@@ -1,4 +1,4 @@
-import { SEARCH_PLANET_NAME, FILTERS_BY } from '../actions/actionFilter';
+import { SEARCH_PLANET_NAME, FILTERS_BY, REMOVE_FILTER } from '../actions/actionFilter';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -6,11 +6,10 @@ const INITIAL_STATE = {
   },
   filteredData: [],
   filterByNumericValues: [],
-  order: {
-    column: '',
-    sort: '',
-  },
-  filteredBySort: [],
+  // order: {
+  //   column: '',
+  //   sort: '',
+  // },
 };
 
 export default function filters(state = INITIAL_STATE, action) {
@@ -26,14 +25,14 @@ export default function filters(state = INITIAL_STATE, action) {
     case FILTERS_BY:
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          {
-            column: action.values.column,
-            comparison: action.values.comparison,
-            value: action.values.value,
-          },
-        ],
+        filterByNumericValues: [...state.filterByNumericValues, action.values],
+      };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          ({ column }) => column !== action.column,
+        ),
       };
     default:
       return state;

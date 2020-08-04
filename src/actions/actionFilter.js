@@ -1,6 +1,6 @@
 export const SEARCH_PLANET_NAME = 'SEARCH_PLANET_NAME';
 export const FILTERS_BY = 'FILTERS_BY';
-
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const SORT_BY = 'SORT_BY';
 
 export const searchName = (data, name) => ({
@@ -19,4 +19,9 @@ export const sortBy = (data, column, sort) => ({
   data,
   column,
   sort,
+});
+
+export const removeFilterClear = (column) => ({
+  type: REMOVE_FILTER,
+  column,
 });

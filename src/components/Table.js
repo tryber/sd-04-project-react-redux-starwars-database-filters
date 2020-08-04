@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { sortBy } from '../actions/actionFilter';
 import { fetchApi } from '../actions/actionAPI';
 
 class Table extends React.Component {
@@ -9,13 +8,11 @@ class Table extends React.Component {
     const { fetchingApi } = this.props;
 
     fetchingApi();
-    // const sortData = data.()
-    // dataSortBy(sortData, "ASC", "Name")
   }
 
   filterPlanets() {
-    const { filterByNumericValues, filteredBySort } = this.props;
-    if (filterByNumericValues.length === 0) return filteredBySort;
+    const { filterByNumericValues, data } = this.props;
+    if (filterByNumericValues.length === 0) return data;
     return filterByNumericValues.reduce((array, number) => {
       const { column, comparison, value } = number;
       return array.filter((planet) => {
@@ -30,7 +27,7 @@ class Table extends React.Component {
             return false;
         }
       });
-    }, filteredBySort);
+    }, data);
   }
 
   render() {
@@ -68,10 +65,7 @@ class Table extends React.Component {
 Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchingApi: PropTypes.func.isRequired,
-  // data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  filteredBySort: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ),
+  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   filteredData: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ),
@@ -86,8 +80,7 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-  // data: [],
-  filteredBySort: [],
+  data: [],
   filteredData: [],
   term: '',
   filterByNumericValues: [],
@@ -96,7 +89,6 @@ Table.defaultProps = {
 const mapStateToProps = (state) => ({
   isFetching: state.planetReducer.isFetching,
   data: state.planetReducer.data,
-  filteredBySort: state.filters.filteredBySort,
   term: state.filters.filterByName.name,
   filteredData: state.filters.filteredData,
   filterByNumericValues: state.filters.filterByNumericValues,
@@ -104,7 +96,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchingApi: () => dispatch(fetchApi()),
-  // dataSortBy: (data, column, sort) => dispatch(sortBy(data, column, sort)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
