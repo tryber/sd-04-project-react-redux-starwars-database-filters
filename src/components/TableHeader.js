@@ -8,7 +8,7 @@ class TableHeader extends Component {
     super(props);
     this.state = {
       column: '',
-      comparison: 'maior que',
+      comparison: '',
       value: 0,
     };
   }
@@ -42,6 +42,7 @@ class TableHeader extends Component {
           onChange={event => this.handleChange(event)}
           value={comparison}
         >
+          <option value="">-</option>
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
           <option value="menor que">menor que</option>
@@ -169,8 +170,8 @@ TableHeader.propTypes = {
 // });
 
 const mapStateToProps = state => ({
-  planetName: state.allFilters.filters.filterByName.name,
-  currentFilters: state.allFilters.filters.filterByNumericValues,
+  planetName: state.filters.filterByName.name,
+  currentFilters: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, {

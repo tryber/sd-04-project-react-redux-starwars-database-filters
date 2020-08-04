@@ -10,12 +10,12 @@ import testData from './testData';
 import App from './App';
 import reducer from './reducers';
 
-const getStore = (initialState) => {
+const getStore = initialState => {
   if (!initialState) return createStore(reducer, applyMiddleware(thunk));
   return createStore(reducer, initialState, applyMiddleware(thunk));
 };
 
-const renderApp = (initialState) => {
+const renderApp = initialState => {
   const store = getStore(initialState);
 
   return {
@@ -274,7 +274,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
         filterByNumericValues:
         [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
         ],
       },
     };
@@ -455,7 +455,7 @@ describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou 
 
     fireEvent.change(columnSort, { target: { value: 'diameter' } });
 
-    const ascInput = sortInput.filter((input) => input.value === 'DESC')[0];
+    const ascInput = sortInput.filter(input => input.value === 'DESC')[0];
 
     fireEvent.click(ascInput);
 

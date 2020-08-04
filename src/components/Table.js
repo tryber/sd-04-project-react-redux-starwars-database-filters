@@ -92,8 +92,8 @@ const mapStateToProps = state => ({
   data: state.generateTable.data,
   error: state.generateTable.error,
   loading: state.generateTable.loading,
-  planetName: state.allFilters.filters.filterByName.name,
-  numFilters: state.allFilters.filters.filterByNumericValues,
+  planetName: state.filters.filterByName.name,
+  numFilters: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
