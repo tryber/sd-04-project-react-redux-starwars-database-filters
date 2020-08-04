@@ -8,7 +8,7 @@ import {
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
-  order: { column: 'name', sort: 'ASC' },
+  order: { column: 'Name', sort: 'ASC' },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
