@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterBy } from '../actions/actionFilter';
 
-const valueOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+const valueOptions = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
 
-const selectedColumns = (dataFilter) => {
+const selectedColumns = dataFilter => {
   if (dataFilter.length === 0) return valueOptions;
-  const usedValues = dataFilter.map((value) => value.column);
-  return valueOptions.filter((value) => !usedValues.includes(value));
+  const usedValues = dataFilter.map(value => value.column);
+  return valueOptions.filter(value => !usedValues.includes(value));
 };
 
 class Filters extends React.Component {
@@ -32,13 +38,15 @@ class Filters extends React.Component {
     return (
       <div>
         <select
-          onChange={(e) => this.set(e)}
+          onChange={e => this.set(e)}
           name="column"
           data-testid="column-filter"
           defaultValue="DEFAULT"
         >
-          <option value="DEFAULT" disabled>Column</option>
-          {selectedColumns(filterByNumericValues).map((arg) => (
+          <option value="DEFAULT" disabled>
+            Column
+          </option>
+          {selectedColumns(filterByNumericValues).map(arg => (
             <option value={arg} name={arg} id={arg}>
               {arg}
             </option>
@@ -52,15 +60,23 @@ class Filters extends React.Component {
     return (
       <div>
         <select
-          onChange={(e) => this.set(e)}
+          onChange={e => this.set(e)}
           name="comparison"
           data-testid="comparison-filter"
           defaultValue="DEFAULT"
         >
-          <option value="DEFAULT" disabled>Comparison</option>
-          <option value="maior que" name="maior_que">maior que</option>
-          <option value="menor que" name="menor_que">menor que</option>
-          <option value="igual a" name="igual_a">igual a</option>
+          <option value="DEFAULT" disabled>
+            Comparison
+          </option>
+          <option value="maior que" name="maior_que">
+            maior que
+          </option>
+          <option value="menor que" name="menor_que">
+            menor que
+          </option>
+          <option value="igual a" name="igual_a">
+            igual a
+          </option>
         </select>
       </div>
     );
@@ -75,57 +91,79 @@ class Filters extends React.Component {
             name="value"
             id="value_number"
             type="number"
-            onChange={(e) => this.set(e)}
+            onChange={e => this.set(e)}
           />
         </label>
       </div>
     );
   }
 
+  filtersRender() {
+    const {
+      filterByNumericValues,
+      filterByNumericValues: { column, comparison, value },
+    } = this.state;
+    if (filterByNumericValues.length === 0) return <div />;
+    return (
+      <div>
+        <span>{`${column} - `}</span>
+        <span>{`${comparison} - `}</span>
+        <span>{`${value} `}</span>
+        <button type="button" data-testid="filter" onClick={() => this.clearFilter(column)}>
+          X
+        </button>
+      </div>
+    );
+  }
+
+  clearFilter(columnRemove) {
+    const { filterByNumericValues, submitValues } = this.state;
+    submitValues(filterByNumericValues.filter(({ column }) => column !== columnRemove));
+  }
 
   submitFilter(e) {
-    const {
-      submitValues,
-    } = this.props;
+    const { submitValues } = this.props;
     e.preventDefault();
     submitValues(this.state);
   }
 
   render() {
     return (
-      <form onSubmit={(e) => this.submitFilter(e)}>
-        {this.filterColumn()}
-        {this.filterComparison()}
-        {this.filterValue()}
-        <button
-          type="submit"
-          data-testid="button-filter"
-        >
-          Filter
-        </button>
-      </form>
+      <div>
+        <form onSubmit={e => this.submitFilter(e)}>
+          {this.filterColumn()}
+          {this.filterComparison()}
+          {this.filterValue()}
+          <button type="submit" data-testid="button-filter">
+            Filter
+          </button>
+        </form>
+        {this.filtersRender()}
+      </div>
     );
   }
 }
 
 Filters.propTypes = {
   submitValues: PropTypes.func.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.shape({
-    column: PropTypes.string,
-  })),
+  filterByNumericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+    })
+  ),
 };
 
 Filters.defaultProps = {
   filterByNumericValues: [],
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.planetReducer.data,
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  submitValues: (values) => dispatch(filterBy(values)),
+const mapDispatchToProps = dispatch => ({
+  submitValues: values => dispatch(filterBy(values)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
