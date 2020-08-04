@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByName, filterByNumVal } from '../actions';
+import { filterByName, filterByNumVal, removeNumFilter } from '../actions';
 
 class TableHeader extends Component {
   constructor(props) {
@@ -42,14 +42,14 @@ class TableHeader extends Component {
           onChange={event => this.handleChange(event)}
           value={comparison}
         >
-          <option value="" />
+          <option aria-label="None" value="" />
           <option value="maior que">Maior Que</option>
           <option value="menor que">Menor Que</option>
           <option value="igual a">Igual A</option>
         </select>
       </>
     );
-  }
+  };
 
   renderColumnSelect = () => {
     const { numFilters } = this.props;
@@ -84,7 +84,19 @@ class TableHeader extends Component {
         </select>
       </>
     );
-  }
+  };
+
+  renderRemoveBtn = () => {
+    const { numFilters, removeNumFilter } = this.props;
+    return numFilters.map(({ column, comparison, value }) => (
+      <div data-testid="filter" key={column}>
+        <span>{`${column} - ${comparison} - ${value} `}</span>
+        <button type="button" name={column} onClick={e => removeNumFilter(e.target.name)}>
+          X
+        </button>
+      </div>
+    ));
+  };
 
   render() {
     const { planetName, filterByName } = this.props;
@@ -121,6 +133,9 @@ class TableHeader extends Component {
               />
             </form>
           </div>
+          <div className="container-small">
+            {this.renderRemoveBtn()}
+          </div>
         </div>
       </>
     );
@@ -131,6 +146,13 @@ TableHeader.propTypes = {
   filterByName: PropTypes.func,
   filterByNumVal: PropTypes.func,
   planetName: PropTypes.string,
+  numFilters: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 // const mapDispatchToProps = dispatch => ({
@@ -142,4 +164,8 @@ const mapStateToProps = state => ({
   numFilters: state.allFilters.filters.filterByNumericValues,
 });
 
-export default connect(mapStateToProps, { filterByName, filterByNumVal })(TableHeader);
+export default connect(mapStateToProps, {
+  filterByName,
+  filterByNumVal,
+  removeNumFilter,
+})(TableHeader);

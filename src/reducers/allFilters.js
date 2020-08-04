@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUM_VAL } from '../actions';
+import { FILTER_BY_NAME, FILTER_BY_NUM_VAL, REMOVE_NUM_FILTER } from '../actions';
 
 const initialState = {
   filters: {
@@ -12,7 +12,7 @@ const initialState = {
 function allFilters(
   state = initialState,
   {
-    type, name, column, comparison, value,
+    type, name, column, comparison, value, filter,
   },
 ) {
   switch (type) {
@@ -34,6 +34,16 @@ function allFilters(
             ...state.filters.filterByNumericValues,
             { column, comparison, value },
           ],
+        },
+      };
+    case REMOVE_NUM_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: state.filters.filterByNumericValues.filter(
+            ({ column }) => column !== filter,
+          ),
         },
       };
     default:
