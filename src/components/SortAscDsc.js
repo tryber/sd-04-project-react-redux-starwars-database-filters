@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class SortAscDsc extends React.Component {
@@ -10,28 +10,30 @@ class SortAscDsc extends React.Component {
 
   render() {
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <label>
+      <form onSubmit={e => this.handleSubmit(e)}>
+        {/* <label htmlFor="">
           Sort By:
           <select data-testid='column-sort'>
             <option />
           </select>
         </label>
-        <label>
+        <label htmlFor="">
           <input data-testid='column-sort-input' type="radio" value="ASC" />
           ASC
         </label>
-        <label>
+        <label htmlFor="">
           <input data-testid='column-sort-input' type="radio" value="DSC" />
             DSC
-        </label>
-        <button data-testid='column-sort-button' type="submit">Sort</button>
+        </label> */}
+        <button data-testid="column-sort-button" type="submit">
+          Sort
+        </button>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.planetReducer.data,
 });
 

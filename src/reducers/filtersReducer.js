@@ -1,4 +1,3 @@
-
 import { SEARCH_PLANET_NAME, FILTERS_BY, SORT_BY } from '../actions/actionFilter';
 
 const INITIAL_STATE = {
@@ -36,16 +35,17 @@ export default function filters(state = INITIAL_STATE, action) {
           },
         ],
       };
-    case SORT_BY:
-      return {
-        ...state,
-        filteredData: action.data,
-        order: {
-          column: action.column,
-          sort: action.sort,
-        },
-      };
     default:
       return state;
   }
 }
+
+// case SORT_BY:
+//   return {
+//     ...state,
+//     filteredData: action.data,
+//     order: {
+//       column: action.column,
+//       sort: action.sort,
+//     },
+//    }

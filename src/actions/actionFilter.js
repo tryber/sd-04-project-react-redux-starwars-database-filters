@@ -9,7 +9,7 @@ export const searchName = (data, name) => ({
   name,
 });
 
-export const filterBy = values => ({
+export const filterBy = (values) => ({
   type: FILTERS_BY,
   values,
 });
