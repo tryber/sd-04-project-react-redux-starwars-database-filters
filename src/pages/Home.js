@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Table from '../components/Table';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
+import FilterByName from '../components/FilterName';
 
 export class Home extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ export class Home extends Component {
     return (
       <div>
         <h1>Star Wars Planets</h1>
+        <FilterByName />
         <Table />
       </div>
     );
