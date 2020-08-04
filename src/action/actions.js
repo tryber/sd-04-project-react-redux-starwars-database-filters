@@ -38,7 +38,7 @@ export const removeNumericFilter = (filterKeys) => ({
   filterKeys,
 });
 
-export function fetchPlanets() {
+export default function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestPlanets());
 

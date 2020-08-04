@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Table from './Table';
-import fetchPlanets from '../action/actions';
+import { planetsAPI } from '../action';
 
 class Home extends Component {
   componentDidMount() {
@@ -11,11 +9,9 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.loading) return <h2>Loading...</h2>;
     return (
       <div>
         <h2>StarWars DataTable</h2>
-        <Table />
       </div>
     );
   }
@@ -26,12 +22,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getPlanets: () => dispatch(fetchPlanets()),
+  getPlanets: () => dispatch(planetsAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-Home.propTypes = {
-  getPlanets: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-};
