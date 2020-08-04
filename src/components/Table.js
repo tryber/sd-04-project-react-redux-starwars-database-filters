@@ -11,30 +11,43 @@ class Table extends Component {
     getData('planets');
   }
 
-  applyNameFilter = (planetName, results) => {
+  applyNameFilter = (planetName, data) => {
     if (planetName !== '') {
-      results = results.filter(
+      data = data.filter(
         planet => planet.name.toUpperCase().includes(planetName.toUpperCase()),
       );
     }
-    return results;
+    return data;
   }
 
-  applyNumFilter = (planetName, results) => {
-    if (planetName !== '') {
-      results = results.filter(
-        planet => planet.name.toUpperCase().includes(planetName.toUpperCase()),
-      );
+  applyNumFilter = (filters, data) => {
+    if (typeof filters && filters.length > 0) {
+      filters.forEach(({ column, comparison, value }) => {
+        data = data.filter(currentPlanet => {
+          switch (comparison) {
+            case 'menor que':
+              return currentPlanet[column] < value;
+            case 'maior que':
+              return currentPlanet[column] > value;
+            case 'igual a':
+              return currentPlanet[column] === value;
+            default:
+              return false;
+          }
+        });
+      });
     }
-    return results;
+    return data;
   }
 
   render() {
     const {
-      error, loading, planetName, data,
+      error, loading, planetName, data, numFilters,
     } = this.props;
     if (data.length !== 0) {
-      const filteredResults = this.applyNameFilter(planetName, data);
+      const filteredResults = this.applyNumFilter(
+        numFilters, this.applyNameFilter(planetName, data),
+      );
       return (
         <div>
           <TableHeader />
@@ -61,6 +74,13 @@ Table.propTypes = {
   }),
   getData: PropTypes.func,
   loading: PropTypes.bool,
+  numFilters: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ).isRequired,
   planetName: PropTypes.string,
 };
 
@@ -73,9 +93,7 @@ const mapStateToProps = state => ({
   error: state.generateTable.error,
   loading: state.generateTable.loading,
   planetName: state.allFilters.filters.filterByName.name,
-  numComparison: state.allFilters.filters.filterByNumericValues.comparison,
-  numColumn: state.allFilters.filters.filterByNumericValues.column,
-  numValue: state.allFilters.filters.filterByNumericValues.value,
+  numFilters: state.allFilters.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

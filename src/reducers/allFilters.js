@@ -7,6 +7,10 @@ const initialState = {
     },
     filterByNumericValues: [],
   },
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 function allFilters(

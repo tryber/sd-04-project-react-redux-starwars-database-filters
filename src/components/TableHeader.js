@@ -67,7 +67,7 @@ class TableHeader extends Component {
       ...columns.filter(option => !stateColumns.includes(option)),
     ];
     return (
-      <>
+      <React.Fragment>
         <label htmlFor="column-filter">Coluna:</label>
         <select
           id="column-filter"
@@ -82,7 +82,7 @@ class TableHeader extends Component {
             </option>
           ))}
         </select>
-      </>
+      </React.Fragment>
     );
   };
 
@@ -145,7 +145,6 @@ class TableHeader extends Component {
 TableHeader.propTypes = {
   filterByName: PropTypes.func,
   filterByNumVal: PropTypes.func,
-  planetName: PropTypes.string,
   numFilters: PropTypes.arrayOf(
     PropTypes.shape({
       column: PropTypes.string,
@@ -153,6 +152,8 @@ TableHeader.propTypes = {
       value: PropTypes.string,
     }),
   ).isRequired,
+  planetName: PropTypes.string,
+  removeNumFilter: PropTypes.func,
 };
 
 // const mapDispatchToProps = dispatch => ({
