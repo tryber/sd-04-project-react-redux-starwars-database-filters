@@ -15,7 +15,7 @@ class SortFilters extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getFilterInfo(e) {
+  getFilterInfo() {
     const { column, sort } = this.state;
     const { dispatchSortFilters } = this.props;
     dispatchSortFilters(column, sort);
