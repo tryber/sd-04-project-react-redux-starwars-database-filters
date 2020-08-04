@@ -1,4 +1,6 @@
-import { FILTER_BY_NAME, FILTER_BY_NUM_VAL, REMOVE_NUM_FILTER } from '../actions';
+import {
+  FILTER_BY_NAME, FILTER_BY_NUM_VAL, REMOVE_NUM_FILTER, SORT_DATA,
+} from '../actions';
 
 const initialState = {
   filterByName: {
@@ -14,7 +16,7 @@ const initialState = {
 function filters(
   state = initialState,
   {
-    type, name, column, comparison, value, filter,
+    type, name, column, comparison, value, filter, columnSort, sort,
   },
 ) {
   switch (type) {
@@ -38,6 +40,8 @@ function filters(
           ({ column }) => column !== filter,
         ),
       };
+    case SORT_DATA:
+      return { ...state, order: { column: columnSort, sort } };
     default:
       return state;
   }

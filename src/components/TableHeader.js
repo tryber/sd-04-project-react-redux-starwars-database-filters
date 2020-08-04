@@ -1,7 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByName, filterByNumVal, removeNumFilter } from '../actions';
+import {
+  filterByName, filterByNumVal, removeNumFilter, sortData,
+} from '../actions';
+
+const columns = [
+  '',
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
 
 class TableHeader extends Component {
   constructor(props) {
@@ -10,6 +21,8 @@ class TableHeader extends Component {
       column: '',
       comparison: '',
       value: 0,
+      columnSort: '',
+      sort: '',
     };
   }
 
@@ -54,18 +67,8 @@ class TableHeader extends Component {
   renderColumnSelect = () => {
     const { currentFilters } = this.props;
     const { column } = this.state;
-    const columns = [
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
     const stateColumns = currentFilters.map(({ column }) => column);
-    const filteredColumns = [
-      '',
-      ...columns.filter(option => !stateColumns.includes(option)),
-    ];
+    const filteredColumns = columns.filter(option => !stateColumns.includes(option));
     return (
       <React.Fragment>
         <label htmlFor="column-filter">Coluna:</label>
@@ -127,6 +130,47 @@ class TableHeader extends Component {
     );
   }
 
+  renderSort = () => {
+    const { sortData } = this.props;
+    const { columnSort, sort } = this.state;
+    return (
+      <div>
+        <select
+          data-testid="column-sort"
+          name="columnSort"
+          onChange={event => this.handleChange(event)}
+        >
+          {columns.map(option => (
+            <option key={option}>{option}</option>
+          ))}
+        </select>
+        <label htmlFor="sort">ASC</label>
+        <input
+          type="radio"
+          data-testid="column-sort-input"
+          name="sort"
+          value="ASC"
+          onClick={event => this.handleChange(event)}
+        />
+        <label htmlFor="sort">DESC</label>
+        <input
+          type="radio"
+          data-testid="column-sort-input"
+          name="sort"
+          value="DESC"
+          onClick={event => this.handleChange(event)}
+        />
+        <button
+          data-testid="column-sort-button"
+          type="button"
+          onClick={() => sortData(sort, columnSort)}
+        >
+          Sort
+        </button>
+      </div>
+    );
+  }
+
   render() {
     const { planetName, filterByName } = this.props;
     return (
@@ -141,6 +185,7 @@ class TableHeader extends Component {
               onChange={event => filterByName(event.target.value)}
             />
           </div>
+          {this.renderSort()}
           {this.renderForm()}
           <div className="container-small">
             {this.renderRemoveBtn()}
@@ -163,6 +208,7 @@ TableHeader.propTypes = {
   ).isRequired,
   planetName: PropTypes.string,
   removeNumFilter: PropTypes.func,
+  sortData: PropTypes.func,
 };
 
 // const mapDispatchToProps = dispatch => ({
@@ -178,4 +224,5 @@ export default connect(mapStateToProps, {
   filterByName,
   filterByNumVal,
   removeNumFilter,
+  sortData,
 })(TableHeader);

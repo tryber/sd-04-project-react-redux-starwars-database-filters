@@ -40,13 +40,24 @@ class Table extends Component {
     return data;
   }
 
+  sortTableData = (data, { column, sort }) => {
+    if (sort === 'DESC') {
+      return data.sort((a, b) => Number(b[column]) - Number(a[column]));
+    }
+    if (sort === 'ASC') {
+      return data.sort((a, b) => Number(a[column]) - Number(b[column]));
+    }
+    return false;
+  };
+
   render() {
     const {
-      error, loading, planetName, data, numFilters,
+      error, loading, planetName, data, numFilters, orderSort,
     } = this.props;
     if (data.length !== 0) {
+      const nameOrder = data.sort((a, b) => a.name.localeCompare(b.name));
       const filteredResults = this.applyNumFilter(
-        numFilters, this.applyNameFilter(planetName, data),
+        numFilters, this.applyNameFilter(planetName, this.sortTableData(nameOrder, orderSort)),
       );
       return (
         <div>
@@ -81,6 +92,10 @@ Table.propTypes = {
       value: PropTypes.string,
     }),
   ).isRequired,
+  orderSort: PropTypes.shape({
+    column: PropTypes.string,
+    sort: PropTypes.string,
+  }),
   planetName: PropTypes.string,
 };
 
@@ -94,6 +109,7 @@ const mapStateToProps = state => ({
   loading: state.generateTable.loading,
   planetName: state.filters.filterByName.name,
   numFilters: state.filters.filterByNumericValues,
+  orderSort: state.filters.order,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

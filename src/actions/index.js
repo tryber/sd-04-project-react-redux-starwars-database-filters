@@ -7,6 +7,7 @@ export const GET_PLANETS_FAILURE = 'GET_PLANETS_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUM_VAL = 'FILTER_BY_NUM_VAL';
 export const REMOVE_NUM_FILTER = 'REMOVE_NUM_FILTER';
+export const SORT_DATA = 'SORT_DATA';
 
 export const getPlanetsRequest = () => ({
   type: GET_PLANETS_REQUEST,
@@ -54,4 +55,10 @@ export const filterByNumVal = (column, comparison, value) => ({
 export const removeNumFilter = filter => ({
   type: REMOVE_NUM_FILTER,
   filter,
+});
+
+export const sortData = (sort, columnSort) => ({
+  type: SORT_DATA,
+  sort,
+  columnSort,
 });
