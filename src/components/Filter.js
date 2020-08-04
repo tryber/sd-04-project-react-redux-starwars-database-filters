@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterPlanet } from '../actions';
 
-// function Filter(searchPlanet) {
 class Filter extends Component {
   render() {
-    // console.log(this.props);
-    // const { filterPlanet } = this.props;
     return (
       <div>
         <input

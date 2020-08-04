@@ -4,6 +4,7 @@ export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const FILTER_PLANET = 'FILTER_PLANET';
 export const FILTER_NUMBER = 'FILTER_NUMBER';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 export const requestPlanets = () => ({
   type: REQUEST_DATA,
@@ -31,4 +32,9 @@ export const filterByNumericValues = (column, comparison, value) => ({
   column,
   comparison,
   value,
+});
+
+export const removeFilter = (erased) => ({
+  type: REMOVE_FILTER,
+  erased,
 });

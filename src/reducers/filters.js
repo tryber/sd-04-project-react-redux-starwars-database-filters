@@ -1,4 +1,4 @@
-import { FILTER_PLANET, FILTER_NUMBER } from '../actions';
+import { FILTER_PLANET, FILTER_NUMBER, REMOVE_FILTER } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -22,6 +22,11 @@ const filters = (state = INITIAL_STATE, action) => {
           comparison: action.comparison,
           value: action.value,
         }],
+      };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [...state.filterByNumericValues.filter((filter) => filter !== action.erased)],
       };
     default:
       return state;

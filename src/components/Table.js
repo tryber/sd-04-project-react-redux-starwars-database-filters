@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchGetPlanet } from '../actions';
-import Compare from './Compare';
 import compareFunc from '../service/compareFunc';
-// import Filter from './Filter';
 
 class Table extends Component {
   componentDidMount() {
@@ -15,15 +13,11 @@ class Table extends Component {
   render() {
     const { planets, name, comparisonParams } = this.props;
     const filterPlanet = compareFunc(planets, name, comparisonParams);
-    // console.log(filterPlanet);
-    // const filterPlanet = planets.filter((planet) => planet.name.includes(name));
     const attributes = planets[0]
       ? Object.keys(planets[0]).filter((attribute) => attribute !== 'residents')
       : [];
     return (
       <div>
-        {/* <span>StarWars Datatable with Filters</span> */}
-        <Compare />
         <thead>
           <tr>
             {attributes.map((index) => (
@@ -58,23 +52,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  // planets: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     name: PropTypes.string,
-  //     rotation_period: PropTypes.string,
-  //     orbital_period: PropTypes.string,
-  //     diameter: PropTypes.string,
-  //     climate: PropTypes.string,
-  //     gravity: PropTypes.string,
-  //     terrain: PropTypes.string,
-  //     surface_water: PropTypes.string,
-  //     population: PropTypes.string,
-  //     film: PropTypes.string,
-  //     created: PropTypes.string,
-  //     edited: PropTypes.string,
-  //     url: PropTypes.string,
-  //   }),
-  // ).isRequired,
   planets: PropTypes.arrayOf(PropTypes.string).isRequired,
   comparisonParams: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
