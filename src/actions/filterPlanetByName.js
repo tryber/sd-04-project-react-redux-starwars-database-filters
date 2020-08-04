@@ -8,9 +8,11 @@ export const filterPlanetByName = (name) => ({
   name,
 });
 
-export const filterPlanetByNumber = (filterData) => ({
+export const filterPlanetByNumber = ({ column, comparison, value }) => ({
   type: FILTER_NUMBER,
-  filterData,
+  column,
+  comparison,
+  value,
 });
 
 export const removeFilter = (filter) => ({
