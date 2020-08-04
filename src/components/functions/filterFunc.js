@@ -28,6 +28,3 @@ const dataSort = (planets, name, numericValues, order) => {
 };
 
 export default dataSort;
-
-
-// charAt(0).toUpperCase();
