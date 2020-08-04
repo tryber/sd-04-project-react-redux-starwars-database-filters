@@ -33,7 +33,7 @@ class TableHeader extends Component {
   renderCompSelect = () => {
     const { comparison } = this.state;
     return (
-      <>
+      <React.Fragment>
         <label htmlFor="comparison-filter">Comparação:</label>
         <select
           id="comparison-filter"
@@ -47,12 +47,12 @@ class TableHeader extends Component {
           <option value="menor que">Menor Que</option>
           <option value="igual a">Igual A</option>
         </select>
-      </>
+      </React.Fragment>
     );
   };
 
   renderColumnSelect = () => {
-    const { numFilters } = this.props;
+    const { currentFilters } = this.props;
     const { column } = this.state;
     const columns = [
       'population',
@@ -61,7 +61,7 @@ class TableHeader extends Component {
       'rotation_period',
       'surface_water',
     ];
-    const stateColumns = numFilters.map(({ column }) => column);
+    const stateColumns = currentFilters.map(({ column }) => column);
     const filteredColumns = [
       '',
       ...columns.filter(option => !stateColumns.includes(option)),
@@ -87,8 +87,8 @@ class TableHeader extends Component {
   };
 
   renderRemoveBtn = () => {
-    const { numFilters, removeNumFilter } = this.props;
-    return numFilters.map(({ column, comparison, value }) => (
+    const { currentFilters, removeNumFilter } = this.props;
+    return currentFilters.map(({ column, comparison, value }) => (
       <div data-testid="filter" key={column}>
         <span>{`${column} - ${comparison} - ${value} `}</span>
         <button type="button" name={column} onClick={e => removeNumFilter(e.target.name)}>
@@ -98,9 +98,34 @@ class TableHeader extends Component {
     ));
   };
 
+  renderForm = () => {
+    const { value } = this.state;
+    return (
+      <div className="container small">
+        <form action="" onSubmit={event => this.handleSumbit(event)}>
+          <div className="item">
+            {this.renderColumnSelect()}
+            {this.renderCompSelect()}
+          </div>
+          <input
+            type="number"
+            data-testid="value-filter"
+            name="value"
+            value={value}
+            onChange={event => this.handleChange(event)}
+          />
+          <input
+            type="submit"
+            value="Filtrar"
+            data-testid="button-filter"
+          />
+        </form>
+      </div>
+    );
+  }
+
   render() {
     const { planetName, filterByName } = this.props;
-    const { value } = this.state;
     return (
       <>
         <h1>StarWars Datatable Filters</h1>
@@ -113,26 +138,7 @@ class TableHeader extends Component {
               onChange={event => filterByName(event.target.value)}
             />
           </div>
-          <div className="container small">
-            <form action="" onSubmit={event => this.handleSumbit(event)}>
-              <div className="item">
-                {this.renderColumnSelect()}
-                {this.renderCompSelect()}
-              </div>
-              <input
-                type="number"
-                data-testid="value-filter"
-                name="value"
-                value={value}
-                onChange={event => this.handleChange(event)}
-              />
-              <input
-                type="submit"
-                value="Filtrar"
-                data-testid="button-filter"
-              />
-            </form>
-          </div>
+          {this.renderForm()}
           <div className="container-small">
             {this.renderRemoveBtn()}
           </div>
@@ -145,7 +151,7 @@ class TableHeader extends Component {
 TableHeader.propTypes = {
   filterByName: PropTypes.func,
   filterByNumVal: PropTypes.func,
-  numFilters: PropTypes.arrayOf(
+  currentFilters: PropTypes.arrayOf(
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
@@ -162,7 +168,7 @@ TableHeader.propTypes = {
 
 const mapStateToProps = state => ({
   planetName: state.allFilters.filters.filterByName.name,
-  numFilters: state.allFilters.filters.filterByNumericValues,
+  currentFilters: state.allFilters.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps, {
