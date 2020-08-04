@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByNumericValues } from '../actions';
 
-export class FilterValues extends Component {
+class FilterValues extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,17 +15,6 @@ export class FilterValues extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  updateColums() {
-    const column = [
-      '',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-    return column;
-  }
 
   onChange(event, field) {
     this.setState({ [field]: event.target.value });
@@ -63,6 +53,18 @@ export class FilterValues extends Component {
     );
   }
 
+  updateColums() {
+    const column = [
+      '',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    return column;
+  }
+
   render() {
     return (
       <div>
@@ -81,6 +83,10 @@ export class FilterValues extends Component {
     );
   }
 }
+
+FilterValues.propTypes = {
+  filterByNumericValues: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
