@@ -37,7 +37,12 @@ class Order extends Component {
     ];
     return (
       <div>
-        <select name="column" data-testid="column-sort" value={this.state.column} onChange={(event) => this.handleChange(event)}>
+        <select
+          name="column"
+          data-testid="column-sort"
+          value={this.state.column}
+          onChange={(event) => this.handleChange(event)}
+        >
           {columns.map((column) => (
             <option key={column} value={column}>
               {column}
@@ -81,8 +86,6 @@ const mapDispatchToProps = (dispatch) => ({
 Order.propTypes = {
   submitToSort: Proptypes.func.isRequired,
   data: Proptypes.arrayOf(Proptypes.string).isRequired,
-  column: Proptypes.string.isRequired,
-  sort: Proptypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

@@ -44,8 +44,8 @@ const filters = (state = INITIAL_STATE, action) => {
         order: {
           column: action.column,
           sort: action.sort,
-        }
-      }
+        },
+      };
 
     default:
       return state;
