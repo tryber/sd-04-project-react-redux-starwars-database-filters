@@ -7,18 +7,18 @@ export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 
 const requestingPlanets = () => ({
-  type: 'REQUESTING_PLANETS',
+  type: REQUESTING_PLANETS,
 
 });
 
 
 const successPlanets = (data) => ({
-  type: 'REQUEST_PLANET_SUCCESS',
+  type: REQUEST_PLANET_SUCCESS,
   data,
 });
 
 const failurePlanets = (error) => ({
-  type: 'REQUEST_PLANET_FAILURE',
+  type: REQUEST_PLANET_FAILURE,
   error,
 });
 
@@ -34,16 +34,16 @@ export function fetchPlanets() {
   };
 }
 
-export const filterName = (name) => ({
+export const filterByName = (name) => ({
   type: FILTER_BY_NAME,
   name,
 });
 
-export const filterByNumericValues = (columns, comparison, number) => ({
+export const filterByNumericValues = (column, comparison, value) => ({
   type: FILTER_BY_NUMERIC_VALUES,
-  columns,
+  column,
   comparison,
-  number,
+  value,
 });
 
 export default fetchPlanets;

@@ -8,7 +8,6 @@ class TableBody extends Component {
   render() {
     const { planets, name, numericValues } = this.props;
     const data = filterFunc(planets, name, numericValues);
-    // const filterName = planets.filter((planet) => planet.name.includes(name));
 
     return (
       <tbody>
@@ -40,6 +39,7 @@ class TableBody extends Component {
 
 TableBody.propTypes = {
   name: PropTypes.string.isRequired,
+  numericValues: PropTypes.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

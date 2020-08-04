@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
 };
 
-const filter = (state = INITIAL_STATE, action) => {
+const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
       return {
@@ -26,4 +26,4 @@ const filter = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default filter;
+export default filters;

@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterName } from '../actions';
+import { filterByName } from '../actions';
 
 
 class FilterPlanet extends Component {
@@ -22,18 +22,12 @@ class FilterPlanet extends Component {
   }
 }
 
-FilterPlanet.propTypes = {
-  filterByName: PropTypes.func.isRequired,
-};
-
-function mapStateToProps(state) {
-  return {
-    name: state.filters.filterByName.name,
-  };
-}
+const mapStateToProps = (state) => ({
+  name: state.filters.filterByName.name,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (planetName) => dispatch(filterName(planetName)),
+  filterByName: (planetName) => dispatch(filterByName(planetName)),
 
 });
 
