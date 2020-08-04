@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Proptypes from 'prop-types';
 
 import { sortColumn } from '../../actions';
 import sortFunc from '../functions/sortFunc';
@@ -77,8 +78,11 @@ const mapDispatchToProps = (dispatch) => ({
   submitToSort: (column, sort) => dispatch(sortColumn(column, sort)),
 });
 
-// Order.propTypes = {
-//   não esquecer
-// };
+Order.propTypes = {
+  submitToSort: Proptypes.func.isRequired,
+  data: Proptypes.arrayOf(Proptypes.string).isRequired,
+  column: Proptypes.string.isRequired,
+  sort: Proptypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);
