@@ -28,19 +28,12 @@ class Order extends Component {
   }
   render() {
     const columns = [
-      'Name',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
+      'Name', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
     ];
     return (
       <div>
         <select
-          name="column"
-          data-testid="column-sort"
-          value={this.state.column}
+          name="column" data-testid="column-sort" value={this.state.column}
           onChange={(event) => this.handleChange(event)}
         >
           {columns.map((column) => (
@@ -50,18 +43,12 @@ class Order extends Component {
           ))}
         </select>
         <input
-          type="radio"
-          data-testid="column-sort-input"
-          name="sort"
-          value="ASC"
+          type="radio" data-testid="column-sort-input" name="sort" value="ASC"
           onClick={(event) => this.handleChange(event)}
         />
         <label htmlFor="sort">ASC</label>
         <input
-          type="radio"
-          data-testid="column-sort-input"
-          name="sort"
-          value="DESC"
+          type="radio" data-testid="column-sort-input" name="sort" value="DESC"
           onClick={(event) => this.handleChange(event)}
         />
         <label htmlFor="sort">DESC</label>
