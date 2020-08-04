@@ -41,7 +41,6 @@ class FilterValues extends Component {
   }
 
   getColumns() {
-
     const select = [
       '',
       'population',
