@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 
 import filterFunc from '../functions/filterFunc';
-// import sortFunc from '../functions/sortFunc';
 
 class TableBody extends Component {
   render() {
     const { data, name, numericValues } = this.props;
     const filteredPlanets = filterFunc(data, name, numericValues);
-    // sortFunc(data, 'name', 'ASC');
-    // filteredPlanets.sort((a, b) => a.name.localeCompare(b.name));
     return (
       <tbody>
         {filteredPlanets.map((planet) => (
@@ -44,7 +41,6 @@ const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
   column: state.filters.order.column,
   sort: state.filters.order.sort,
-  // >fetching: state.fetching,
 });
 
 export default connect(mapStateToProps)(TableBody);
