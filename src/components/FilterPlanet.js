@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByName } from '../actions';
+import { filterByNamee } from '../actions';
 
 
 class FilterPlanet extends Component {
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (planetName) => dispatch(filterByName(planetName)),
+  filterByName: (planetName) => dispatch(filterByNamee(planetName)),
 
 });
 

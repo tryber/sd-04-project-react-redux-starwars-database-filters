@@ -34,7 +34,7 @@ export function fetchPlanets() {
   };
 }
 
-export const filterByName = (name) => ({
+export const filterByNamee = (name) => ({
   type: FILTER_BY_NAME,
   name,
 });
