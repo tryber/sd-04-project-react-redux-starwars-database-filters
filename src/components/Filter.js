@@ -13,7 +13,6 @@ class Filter extends React.Component {
     };
 
     this.getFilterInfo = this.getFilterInfo.bind(this);
-    /* this.handleChange = this.handleChange.bind(this); */
     this.filterColumns = this.filterColumns.bind(this);
   }
 

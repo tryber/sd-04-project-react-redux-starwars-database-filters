@@ -1,10 +1,14 @@
-import { FILTER_NAME, FILTER_NUMBER, REMOVE_FILTER } from '../actions/filterPlanetByName';
+import { FILTER_NAME, FILTER_NUMBER, REMOVE_FILTER, SORT_FILTERS } from '../actions/filterPlanetByName';
 
 const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
   columns: ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
   comparisons: ['maior que', 'igual a', 'menor que'],
 };
@@ -37,6 +41,11 @@ const filters = (state = INITIAL_STATE, action) => {
           ({ column }) => column !== action.filter.column,
         ),
       };
+     case SORT_FILTERS:
+       return {
+         ...state,
+         order: { column: action.column, sort: action.sort },
+       } 
     default:
       return state;
   }
