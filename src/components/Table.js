@@ -26,11 +26,11 @@ class Table extends Component {
         data = data.filter(currentPlanet => {
           switch (comparison) {
             case 'menor que':
-              return currentPlanet[column] < value;
+              return currentPlanet[column] < Number(value);
             case 'maior que':
-              return currentPlanet[column] > value;
+              return currentPlanet[column] > Number(value);
             case 'igual a':
-              return currentPlanet[column] === value;
+              return Number(currentPlanet[column]) === Number(value);
             default:
               return false;
           }

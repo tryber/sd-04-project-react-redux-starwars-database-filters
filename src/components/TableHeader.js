@@ -8,7 +8,7 @@ class TableHeader extends Component {
     super(props);
     this.state = {
       column: '',
-      comparison: '',
+      comparison: 'maior que',
       value: 0,
     };
   }
@@ -42,10 +42,9 @@ class TableHeader extends Component {
           onChange={event => this.handleChange(event)}
           value={comparison}
         >
-          <option aria-label="None" value="" />
-          <option value="maior que">Maior Que</option>
-          <option value="menor que">Menor Que</option>
-          <option value="igual a">Igual A</option>
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
+          <option value="menor que">menor que</option>
         </select>
       </React.Fragment>
     );
@@ -102,7 +101,7 @@ class TableHeader extends Component {
     const { value } = this.state;
     return (
       <div className="container small">
-        <form action="" onSubmit={event => this.handleSumbit(event)}>
+        <form action="">
           <div className="item">
             {this.renderColumnSelect()}
             {this.renderCompSelect()}
@@ -114,11 +113,14 @@ class TableHeader extends Component {
             value={value}
             onChange={event => this.handleChange(event)}
           />
-          <input
-            type="submit"
+          <button
+            type="button"
             value="Filtrar"
             data-testid="button-filter"
-          />
+            onClick={event => this.handleSumbit(event)}
+          >
+            Filter
+          </button>
         </form>
       </div>
     );
