@@ -41,7 +41,15 @@ class FilterValues extends Component {
   }
 
   getColumns() {
-    const select = this.updateColums();
+
+    const select = [
+      '',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
     return (
       <select data-testid="column-filter" value={this.state.column} onChange={(event) => this.onChange(event, 'column')}>
         {select.map((item) => (
@@ -51,18 +59,6 @@ class FilterValues extends Component {
         ))}
       </select>
     );
-  }
-
-  updateColums() {
-    const column = [
-      '',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-    return column;
   }
 
   render() {
