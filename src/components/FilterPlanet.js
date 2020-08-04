@@ -24,7 +24,7 @@ class FilterPlanet extends Component {
 }
 
 FilterPlanet.propTypes = {
-  filterByNamea: PropTypes.func.isRequired,
+  filterByName: PropTypes.func.isRequired,
 };
 
 
