@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByNumericValues } from '../actions';
+import { filterByNumericValuess } from '../actions';
 
 class FilterValues extends Component {
   constructor(props) {
@@ -20,6 +20,13 @@ class FilterValues extends Component {
     this.setState({ [field]: event.target.value });
   }
 
+  onClick() {
+    const { column, comparation, number } = this.state;
+    const { filterByNumericValues } = this.props;
+    filterByNumericValues(column, comparation, number);
+    this.setState({ column: '', comparation: '', number: '' });
+  }
+
   getCoparation() {
     const comparation = ['', 'maior que', 'menor que', 'igual a'];
     return (
@@ -31,13 +38,6 @@ class FilterValues extends Component {
         ))}
       </select>
     );
-  }
-
-  onClick() {
-    const { column, comparation, number } = this.state;
-    const { filterByNumericValues } = this.props;
-    filterByNumericValues(column, comparation, number);
-    this.setState({ column: '', comparation: '', number: '' });
   }
 
   getColumns() {
@@ -94,7 +94,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   filterByNumericValues: (column, comparison, value) => {
-    dispatch(filterByNumericValues(column, comparison, value));
+    dispatch(filterByNumericValuess(column, comparison, value));
   },
 
 });

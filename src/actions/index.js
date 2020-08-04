@@ -39,7 +39,7 @@ export const filterByName = (name) => ({
   name,
 });
 
-export const filterByNumericValues = (column, comparison, value) => ({
+export const filterByNumericValuess = (column, comparison, value) => ({
   type: FILTER_BY_NUMERIC_VALUES,
   column,
   comparison,
