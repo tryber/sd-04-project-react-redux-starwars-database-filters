@@ -19,7 +19,6 @@ const filterFunc = (planets, name, numericValues) => (numericValues.length === 0
   ));
 
 const dataSort = (planets, name, numericValues, order) => {
-  console.log(order);
   const data = filterFunc(planets, name, numericValues);
   const sort = data.sort((before, after) => {
     const asc = before[order.column].localeCompare(after[order.column], 'pt-br', { numeric: true });
@@ -29,3 +28,6 @@ const dataSort = (planets, name, numericValues, order) => {
 };
 
 export default dataSort;
+
+
+// charAt(0).toUpperCase();
