@@ -16,7 +16,7 @@ export class FilterValues extends Component {
 
   updateColums() {
     const column = [
-      "",
+      '',
       'population',
       'orbital_period',
       'diameter',
@@ -28,19 +28,6 @@ export class FilterValues extends Component {
 
   onChange(event, field) {
     this.setState({ [field]: event.target.value });
-  }
-
-  getColumns() {
-    const select = this.updateColums();
-    return (
-      <select data-testid="column-filter" value={this.state.column} onChange={(event) => this.onChange(event, 'column')}>
-        {select.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
-    );
   }
 
   getCoparation() {
@@ -61,6 +48,19 @@ export class FilterValues extends Component {
     const { filterByNumericValues } = this.props;
     filterByNumericValues(column, comparation, number);
     this.setState({ column: '', comparation: '', number: '' });
+  }
+
+  getColumns() {
+    const select = this.updateColums();
+    return (
+      <select data-testid="column-filter" value={this.state.column} onChange={(event) => this.onChange(event, 'column')}>
+        {select.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+    );
   }
 
   render() {

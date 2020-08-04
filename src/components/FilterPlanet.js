@@ -22,6 +22,7 @@ class FilterPlanet extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => ({
   name: state.filters.filterByName.name,
 });
