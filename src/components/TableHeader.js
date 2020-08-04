@@ -127,7 +127,7 @@ class TableHeader extends Component {
   render() {
     const { planetName, filterByName } = this.props;
     return (
-      <>
+      <React.Fragment>
         <h1>StarWars Datatable Filters</h1>
         <div className="container">
           <div className="item">
@@ -143,7 +143,7 @@ class TableHeader extends Component {
             {this.renderRemoveBtn()}
           </div>
         </div>
-      </>
+      </React.Fragment>
     );
   }
 }
