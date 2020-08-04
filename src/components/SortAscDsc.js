@@ -10,7 +10,7 @@ class SortAscDsc extends React.Component {
 
   render() {
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
+      <form onSubmit={(e) => this.handleSubmit(e)}>
         {/* <label htmlFor="">
           Sort By:
           <select data-testid='column-sort'>
@@ -33,7 +33,7 @@ class SortAscDsc extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
 });
 

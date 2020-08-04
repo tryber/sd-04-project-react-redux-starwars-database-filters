@@ -1,4 +1,4 @@
-import { SEARCH_PLANET_NAME, FILTERS_BY, SORT_BY } from '../actions/actionFilter';
+import { SEARCH_PLANET_NAME, FILTERS_BY } from '../actions/actionFilter';
 
 const INITIAL_STATE = {
   filterByName: {
