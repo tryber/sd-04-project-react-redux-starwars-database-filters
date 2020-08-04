@@ -7,7 +7,7 @@ import { filterByName } from '../actions';
 
 class FilterPlanet extends Component {
   render() {
-    const { filterByNamea } = this.props;
+    const { filterByName } = this.props;
     return (
       <div>
         <input
@@ -15,7 +15,7 @@ class FilterPlanet extends Component {
           data-testid="name-filter"
           placeholder="preencha"
           onChange={
-            (event) => filterByNamea(event.target.value)
+            (event) => filterByName(event.target.value)
             }
         />
       </div>
