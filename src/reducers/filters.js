@@ -1,8 +1,12 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTERS } from '../actions';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTERS, SORT_COLUMN } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -33,6 +37,16 @@ const filters = (state = INITIAL_STATE, action) => {
           ...state.filterByNumericValues.filter((filterx) => filterx !== action.filters),
         ],
       };
+
+    case SORT_COLUMN:
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sort,
+        }
+      }
+
     default:
       return state;
   }

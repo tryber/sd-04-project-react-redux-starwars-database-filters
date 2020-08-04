@@ -12,8 +12,8 @@ class FilterValue extends Component {
     this.filterColumn = this.filterColumn.bind(this);
   }
 
-  handleChange(event, field) {
-    this.setState({ [field]: event.target.value });
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit() {
@@ -44,8 +44,9 @@ class FilterValue extends Component {
     return (
       <select
         data-testid="column-filter"
+        name="column"
         value={this.state.column}
-        onChange={(event) => this.handleChange(event, 'column')}
+        onChange={(event) => this.handleChange(event)}
       >
         {options.map((item) => (
           <option key={item} value={item}>
@@ -61,8 +62,9 @@ class FilterValue extends Component {
     return (
       <select
         data-testid="comparison-filter"
+        name="comparison"
         value={this.state.comparison}
-        onChange={(event) => this.handleChange(event, 'comparison')}
+        onChange={(event) => this.handleChange(event)}
       >
         {comparison.map((item) => (
           <option key={item} value={item}>
@@ -81,8 +83,9 @@ class FilterValue extends Component {
         <input
           type="number"
           data-testid="value-filter"
+          name="value"
           value={this.state.value}
-          onChange={(event) => this.handleChange(event, 'value')}
+          onChange={(event) => this.handleChange(event)}
         />
         <button type="button" data-testid="button-filter" onClick={this.handleSubmit}>
           filter

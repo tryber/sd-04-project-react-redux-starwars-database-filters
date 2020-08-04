@@ -1,4 +1,5 @@
 import { REQUEST_SWAPI, REQUEST_SUCCESS, REQUEST_FAIL } from '../actions';
+import sortFunc from '../components/functions/sortFunc';
 
 const INITIAL_STATE = {
   fetching: false,
@@ -17,7 +18,7 @@ const dataReducer = (state = INITIAL_STATE, action) => {
     case REQUEST_SUCCESS:
       return {
         ...state,
-        data: [...action.data],
+        data: sortFunc(action.data, 'Name', 'ASC'),
         fetching: false,
       };
 
