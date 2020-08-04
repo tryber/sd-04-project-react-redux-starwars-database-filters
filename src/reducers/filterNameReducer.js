@@ -22,12 +22,14 @@ const filters = (state = INITIAL_STATE, action) => {
       };
     case FILTER_NUMBER:
       return {
-        ...state, filterByNumericValues: [...state.filterByNumericValues,
-          { column: action.filterData.column, comparison: action.filterData, value: action.filterData.value } ],
+        ...state,
+        filterByNumericValues: [...state.filterByNumericValues,
+          { column: action.filterData.column, comparison: action.filterData, value: action.filterData.value }],
       };
     case REMOVE_FILTER:
       return {
-        ...state, filterByNumericValues: state.filterByNumericValues.filter(
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
           ({ column }) => column !== action.filter.column,
         ),
       };
