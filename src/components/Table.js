@@ -16,12 +16,38 @@ const comparation = (planet, { column, comparison, value }) => {
   }
 };
 
+const ordernation = (column, sort, planetsData) => {
+  const planets = [...planetsData];
+  if (!Number(planets[0][column])) {
+    planets.sort((a, b) => {
+      const x = a[column].toLowerCase();
+      const y = b[column].toLowerCase();
+      if (x < y) {
+        return -1;
+      }
+      if (x > y) {
+        return 1;
+      }
+      return 0;
+    });
+  } else {
+    planets.sort((a, b) => a[column] - b[column]);
+  }
+
+  return sort === 'ASC' ? planets : planets.reverse();
+};
+
 const filterPlanetByName = (planets, teste = '') => planets.filter((planet) => planet.name.includes(teste));
 
 const Table = ({
-  data, isFetching, name, filterByNumericValues,
+  data, isFetching, name, filterByNumericValues, column, sort,
 }) => {
   let planets = [...data];
+
+  if (planets.length > 1) {
+    const sortedColumn = column.toLowerCase();
+    planets = ordernation(sortedColumn, sort, planets);
+  }
 
   if (filterByNumericValues.length > 0) {
     filterByNumericValues.forEach((filter) => {
@@ -54,6 +80,8 @@ Table.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
+  column: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -61,6 +89,8 @@ const mapStateToProps = (state) => ({
   isFetching: state.planetsReducer.isFetching,
   name: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  column: state.filters.order.column,
+  sort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps, null)(Table);

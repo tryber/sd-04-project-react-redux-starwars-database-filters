@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sortFilters } from '../actions/filterPlanetByName';
 
@@ -12,19 +13,16 @@ class SortFilters extends React.Component {
 
     this.getFilterInfo = this.getFilterInfo.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  };
+  }
 
   getFilterInfo(e) {
-    console.log('Filter info', e.target);
     const { column, sort } = this.state;
     const { dispatchSortFilters } = this.props;
     dispatchSortFilters(column, sort);
   }
 
   handleChange(e) {
-    console.log('HandleChange', e);
     const { name, value } = e;
-    console.log(name, value);
     this.setState({ [name]: value });
   }
 
@@ -82,8 +80,13 @@ class SortFilters extends React.Component {
   }
 }
 
+SortFilters.propTypes = {
+  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dispatchSortFilters: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = (dispatch) => ({
-  dispatchSortFilters: (column, sort) => dispatch(sortFilters(column, sort))
+  dispatchSortFilters: (column, sort) => dispatch(sortFilters(column, sort)),
 });
 
 export default connect(null, mapDispatchToProps)(SortFilters);
