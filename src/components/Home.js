@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../action';
+import Table from './Table';
 
 class Home extends Component {
   componentDidMount() {
@@ -12,6 +13,7 @@ class Home extends Component {
     return (
       <div>
         <h2>StarWars DataTable</h2>
+        <Table />
       </div>
     );
   }
