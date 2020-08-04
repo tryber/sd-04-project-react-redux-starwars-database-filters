@@ -14,11 +14,9 @@ export const filterBy = (values) => ({
   values,
 });
 
-export const sortBy = (data, column, sort) => ({
+export const sortBy = (order) => ({
   type: SORT_BY,
-  data,
-  column,
-  sort,
+  order,
 });
 
 export const removeFilterClear = (column) => ({

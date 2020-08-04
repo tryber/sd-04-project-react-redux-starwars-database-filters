@@ -10,9 +10,25 @@ class Table extends React.Component {
     fetchingApi();
   }
 
+  sortPlanets(data) {
+    const {
+      order: { column, sort },
+    } = this.props;
+    const selectCol = column.toLowerCase();
+    let sortData = data;
+    if (selectCol === 'name' || selectCol === 'climate' || selectCol === 'terrain') {
+      sortData = sortData
+        .sort((a, b) => (
+          (a[selectCol]).localeCompare(b[selectCol])));
+    }
+    if (sort === 'ASC') sortData = sortData.sort((a, b) => a[column] - b[column]);
+    if (sort === 'DESC') sortData = sortData.sort((a, b) => b[column] - a[column]);
+    return sortData;
+  }
+
   filterPlanets() {
     const { filterByNumericValues, data } = this.props;
-    if (filterByNumericValues.length === 0) return data;
+    if (filterByNumericValues.length === 0) return this.sortPlanets(data);
     return filterByNumericValues.reduce((array, number) => {
       const { column, comparison, value } = number;
       return array.filter((planet) => {
@@ -27,7 +43,7 @@ class Table extends React.Component {
             return false;
         }
       });
-    }, data);
+    }, this.sortPlanets(data));
   }
 
   render() {
@@ -65,7 +81,9 @@ class Table extends React.Component {
 Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchingApi: PropTypes.func.isRequired,
-  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  data: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  ),
   filteredData: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ),
@@ -74,9 +92,13 @@ Table.propTypes = {
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
-      value: PropTypes.number,
+      value: PropTypes.string,
     }),
   ),
+  order: PropTypes.shape({
+    sort: PropTypes.string,
+    column: PropTypes.string,
+  }).isRequired,
 };
 
 Table.defaultProps = {
@@ -92,6 +114,7 @@ const mapStateToProps = (state) => ({
   term: state.filters.filterByName.name,
   filteredData: state.filters.filteredData,
   filterByNumericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({

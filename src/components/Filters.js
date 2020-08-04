@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterBy, removeFilterClear } from '../actions/actionFilter';
+import SortAscDsc from './SortAscDsc';
 
 const valueOptions = [
   'population',
@@ -47,7 +48,7 @@ class Filters extends React.Component {
             Column
           </option>
           {selectedColumns(filterByNumericValues).map((arg) => (
-            <option value={arg} name={arg} id={arg}>
+            <option key={arg} value={arg} name={arg} id={arg}>
               {arg}
             </option>
           ))}
@@ -102,7 +103,7 @@ class Filters extends React.Component {
     const { filterByNumericValues, clearFilter } = this.props;
     if (!filterByNumericValues) return <div />;
     return filterByNumericValues.map(({ column, comparison, value }) => (
-      <div data-testid="filter">
+      <div key={column} data-testid="filter">
         <span>{`${column} - `}</span>
         <span>{`${comparison} - `}</span>
         <span>{`${value} `}</span>
@@ -131,6 +132,7 @@ class Filters extends React.Component {
             Filter
           </button>
         </form>
+        <SortAscDsc />
         {this.filtersRender()}
       </div>
     );
@@ -139,6 +141,7 @@ class Filters extends React.Component {
 
 Filters.propTypes = {
   submitValues: PropTypes.func.isRequired,
+  clearFilter: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.arrayOf(
     PropTypes.shape({
       column: PropTypes.string,
@@ -151,7 +154,6 @@ Filters.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.planetReducer.data,
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 
