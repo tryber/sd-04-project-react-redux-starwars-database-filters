@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sortBy } from '../actions/actionFilter';
 
+const listColumns = [
+  'name',
+  'climate',
+  'gravity',
+  'terrain',
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 class SortAscDsc extends React.Component {
   constructor(props) {
     super(props);
@@ -29,17 +41,6 @@ class SortAscDsc extends React.Component {
   }
 
   render() {
-    const listColumns = [
-      'name',
-      'climate',
-      'gravity',
-      'terrain',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
     const { sortByOrder } = this.props;
     return (
       <div>
