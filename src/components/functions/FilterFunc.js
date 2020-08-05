@@ -1,4 +1,5 @@
 const orderPlanet = (column, sort, planets) => {
+  column = column.toLowerCase();
   const sortPlanets = [...planets];
   if (!Number(sortPlanets[0][column])) {
     sortPlanets.sort(function (a, b) {
