@@ -5,6 +5,19 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
   order: { column: 'Name', sort: 'ASC' },
 };
+const getByNumericValues = (state, action) => {
+  return {
+    ...state,
+    filterByNumericValues: [
+      ...state.filterByNumericValues,
+      {
+        column: action.column,
+        comparison: action.comparison,
+        value: action.value,
+      },
+    ],
+  };
+};
 
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -14,18 +27,7 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: action.name },
       };
     case FILTER_BY_NUMERIC_VALUES:
-      return {
-        ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
-        ],
-      };
-
+      return getByNumericValues(state, action);
     case REMOVE_FILTER:
       return {
         ...state,
@@ -33,13 +35,11 @@ const filters = (state = INITIAL_STATE, action) => {
           ({ column }) => column !== action.column,
         ), // filterByNumericValues, sem a  coluna clicada para excluir
       };
-
     case ORDER_FILTERS:
       return {
         ...state,
         order: { column: action.column, sort: action.sort },
       };
-
     default:
       return state;
   }

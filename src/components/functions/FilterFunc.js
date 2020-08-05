@@ -27,7 +27,7 @@ const orderPlanet = (column, sort, planets) => {
 
 const filterFunc = (dataPlanets, name, numericValues, collum, sort) => {
   console.log(numericValues);
-  let result =
+  const result =
     numericValues.length === 0
       ? dataPlanets.filter((planet) => planet.name.includes(name))
       : numericValues.reduce(

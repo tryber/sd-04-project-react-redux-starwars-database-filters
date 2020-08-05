@@ -41,4 +41,5 @@ BodyTable.propTypes = {
   numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
+  order: PropTypes.object.isRequired,
 };

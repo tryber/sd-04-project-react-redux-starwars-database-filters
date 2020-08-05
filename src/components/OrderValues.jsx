@@ -20,10 +20,27 @@ class OrderValues extends React.Component {
     this.setState({ [name]: value });
   }
 
-  onClick(event) {
+  onClick() {
     const { column, sort } = this.state;
-    const { orderFilters } = this.props;
-    orderFilters(column, sort);
+    const { orderFilter } = this.props;
+    orderFilter(column, sort);
+  }
+
+  createInput(valueAscOrDesc) {
+    const { sort } = this.state;
+    return (
+      <frameElement>
+        <input
+          data-testid="column-sort-input"
+          id={valueAscOrDesc}
+          value={valueAscOrDesc}
+          name="sort"
+          type="radio"
+          checked={sort === valueAscOrDesc}
+        />
+        <label htmlFor={valueAscOrDesc}>{valueAscOrDesc}</label>
+      </frameElement>
+    );
   }
 
   render() {
@@ -37,18 +54,10 @@ class OrderValues extends React.Component {
             </option>
           ))}
         </select>
+
         <div onChange={(event) => this.onChange(event)} name="sort">
-          <input
-            data-testid="column-sort-input"
-            id="ASC"
-            value="ASC"
-            name="sort"
-            type="radio"
-            defaultChecked
-          />
-          <label htmlFor="ASC">ASC</label>
-          <input data-testid="column-sort-input" id="DESC" name="sort" type="radio" value="DESC" />
-          <label htmlFor="DESC">DESC</label>
+          {this.createInput('ASC')}
+          {this.createInput('DESC')}
         </div>
         <button
           onClick={(event) => this.onClick(event)}
@@ -67,12 +76,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  orderFilters: (column, sort) => dispatch(orderFilters(column, sort)),
+  orderFilter: (column, sort) => dispatch(orderFilters(column, sort)),
 });
 
 OrderValues.propTypes = {
   data: PropTypes.arrayOf(PropTypes.string).isRequired,
-  orderFilters: PropTypes.func.isRequired,
+  orderFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderValues);
