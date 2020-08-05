@@ -37,8 +37,8 @@ class TableBody extends Component {
           </tr>
         ))}
       </tbody>
-  );
-}
+    );
+  }
 }
 
 const mapState = (state) => ({
@@ -77,9 +77,6 @@ TableBody.propTypes = {
   name: PropTypes.string.isRequired,
   numericValues: PropTypes.arrayOf(
     PropTypes.object).isRequired,
-  column: PropTypes.string.isRequired,
-  comparison: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   columnSort: PropTypes.string.isRequired,
   sort: PropTypes.string.isRequired,
 };
