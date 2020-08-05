@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   filterByName: { name: '' },
 };
 
-const filters = (state = INITIAL_STATE, action) => {
+const filter = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case BUSCAR_NOME:
       return {
@@ -16,4 +16,4 @@ const filters = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default filters;
+export default filter;

@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   backData: state.planetsReducer.backData,
   troca: state.planetsReducer.changeData,
-  digitadoNome: state.filtersReducers.filterByName.name,
+  digitadoNome: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispath) => ({

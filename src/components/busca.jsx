@@ -26,7 +26,7 @@ class Buscar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  digitado: state.filtersReducers.filterByName.name,
+  digitado: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispath) => ({
