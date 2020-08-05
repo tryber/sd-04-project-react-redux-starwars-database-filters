@@ -8,10 +8,10 @@ class ListFilters extends Component {
     const { numericValues, removeFilterClick } = this.props;
     if (numericValues.length === 0) return <div />;
     return (
-      <div data-testid="filter">
+      <div>
         <h3>Filtros</h3>
         {numericValues.map(({ column, comparison, value }) => (
-          <div key={column}>
+          <div data-testid="filter" key={column}>
             {column} {comparison} {value}
             <button type="button" onClick={() => removeFilterClick(column)}>
               X
