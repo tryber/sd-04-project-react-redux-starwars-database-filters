@@ -9,7 +9,7 @@ const filters = (state = INITIAL_STATE, action) => {
     case FILTER_BY_NAME:
       return {
         ...state,
-        filterByName: { name: action.name }
+        filterByName: { name: action.name },
       };
     default:
       return state;
