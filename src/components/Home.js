@@ -14,6 +14,7 @@ class Home extends Component {
   }
 
   render() {
+    if (this.props.loading) return <h2>Loading</h2>;
     return (
       <div>
         <h2>StarWars DataTable</h2>
