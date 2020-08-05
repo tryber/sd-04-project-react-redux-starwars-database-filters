@@ -17,7 +17,7 @@ class FilterName extends Component {
     this.setState({ text: event.target.value });
     this.props.filterByName(event.target.value);
   }
-  
+
   render() {
     return (
       <div>
@@ -33,13 +33,9 @@ class FilterName extends Component {
   }
 }
 
-// const mapState = (state) => ({
-//   name: state.filters.filterByName.name,
-// })
-
 const mapDispatch = (dispatch) => ({
   filterByName: (planetName) => dispatch(filterByName(planetName)),
-})
+});
 
 export default connect(null, mapDispatch)(FilterName);
 

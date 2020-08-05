@@ -59,4 +59,5 @@ TableBody.propTypes = {
       url: PropTypes.string,
     }),
   ).isRequired,
+  name: PropTypes.string.isRequired,
 };

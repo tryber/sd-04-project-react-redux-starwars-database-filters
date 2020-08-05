@@ -1,11 +1,11 @@
 import { FILTER_BY_NAME } from '../actions';
 
 const INITIAL_STATE = {
-  filterByName: { name: ''},
-}
+  filterByName: { name: '' },
+};
 
 const filters = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case FILTER_BY_NAME:
       return {
         ...state,
@@ -14,6 +14,6 @@ const filters = (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-}
+};
 
 export default filters;
