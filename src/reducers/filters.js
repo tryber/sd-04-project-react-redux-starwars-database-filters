@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions';
+import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, FILTER_REMOVE } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
@@ -21,9 +21,19 @@ const filters = (state = INITIAL_STATE, action) => {
           value: action.value,
         }],
       };
+    case FILTER_REMOVE:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues.filter((e) => e !== action.Remove),
+        ],
+      };
+    // case ORDER_COLUMN:
+    //   return { ...state, order: { column: action.column, sort: action.sort } };
     default:
       return state;
   }
 };
+
 
 export default filters;

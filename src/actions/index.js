@@ -5,6 +5,7 @@ export const REQUEST_PLANET_SUCCESS = 'REQUEST_PLANET_SUCCESS';
 export const REQUEST_PLANET_FAILURE = 'REQUEST_PLANET_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
+export const FILTER_REMOVE = 'FILTER_REMOVE';
 
 const requestingPlanets = () => ({
   type: REQUESTING_PLANETS,
@@ -44,6 +45,11 @@ export const filterByNumericValues = (column, comparison, value) => ({
   column,
   comparison,
   value,
+});
+
+export const filterRemove = (Remove) => ({
+  type: FILTER_REMOVE,
+  Remove,
 });
 
 export default fetchPlanets;
