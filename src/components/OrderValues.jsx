@@ -29,7 +29,7 @@ class OrderValues extends React.Component {
   createInput(valueAscOrDesc) {
     const { sort } = this.state;
     return (
-      <frameElement>
+      <div>
         <input
           data-testid="column-sort-input"
           id={valueAscOrDesc}
@@ -39,7 +39,7 @@ class OrderValues extends React.Component {
           checked={sort === valueAscOrDesc}
         />
         <label htmlFor={valueAscOrDesc}>{valueAscOrDesc}</label>
-      </frameElement>
+      </div>
     );
   }
 
