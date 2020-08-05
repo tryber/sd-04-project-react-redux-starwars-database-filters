@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import FilterFunction from './FilterFunction';
 
-class TableBody extends Component {
-  render() {
-    const { planets, name } = this.props;
-    const filterName = planets.filter((planet) => planet.name.includes(name));
+function TableBody({planets, name, numericValues }) {
+  const data = FilterFunction(planets, name, numericValues);
     return (
       <tbody>
-        {filterName.map((planet) => (
+        {data.map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>
             <td>{planet.rotation_period}</td>
@@ -28,18 +27,23 @@ class TableBody extends Component {
             <td>{planet.edited}</td>
             <td>{planet.url}</td>
           </tr>
-        ))}
-      </tbody>
-    );
-  }
+          ))}
+    </tbody>
+  );
 }
 
 const mapState = (state) => ({
   planets: state.getPlanets.data,
   name: state.filters.filterByName.name,
+  numericValues: state.filters.filterByNumericValues,
 });
 
-export default connect(mapState, null)(TableBody);
+export default connect(mapState)(TableBody);
+
+TableBody.defaultProps = {
+  columnSort: 'Name',
+  sort: 'ASC',
+};
 
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(
@@ -60,4 +64,13 @@ TableBody.propTypes = {
     }),
   ).isRequired,
   name: PropTypes.string.isRequired,
+  numericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+      columnSort: PropTypes.string,
+      sort: PropTypes.string,
+    }),
+  ).isRequired,
 };
