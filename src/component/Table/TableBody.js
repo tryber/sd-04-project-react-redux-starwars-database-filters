@@ -60,7 +60,11 @@ TableBody.defaultProps = {
   sort: 'ASC',
 };
 
+
+
 TableBody.propTypes = {
+  orderColumn: PropTypes.string.isRequired,
+  orderSort: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
