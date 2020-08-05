@@ -7,6 +7,7 @@ import { fetchPlanets } from './actions';
 import FilterName from './components/FilterName';
 import FilterValues from './components/FilterValues';
 import RemoveFilters from './components/RemoveFilters';
+import FilterOrder from './components/FilterOrder';
 // import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
         <header className="App-header">
           <FilterName />
           <FilterValues />
+          <FilterOrder />
           <RemoveFilters />
           <Table />
         </header>

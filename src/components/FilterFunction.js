@@ -1,5 +1,5 @@
 
-const filterFunc = (planets, name, numericValues) => (
+const FilterFunction = (planets, name, numericValues) => (
   numericValues.length === 0
     ? planets.filter((planet) => planet.name.includes(name))
     : numericValues.reduce(
@@ -29,4 +29,4 @@ const filterFunc = (planets, name, numericValues) => (
       )
 );
 
-export default filterFunc;
+export default FilterFunction;
