@@ -15,21 +15,6 @@ class FilterValues extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  updatesColumns() {
-    const { numericValues } = this.props;
-    const columns = [
-      '',
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
-    // se encontrar no store, não mostra
-    const invisibleColumns = numericValues.map(({ column }) => column);
-    return columns.filter((item) => !invisibleColumns.includes(item));
-  }
-
   onChange(event) {
     const { value, name } = event.target;
     this.setState({ [name]: value });
@@ -78,6 +63,21 @@ class FilterValues extends Component {
     );
   }
 
+  updatesColumns() {
+    const { numericValues } = this.props;
+    const columns = [
+      '',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+    // se encontrar no store, não mostra
+    const invisibleColumns = numericValues.map(({ column }) => column);
+    return columns.filter((item) => !invisibleColumns.includes(item));
+  }
+
   render() {
     return (
       <div>
@@ -112,4 +112,5 @@ export default connect(mapState, mapDispatch)(FilterValues);
 
 FilterValues.propTypes = {
   numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByNumericValue: PropTypes.func.isRequired,
 };

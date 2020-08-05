@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 class HeaderTable extends Component {
   render() {
     const { data } = this.props;
-    const NewData = data.map((element) => {
-      delete element.residents;
-      return element;
+    const NewData = data.map((column) => {
+      delete column.residents;
+      return column;
     });
 
     return (
