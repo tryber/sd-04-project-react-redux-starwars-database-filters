@@ -5,8 +5,9 @@ import { aplicarFiltro } from '../actions/filtersActions';
 
 class Filters extends Component {
   atualiza() {
-    const { digitadoNome, backData, filter } = this.props;
-    if (digitadoNome === '') filter(backData);
+    const { digitadoNome, backData, filter, digitadoValores, data } = this.props;
+    const auxDat = data;
+    if (digitadoNome === '' && digitadoValores.length === 0) filter(backData);
     else if (digitadoNome !== '') {
       let auxData = [];
       auxData = backData.filter((planet) => {
@@ -15,7 +16,23 @@ class Filters extends Component {
         return names[0].includes(digitadoNome.toLowerCase());
       });
       filter(auxData);
+    } else if (digitadoValores.length > 0) {
+      let data = backData;
+      digitadoValores.forEach((element) => {
+        const comparation = parseFloat(element.value);
+        if (element.comparison === 'maior que') {
+          data = auxDat.filter((planet) => parseFloat(planet[element.column]) > comparation);
+        } else if (element.comparison === 'igual a') {
+          data = auxDat.filter((planet) => parseFloat(planet[element.column]) === comparation);
+        } else if (element.comparison === 'menor que') {
+          data = auxDat.filter((planet) => parseFloat(planet[element.column]) < comparation);
+        }
+        filter(data);
+        console.log(data);
+        return null;
+      });
     }
+    //filter(backData);
     return <p> </p>;
   }
 

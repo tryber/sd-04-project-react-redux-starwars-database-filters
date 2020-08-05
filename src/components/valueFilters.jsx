@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { aplicaValores } from '../actions/filtersActions';
+import { aplicaValores, trocaDados } from '../actions/filtersActions';
 
 class ValueFilters extends Component {
   constructor(props) {
@@ -21,10 +21,12 @@ class ValueFilters extends Component {
   iniciaStates() {
     const { options, choseValues } = this.props;
     let newOpt = options;
-    if(choseValues.length === 0) this.setState({ options: options });
+    if (choseValues.length === 0) this.setState({ options: options });
     const columnsUsed = choseValues.map((value) => value.column);
     columnsUsed.forEach((colum) => {
-      newOpt.forEach((opt, index) => { if (opt === colum) newOpt.splice(index, 1) });
+      newOpt.forEach((opt, index) => {
+        if (opt === colum) newOpt.splice(index, 1);
+      });
     });
     this.setState({ options: newOpt });
   }
@@ -34,11 +36,12 @@ class ValueFilters extends Component {
   }
 
   filtra() {
-    const { filter } = this.props;
+    const { filter, muda } = this.props;
     const { column, comparison, value, options } = this.state;
     const newOpt = options.filter((opt) => opt !== column);
     this.setState({ options: newOpt });
     filter(column, comparison, value, newOpt);
+    muda();
   }
 
   render() {
@@ -94,11 +97,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispath) => ({
   filter: (col, com, val, opt) => dispath(aplicaValores(col, com, val, opt)),
+  muda: () => dispath(trocaDados()),
 });
 
 ValueFilters.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  choseValues: PropTypes.arrayOf(PropTypes.object).isRequired,
   filter: PropTypes.func.isRequired,
+  muda: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ValueFilters);
