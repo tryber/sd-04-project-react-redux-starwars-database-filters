@@ -10,6 +10,7 @@ class OrderValues extends React.Component {
       column: 'name',
       sort: 'ASC',
     };
+    // para atualizar sem a ação do botão
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
   }
@@ -30,9 +31,9 @@ class OrderValues extends React.Component {
     return (
       <div>
         <select data-testid="column-sort" onChange={(event) => this.onChange(event)} name="column">
-          {Object.keys(data[0]).map((planet) => (
-            <option key={planet} value={planet}>
-              {planet}
+          {Object.keys(data[0]).map((name) => (
+            <option key={name} value={name}>
+              {name}
             </option>
           ))}
         </select>

@@ -3,6 +3,7 @@ import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTER, ORDER_FILTERS 
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: { column: 'Name', sort: 'ASC' },
 };
 
 const filters = (state = INITIAL_STATE, action) => {

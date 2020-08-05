@@ -5,9 +5,9 @@ import filterFunc from './functions/FilterFunc';
 
 class BodyTable extends Component {
   render() {
-    const { data, name, numericValues } = this.props;
+    const { data, name, numericValues, order } = this.props;
     // const filterName = data.filter((planet) => planet.name.includes(name));
-    const filterData = filterFunc(data, name, numericValues);
+    const filterData = filterFunc(data, name, numericValues, order.column, order.sort);
 
     return (
       <tbody>
@@ -32,6 +32,7 @@ const mapState = (state) => ({
   data: state.getPlanets.data,
   name: state.filters.filterByName.name,
   numericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 export default connect(mapState)(BodyTable);

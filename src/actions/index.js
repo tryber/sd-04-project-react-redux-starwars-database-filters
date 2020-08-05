@@ -50,7 +50,8 @@ export const removeFilter = (column) => ({
   column,
 });
 
-export const orderFilters = (filter) => ({
+export const orderFilters = (column, sort) => ({
   type: ORDER_FILTERS,
-  filter,
+  column,
+  sort,
 });
