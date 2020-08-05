@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterFunc from '../useful/filterFunc';
 
+function sortPlanets(planetas, orderColumn, orderSort) {
+  if (planetas.length === 0) return planetas;
+  const planetKey = orderColumn.toLowerCase();
+  if (isNaN(planetas[0][planetKey])) {
+    planetas.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
+  } else {
+    planetas.sort((a, b) => a[planetKey] - b[planetKey]);
+  }
+  if (orderSort === 'DESC') planetas.reverse();
+  return planetas;
+}
 function TableBody({ planets, name, numericValues, orderColumn, orderSort }) {
   const data = filterFunc(planets, name, numericValues);
-  function sortPlanets(planetas) {
-    if (planets.length === 0) return planetas;
-    const planetKey = orderColumn.toLowerCase();
-    if (isNaN(planetas[0][planetKey])) {
-      planetas.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
-    } else {
-      planetas.sort((a, b) => a[planetKey] - b[planetKey]);
-    }
-    if (orderSort === 'DESC') planetas.reverse();
-    return planetas;
-  }
-  const sortedPlanets = sortPlanets(data);
+  const sortedPlanets = sortPlanets(data, orderColumn, orderSort);
 
   return (
     <tbody>
