@@ -21,7 +21,7 @@ const filterFunc = (planets, name, numericValues) => (numericValues.length === 0
 const dataSort = (planets, name, numericValues, order) => {
   const data = filterFunc(planets, name, numericValues);
   const sort = data.sort((before, after) => {
-    const asc = before[(order.column).toLowerCase()].localeCompare(after[(order.column).toLowerCase()], 'pt-br', {
+    const asc = before[order.column.toLowerCase()].localeCompare(after[order.column.toLowerCase()], 'pt-br', {
       numeric: true,
     });
     return order.sort === 'ASC' ? asc : asc * -1;
