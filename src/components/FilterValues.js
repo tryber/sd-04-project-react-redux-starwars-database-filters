@@ -11,10 +11,8 @@ class FilterValues extends Component {
       comparation: '',
       number: '',
     };
-
     this.onClick = this.onClick.bind(this);
   }
-
 
   onChange(event, field) {
     this.setState({ [field]: event.target.value });
@@ -78,20 +76,15 @@ class FilterValues extends Component {
     );
   }
 }
-
 FilterValues.propTypes = {
   filterByNumericValues: PropTypes.func.isRequired,
 };
-
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
 });
-
 const mapDispatchToProps = (dispatch) => ({
   filterByNumericValues: (column, comparison, value) => {
     dispatch(filterByNumericValuess(column, comparison, value));
   },
-
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(FilterValues);
