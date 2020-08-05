@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FilterFunction from './FilterFunction';
 
-function TableBody({planets, name, numericValues }) {
+function TableBody({ planets, name, numericValues }) {
   const data = FilterFunction(planets, name, numericValues);
-    return (
+  return (
       <tbody>
         {data.map((planet) => (
           <tr key={planet.name}>
@@ -28,8 +28,8 @@ function TableBody({planets, name, numericValues }) {
             <td>{planet.url}</td>
           </tr>
           ))}
-    </tbody>
-  );
+      </tbody>
+    );
 }
 
 const mapState = (state) => ({
