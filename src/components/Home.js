@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchPlanets from '../action';
 import Table from './Table';
+import FilterPlanet from '../services/filterPlanets';
+import FilterValues from '../services/filterValues';
+import RemoveFilter from '../services/removeFilter';
 
 class Home extends Component {
   componentDidMount() {
@@ -15,6 +18,9 @@ class Home extends Component {
       <div>
         <h2>StarWars DataTable</h2>
         <Table />
+        <FilterPlanet />
+        <FilterValues />
+        <RemoveFilter />
       </div>
     );
   }
