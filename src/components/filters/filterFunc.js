@@ -1,4 +1,4 @@
-const filterComparison = (planets, name, numericValues) => (numericValues.length === 0
+const filterFunc = (planets, name, numericValues) => (numericValues.length === 0
   ? planets.filter((planet) => planet.name.includes(name))
   : numericValues.reduce(
     (acc, { column, comparison, value }) => acc.filter((planet) => {
@@ -18,4 +18,4 @@ const filterComparison = (planets, name, numericValues) => (numericValues.length
     planets,
   ));
 
-export default filterComparison;
+export default filterFunc;

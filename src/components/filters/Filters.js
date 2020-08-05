@@ -1,13 +1,13 @@
 import React from 'react';
-import FilterPlanets from './FilterPlanets';
+import FilterName from './FilterName';
 import FilterValues from './FilterValues';
 import FilterOrder from './FilterOrder';
-import RemoveFilter from './FilterValues';
+import RemoveFilter from './RemoveFilter';
 
 function Filters() {
   return (
     <div>
-      <FilterPlanets />
+      <FilterName />
       <FilterValues />
       <FilterOrder />
       <RemoveFilter />

@@ -1,4 +1,4 @@
-import filterComparison from './FilterComparison';
+import filterComparison from './filterFunc';
 
 const orderName = (array) =>
   array.sort(function (a, b) {

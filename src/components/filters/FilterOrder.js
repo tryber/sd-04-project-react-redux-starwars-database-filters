@@ -14,7 +14,7 @@ class FilterOrder extends React.Component {
 
     this.onOrderChange = this.onOrderChange.bind(this);
     this.getColumns = this.getColumns.bind(this);
-    this.getComparation = this.getComparation.bind(this);
+    this.getRadios = this.getRadios.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
@@ -24,9 +24,8 @@ class FilterOrder extends React.Component {
   }
 
   onClick() {
-    const { number, column, comparation } = this.state;
-    this.props.filterByNumericValues(column, comparation, number);
-    this.setState({ number: '', column: '', comparation: '' });
+    const { columnSort, inputSort } = this.state;
+    this.props.orderFunc(columnSort, inputSort);
   }
 
   getColumns() {
@@ -46,27 +45,35 @@ class FilterOrder extends React.Component {
       >
         {columns.map((option) => (
           <option key={option} value={option}>
-            {option}
+            {option}{' '}
           </option>
         ))}
       </select>
     );
   }
-
-  getComparation() {
-    const comparation = ['', 'maior que', 'menor que', 'igual a'];
+  getRadios() {
     return (
-      <select
-        onChange={(event) => this.onSelectChange(event, 'comparation')}
-        data-testid="comparison-filter"
-        value={this.state.comparation}
-      >
-        {comparation.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <div>
+        <input
+          defaultChecked
+          data-testid="column-sort-input"
+          type="radio"
+          id="ASC"
+          name="order"
+          value="ASC"
+          onChange={(event) => this.onOrderChange(event, 'inputSort')}
+        />
+        <label htmlFor="ASC">ASC</label>
+        <input
+          data-testid="column-sort-input"
+          type="radio"
+          id="DESC"
+          name="order"
+          value="DESC"
+          onChange={(event) => this.onOrderChange(event, 'inputSort')}
+        />
+        <label htmlFor="DESC">DESC</label>
+      </div>
     );
   }
 
@@ -74,15 +81,9 @@ class FilterOrder extends React.Component {
     return (
       <div>
         {this.getColumns()}
-        {this.getComparation()}
-        <input
-          type="number"
-          data-testid="value-filter"
-          value={this.state.number}
-          onChange={(event) => this.onNumberChange(event)}
-        />
-        <button data-testid="button-filter" onClick={this.onClick}>
-          Filtrar
+        {this.getRadios()}
+        <button data-testid="column-sort-button" type="button" onClick={this.onClick}>
+          Ordenar
         </button>
       </div>
     );

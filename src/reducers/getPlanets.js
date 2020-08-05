@@ -1,10 +1,10 @@
-import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_FAILURE } from '../action';
+import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_FAILURE } from '../action/index';
 
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
   filters: {
-    filtersByName: { name: '' },
+    filterByName: { name: '' },
     filterByNumericValues: [],
   },
 };

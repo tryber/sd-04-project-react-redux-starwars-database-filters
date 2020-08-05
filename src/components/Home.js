@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
-import fetchPlanets from '../action';
+import PropTypes from 'prop-types';
 import Table from './Table';
 import Filters from './filters/Filters';
+import { requestFetch } from '../action/index';
 
-
-class Home extends Component {
+class Home extends React.Component {
   componentDidMount() {
     const { getPlanets } = this.props;
     getPlanets();
   }
 
   render() {
-    if (this.props.loading) return <h2>Loading...</h2>;
+    if (this.props.loading) return <h1>Loading...</h1>;
     return (
       <div>
-        <h2>StarWars DataTable with filters</h2>
+        <h1>StarWars Datatable with Filters</h1>
         <Filters />
         <Table />
       </div>
@@ -29,7 +28,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getPlanets: () => dispatch(fetchPlanets()),
+  getPlanets: () => dispatch(requestFetch()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

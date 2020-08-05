@@ -4,10 +4,12 @@ import TableHead from './TableHead';
 
 function Table() {
   return (
-    <table>
-      <TableHead />
-      <TableBody />
-    </table>
+    <div>
+      <table>
+        <TableHead />
+        <TableBody />
+      </table>
+    </div>
   );
 }
 

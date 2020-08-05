@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { removeNumericFilter } from '../actions';
+import { removeFilterNumeric } from '../../action/index';
 
 function RemoveFilter({ numericValues, removeNumeric }) {
   const onClick = (type) => removeNumeric(type);
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeNumeric: (filterKeys) => dispatch(removeNumericFilter(filterKeys)),
+  removeNumeric: (type) => dispatch(removeFilterNumeric(type)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RemoveFilter);
