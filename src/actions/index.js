@@ -1,18 +1,18 @@
 import getPlanetsAPI from '../services/getPlanetsAPI';
 
-export const REQUESTING_PLANETS = 'REQUESTING_PLANETS';
-export const REQUEST_PLANETS_SUCSSES = 'REQUEST_PLANETS_SUCSSES';
+export const REQUEST_PLANETS = 'REQUESTING_PLANETS';
+export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCSSES';
 export const REQUEST_PLANETS_FAILURE = 'REQUEST_PLANETS_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 export const REMOVE_FILTER_BY_NUMERIC_VALUES = 'REMOVE_FILTER_BY_NUMERIC_VALUES';
 
 const requestingPlanets = () => ({
-  type: REQUESTING_PLANETS,
+  type: REQUEST_PLANETS,
 });
 
 const sucessPlanets = (data) => ({
-  type: REQUEST_PLANETS_SUCSSES,
+  type: REQUEST_PLANETS_SUCCESS,
   data,
 });
 

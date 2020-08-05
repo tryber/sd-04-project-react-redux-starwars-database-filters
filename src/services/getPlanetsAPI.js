@@ -9,5 +9,4 @@ const getPlanetsAPI = () => (
   )
 );
 
-
 export default getPlanetsAPI;

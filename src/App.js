@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Table from './components/Table';
 import { fetchPlanets } from './actions';
 import FilterName from './components/FilterName';
+import FilterValues from './components/FilterValues';
+import RemoveFilters from './components/RemoveFilters';
 // import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -21,6 +23,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <FilterName />
+          <FilterValues />
+          <RemoveFilters />
           <Table />
         </header>
       </div>
