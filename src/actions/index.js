@@ -9,10 +9,11 @@ export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const ORDER_FILTERS = 'ORDER_FILTERS';
 
 const removeResidents = (data) => {
-  return data.map((planet) => {
+  const newData = data.map((planet) => {
     delete planet.residents;
     return planet;
   });
+  return newData;
 };
 
 const requestingPlanets = () => ({
