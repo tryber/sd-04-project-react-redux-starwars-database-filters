@@ -6,6 +6,7 @@ export const REQUEST_PLANET_FAILURE = 'REQUEST_PLANET_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 export const FILTER_REMOVE = 'FILTER_REMOVE';
+export const ORDER_COLUMN = 'ORDER_COLUMN';
 
 const requestingPlanets = () => ({
   type: REQUESTING_PLANETS,
@@ -50,6 +51,12 @@ export const filterByNumericValues = (column, comparison, value) => ({
 export const filterRemove = (Remove) => ({
   type: FILTER_REMOVE,
   Remove,
+});
+
+export const orderColumns = (column, sort) => ({
+  type: ORDER_COLUMN,
+  column,
+  sort,
 });
 
 export default fetchPlanets;

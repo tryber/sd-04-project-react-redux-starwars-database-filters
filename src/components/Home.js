@@ -8,6 +8,7 @@ import './HomeLoading.css';
 import './Home.css';
 import FilterPlanet from './FilterPlanet';
 import FilterRemove from './FilterRemove';
+import FilterOrder from './FilterOrder';
 
 class Home extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class Home extends Component {
         <FilterPlanet />
         <FilterValues />
         <FilterRemove />
+        <FilterOrder />
         <Table />
       </div>
     );
