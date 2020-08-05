@@ -29,6 +29,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { fetchplanets })(Home);
 
 Home.propTypes = {
-  getPlanets: PropTypes.func.isRequired,
+  fetchplanets: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
