@@ -3,6 +3,10 @@ import { REQUEST_PLANETS, REQUEST_PLANETS_SUCCESS, REQUEST_PLANETS_FAILURE } fro
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
+  filters: {
+    filtersByName: { name: '' },
+    filterByNumericValues: [],
+  },
 };
 
 const getPlanets = (state = INITIAL_STATE, action) => {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { filterByName } from '../action';
+import { filterByName } from '../../action';
 
 class FilterPlanet extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       text: '',
     };
@@ -32,11 +33,15 @@ class FilterPlanet extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  numericValues: state.filtersByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   filterByName: (planetName) => dispatch(filterByName(planetName)),
 });
 
-export default connect(null, mapDispatchToProps)(FilterPlanet);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterPlanet);
 
 FilterPlanet.propTypes = {
   filterByName: PropTypes.func.isRequired,

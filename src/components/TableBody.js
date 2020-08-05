@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import orderFuncAsc from './filters/orderFuncAsc';
+import orderFuncDesc from './filters/orderFuncDesc';
 
-function TableBody({ planets }) {
+
+function TableBody({ planets, name, numericValues, columnSort, sort }) {
+  const data =
+    sort === 'ASC'
+      ? orderFuncAsc(planets, name, numericValues, columnSort)
+      : orderFuncDesc(planets, name, numericValues, columnSort);
   return (
     <tbody>
-      {planets.map((planet) => (
+      {data.map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td>
           <td>{planet.rotation_period}</td>
@@ -32,6 +39,10 @@ function TableBody({ planets }) {
 
 const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
+  name: state.filters.filterByName.name,
+  numericValues: state.filters.filterByNumericValue,
+  columnSort: state.filters.order.sort,
+  sort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps)(TableBody);
@@ -59,4 +70,16 @@ TableBody.propTypes = {
       url: PropTypes.string,
     }),
   ).isRequired,
+  name: PropTypes.string.isRequired,
+  numericValues: PropTypes.arrayOf(
+    PropTypes.shape({
+      column: PropTypes.string,
+      comparison: PropTypes.string,
+      value: PropTypes.string,
+      columnSort: PropTypes.string,
+      sort: PropTypes.string,
+    }),
+  ).isRequired,
+  columnSort: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
 };

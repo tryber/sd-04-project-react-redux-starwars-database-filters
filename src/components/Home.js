@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchPlanets from '../action';
 import Table from './Table';
-import FilterPlanet from '../services/filterPlanets';
-import FilterValues from '../services/filterValues';
-import RemoveFilter from '../services/removeFilter';
+import Filters from './filters/Filters';
+
 
 class Home extends Component {
   componentDidMount() {
@@ -14,14 +13,12 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.loading) return <h2>Loading</h2>;
+    if (this.props.loading) return <h2>Loading...</h2>;
     return (
       <div>
-        <h2>StarWars DataTable</h2>
+        <h2>StarWars DataTable with filters</h2>
+        <Filters />
         <Table />
-        <FilterPlanet />
-        <FilterValues />
-        <RemoveFilter />
       </div>
     );
   }

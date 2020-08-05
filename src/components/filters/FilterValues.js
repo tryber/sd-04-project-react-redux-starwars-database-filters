@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { filterByNumericValues } from '../actions';
+import { filterByNumericValues } from '../../action/index';
 
 class FilterValue extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class FilterValue extends React.Component {
       column: '',
       comparation: '',
     };
-
     this.updateColumn = this.updateColumn.bind(this);
     this.onNumberChange = this.onNumberChange.bind(this);
     this.onSelectChange = this.onSelectChange.bind(this);
@@ -20,6 +19,7 @@ class FilterValue extends React.Component {
     this.getComparation = this.getComparation.bind(this);
     this.onClick = this.onClick.bind(this);
   }
+
   componentDidMount() {
     this.updateColumn();
   }
@@ -98,7 +98,7 @@ class FilterValue extends React.Component {
           onChange={(event) => this.onNumberChange(event)}
         />
         <button data-testid="button-filter" onClick={this.onClick}>
-          Filtrar
+          Filtrar{' '}
         </button>
       </div>
     );
