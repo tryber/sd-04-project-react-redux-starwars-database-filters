@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import filterFunc from './functions/FilterFunc';
 
 class BodyTable extends Component {
   render() {
-    const { data, name } = this.props;
-    const filterName = data.filter((planet) => planet.name.includes(name));
+    const { data, name, numericValues } = this.props;
+    // const filterName = data.filter((planet) => planet.name.includes(name));
+    const filterData = filterFunc(data, name, numericValues);
 
     return (
       <tbody>
-        {filterName.map((planet) => (
+        {filterData.map((planet) => (
           <tr key={planet.name}>
             {Object.keys(planet).map((information) => (
-              <td>
+              <td key={information}>
                 {information === 'films'
                   ? planet[information].map((film) => <span key={film}>{film}</span>)
                   : planet[information]}
@@ -28,6 +30,7 @@ class BodyTable extends Component {
 const mapState = (state) => ({
   data: state.getPlanets.data,
   name: state.filters.filterByName.name,
+  numericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapState)(BodyTable);

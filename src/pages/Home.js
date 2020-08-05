@@ -3,11 +3,12 @@ import Table from '../components/Table';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
 import FilterByName from '../components/FilterName';
+import FilterValues from '../components/FilterValues';
 
 export class Home extends Component {
   componentDidMount() {
-    const { fetchPlanets } = this.props;
-    fetchPlanets();
+    const { fetchPlanet } = this.props;
+    fetchPlanet();
   }
   render() {
     const { isLoading } = this.props;
@@ -16,6 +17,7 @@ export class Home extends Component {
       <div>
         <h1>Star Wars Planets</h1>
         <FilterByName />
+        <FilterValues />
         <Table />
       </div>
     );
@@ -27,6 +29,6 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets()),
+  fetchPlanet: () => dispatch(fetchPlanets()),
 });
 export default connect(mapState, mapDispatch)(Home);

@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 class HeaderTable extends Component {
   render() {
     const { data } = this.props;
-    data.forEach((element) => delete element.residents);
+    data.forEach((element) => {
+      delete element.residents;
+    });
 
     return (
       <thead>

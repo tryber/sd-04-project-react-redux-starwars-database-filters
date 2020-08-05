@@ -1,5 +1,50 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  display: inline-block;
+}
+
+input,
+select {
+  padding: 5px;
+  font-size: 0.875em;
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+}
+
+table thead {
+  background-color: black;
+  color: white;
+  font-weight: 900;
+}
+
+table th {
+  border: 1px solid black;
+  padding: 10px;
+  overflow: hidden;
+  width: 0 auto;
+}
+
+tbody tr:nth-child(even) {
+  background: #ccc;
+}
+
+tbody tr:nth-child(even):hover {
+  background: rgb(223, 222, 222);
+}
+
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
+tbody tr:nth-child(odd):hover {
+  background: rgb(235, 226, 226);
 }
 
 .App-logo {
