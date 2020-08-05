@@ -34,12 +34,12 @@ export function fetchPlanets() {
   };
 }
 
-export const filterByNamee = (name) => ({
+export const filterByName = (name) => ({
   type: FILTER_BY_NAME,
   name,
 });
 
-export const filterByNumericValuess = (column, comparison, value) => ({
+export const filterByNumericValues = (column, comparison, value) => ({
   type: FILTER_BY_NUMERIC_VALUES,
   column,
   comparison,
