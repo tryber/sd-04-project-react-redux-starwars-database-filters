@@ -60,6 +60,7 @@ Filters.propTypes = {
   digitadoNome: PropTypes.string.isRequired,
   filter: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  digitadoValores: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

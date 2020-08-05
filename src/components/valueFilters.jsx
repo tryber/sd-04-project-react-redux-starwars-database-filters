@@ -20,10 +20,8 @@ class ValueFilters extends Component {
 
   iniciaStates() {
     const { options, choseValues } = this.props;
-    const newOpt = options;
-    if (choseValues.length === 0) {
-      this.setState({ options: options });
-    }
+    let newOpt = options;
+    if (choseValues.length === 0) this.setState({ options });
     const columnsUsed = choseValues.map((value) => value.column);
     columnsUsed.forEach((colum) => {
       newOpt.forEach((opt, index) => {
@@ -46,26 +44,9 @@ class ValueFilters extends Component {
     muda();
   }
 
-  forms() {
-    const { options } = this.state;
+  form() {
     return (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          this.filtra();
-        }}
-      >
-        <select
-          data-testid="column-filter"
-          name="column"
-          onChange={(e) => this.gerenciaStates('column', e.target.value)}
-        >
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+      <div>
         <select
           data-testid="comparison-filter"
           name="comparison"
@@ -82,15 +63,38 @@ class ValueFilters extends Component {
           name="value"
           onChange={(e) => this.gerenciaStates('value', e.target.value)}
         />
-        <button type="submit" data-testid="button-filter">
-          Filtrar
-        </button>
-      </form>
+      </div>
     );
   }
 
   render() {
-    return <div>{this.forms()}</div>;
+    const { options } = this.state;
+    return (
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.filtra();
+          }}
+        >
+          <select
+            data-testid="column-filter"
+            name="column"
+            onChange={(e) => this.gerenciaStates('column', e.target.value)}
+          >
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {this.form()}
+          <button type="submit" data-testid="button-filter">
+            Filtrar
+          </button>
+        </form>
+      </div>
+    );
   }
 }
 
