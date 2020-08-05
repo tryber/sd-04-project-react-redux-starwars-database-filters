@@ -7,7 +7,7 @@ class HeaderTable extends Component {
     const { data } = this.props;
     const removeCollumResidents = () => {
       const newData = data.map((column) => {
-        delete column.residents;
+        delete column['residents'];
         return column;
       });
       return newData;
