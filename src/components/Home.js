@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Table from './Table';
 import Filters from './filters/Filters';
 import { requestFetch } from '../action/index';
+import Table from './Table';
 
 class Home extends React.Component {
   componentDidMount() {
