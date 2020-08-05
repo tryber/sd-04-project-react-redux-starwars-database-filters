@@ -5,15 +5,19 @@ import PropTypes from 'prop-types';
 class HeaderTable extends Component {
   render() {
     const { data } = this.props;
-    const NewData = data.map((column) => {
-      delete column.residents;
-      return column;
-    });
+    const removeCollumResidents = (data) => {
+      const newData = data.map((column) => {
+        delete column.residents;
+        return column;
+      });
+      return newData;
+    };
+    const newData = removeCollumResidents(data);
 
     return (
       <thead>
         <tr>
-          {Object.keys(NewData[0]).map((head) => (
+          {Object.keys(newData[0]).map((head) => (
             <th key={head}>{head}</th>
           ))}
         </tr>
