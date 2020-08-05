@@ -1,6 +1,6 @@
-export default function getPlanets() {
-  const URL_PLANETS = 'https://swapi.dev/api/planets';
-  fetch(URL_PLANETS)
-    .then(planets => planets)
-    .catch(error => { throw error });
+export default async function getPlanets() {
+  const response = await fetch('https://swapi.dev/api/planets')
+  const json = await response.json();
+  const data = await (response.ok ? Promise.resolve(json) : Promise.reject('Uh-oh!'));
+  return data;
 }
