@@ -1,7 +1,4 @@
 const orderPlanet = (column, sort, planets) => {
-  console.log(column);
-  console.log(sort);
-  console.log(planets);
   const sortPlanets = [...planets];
   if (!Number(sortPlanets[0][column])) {
     sortPlanets.sort(function (a, b) {
@@ -26,7 +23,6 @@ const orderPlanet = (column, sort, planets) => {
 };
 
 const filterFunc = (dataPlanets, name, numericValues, collum, sort) => {
-  console.log(numericValues);
   const result =
     numericValues.length === 0
       ? dataPlanets.filter((planet) => planet.name.includes(name))
