@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TableHead from './tableHead';
 import TableBody from './tableBody';
+import './css/tableHead.css'
 
 class Table extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Table extends Component {
         'terrain',
         'url',
       ],
+      newData: [],
     };
   }
 
@@ -34,7 +36,7 @@ class Table extends Component {
     ) : (
       <div>
         <table>
-          <thead>
+          <thead className="table_head">
             <TableHead dados={keys} />
           </thead>
           <TableBody dados={data} keys={keys} />

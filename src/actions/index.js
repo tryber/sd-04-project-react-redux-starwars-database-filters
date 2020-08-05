@@ -15,9 +15,6 @@ const pedirPlanetsConcluido = ({ results }) => ({
 export function fetchApiPlanets() {
   return (dispatch) => {
     dispatch(pedirPlanets());
-    return getPlanetsAPI()
-    .then(
-      (data) => dispatch(pedirPlanetsConcluido(data)),
-    );
+    return getPlanetsAPI().then((data) => dispatch(pedirPlanetsConcluido(data)));
   };
 }

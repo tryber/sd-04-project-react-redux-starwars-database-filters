@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { fetchApiPlanets } from './actions';
 import './App.css';
 import Table from './components/table.jsx';
+import Buscar from './components/busca.jsx'
+import Filters from './components/filters';
 
 class App extends Component {
   componentDidMount() {
@@ -15,6 +17,8 @@ class App extends Component {
     return (
       <div className="App">
         <header>
+          <Buscar />
+          <Filters />
           <Table />
         </header>
       </div>

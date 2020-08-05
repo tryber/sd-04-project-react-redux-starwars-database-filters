@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './css/tableBody.css';
 
 class TableBody extends Component {
   render() {
     const { dados, keys } = this.props;
     return (
-      <tbody>
+      <tbody className="table_body">
         {dados.map((body) => (
           <tr key={`${body.name} pai`}>
             {keys.map((bodin) => (
