@@ -7,7 +7,6 @@ function Table() {
   return (
     <div>
       <table>
-
         <TableHead />
         <TableBody />
       </table>

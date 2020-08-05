@@ -3,11 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import filterFunc from '../useful/filterFunc';
 
-function TableBody({ planets, name, numericValues }) {
+function TableBody({ planets, name, numericValues, orderColumn, orderSort }) {
   const data = filterFunc(planets, name, numericValues);
+  function sortPlanets(planets) {
+    if (planets.length === 0) return planets;
+    const planetKey = orderColumn.toLowerCase();
+    if (isNaN(planets[0][planetKey])) {
+      planets.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
+    } else {
+      planets.sort((a, b) => a[planetKey] - b[planetKey]);
+    }
+    if (orderSort === 'DESC') planets.reverse();
+    return planets;
+  }
+  const sortedPlanets = sortPlanets(data)
+
   return (
     <tbody>
-      {data.map((planet) => (
+      {sortedPlanets.map((planet) => (
         <tr key={planet.name}>
           <td>{planet.name}</td>
           <td>{planet.rotation_period}</td>
@@ -36,6 +49,8 @@ const mapStateToProps = (state) => ({
   planets: state.getPlanets.data,
   name: state.filters.filterByName.name,
   numericValues: state.filters.filterByNumericValues,
+  orderColumn: state.filters.order.column,
+  orderSort: state.filters.order.sort
 });
 
 export default connect(mapStateToProps)(TableBody);
