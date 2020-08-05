@@ -11,14 +11,14 @@ class Buscar extends Component {
   }
 
   render() {
-    const { digitado = '' } = this.props;
+    const { filters = '' } = this.props;
     return (
       <div>
         <input
           data-testid="name-filter"
           type="text"
           onChange={(e) => this.changes(e)}
-          value={digitado}
+          value={filters}
         />
       </div>
     );
@@ -26,7 +26,7 @@ class Buscar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  digitado: state.filters.filterByName.name,
+  filters: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispath) => ({
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispath) => ({
 });
 
 Buscar.propTypes = {
-  digitado: PropTypes.string.isRequired,
+  filters: PropTypes.string.isRequired,
   filterName: PropTypes.func.isRequired,
   muda: PropTypes.func.isRequired,
 };

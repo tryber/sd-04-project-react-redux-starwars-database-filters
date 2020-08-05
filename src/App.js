@@ -6,6 +6,7 @@ import './App.css';
 import Table from './components/table.jsx';
 import Buscar from './components/busca.jsx';
 import Filters from './components/filters';
+import ValueFilters from './components/valueFilters';
 
 class App extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class App extends Component {
       <div className="App">
         <header>
           <Buscar />
+          <ValueFilters />
           <Filters />
           <Table />
         </header>

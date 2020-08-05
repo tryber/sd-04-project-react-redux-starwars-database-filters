@@ -16,12 +16,12 @@ class Filters extends Component {
       });
       filter(auxData);
     }
-    return <h3>TABELA</h3>;
+    return <p> </p>;
   }
 
   render() {
     const { troca } = this.props;
-    return !troca ? <h3>TABELA</h3> : <div>{this.atualiza()}</div>;
+    return !troca ? <p> </p> : <div>{this.atualiza()}</div>;
   }
 }
 
@@ -30,6 +30,7 @@ const mapStateToProps = (state) => ({
   backData: state.planetsReducer.backData,
   troca: state.planetsReducer.changeData,
   digitadoNome: state.filters.filterByName.name,
+  digitadoValores: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispath) => ({
