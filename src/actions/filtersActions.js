@@ -3,6 +3,7 @@ export const APLICA_FILTRO = 'APLICA_FILTRO';
 export const TROCA_DATA = 'TROCA_DATA';
 export const BUSCA_VALORES = 'BUSCA_VALORES';
 export const REMOVE_VALORES = 'REMOVE_VALORES';
+export const SORTEIA_VALORES = 'SORTEIA_VALORES';
 
 export const inputPesquisa = (digitado) => ({
   type: BUSCAR_NOME,
@@ -30,4 +31,10 @@ export const removeValores = (valor, newData) => ({
   type: REMOVE_VALORES,
   valor,
   newData,
+});
+
+export const sorteiaValores = (column, sort) => ({
+  type: SORTEIA_VALORES,
+  sort,
+  column,
 });

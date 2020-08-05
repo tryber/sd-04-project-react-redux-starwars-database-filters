@@ -1,4 +1,4 @@
-import { BUSCAR_NOME, BUSCA_VALORES, REMOVE_VALORES } from '../actions/filtersActions';
+import { BUSCAR_NOME, BUSCA_VALORES, REMOVE_VALORES, SORTEIA_VALORES } from '../actions/filtersActions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
@@ -11,6 +11,10 @@ const INITIAL_STATE = {
     'rotation_period',
     'surface_water',
   ],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filter = (state = INITIAL_STATE, action) => {
@@ -36,6 +40,11 @@ const filter = (state = INITIAL_STATE, action) => {
           ({ column }) => column !== action.valor,
         ),
         options: [...state.options, action.valor],
+      };
+    case SORTEIA_VALORES:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
