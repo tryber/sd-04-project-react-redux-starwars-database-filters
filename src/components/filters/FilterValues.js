@@ -19,7 +19,7 @@ class FilterValue extends React.Component {
     this.getComparation = this.getComparation.bind(this);
     this.onClick = this.onClick.bind(this);
   }
-  
+
   componentDidMount() {
     this.updateColumn();
   }
@@ -66,7 +66,7 @@ class FilterValue extends React.Component {
       >
         {comparation.map((option) => (
           <option key={option} value={option}>
-           {option}
+            {option}
           </option>
         ))}
       </select>
@@ -83,10 +83,7 @@ class FilterValue extends React.Component {
       'surface_water',
     ];
     const stateColumns = numericValues.map(({ column }) => column);
-    return [
-      '',
-      ...columns.filter((option) => !stateColumns.includes(option)),
-    ];
+    return ['', ...columns.filter((option) => !stateColumns.includes(option))];
   }
 
   render() {
@@ -125,9 +122,7 @@ FilterValue.propTypes = {
       column: PropTypes.string,
       comparison: PropTypes.string,
       value: PropTypes.string,
-
     }),
-
   ).isRequired,
 
   filterByNumericValues: PropTypes.func.isRequired,
