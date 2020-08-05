@@ -1,27 +1,30 @@
 import React from 'react';
-import getPlanets from '../services/api';
+import TableBody from './TableBody';
 
-export default class Table extends React.Component {
-  async fetchPlanets() {
-    try {
-      const planets = await getPlanets();
-      return planets;
-    }
-    catch (error) {
-      throw error.message;
-    }
-  }
 
-  render() {
-    const planets = this.fetchPlanets();
-    console.log(planets);
-
-    return (
-      <table>
-        {planets.forEach(planet =>
-          Object.keys(planet).map(key => <th>{key}</th>))}
-        <th></th>
-      </table>
-    );
-  }
+function App() {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rotation Period</th>
+          <th>Orbital period</th>
+          <th>Diameter</th>
+          <th>Climate</th>
+          <th>Gravity</th>
+          <th>Terrain</th>
+          <th>surface water</th>
+          <th>Population</th>
+          <th>Film</th>
+          <th>Created</th>
+          <th>Edited</th>
+          <th>Url</th>
+        </tr>
+      </thead>
+      <TableBody />
+    </table>
+  );
 }
+
+export default App;

@@ -1,10 +1,13 @@
 import React from 'react';
-import Table from './components/Table';
+import './App.css';
+import Home from './components/Home';
 
-export default function App() {
+function App() {
   return (
-    <div>
-      <Table />
+    <div className="App">
+      <Home />
     </div>
   );
 }
+
+export default App;
