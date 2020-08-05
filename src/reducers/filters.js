@@ -1,5 +1,4 @@
 import { FILTER_BY_NAME } from '../actions';
-import { act } from 'react-dom/test-utils';
 
 const INITIAL_STATE = {
   filterByName: { name: ''},
