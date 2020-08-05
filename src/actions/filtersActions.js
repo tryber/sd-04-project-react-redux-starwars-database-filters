@@ -23,4 +23,4 @@ export const aplicaValores = (column, comparison, value, options) => ({
   comparison,
   value,
   options,
-})
+});

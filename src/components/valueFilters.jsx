@@ -20,8 +20,10 @@ class ValueFilters extends Component {
 
   iniciaStates() {
     const { options, choseValues } = this.props;
-    let newOpt = options;
-    if (choseValues.length === 0) this.setState({ options: options });
+    const newOpt = options;
+    if (choseValues.length === 0) {
+      this.setState({ options: options });
+    }
     const columnsUsed = choseValues.map((value) => value.column);
     columnsUsed.forEach((colum) => {
       newOpt.forEach((opt, index) => {
@@ -44,49 +46,51 @@ class ValueFilters extends Component {
     muda();
   }
 
-  render() {
+  forms() {
     const { options } = this.state;
     return (
-      <div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.filtra();
-          }}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          this.filtra();
+        }}
+      >
+        <select
+          data-testid="column-filter"
+          name="column"
+          onChange={(e) => this.gerenciaStates('column', e.target.value)}
         >
-          <select
-            data-testid="column-filter"
-            name="column"
-            onChange={(e) => this.gerenciaStates('column', e.target.value)}
-          >
-            {options.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <select
-            data-testid="comparison-filter"
-            name="comparison"
-            onChange={(e) => this.gerenciaStates('comparison', e.target.value)}
-          >
-            <option defaultValue>Comparison</option>
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
-          <input
-            data-testid="value-filter"
-            type="number"
-            name="value"
-            onChange={(e) => this.gerenciaStates('value', e.target.value)}
-          />
-          <button type="submit" data-testid="button-filter">
-            Filtrar
-          </button>
-        </form>
-      </div>
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          data-testid="comparison-filter"
+          name="comparison"
+          onChange={(e) => this.gerenciaStates('comparison', e.target.value)}
+        >
+          <option defaultValue>Comparison</option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
+        </select>
+        <input
+          data-testid="value-filter"
+          type="number"
+          name="value"
+          onChange={(e) => this.gerenciaStates('value', e.target.value)}
+        />
+        <button type="submit" data-testid="button-filter">
+          Filtrar
+        </button>
+      </form>
     );
+  }
+
+  render() {
+    return <div>{this.forms()}</div>;
   }
 }
 

@@ -17,28 +17,28 @@ class Filters extends Component {
       });
       filter(auxData);
     } else if (digitadoValores.length > 0) {
-      let data = backData;
+      let dat = backData;
       digitadoValores.forEach((element) => {
         const comparation = parseFloat(element.value);
         if (element.comparison === 'maior que') {
-          data = auxDat.filter((planet) => parseFloat(planet[element.column]) > comparation);
+          dat = auxDat.filter((planet) => parseFloat(planet[element.column]) > comparation);
         } else if (element.comparison === 'igual a') {
-          data = auxDat.filter((planet) => parseFloat(planet[element.column]) === comparation);
+          dat = auxDat.filter((planet) => parseFloat(planet[element.column]) === comparation);
         } else if (element.comparison === 'menor que') {
-          data = auxDat.filter((planet) => parseFloat(planet[element.column]) < comparation);
+          dat = auxDat.filter((planet) => parseFloat(planet[element.column]) < comparation);
         }
-        filter(data);
-        console.log(data);
+        filter(dat);
+        console.log(dat);
         return null;
       });
     }
-    //filter(backData);
-    return <p> </p>;
+    //  filter(backData);
+    return <p />;
   }
 
   render() {
     const { troca } = this.props;
-    return !troca ? <p> </p> : <div>{this.atualiza()}</div>;
+    return !troca ? <p /> : <div>{this.atualiza()}</div>;
   }
 }
 
@@ -59,6 +59,7 @@ Filters.propTypes = {
   troca: PropTypes.bool.isRequired,
   digitadoNome: PropTypes.string.isRequired,
   filter: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
