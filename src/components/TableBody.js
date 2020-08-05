@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import orderFuncAsc from 
-// import orderFuncDesc from
+import orderFuncAsc from './filters/orderFuncAsc';
+import orderFuncDesc from './filters/orderFuncDesc';
 
 function TableBody({ planets, name, numericValues, columnSort, sort }) {
   const data =
