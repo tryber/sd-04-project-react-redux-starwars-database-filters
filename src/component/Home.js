@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Table from './Table/Table';
 import fetchplanets from '../action/index';
+import Filters from './filters/Filters';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1>StarWars Datatable with Filters</h1>
+        <Filters />
         <Table />
       </div>
     );
