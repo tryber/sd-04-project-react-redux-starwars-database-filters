@@ -5,12 +5,12 @@ import { aplicarFiltro } from '../actions/filtersActions';
 
 class Filters extends Component {
   atualiza() {
-    const { digitadoNome, data, backData, filter } = this.props;
+    const { digitadoNome, backData, filter } = this.props;
     if (digitadoNome === '') filter(backData);
     else if (digitadoNome !== '') {
       let auxData = [];
-      auxData = data.filter((planet) => {
-        let names = [];
+      auxData = backData.filter((planet) => {
+        const names = [];
         names.push(planet.name.toLowerCase());
         return names[0].includes(digitadoNome.toLowerCase());
       });
@@ -36,12 +36,7 @@ const mapDispatchToProps = (dispath) => ({
   filter: (filtro) => dispath(aplicarFiltro(filtro)),
 });
 
-Filters.defaultProps = {
-  dados: [],
-};
-
 Filters.propTypes = {
-  dados: PropTypes.arrayOf(PropTypes.object),
   backData: PropTypes.arrayOf(PropTypes.object).isRequired,
   troca: PropTypes.bool.isRequired,
   digitadoNome: PropTypes.string.isRequired,

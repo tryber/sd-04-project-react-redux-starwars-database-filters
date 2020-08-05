@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TableHead from './tableHead';
 import TableBody from './tableBody';
-import './css/tableHead.css'
+import './css/tableHead.css';
 
 class Table extends Component {
   constructor(props) {

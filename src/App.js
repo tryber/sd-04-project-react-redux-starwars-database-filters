@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchApiPlanets } from './actions';
 import './App.css';
 import Table from './components/table.jsx';
-import Buscar from './components/busca.jsx'
+import Buscar from './components/busca.jsx';
 import Filters from './components/filters';
 
 class App extends Component {
