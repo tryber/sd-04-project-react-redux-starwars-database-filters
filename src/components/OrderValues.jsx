@@ -13,6 +13,8 @@ class OrderValues extends React.Component {
     // para atualizar sem a ação do botão
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.createInputDesc = this.createInputDesc.bind(this);
+    this.createInputAsc = this.createInputAsc.bind(this);
   }
 
   onChange(event) {
@@ -62,8 +64,8 @@ class OrderValues extends React.Component {
         </select>
 
         <div onChange={(event) => this.onChange(event)} name="sort">
-          {this.createInputAsc}
-          {this.createInputDesc}
+          {this.createInputAsc()}
+          {this.createInputDesc()}
         </div>
         <button
           onClick={(event) => this.onClick(event)}
