@@ -5,15 +5,10 @@ import { aplicarFiltro } from '../actions/filtersActions';
 import { trocaDados } from '../actions/filtersActions';
 
 class Filters extends Component {
-  componentDidMount() {
-    const { muda } = this.props;
-    setTimeout(muda, 1000);
-  }
-
   atualiza() {
-    const { digitadoNome, backData, filter, digitadoValores, data } = this.props;
+    const { digitadoNome, backData, filter, digitadoValores, data, troca } = this.props;
     const auxDat = data;
-    if (digitadoNome === '' && digitadoValores.length === 0) filter(backData);
+    if (digitadoNome === '' && !(digitadoValores.length > 0)) filter(backData);
     else if (digitadoNome !== '') {
       let auxData = [];
       auxData = backData.filter((planet) => {
@@ -22,7 +17,7 @@ class Filters extends Component {
         return names[0].includes(digitadoNome.toLowerCase());
       });
       filter(auxData);
-    } else if (digitadoValores.length > 0) {
+    } else if (troca && digitadoValores.length > 0) {
       let dat = backData;
       digitadoValores.forEach((element) => {
         const comparation = parseFloat(element.value);
@@ -34,7 +29,7 @@ class Filters extends Component {
           dat = auxDat.filter((planet) => parseFloat(planet[element.column]) < comparation);
         }
         filter(dat);
-        // console.log(dat);
+        console.log(dat);
         return null;
       });
     }

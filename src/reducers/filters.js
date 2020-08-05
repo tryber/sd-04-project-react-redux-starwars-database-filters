@@ -1,4 +1,4 @@
-import { BUSCAR_NOME, BUSCA_VALORES } from '../actions/filtersActions';
+import { BUSCAR_NOME, BUSCA_VALORES, REMOVE_VALORES } from '../actions/filtersActions';
 
 const INITIAL_STATE = {
   filterByName: { name: '' },
@@ -28,6 +28,14 @@ const filter = (state = INITIAL_STATE, action) => {
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
         options: action.options,
+      };
+    case REMOVE_VALORES:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          ({ column }) => column !== action.valor,
+        ),
+        options: [...state.options, action.valor],
       };
     default:
       return state;

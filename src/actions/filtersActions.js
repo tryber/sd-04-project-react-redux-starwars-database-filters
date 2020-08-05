@@ -2,6 +2,7 @@ export const BUSCAR_NOME = 'BUSCAR_NOME';
 export const APLICA_FILTRO = 'APLICA_FILTRO';
 export const TROCA_DATA = 'TROCA_DATA';
 export const BUSCA_VALORES = 'BUSCA_VALORES';
+export const REMOVE_VALORES = 'REMOVE_VALORES';
 
 export const inputPesquisa = (digitado) => ({
   type: BUSCAR_NOME,
@@ -23,4 +24,10 @@ export const aplicaValores = (column, comparison, value, options) => ({
   comparison,
   value,
   options,
+});
+
+export const removeValores = (valor, newData) => ({
+  type: REMOVE_VALORES,
+  valor,
+  newData,
 });

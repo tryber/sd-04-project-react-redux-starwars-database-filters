@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { aplicaValores, trocaDados } from '../actions/filtersActions';
+import Card from './cardValue';
 
 class ValueFilters extends Component {
   constructor(props) {
@@ -93,6 +94,7 @@ class ValueFilters extends Component {
             Filtrar
           </button>
         </form>
+        <Card />
       </div>
     );
   }
