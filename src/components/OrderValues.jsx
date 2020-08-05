@@ -25,20 +25,26 @@ class OrderValues extends React.Component {
     const { orderFilter } = this.props;
     orderFilter(column, sort);
   }
-
-  createInput(valueAscOrDesc) {
-    const { sort } = this.state;
+  createInputDesc() {
+    return (
+      <div>
+        <input data-testid="column-sort-input" id="DESC" value="DESC" name="sort" type="radio" />
+        <label htmlFor="DESC">DESC</label>
+      </div>
+    );
+  }
+  createInputAsc() {
     return (
       <div>
         <input
           data-testid="column-sort-input"
-          id={valueAscOrDesc}
-          value={valueAscOrDesc}
+          id="ASC"
+          value="ASC"
           name="sort"
           type="radio"
-          checked={sort === valueAscOrDesc}
+          defaultChecked
         />
-        <label htmlFor={valueAscOrDesc}>{valueAscOrDesc}</label>
+        <label htmlFor="ASC">ASC</label>
       </div>
     );
   }
@@ -56,8 +62,8 @@ class OrderValues extends React.Component {
         </select>
 
         <div onChange={(event) => this.onChange(event)} name="sort">
-          {this.createInput('ASC')}
-          {this.createInput('DESC')}
+          {this.createInputAsc()}
+          {this.createInputDesc()}
         </div>
         <button
           onClick={(event) => this.onClick(event)}
