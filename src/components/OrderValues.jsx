@@ -62,8 +62,8 @@ class OrderValues extends React.Component {
         </select>
 
         <div onChange={(event) => this.onChange(event)} name="sort">
-          {this.createInputAsc()}
-          {this.createInputDesc()}
+          {this.createInputAsc}
+          {this.createInputDesc}
         </div>
         <button
           onClick={(event) => this.onClick(event)}
