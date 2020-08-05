@@ -32,7 +32,7 @@ const filterFunc = (dataPlanets, name, numericValues, collum, sort) => {
               switch (comparison) {
                 case 'maior que':
                   return planet.name.includes(name) && Number(planet[column]) > Number(value);
-                case 'manor que':
+                case 'menor que':
                   return planet.name.includes(name) && Number(planet[column]) < Number(value);
                 case 'igual a':
                   return planet.name.includes(name) && Number(planet[column]) === Number(value);
