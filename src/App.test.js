@@ -254,7 +254,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 
     const tableRows = await findAllByRole('row');
 
-    expect(tableRows).toHaveLength(5);
+    expect(tableRows).toHaveLength(8);
 
     const expectedFilters = [
       { column: 'surface_water', comparison: 'menor que', value: '40' },

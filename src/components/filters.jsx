@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { aplicarFiltro } from '../actions/filtersActions';
+import { trocaDados } from '../actions/filtersActions';
 
 class Filters extends Component {
+  componentDidMount() {
+    const { muda } = this.props;
+    setTimeout(muda, 1000);
+  }
+
   atualiza() {
     const { digitadoNome, backData, filter, digitadoValores, data } = this.props;
     const auxDat = data;
@@ -28,7 +34,7 @@ class Filters extends Component {
           dat = auxDat.filter((planet) => parseFloat(planet[element.column]) < comparation);
         }
         filter(dat);
-        console.log(dat);
+        // console.log(dat);
         return null;
       });
     }
@@ -52,6 +58,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispath) => ({
   filter: (filtro) => dispath(aplicarFiltro(filtro)),
+  muda: () => dispath(trocaDados()),
 });
 
 Filters.propTypes = {
@@ -61,6 +68,7 @@ Filters.propTypes = {
   filter: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   digitadoValores: PropTypes.arrayOf(PropTypes.object).isRequired,
+  muda: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
