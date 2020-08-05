@@ -8,6 +8,13 @@ export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const ORDER_FILTERS = 'ORDER_FILTERS';
 
+const removeResidents = (data) => {
+  return data.map((planet) => {
+    delete planet.residents;
+    return planet;
+  });
+};
+
 const requestingPlanets = () => ({
   type: REQUESTING_PLANETS, // momento que esta fazendo a requesição
 });
@@ -27,7 +34,7 @@ export function fetchPlanets() {
     dispatch(requestingPlanets());
 
     return getPlanetsAPI().then(
-      (data) => dispatch(sucessPlanets(data.results)),
+      (data) => dispatch(sucessPlanets(removeResidents(data.results))),
       (error) => dispatch(errorPlanets(error)),
     );
   };
