@@ -13,30 +13,30 @@ class TableBody extends Component {
       sort === 'ASC'
         ? orderFuncAsc(planets, name, numericValues, columnSort)
         : orderFuncDesc(planets, name, numericValues, columnSort);
-  return (
-    <tbody>
-      {data.map((planet) => (
-        <tr key={planet.name}>
-          <td>{planet.name}</td>
-          <td>{planet.rotation_period}</td>
-          <td>{planet.orbital_period}</td>
-          <td>{planet.diameter}</td>
-          <td>{planet.climate}</td>
-          <td>{planet.gravity}</td>
-          <td>{planet.terrain}</td>
-          <td>{planet.surface_water}</td>
-          <td>{planet.population}</td>
-          <td>
-            {planet.films.map((film) => (
-              <span key={film}>{film}</span>
-            ))}
-          </td>
-          <td>{planet.created}</td>
-          <td>{planet.edited}</td>
-          <td>{planet.url}</td>
-        </tr>
-      ))}
-    </tbody>
+    return (
+      <tbody>
+        {data.map((planet) => (
+          <tr key={planet.name}>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbital_period}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td>{planet.surface_water}</td>
+            <td>{planet.population}</td>
+            <td>
+              {planet.films.map((film) => (
+                <span key={film}>{film}</span>
+              ))}
+            </td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
+            <td>{planet.url}</td>
+          </tr>
+        ))}
+      </tbody>
   );
 }
 }
@@ -76,12 +76,10 @@ TableBody.propTypes = {
   ).isRequired,
   name: PropTypes.string.isRequired,
   numericValues: PropTypes.arrayOf(
-    PropTypes.shape({
-      column: PropTypes.string,
-      comparison: PropTypes.string,
-      value: PropTypes.string,
-      columnSort: PropTypes.string,
-      sort: PropTypes.string,
-    }),
-  ).isRequired,
+    PropTypes.object).isRequired,
+  column: PropTypes.string.isRequired,
+  comparison: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  columnSort: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
 };

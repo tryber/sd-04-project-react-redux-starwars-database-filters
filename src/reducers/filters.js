@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   order: {
     column: 'Name',
     sort: 'ASC',
-  }
+  },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -32,8 +32,7 @@ const filters = (state = INITIAL_STATE, action) => {
       };
     case REMOVE_FILTER_BY_NUMERIC_VALUES:
       return {
-        ...state,
-        filterByNumericValues: [
+        ...state, filterByNumericValues: [
           ...state.filterByNumericValues.filter(
             (filter) => filter !== action.filterKeys,
           ),
@@ -41,9 +40,7 @@ const filters = (state = INITIAL_STATE, action) => {
       };
     case ORDER_COLUMN:
       return {
-        ...state,
-        order: { column: action.column,
-        sort: action.sort, }
+        ...state, order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
