@@ -53,7 +53,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispath) => ({
   filter: (filtro) => dispath(aplicarFiltro(filtro)),
-  muda: () => dispath(trocaDados()),
 });
 
 Filters.propTypes = {
@@ -63,7 +62,6 @@ Filters.propTypes = {
   filter: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   digitadoValores: PropTypes.arrayOf(PropTypes.object).isRequired,
-  muda: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

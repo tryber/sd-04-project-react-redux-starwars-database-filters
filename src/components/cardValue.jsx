@@ -14,11 +14,11 @@ class Card extends Component {
 
   render() {
     const { digitadoValores } = this.props;
-    if (digitadoValores !== undefined  && digitadoValores.length > 0) {
+    if (digitadoValores !== undefined && digitadoValores.length > 0) {
       return (
         <div>
           <ul>
-            {digitadoValores.map((element, index) => (
+            {digitadoValores.map((element) => (
               <li data-testid="filter" key={`${element.column}`}>
                 {`${element.column} ${element.comparison} ${element.value}`}
                 <button
