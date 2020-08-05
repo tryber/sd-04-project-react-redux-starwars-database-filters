@@ -18,7 +18,6 @@ class BodyTable extends Component {
                 {information === 'films'
                   ? planet[information].map((film) => <span key={film}>{film}</span>)
                   : planet[information]}
-                {planet[information]}
               </td>
             ))}
           </tr>
