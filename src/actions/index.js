@@ -3,6 +3,7 @@ import getPlanetsAPI from '../services/getPlanetsAPI';
 export const REQUESTING_PLANETS = 'REQUESTING_PLANETS';
 export const REQUEST_PLANETS_SUCSSES = 'REQUEST_PLANETS_SUCSSES';
 export const REQUEST_PLANETS_FAILURE = 'REQUEST_PLANETS_FAILURE';
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
 const requestingPlanets = () => ({
   type: REQUESTING_PLANETS,
@@ -17,6 +18,11 @@ const failurePlanets = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
   error,
 });
+
+export const filterByName = (name) => ({
+  type: FILTER_BY_NAME,
+  name,
+})
 
 export function fetchPlanets() {
   return (dispatch) => {

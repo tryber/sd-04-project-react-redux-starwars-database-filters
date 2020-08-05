@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './App.css';
+// import './App.css';
 import Table from './components/Table';
 import { fetchPlanets } from './actions';
+import FilterName from './components/FilterName';
 // import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <FilterName />
           <Table />
         </header>
       </div>

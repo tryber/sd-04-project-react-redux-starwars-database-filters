@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 class TableBody extends Component {
   render() {
-    const { planets } = this.props;
+    const { planets, name } = this.props;
+    const filterName = planets.filter((planet) => planet.name.includes(name));
     return (
       <tbody>
-        {planets.map((planet) => (
+        {filterName.map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>
             <td>{planet.rotation_period}</td>
@@ -35,6 +36,7 @@ class TableBody extends Component {
 
 const mapState = (state) => ({
   planets: state.getPlanets.data,
+  name: state.filters.filterByName.name,
 });
 
 export default connect(mapState, null)(TableBody);
