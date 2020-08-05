@@ -3,6 +3,30 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { orderFilters } from '../actions';
 
+function createInputDesc() {
+  return (
+    <div>
+      <input data-testid="column-sort-input" id="DESC" value="DESC" name="sort" type="radio" />
+      <label htmlFor="DESC">DESC</label>
+    </div>
+  );
+}
+function createInputAsc() {
+  return (
+    <div>
+      <input
+        data-testid="column-sort-input"
+        id="ASC"
+        value="ASC"
+        name="sort"
+        type="radio"
+        defaultChecked
+      />
+      <label htmlFor="ASC">ASC</label>
+    </div>
+  );
+}
+
 class OrderValues extends React.Component {
   constructor(props) {
     super(props);
@@ -13,8 +37,6 @@ class OrderValues extends React.Component {
     // para atualizar sem a ação do botão
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.createInputDesc = this.createInputDesc.bind(this);
-    this.createInputAsc = this.createInputAsc.bind(this);
   }
 
   onChange(event) {
@@ -26,29 +48,6 @@ class OrderValues extends React.Component {
     const { column, sort } = this.state;
     const { orderFilter } = this.props;
     orderFilter(column, sort);
-  }
-  createInputDesc() {
-    return (
-      <div>
-        <input data-testid="column-sort-input" id="DESC" value="DESC" name="sort" type="radio" />
-        <label htmlFor="DESC">DESC</label>
-      </div>
-    );
-  }
-  createInputAsc() {
-    return (
-      <div>
-        <input
-          data-testid="column-sort-input"
-          id="ASC"
-          value="ASC"
-          name="sort"
-          type="radio"
-          defaultChecked
-        />
-        <label htmlFor="ASC">ASC</label>
-      </div>
-    );
   }
 
   render() {
@@ -64,8 +63,8 @@ class OrderValues extends React.Component {
         </select>
 
         <div onChange={(event) => this.onChange(event)} name="sort">
-          {this.createInputAsc()}
-          {this.createInputDesc()}
+          {createInputAsc()}
+          {createInputDesc()}
         </div>
         <button
           onClick={(event) => this.onClick(event)}
