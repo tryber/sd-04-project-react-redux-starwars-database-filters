@@ -5,6 +5,7 @@ import Table from '../components/Table';
 import { fetchPlanets } from '../actions';
 import FilterByName from '../components/FilterName';
 import FilterValues from '../components/FilterValues';
+import OrderValues from '../components/OrderValues';
 
 export class Home extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ export class Home extends Component {
         <h1>Star Wars Planets</h1>
         <FilterByName />
         <FilterValues />
+        <OrderValues />
         <Table />
       </div>
     );

@@ -6,7 +6,7 @@ export const REQUEST_PLANETS_ERROR = 'REQUEST_PLANETS_ERROR';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
-// export const ORDER_FILTERS = 'ORDER_FILTERS';
+export const ORDER_FILTERS = 'ORDER_FILTERS';
 
 const requestingPlanets = () => ({
   type: REQUESTING_PLANETS, // momento que esta fazendo a requesição
@@ -50,7 +50,7 @@ export const removeFilter = (column) => ({
   column,
 });
 
-// export const OrderFilters = (filter) => ({
-//   type: ORDER_FILTERS,
-//   filter,
-// });
+export const orderFilters = (filter) => ({
+  type: ORDER_FILTERS,
+  filter,
+});
