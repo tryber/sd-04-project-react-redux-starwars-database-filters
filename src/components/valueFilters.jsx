@@ -20,7 +20,7 @@ class ValueFilters extends Component {
 
   iniciaStates() {
     const { options, choseValues } = this.props;
-    let newOpt = options;
+    const newOpt = options;
     if (choseValues.length === 0) this.setState({ options });
     const columnsUsed = choseValues.map((value) => value.column);
     columnsUsed.forEach((colum) => {
