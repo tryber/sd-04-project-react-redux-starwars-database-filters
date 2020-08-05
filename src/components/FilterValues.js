@@ -1,4 +1,4 @@
-import PropTypes, { element } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByNumericValues } from '../actions';
@@ -39,15 +39,6 @@ class FilterValues extends Component {
   }
 
   getColumns() {
-    // const select = [
-    //   '',
-    //   'population',
-    //   'orbital_period',
-    //   'diameter',
-    //   'rotation_period',
-    //   'surface_water',
-    // ];
-    const { columns } = this.state;
     const select = this.updateColums();
     return (
       <select data-testid="column-filter" value={this.state.column} onChange={(event) => this.onChange(event, 'column')}>
@@ -94,7 +85,9 @@ class FilterValues extends Component {
 }
 FilterValues.propTypes = {
   filterByNumericValues: PropTypes.func.isRequired,
+  numericValues: PropTypes.func.isRequired,
 };
+
 const mapStateToProps = (state) => ({
   numericValues: state.filters.filterByNumericValues,
 });

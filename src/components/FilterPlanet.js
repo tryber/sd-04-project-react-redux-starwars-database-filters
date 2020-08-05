@@ -7,7 +7,7 @@ import { filterByName } from '../actions';
 
 class FilterPlanet extends Component {
   render() {
-    const { filterByName } = this.props;
+    const { filterByNames } = this.props;
     return (
       <div>
         <input
@@ -15,7 +15,7 @@ class FilterPlanet extends Component {
           data-testid="name-filter"
           placeholder="preencha"
           onChange={
-            (event) => filterByName(event.target.value)
+            (event) => filterByNames(event.target.value)
             }
         />
       </div>
@@ -24,7 +24,7 @@ class FilterPlanet extends Component {
 }
 
 FilterPlanet.propTypes = {
-  filterByName: PropTypes.func.isRequired,
+  filterByNames: PropTypes.func.isRequired,
 };
 
 
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (planetName) => dispatch(filterByName(planetName)),
+  filterByNames: (planetName) => dispatch(filterByName(planetName)),
 
 });
 
