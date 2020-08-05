@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class HeaderTable extends Component {
   render() {
     const { data } = this.props;
-    data.forEach((element) => {
+    const NewData = data.map((element) => {
       delete element.residents;
+      return element;
     });
 
     return (
       <thead>
         <tr>
-          {Object.keys(data[0]).map((head) => (
+          {Object.keys(NewData[0]).map((head) => (
             <th key={head}>{head}</th>
           ))}
         </tr>
@@ -25,3 +27,7 @@ const mapState = (state) => ({
 });
 
 export default connect(mapState)(HeaderTable);
+
+HeaderTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -5,20 +5,18 @@ import { removeFilter } from '../actions';
 
 class ListFilters extends Component {
   render() {
-    const { numericValues, removeFilter } = this.props;
+    const { numericValues, removeFilterClick } = this.props;
     return (
       <div data-testid="filter">
         <h3>Filtros</h3>
-        {numericValues.map(({ column, comparison, value }) => {
-          return (
-            <div key={column}>
-              {column} {comparison} {value}
-              <button type="button" onClick={() => removeFilter(column)}>
-                X
-              </button>
-            </div>
-          );
-        })}
+        {numericValues.map(({ column, comparison, value }) => (
+          <div key={column}>
+            {column} {comparison} {value}
+            <button type="button" onClick={() => removeFilterClick(column)}>
+              X
+            </button>
+          </div>
+        ))}
       </div>
     );
   }
@@ -29,12 +27,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeFilter: (column) => dispatch(removeFilter(column)),
+  removeFilterClick: (column) => dispatch(removeFilter(column)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListFilters);
 
 ListFilters.propTypes = {
   numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-  removeFilter: PropTypes.func.isRequired,
+  removeFilterClick: PropTypes.func.isRequired,
 };

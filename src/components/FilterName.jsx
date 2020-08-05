@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
 
 class FilterName extends Component {
@@ -26,3 +27,7 @@ const mapDispatch = (dispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(FilterName);
+
+FilterName.propTypes = {
+  filterName: PropTypes.func.isRequired,
+};

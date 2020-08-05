@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { filterByNumericValues } from '../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { filterByNumericValues } from '../actions';
 import ListFilters from '../components/ListFilters';
 
 class FilterValues extends Component {
@@ -33,6 +34,14 @@ class FilterValues extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value });
   }
+
+  onClick() {
+    const { column, comparation, number } = this.state;
+    const { filterByNumericValue } = this.props;
+    filterByNumericValue(column, comparation, number);
+    this.setState({ column: '', comparation: '', number: '' });
+  }
+
   getColums() {
     const select = this.updatesColumns();
     return (
@@ -69,13 +78,6 @@ class FilterValues extends Component {
     );
   }
 
-  onClick() {
-    const { column, comparation, number } = this.state;
-    const { filterByNumericValues } = this.props;
-    filterByNumericValues(column, comparation, number);
-    this.setState({ column: '', comparation: '', number: '' });
-  }
-
   render() {
     return (
       <div>
@@ -102,8 +104,12 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  filterByNumericValues: (column, comparison, value) =>
+  filterByNumericValue: (column, comparison, value) =>
     dispatch(filterByNumericValues(column, comparison, value)),
 });
 
 export default connect(mapState, mapDispatch)(FilterValues);
+
+FilterValues.propTypes = {
+  numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import filterFunc from './functions/FilterFunc';
 
@@ -34,3 +35,9 @@ const mapState = (state) => ({
 });
 
 export default connect(mapState)(BodyTable);
+
+BodyTable.propTypes = {
+  numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  name: PropTypes.string.isRequired,
+};
