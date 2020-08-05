@@ -6,6 +6,7 @@ import { removeFilter } from '../actions';
 class ListFilters extends Component {
   render() {
     const { numericValues, removeFilterClick } = this.props;
+    if (numericValues.length === 0) return <div />;
     return (
       <div data-testid="filter">
         <h3>Filtros</h3>
