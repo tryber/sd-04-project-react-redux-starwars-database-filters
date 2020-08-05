@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 const planetReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'REQUEST_PLANETS':
-      return { ...state, 
+      return { ...state,
         loading: true };
     case 'SUCCESS_PLANETS':
       return {

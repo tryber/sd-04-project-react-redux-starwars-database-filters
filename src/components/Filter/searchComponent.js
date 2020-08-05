@@ -8,12 +8,12 @@ class Search extends React.Component {
     const { nameFilter } = this.props;
     return (
       <div>
-          <input
-            data-testid="name-filter"
-            type="text"
-            onChange={(elem) => nameFilter(elem.target.value)}
-            placeholder="Faça sua pesquisa"
-          />
+        <input
+          data-testid="name-filter"
+          type="text"
+          onChange={(elem) => nameFilter(elem.target.value)}
+          placeholder="Faça sua pesquisa"
+        />
       </div>
     );
   }
