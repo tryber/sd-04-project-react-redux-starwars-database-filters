@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -26,6 +27,20 @@ class App extends Component {
       </div>
     );
   }
+=======
+import React from 'react';
+import './App.css';
+import Table from './components/Table';
+import Header from './components/Header';
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Table />
+    </div>
+  );
+>>>>>>> e14567c83b028f9242607acca7d007b7229c9e1f
 }
 
 const mapDispatchToProps = (dispath) => ({

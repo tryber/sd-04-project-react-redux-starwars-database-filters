@@ -18,7 +18,7 @@ class Filters extends Component {
   atualiza() {
     const { digitadoNome, filter, digitadoValores, data, troca, order } = this.props;
     let planets = data.sort((a, b) => a.name.localeCompare(b.name));
-    if (order.column !== 'Name' && order.column !== ) {
+    if (order.column !== 'Name' && order.column !== undefined) {
       planets = sortData(planets, order.column, order.sort);
     }
     //console.log(planets);
