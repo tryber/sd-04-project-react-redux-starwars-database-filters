@@ -5,18 +5,18 @@ import filterFunc from '../useful/filterFunc';
 
 function TableBody({ planets, name, numericValues, orderColumn, orderSort }) {
   const data = filterFunc(planets, name, numericValues);
-  function sortPlanets(planets) {
-    if (planets.length === 0) return planets;
+  function sortPlanets(planetas) {
+    if (planets.length === 0) return planetas;
     const planetKey = orderColumn.toLowerCase();
-    if (isNaN(planets[0][planetKey])) {
-      planets.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
+    if (isNaN(planetas[0][planetKey])) {
+      planetas.sort((a, b) => (a[planetKey] > b[planetKey] ? 1 : -1));
     } else {
-      planets.sort((a, b) => a[planetKey] - b[planetKey]);
+      planetas.sort((a, b) => a[planetKey] - b[planetKey]);
     }
-    if (orderSort === 'DESC') planets.reverse();
-    return planets;
+    if (orderSort === 'DESC') planetas.reverse();
+    return planetas;
   }
-  const sortedPlanets = sortPlanets(data)
+  const sortedPlanets = sortPlanets(data);
 
   return (
     <tbody>
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => ({
   name: state.filters.filterByName.name,
   numericValues: state.filters.filterByNumericValues,
   orderColumn: state.filters.order.column,
-  orderSort: state.filters.order.sort
+  orderSort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps)(TableBody);
@@ -59,8 +59,6 @@ TableBody.defaultProps = {
   columnSort: 'Name',
   sort: 'ASC',
 };
-
-
 
 TableBody.propTypes = {
   orderColumn: PropTypes.string.isRequired,
