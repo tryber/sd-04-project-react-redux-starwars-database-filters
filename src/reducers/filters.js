@@ -5,19 +5,17 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
   order: { column: 'Name', sort: 'ASC' },
 };
-const getByNumericValues = (state, action) => {
-  return {
-    ...state,
-    filterByNumericValues: [
-      ...state.filterByNumericValues,
-      {
-        column: action.column,
-        comparison: action.comparison,
-        value: action.value,
-      },
-    ],
-  };
-};
+const getByNumericValues = (state, action) => ({
+  ...state,
+  filterByNumericValues: [
+    ...state.filterByNumericValues,
+    {
+      column: action.column,
+      comparison: action.comparison,
+      value: action.value,
+    },
+  ],
+});
 
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
