@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import Table from './Table';
 import fetchPlanets from '../actions';
 import FilterValues from './FilterValues';
-import './HomeLoading.css';
-import './Home.css';
 import FilterPlanet from './FilterPlanet';
 import FilterRemove from './FilterRemove';
 import FilterOrder from './FilterOrder';
