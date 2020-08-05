@@ -7,7 +7,7 @@ function TableBody({ planets, name, numericValues }) {
   const data = FilterFunction(planets, name, numericValues);
   return (
     <tbody>
-    {data.map((planet) => (
+      {data.map((planet) => (
       <tr key={planet.name}>
         <td>{planet.name}</td>
         <td>{planet.rotation_period}</td>
@@ -28,8 +28,8 @@ function TableBody({ planets, name, numericValues }) {
         <td>{planet.url}</td>
       </tr>
     ))}
-  </tbody>
-);
+    </tbody>
+  );
 }
 
 const mapState = (state) => ({
