@@ -47,7 +47,7 @@ class Filter extends React.Component {
       activFilterColum.push(item.column);
     });
     let colonumItemsFiltered = [];
-    colonumItemsFiltered = colonumItemsArray.filter((n) => !activFilterColum.includes(n),);
+    colonumItemsFiltered = colonumItemsArray.filter((n) => !activFilterColum.includes(n));
     return (
       <select
         name="column"
