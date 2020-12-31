@@ -25,7 +25,6 @@ class Table extends React.Component {
       <div>
         <table className="table table-striped ">
           <thead className="thead-dark">
-  
             <tr>
               {tableHeaders.map((header) => (
                 <th scope="col" key={header}>

@@ -54,14 +54,14 @@ class MainContainer extends React.Component {
     return (
       <div>
         {/* <div className="filterEmbender"> */}
-          <div className="filterContainer">
-            <div className="searchbar">
-              <SearchBar />
-            </div>
-            <div>
-              <Filter />
-            </div>
+        <div className="filterContainer">
+          <div className="searchbar">
+            <SearchBar />
           </div>
+          <div>
+            <Filter />
+          </div>
+        </div>
         {/* </div> */}
         {!isLoading && ( // When API is not done Table is not rendered
           <Table planets={data} filteredPlanet={this.planetFilter()} />

@@ -43,11 +43,11 @@ class Filter extends React.Component {
       'surface_water',
     ]; // Must refactor this part and subtract object directly
     const activFilterColum = [];
-    this.props.filterByNumericValues.forEach((item) => {activFilterColum.push(item.column)});
+    this.props.filterByNumericValues.forEach((item) => {
+      activFilterColum.push(item.column);
+    });
     let colonumItemsFiltered = [];
-    colonumItemsFiltered = colonumItemsArray.filter(
-      (n) => !activFilterColum.includes(n),
-    );
+    colonumItemsFiltered = colonumItemsArray.filter((n) => !activFilterColum.includes(n),);
     return (
       <select
         name="column"
