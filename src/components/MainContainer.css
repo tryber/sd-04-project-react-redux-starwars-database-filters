@@ -1,9 +1,14 @@
+.filterEmbender {
+  display: flex;
+  align-items: center;
+}
+
 .filters {
   display: flex;
 }
 
 .filterContainer {
-  align-items: center;
+  align-items: flex-start;
   background-color: darkgray;
   background-image: url('../images/deadstar.png');
   background-size: cover;
@@ -30,4 +35,9 @@
   justify-content: space-around;
   margin-bottom: 10px;
   opacity: 0.9;
+  padding: 1px 10px;
+}
+
+.button-delete {
+  margin-left: 10px;
 }

@@ -43,9 +43,7 @@ class Filter extends React.Component {
       'surface_water',
     ]; // Must refactor this part and subtract object directly
     const activFilterColum = [];
-    this.props.filterByNumericValues.forEach((item) => {
-      activFilterColum.push(item.column);
-    });
+    this.props.filterByNumericValues.forEach((item) => {activFilterColum.push(item.column)});
     let colonumItemsFiltered = [];
     colonumItemsFiltered = colonumItemsArray.filter(
       (n) => !activFilterColum.includes(n),
@@ -79,7 +77,7 @@ class Filter extends React.Component {
             <div>
               <button
                 type="button"
-                className="btn btn-danger "
+                className="btn btn-danger button-delete"
                 onClick={() => this.props.deleteFilter(index)}
               >
                 X

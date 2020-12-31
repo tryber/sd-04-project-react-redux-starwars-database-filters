@@ -19,6 +19,7 @@ class MainContainer extends React.Component {
     getPlanet();
   }
 
+  // used to compare value of the planet and filter value with >, <, and ===
   compare(planetValue, filterValue, operator) {
     let result = false;
     if (operator === 'maior que') result = planetValue > filterValue;
@@ -28,6 +29,7 @@ class MainContainer extends React.Component {
     return result;
   }
 
+  // filter the complete planet list from API according to active filters
   planetFilter() {
     const { data, filters, searchedPlanet } = this.props;
     const filterArray = filters.filterByNumericValues;
@@ -51,16 +53,17 @@ class MainContainer extends React.Component {
     const { data, isLoading } = this.props;
     return (
       <div>
-        <div className="filterContainer">
-          {/* <h1>Welcome to the StarWars planet API</h1> */}
-          <div className="searchbar">
-            <SearchBar />
+        {/* <div className="filterEmbender"> */}
+          <div className="filterContainer">
+            <div className="searchbar">
+              <SearchBar />
+            </div>
+            <div>
+              <Filter />
+            </div>
           </div>
-          <div>
-            <Filter />
-          </div>
-        </div>
-        {!isLoading && (
+        {/* </div> */}
+        {!isLoading && ( // When API is not done Table is not rendered
           <Table planets={data} filteredPlanet={this.planetFilter()} />
         )}
       </div>
