@@ -1,0 +1,15 @@
+.planets-table {
+  table-layout: fixed;
+  width: 90%;
+}
+
+.planets-table td, .planets-table th {
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 2px;
+}
+
+.planets-table td {
+  font-size: 0.8em;
+  overflow: auto;
+  text-align: center;
+}
